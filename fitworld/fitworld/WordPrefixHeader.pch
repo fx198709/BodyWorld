@@ -1,0 +1,16 @@
+//
+//  WordPrefixHeader.pch
+//  FFitWorld
+//
+//  Created by syswin on 2021/10/10.
+//
+
+#ifndef WordPrefixHeader_pch
+#define WordPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* WordPrefixHeader_pch */
+#import "BaseNavViewController.h"
+

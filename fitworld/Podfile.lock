@@ -1,0 +1,75 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - ISVImageScrollView (0.1.2)
+  - MJRefresh (3.6.1)
+  - MMLayout (0.2.0)
+  - ReactiveObjC (3.1.1)
+  - SDWebImage (5.8.1):
+    - SDWebImage/Core (= 5.8.1)
+  - SDWebImage/Core (5.8.1)
+  - Toast (4.0.0)
+  - TXIMSDK_iOS (4.9.6)
+  - TXIMSDK_TUIKit_iOS (4.6.58):
+    - ISVImageScrollView
+    - MMLayout (= 0.2.0)
+    - ReactiveObjC
+    - SDWebImage
+    - Toast
+    - TXIMSDK_iOS
+
+DEPENDENCIES:
+  - AFNetworking (~> 4.0)
+  - ISVImageScrollView (~> 0.1.2)
+  - MJRefresh
+  - SDWebImage (from `https://gitee.com/lf01/SDWebImage.git`)
+  - TXIMSDK_iOS (~> 4.9.1)
+  - TXIMSDK_TUIKit_iOS
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - ISVImageScrollView
+    - MJRefresh
+    - MMLayout
+    - ReactiveObjC
+    - Toast
+    - TXIMSDK_iOS
+    - TXIMSDK_TUIKit_iOS
+
+EXTERNAL SOURCES:
+  SDWebImage:
+    :git: https://gitee.com/lf01/SDWebImage.git
+
+CHECKOUT OPTIONS:
+  SDWebImage:
+    :commit: fe92b7aa3d49900defea430828a6774f0a2ab6dd
+    :git: https://gitee.com/lf01/SDWebImage.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  ISVImageScrollView: ba511d12a1661b40feb8921309c0854bf93ec749
+  MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
+  MMLayout: 3fb59d58eeb8656c64e61d550fb0088e10666c11
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  TXIMSDK_iOS: 397ca154967b60283dcfee451912842f45d7f165
+  TXIMSDK_TUIKit_iOS: 07d410f70bd3601506d1b0f219174fc1eed76ef9
+
+PODFILE CHECKSUM: af629dc0ce1cf8bbc7a2743a70bcef4452d8e306
+
+COCOAPODS: 1.10.1

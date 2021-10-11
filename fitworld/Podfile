@@ -1,0 +1,9 @@
+platform :ios, '11'
+target 'FFitWorld' do
+    pod ‘AFNetworking’, '~> 4.0'
+    pod 'SDWebImage', git:'https://gitee.com/lf01/SDWebImage.git'
+    pod 'TXIMSDK_iOS', '~> 4.9.1'
+    pod 'ISVImageScrollView', '~> 0.1.2'
+    pod 'TXIMSDK_TUIKit_iOS'
+    pod 'MJRefresh'
+end
