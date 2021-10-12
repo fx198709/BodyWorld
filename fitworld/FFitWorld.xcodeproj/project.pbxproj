@@ -378,17 +378,17 @@
 			isa = PBXGroup;
 			children = (
 				04F3E33F26E9325F00CEEC7D /* Calendar */,
-				04DA746326A86E2600257963 /* HMSegmentedControl */,
-				04DA746626A86E2600257963 /* YJPageViewControler */,
-				04552AF32696C3FD00C78706 /* MaterialDesignColor */,
-				04552AF62696C3FD00C78706 /* JTMaterialSwitch */,
-				04552AF92696C3FD00C78706 /* SymbolIcon */,
-				04552B022696C3FD00C78706 /* Masonry */,
-				04552B1C2696C3FD00C78706 /* MBProgressHUD */,
-				04552B1F2696C3FD00C78706 /* TWSReleaseNotesView */,
 				04552B262696C3FD00C78706 /* ConsoleTextView */,
-				04552B292696C3FD00C78706 /* YYAdd */,
+				04DA746326A86E2600257963 /* HMSegmentedControl */,
+				04552AF62696C3FD00C78706 /* JTMaterialSwitch */,
+				04552B022696C3FD00C78706 /* Masonry */,
+				04552AF32696C3FD00C78706 /* MaterialDesignColor */,
+				04552B1C2696C3FD00C78706 /* MBProgressHUD */,
 				04552B2E2696C3FD00C78706 /* QRCodeReaderViewController */,
+				04552AF92696C3FD00C78706 /* SymbolIcon */,
+				04552B1F2696C3FD00C78706 /* TWSReleaseNotesView */,
+				04DA746626A86E2600257963 /* YJPageViewControler */,
+				04552B292696C3FD00C78706 /* YYAdd */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -405,8 +405,8 @@
 		04552AF62696C3FD00C78706 /* JTMaterialSwitch */ = {
 			isa = PBXGroup;
 			children = (
-				04552AF72696C3FD00C78706 /* JTMaterialSwitch.m */,
 				04552AF82696C3FD00C78706 /* JTMaterialSwitch.h */,
+				04552AF72696C3FD00C78706 /* JTMaterialSwitch.m */,
 			);
 			path = JTMaterialSwitch;
 			sourceTree = "<group>";
@@ -475,8 +475,8 @@
 		04552B1C2696C3FD00C78706 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				04552B1D2696C3FD00C78706 /* MBProgressHUD.m */,
 				04552B1E2696C3FD00C78706 /* MBProgressHUD.h */,
+				04552B1D2696C3FD00C78706 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
 			sourceTree = "<group>";
@@ -497,8 +497,8 @@
 		04552B262696C3FD00C78706 /* ConsoleTextView */ = {
 			isa = PBXGroup;
 			children = (
-				04552B272696C3FD00C78706 /* ConsoleTextView.m */,
 				04552B282696C3FD00C78706 /* ConsoleTextView.h */,
+				04552B272696C3FD00C78706 /* ConsoleTextView.m */,
 			);
 			path = ConsoleTextView;
 			sourceTree = "<group>";
@@ -507,9 +507,9 @@
 			isa = PBXGroup;
 			children = (
 				04552B2A2696C3FD00C78706 /* UIControl+YYAdd.h */,
-				04552B2B2696C3FD00C78706 /* UIView+YYAdd.m */,
 				04552B2C2696C3FD00C78706 /* UIControl+YYAdd.m */,
 				04552B2D2696C3FD00C78706 /* UIView+YYAdd.h */,
+				04552B2B2696C3FD00C78706 /* UIView+YYAdd.m */,
 			);
 			path = YYAdd;
 			sourceTree = "<group>";
@@ -710,10 +710,10 @@
 		04F3E33F26E9325F00CEEC7D /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				04F3E34026E9325F00CEEC7D /* UIView+Extension.h */,
-				04F3E34126E9325F00CEEC7D /* CalendarView.m */,
-				04F3E34226E9325F00CEEC7D /* UIView+Extension.m */,
 				04F3E34326E9325F00CEEC7D /* CalendarView.h */,
+				04F3E34126E9325F00CEEC7D /* CalendarView.m */,
+				04F3E34026E9325F00CEEC7D /* UIView+Extension.h */,
+				04F3E34226E9325F00CEEC7D /* UIView+Extension.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
