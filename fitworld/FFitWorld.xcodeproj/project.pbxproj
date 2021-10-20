@@ -283,7 +283,6 @@
 		04F3E34126E9325F00CEEC7D /* CalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarView.m; sourceTree = "<group>"; };
 		04F3E34226E9325F00CEEC7D /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		04F3E34326E9325F00CEEC7D /* CalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarView.h; sourceTree = "<group>"; };
-		04F3E34626E9328C00CEEC7D /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		04F8AA5A270DE974009B125A /* ResetPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPwdController.m; sourceTree = "<group>"; };
 		04F8AA5B270DE974009B125A /* ResetPwdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPwdController.h; sourceTree = "<group>"; };
 		2B12690FCE930C0C330FD2A9 /* Pods-FFitWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.debug.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.debug.xcconfig"; sourceTree = "<group>"; };
@@ -294,6 +293,7 @@
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
 		C8E2F72627131DBA00FEE021 /* WordPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordPrefixHeader.pch; sourceTree = "<group>"; };
 		DB4B81011D05364E70937961 /* libPods-FFitWorld.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FFitWorld.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -567,6 +567,7 @@
 		047DC1F2268CD09700A3E37E /* fitworld */ = {
 			isa = PBXGroup;
 			children = (
+				DD59F5D8271BEB6600551E2C /* PrefixHeader.h */,
 				C8E2F71E27131B7600FEE021 /* BaseClass */,
 				04EC01CE26BD8ABF00DC0103 /* VConductor */,
 				04552AF22696C3FD00C78706 /* UI */,
@@ -579,7 +580,6 @@
 				047DC1F6268CD09700A3E37E /* SceneDelegate.h */,
 				047DC1F7268CD09700A3E37E /* SceneDelegate.m */,
 				04552B562696C46E00C78706 /* UIDeps.h */,
-				04F3E34626E9328C00CEEC7D /* PrefixHeader.h */,
 				047DC1FC268CD09700A3E37E /* Main.storyboard */,
 				047DC202268CD09900A3E37E /* Assets.xcassets */,
 				047DC204268CD09900A3E37E /* LaunchScreen.storyboard */,
