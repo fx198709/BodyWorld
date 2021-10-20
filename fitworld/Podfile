@@ -6,4 +6,7 @@ target 'FFitWorld' do
     pod 'ISVImageScrollView', '~> 0.1.2'
     pod 'TXIMSDK_TUIKit_iOS'
     pod 'MJRefresh'
+    pod 'Masonry'
+    pod 'MBProgressHUD'
+    pod 'HMSegmentedControl'
 end
