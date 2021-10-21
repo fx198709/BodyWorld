@@ -10,9 +10,7 @@
 #define PrefixHeader_h
 
 #import "UIView+Extension.h"
-#import "BaseNavViewController.h"
-#import "MJRefresh.h"
-#import "Masonry.h"
+#import "BaseObject.h"
 // 屏幕尺寸
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -24,3 +22,34 @@
 
 
 #endif /* PrefixHeader_h */
+
+static inline  int ISChinese(){
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+       NSArray* languagesArray = [defaults objectForKey:@"AppleLanguages"];
+       NSString* systemlanguage = [languagesArray objectAtIndex:0];
+    if([systemlanguage.lowercaseString containsString:@"zh-"]){
+        return YES;
+    }
+    return NO;
+}
+
+UIKIT_STATIC_INLINE  NSString* ChineseOrENFun(BaseObject* obj, NSString* key){
+    if(ISChinese()){
+        NSString *keyString = [NSString stringWithFormat:@"%@_cn",key];
+        return [obj valueForKey:keyString];
+    }else{
+        return [obj valueForKey:key];;//[obj objectForKey:key];
+    }
+}
+
+#define ChineseOrEN(obj, key)   ({\
+if(ISChinese()){\
+NSString *keyString = [NSString stringWithFormat:@"%@_cn",key];\
+return [obj objectForKey:keyString];\
+}else{\
+return [obj objectForKey:key];\
+})
+
+
+
+

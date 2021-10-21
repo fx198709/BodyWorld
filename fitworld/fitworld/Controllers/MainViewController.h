@@ -6,15 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UserInfo.h"
 NS_ASSUME_NONNULL_BEGIN
-
-@interface MainViewController : UITableViewController
+@interface MainViewController : BaseNavViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) NSIndexPath *liveIndexPath;
 @property (weak, nonatomic) NSIndexPath *groupIndexPath;
 @property (weak, nonatomic) NSIndexPath *buddyIndexPath;
-
+@property (strong, nonatomic) UserInfo *userInfo;
+@property (strong, nonatomic) UITableView *mainTableview;
 @end
 
 NS_ASSUME_NONNULL_END

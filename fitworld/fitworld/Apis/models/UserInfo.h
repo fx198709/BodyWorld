@@ -32,6 +32,8 @@
 @property (nonatomic , copy) NSString              * updated_at;
 @property (nonatomic , copy) NSString              * username;
 @property (nonatomic , assign) NSInteger              weight;
+@property (nonatomic , strong) NSString*              msg;
+@property (nonatomic , strong) NSString*              msg_cn;
 
 - (BOOL)isEqualToUserInfo:(UserInfo *)userInfo;
 

@@ -12,6 +12,7 @@
 #import "FITAPI.h"
 #import "UIDeps.h"
 #import "UserInfo.h"
+#import "MainViewController.h"
 
 @interface LoginController ()
 
@@ -85,7 +86,7 @@
     self.userNameTxt.attributedPlaceholder = placeholderString;
     self.userNameTxt.textColor = UIColor.whiteColor;
     // TODO 默认账号
-    self.userNameTxt.text = @"wangwei";
+    self.userNameTxt.text = @"+86:13501173505";
     [self.view addSubview: self.userNameTxt];
     [self.userNameTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(inputBgView);
@@ -155,13 +156,16 @@
             NSLog(@"请求成功---%@", responseObject);
             if ([responseObject count] > 0) {
                 UserInfo *userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"][@"user"]];
+                userInfo.msg = responseObject[@"recordset"][@"msg"];
+                userInfo.msg_cn = responseObject[@"recordset"][@"msg_cn"];
                 NSString *userToken = responseObject[@"recordset"][@"token"];
                 if(userToken != nil){
                     [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"userToken"];
                 }
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                UIViewController *vc = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"mainNavVC"];
-                
+                UINavigationController *vc = (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"mainNavVC"];
+                MainViewController *mainvc = [vc.viewControllers firstObject];
+                mainvc.userInfo = userInfo;
                 [self.view.window setRootViewController:vc];
             }
 

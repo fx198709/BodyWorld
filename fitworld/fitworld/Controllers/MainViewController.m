@@ -18,7 +18,6 @@
 #import "UserCenterViewController.h"
 
 @interface MainViewController ()
-@property (nonatomic, strong) UserInfo *userInfo;
 @end
 
 @implementation MainViewController
@@ -26,31 +25,42 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initUserinfo];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([TableCollectionViewCell class]) bundle:nil] forCellReuseIdentifier:@"liveCell"];
-    
-    UIRefreshControl *control = [[UIRefreshControl alloc]init];
-    control.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-    [control addTarget:self action:@selector(handleRefresh) forControlEvents:UIControlEventValueChanged];
-    self.tableView.refreshControl = control;
-
+    self.mainTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [self.view addSubview:self.mainTableview];
+    [self.mainTableview registerNib:[UINib nibWithNibName:NSStringFromClass([TableCollectionViewCell class]) bundle:nil] forCellReuseIdentifier:@"liveCell"];
+    self.mainTableview.delegate = self;
+    self.mainTableview.dataSource = self;
+    [self.mainTableview mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.left.with.top.equalTo(self.view);
+      make.size.equalTo(self.view);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
 }
 
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.mainTableview addHeaderWithTarget:self action:@selector(headerRereshing)];
+}
+//开始进入刷新状态
+- (void)headerRereshing
+{
+    //下拉刷新，先还原上拉“已加载全部数据”的状态
+    [self.mainTableview.mj_footer resetNoMoreData];
+    [self reachHeadData];
+}
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return 4;
 }
 
@@ -74,7 +84,7 @@
         [cell.contentView addSubview: ({
             UILabel *sourceLable = [[UILabel alloc] initWithFrame:CGRectMake(80, 50, 300, 20)];
             sourceLable.font = [UIFont systemFontOfSize: 12];
-            sourceLable.text = @"发布人呢";
+            sourceLable.text = ChineseOrENFun(self.userInfo, @"msg");
             sourceLable.textColor = [UIColor whiteColor];
             [sourceLable sizeToFit];
             sourceLable;
@@ -109,7 +119,7 @@
             
             [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
             [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:(UIControlEventTouchDown)];
-            [self refreshData:cell :@""];
+//            [self refreshData:cell :@""];
             cell.backgroundColor = UIColor.blackColor;
             return cell;
         }
@@ -234,64 +244,66 @@
 }
 
 // 初始化用户信息
-- (void) initUserinfo
-{
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-    NSString *strUrl = [NSString stringWithFormat:@"%@user_info", FITAPI_HTTPS_PREFIX];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"X-Requested-With" forHTTPHeaderField:@"X-Requested-With"];
-
-    [manager GET:strUrl parameters:nil headers:nil progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"success ---- %@", responseObject);
-        self.userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
-        NSLog(@"success username ---- %@", self.userInfo.username);
-
-        [self.tableView reloadData];
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       NSLog(@"failure ---- %@", error);
-    }];
-}
+//- (void) initUserinfo
+//{
+//    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+//    NSString *strUrl = [NSString stringWithFormat:@"%@user_info", FITAPI_HTTPS_PREFIX];
+//    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
+//    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+//    [manager.requestSerializer setValue:@"X-Requested-With" forHTTPHeaderField:@"X-Requested-With"];
+//
+//    [manager GET:strUrl parameters:nil headers:nil progress:nil
+//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"success ---- %@", responseObject);
+//        self.userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
+//        NSLog(@"success username ---- %@", self.userInfo.username);
+//
+//        [self.tableView reloadData];
+//       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//       NSLog(@"failure ---- %@", error);
+//    }];
+//}
 
 #pragma mark - 刷新房间数据
-- (void) refreshData: (TableCollectionViewCell *) collectionCell: (NSString *) type
-{
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-    NSLog(@"initroom userToken ---- %@", userToken);
+//- (void) refreshData: (TableCollectionViewCell *) collectionCell: (NSString *) type
+//{
+//    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+//    NSLog(@"initroom userToken ---- %@", userToken);
+//
+//    NSString *strUrl = [NSString stringWithFormat:@"%@room", FITAPI_HTTPS_PREFIX];
+//    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
+//    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+//    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+//    NSDictionary *baddyParams = @{
+//                           @"type": type,
+//                           @"page": @"1",
+//                           @"row": @"5"
+//                       };
+//    [manager GET:strUrl parameters:baddyParams headers:nil progress:nil
+//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"responseObject ---- %@", responseObject);
+//        long total =  [responseObject[@"recordset"][@"total"] longValue];
+//        if(total > 0){
+//            Room *room = [[Room alloc] initWithJSON: responseObject[@"recordset"][@"rows"][0]];
+//            NSMutableArray *dataArr = [[NSMutableArray alloc] init];
+//            [dataArr addObject: room];
+//            collectionCell.dataArr = dataArr;
+//            [collectionCell.myCollectionView reloadData];
+//        }
+//        if ([self.tableView.refreshControl isRefreshing]) {
+//            [self.tableView.refreshControl endRefreshing];
+//        }
+//
+//       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//           if ([self.tableView.refreshControl isRefreshing]) {
+//               [self.tableView.refreshControl endRefreshing];
+//           }
+//    }];
+//}
 
-    NSString *strUrl = [NSString stringWithFormat:@"%@room", FITAPI_HTTPS_PREFIX];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    NSDictionary *baddyParams = @{
-                           @"type": type,
-                           @"page": @"1",
-                           @"row": @"5"
-                       };
-    [manager GET:strUrl parameters:baddyParams headers:nil progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject ---- %@", responseObject);
-        long total =  [responseObject[@"recordset"][@"total"] longValue];
-        if(total > 0){
-            Room *room = [[Room alloc] initWithJSON: responseObject[@"recordset"][@"rows"][0]];
-            NSMutableArray *dataArr = [[NSMutableArray alloc] init];
-            [dataArr addObject: room];
-            collectionCell.dataArr = dataArr;
-            [collectionCell.myCollectionView reloadData];
-        }
-        if ([self.tableView.refreshControl isRefreshing]) {
-            [self.tableView.refreshControl endRefreshing];
-        }
-
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       NSLog(@"failure ---- %@", error);
-    }];
-}
-
-- (void)handleRefresh {
+- (void)reachHeadData {
     
-    TableCollectionViewCell *liveCell = [self.tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:_liveIndexPath];
+ 
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     NSLog(@"initroom userToken ---- %@", userToken);
 
@@ -309,22 +321,18 @@
         NSLog(@"responseObject ---- %@", responseObject);
         long total =  [responseObject[@"recordset"][@"total"] longValue];
         NSMutableArray *dataArr = [[NSMutableArray alloc] init];
-        
         if(total > 0){
             Room *room = [[Room alloc] initWithJSON: responseObject[@"recordset"][@"rows"][0]];
             [dataArr addObject: room];
-            liveCell.dataArr = dataArr;
-            [self.tableView reloadData];
+//            liveCell.dataArr = dataArr;
+            [self.mainTableview reloadData];
         }else{
-            liveCell.dataArr = dataArr;
-            [self.tableView reloadData];
+//            liveCell.dataArr = dataArr;
+            [self.mainTableview reloadData];
         }
-        if ([self.tableView.refreshControl isRefreshing]) {
-            [self.tableView.refreshControl endRefreshing];
-        }
-
+        [self.mainTableview.mj_header endRefreshing];
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       NSLog(@"failure ---- %@", error);
+           [self.mainTableview.mj_header endRefreshing];
     }];
     
 //    TableCollectionViewCell *groupCell = [self.tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:_groupIndexPath];
