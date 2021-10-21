@@ -8,7 +8,6 @@
 #import "MainViewController.h"
 #import "UIDeps.h"
 #import "AFNetworking.h"
-#import "FITAPI.h"
 #import "TableCollectionViewCell.h"
 #import "Course.h"
 #import "Room.h"
@@ -16,6 +15,7 @@
 #import "CourseMoreController.h"
 #import "TrainingViewController.h"
 #import "UserCenterViewController.h"
+#import "JYCarousel.h"
 
 @interface MainViewController ()
 @end
@@ -34,6 +34,7 @@
       make.left.with.top.equalTo(self.view);
       make.size.equalTo(self.view);
     }];
+    [self setupRefresh];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -53,13 +54,34 @@
     [self reachHeadData];
 }
 
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (void)addCarouselView1{
+    //图片数组（或者图片URL，图片URL字符串，图片UIImage对象）
+    NSMutableArray *imageArray = [[NSMutableArray alloc] initWithArray: @[@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg"]];
+    WeakSelf
+   JYCarousel *carouselView = [[JYCarousel alloc] initWithFrame:CGRectMake(0, 64, ViewWidth(self.view), 100) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
+         //配置指示器类型
+        carouselConfig.pageContollType = LabelPageControl;
+        //配置轮播时间间隔
+        carouselConfig.interValTime = 3;
+//        //配置轮播翻页动画
+//        carouselConfig.pushAnimationType = PushCube;
+//        //配置动画方向
+//        carouselConfig.animationSubtype = kCATransitionFromRight;
+        return carouselConfig;
+    } clickBlock:^(NSInteger index) {
+          //点击imageView回调方法
+        [wSelf clickIndex:index];
+    }];
+    //开始轮播
+    [carouselView startCarouselWithArray:imageArray];
+    [self.view addSubview:carouselView];
 }
 
+- (void)clickIndex:(NSInteger)index{
+    
+}
+
+#pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 4;
 }
@@ -68,7 +90,7 @@
     // 创建标识词，随意设置，但不能和其它 tableView 的相同
     static NSString *indentifier = @"mainIndentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
-    if (indexPath.row == 0 && indexPath.section == 0){
+    if (indexPath.row == 0){
         // 复用队列中没有时再创建
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier: indentifier];
         
@@ -107,7 +129,7 @@
         cell.contentView.backgroundColor = [UIColor blackColor];
     }
 
-    if (indexPath.row == 1 && indexPath.section == 0){
+    if (indexPath.row == 1){
         _liveIndexPath = indexPath;
         // 复用队列中没有时再创建
         if (cell == nil) {
@@ -124,7 +146,7 @@
             return cell;
         }
     }
-    if (indexPath.row == 2 && indexPath.section == 0){
+    if (indexPath.row == 2 ){
         _groupIndexPath = indexPath;
         // 复用队列中没有时再创建
         if (cell == nil) {
@@ -141,7 +163,7 @@
             return cell;
         }
     }
-    if (indexPath.row == 3 && indexPath.section == 0){
+    if (indexPath.row == 3 ){
         _buddyIndexPath = indexPath;
         if (cell == nil) {
             // 创建新的 cell，默认为主标题模式
@@ -190,50 +212,6 @@
     return 200;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (void)moreBtnClick
 {
     NSLog(@"more btn click");
@@ -243,26 +221,7 @@
     [self.navigationController pushViewController:courseMoreVC animated:YES];
 }
 
-// 初始化用户信息
-//- (void) initUserinfo
-//{
-//    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-//    NSString *strUrl = [NSString stringWithFormat:@"%@user_info", FITAPI_HTTPS_PREFIX];
-//    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-//    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-//    [manager.requestSerializer setValue:@"X-Requested-With" forHTTPHeaderField:@"X-Requested-With"];
-//
-//    [manager GET:strUrl parameters:nil headers:nil progress:nil
-//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"success ---- %@", responseObject);
-//        self.userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
-//        NSLog(@"success username ---- %@", self.userInfo.username);
-//
-//        [self.tableView reloadData];
-//       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//       NSLog(@"failure ---- %@", error);
-//    }];
-//}
+
 
 #pragma mark - 刷新房间数据
 //- (void) refreshData: (TableCollectionViewCell *) collectionCell: (NSString *) type
@@ -308,16 +267,13 @@
     NSLog(@"initroom userToken ---- %@", userToken);
 
     NSString *strUrl = [NSString stringWithFormat:@"%@room", FITAPI_HTTPS_PREFIX];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSDictionary *baddyParams = @{
                            @"type": @"",
                            @"page": @"1",
                            @"row": @"5"
                        };
-    [manager GET:strUrl parameters:baddyParams headers:nil progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager GET:strUrl parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObject ---- %@", responseObject);
         long total =  [responseObject[@"recordset"][@"total"] longValue];
         NSMutableArray *dataArr = [[NSMutableArray alloc] init];

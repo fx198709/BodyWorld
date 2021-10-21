@@ -10,36 +10,60 @@
 #import <objc/runtime.h>
 #import "NSObject+YCExtension.h"
 
+FOUNDATION_EXPORT CABasicAnimation *BodyGetPositionAnimation (id fromValue, id toValue, CFTimeInterval duration, NSString *keyPath, BOOL autoreverses) {
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:keyPath];
+    animation.fromValue = fromValue;
+    animation.toValue   = toValue;
+    animation.duration = duration;
+    if (autoreverses) {
+        //可逆动画，反方向动画
+        animation.autoreverses = NO;
+        animation.repeatCount = FLT_MAX;
+        //动画结束后，layer回到初始位置
+        animation.removedOnCompletion = YES;
+        //动画开始前和动画结束后,动画对layer都没有影响
+        animation.fillMode = kCAFillModeForwards;
+    }else{
+        //动画循环
+        animation.autoreverses = NO;
+        animation.repeatCount = 0;
+        //以下两个设置，保证了动画结束后，layer不会回到初始位置（保持在动画结束时的状态）
+        animation.removedOnCompletion = NO;
+        animation.fillMode = kCAFillModeForwards;
+    }
+    return animation;
+}
+
 @implementation UIScrollView (YCRefresh)
 
 - (void)addHeaderWithTarget:(id)target action:(SEL)action {
-//    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:target refreshingAction:action];
-//    [header setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
-//    [header setTitle:@"松开刷新" forState:MJRefreshStatePulling];
-//    [header setTitle:@"正在刷新中..." forState:MJRefreshStateRefreshing];
-//    header.stateLabel.textColor = [UIColor lightGrayColor];
-//    header.lastUpdatedTimeLabel.textColor = [UIColor lightGrayColor];
-//    self.mj_header = header;
-    
-    CJMJRefreshGifHeader *header = [CJMJRefreshGifHeader headerWithRefreshingTarget:target refreshingAction:action];
-    NSMutableArray *imageArrays = [NSMutableArray array];
-    for (int i =1; i< 9; i++) {
-        UIImage *refreshImage = [UIImage imageNamed:[NSString stringWithFormat:@"car-image-%d",i]];
-        [imageArrays addObject:refreshImage];
-    }
-    [header setImages:@[[UIImage imageNamed:@"car-image-1"]] forState:MJRefreshStateIdle];
-    [header setImages:imageArrays
-             duration:0.8
-             forState:MJRefreshStatePulling];
-    [header setImages:imageArrays
-             duration:0.8
-             forState:MJRefreshStateRefreshing];
-    //icon_loading_first的图片宽度的一半
-    header.labelLeftInset = -87/2.0;
-    header.backgroundColor = UIColorFromRGB(0xf0eff5);
-//    header.gifView.mj_y = 30;
-//    header.gifView.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:target refreshingAction:action];
+    [header setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
+    [header setTitle:@"松开刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在刷新中..." forState:MJRefreshStateRefreshing];
+    header.stateLabel.textColor = [UIColor lightGrayColor];
+    header.lastUpdatedTimeLabel.textColor = [UIColor lightGrayColor];
     self.mj_header = header;
+    
+//    CJMJRefreshGifHeader *header = [CJMJRefreshGifHeader headerWithRefreshingTarget:target refreshingAction:action];
+//    NSMutableArray *imageArrays = [NSMutableArray array];
+//    for (int i =1; i< 9; i++) {
+//        UIImage *refreshImage = [UIImage imageNamed:[NSString stringWithFormat:@"car-image-%d",i]];
+//        [imageArrays addObject:refreshImage];
+//    }
+//    [header setImages:@[[UIImage imageNamed:@"car-image-1"]] forState:MJRefreshStateIdle];
+//    [header setImages:imageArrays
+//             duration:0.8
+//             forState:MJRefreshStatePulling];
+//    [header setImages:imageArrays
+//             duration:0.8
+//             forState:MJRefreshStateRefreshing];
+//    //icon_loading_first的图片宽度的一半
+//    header.labelLeftInset = -87/2.0;
+//    header.backgroundColor = UIColorFromRGB(0xf0eff5);
+////    header.gifView.mj_y = 30;
+////    header.gifView.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+//    self.mj_header = header;
 }
 
 - (void)addFooterWithTarget:(id)target action:(SEL)action {
@@ -120,15 +144,15 @@
 //针对iphoneX 上拉加载更多的适配
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (!self.withoutChangeXIgnoredScrollContentInsetBottom && IsIphoneX) {
-        CGRect scrollViewRect = [self.scrollView.superview convertRect:self.scrollView.frame toView:[CommonTools mainWindow]];
-        CGRect iPhoneXBottomRect = CGRectMake(0, ScreenHeightWithType(AllHeight)-IphoneXBottomHeight, ScreenWidth, IphoneXBottomHeight);
-        if (CGRectIntersectsRect(scrollViewRect, iPhoneXBottomRect)) {
-            self.ignoredScrollViewContentInsetBottom = IphoneXBottomHeight;
-        }else{
-            self.ignoredScrollViewContentInsetBottom = 0;
-        }
-    }
+//    if (!self.withoutChangeXIgnoredScrollContentInsetBottom && IsIphoneX) {
+//        CGRect scrollViewRect = [self.scrollView.superview convertRect:self.scrollView.frame toView:[CommonTools mainWindow]];
+//        CGRect iPhoneXBottomRect = CGRectMake(0, ScreenHeightWithType(AllHeight)-IphoneXBottomHeight, ScreenWidth, IphoneXBottomHeight);
+//        if (CGRectIntersectsRect(scrollViewRect, iPhoneXBottomRect)) {
+//            self.ignoredScrollViewContentInsetBottom = IphoneXBottomHeight;
+//        }else{
+//            self.ignoredScrollViewContentInsetBottom = 0;
+//        }
+//    }
 }
 
 @end
@@ -236,12 +260,12 @@ static const CGFloat kBackGifTimeInterval =  12;
     
     CGPoint fromPoint = CGPointMake(0, kBackImageHeight/2.0);
     CGPoint toPoint   = CGPointMake(-kBackImageWidth,kBackImageHeight/2.0);
-    CABasicAnimation *animation = GetPositionAnimation([NSValue valueWithCGPoint:fromPoint], [NSValue valueWithCGPoint:toPoint], kBackGifTimeInterval, @"transform.translation.x",YES);
+    CABasicAnimation *animation = BodyGetPositionAnimation([NSValue valueWithCGPoint:fromPoint], [NSValue valueWithCGPoint:toPoint], kBackGifTimeInterval, @"transform.translation.x",YES);
     [self.backView.layer addAnimation:animation forKey:nil];
     
     CGPoint fromPoint2 = CGPointMake(kBackImageWidth, kBackImageHeight/2.0);
     CGPoint toPoint2   = CGPointMake(0,kBackImageHeight/2.0);
-    CABasicAnimation *animation2 = GetPositionAnimation([NSValue valueWithCGPoint:fromPoint2], [NSValue valueWithCGPoint:toPoint2], kBackGifTimeInterval, @"transform.translation.x",YES);
+    CABasicAnimation *animation2 = BodyGetPositionAnimation([NSValue valueWithCGPoint:fromPoint2], [NSValue valueWithCGPoint:toPoint2], kBackGifTimeInterval, @"transform.translation.x",YES);
     [self.backView2.layer addAnimation:animation2 forKey:nil];
     
     self.animationing = YES;

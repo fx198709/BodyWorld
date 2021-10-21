@@ -23,6 +23,9 @@
 
 #endif /* PrefixHeader_h */
 
+#define WeakSelf  __weak typeof(self)wSelf = self;
+#define StrongSelf(inself)  __strong typeof(self)strongSelf = inself;
+
 static inline  int ISChinese(){
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
        NSArray* languagesArray = [defaults objectForKey:@"AppleLanguages"];
@@ -50,6 +53,17 @@ return [obj objectForKey:keyString];\
 return [obj objectForKey:key];\
 })
 
+
+#define SystemFontOfSize(size)  [UIFont systemFontOfSize:size]
+//等宽字体
+#define EqualFontWithSize(asize) [UIFont fontWithName:@"HelveticaNeue" size:asize]
+
+
+#define NumberToString(number)  [NSString stringWithFormat:@"%@",number]
+#define UIRGBColor(r,g,b,a) ([UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a])
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                                                 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                                                  blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
 

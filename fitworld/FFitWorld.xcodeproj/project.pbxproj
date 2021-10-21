@@ -84,6 +84,9 @@
 		04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8AA5A270DE974009B125A /* ResetPwdController.m */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
+		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
+		DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */; };
+		DD25FED427215D580092CF87 /* AFAppNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FED327215D580092CF87 /* AFAppNetAPIClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -254,6 +257,10 @@
 		DB4B81011D05364E70937961 /* libPods-FFitWorld.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FFitWorld.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD25FEC7272012DC0092CF87 /* UIScrollView+YCRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YCRefresh.h"; sourceTree = "<group>"; };
 		DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YCRefresh.m"; sourceTree = "<group>"; };
+		DD25FECC272157D50092CF87 /* NSObject+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YCExtension.h"; sourceTree = "<group>"; };
+		DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YCExtension.m"; sourceTree = "<group>"; };
+		DD25FED227215D580092CF87 /* AFAppNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppNetAPIClient.h; sourceTree = "<group>"; };
+		DD25FED327215D580092CF87 /* AFAppNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppNetAPIClient.m; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -660,6 +667,7 @@
 		DD25FEC5272012DC0092CF87 /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				DD25FED127215D2A0092CF87 /* AFHTTP */,
 				DD25FEC6272012DC0092CF87 /* YCMJRefresh */,
 			);
 			path = ThirdLib;
@@ -668,10 +676,21 @@
 		DD25FEC6272012DC0092CF87 /* YCMJRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				DD25FECC272157D50092CF87 /* NSObject+YCExtension.h */,
+				DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */,
 				DD25FEC7272012DC0092CF87 /* UIScrollView+YCRefresh.h */,
 				DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */,
 			);
 			path = YCMJRefresh;
+			sourceTree = "<group>";
+		};
+		DD25FED127215D2A0092CF87 /* AFHTTP */ = {
+			isa = PBXGroup;
+			children = (
+				DD25FED227215D580092CF87 /* AFAppNetAPIClient.h */,
+				DD25FED327215D580092CF87 /* AFAppNetAPIClient.m */,
+			);
+			path = AFHTTP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -814,6 +833,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */,
+				DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */,
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,
 				047DC209268CD09900A3E37E /* main.m in Sources */,
 				04DA746D26A8700D00257963 /* CourseMoreController.m in Sources */,
@@ -823,6 +844,7 @@
 				0422BDBA269C96A90084000B /* DatePlan.m in Sources */,
 				04E245CF26BA8CF0003F0674 /* CourseDetailViewController.m in Sources */,
 				04EC01F326BD8AC000DC0103 /* MainPanel.m in Sources */,
+				DD25FED427215D580092CF87 /* AFAppNetAPIClient.m in Sources */,
 				0462BD9A26920BE8005827D1 /* MainViewController.m in Sources */,
 				04EC01F426BD8AC000DC0103 /* ViewerPanel.m in Sources */,
 				04552B532696C3FD00C78706 /* QRCodeReaderViewController.m in Sources */,
