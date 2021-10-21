@@ -266,14 +266,13 @@
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     NSLog(@"initroom userToken ---- %@", userToken);
 
-    NSString *strUrl = [NSString stringWithFormat:@"%@room", FITAPI_HTTPS_PREFIX];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSDictionary *baddyParams = @{
                            @"type": @"",
                            @"page": @"1",
                            @"row": @"5"
                        };
-    [manager GET:strUrl parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager GET:@"room" parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObject ---- %@", responseObject);
         long total =  [responseObject[@"recordset"][@"total"] longValue];
         NSMutableArray *dataArr = [[NSMutableArray alloc] init];
