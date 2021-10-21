@@ -45,6 +45,28 @@ UIKIT_STATIC_INLINE  NSString* ChineseOrENFun(BaseObject* obj, NSString* key){
     }
 }
 
+UIKIT_STATIC_INLINE  int  RemoveSubviews(UIView* superview, NSArray * classArray){
+    
+    for (UIView *view in superview.subviews) {
+        if (classArray && classArray.count > 0) {
+            BOOL hasclass = NO;
+            for (NSString *classString in classArray) {
+                Class outclass = NSClassFromString(classString);
+                if ([view isKindOfClass:[outclass class]]) {
+                    hasclass = YES;
+                }
+            }
+            if (!hasclass) {
+                [view removeFromSuperview];
+            }
+        } else{
+            [view removeFromSuperview];
+        }
+        
+    }
+    return 0;
+}
+
 #define ChineseOrEN(obj, key)   ({\
 if(ISChinese()){\
 NSString *keyString = [NSString stringWithFormat:@"%@_cn",key];\
@@ -64,6 +86,5 @@ return [obj objectForKey:key];\
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
                                                  green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
                                                   blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-
 
 

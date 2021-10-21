@@ -18,6 +18,7 @@
 #import "JYCarousel.h"
 
 @interface MainViewController ()
+@property (nonatomic, strong)UIView *sliderView; //轮播图的父视图
 @end
 
 @implementation MainViewController
@@ -35,6 +36,10 @@
       make.size.equalTo(self.view);
     }];
     [self setupRefresh];
+    
+    _sliderView = [[UIView alloc] initWithFrame:CGRectMake(17, 8, ScreenWidth-17*2, 116)];
+    _sliderView.clipsToBounds = YES;
+    _sliderView.layer.cornerRadius = 5;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -54,15 +59,22 @@
     [self reachHeadData];
 }
 
-- (void)addCarouselView1{
+- (void)addCarouselView:(NSArray*)dataArray{
     //图片数组（或者图片URL，图片URL字符串，图片UIImage对象）
-    NSMutableArray *imageArray = [[NSMutableArray alloc] initWithArray: @[@"1.jpg",@"2.jpg",@"3.jpg",@"4.jpg"]];
+    if (![dataArray isKindOfClass:[NSArray class]]) {
+        return;
+    }
+    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+    for (NSObject *obj in dataArray) {
+        [imageArray addObject:[obj valueForKey:@"pic"]];
+    }
     WeakSelf
-   JYCarousel *carouselView = [[JYCarousel alloc] initWithFrame:CGRectMake(0, 64, ViewWidth(self.view), 100) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
+   JYCarousel *carouselView = [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, _sliderView.frame.size.width, _sliderView.frame.size.height) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
          //配置指示器类型
-        carouselConfig.pageContollType = LabelPageControl;
+        carouselConfig.pageContollType = MiddlePageControl;
         //配置轮播时间间隔
         carouselConfig.interValTime = 3;
+       carouselConfig.contentMode = UIViewContentModeScaleAspectFit;
 //        //配置轮播翻页动画
 //        carouselConfig.pushAnimationType = PushCube;
 //        //配置动画方向
@@ -74,7 +86,8 @@
     }];
     //开始轮播
     [carouselView startCarouselWithArray:imageArray];
-    [self.view addSubview:carouselView];
+    RemoveSubviews(_sliderView,@[@"JYCarousel"]);
+    [_sliderView addSubview:carouselView];
 }
 
 - (void)clickIndex:(NSInteger)index{
@@ -83,7 +96,7 @@
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,8 +141,16 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = [UIColor blackColor];
     }
-
     if (indexPath.row == 1){
+        UITableViewCell *slidercell = [tableView dequeueReusableCellWithIdentifier:@"slidercellString"];
+        if (slidercell == nil) {
+            slidercell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"slidercellString"];
+            [slidercell.contentView addSubview:_sliderView];
+        }
+        return slidercell;
+    }
+
+    if (indexPath.row == 2){
         _liveIndexPath = indexPath;
         // 复用队列中没有时再创建
         if (cell == nil) {
@@ -146,7 +167,7 @@
             return cell;
         }
     }
-    if (indexPath.row == 2 ){
+    if (indexPath.row == 3 ){
         _groupIndexPath = indexPath;
         // 复用队列中没有时再创建
         if (cell == nil) {
@@ -163,7 +184,7 @@
             return cell;
         }
     }
-    if (indexPath.row == 3 ){
+    if (indexPath.row == 4 ){
         _buddyIndexPath = indexPath;
         if (cell == nil) {
             // 创建新的 cell，默认为主标题模式
@@ -208,6 +229,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.row == 0){
         return 80;
+    } else if(indexPath.row == 1){
+        return 132;
     }
     return 200;
 }
@@ -224,48 +247,18 @@
 
 
 #pragma mark - 刷新房间数据
-//- (void) refreshData: (TableCollectionViewCell *) collectionCell: (NSString *) type
-//{
-//    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-//    NSLog(@"initroom userToken ---- %@", userToken);
-//
-//    NSString *strUrl = [NSString stringWithFormat:@"%@room", FITAPI_HTTPS_PREFIX];
-//    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-//    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-//    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-//    NSDictionary *baddyParams = @{
-//                           @"type": type,
-//                           @"page": @"1",
-//                           @"row": @"5"
-//                       };
-//    [manager GET:strUrl parameters:baddyParams headers:nil progress:nil
-//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"responseObject ---- %@", responseObject);
-//        long total =  [responseObject[@"recordset"][@"total"] longValue];
-//        if(total > 0){
-//            Room *room = [[Room alloc] initWithJSON: responseObject[@"recordset"][@"rows"][0]];
-//            NSMutableArray *dataArr = [[NSMutableArray alloc] init];
-//            [dataArr addObject: room];
-//            collectionCell.dataArr = dataArr;
-//            [collectionCell.myCollectionView reloadData];
-//        }
-//        if ([self.tableView.refreshControl isRefreshing]) {
-//            [self.tableView.refreshControl endRefreshing];
-//        }
-//
-//       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//           if ([self.tableView.refreshControl isRefreshing]) {
-//               [self.tableView.refreshControl endRefreshing];
-//           }
-//    }];
-//}
+
+- (void)reachSlideData{
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    [manager GET:@"slide" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSArray *dataArray = [[responseObject objectForKey:@"recordset"] objectForKey:@"rows"];
+        [self addCarouselView:dataArray];
+        
+       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }];
+}
 
 - (void)reachHeadData {
-    
- 
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-    NSLog(@"initroom userToken ---- %@", userToken);
-
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSDictionary *baddyParams = @{
                            @"type": @"",
@@ -289,12 +282,7 @@
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
            [self.mainTableview.mj_header endRefreshing];
     }];
-    
-//    TableCollectionViewCell *groupCell = [self.tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:_groupIndexPath];
-//    [self refreshData:groupCell :@"团课"];
-//
-//    TableCollectionViewCell *buddyCell = [self.tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:_buddyIndexPath];
-//    [self refreshData:buddyCell :@"对练课"];
+    [self reachSlideData];
 }
 
 - (void)onClickUserCenter {
