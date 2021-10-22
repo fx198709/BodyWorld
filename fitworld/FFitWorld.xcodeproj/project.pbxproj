@@ -87,6 +87,14 @@
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
 		DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */; };
 		DD25FED427215D580092CF87 /* AFAppNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FED327215D580092CF87 /* AFAppNetAPIClient.m */; };
+		DD25FEE627226B5A0092CF87 /* JYTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FED627226B5A0092CF87 /* JYTitleLabel.m */; };
+		DD25FEE727226B5A0092CF87 /* JYWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FED727226B5A0092CF87 /* JYWeakTimer.m */; };
+		DD25FEE827226B5A0092CF87 /* JYCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FED927226B5A0092CF87 /* JYCarousel.m */; };
+		DD25FEE927226B5A0092CF87 /* JYImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDC27226B5A0092CF87 /* JYImageCache.m */; };
+		DD25FEEA27226B5A0092CF87 /* JYImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDD27226B5A0092CF87 /* JYImageDownloader.m */; };
+		DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */; };
+		DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */; };
+		DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE427226B5A0092CF87 /* JYPageControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -261,6 +269,22 @@
 		DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YCExtension.m"; sourceTree = "<group>"; };
 		DD25FED227215D580092CF87 /* AFAppNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppNetAPIClient.h; sourceTree = "<group>"; };
 		DD25FED327215D580092CF87 /* AFAppNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppNetAPIClient.m; sourceTree = "<group>"; };
+		DD25FED627226B5A0092CF87 /* JYTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYTitleLabel.m; sourceTree = "<group>"; };
+		DD25FED727226B5A0092CF87 /* JYWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYWeakTimer.m; sourceTree = "<group>"; };
+		DD25FED827226B5A0092CF87 /* JYConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYConfiguration.h; sourceTree = "<group>"; };
+		DD25FED927226B5A0092CF87 /* JYCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYCarousel.m; sourceTree = "<group>"; };
+		DD25FEDA27226B5A0092CF87 /* JYPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPageControl.h; sourceTree = "<group>"; };
+		DD25FEDB27226B5A0092CF87 /* UIImageView+JYImageViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+JYImageViewManager.h"; sourceTree = "<group>"; };
+		DD25FEDC27226B5A0092CF87 /* JYImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYImageCache.m; sourceTree = "<group>"; };
+		DD25FEDD27226B5A0092CF87 /* JYImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYImageDownloader.m; sourceTree = "<group>"; };
+		DD25FEDE27226B5A0092CF87 /* JYTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYTitleLabel.h; sourceTree = "<group>"; };
+		DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYConfiguration.m; sourceTree = "<group>"; };
+		DD25FEE027226B5A0092CF87 /* JYWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYWeakTimer.h; sourceTree = "<group>"; };
+		DD25FEE127226B5A0092CF87 /* JYImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYImageDownloader.h; sourceTree = "<group>"; };
+		DD25FEE227226B5A0092CF87 /* JYImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYImageCache.h; sourceTree = "<group>"; };
+		DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+JYImageViewManager.m"; sourceTree = "<group>"; };
+		DD25FEE427226B5A0092CF87 /* JYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPageControl.m; sourceTree = "<group>"; };
+		DD25FEE527226B5A0092CF87 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -667,6 +691,7 @@
 		DD25FEC5272012DC0092CF87 /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				DD25FED527226B5A0092CF87 /* JYCarousel */,
 				DD25FED127215D2A0092CF87 /* AFHTTP */,
 				DD25FEC6272012DC0092CF87 /* YCMJRefresh */,
 			);
@@ -691,6 +716,29 @@
 				DD25FED327215D580092CF87 /* AFAppNetAPIClient.m */,
 			);
 			path = AFHTTP;
+			sourceTree = "<group>";
+		};
+		DD25FED527226B5A0092CF87 /* JYCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				DD25FEE527226B5A0092CF87 /* JYCarousel.h */,
+				DD25FED927226B5A0092CF87 /* JYCarousel.m */,
+				DD25FEE027226B5A0092CF87 /* JYWeakTimer.h */,
+				DD25FED727226B5A0092CF87 /* JYWeakTimer.m */,
+				DD25FEE227226B5A0092CF87 /* JYImageCache.h */,
+				DD25FEDC27226B5A0092CF87 /* JYImageCache.m */,
+				DD25FEDE27226B5A0092CF87 /* JYTitleLabel.h */,
+				DD25FED627226B5A0092CF87 /* JYTitleLabel.m */,
+				DD25FED827226B5A0092CF87 /* JYConfiguration.h */,
+				DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */,
+				DD25FEE127226B5A0092CF87 /* JYImageDownloader.h */,
+				DD25FEDD27226B5A0092CF87 /* JYImageDownloader.m */,
+				DD25FEDB27226B5A0092CF87 /* UIImageView+JYImageViewManager.h */,
+				DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */,
+				DD25FEDA27226B5A0092CF87 /* JYPageControl.h */,
+				DD25FEE427226B5A0092CF87 /* JYPageControl.m */,
+			);
+			path = JYCarousel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -848,6 +896,7 @@
 				0462BD9A26920BE8005827D1 /* MainViewController.m in Sources */,
 				04EC01F426BD8AC000DC0103 /* ViewerPanel.m in Sources */,
 				04552B532696C3FD00C78706 /* QRCodeReaderViewController.m in Sources */,
+				DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */,
 				04552B3D2696C3FD00C78706 /* EntypoSymbol.m in Sources */,
 				04552B4D2696C3FD00C78706 /* UIImage+ImageEffects.m in Sources */,
 				04EC003826BCD7A700DC0103 /* TrainingViewController.m in Sources */,
@@ -859,6 +908,7 @@
 				04EC01F126BD8AC000DC0103 /* SidePanel.m in Sources */,
 				04552B522696C3FD00C78706 /* QRCameraSwitchButton.m in Sources */,
 				04DA746A26A86E2600257963 /* YJPageControlView.m in Sources */,
+				DD25FEE627226B5A0092CF87 /* JYTitleLabel.m in Sources */,
 				04552B4E2696C3FD00C78706 /* ConsoleTextView.m in Sources */,
 				04552B552696C3FD00C78706 /* QRCodeReader.m in Sources */,
 				04552B3E2696C3FD00C78706 /* MaterialDesignSymbol.m in Sources */,
@@ -866,20 +916,25 @@
 				047DC201268CD09700A3E37E /* fitworld.xcdatamodeld in Sources */,
 				04EC01FD26BD8AC100DC0103 /* ChatManager.m in Sources */,
 				04EC01F526BD8AC000DC0103 /* ClassMember.mm in Sources */,
+				DD25FEE727226B5A0092CF87 /* JYWeakTimer.m in Sources */,
 				04EC020B26BD8B6C00DC0103 /* RoomVC.m in Sources */,
 				04CD2E522698478C007814E6 /* UserInfo.m in Sources */,
 				04EC01F226BD8AC000DC0103 /* HeaderPanel.m in Sources */,
 				04747FBE27082BC700B3B5B8 /* PractiseStatic.m in Sources */,
 				04EC01FB26BD8AC100DC0103 /* ConfigManager.m in Sources */,
+				DD25FEE927226B5A0092CF87 /* JYImageCache.m in Sources */,
 				04552B502696C3FD00C78706 /* UIControl+YYAdd.m in Sources */,
 				04552B4C2696C3FD00C78706 /* TWSReleaseNotesView.m in Sources */,
 				04F3E34526E9326000CEEC7D /* UIView+Extension.m in Sources */,
 				047DC1F5268CD09700A3E37E /* AppDelegate.m in Sources */,
+				DD25FEE827226B5A0092CF87 /* JYCarousel.m in Sources */,
 				047DC1F8268CD09700A3E37E /* SceneDelegate.m in Sources */,
 				04EC01FE26BD8AC100DC0103 /* ClassRoom.mm in Sources */,
 				04EC003E26BD1E4600DC0103 /* TrainingStartViewController.m in Sources */,
+				DD25FEEA27226B5A0092CF87 /* JYImageDownloader.m in Sources */,
 				04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */,
 				04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */,
+				DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */,
 				04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */,
 				04552B4B2696C3FD00C78706 /* TWSReleaseNotesDownloadOperation.m in Sources */,
 				04EC020526BD8B0F00DC0103 /* RemoteView.m in Sources */,
@@ -894,6 +949,7 @@
 				041510D4268F02DE0039FCD1 /* LoginController.m in Sources */,
 				04CD2E4D26982A45007814E6 /* TableCollectionViewCell.m in Sources */,
 				04EC01F626BD8AC000DC0103 /* VSHttpClient.m in Sources */,
+				DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */,
 				04CD2E4B26982A45007814E6 /* GoodsCell.m in Sources */,
 				04747FBB2708010000B3B5B8 /* PractiseWeek.m in Sources */,
 				04EC01F926BD8AC100DC0103 /* VSRoomParam.mm in Sources */,

@@ -9,5 +9,4 @@ target 'FFitWorld' do
     pod 'Masonry'
     pod 'MBProgressHUD'
     pod 'HMSegmentedControl'
-    pod 'JYCarousel'
 end
