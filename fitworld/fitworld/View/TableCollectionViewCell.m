@@ -37,7 +37,6 @@
     
     self.attentionBtn.layer.masksToBounds = YES;
     self.attentionBtn.layer.cornerRadius = 11.f;
-    self.attentionBtn.layer.borderColor = [UIColor redColor].CGColor;
     self.attentionBtn.layer.borderWidth = 0.5f;
     
     self.myCollectionView.delegate = self;
@@ -51,8 +50,10 @@
 // Data Source
 - (void)baseCellDataSource{
     self.logoImage.image = [UIImage imageNamed:@"shakehideimg_man"];
-    self.subTitleLabel.text = @"xxxxx";
-    [self.attentionBtn setTitle:@"More" forState:(UIControlStateNormal)];
+    self.subTitleLabel.text = @"";
+    NSString *actionString = ChineseStringOrENFun(@"更多", @"More");
+    [self.attentionBtn setTitle:actionString forState:UIControlStateNormal];
+    [self.attentionBtn setTitle:actionString forState:UIControlStateHighlighted];
 }
 
 
