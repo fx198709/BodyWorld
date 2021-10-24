@@ -46,7 +46,7 @@
     self.myCollectionView.showsHorizontalScrollIndicator = NO;
     [self.myCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([GoodsCell class]) bundle:nil] forCellWithReuseIdentifier:@"goodsCell"];
     
-    self.myCollectionView.backgroundColor = UIColor.blackColor;
+    self.myCollectionView.backgroundColor = UIColor.clearColor;
 }
 
 // Data Source
@@ -71,16 +71,17 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     GoodsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"goodsCell" forIndexPath:indexPath];
     Room *tmpRoom = [_dataArr objectAtIndex: indexPath.item];
-    NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, tmpRoom.course.pic];
-    [cell.goodsImage sd_setImageWithURL: picUrl placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
-    cell.goodsImage.userInteractionEnabled=YES;
-    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickCourseDetail:)];
-    cell.goodsImage.tag = indexPath.item;
-    [cell.goodsImage addGestureRecognizer:singleTap];
-    cell.backgroundColor = UIColor.darkGrayColor;
-    cell.joinBtn.tag = indexPath.item;
-    UITapGestureRecognizer *joinBtnsingleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(join:)];
-    [cell.joinBtn addGestureRecognizer:joinBtnsingleTap];
+    [cell changedatawithmodel:tmpRoom];
+//    NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, tmpRoom.course.pic];
+//    [cell.goodsImage sd_setImageWithURL: picUrl placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
+//    cell.goodsImage.userInteractionEnabled=YES;
+//    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickCourseDetail:)];
+//    cell.goodsImage.tag = indexPath.item;
+//    [cell.goodsImage addGestureRecognizer:singleTap];
+//    cell.backgroundColor = UIColor.darkGrayColor;
+//    cell.joinBtn.tag = indexPath.item;
+//    UITapGestureRecognizer *joinBtnsingleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(join:)];
+//    [cell.joinBtn addGestureRecognizer:joinBtnsingleTap];
 //    cell.startTime = tmpRoom.start_time;
     return cell;
 }
@@ -102,8 +103,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-//    CGFloat cellHeight = CGRectGetHeight(self.myCollectionView.frame);
-    return CGSizeMake(120, 120);
+    return CGSizeMake(220, 185);
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{

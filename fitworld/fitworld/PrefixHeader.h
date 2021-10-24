@@ -88,3 +88,39 @@ return [obj objectForKey:key];\
                                                   blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
+
+
+UIKIT_STATIC_INLINE  NSString*  ReachWeekTime(NSInteger longtime){
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:longtime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
+    [formatter setDateFormat:@"yyyy/MM/dd HH:mm"];
+   // 使用formatter转换后的date字符串变成了当前时区的时间
+    NSString *dateStr = [formatter stringFromDate:date];
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    
+    //ios 8.0 之后 不想看见警告用下面这个
+    NSInteger unitFlags = NSCalendarUnitYear |NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitWeekday | NSCalendarUnitHour |NSCalendarUnitMinute |NSCalendarUnitSecond;
+    comps = [calendar components:unitFlags fromDate:date];
+    NSInteger week = [comps weekday];
+    NSArray * arrWeek=[NSArray arrayWithObjects:@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六", nil];
+    if (!ISChinese()) {
+        arrWeek=[NSArray arrayWithObjects:@"Sunday",@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday", nil];
+    }
+    NSString *weekString =  [arrWeek objectAtIndex:week-1];
+    NSString *timeString = [NSString stringWithFormat:@"%@  %@",weekString,dateStr];
+    return timeString;
+}
+
+
+//中英文对照
+UIKIT_STATIC_INLINE  NSString* ChineseStringOrENFun(NSString *chinses, NSString* engString){
+    if(ISChinese()){
+        return chinses;
+    }else{
+        return engString;//[obj objectForKey:key];
+    }
+}

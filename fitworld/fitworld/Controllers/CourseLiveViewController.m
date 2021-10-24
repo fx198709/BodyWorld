@@ -115,7 +115,7 @@
     [cellBgView.layer setMasksToBounds:YES];
     [cellBgView.layer setCornerRadius:12];
     cellBgView.backgroundColor = UIColor.darkGrayColor;
-    [cell addSubview:cellBgView];
+    [cell.contentView addSubview:cellBgView];
     [cellBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(cell.mas_left).offset(10);
         make.right.equalTo(cell.mas_right).offset(-10);
@@ -126,7 +126,7 @@
     Room *room = dataArr[indexPath.row];
     UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 0, 100, 100)];
     [leftImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, room.course.pic]]];
-    [cell addSubview:leftImageView];
+    [cell.contentView addSubview:leftImageView];
     
     UILabel *label1 = [[UILabel alloc] init];
     label1.text = room.course.name;
@@ -156,7 +156,7 @@
     [joinBtn setTitle:@"Join" forState:UIControlStateNormal];
     joinBtn.backgroundColor = UIColor.redColor;
     [joinBtn addTarget:self action:@selector(joinBtn) forControlEvents:UIControlEventTouchUpInside];
-    [cell addSubview:joinBtn];
+    [cell.contentView addSubview:joinBtn];
     [joinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(cellBgView).offset(-10);
         make.centerY.equalTo(cellBgView);

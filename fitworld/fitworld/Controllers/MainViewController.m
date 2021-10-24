@@ -236,7 +236,7 @@
     } else if(indexPath.row == 1){
         return 132;
     }
-    return 200;
+    return 250;
 }
 
 - (void)moreBtnClick
