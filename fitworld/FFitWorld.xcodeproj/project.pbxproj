@@ -95,6 +95,10 @@
 		DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */; };
 		DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */; };
 		DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE427226B5A0092CF87 /* JYPageControl.m */; };
+		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
+		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
+		DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */; };
+		DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D9272577ED00D0C310 /* LivingGoodsCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -286,6 +290,12 @@
 		DD25FEE427226B5A0092CF87 /* JYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPageControl.m; sourceTree = "<group>"; };
 		DD25FEE527226B5A0092CF87 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
+		DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCollectionLivingViewCell.xib; sourceTree = "<group>"; };
+		DDEE67D32725744900D0C310 /* TableCollectionLivingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionLivingViewCell.h; sourceTree = "<group>"; };
+		DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionLivingViewCell.m; sourceTree = "<group>"; };
+		DDEE67D7272577EC00D0C310 /* LivingGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivingGoodsCell.h; sourceTree = "<group>"; };
+		DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LivingGoodsCell.m; sourceTree = "<group>"; };
+		DDEE67D9272577ED00D0C310 /* LivingGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LivingGoodsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -483,6 +493,12 @@
 		0462BD9B2692AB00005827D1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DDEE67D7272577EC00D0C310 /* LivingGoodsCell.h */,
+				DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */,
+				DDEE67D9272577ED00D0C310 /* LivingGoodsCell.xib */,
+				DDEE67D32725744900D0C310 /* TableCollectionLivingViewCell.h */,
+				DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */,
+				DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */,
 				04CD2E4426982A45007814E6 /* GoodsCell.h */,
 				04CD2E4726982A45007814E6 /* GoodsCell.m */,
 				04CD2E4526982A45007814E6 /* GoodsCell.xib */,
@@ -802,6 +818,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
+				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
 				04552B3C2696C3FD00C78706 /* entypo.ttf in Resources */,
 				04CD2E4A26982A45007814E6 /* GoodsCell.xib in Resources */,
 				047DC206268CD09900A3E37E /* LaunchScreen.storyboard in Resources */,
@@ -897,6 +915,7 @@
 				04EC01F426BD8AC000DC0103 /* ViewerPanel.m in Sources */,
 				04552B532696C3FD00C78706 /* QRCodeReaderViewController.m in Sources */,
 				DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */,
+				DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */,
 				04552B3D2696C3FD00C78706 /* EntypoSymbol.m in Sources */,
 				04552B4D2696C3FD00C78706 /* UIImage+ImageEffects.m in Sources */,
 				04EC003826BCD7A700DC0103 /* TrainingViewController.m in Sources */,
@@ -932,6 +951,7 @@
 				04EC01FE26BD8AC100DC0103 /* ClassRoom.mm in Sources */,
 				04EC003E26BD1E4600DC0103 /* TrainingStartViewController.m in Sources */,
 				DD25FEEA27226B5A0092CF87 /* JYImageDownloader.m in Sources */,
+				DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */,
 				04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */,
 				04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */,
 				DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */,

@@ -9,6 +9,7 @@
 #import "UIDeps.h"
 #import "AFNetworking.h"
 #import "TableCollectionViewCell.h"
+#import "TableCollectionLivingViewCell.h"
 #import "Course.h"
 #import "Room.h"
 #import "UserInfo.h"
@@ -34,6 +35,8 @@
     self.mainTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [self.view addSubview:self.mainTableview];
     [self.mainTableview registerNib:[UINib nibWithNibName:NSStringFromClass([TableCollectionViewCell class]) bundle:nil] forCellReuseIdentifier:@"liveCell"];
+    [self.mainTableview registerNib:[UINib nibWithNibName:NSStringFromClass([TableCollectionLivingViewCell class]) bundle:nil] forCellReuseIdentifier:@"liveTableviewCell"];
+
     self.mainTableview.delegate = self;
     self.mainTableview.dataSource = self;
     [self.mainTableview mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,7 +94,7 @@
     }];
     //开始轮播
     [carouselView startCarouselWithArray:imageArray];
-    RemoveSubviews(_sliderView,@[@"JYCarousel"]);
+    RemoveSubviews(_sliderView,@[]);
     [_sliderView addSubview:carouselView];
 }
 
@@ -115,7 +118,7 @@
         [cell.contentView addSubview: ({
             UILabel *titleLable =  [[UILabel alloc] initWithFrame:CGRectMake(80, 20, 300, 50)];
             titleLable.font = [UIFont systemFontOfSize: 16];
-            titleLable.text = self.userInfo.username;
+            titleLable.text = self.userInfo.nickname;
             titleLable.textColor = [UIColor whiteColor];
             [titleLable sizeToFit];
             titleLable;
@@ -156,21 +159,18 @@
     }
 
     if (indexPath.row == 2){
-        _liveIndexPath = indexPath;
         // 复用队列中没有时再创建
-        if (cell == nil) {
-            // 创建新的 cell，默认为主标题模式
-            TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
-            [cell.logoImage setImage:[UIImage imageNamed:@"index_live"]];
-            NSString *main_liveTitleStr = NSLocalizedString(@"main_liveTitleStr", nil);
-            cell.subTitleLabel.text = main_liveTitleStr;
-            
-            [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-            [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:(UIControlEventTouchDown)];
+        TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveTableviewCell" forIndexPath:indexPath];
+        [cell.logoImage setImage:[UIImage imageNamed:@"index_live"]];
+        cell.subTitleLabel.text = ChineseStringOrENFun(@"正在进行", @"LIVE & UPCOMING");
+
+        [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
+        [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:(UIControlEventTouchDown)];
 //            [self refreshData:cell :@""];
-            cell.backgroundColor = UIColor.blackColor;
-            return cell;
-        }
+        cell.backgroundColor = UIColor.blackColor;
+        cell.dataArr = _groupClasses;
+        [cell.myCollectionView reloadData];
+        return cell;
     }
     if (indexPath.row == 3 ){
         // 创建新的 cell，默认为主标题模式
@@ -181,8 +181,6 @@
         cell.dataArr = _groupClasses;
         [cell.myCollectionView reloadData];
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchDown];
-//            [self refreshData:cell :@"团课"];
-//            [self refreshData:cell :@"对练课"];
         cell.backgroundColor = UIColor.blackColor;
         return cell;
     }
@@ -235,7 +233,9 @@
     if(indexPath.row == 0){
         return 80;
     } else if(indexPath.row == 1){
-        return 132;
+        return 133;
+    }else if(indexPath.row == 2){
+        return 200;
     }
     return 250;
 }
