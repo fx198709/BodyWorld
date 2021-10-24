@@ -124,3 +124,12 @@ UIKIT_STATIC_INLINE  NSString* ChineseStringOrENFun(NSString *chinses, NSString*
         return engString;//[obj objectForKey:key];
     }
 }
+
+
+//电池条高度
+UIKIT_STATIC_INLINE  int statusBarHeight(){
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    return rectStatus.size.height;
+}
+
+

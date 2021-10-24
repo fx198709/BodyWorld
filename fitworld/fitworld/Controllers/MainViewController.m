@@ -18,6 +18,7 @@
 #import "UserCenterViewController.h"
 #import "JYCarousel.h"
 
+BOOL  hasrequest = NO;
 @interface MainViewController ()
 @property (nonatomic, strong)UIView *sliderView; //轮播图的父视图
 @property (nonatomic, strong)NSMutableArray *livingClasses;//正在进行中
@@ -39,15 +40,17 @@
 
     self.mainTableview.delegate = self;
     self.mainTableview.dataSource = self;
+    _mainTableview.separatorStyle= UITableViewCellSeparatorStyleNone;
     [self.mainTableview mas_makeConstraints:^(MASConstraintMaker *make) {
       make.left.with.top.equalTo(self.view);
       make.size.equalTo(self.view);
     }];
     [self setupRefresh];
-    
+    _mainTableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     _sliderView = [[UIView alloc] initWithFrame:CGRectMake(17, 8, ScreenWidth-17*2, 116)];
     _sliderView.clipsToBounds = YES;
     _sliderView.layer.cornerRadius = 5;
+    [_mainTableview.mj_header beginRefreshing];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -104,6 +107,9 @@
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (!hasrequest) {
+        return 1;
+    }
     return 5;
 }
 
@@ -114,7 +120,6 @@
     if (indexPath.row == 0){
         // 复用队列中没有时再创建
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier: indentifier];
-        
         [cell.contentView addSubview: ({
             UILabel *titleLable =  [[UILabel alloc] initWithFrame:CGRectMake(80, 20, 300, 50)];
             titleLable.font = [UIFont systemFontOfSize: 16];
@@ -148,6 +153,7 @@
         })];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = [UIColor blackColor];
+        return cell;
     }
     if (indexPath.row == 1){
         UITableViewCell *slidercell = [tableView dequeueReusableCellWithIdentifier:@"slidercellString"];
@@ -227,6 +233,14 @@
     return cell;
 }
 
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, statusBarHeight())];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return  statusBarHeight();
+}
 
 // 设置行高
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -289,6 +303,7 @@
                 }
             }
         }
+        hasrequest = YES;
         [self.mainTableview reloadData];
     
         [self.mainTableview.mj_header endRefreshing];
