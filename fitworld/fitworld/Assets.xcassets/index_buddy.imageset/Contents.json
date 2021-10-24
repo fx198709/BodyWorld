@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "index_buddy.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "index_buddy-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

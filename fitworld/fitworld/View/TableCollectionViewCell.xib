@@ -25,9 +25,9 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzP-yZ-H4D">
-                        <rect key="frame" x="45" y="19" width="33" height="16"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="40" y="18" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofG-L0-z9p">
@@ -55,7 +55,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="eR6-8I-Byz" secondAttribute="trailing" constant="15" id="48V-Op-gsK"/>
                     <constraint firstItem="19f-Ip-nnz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="7bo-dP-gdg"/>
-                    <constraint firstItem="mzP-yZ-H4D" firstAttribute="leading" secondItem="19f-Ip-nnz" secondAttribute="trailing" constant="15" id="Bk6-Rj-1TZ"/>
+                    <constraint firstItem="mzP-yZ-H4D" firstAttribute="leading" secondItem="19f-Ip-nnz" secondAttribute="trailing" constant="10" id="Bk6-Rj-1TZ"/>
                     <constraint firstItem="eR6-8I-Byz" firstAttribute="top" secondItem="ofG-L0-z9p" secondAttribute="bottom" constant="16.5" id="FqE-N6-VnB"/>
                     <constraint firstAttribute="bottom" secondItem="eR6-8I-Byz" secondAttribute="bottom" constant="10" id="T3c-Zb-Q9e"/>
                     <constraint firstItem="ofG-L0-z9p" firstAttribute="centerY" secondItem="19f-Ip-nnz" secondAttribute="centerY" id="TRi-Lg-Rxc"/>

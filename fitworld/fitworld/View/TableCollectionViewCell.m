@@ -33,7 +33,6 @@
 - (void)baseCellConfig{
         
     self.logoImage.layer.masksToBounds = YES;
-    self.logoImage.layer.borderColor = [UIColor redColor].CGColor;
     self.logoImage.layer.borderWidth = 0.5f;
     
     self.attentionBtn.layer.masksToBounds = YES;
@@ -72,17 +71,8 @@
     GoodsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"goodsCell" forIndexPath:indexPath];
     Room *tmpRoom = [_dataArr objectAtIndex: indexPath.item];
     [cell changedatawithmodel:tmpRoom];
-//    NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, tmpRoom.course.pic];
-//    [cell.goodsImage sd_setImageWithURL: picUrl placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
-//    cell.goodsImage.userInteractionEnabled=YES;
-//    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickCourseDetail:)];
-//    cell.goodsImage.tag = indexPath.item;
-//    [cell.goodsImage addGestureRecognizer:singleTap];
-//    cell.backgroundColor = UIColor.darkGrayColor;
-//    cell.joinBtn.tag = indexPath.item;
-//    UITapGestureRecognizer *joinBtnsingleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(join:)];
-//    [cell.joinBtn addGestureRecognizer:joinBtnsingleTap];
-//    cell.startTime = tmpRoom.start_time;
+    cell.joinBtn.tag = indexPath.row;
+    [cell.joinBtn addTarget:self action:@selector(join:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -145,9 +135,9 @@
     [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 
-- (void)join:(UITapGestureRecognizer *) recognizer{
+- (void)join:(UIButton *) recognizer{
     NSLog(@"join ----");
-    Room *selectRoom = [_dataArr objectAtIndex: recognizer.view.tag];
+    Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];
     NSString * nickName = @"123";
     [ConfigManager sharedInstance].eventId = selectRoom.event_id;
     [ConfigManager sharedInstance].nickName = nickName;

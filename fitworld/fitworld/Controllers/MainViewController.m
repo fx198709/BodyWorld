@@ -177,7 +177,7 @@
         TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
         [cell.logoImage setImage:[UIImage imageNamed:@"index_group"]];
-        cell.subTitleLabel.text = @"GROUP CLASS";
+        cell.subTitleLabel.text = ChineseStringOrENFun(@"团课", @"GROUP CLASS");
         cell.dataArr = _groupClasses;
         [cell.myCollectionView reloadData];
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchDown];
@@ -192,26 +192,27 @@
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
         [cell.logoImage setImage:[UIImage imageNamed:@"index_buddy"]];
-        cell.subTitleLabel.text = @"BUDDY TRAINING";
+        cell.subTitleLabel.text = ChineseStringOrENFun(@"对练课", @"BUDDY TRAINING");;
         cell.dataArr = _buddyClasses;
         [cell.myCollectionView reloadData];
         UIView * view = [cell viewWithTag:10001];
         if (view == nil) {
             UIButton *createSessionBtn = [[UIButton alloc] init];
             createSessionBtn.tag = 100001;
-            [createSessionBtn setTitle:@"Create a session" forState:UIControlStateNormal];
+            NSString *creatString = ChineseStringOrENFun(@"  创建房间  ", @"  Create a session  ");
+            [createSessionBtn setTitle:creatString forState:UIControlStateNormal];
+            [createSessionBtn setTitle:creatString forState:UIControlStateHighlighted];
             createSessionBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-            [createSessionBtn.layer setBorderWidth:5];
-            CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-            CGColorRef color = CGColorCreate(colorSpaceRef, (CGFloat[]){0,0,0,0.1});
-            [createSessionBtn.layer setBorderColor:color];
             [cell addSubview:createSessionBtn];
             [createSessionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.width.mas_equalTo(100);
-                make.height.mas_equalTo(30);
+                make.height.mas_equalTo(24);
                 make.centerY.equalTo(cell.subTitleLabel);
                 make.left.equalTo(cell.subTitleLabel.mas_right).offset(20);
             }];
+            createSessionBtn.backgroundColor = UIColorFromRGBHex(0x7D7D7D);
+            
+            createSessionBtn.layer.cornerRadius = 12;
+            createSessionBtn.clipsToBounds = YES;
             [createSessionBtn addTarget:self action:@selector(clickCreateSessionTraining) forControlEvents:UIControlEventTouchUpInside];
         }
         cell.backgroundColor = UIColor.blackColor;
