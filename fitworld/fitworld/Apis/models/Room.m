@@ -27,7 +27,7 @@
         _service_type = [self checkForNull: json[@"service_type"]];
         _start_time = [json[@"start_time"] integerValue];
         _status = [json[@"status"] integerValue];
-        _updated_at = [self checkForNull: json[@"updated_at"]];
+        _updated_at = [NSString stringWithFormat:@"%@",[self checkForNull: json[@"updated_at"]]];
         _watch_count = [json[@"watch_count"] integerValue];
     }
     return self;
