@@ -19,6 +19,11 @@
 
 @interface MainViewController ()
 @property (nonatomic, strong)UIView *sliderView; //轮播图的父视图
+@property (nonatomic, strong)NSMutableArray *livingClasses;//正在进行中
+@property (nonatomic, strong)NSMutableArray *groupClasses;//团课
+@property (nonatomic, strong)NSMutableArray *buddyClasses;//对练课
+
+
 @end
 
 @implementation MainViewController
@@ -168,33 +173,32 @@
         }
     }
     if (indexPath.row == 3 ){
-        _groupIndexPath = indexPath;
-        // 复用队列中没有时再创建
-        if (cell == nil) {
-            // 创建新的 cell，默认为主标题模式
-            TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
-            [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-            [cell.logoImage setImage:[UIImage imageNamed:@"index_group"]];
-            cell.subTitleLabel.text = @"GROUP CLASS";
-            
-            [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchDown];
+        // 创建新的 cell，默认为主标题模式
+        TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
+        [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
+        [cell.logoImage setImage:[UIImage imageNamed:@"index_group"]];
+        cell.subTitleLabel.text = @"GROUP CLASS";
+        cell.dataArr = _groupClasses;
+        [cell.myCollectionView reloadData];
+        [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchDown];
 //            [self refreshData:cell :@"团课"];
 //            [self refreshData:cell :@"对练课"];
-            cell.backgroundColor = UIColor.blackColor;
-            return cell;
-        }
+        cell.backgroundColor = UIColor.blackColor;
+        return cell;
     }
     if (indexPath.row == 4 ){
-        _buddyIndexPath = indexPath;
-        if (cell == nil) {
-            // 创建新的 cell，默认为主标题模式
-            TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
-            [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-            [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
-            [cell.logoImage setImage:[UIImage imageNamed:@"index_buddy"]];
-            cell.subTitleLabel.text = @"BUDDY TRAINING";
-            
+        TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell"];
+        // 创建新的 cell，默认为主标题模式
+        [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
+        [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        [cell.logoImage setImage:[UIImage imageNamed:@"index_buddy"]];
+        cell.subTitleLabel.text = @"BUDDY TRAINING";
+        cell.dataArr = _buddyClasses;
+        [cell.myCollectionView reloadData];
+        UIView * view = [cell viewWithTag:10001];
+        if (view == nil) {
             UIButton *createSessionBtn = [[UIButton alloc] init];
+            createSessionBtn.tag = 100001;
             [createSessionBtn setTitle:@"Create a session" forState:UIControlStateNormal];
             createSessionBtn.titleLabel.font = [UIFont systemFontOfSize:12];
             [createSessionBtn.layer setBorderWidth:5];
@@ -209,10 +213,10 @@
                 make.left.equalTo(cell.subTitleLabel.mas_right).offset(20);
             }];
             [createSessionBtn addTarget:self action:@selector(clickCreateSessionTraining) forControlEvents:UIControlEventTouchUpInside];
-//            [self refreshData:cell :@"对练课"];
-            cell.backgroundColor = UIColor.blackColor;
-            return cell;
         }
+        cell.backgroundColor = UIColor.blackColor;
+        return cell;
+        
     }else{
         if (cell == nil) {
             // 创建新的 cell，默认为主标题模式
@@ -266,18 +270,26 @@
                            @"row": @"5"
                        };
     [manager GET:@"room" parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject ---- %@", responseObject);
-        long total =  [responseObject[@"recordset"][@"total"] longValue];
-        NSMutableArray *dataArr = [[NSMutableArray alloc] init];
-        if(total > 0){
-            Room *room = [[Room alloc] initWithJSON: responseObject[@"recordset"][@"rows"][0]];
-            [dataArr addObject: room];
-//            liveCell.dataArr = dataArr;
-            [self.mainTableview reloadData];
-        }else{
-//            liveCell.dataArr = dataArr;
-            [self.mainTableview reloadData];
+        self.buddyClasses = [NSMutableArray array];
+        self.groupClasses = [NSMutableArray array];
+        NSDictionary * recordsetDic = [responseObject objectForKey:@"recordset"];
+        if ([recordsetDic isKindOfClass:[NSDictionary class]]) {
+            NSArray *rows = [recordsetDic objectForKey:@"rows"];
+            if ([rows isKindOfClass:[NSArray class]]) {
+                for (NSDictionary *dic in rows) {
+                    Room *room = [[Room alloc] initWithJSON: dic];
+                    if (room.course.type_int == 0) {
+                        [self.buddyClasses addObject:room];
+                    }
+                    if (room.course.type_int == 1) {
+                        [self.groupClasses addObject:room];
+                    }
+//                    [dataArr addObject: room];
+                }
+            }
         }
+        [self.mainTableview reloadData];
+    
         [self.mainTableview.mj_header endRefreshing];
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
            [self.mainTableview.mj_header endRefreshing];
