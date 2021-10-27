@@ -201,22 +201,21 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectCell" forIndexPath:indexPath];
     
     NSDate *today = [NSDate date];
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *weekdayComponents = [gregorian components:(NSDayCalendarUnit | NSWeekdayCalendarUnit) fromDate:today];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *weekdayComponents = [gregorian components:(NSCalendarUnitDay | NSCalendarUnitWeekday) fromDate:today];
     NSInteger day = [weekdayComponents day];
     NSInteger weekday = [weekdayComponents weekday] - 1;
     NSInteger i = indexPath.item;
     
     UILabel *label1 = [[UILabel alloc] init];
     NSInteger index_weekday = (weekday + i) - 1;
-    NSLog(@"index_weekday - %d", index_weekday);
     if(index_weekday > 6){
-        index_weekday = abs(7 - (index_weekday));
+        index_weekday = labs(7 - (index_weekday));
     }
     if(index_weekday == -1){
         index_weekday = 6;
     }
-    label1.text = weekDays[index_weekday];
+   
     label1.font = [UIFont systemFontOfSize:12];
     label1.textColor = UIColor.whiteColor;
     label1.textAlignment = NSTextAlignmentCenter;
@@ -232,12 +231,14 @@
     nextDate = [nextDate dateByAddingTimeInterval:interval];
     NSLog(@"nextDay is %@", nextDate);
     [dayArrs addObject:nextDate];
-    NSDateComponents *nextDayComponents = [gregorian components:(NSDayCalendarUnit | NSWeekdayCalendarUnit) fromDate:nextDate];
+    NSDateComponents *nextDayComponents = [gregorian components:(NSCalendarUnitDay | NSCalendarUnitWeekday) fromDate:nextDate];
     NSInteger nextDay = [nextDayComponents day];
     
     UILabel *label2 = [[UILabel alloc] init];
     label2.textColor = UIColor.whiteColor;
-    label2.text = [NSString stringWithFormat:@"%d", nextDay];
+//    赋值的位置换一下
+    label1.text = [NSString stringWithFormat:@"%ld", (long)nextDay];
+    label2.text = weekDays[index_weekday];
     label2.font = [UIFont systemFontOfSize:12];
     label2.textAlignment = NSTextAlignmentCenter;
     [cell addSubview:label2];

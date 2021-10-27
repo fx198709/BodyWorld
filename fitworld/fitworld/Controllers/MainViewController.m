@@ -174,7 +174,7 @@ BOOL  hasrequest = NO;
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:(UIControlEventTouchDown)];
 //            [self refreshData:cell :@""];
         cell.backgroundColor = UIColor.blackColor;
-        cell.dataArr = _groupClasses;
+        cell.dataArr = _livingClasses;
         [cell.myCollectionView reloadData];
         return cell;
     }
@@ -287,6 +287,10 @@ BOOL  hasrequest = NO;
     [manager GET:@"room" parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         self.buddyClasses = [NSMutableArray array];
         self.groupClasses = [NSMutableArray array];
+        self.livingClasses = [NSMutableArray array];
+        BOOL canAddFirstBuddy = NO;//第一次能添加buddy
+        BOOL canAddFirstGroup = NO;//第一次能添加buddy
+
         NSDictionary * recordsetDic = [responseObject objectForKey:@"recordset"];
         if ([recordsetDic isKindOfClass:[NSDictionary class]]) {
             NSArray *rows = [recordsetDic objectForKey:@"rows"];
@@ -294,15 +298,35 @@ BOOL  hasrequest = NO;
                 for (NSDictionary *dic in rows) {
                     Room *room = [[Room alloc] initWithJSON: dic];
                     if (room.course.type_int == 0) {
-                        [self.buddyClasses addObject:room];
+                        if (room.status != 0) {
+//                            直播状态，第一个不能添加到这边
+                            if(canAddFirstBuddy){
+                                [self.buddyClasses addObject:room];
+                            }
+                        }else{
+                            [self.buddyClasses addObject:room];
+                        }
+                        canAddFirstBuddy = YES;
                     }
                     if (room.course.type_int == 1) {
-                        [self.groupClasses addObject:room];
+                        if (room.status != 0) {
+//                            直播状态，第一个不能添加到这边
+                            if(canAddFirstGroup){
+                                [self.groupClasses addObject:room];
+                            }
+                        }else{
+                            [self.groupClasses addObject:room];
+                        }
+                        canAddFirstGroup = YES;
                     }
-//                    [dataArr addObject: room];
+                    if (room.status != 0 && self.livingClasses.count < 10) {
+//                        正在进行中
+                        [self.livingClasses addObject:room];
+                    }
                 }
             }
         }
+
         hasrequest = YES;
         [self.mainTableview reloadData];
     

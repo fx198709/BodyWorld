@@ -30,6 +30,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor blackColor];
     self.viewControllers = [NSMutableArray array];
+    
     NSArray *titles = @[@"Live", @"Group", @"Buddy"];
     CGRect frame =CGRectMake(0, 0, kScreenWidth, self.view.bounds.size.height-KNavhight-KStatushight);
 

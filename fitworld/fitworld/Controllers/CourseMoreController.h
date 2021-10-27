@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//更多
 @interface CourseMoreController : BaseNavViewController
 @property(nonatomic,copy)NSString*VCtype;
 @end
