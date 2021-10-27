@@ -28,6 +28,8 @@
 @property (nonatomic , copy) NSString              * type;
 @property (nonatomic , assign) NSInteger              type_int;
 @property (nonatomic , copy) NSString              * updated_at;
+@property (nonatomic , strong) NSString              * updated_at_weekDay;
+
 @property (nonatomic , copy) NSString              * video_id;
 
 - (BOOL)isEqualToCourse:(Course *)course;

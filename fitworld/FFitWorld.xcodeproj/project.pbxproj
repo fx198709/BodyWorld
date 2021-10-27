@@ -95,6 +95,7 @@
 		DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */; };
 		DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */; };
 		DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE427226B5A0092CF87 /* JYPageControl.m */; };
+		DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD742597272942F9005D636E /* UIImage+Extension.m */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
 		DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */; };
@@ -290,6 +291,44 @@
 		DD25FEE427226B5A0092CF87 /* JYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPageControl.m; sourceTree = "<group>"; };
 		DD25FEE527226B5A0092CF87 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
+		DD742588272942F9005D636E /* NSObject+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YCExtension.h"; sourceTree = "<group>"; };
+		DD742589272942F9005D636E /* NSDictionary+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YCExtension.h"; sourceTree = "<group>"; };
+		DD74258A272942F9005D636E /* UILabel+LabelTextModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LabelTextModel.h"; sourceTree = "<group>"; };
+		DD74258B272942F9005D636E /* TZImagePickerController+Vedio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TZImagePickerController+Vedio.h"; sourceTree = "<group>"; };
+		DD74258C272942F9005D636E /* NSMutableDictionary+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+YCExtension.m"; sourceTree = "<group>"; };
+		DD74258D272942F9005D636E /* UITextField+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+YCExtension.h"; sourceTree = "<group>"; };
+		DD74258E272942F9005D636E /* NSDate+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		DD74258F272942F9005D636E /* UITableViewController+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+Extension.h"; sourceTree = "<group>"; };
+		DD742590272942F9005D636E /* UIAlertView+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+YCExtension.h"; sourceTree = "<group>"; };
+		DD742591272942F9005D636E /* UIView+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		DD742592272942F9005D636E /* NSString+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+YCExtension.h"; sourceTree = "<group>"; };
+		DD742593272942F9005D636E /* UIScrollView+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YCExtension.h"; sourceTree = "<group>"; };
+		DD742594272942F9005D636E /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
+		DD742595272942F9005D636E /* UIActionSheet+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+YCExtension.m"; sourceTree = "<group>"; };
+		DD742596272942F9005D636E /* UITabBarItem+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+YCExtension.m"; sourceTree = "<group>"; };
+		DD742597272942F9005D636E /* UIImage+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		DD742598272942F9005D636E /* UILabel+ChangeLineSpaceAndWordSpace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ChangeLineSpaceAndWordSpace.m"; sourceTree = "<group>"; };
+		DD742599272942F9005D636E /* UIPickerView+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIPickerView+YCExtension.m"; sourceTree = "<group>"; };
+		DD74259A272942F9005D636E /* NSArray+YCCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+YCCategory.m"; sourceTree = "<group>"; };
+		DD74259B272942F9005D636E /* TZImagePickerController+Vedio.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TZImagePickerController+Vedio.m"; sourceTree = "<group>"; };
+		DD74259C272942F9005D636E /* UILabel+LabelTextModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LabelTextModel.m"; sourceTree = "<group>"; };
+		DD74259D272942F9005D636E /* NSDictionary+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YCExtension.m"; sourceTree = "<group>"; };
+		DD74259E272942F9005D636E /* NSObject+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YCExtension.m"; sourceTree = "<group>"; };
+		DD74259F272942F9005D636E /* UIAlertView+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+YCExtension.m"; sourceTree = "<group>"; };
+		DD7425A0272942F9005D636E /* UITableViewController+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+Extension.m"; sourceTree = "<group>"; };
+		DD7425A1272942F9005D636E /* NSDate+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		DD7425A2272942F9005D636E /* UITextField+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+YCExtension.m"; sourceTree = "<group>"; };
+		DD7425A3272942F9005D636E /* NSMutableDictionary+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+YCExtension.h"; sourceTree = "<group>"; };
+		DD7425A4272942F9005D636E /* UILabel+ChangeLineSpaceAndWordSpace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+ChangeLineSpaceAndWordSpace.h"; sourceTree = "<group>"; };
+		DD7425A5272942F9005D636E /* UITabBarItem+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+YCExtension.h"; sourceTree = "<group>"; };
+		DD7425A6272942F9005D636E /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		DD7425A7272942F9005D636E /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
+		DD7425A8272942F9005D636E /* UIActionSheet+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+YCExtension.h"; sourceTree = "<group>"; };
+		DD7425A9272942F9005D636E /* UIScrollView+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YCExtension.m"; sourceTree = "<group>"; };
+		DD7425AA272942F9005D636E /* NSString+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+YCExtension.m"; sourceTree = "<group>"; };
+		DD7425AB272942F9005D636E /* UIView+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		DD7425AC272942F9005D636E /* NSArray+YCCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+YCCategory.h"; sourceTree = "<group>"; };
+		DD7425AD272942F9005D636E /* UIPickerView+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIPickerView+YCExtension.h"; sourceTree = "<group>"; };
 		DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCollectionLivingViewCell.xib; sourceTree = "<group>"; };
 		DDEE67D32725744900D0C310 /* TableCollectionLivingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionLivingViewCell.h; sourceTree = "<group>"; };
 		DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionLivingViewCell.m; sourceTree = "<group>"; };
@@ -531,6 +570,7 @@
 		047DC1F2268CD09700A3E37E /* fitworld */ = {
 			isa = PBXGroup;
 			children = (
+				DD742587272942F9005D636E /* Category */,
 				DD25FEC5272012DC0092CF87 /* ThirdLib */,
 				DD59F5D8271BEB6600551E2C /* PrefixHeader.h */,
 				C8E2F71E27131B7600FEE021 /* BaseClass */,
@@ -757,6 +797,51 @@
 			path = JYCarousel;
 			sourceTree = "<group>";
 		};
+		DD742587272942F9005D636E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				DD742588272942F9005D636E /* NSObject+YCExtension.h */,
+				DD742589272942F9005D636E /* NSDictionary+YCExtension.h */,
+				DD74258A272942F9005D636E /* UILabel+LabelTextModel.h */,
+				DD74258B272942F9005D636E /* TZImagePickerController+Vedio.h */,
+				DD74258C272942F9005D636E /* NSMutableDictionary+YCExtension.m */,
+				DD74258D272942F9005D636E /* UITextField+YCExtension.h */,
+				DD74258E272942F9005D636E /* NSDate+Extension.h */,
+				DD74258F272942F9005D636E /* UITableViewController+Extension.h */,
+				DD742590272942F9005D636E /* UIAlertView+YCExtension.h */,
+				DD742591272942F9005D636E /* UIView+Extension.h */,
+				DD742592272942F9005D636E /* NSString+YCExtension.h */,
+				DD742593272942F9005D636E /* UIScrollView+YCExtension.h */,
+				DD742594272942F9005D636E /* UIBarButtonItem+Extension.h */,
+				DD742595272942F9005D636E /* UIActionSheet+YCExtension.m */,
+				DD742596272942F9005D636E /* UITabBarItem+YCExtension.m */,
+				DD742597272942F9005D636E /* UIImage+Extension.m */,
+				DD742598272942F9005D636E /* UILabel+ChangeLineSpaceAndWordSpace.m */,
+				DD742599272942F9005D636E /* UIPickerView+YCExtension.m */,
+				DD74259A272942F9005D636E /* NSArray+YCCategory.m */,
+				DD74259B272942F9005D636E /* TZImagePickerController+Vedio.m */,
+				DD74259C272942F9005D636E /* UILabel+LabelTextModel.m */,
+				DD74259D272942F9005D636E /* NSDictionary+YCExtension.m */,
+				DD74259E272942F9005D636E /* NSObject+YCExtension.m */,
+				DD74259F272942F9005D636E /* UIAlertView+YCExtension.m */,
+				DD7425A0272942F9005D636E /* UITableViewController+Extension.m */,
+				DD7425A1272942F9005D636E /* NSDate+Extension.m */,
+				DD7425A2272942F9005D636E /* UITextField+YCExtension.m */,
+				DD7425A3272942F9005D636E /* NSMutableDictionary+YCExtension.h */,
+				DD7425A4272942F9005D636E /* UILabel+ChangeLineSpaceAndWordSpace.h */,
+				DD7425A5272942F9005D636E /* UITabBarItem+YCExtension.h */,
+				DD7425A6272942F9005D636E /* UIImage+Extension.h */,
+				DD7425A7272942F9005D636E /* UIBarButtonItem+Extension.m */,
+				DD7425A8272942F9005D636E /* UIActionSheet+YCExtension.h */,
+				DD7425A9272942F9005D636E /* UIScrollView+YCExtension.m */,
+				DD7425AA272942F9005D636E /* NSString+YCExtension.m */,
+				DD7425AB272942F9005D636E /* UIView+Extension.m */,
+				DD7425AC272942F9005D636E /* NSArray+YCCategory.h */,
+				DD7425AD272942F9005D636E /* UIPickerView+YCExtension.h */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -899,6 +984,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */,
 				DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */,
 				DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */,
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,

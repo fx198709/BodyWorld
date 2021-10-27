@@ -28,7 +28,7 @@
         _type_int = [json[@"type_int"] integerValue];
         _updated_at = [self checkForNull: json[@"updated_at"]];
         _video_id = [self checkForNull: json[@"video_id"]];
-
+        _updated_at_weekDay = ReachWeekTime([json[@"updated_at"] longLongValue]);
 //        _date_plan = [self jsonToObject: [self checkForNull: json[@"date_plan"]]];
 //        _plan = [self jsonToObject: [self checkForNull: json[@"plan"]]];
 

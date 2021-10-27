@@ -52,9 +52,12 @@
 
     [self refreshData];
     
+    self.title = ChineseStringOrENFun(@"选择课程", @"CHOOSE COURSE");
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
 }
 
@@ -75,7 +78,7 @@
 #pragma mark TableViewDelegate&DataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 150;
+    return 90;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -89,13 +92,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         
     }
-    
+    RemoveSubviews(cell.contentView, @[]);
     UIView *cellView = [[UIView alloc] init];
     [cell.contentView addSubview:cellView];
     [cellView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(cell);
-        make.top.equalTo(cell).offset(20);
-        make.bottom.equalTo(cell.mas_bottom).offset(-20);
+        make.top.equalTo(cell).offset(0);
+        make.bottom.equalTo(cell.mas_bottom).offset(0);
     }];
     
     cell.backgroundColor = UIColor.greenColor;
@@ -106,66 +109,75 @@
     cellBgView.backgroundColor = UIColor.darkGrayColor;
     [cellView addSubview:cellBgView];
     [cellBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(cellView.mas_left).offset(10);
-        make.right.equalTo(cellView.mas_right).offset(-10);
-        make.top.equalTo(cellView).offset(15);
+        make.left.equalTo(cellView.mas_left);
+        make.right.equalTo(cellView.mas_right);
+        make.top.equalTo(cellView).offset(0);
         make.bottom.equalTo(cellView);
     }];
 
     Course *course = dataArr[indexPath.row];
-    UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 0, 100, 80)];
+    UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 12, 56, 56)];
     [leftImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, course.pic]] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
     [cellView addSubview:leftImageView];
+    leftImageView.layer.cornerRadius = 28;
+    leftImageView.clipsToBounds = YES;
     
     UILabel *label1 = [[UILabel alloc] init];
     label1.text = course.name;
-    label1.font = [UIFont systemFontOfSize:12];
+    label1.font = [UIFont systemFontOfSize:13];
     label1.textColor = UIColor.whiteColor;
     [cellBgView addSubview:label1];
     [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(cellBgView).offset(10);
+        make.top.equalTo(cellBgView).offset(15);
         make.left.equalTo(leftImageView.mas_right).offset(10);
-        make.height.mas_equalTo(40);
-        make.width.mas_equalTo(120);
+        make.height.mas_equalTo(20);
+        make.right.equalTo(cellBgView).offset(-90);
     }];
     
     UILabel *label2 = [[UILabel alloc] init];
     label2.text = course.coach_name;
-    label2.font = [UIFont systemFontOfSize:10];
-    label2.textColor = UIColor.whiteColor;
+    label2.font = [UIFont systemFontOfSize:11];
+    label2.textColor = UIColorFromRGB(227, 227, 227);
     [cellBgView addSubview:label2];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label1).offset(20);
+        make.top.equalTo(label1).offset(15);
         make.left.equalTo(leftImageView.mas_right).offset(10);
-        make.height.mas_equalTo(40);
-        make.width.mas_equalTo(120);
+        make.height.mas_equalTo(20);
+        make.right.equalTo(cellBgView).offset(-90);
     }];
     
     UILabel *label3 = [[UILabel alloc] init];
-    label3.text = [NSString stringWithFormat:@"%@", course.updated_at];
-    label3.font = [UIFont systemFontOfSize:10];
-    label3.textColor = UIColor.whiteColor;
+    label3.text = course.updated_at_weekDay;
+    label3.font = [UIFont systemFontOfSize:11];
+    label3.textColor = UIColorFromRGB(227, 227, 227);
     [cellBgView addSubview:label3];
     [label3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label2).offset(20);
+        make.top.equalTo(label2).offset(15);
         make.left.equalTo(leftImageView.mas_right).offset(10);
-        make.height.mas_equalTo(40);
-        make.width.mas_equalTo(120);
+        make.height.mas_equalTo(20);
+        make.right.equalTo(cellBgView).offset(-90);
     }];
     
     UIButton *selectBtn = [[UIButton alloc] init];
-    selectBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [selectBtn setTitle:@"Select" forState:UIControlStateNormal];
-    selectBtn.backgroundColor = UIColor.greenColor;
+    selectBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [selectBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *btnImage = [UIImage imageNamed:@"greenbtn"];
+    [selectBtn setBackgroundImage:btnImage forState:UIControlStateNormal];
+    [selectBtn setBackgroundImage:btnImage forState:UIControlStateHighlighted];
+    NSString *btnTitle = ChineseStringOrENFun(@"选择", @"Choose");
+    [selectBtn setTitle:btnTitle forState:UIControlStateNormal];
+    [selectBtn setTitle:btnTitle forState:UIControlStateHighlighted];
+
     selectBtn.tag = indexPath.row;
-    [cell addSubview:selectBtn];
+    [cell.contentView addSubview:selectBtn];
     [selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(cellBgView).offset(-10);
-        make.centerY.equalTo(cellBgView);
-        make.height.mas_equalTo(40);
-        make.width.mas_equalTo(60);
+        make.right.equalTo(cell.contentView).offset(-10);
+        make.centerY.equalTo(cell.contentView);
+        make.height.mas_equalTo(26);
+        make.width.mas_equalTo(70);
     }];
+    selectBtn.layer.cornerRadius = 13;
+    selectBtn.clipsToBounds = YES;
     cell.backgroundColor = UIColor.blackColor;
     return cell;
 }
@@ -218,8 +230,8 @@
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObject ---- %@", responseObject);
         long total =  [responseObject[@"recordset"][@"total"] longValue];
+        self->dataArr = [[NSMutableArray alloc] init];
         if(total > 0){
-            self->dataArr = [[NSMutableArray alloc] init];
             NSArray *array = responseObject[@"recordset"][@"rows"];
             for (int i = 0; i < [array count]; i++) {
                 Course *course = [[Course alloc] initWithJSON: array[i]];

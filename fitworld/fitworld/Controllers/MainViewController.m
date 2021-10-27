@@ -235,6 +235,7 @@ BOOL  hasrequest = NO;
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, statusBarHeight())];
+    view.backgroundColor = UIColor.blackColor;
     return view;
 }
 

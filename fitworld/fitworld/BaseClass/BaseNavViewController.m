@@ -6,6 +6,8 @@
 //
 
 #import "BaseNavViewController.h"
+#import "SDImageCache.h"
+#import "UIImage+Extension.h"
 
 @interface BaseNavViewController ()
 
@@ -18,6 +20,13 @@
     // Do any additional setup after loading the view.
 }
 
+//- (UIViewController *)childViewControllerForStatusBarStyle {
+//    return self.topViewController;
+//}
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 /*
 #pragma mark - Navigation
 
@@ -27,9 +36,50 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    NSLog(@"viewDidAppear %@",self.class);
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //开启ios右滑返回
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    NSLog(@"%@ didReceiveMemoryWarning",[self class]);
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor orangeColor]];
+    [self leftMenuBarButtonItem];
+    NSLog(@"viewDidAppear %@",NSStringFromClass(self.class));
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+ 
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+//    这个页面消失的时候，所有的键盘都消失
+    [self.view endEditing:YES];
+}
+
+
+//设置导航栏左边按钮
+- (UIBarButtonItem *)leftMenuBarButtonItem {
+    return [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_white" renderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(backPopViewcontroller:)];
+}
+
+- (void)backPopViewcontroller:(id) sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
