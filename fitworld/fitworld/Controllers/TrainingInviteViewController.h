@@ -13,4 +13,5 @@
 @property(nonatomic,copy)NSString* pageVCindex;
 @property(nonatomic,assign) CGFloat viewheight;
 @property(nonatomic,strong) Course *selectCourse;
+@property(nonatomic, strong) NSDate * inselectDate;
 @end

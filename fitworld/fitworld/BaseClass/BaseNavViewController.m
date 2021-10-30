@@ -17,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
+
     // Do any additional setup after loading the view.
 }
 
@@ -44,6 +46,7 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     }
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -54,7 +57,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
     NSLog(@"viewDidAppear %@",NSStringFromClass(self.class));
 }
 

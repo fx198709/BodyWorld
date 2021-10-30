@@ -11,7 +11,8 @@
 #import "Room.h"
 #import <math.h>
 #import "TrainingStartViewController.h"
-
+#import "SelectClassHeadview.h"
+#import "TableHeadview.h"
 @interface TrainingViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) Course *selectCourse;
@@ -30,15 +31,24 @@
     self.view.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.tableView];
     
-    UIImageView *topFlowImg = [[UIImageView alloc] init];
-    topFlowImg.image = [UIImage imageNamed:@"buddy_flow1"];
+    SelectClassHeadview *topFlowImg = (SelectClassHeadview *)[[[NSBundle mainBundle] loadNibNamed:@"SelectClassHeadview" owner:self options:nil] lastObject];
     [self.view addSubview:topFlowImg];
     [topFlowImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(30);
-        make.left.equalTo(self.view.mas_left).offset(10);
-        make.right.equalTo(self.view.mas_right).offset(-10);
-        make.height.mas_equalTo(53);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.mas_equalTo(80);
     }];
+    
+    TableHeadview *tableheadview = (TableHeadview *)[[[NSBundle mainBundle] loadNibNamed:@"TableHeadview" owner:self options:nil] lastObject];
+    [self.view addSubview:tableheadview];
+    [tableheadview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(topFlowImg.mas_bottom).offset(10);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.mas_equalTo(40);
+    }];
+    tableheadview.clipsToBounds = YES;
 
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.tintColor = [UIColor whiteColor];
@@ -46,10 +56,9 @@
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.tableView.refreshControl = refreshControl;
     self.tableView.tableFooterView = [UIView new];
-    self.tableView.backgroundColor = UIColor.blackColor;
+    self.tableView.backgroundColor = UIRGBColor(37, 37, 37, 1);
     self.tableView.layoutMargins = UIEdgeInsetsZero;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    self.tableView.separatorColor = UIColor.grayColor;
     [self refreshData];
     
     self.title = ChineseStringOrENFun(@"选择课程", @"CHOOSE COURSE");
@@ -64,11 +73,11 @@
 -(UITableView*)tableView{
     
     if (_tableView==nil) {
-        CGRect frame =CGRectMake(0, 120, kScreenWidth, self.view.bounds.size.height - 100);
+        CGRect frame =CGRectMake(0, 160, kScreenWidth, self.view.bounds.size.height - 160);
         _tableView=[[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.backgroundColor = UIRGBColor(37, 37, 37, 1);
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
@@ -76,6 +85,7 @@
     return _tableView;
 }
 #pragma mark TableViewDelegate&DataSource
+ 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 90;
@@ -101,12 +111,10 @@
         make.bottom.equalTo(cell.mas_bottom).offset(0);
     }];
     
-    cell.backgroundColor = UIColor.greenColor;
     
     UIView *cellBgView = [[UIView alloc] init];
     [cellBgView.layer setMasksToBounds:YES];
     [cellBgView.layer setCornerRadius:12];
-    cellBgView.backgroundColor = UIColor.darkGrayColor;
     [cellView addSubview:cellBgView];
     [cellBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(cellView.mas_left);
@@ -178,7 +186,7 @@
     }];
     selectBtn.layer.cornerRadius = 13;
     selectBtn.clipsToBounds = YES;
-    cell.backgroundColor = UIColor.blackColor;
+    cell.contentView.backgroundColor = UIRGBColor(37, 37, 37, 1);
     return cell;
 }
 
@@ -191,15 +199,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)selectBtn:(UIButton *) btn{
     NSLog(@"select");

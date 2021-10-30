@@ -13,7 +13,12 @@
 #import "AFNetworking.h"
 #import "FITAPI.h"
 #import <math.h>
+#import "SelectClassHeadview.h"
+#import "TableHeadview.h"
+#import "UIImage+Extension.h"
 
+
+#define LitterGrayColor UIRGBColor(69, 69, 69, 1)
 @interface TrainingStartViewController ()
 @property(nonatomic,strong) NSString *courseId;
 @end
@@ -22,74 +27,63 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = ChineseStringOrENFun(@"设置开始时间", @"SET THE START TIME OF SPARRING");
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor blackColor];
 
-    UIImageView *topFlowImg = [[UIImageView alloc] init];
-    topFlowImg.image = [UIImage imageNamed:@"buddy_flow2"];
+    SelectClassHeadview *topFlowImg = (SelectClassHeadview *)[[[NSBundle mainBundle] loadNibNamed:@"SelectClassHeadview" owner:self options:nil] lastObject];
     [self.view addSubview:topFlowImg];
     [topFlowImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(30);
-        make.left.equalTo(self.view.mas_left).offset(10);
-        make.right.equalTo(self.view.mas_right).offset(-10);
-        make.height.mas_equalTo(53);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.mas_equalTo(80);
     }];
-        
-    UIButton *startNowBtn = [[UIButton alloc] init];
-    startNowBtn.backgroundColor = [UIColor colorWithRed:73.0/255.0 green:146.0/255.0 blue:96.0/255.0 alpha:1];
-    [startNowBtn.layer setMasksToBounds:YES];
-    [startNowBtn.layer setCornerRadius:10];
-    [startNowBtn setTitle:@"Start now" forState:UIControlStateNormal];
-    [self.view addSubview:startNowBtn];
-    [startNowBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(topFlowImg.mas_bottom).offset(50);
-        make.left.equalTo(topFlowImg);
-        make.right.equalTo(topFlowImg);
-        make.height.mas_equalTo(50);
+    [topFlowImg changeStep:2];
+    TableHeadview *tableheadview = (TableHeadview *)[[[NSBundle mainBundle] loadNibNamed:@"TableHeadview" owner:self options:nil] lastObject];
+    [self.view addSubview:tableheadview];
+    [tableheadview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(topFlowImg.mas_bottom).offset(10);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.mas_equalTo(40);
     }];
-    [startNowBtn addTarget:self action:@selector(startNow) forControlEvents:UIControlEventTouchUpInside];
+    tableheadview.clipsToBounds = YES;
     
-    UIButton *start10MinBtn = [[UIButton alloc] init];
-    start10MinBtn.backgroundColor = [UIColor colorWithRed:73.0/255.0 green:146.0/255.0 blue:96.0/255.0 alpha:1];
-    [start10MinBtn.layer setMasksToBounds:YES];
-    [start10MinBtn.layer setCornerRadius:10];
-    [start10MinBtn setTitle:@"In 10 min" forState:UIControlStateNormal];
-    [self.view addSubview:start10MinBtn];
-    [start10MinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(startNowBtn.mas_bottom).offset(30);
-        make.left.equalTo(startNowBtn);
-        make.right.equalTo(startNowBtn);
-        make.height.mas_equalTo(50);
+    UIView *grayBackview = [[UIView alloc] init];
+    [self.view addSubview:grayBackview];
+    grayBackview.backgroundColor = UIRGBColor(37, 37, 37, 1);
+    [grayBackview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(tableheadview.mas_bottom);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view);
     }];
-    [start10MinBtn addTarget:self action:@selector(startNow) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *start30MinBtn = [[UIButton alloc] init];
-    start30MinBtn.backgroundColor = [UIColor colorWithRed:73.0/255.0 green:146.0/255.0 blue:96.0/255.0 alpha:1];
-    [start30MinBtn.layer setMasksToBounds:YES];
-    [start30MinBtn.layer setCornerRadius:10];
-    [start30MinBtn setTitle:@"In 30 min" forState:UIControlStateNormal];
-    [self.view addSubview:start30MinBtn];
-    [start30MinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(start10MinBtn.mas_bottom).offset(30);
-        make.left.equalTo(startNowBtn);
-        make.right.equalTo(startNowBtn);
-        make.height.mas_equalTo(50);
-    }];
-    [start30MinBtn addTarget:self action:@selector(startNow) forControlEvents:UIControlEventTouchUpInside];
+    NSString * string1 = ChineseStringOrENFun(@"5分钟后", @"After 5 min");
+    NSString * string2 = ChineseStringOrENFun(@"15分钟后", @"After 15 min");
+    NSString * string3 = ChineseStringOrENFun(@"30分钟后", @"After 30 min");
+    NSString * string4 = ChineseStringOrENFun(@"自定义时间", @"Customer Time");
+    NSArray *stringArray = @[string1,string2,string3,string4];
+    UIImage *grayimage = [UIImage imageWithColor:LitterGrayColor];
+    UIImage *selectimage = [UIImage imageWithColor:[UIColor colorWithRed:73.0/255.0 green:146.0/255.0 blue:96.0/255.0 alpha:1]];
+    for (int index = 0; index < stringArray.count; index++) {
+        CGRect frame = CGRectMake(50, 40+70*index, ScreenWidth-100, 50);
+        UIButton *timeBtn = [[UIButton alloc] initWithFrame:frame];
+        [timeBtn setBackgroundImage:grayimage forState:UIControlStateNormal];
+        [timeBtn setBackgroundImage:selectimage forState:UIControlStateHighlighted];
+        timeBtn.tag = 100+ index;
+        [timeBtn.layer setMasksToBounds:YES];
+        [timeBtn.layer setCornerRadius:10];
+        NSString * stringtitle = [stringArray objectAtIndex:index];
+        [timeBtn setTitle:stringtitle forState:UIControlStateNormal];
+        [timeBtn setTitle:stringtitle forState:UIControlStateHighlighted];
+
+        [grayBackview addSubview:timeBtn];
+        [timeBtn addTarget:self action:@selector(startNow:) forControlEvents:UIControlEventTouchUpInside];
+    }
         
-    UIButton *start60MinBtn = [[UIButton alloc] init];
-    start60MinBtn.backgroundColor = [UIColor colorWithRed:73.0/255.0 green:146.0/255.0 blue:96.0/255.0 alpha:1];
-    [start60MinBtn.layer setMasksToBounds:YES];
-    [start60MinBtn.layer setCornerRadius:10];
-    [start60MinBtn setTitle:@"In 60 min" forState:UIControlStateNormal];
-    [self.view addSubview:start60MinBtn];
-    [start60MinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(start30MinBtn.mas_bottom).offset(30);
-        make.left.equalTo(startNowBtn);
-        make.right.equalTo(startNowBtn);
-        make.height.mas_equalTo(50);
-    }];
-    [start60MinBtn addTarget:self action:@selector(startNow) forControlEvents:UIControlEventTouchUpInside];
+
     
 }
 
@@ -107,12 +101,29 @@
 }
 */
 
-- (void)startNow{
-    NSLog(@"startNow ----");
-
+- (void)seletedDate:(NSDate*)selectedDate andview:(OurDatePickerView*)pickerView{
     TrainingInviteViewController *vc = [[TrainingInviteViewController alloc] init];
     vc.selectCourse = self.selectCourse;
+    vc.inselectDate = selectedDate;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+- (void)startNow:(UIButton*)sender{
+    NSLog(@"startNow ----");
+    if (sender.tag == 103) {
+        OurDatePickerView *datepickerView = [[OurDatePickerView alloc] init];
+        datepickerView.pickerDelegate = self;
+        datepickerView.pickerType = YearMonDayAndHourMinute;
+        datepickerView.minuteInterval = 1;
+        datepickerView.miniDate = [NSDate date];
+        [datepickerView pickerViewWithView:self.view];
+    }else{
+        TrainingInviteViewController *vc = [[TrainingInviteViewController alloc] init];
+        vc.selectCourse = self.selectCourse;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 
 }
 
