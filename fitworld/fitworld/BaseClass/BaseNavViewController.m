@@ -54,7 +54,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self leftMenuBarButtonItem];
+    self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
     NSLog(@"viewDidAppear %@",NSStringFromClass(self.class));
 }
 
