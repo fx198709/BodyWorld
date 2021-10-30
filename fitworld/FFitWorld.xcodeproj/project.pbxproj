@@ -95,6 +95,8 @@
 		DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */; };
 		DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */; };
 		DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE427226B5A0092CF87 /* JYPageControl.m */; };
+		DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */; };
+		DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */; };
 		DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD742597272942F9005D636E /* UIImage+Extension.m */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
@@ -291,6 +293,9 @@
 		DD25FEE427226B5A0092CF87 /* JYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPageControl.m; sourceTree = "<group>"; };
 		DD25FEE527226B5A0092CF87 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
+		DD6EDB14272CE587002B0A8E /* SelectClassHeadview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectClassHeadview.h; sourceTree = "<group>"; };
+		DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectClassHeadview.m; sourceTree = "<group>"; };
+		DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectClassHeadview.xib; sourceTree = "<group>"; };
 		DD742588272942F9005D636E /* NSObject+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YCExtension.h"; sourceTree = "<group>"; };
 		DD742589272942F9005D636E /* NSDictionary+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YCExtension.h"; sourceTree = "<group>"; };
 		DD74258A272942F9005D636E /* UILabel+LabelTextModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LabelTextModel.h"; sourceTree = "<group>"; };
@@ -418,6 +423,7 @@
 		04552AF22696C3FD00C78706 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DD6EDB13272CE546002B0A8E /* CustomerView */,
 				04F3E33F26E9325F00CEEC7D /* Calendar */,
 				04552B262696C3FD00C78706 /* ConsoleTextView */,
 				04552AF62696C3FD00C78706 /* JTMaterialSwitch */,
@@ -797,6 +803,16 @@
 			path = JYCarousel;
 			sourceTree = "<group>";
 		};
+		DD6EDB13272CE546002B0A8E /* CustomerView */ = {
+			isa = PBXGroup;
+			children = (
+				DD6EDB14272CE587002B0A8E /* SelectClassHeadview.h */,
+				DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */,
+				DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */,
+			);
+			path = CustomerView;
+			sourceTree = "<group>";
+		};
 		DD742587272942F9005D636E /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -903,6 +919,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */,
 				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
 				04552B3C2696C3FD00C78706 /* entypo.ttf in Resources */,
@@ -990,6 +1007,7 @@
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,
 				047DC209268CD09900A3E37E /* main.m in Sources */,
 				04DA746D26A8700D00257963 /* CourseMoreController.m in Sources */,
+				DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */,
 				04CD2E532698478C007814E6 /* BaseObject.m in Sources */,
 				0456193026ECEC8A00C0973F /* RegisterController.m in Sources */,
 				04EC01F826BD8AC100DC0103 /* ToolFunc.m in Sources */,

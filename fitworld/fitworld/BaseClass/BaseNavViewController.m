@@ -48,13 +48,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     NSLog(@"%@ didReceiveMemoryWarning",[self class]);
-    [[SDImageCache sharedImageCache] clearMemory];
-    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+//    [[SDImageCache sharedImageCache] clearMemory];
+//    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor orangeColor]];
     [self leftMenuBarButtonItem];
     NSLog(@"viewDidAppear %@",NSStringFromClass(self.class));
 }

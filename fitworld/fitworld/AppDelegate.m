@@ -9,7 +9,7 @@
 #import "TUIKit.h"
 #import "VConductorClient.h"
 #import "UIImage+Extension.h"
-#define NavBlackTextColor UIColorFromRGB(0x252C39)//导航文字黑色
+#define NavBlackTextColor UIColorFromRGB(0x000000)//导航文字黑色
 
 @interface AppDelegate ()
 
@@ -26,7 +26,7 @@
 //    }else{
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent; //黑色
 //    }
-    
+    [self setDefaultTabNavTintColor];
     return YES;
 }
 
@@ -37,23 +37,26 @@
     
     //UINavigationBar 的设置
     NSShadow *shadow = [[NSShadow alloc] init];
-    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     shadow.shadowOffset = CGSizeMake(0, 0);
-    NSDictionary *dic = @{NSForegroundColorAttributeName:NavBlackTextColor,
+    NSDictionary *dic = @{NSForegroundColorAttributeName:UIColor.whiteColor,
                           NSShadowAttributeName:shadow,
                           NSFontAttributeName:[UIFont systemFontOfSize:18 weight:UIFontWeightMedium]};
     [[UINavigationBar appearance] setTitleTextAttributes: dic];
-    [[UINavigationBar appearance] setTintColor:NavBlackTextColor];//设置按钮颜色
+    [[UINavigationBar appearance] setTintColor:UIColor.whiteColor];//设置按钮颜色
     
-    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:NavBlackTextColor,NSFontAttributeName:[UIFont systemFontOfSize:14]} forState:UIControlStateNormal];
-    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:NavBlackTextColor,NSFontAttributeName:[UIFont systemFontOfSize:14]} forState:UIControlStateHighlighted];
-    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor],NSFontAttributeName:[UIFont systemFontOfSize:14]} forState:UIControlStateDisabled];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:UIColor.whiteColor,NSFontAttributeName:[UIFont systemFontOfSize:14]} forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:UIColor.whiteColor,NSFontAttributeName:[UIFont systemFontOfSize:14]} forState:UIControlStateHighlighted];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:14]} forState:UIControlStateDisabled];
 //    [[UINavigationBar appearance] setBarTintColor:appBackViewColor];
     
     //设置navigationBar背景颜色，并去除底部分割线
-    UIImage *image = [UIImage imageWithColor:[UIColor whiteColor]];
+    UIImage *image = [UIImage imageWithColor:[UIColor blackColor]];
     [[UINavigationBar appearance] setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     [UINavigationBar appearance].shadowImage = [[UIImage alloc] init];
+//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+//     forBarMetrics:UIBarMetricsDefault];
+
 }
 
 
