@@ -106,6 +106,7 @@
 		DD6EDB46272E5E71002B0A8E /* TableSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB45272E5E71002B0A8E /* TableSearchView.xib */; };
 		DD6EDB4B272E7AF9002B0A8E /* AddPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB49272E7AF9002B0A8E /* AddPeopleTableViewCell.m */; };
 		DD6EDB4C272E7AF9002B0A8E /* AddPeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB4A272E7AF9002B0A8E /* AddPeopleTableViewCell.xib */; };
+		DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB4E272EF15F002B0A8E /* HeadTimeCollectionViewCell.m */; };
 		DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD742597272942F9005D636E /* UIImage+Extension.m */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
@@ -320,6 +321,8 @@
 		DD6EDB48272E7AF9002B0A8E /* AddPeopleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPeopleTableViewCell.h; sourceTree = "<group>"; };
 		DD6EDB49272E7AF9002B0A8E /* AddPeopleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPeopleTableViewCell.m; sourceTree = "<group>"; };
 		DD6EDB4A272E7AF9002B0A8E /* AddPeopleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPeopleTableViewCell.xib; sourceTree = "<group>"; };
+		DD6EDB4D272EF15F002B0A8E /* HeadTimeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadTimeCollectionViewCell.h; sourceTree = "<group>"; };
+		DD6EDB4E272EF15F002B0A8E /* HeadTimeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeadTimeCollectionViewCell.m; sourceTree = "<group>"; };
 		DD742588272942F9005D636E /* NSObject+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YCExtension.h"; sourceTree = "<group>"; };
 		DD742589272942F9005D636E /* NSDictionary+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YCExtension.h"; sourceTree = "<group>"; };
 		DD74258A272942F9005D636E /* UILabel+LabelTextModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LabelTextModel.h"; sourceTree = "<group>"; };
@@ -862,6 +865,8 @@
 				DD6EDB48272E7AF9002B0A8E /* AddPeopleTableViewCell.h */,
 				DD6EDB49272E7AF9002B0A8E /* AddPeopleTableViewCell.m */,
 				DD6EDB4A272E7AF9002B0A8E /* AddPeopleTableViewCell.xib */,
+				DD6EDB4D272EF15F002B0A8E /* HeadTimeCollectionViewCell.h */,
+				DD6EDB4E272EF15F002B0A8E /* HeadTimeCollectionViewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1102,6 +1107,7 @@
 				04EC01F226BD8AC000DC0103 /* HeaderPanel.m in Sources */,
 				04747FBE27082BC700B3B5B8 /* PractiseStatic.m in Sources */,
 				04EC01FB26BD8AC100DC0103 /* ConfigManager.m in Sources */,
+				DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */,
 				DD25FEE927226B5A0092CF87 /* JYImageCache.m in Sources */,
 				04552B502696C3FD00C78706 /* UIControl+YYAdd.m in Sources */,
 				04552B4C2696C3FD00C78706 /* TWSReleaseNotesView.m in Sources */,

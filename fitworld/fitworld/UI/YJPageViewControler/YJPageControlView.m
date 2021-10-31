@@ -138,7 +138,7 @@ static const CGFloat SegmentHeight = 40.0f;
         //indicator位置
         _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
         //选中indicator
-        _segmentedControl.selectionIndicatorColor = RGBACOLOR(228, 0, 54, 1);
+        _segmentedControl.selectionIndicatorColor = SelectGreenColor;
         _segmentedControl.selectionIndicatorHeight = 1.0f;
         _segmentedControl.backgroundColor =[UIColor blackColor];
         //标题属性
@@ -148,7 +148,7 @@ static const CGFloat SegmentHeight = 40.0f;
                                                   };
         //选中标题属性
         _segmentedControl.selectedTitleTextAttributes =@{
-                                                         NSForegroundColorAttributeName : RGBACOLOR(228, 0, 54, 1),
+                                                         NSForegroundColorAttributeName : SelectGreenColor,
                                                          NSFontAttributeName:[UIFont systemFontOfSize:15.0]
                                                          };
         _segmentedControl.selectedSegmentIndex = _selectedIndex;

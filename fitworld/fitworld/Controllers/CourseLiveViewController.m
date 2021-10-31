@@ -13,6 +13,7 @@
 #import "FITAPI.h"
 #import "Room.h"
 #import <math.h>
+#import "HeadTimeCollectionViewCell.h"
 
 @interface CourseLiveViewController ()<UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate>
 @property(nonatomic,strong)UITableView*tableView;
@@ -38,28 +39,28 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 2;
     layout.minimumInteritemSpacing = 2;
-    
-    CGFloat itemW = (self.view.bounds.size.width - 20) / 8;
-    layout.itemSize = CGSizeMake(itemW, itemW);
-    
+    layout.itemSize = CGSizeMake((ScreenWidth - 20) / 8, 60);
     layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
 
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-    collectionView.backgroundColor = [UIColor darkGrayColor];
+    collectionView.backgroundColor = BuddyTableBackColor;
     collectionView.showsVerticalScrollIndicator = NO;   //是否显示滚动条
     collectionView.scrollEnabled = YES;  //滚动使能
     collectionView.allowsSelection = YES;
     collectionView.allowsMultipleSelection = NO;
+     
+//    collectionViewContentSize
+    collectionView.collectionViewLayout = layout;
     //3、添加到控制器的view
     [self.view addSubview:collectionView];
     [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(5);
+        make.top.equalTo(self.view).offset(10);
         make.left.equalTo(self.view.mas_left).offset(10);
         make.right.equalTo(self.view.mas_right).offset(-10);
-        make.height.mas_equalTo(45);
+        make.height.mas_equalTo(62);
     }];
-    [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"collectCell"];
+    [collectionView registerClass:[HeadTimeCollectionViewCell class] forCellWithReuseIdentifier:@"collectCell"];
     collectionView.dataSource = self;
     collectionView.delegate = self;
 
@@ -198,7 +199,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectCell" forIndexPath:indexPath];
+    HeadTimeCollectionViewCell *cell = (HeadTimeCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectCell" forIndexPath:indexPath];
     
     NSDate *today = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -206,8 +207,7 @@
     NSInteger day = [weekdayComponents day];
     NSInteger weekday = [weekdayComponents weekday] - 1;
     NSInteger i = indexPath.item;
-    
-    UILabel *label1 = [[UILabel alloc] init];
+    [cell addSubviews];
     NSInteger index_weekday = (weekday + i) - 1;
     if(index_weekday > 6){
         index_weekday = labs(7 - (index_weekday));
@@ -215,17 +215,7 @@
     if(index_weekday == -1){
         index_weekday = 6;
     }
-   
-    label1.font = [UIFont systemFontOfSize:12];
-    label1.textColor = UIColor.whiteColor;
-    label1.textAlignment = NSTextAlignmentCenter;
-    [cell addSubview:label1];
-    [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(cell).offset(5);
-        make.right.equalTo(cell).offset(-5);
-        make.height.mas_equalTo(15);
-    }];
-    
+       
     NSDate *nextDate = [NSDate date];
     NSInteger interval = i * 60 * 60 * 24;
     nextDate = [nextDate dateByAddingTimeInterval:interval];
@@ -237,20 +227,13 @@
     UILabel *label2 = [[UILabel alloc] init];
     label2.textColor = UIColor.whiteColor;
 //    赋值的位置换一下
-    label1.text = [NSString stringWithFormat:@"%ld", (long)nextDay];
-    label2.text = weekDays[index_weekday];
-    label2.font = [UIFont systemFontOfSize:12];
-    label2.textAlignment = NSTextAlignmentCenter;
-    [cell addSubview:label2];
-    [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label1.mas_bottom).offset(3);
-        make.left.equalTo(cell).offset(5);
-        make.right.equalTo(cell).offset(-5);
-        make.height.mas_equalTo(15);
-    }];
-    
+    cell.dayLabel.text = [NSString stringWithFormat:@"%ld", (long)nextDay];
+    cell.weekLabel.text = weekDays[index_weekday];
     if(indexPath.item == 0){
-        cell.backgroundColor = UIColor.redColor;
+        [cell changeSelected];
+    }else{
+        [cell changeunSelected];
+
     }
     cell.layoutMargins = UIEdgeInsetsZero;
     return cell;
@@ -258,12 +241,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"didSelectItemAtIndexPath");
-    NSArray<UICollectionViewCell *> *allCellArray = [collectionView visibleCells];
-    for(UICollectionViewCell *cell in allCellArray){
-        cell.backgroundColor = UIColor.darkGrayColor;
+    NSArray<HeadTimeCollectionViewCell *> *allCellArray = [collectionView visibleCells];
+    for(HeadTimeCollectionViewCell *cell in allCellArray){
+        [cell changeunSelected];
     }
-    UICollectionViewCell *selectedCell = [collectionView cellForItemAtIndexPath:indexPath];
-    selectedCell.backgroundColor = UIColor.redColor;
+    HeadTimeCollectionViewCell *selectedCell = (HeadTimeCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    [selectedCell changeSelected];
     NSDate *selectDate = [dayArrs objectAtIndex:indexPath.item];
     NSLog(@"selectDate %@", selectDate);
     NSDateFormatter *f = [NSDateFormatter new];

@@ -22,7 +22,7 @@
 
 //
 #define BuddyTableBackColor UIRGBColor(37, 37, 37, 1)
-
+#define SelectGreenColor  UIRGBColor(86, 186, 111, 1)
 
 #endif /* PrefixHeader_h */
 
