@@ -20,6 +20,9 @@
 #define Color(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define ColorAlpha(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
+//
+#define BuddyTableBackColor UIRGBColor(37, 37, 37, 1)
+
 
 #endif /* PrefixHeader_h */
 
@@ -131,5 +134,7 @@ UIKIT_STATIC_INLINE  int statusBarHeight(){
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     return rectStatus.size.height;
 }
+
+
 
 

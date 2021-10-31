@@ -13,102 +13,87 @@
 #import "TrainingInviteViewController.h"
 #import "ConfigManager.h"
 #import "RoomVC.h"
+#import "TableHeadview.h"
+#import "SelectClassHeadview.h"
+#import "TableSearchView.h"
 
-@interface TrainingInviteViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property(nonatomic,strong)UITableView*tableView;
-@end
 
-@implementation TrainingInviteViewController{
+@interface TrainingInviteViewController ()<UITableViewDelegate, UITableViewDataSource>{
+    BOOL isLoading;
+    int _pageCount;
+    BOOL _isLoadAllData; //是否加载所有的数据，每次刷新的时候，都设置成no， 接口返回的数据小于需要的数量时，设置成yes
+    int  _orderbyType; //排序类型 0最新创建，1最近执行
+    NSURLSessionDataTask *requestTask;//请求用的task
     NSMutableArray *dataArr;
     NSMutableArray *selectedItems;
 }
+@property(nonatomic,strong)UITableView*tableView;
+@end
+
+@implementation TrainingInviteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor blackColor];
     
-    UIImageView *topFlowImg = [[UIImageView alloc] init];
-    topFlowImg.image = [UIImage imageNamed:@"buddy_flow3"];
+    self.title = ChineseStringOrENFun(@"邀请朋友", @"INVITE FRIENDS");
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.view.backgroundColor = [UIColor blackColor];
+
+    SelectClassHeadview *topFlowImg = (SelectClassHeadview *)[[[NSBundle mainBundle] loadNibNamed:@"SelectClassHeadview" owner:self options:nil] lastObject];
     [self.view addSubview:topFlowImg];
     [topFlowImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(30);
-        make.left.equalTo(self.view.mas_left).offset(10);
-        make.right.equalTo(self.view.mas_right).offset(-10);
-        make.height.mas_equalTo(53);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.mas_equalTo(80);
     }];
-    
-    UIButton *randomBtn = [[UIButton alloc] init];
-    [randomBtn setTitle:@"Random matching" forState:UIControlStateNormal];
-    randomBtn.backgroundColor = UIColor.darkGrayColor;
-    [randomBtn.layer setMasksToBounds:YES];
-    [randomBtn.layer setCornerRadius:10];
-    [self.view addSubview:randomBtn];
-    
-    UIButton *inviteBtn = [[UIButton alloc] init];
-    [inviteBtn setTitle:@"invite friends" forState:UIControlStateNormal];
-    inviteBtn.backgroundColor = [UIColor colorWithRed:73.0/255.0 green:146.0/255.0 blue:96.0/255.0 alpha:1];
-    [inviteBtn.layer setMasksToBounds:YES];
-    [inviteBtn.layer setCornerRadius:10];
-    [self.view addSubview:inviteBtn];
-    
-    [randomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(topFlowImg.mas_bottom).offset(50);
-        make.left.equalTo(topFlowImg);
-        make.right.equalTo(inviteBtn.mas_left).offset(-10);
+    [topFlowImg changeStep:3];
+    TableHeadview *tableheadview = (TableHeadview *)[[[NSBundle mainBundle] loadNibNamed:@"TableHeadview" owner:self options:nil] lastObject];
+    [self.view addSubview:tableheadview];
+    [tableheadview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(topFlowImg.mas_bottom).offset(10);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
         make.height.mas_equalTo(40);
     }];
     
-    [inviteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(randomBtn);
-        make.right.equalTo(topFlowImg);
-        make.height.mas_equalTo(40);
-        make.width.equalTo(randomBtn);
+    TableSearchView *tableSearchView = (TableSearchView *)[[[NSBundle mainBundle] loadNibNamed:@"TableSearchView" owner:self options:nil] lastObject];
+    [self.view addSubview:tableSearchView];
+    [tableSearchView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(tableheadview.mas_bottom);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.mas_equalTo(120);
     }];
-    [inviteBtn addTarget:self action:@selector(inviteStart) forControlEvents:UIControlEventTouchUpInside];
     
+    self.tableView=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.view addSubview:self.tableView];
-
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.tintColor = [UIColor whiteColor];
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..." attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    self.tableView.refreshControl = refreshControl;
-    self.tableView.tableFooterView = [UIView new];
-    self.tableView.backgroundColor = UIColor.blackColor;
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(tableSearchView.mas_bottom);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view);
+    }];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    self.tableView.backgroundColor = BuddyTableBackColor;
     self.tableView.layoutMargins = UIEdgeInsetsZero;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-    [self refreshData];
+    [self setupRefresh];
+    [self reachHeadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
 }
 
--(UITableView*)tableView{
-    
-    if (_tableView==nil) {
-        CGRect frame =CGRectMake(0, 200, kScreenWidth, self.view.bounds.size.height - 200);
-        _tableView=[[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        [_tableView setEditing:YES animated:YES];
-        if (@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-    }
-    return _tableView;
-    
-}
 #pragma mark TableViewDelegate&DataSource
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 70;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -176,39 +161,42 @@
 }
 
 #pragma mark - 刷新房间数据
-- (void) refreshData
+- (void) reachHeadData
 {
     [dataArr removeAllObjects];
+    _isLoadAllData =NO;
+    [self loadDateIsLoadHead:YES];
+    
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     NSLog(@"initroom userToken ---- %@", userToken);
 
-    NSString *strUrl = [NSString stringWithFormat:@"%@user/other", FITAPI_HTTPS_PREFIX];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    NSDictionary *baddyParams = @{
-                           @"page": @"1",
-                           @"row": @"20",
-                       };
-    [manager GET:strUrl parameters:baddyParams headers:nil progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject ---- %@", responseObject);
-        long total =  [responseObject[@"recordset"][@"total"] longValue];
-        if(total > 0){
-            NSArray *array = responseObject[@"recordset"][@"rows"];
-            self->dataArr = [[NSMutableArray alloc] init];
-            for (int i = 0; i < [array count]; i++) {
-                UserInfo *user = [[UserInfo alloc] initWithJSON: array[i]];
-                [self->dataArr addObject: user];
-            }
-        }
-        [self.tableView reloadData];
-        if ([self.tableView.refreshControl isRefreshing]) {
-            [self.tableView.refreshControl endRefreshing];
-        }
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       NSLog(@"failure ---- %@", error);
-    }];
+//    NSString *strUrl = [NSString stringWithFormat:@"%@user/other", FITAPI_HTTPS_PREFIX];
+//    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
+//    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+//    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+//    NSDictionary *baddyParams = @{
+//                           @"page": @"1",
+//                           @"row": @"20",
+//                       };
+//    [manager GET:strUrl parameters:baddyParams headers:nil progress:nil
+//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"responseObject ---- %@", responseObject);
+//        long total =  [responseObject[@"recordset"][@"total"] longValue];
+//        if(total > 0){
+//            NSArray *array = responseObject[@"recordset"][@"rows"];
+//            self->dataArr = [[NSMutableArray alloc] init];
+//            for (int i = 0; i < [array count]; i++) {
+//                UserInfo *user = [[UserInfo alloc] initWithJSON: array[i]];
+//                [self->dataArr addObject: user];
+//            }
+//        }
+//        [self.tableView reloadData];
+//        if ([self.tableView.refreshControl isRefreshing]) {
+//            [self.tableView.refreshControl endRefreshing];
+//        }
+//       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//       NSLog(@"failure ---- %@", error);
+//    }];
 }
 
 
@@ -273,6 +261,123 @@
 //    NSDictionary *codeDict = @{@"eid":eventId, @"name":nickName};
 //    RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
 //    [self.navigationController pushViewController:roomVC animated:YES];
+}
+
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+}
+//开始进入刷新状态
+- (void)headerRereshing
+{
+    //下拉刷新，先还原上拉“已加载全部数据”的状态
+    [self.tableView.mj_footer resetNoMoreData];
+    [self reachHeadData];
+}
+
+
+//下拉刷新
+
+
+- (void)loadDateIsLoadHead:(BOOL)isLoadHead
+{
+    if (!isLoading) {
+        isLoading = YES;
+        [requestTask cancel];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+        NSString *search = _searchString?_searchString:@"";
+        int size = 20;
+        int page = 1;
+        if (!isLoadHead) {
+//            加载更多
+            page = _pageCount+1;
+        }
+        NSDictionary *baddyParams = @{
+                               @"kw": search,
+                               @"page": [NSString stringWithFormat:@"%d",page],
+                               @"row": [NSString stringWithFormat:@"%d",size]
+                           };
+        
+        [manager GET:@"user/other" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (responseObject && responseObject[@"recordset"] ) {
+                NSArray *dataArray = responseObject[@"recordset"][@"rows"];
+                if (dataArray.count < size) {
+                    self->_isLoadAllData = YES;
+                }
+                if (isLoadHead) {
+                    self->_pageCount = 1;
+                }
+                else
+                {
+                    self->_pageCount =self->_pageCount+1;
+                }
+                if (isLoadHead) {
+                    self->dataArr = [[NSMutableArray alloc] init];
+                }
+                for (int i = 0; i < [dataArray count]; i++) {
+                    UserInfo *user = [[UserInfo alloc] initWithJSON: dataArray[i]];
+                    [self->dataArr addObject: user];
+                }
+                
+                if (isLoadHead) {
+                    [self.tableView.mj_header endRefreshing];
+                }
+                else
+                {
+                    [self loadNextPageData];
+                }
+            
+
+                [self->_tableView reloadData];
+            }
+            self->isLoading = NO;
+          
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    }
+    else
+    {
+    }
+ 
+}
+
+//上拉加载更多
+- (void)loadMore
+{
+    if (!_isLoadAllData) {
+        [self loadDateIsLoadHead:NO];
+    }
+    else
+    {
+        [self loadNextPageData];
+    }
+}
+
+- (void)footerRereshing
+{
+    [self loadMore];
+}
+
+-(void)loadNextPageData{
+
+    [self.tableView.mj_footer endRefreshing];
+    if (_isLoadAllData) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }
+    
+}
+
+
+
+- (void)searhBarBtnClicked:(NSString*)searchString{
+    _searchString = searchString;
+}
+- (void)allowOtherBtnClicked:(NSInteger)otherType{
+    _allowOtherType = otherType;
 }
 
 @end

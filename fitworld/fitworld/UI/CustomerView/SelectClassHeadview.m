@@ -30,6 +30,7 @@
     if(step == 3){
         _linebackview2.backgroundColor = LittlegreenColor;
         _linebackview3.backgroundColor = LittlegreenColor;
+        _linebackview4.backgroundColor = LittlegreenColor;
         _image2view.image = [UIImage imageNamed:@"choose_course_foot_logo2_selected"];
         _image3view.image = [UIImage imageNamed:@"choose_course_foot_logo3_selected"];
 

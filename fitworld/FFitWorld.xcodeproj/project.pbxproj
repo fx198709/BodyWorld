@@ -102,6 +102,8 @@
 		DD6EDB33272D2C89002B0A8E /* OurDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB1F272D2C89002B0A8E /* OurDatePickerView.m */; };
 		DD6EDB3E272D2CE3002B0A8E /* BaseOurPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB3D272D2CE3002B0A8E /* BaseOurPickerView.m */; };
 		DD6EDB41272D2FCD002B0A8E /* CommonTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB40272D2FCD002B0A8E /* CommonTools.m */; };
+		DD6EDB44272E5E42002B0A8E /* TableSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB43272E5E42002B0A8E /* TableSearchView.m */; };
+		DD6EDB46272E5E71002B0A8E /* TableSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB45272E5E71002B0A8E /* TableSearchView.xib */; };
 		DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD742597272942F9005D636E /* UIImage+Extension.m */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
@@ -310,6 +312,9 @@
 		DD6EDB3D272D2CE3002B0A8E /* BaseOurPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOurPickerView.m; sourceTree = "<group>"; };
 		DD6EDB3F272D2FCD002B0A8E /* CommonTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTools.h; sourceTree = "<group>"; };
 		DD6EDB40272D2FCD002B0A8E /* CommonTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTools.m; sourceTree = "<group>"; };
+		DD6EDB42272E5E42002B0A8E /* TableSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableSearchView.h; sourceTree = "<group>"; };
+		DD6EDB43272E5E42002B0A8E /* TableSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableSearchView.m; sourceTree = "<group>"; };
+		DD6EDB45272E5E71002B0A8E /* TableSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableSearchView.xib; sourceTree = "<group>"; };
 		DD742588272942F9005D636E /* NSObject+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YCExtension.h"; sourceTree = "<group>"; };
 		DD742589272942F9005D636E /* NSDictionary+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YCExtension.h"; sourceTree = "<group>"; };
 		DD74258A272942F9005D636E /* UILabel+LabelTextModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LabelTextModel.h"; sourceTree = "<group>"; };
@@ -563,6 +568,9 @@
 				04CD2E4626982A45007814E6 /* TableCollectionViewCell.h */,
 				04CD2E4926982A45007814E6 /* TableCollectionViewCell.m */,
 				04CD2E4826982A45007814E6 /* TableCollectionViewCell.xib */,
+				DD6EDB42272E5E42002B0A8E /* TableSearchView.h */,
+				DD6EDB43272E5E42002B0A8E /* TableSearchView.m */,
+				DD6EDB45272E5E71002B0A8E /* TableSearchView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -946,6 +954,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD6EDB46272E5E71002B0A8E /* TableSearchView.xib in Resources */,
 				DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */,
 				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
@@ -1064,6 +1073,7 @@
 				DD25FEE627226B5A0092CF87 /* JYTitleLabel.m in Sources */,
 				04552B4E2696C3FD00C78706 /* ConsoleTextView.m in Sources */,
 				04552B552696C3FD00C78706 /* QRCodeReader.m in Sources */,
+				DD6EDB44272E5E42002B0A8E /* TableSearchView.m in Sources */,
 				04552B3E2696C3FD00C78706 /* MaterialDesignSymbol.m in Sources */,
 				C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */,
 				047DC201268CD09700A3E37E /* fitworld.xcdatamodeld in Sources */,
