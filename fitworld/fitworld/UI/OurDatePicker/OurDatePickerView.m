@@ -58,7 +58,7 @@
     
     //底部加一个白色的view
     UIView *bottomBackview = [[UIView alloc] initWithFrame:CGRectMake(0,startY,width,pickerH)];
-    bottomBackview.backgroundColor = [UIColor whiteColor];
+    bottomBackview.backgroundColor = BuddyTableBackColor;
     [self addSubview:bottomBackview];
 
     self.leftPicker = [ [ UIDatePicker alloc] initWithFrame:CGRectMake(0,startY,width,pickerH)];
@@ -92,7 +92,7 @@
         }
     }
     self.leftPicker.date = defaultDate;
-    self.leftPicker.backgroundColor=[UIColor whiteColor];
+    self.leftPicker.backgroundColor= BuddyTableBackColor;
 //    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
 //    self.leftPicker.locale = locale;
     self.leftPicker.frame = CGRectMake(0,startY,width,pickerH);
@@ -116,7 +116,7 @@
                  }
                 self.rightPicker.datePickerMode = UIDatePickerModeTime;
                 self.rightPicker.frame = CGRectMake(leftPickerWidth-18,startY,width-leftPickerWidth+18,pickerH);
-                self.rightPicker.backgroundColor=[UIColor whiteColor];
+                self.rightPicker.backgroundColor= BuddyTableBackColor;
                 if (_minuteInterval > 1) {
                     self.rightPicker.minuteInterval = _minuteInterval;
                 }
@@ -167,7 +167,7 @@
              }
             self.rightPicker.datePickerMode = UIDatePickerModeTime;
             self.rightPicker.frame = CGRectMake(ScreenWidth-pickerwidth,startY,pickerwidth,pickerH);
-            self.rightPicker.backgroundColor=[UIColor whiteColor];
+            self.rightPicker.backgroundColor=BuddyTableBackColor;
 //            self.rightPicker.minimumDate = self.leftPicker.date;
             if (_minuteInterval > 1) {
                 self.rightPicker.minuteInterval = _minuteInterval;
