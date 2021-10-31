@@ -105,22 +105,31 @@
     TrainingInviteViewController *vc = [[TrainingInviteViewController alloc] init];
     vc.selectCourse = self.selectCourse;
     vc.inselectDate = selectedDate;
+    vc.afterminute = 0;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 
 - (void)startNow:(UIButton*)sender{
-    NSLog(@"startNow ----");
     if (sender.tag == 103) {
         OurDatePickerView *datepickerView = [[OurDatePickerView alloc] init];
         datepickerView.pickerDelegate = self;
         datepickerView.pickerType = YearMonDayAndHourMinute;
         datepickerView.minuteInterval = 1;
-        datepickerView.miniDate = [NSDate date];
+//        datepickerView.miniDate = [NSDate date];
         [datepickerView pickerViewWithView:self.view];
     }else{
+        
         TrainingInviteViewController *vc = [[TrainingInviteViewController alloc] init];
         vc.selectCourse = self.selectCourse;
+        NSInteger aftermin = 5;
+        if (sender.tag == 101) {
+            aftermin = 15;
+        }
+        if (sender.tag == 102) {
+            aftermin = 30;
+        }
+        vc.afterminute = aftermin;
         [self.navigationController pushViewController:vc animated:YES];
     }
     

@@ -25,7 +25,7 @@
 }
 - (void)pickerViewWithView:(UIView*)view
 {
-    _yearArray = @[@"2016年",@"2017年",@"2018年",@"2019年",@"2020年",@"2021年"];
+    _yearArray = @[@"2020年",@"2021年"];
     UIView *inview = [CommonTools mainWindow];
     if (view) {
         inview = view;
@@ -95,6 +95,7 @@
     self.leftPicker.backgroundColor=[UIColor whiteColor];
 //    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
 //    self.leftPicker.locale = locale;
+    self.leftPicker.frame = CGRectMake(0,startY,width,pickerH);
     [self addSubview:self.leftPicker];
 
     switch (self.pickerType) {

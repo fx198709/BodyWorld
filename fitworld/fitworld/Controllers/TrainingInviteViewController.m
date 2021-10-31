@@ -74,7 +74,7 @@
         make.top.equalTo(tableSearchView.mas_bottom);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view);
+//        make.bottom.equalTo(self.view).offset(-40);
     }];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -82,6 +82,30 @@
     self.tableView.layoutMargins = UIEdgeInsetsZero;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self setupRefresh];
+    
+    UIView *btnview = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:btnview];
+    [btnview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_tableView.mas_bottom);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view);
+        make.height.mas_equalTo(50);
+
+    }];
+    btnview.backgroundColor = BuddyTableBackColor;
+
+    UIButton *submittedBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 5, ScreenWidth-40*2, 40)];
+//    48 109  72
+    [btnview addSubview:submittedBtn];
+    submittedBtn.backgroundColor = UIRGBColor(48, 109, 72, 1);
+    [submittedBtn addTarget:self action:@selector(submittedBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    NSString *title = ChineseStringOrENFun(@"确认", @"OK");
+    [submittedBtn setTitle:title forState:UIControlStateHighlighted];
+    [submittedBtn setTitle:title forState:UIControlStateNormal];
+    [submittedBtn setTitleColor: UIColor.whiteColor forState:UIControlStateNormal];
+    [submittedBtn setTitleColor: UIColor.whiteColor forState:UIControlStateHighlighted];
+    submittedBtn.layer.cornerRadius = 20;
     [self reachHeadData];
 }
 
@@ -89,7 +113,53 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
+- (void)submittedBtnClick{
+    NSString *startTime = [self getTimeStamp];
+    NSString *friendIds = [[NSString alloc] init];
+    NSMutableArray *frendIdArray = [NSMutableArray array];
+    for(int i = 0; i < dataArr.count; i++){
+        UserInfo *user = [dataArr objectAtIndex:i];
+        if (user.hasSelect) {
+            [frendIdArray addObject:user.id];
+        }
+        
+    }
+    friendIds = [frendIdArray componentsJoinedByString:@","];
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+
+    NSString *strUrl = [NSString stringWithFormat:@"%@room/battle", FITAPI_HTTPS_PREFIX];
+    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    NSDictionary *baddyParams = @{
+                           @"start_time": startTime,
+                           @"friend_ids": friendIds,
+                           @"course_id": _selectCourse.course_id,
+                           @"name": @"arms training",
+                           @"allow_watch": [NSNumber numberWithInteger:_allowOtherType]
+                       };
+    [manager POST:strUrl parameters:baddyParams headers:nil progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"responseObject ---- %@", responseObject);
+        NSDictionary *dict = responseObject[@"recordset"];
+        NSString *eventId = dict[@"event_id"];
+        NSLog(@"eventId ----  %@", eventId);
+
+        NSString * nickName = @"123";
+        [ConfigManager sharedInstance].eventId = eventId;
+        [ConfigManager sharedInstance].nickName = nickName;
+        [[ConfigManager sharedInstance] saveConfig];
+
+        NSDictionary *codeDict = @{@"eid":eventId, @"name":nickName};
+        RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
+        [self.navigationController pushViewController:roomVC animated:YES];
+       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+       NSLog(@"failure ---- %@", error);
+    }];
+}
+
 #pragma mark TableViewDelegate&DataSource
+
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -108,8 +178,27 @@
     }
     UserInfo *user = dataArr[indexPath.row];
     [cell changeViewWithModel:user];
+    __weak AddPeopleTableViewCell *weakcell = cell;
+    WeakSelf
     cell.cellBtnClick = ^(UserInfo* clickModel) {
-    
+        if (clickModel.hasSelect) {
+//            最多只能选中5个
+            NSInteger selectCount = 0;
+            StrongSelf(wSelf)
+            for (int index = 0; index < strongSelf->dataArr.count; index++) {
+                UserInfo *indexUser = strongSelf->dataArr[index];
+                if (indexUser.hasSelect) {
+                    selectCount++;
+                }
+            }
+            if (selectCount > 5) {
+                [CommonTools showAlertDismissWithContent:@"最多选5项" showWaitTime:0 afterDelay:0.5 control:wSelf];
+                __strong AddPeopleTableViewCell *strongcell = weakcell;
+                clickModel.hasSelect =NO;
+                [strongcell changeViewWithModel:clickModel];
+            }
+        }
+       
     };
     return cell;
 }
@@ -152,8 +241,16 @@
 }
 
 - (NSString *) getTimeStamp{
-    UInt64 recordTime = [[NSDate date] timeIntervalSince1970];
-    NSString *timeLocal = [[NSString alloc] initWithFormat:@"%llu", recordTime];
+    NSString *timeLocal = @"";
+    UInt64 recordTime = 0;
+    if (self.afterminute > 0) {
+        recordTime = [[NSDate date] timeIntervalSince1970];
+        recordTime = self.afterminute * 60 + recordTime;
+    }else{
+        recordTime = [self.inselectDate timeIntervalSince1970];
+    }
+    timeLocal = [[NSString alloc] initWithFormat:@"%llu", recordTime];
+
     return timeLocal;
 }
 
@@ -163,102 +260,10 @@
     [dataArr removeAllObjects];
     _isLoadAllData =NO;
     [self loadDateIsLoadHead:YES];
-    
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-    NSLog(@"initroom userToken ---- %@", userToken);
-
-//    NSString *strUrl = [NSString stringWithFormat:@"%@user/other", FITAPI_HTTPS_PREFIX];
-//    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-//    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-//    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-//    NSDictionary *baddyParams = @{
-//                           @"page": @"1",
-//                           @"row": @"20",
-//                       };
-//    [manager GET:strUrl parameters:baddyParams headers:nil progress:nil
-//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"responseObject ---- %@", responseObject);
-//        long total =  [responseObject[@"recordset"][@"total"] longValue];
-//        if(total > 0){
-//            NSArray *array = responseObject[@"recordset"][@"rows"];
-//            self->dataArr = [[NSMutableArray alloc] init];
-//            for (int i = 0; i < [array count]; i++) {
-//                UserInfo *user = [[UserInfo alloc] initWithJSON: array[i]];
-//                [self->dataArr addObject: user];
-//            }
-//        }
-//        [self.tableView reloadData];
-//        if ([self.tableView.refreshControl isRefreshing]) {
-//            [self.tableView.refreshControl endRefreshing];
-//        }
-//       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//       NSLog(@"failure ---- %@", error);
-//    }];
 }
 
 
-- (void) createBattleRoom
-{
-    NSString *startTime = [self getTimeStamp];
-    NSString *friendIds = [[NSString alloc] init];
-    
-    for(int i = 0; i < selectedItems.count; i++){
-        friendIds = [friendIds stringByAppendingString: selectedItems[i]];
-        friendIds = [friendIds stringByAppendingString:@","];
-    }
-    friendIds = [friendIds substringToIndex:friendIds.length - 1];
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-    NSLog(@"userToken > %@", userToken);
-    NSLog(@"friendIds > %@", friendIds);
-    NSLog(@"startTime > %@", startTime);
-
-
-    NSString *strUrl = [NSString stringWithFormat:@"%@room/battle", FITAPI_HTTPS_PREFIX];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    NSDictionary *baddyParams = @{
-                           @"start_time": startTime,
-                           @"friend_ids": friendIds,
-                           @"course_id": _selectCourse.course_id,
-                           @"name": @"arms training",
-                           @"allow_watch": [NSNumber numberWithBool:1]
-                       };
-    [manager POST:strUrl parameters:baddyParams headers:nil progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject ---- %@", responseObject);
-        NSDictionary *dict = responseObject[@"recordset"];
-        NSString *eventId = dict[@"event_id"];
-        NSLog(@"eventId ----  %@", eventId);
-
-        NSString * nickName = @"123";
-        [ConfigManager sharedInstance].eventId = eventId;
-        [ConfigManager sharedInstance].nickName = nickName;
-        [[ConfigManager sharedInstance] saveConfig];
-
-        NSDictionary *codeDict = @{@"eid":eventId, @"name":nickName};
-        RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
-        [self.navigationController pushViewController:roomVC animated:YES];
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       NSLog(@"failure ---- %@", error);
-    }];
-}
-
-- (void) inviteStart{
-    NSLog(@"inviteStart ----  ");
-    [self createBattleRoom];
-    
-    
-//    NSString * eventId = @"123";
-//    NSString * nickName = @"123";
-//    [ConfigManager sharedInstance].eventId = eventId;
-//    [ConfigManager sharedInstance].nickName = nickName;
-//    [[ConfigManager sharedInstance] saveConfig];
-//
-//    NSDictionary *codeDict = @{@"eid":eventId, @"name":nickName};
-//    RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
-//    [self.navigationController pushViewController:roomVC animated:YES];
-}
+ 
 
 - (void)setupRefresh
 {
@@ -372,6 +377,7 @@
 
 - (void)searhBarBtnClicked:(NSString*)searchString{
     _searchString = searchString;
+    [self headerRereshing];
 }
 - (void)allowOtherBtnClicked:(NSInteger)otherType{
     _allowOtherType = otherType;

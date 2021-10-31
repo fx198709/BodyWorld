@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIWindow *)mainWindow;
 
++ (void)showAlertDismissWithContent:(NSString*)content showWaitTime:(NSTimeInterval)time afterDelay:(NSTimeInterval)delay control:(UIViewController*)control;
 
 @end
 

@@ -194,5 +194,30 @@
     }
 }
 
++ (void)showAlertDismissWithContent:(NSString*)content afterDelay:(NSTimeInterval)delay control:(UIViewController*)control{
+    [self showAlertDismissWithContent:content showWaitTime:0.2 afterDelay:delay control:control];
+}
+
++ (void)showAlertDismissWithContent:(NSString*)content showWaitTime:(NSTimeInterval)time afterDelay:(NSTimeInterval)delay control:(UIViewController*)control {
+    __strong UIViewController * strongControl = control;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:content preferredStyle:UIAlertControllerStyleAlert];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC));
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
+
+    dispatch_after(popTime, dispatch_get_main_queue(), ^{
+        [strongControl presentViewController:alert animated:YES completion:nil];
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            [CommonTools dismissControl:alert];
+        });
+    });
+}
+
++ (void)dismissControl:(UIAlertController*)alert{
+    [alert dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
 
 @end

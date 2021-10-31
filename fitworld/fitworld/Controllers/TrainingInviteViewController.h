@@ -14,6 +14,8 @@
 @property(nonatomic,assign) CGFloat viewheight;
 @property(nonatomic,strong) Course *selectCourse;
 @property(nonatomic, strong) NSDate * inselectDate;
+@property(nonatomic, assign) NSInteger afterminute; //0是自定义时间
+
 
 @property(nonatomic,copy)NSString* searchString;
 @property(nonatomic,assign) NSInteger allowOtherType;
