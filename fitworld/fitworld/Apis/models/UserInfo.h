@@ -35,6 +35,9 @@
 @property (nonatomic , strong) NSString*              msg;
 @property (nonatomic , strong) NSString*              msg_cn;
 
+@property (nonatomic , assign) BOOL              hasSelect;
+
+
 - (BOOL)isEqualToUserInfo:(UserInfo *)userInfo;
 
 @end

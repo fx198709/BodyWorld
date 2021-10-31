@@ -135,6 +135,9 @@ UIKIT_STATIC_INLINE  int statusBarHeight(){
     return rectStatus.size.height;
 }
 
+typedef void(^AnyBtnBlock)(id clickModel);
+
+
 
 
 

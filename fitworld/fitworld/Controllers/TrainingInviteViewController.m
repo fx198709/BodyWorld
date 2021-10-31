@@ -16,7 +16,7 @@
 #import "TableHeadview.h"
 #import "SelectClassHeadview.h"
 #import "TableSearchView.h"
-
+#import "AddPeopleTableViewCell.h"
 
 @interface TrainingInviteViewController ()<UITableViewDelegate, UITableViewDataSource>{
     BOOL isLoading;
@@ -101,19 +101,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellIdentifier = @"cell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NSString* cellIdentifier = @"AddPeopleTableViewCellString";
+    AddPeopleTableViewCell* cell = (AddPeopleTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell =  [[[NSBundle mainBundle] loadNibNamed:@"AddPeopleTableViewCell" owner:self options:nil] lastObject];
     }
     UserInfo *user = dataArr[indexPath.row];
-    cell.textLabel.text = user.nickname;
-    cell.textLabel.textColor = UIColor.blueColor;
-    cell.backgroundColor = UIColor.blackColor;
+    [cell changeViewWithModel:user];
+    cell.cellBtnClick = ^(UserInfo* clickModel) {
     
-    UIView *view_bg = [[UIView alloc] init];
-    view_bg.backgroundColor = UIColor.blackColor;
-    cell.selectedBackgroundView = view_bg;
+    };
     return cell;
 }
 

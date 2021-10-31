@@ -32,6 +32,8 @@
     }else{
         _canAllowOther = 1;
     }
+    [_selectedBtn setTitle:@"" forState:UIControlStateHighlighted];
+    [_selectedBtn setTitle:@"" forState:UIControlStateNormal];
     [_selectedBtn setImage:currentimage forState:UIControlStateHighlighted];
     [_selectedBtn setImage:currentimage forState:UIControlStateNormal];
     if ([_searchDelegate respondsToSelector:@selector(allowOtherBtnClicked:)]) {

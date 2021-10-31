@@ -27,6 +27,7 @@
         _updated_at = [self checkForNull: json[@"updated_at"]];
         _username = [self checkForNull: json[@"username"]];
         _weight =  [json[@"weight"] longLongValue];
+        _hasSelect = NO;
     }
     return self;
 }
