@@ -35,39 +35,57 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.tableView];
-    
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.minimumLineSpacing = 2;
-    layout.minimumInteritemSpacing = 2;
-    layout.itemSize = CGSizeMake((ScreenWidth - 20) / 8, 60);
-    layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    if (self.pageVCindex != 0) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.minimumLineSpacing = 2;
+        layout.minimumInteritemSpacing = 2;
+        layout.itemSize = CGSizeMake((ScreenWidth - 20) / 8, 60);
+        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
 
-    collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-    collectionView.backgroundColor = BuddyTableBackColor;
-    collectionView.showsVerticalScrollIndicator = NO;   //是否显示滚动条
-    collectionView.scrollEnabled = YES;  //滚动使能
-    collectionView.allowsSelection = YES;
-    collectionView.allowsMultipleSelection = NO;
-     
-//    collectionViewContentSize
-    collectionView.collectionViewLayout = layout;
-    //3、添加到控制器的view
-    [self.view addSubview:collectionView];
-    [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(10);
-        make.left.equalTo(self.view.mas_left).offset(10);
-        make.right.equalTo(self.view.mas_right).offset(-10);
-        make.height.mas_equalTo(62);
-    }];
-    [collectionView registerClass:[HeadTimeCollectionViewCell class] forCellWithReuseIdentifier:@"collectCell"];
-    collectionView.dataSource = self;
-    collectionView.delegate = self;
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+        collectionView.backgroundColor = BuddyTableBackColor;
+        collectionView.showsVerticalScrollIndicator = NO;   //是否显示滚动条
+        collectionView.scrollEnabled = YES;  //滚动使能
+        collectionView.allowsSelection = YES;
+        collectionView.allowsMultipleSelection = NO;
+        collectionView.collectionViewLayout = layout;
+        //3、添加到控制器的view
+        [self.view addSubview:collectionView];
+        [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view).offset(10);
+            make.left.equalTo(self.view.mas_left).offset(10);
+            make.right.equalTo(self.view.mas_right).offset(-10);
+            make.height.mas_equalTo(62);
+        }];
+        [collectionView registerClass:[HeadTimeCollectionViewCell class] forCellWithReuseIdentifier:@"collectCell"];
+        collectionView.dataSource = self;
+        collectionView.delegate = self;
+    }
+
 
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.tintColor = [UIColor whiteColor];
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..." attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    _tableView=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.backgroundColor = BuddyTableBackColor;
+    [self.view addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (self.pageVCindex != 0){
+            make.top.equalTo(collectionView.mas_bottom).offset(20);
+        }else{
+            make.top.equalTo(self.view);
+        }
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+    }];
+    if (@available(iOS 11.0, *)) {
+        _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     self.tableView.refreshControl = refreshControl;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = UIColor.blackColor;
@@ -78,21 +96,7 @@
     
 }
 
--(UITableView*)tableView{
-    
-    if (_tableView==nil) {
-        CGRect frame =CGRectMake(0, 80, kScreenWidth, _viewheight - 90);
-        _tableView=[[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.backgroundColor = [UIColor whiteColor];
-        if (@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-    }
-    return _tableView;
-    
-}
+ 
 #pragma mark TableViewDelegate&DataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

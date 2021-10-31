@@ -51,22 +51,7 @@
 
 - (CourseLiveViewController *)viewControllerIndex:(NSInteger)index {
     CourseLiveViewController *vc = [[CourseLiveViewController alloc] init];
-    
-    switch (index%2) {
-        case 0:
-        {
-            vc.pageVCindex = [NSString stringWithFormat:@"%zd",index];
-        }
-            break;
-        case 1:
-        {
-            vc.pageVCindex = [NSString stringWithFormat:@"%zd",index];
-            
-        }
-            break;
-        default:
-            break;
-    }
+    vc.pageVCindex = index;
     return vc;
 }
 

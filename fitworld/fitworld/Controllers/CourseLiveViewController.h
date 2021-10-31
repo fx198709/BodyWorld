@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 //更多的列表
 @interface CourseLiveViewController : BaseNavViewController
-@property(nonatomic,copy)NSString* pageVCindex;
+@property(nonatomic,assign)NSInteger pageVCindex;
 @property(nonatomic,assign) CGFloat viewheight;
 @end
