@@ -5,7 +5,9 @@
 @property (nonatomic , copy) NSString              * avatar;
 @property (nonatomic , copy) NSString              * city;
 @property (nonatomic , copy) NSString              * country;
+@property (nonatomic , copy) NSString              * country_icon;
 @property (nonatomic , assign) NSInteger              gender;
+@property (nonatomic , copy) NSString              * genderString;
 @property (nonatomic , copy) NSString              * id;
 @property (nonatomic , copy) NSString              * nickname;
 @property (nonatomic , copy) NSString              * username;
@@ -22,7 +24,7 @@
 @property (nonatomic , copy) NSString              * created_at;
 @property (nonatomic , copy) NSString              * creator;
 @property (nonatomic , assign) NSInteger              end_time;
-@property (nonatomic , copy) NSString              * event_id;
+@property (nonatomic , copy) NSString              * event_id; //房间id
 @property (nonatomic , copy) NSString              * event_type;
 @property (nonatomic , assign) NSInteger              exercise_count;
 @property (nonatomic , copy) NSString              * id;

@@ -47,7 +47,7 @@ BOOL  hasrequest = NO;
     }];
     [self setupRefresh];
     _mainTableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    _sliderView = [[UIView alloc] initWithFrame:CGRectMake(17, 8, ScreenWidth-17*2, 116)];
+    _sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 8, ScreenWidth, 116)];
     _sliderView.clipsToBounds = YES;
     _sliderView.layer.cornerRadius = 5;
     [_mainTableview.mj_header beginRefreshing];
@@ -85,7 +85,7 @@ BOOL  hasrequest = NO;
         carouselConfig.pageContollType = MiddlePageControl;
         //配置轮播时间间隔
         carouselConfig.interValTime = 3;
-       carouselConfig.contentMode = UIViewContentModeScaleAspectFit;
+       carouselConfig.contentMode = UIViewContentModeScaleAspectFill;
 //        //配置轮播翻页动画
 //        carouselConfig.pushAnimationType = PushCube;
 //        //配置动画方向
@@ -97,6 +97,7 @@ BOOL  hasrequest = NO;
     }];
     //开始轮播
     [carouselView startCarouselWithArray:imageArray];
+    carouselView.backgroundColor = [UIColor clearColor];
     RemoveSubviews(_sliderView,@[]);
     [_sliderView addSubview:carouselView];
 }

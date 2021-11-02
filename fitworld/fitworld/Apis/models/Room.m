@@ -1,5 +1,37 @@
 #import "Room.h"
 
+
+
+@implementation Room_creator
+
+- (instancetype)initWithJSON:(NSDictionary *)json
+{
+    if (self = [super init]) {
+        _avatar = [self checkForNull: json[@"avatar"]];
+        _city = [self checkForNull: json[@"city"]];
+        _country = [self checkForNull: json[@"country"]];
+        _gender = [json[@"gender"] integerValue];
+        _genderString = ChineseStringOrENFun(@"未知", @"unknow");
+        if (_gender == 1) {
+//            男
+            _genderString = ChineseStringOrENFun(@"男", @"male");
+        }
+        if (_gender == 2) {
+//           女
+            _genderString = ChineseStringOrENFun(@"女", @"female");
+        }
+        
+        _id = [self checkForNull: json[@"id"]];
+        _nickname = [self checkForNull: json[@"nickname"]];
+        _username = [self checkForNull: json[@"username"]];
+
+        _country_icon =[self checkForNull: json[@"country_icon"]];
+    }
+    return  self;
+}
+
+@end
+
 @implementation Room
 
 - (instancetype)initWithJSON:(NSDictionary *)json
@@ -22,7 +54,8 @@
         _is_room_user = [json[@"is_room_user"] boolValue];
         _is_start_in_advance = [json[@"is_start_in_advance"] boolValue];
         _name = [self checkForNull: json[@"name"]];
-        _room_creator = [self checkForNull: json[@"room_creator"]];
+        Room_creator * create = [[Room_creator alloc] initWithJSON:json[@"room_creator"]];
+        _room_creator = create;
         _sdk_status = [self checkForNull: json[@"sdk_status"]];
         _service_type = [self checkForNull: json[@"service_type"]];
         _start_time = [json[@"start_time"] integerValue];

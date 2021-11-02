@@ -52,12 +52,7 @@
 		04CD2E532698478C007814E6 /* BaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD2E502698478C007814E6 /* BaseObject.m */; };
 		04CD2E56269847F2007814E6 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD2E54269847F2007814E6 /* Course.m */; };
 		04DA746A26A86E2600257963 /* YJPageControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA746826A86E2600257963 /* YJPageControlView.m */; };
-		04DA746D26A8700D00257963 /* CourseMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA746C26A8700D00257963 /* CourseMoreController.m */; };
-		04DA747026A8706600257963 /* CourseLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA746E26A8706600257963 /* CourseLiveViewController.m */; };
 		04E245CF26BA8CF0003F0674 /* CourseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E245CD26BA8CF0003F0674 /* CourseDetailViewController.m */; };
-		04EC003826BCD7A700DC0103 /* TrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EC003726BCD7A700DC0103 /* TrainingViewController.m */; };
-		04EC003E26BD1E4600DC0103 /* TrainingStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EC003D26BD1E4600DC0103 /* TrainingStartViewController.m */; };
-		04EC004126BD21C500DC0103 /* TrainingInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EC003F26BD21C500DC0103 /* TrainingInviteViewController.m */; };
 		04EC004426BD2B8800DC0103 /* IJKMediaFrameworkWithSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EC004226BD2B8700DC0103 /* IJKMediaFrameworkWithSSL.framework */; };
 		04EC004526BD2B8800DC0103 /* IJKMediaFrameworkWithSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04EC004226BD2B8700DC0103 /* IJKMediaFrameworkWithSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04EC004626BD2B8800DC0103 /* VSRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EC004326BD2B8700DC0103 /* VSRTC.framework */; };
@@ -107,6 +102,11 @@
 		DD6EDB4B272E7AF9002B0A8E /* AddPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB49272E7AF9002B0A8E /* AddPeopleTableViewCell.m */; };
 		DD6EDB4C272E7AF9002B0A8E /* AddPeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB4A272E7AF9002B0A8E /* AddPeopleTableViewCell.xib */; };
 		DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB4E272EF15F002B0A8E /* HeadTimeCollectionViewCell.m */; };
+		DD6EDB5C272EFFFB002B0A8E /* TrainingStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB51272EFFFB002B0A8E /* TrainingStartViewController.m */; };
+		DD6EDB5D272EFFFB002B0A8E /* TrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB53272EFFFB002B0A8E /* TrainingViewController.m */; };
+		DD6EDB5E272EFFFB002B0A8E /* TrainingInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB56272EFFFB002B0A8E /* TrainingInviteViewController.m */; };
+		DD6EDB5F272EFFFB002B0A8E /* CourseMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB5A272EFFFB002B0A8E /* CourseMoreController.m */; };
+		DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB5B272EFFFB002B0A8E /* CourseLiveViewController.m */; };
 		DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD742597272942F9005D636E /* UIImage+Extension.m */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
@@ -217,18 +217,8 @@
 		04CD2E55269847F2007814E6 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
 		04DA746726A86E2600257963 /* YJPageControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJPageControlView.h; sourceTree = "<group>"; };
 		04DA746826A86E2600257963 /* YJPageControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJPageControlView.m; sourceTree = "<group>"; };
-		04DA746B26A8700D00257963 /* CourseMoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseMoreController.h; sourceTree = "<group>"; };
-		04DA746C26A8700D00257963 /* CourseMoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseMoreController.m; sourceTree = "<group>"; };
-		04DA746E26A8706600257963 /* CourseLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseLiveViewController.m; sourceTree = "<group>"; };
-		04DA746F26A8706600257963 /* CourseLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseLiveViewController.h; sourceTree = "<group>"; };
 		04E245CD26BA8CF0003F0674 /* CourseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailViewController.m; sourceTree = "<group>"; };
 		04E245CE26BA8CF0003F0674 /* CourseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailViewController.h; sourceTree = "<group>"; };
-		04EC003626BCD7A700DC0103 /* TrainingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingViewController.h; sourceTree = "<group>"; };
-		04EC003726BCD7A700DC0103 /* TrainingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingViewController.m; sourceTree = "<group>"; };
-		04EC003C26BD1E4600DC0103 /* TrainingStartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrainingStartViewController.h; sourceTree = "<group>"; };
-		04EC003D26BD1E4600DC0103 /* TrainingStartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrainingStartViewController.m; sourceTree = "<group>"; };
-		04EC003F26BD21C500DC0103 /* TrainingInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingInviteViewController.m; sourceTree = "<group>"; };
-		04EC004026BD21C500DC0103 /* TrainingInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingInviteViewController.h; sourceTree = "<group>"; };
 		04EC004226BD2B8700DC0103 /* IJKMediaFrameworkWithSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFrameworkWithSSL.framework; path = fitworld/Frameworks/IJKMediaFrameworkWithSSL.framework; sourceTree = "<group>"; };
 		04EC004326BD2B8700DC0103 /* VSRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSRTC.framework; path = fitworld/Frameworks/VSRTC.framework; sourceTree = "<group>"; };
 		04EC01D026BD8ABF00DC0103 /* SidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidePanel.m; sourceTree = "<group>"; };
@@ -323,6 +313,16 @@
 		DD6EDB4A272E7AF9002B0A8E /* AddPeopleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPeopleTableViewCell.xib; sourceTree = "<group>"; };
 		DD6EDB4D272EF15F002B0A8E /* HeadTimeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadTimeCollectionViewCell.h; sourceTree = "<group>"; };
 		DD6EDB4E272EF15F002B0A8E /* HeadTimeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeadTimeCollectionViewCell.m; sourceTree = "<group>"; };
+		DD6EDB51272EFFFB002B0A8E /* TrainingStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingStartViewController.m; sourceTree = "<group>"; };
+		DD6EDB52272EFFFB002B0A8E /* TrainingInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingInviteViewController.h; sourceTree = "<group>"; };
+		DD6EDB53272EFFFB002B0A8E /* TrainingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingViewController.m; sourceTree = "<group>"; };
+		DD6EDB54272EFFFB002B0A8E /* TrainingStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingStartViewController.h; sourceTree = "<group>"; };
+		DD6EDB55272EFFFB002B0A8E /* TrainingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingViewController.h; sourceTree = "<group>"; };
+		DD6EDB56272EFFFB002B0A8E /* TrainingInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingInviteViewController.m; sourceTree = "<group>"; };
+		DD6EDB58272EFFFB002B0A8E /* CourseMoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseMoreController.h; sourceTree = "<group>"; };
+		DD6EDB59272EFFFB002B0A8E /* CourseLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseLiveViewController.h; sourceTree = "<group>"; };
+		DD6EDB5A272EFFFB002B0A8E /* CourseMoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseMoreController.m; sourceTree = "<group>"; };
+		DD6EDB5B272EFFFB002B0A8E /* CourseLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseLiveViewController.m; sourceTree = "<group>"; };
 		DD742588272942F9005D636E /* NSObject+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YCExtension.h"; sourceTree = "<group>"; };
 		DD742589272942F9005D636E /* NSDictionary+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YCExtension.h"; sourceTree = "<group>"; };
 		DD74258A272942F9005D636E /* UILabel+LabelTextModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LabelTextModel.h"; sourceTree = "<group>"; };
@@ -384,22 +384,14 @@
 		041510CF268F02810039FCD1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DD6EDB50272EFFFB002B0A8E /* Buddy */,
+				DD6EDB57272EFFFB002B0A8E /* More */,
 				0456192E26ECEC8A00C0973F /* RegisterController.h */,
 				0456192F26ECEC8A00C0973F /* RegisterController.m */,
 				04EC020A26BD8B6C00DC0103 /* RoomVC.h */,
 				04EC020926BD8B6C00DC0103 /* RoomVC.m */,
-				04EC004026BD21C500DC0103 /* TrainingInviteViewController.h */,
-				04EC003F26BD21C500DC0103 /* TrainingInviteViewController.m */,
-				04EC003C26BD1E4600DC0103 /* TrainingStartViewController.h */,
-				04EC003D26BD1E4600DC0103 /* TrainingStartViewController.m */,
-				04EC003626BCD7A700DC0103 /* TrainingViewController.h */,
-				04EC003726BCD7A700DC0103 /* TrainingViewController.m */,
-				04DA746F26A8706600257963 /* CourseLiveViewController.h */,
-				04DA746E26A8706600257963 /* CourseLiveViewController.m */,
 				04E245CE26BA8CF0003F0674 /* CourseDetailViewController.h */,
 				04E245CD26BA8CF0003F0674 /* CourseDetailViewController.m */,
-				04DA746B26A8700D00257963 /* CourseMoreController.h */,
-				04DA746C26A8700D00257963 /* CourseMoreController.m */,
 				041510D2268F02DE0039FCD1 /* LoginController.h */,
 				041510D3268F02DE0039FCD1 /* LoginController.m */,
 				04F8AA5B270DE974009B125A /* ResetPwdController.h */,
@@ -871,6 +863,30 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		DD6EDB50272EFFFB002B0A8E /* Buddy */ = {
+			isa = PBXGroup;
+			children = (
+				DD6EDB51272EFFFB002B0A8E /* TrainingStartViewController.m */,
+				DD6EDB52272EFFFB002B0A8E /* TrainingInviteViewController.h */,
+				DD6EDB53272EFFFB002B0A8E /* TrainingViewController.m */,
+				DD6EDB54272EFFFB002B0A8E /* TrainingStartViewController.h */,
+				DD6EDB55272EFFFB002B0A8E /* TrainingViewController.h */,
+				DD6EDB56272EFFFB002B0A8E /* TrainingInviteViewController.m */,
+			);
+			path = Buddy;
+			sourceTree = "<group>";
+		};
+		DD6EDB57272EFFFB002B0A8E /* More */ = {
+			isa = PBXGroup;
+			children = (
+				DD6EDB58272EFFFB002B0A8E /* CourseMoreController.h */,
+				DD6EDB59272EFFFB002B0A8E /* CourseLiveViewController.h */,
+				DD6EDB5A272EFFFB002B0A8E /* CourseMoreController.m */,
+				DD6EDB5B272EFFFB002B0A8E /* CourseLiveViewController.m */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
 		DD742587272942F9005D636E /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -1066,10 +1082,10 @@
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,
 				DD6EDB41272D2FCD002B0A8E /* CommonTools.m in Sources */,
 				047DC209268CD09900A3E37E /* main.m in Sources */,
-				04DA746D26A8700D00257963 /* CourseMoreController.m in Sources */,
 				DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */,
 				04CD2E532698478C007814E6 /* BaseObject.m in Sources */,
 				0456193026ECEC8A00C0973F /* RegisterController.m in Sources */,
+				DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */,
 				04EC01F826BD8AC100DC0103 /* ToolFunc.m in Sources */,
 				0422BDBA269C96A90084000B /* DatePlan.m in Sources */,
 				04E245CF26BA8CF0003F0674 /* CourseDetailViewController.m in Sources */,
@@ -1078,19 +1094,20 @@
 				0462BD9A26920BE8005827D1 /* MainViewController.m in Sources */,
 				04EC01F426BD8AC000DC0103 /* ViewerPanel.m in Sources */,
 				04552B532696C3FD00C78706 /* QRCodeReaderViewController.m in Sources */,
+				DD6EDB5C272EFFFB002B0A8E /* TrainingStartViewController.m in Sources */,
 				DD6EDB33272D2C89002B0A8E /* OurDatePickerView.m in Sources */,
 				DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */,
 				DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */,
 				04552B3D2696C3FD00C78706 /* EntypoSymbol.m in Sources */,
 				04552B4D2696C3FD00C78706 /* UIImage+ImageEffects.m in Sources */,
-				04EC003826BCD7A700DC0103 /* TrainingViewController.m in Sources */,
+				DD6EDB5E272EFFFB002B0A8E /* TrainingInviteViewController.m in Sources */,
 				04552B3A2696C3FD00C78706 /* MaterialDesignColor.m in Sources */,
 				04552B512696C3FD00C78706 /* QRToggleTorchButton.m in Sources */,
 				0422BDBD269C98300084000B /* Plan.m in Sources */,
 				04552B542696C3FD00C78706 /* QRCodeReaderView.m in Sources */,
-				04EC004126BD21C500DC0103 /* TrainingInviteViewController.m in Sources */,
 				04EC01F126BD8AC000DC0103 /* SidePanel.m in Sources */,
 				04552B522696C3FD00C78706 /* QRCameraSwitchButton.m in Sources */,
+				DD6EDB5F272EFFFB002B0A8E /* CourseMoreController.m in Sources */,
 				04DA746A26A86E2600257963 /* YJPageControlView.m in Sources */,
 				DD25FEE627226B5A0092CF87 /* JYTitleLabel.m in Sources */,
 				04552B4E2696C3FD00C78706 /* ConsoleTextView.m in Sources */,
@@ -1117,8 +1134,8 @@
 				047DC1F8268CD09700A3E37E /* SceneDelegate.m in Sources */,
 				DD6EDB4B272E7AF9002B0A8E /* AddPeopleTableViewCell.m in Sources */,
 				04EC01FE26BD8AC100DC0103 /* ClassRoom.mm in Sources */,
-				04EC003E26BD1E4600DC0103 /* TrainingStartViewController.m in Sources */,
 				DD25FEEA27226B5A0092CF87 /* JYImageDownloader.m in Sources */,
+				DD6EDB5D272EFFFB002B0A8E /* TrainingViewController.m in Sources */,
 				DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */,
 				04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */,
 				04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */,
@@ -1127,7 +1144,6 @@
 				04552B4B2696C3FD00C78706 /* TWSReleaseNotesDownloadOperation.m in Sources */,
 				04EC020526BD8B0F00DC0103 /* RemoteView.m in Sources */,
 				04EC01FC26BD8AC100DC0103 /* VConductorClient.m in Sources */,
-				04DA747026A8706600257963 /* CourseLiveViewController.m in Sources */,
 				040CED0B269F294900818D76 /* Room.m in Sources */,
 				04CD2E56269847F2007814E6 /* Course.m in Sources */,
 				DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */,

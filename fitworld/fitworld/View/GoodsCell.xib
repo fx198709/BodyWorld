@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,13 +47,6 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_mic_on" translatesAutoresizingMaskIntoConstraints="NO" id="BZQ-6R-9ij">
-                        <rect key="frame" x="5" y="5" width="10" height="10"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="10" id="aiN-aB-cZM"/>
-                            <constraint firstAttribute="height" constant="10" id="tYB-iM-TmJ"/>
-                        </constraints>
-                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czm-jy-kaU">
                         <rect key="frame" x="0.0" y="135" width="220" height="50"/>
                         <subviews>
@@ -76,10 +69,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z3Q-4b-6ug">
-                                <rect key="frame" x="49" y="17.5" width="20" height="20"/>
+                                <rect key="frame" x="45" y="20" width="15" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="GuA-vb-SsD"/>
-                                    <constraint firstAttribute="width" constant="20" id="lV7-XG-mLi"/>
+                                    <constraint firstAttribute="height" constant="15" id="GuA-vb-SsD"/>
+                                    <constraint firstAttribute="width" constant="15" id="lV7-XG-mLi"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrv-k0-1he">
@@ -94,7 +87,7 @@
                             <constraint firstItem="Z3Q-4b-6ug" firstAttribute="centerY" secondItem="L0I-Wp-cl2" secondAttribute="centerY" id="3jj-lv-LeJ"/>
                             <constraint firstItem="n5q-PZ-rZ4" firstAttribute="leading" secondItem="czm-jy-kaU" secondAttribute="leading" constant="8" id="5TM-bK-9v2"/>
                             <constraint firstItem="L0I-Wp-cl2" firstAttribute="leading" secondItem="czm-jy-kaU" secondAttribute="leading" constant="8" id="MTh-6U-vxU"/>
-                            <constraint firstItem="Z3Q-4b-6ug" firstAttribute="leading" secondItem="L0I-Wp-cl2" secondAttribute="trailing" constant="10" id="Q0A-P1-ayI"/>
+                            <constraint firstItem="Z3Q-4b-6ug" firstAttribute="leading" secondItem="L0I-Wp-cl2" secondAttribute="trailing" constant="6" id="Q0A-P1-ayI"/>
                             <constraint firstAttribute="trailing" secondItem="jrv-k0-1he" secondAttribute="trailing" constant="20" id="c6S-Is-wh6"/>
                             <constraint firstItem="n5q-PZ-rZ4" firstAttribute="top" secondItem="czm-jy-kaU" secondAttribute="top" id="qmr-lA-mbn"/>
                             <constraint firstItem="CU0-Wf-FNi" firstAttribute="leading" secondItem="L0I-Wp-cl2" secondAttribute="leading" id="qrd-aL-F7Q"/>
@@ -104,10 +97,10 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9B-9O-7iH">
-                        <rect key="frame" x="145" y="90" width="45" height="13"/>
+                        <rect key="frame" x="110" y="95" width="80" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="13" id="01N-iC-9Ty"/>
-                            <constraint firstAttribute="width" constant="45" id="hHB-fv-Bgs"/>
+                            <constraint firstAttribute="height" constant="20" id="01N-iC-9Ty"/>
+                            <constraint firstAttribute="width" constant="80" id="hHB-fv-Bgs"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <state key="normal" title="JOIN">
@@ -127,13 +120,11 @@
                 <constraint firstItem="6z9-oB-b6d" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Jgd-uB-gzV"/>
                 <constraint firstItem="czm-jy-kaU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NE7-2h-T18"/>
                 <constraint firstAttribute="trailing" secondItem="czm-jy-kaU" secondAttribute="trailing" id="OQw-vb-qC7"/>
-                <constraint firstItem="BZQ-6R-9ij" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="PTP-Eu-gAg"/>
                 <constraint firstAttribute="bottom" secondItem="czm-jy-kaU" secondAttribute="bottom" id="Usk-hv-1Jn"/>
                 <constraint firstItem="czm-jy-kaU" firstAttribute="top" secondItem="w7d-uk-sWY" secondAttribute="bottom" constant="5" id="aNs-TR-vAb"/>
                 <constraint firstItem="w7d-uk-sWY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="c9P-LX-cIJ"/>
-                <constraint firstItem="U9B-9O-7iH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="90" id="dxj-kI-Wqn"/>
+                <constraint firstItem="U9B-9O-7iH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="95" id="dxj-kI-Wqn"/>
                 <constraint firstItem="mhh-bq-3G4" firstAttribute="bottom" secondItem="6z9-oB-b6d" secondAttribute="bottom" constant="-1" id="j4j-BJ-cvI"/>
-                <constraint firstItem="BZQ-6R-9ij" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="oZU-qQ-JEp"/>
                 <constraint firstItem="w7d-uk-sWY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="pA6-Sh-mDG"/>
                 <constraint firstItem="U9B-9O-7iH" firstAttribute="trailing" secondItem="6z9-oB-b6d" secondAttribute="trailing" id="tUj-Pn-Lf5"/>
                 <constraint firstItem="mhh-bq-3G4" firstAttribute="leading" secondItem="6z9-oB-b6d" secondAttribute="leading" constant="10" id="ywz-4y-9JF"/>
@@ -154,7 +145,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="header_mic_on" width="76" height="76"/>
         <image name="shakehideimg_man" width="75" height="100"/>
     </resources>
 </document>

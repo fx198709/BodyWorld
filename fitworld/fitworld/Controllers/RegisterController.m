@@ -108,7 +108,7 @@
     self.passwordTxt.attributedPlaceholder = placeholderString2;
     self.passwordTxt.textColor = UIColor.whiteColor;
     // TODO 默认密码
-    self.passwordTxt.text = @"123456";
+    self.passwordTxt.text = @"1234";
     [self.view addSubview: self.passwordTxt];
     [self.passwordTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(inputBgView);
