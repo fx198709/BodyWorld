@@ -880,8 +880,8 @@
 			isa = PBXGroup;
 			children = (
 				DD6EDB58272EFFFB002B0A8E /* CourseMoreController.h */,
-				DD6EDB59272EFFFB002B0A8E /* CourseLiveViewController.h */,
 				DD6EDB5A272EFFFB002B0A8E /* CourseMoreController.m */,
+				DD6EDB59272EFFFB002B0A8E /* CourseLiveViewController.h */,
 				DD6EDB5B272EFFFB002B0A8E /* CourseLiveViewController.m */,
 			);
 			path = More;

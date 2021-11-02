@@ -100,7 +100,7 @@
 #pragma mark TableViewDelegate&DataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 150;
+    return 85;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -114,60 +114,69 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         
     }
-    cell.backgroundColor = UIColor.greenColor;
-    
-    UIView *cellBgView = [[UIView alloc] init];
-    [cellBgView.layer setMasksToBounds:YES];
-    [cellBgView.layer setCornerRadius:12];
-    cellBgView.backgroundColor = UIColor.darkGrayColor;
-    [cell.contentView addSubview:cellBgView];
-    [cellBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(cell.mas_left).offset(10);
-        make.right.equalTo(cell.mas_right).offset(-10);
-        make.top.equalTo(cell).offset(30);
-        make.bottom.equalTo(cell);
-    }];
+    cell.contentView.backgroundColor = BuddyTableBackColor;
+    RemoveSubviews(cell.contentView, @[]);
+
 
     Room *room = dataArr[indexPath.row];
-    UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 0, 100, 100)];
+    UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 8, 56, 56)];
     [leftImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, room.course.pic]]];
     [cell.contentView addSubview:leftImageView];
+    leftImageView.clipsToBounds = YES;
+    leftImageView.layer.cornerRadius = 28;
     
     UILabel *label1 = [[UILabel alloc] init];
     label1.text = room.course.name;
-    [cellBgView addSubview:label1];
+    label1.font = [UIFont systemFontOfSize:14];
+    [cell.contentView addSubview:label1];
     [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(cellBgView).offset(10);
+        make.top.equalTo(cell.contentView).offset(20);
         make.left.equalTo(leftImageView.mas_right).offset(10);
     }];
     
     UILabel *label2 = [[UILabel alloc] init];
-    label2.text = room.course.coach_name;
-    [cellBgView addSubview:label2];
+    label2.text = room.room_creator.nickname;
+    [cell.contentView addSubview:label2];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label1).offset(20);
-        make.left.equalTo(leftImageView.mas_right).offset(10);
+        make.top.equalTo(label1.mas_bottom).offset(10);
+        make.left.equalTo(leftImageView.mas_right).offset(8);
+    }];
+    label2.font = [UIFont systemFontOfSize:12];
+    label2.textColor = LittleTextColor;
+
+    UIImageView *countryImageView = [[UIImageView alloc] init];
+    [countryImageView sd_setImageWithURL:[NSURL URLWithString:room.room_creator.country_icon]];
+    [cell.contentView addSubview:countryImageView];
+    countryImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [countryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(label2);
+        make.left.equalTo(label2.mas_right).offset(6);
+        make.size.mas_equalTo(CGSizeMake(16, 16));
     }];
     
     UILabel *label3 = [[UILabel alloc] init];
-    label3.text = room.updated_at;
-    [cellBgView addSubview:label3];
+    label3.text = ReachWeekTime(room.updated_at.longLongValue);
+    [cell.contentView addSubview:label3];
     [label3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label2).offset(20);
-        make.left.equalTo(leftImageView.mas_right).offset(10);
+        make.top.equalTo(label2);
+        make.left.equalTo(countryImageView.mas_right).offset(6);
     }];
-    
+    label3.font = [UIFont systemFontOfSize:12];
+    label3.textColor = LittleTextColor;
+
     UIButton *joinBtn = [[UIButton alloc] init];
     [joinBtn setTitle:@"Join" forState:UIControlStateNormal];
-    joinBtn.backgroundColor = UIColor.redColor;
     [joinBtn addTarget:self action:@selector(joinBtn) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:joinBtn];
     [joinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(cellBgView).offset(-10);
-        make.centerY.equalTo(cellBgView);
-        make.height.mas_equalTo(40);
-        make.width.mas_equalTo(60);
+        make.right.equalTo(cell.contentView).offset(-10);
+        make.centerY.equalTo(cell.contentView).offset(-10);
+        make.height.mas_equalTo(25);
+        make.width.mas_equalTo(80);
     }];
+    UIImage *image = [UIImage imageNamed:@"action_button_bg_red1"];
+    [joinBtn setBackgroundImage:image forState:UIControlStateNormal];
+    [joinBtn setBackgroundImage:image forState:UIControlStateHighlighted];
     cell.backgroundColor = UIColor.blackColor;
     return cell;
 }
@@ -208,7 +217,7 @@
     NSDate *today = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *weekdayComponents = [gregorian components:(NSCalendarUnitDay | NSCalendarUnitWeekday) fromDate:today];
-    NSInteger day = [weekdayComponents day];
+//    NSInteger day = [weekdayComponents day];
     NSInteger weekday = [weekdayComponents weekday] - 1;
     NSInteger i = indexPath.item;
     [cell addSubviews];
@@ -297,8 +306,8 @@
         long total =  [responseObject[@"recordset"][@"total"] longValue];
         if(total > 0){
             Room *room = [[Room alloc] initWithJSON: responseObject[@"recordset"][@"rows"][0]];
-            dataArr = [[NSMutableArray alloc] init];
-            [dataArr addObject: room];
+            self->dataArr = [[NSMutableArray alloc] init];
+            [self->dataArr addObject: room];
         }
         [self.tableView reloadData];
         if ([self.tableView.refreshControl isRefreshing]) {

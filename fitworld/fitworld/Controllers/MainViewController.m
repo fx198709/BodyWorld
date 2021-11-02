@@ -47,7 +47,7 @@ BOOL  hasrequest = NO;
     }];
     [self setupRefresh];
     _mainTableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    _sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 8, ScreenWidth, 116)];
+    _sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 133)];
     _sliderView.clipsToBounds = YES;
     _sliderView.layer.cornerRadius = 5;
     [_mainTableview.mj_header beginRefreshing];
@@ -161,6 +161,7 @@ BOOL  hasrequest = NO;
         if (slidercell == nil) {
             slidercell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"slidercellString"];
             [slidercell.contentView addSubview:_sliderView];
+            slidercell.contentView.backgroundColor = BuddyTableBackColor;
         }
         return slidercell;
     }

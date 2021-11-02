@@ -20,11 +20,15 @@
 #define Color(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define ColorAlpha(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
+
+
+#endif /* PrefixHeader_h */
+
 //
 #define BuddyTableBackColor UIRGBColor(37, 37, 37, 1)
 #define SelectGreenColor  UIRGBColor(86, 186, 111, 1)
+#define LittleTextColor  UIRGBColor(218, 218, 218, 1)
 
-#endif /* PrefixHeader_h */
 
 #define WeakSelf  __weak typeof(self)wSelf = self;
 #define StrongSelf(inself)  __strong typeof(self)strongSelf = inself;
