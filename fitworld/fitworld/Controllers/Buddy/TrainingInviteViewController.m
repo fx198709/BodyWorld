@@ -203,21 +203,21 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self updateDataWithTableview:tableView];
-}
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self updateDataWithTableview:tableView];
-}
-
-- (void)updateDataWithTableview:(UITableView *)tableView {
-    NSArray *indexpaths = [tableView indexPathsForSelectedRows];
-    selectedItems = [NSMutableArray new];
-    for (NSIndexPath *indexpath in indexpaths) {
-        UserInfo *userInfo = dataArr[indexpath.row];
-        [selectedItems addObject:userInfo.id];
-    }
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [self updateDataWithTableview:tableView];
+//}
+//-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [self updateDataWithTableview:tableView];
+//}
+//
+//- (void)updateDataWithTableview:(UITableView *)tableView {
+//    NSArray *indexpaths = [tableView indexPathsForSelectedRows];
+//    selectedItems = [NSMutableArray new];
+//    for (NSIndexPath *indexpath in indexpaths) {
+//        UserInfo *userInfo = dataArr[indexpath.row];
+//        [selectedItems addObject:userInfo.id];
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -269,6 +269,7 @@
 {
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
 }
 //开始进入刷新状态
 - (void)headerRereshing

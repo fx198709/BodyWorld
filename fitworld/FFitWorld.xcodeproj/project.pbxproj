@@ -107,6 +107,11 @@
 		DD6EDB5E272EFFFB002B0A8E /* TrainingInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB56272EFFFB002B0A8E /* TrainingInviteViewController.m */; };
 		DD6EDB5F272EFFFB002B0A8E /* CourseMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB5A272EFFFB002B0A8E /* CourseMoreController.m */; };
 		DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB5B272EFFFB002B0A8E /* CourseLiveViewController.m */; };
+		DD6EDB6627343624002B0A8E /* MessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB6427343624002B0A8E /* MessageListViewController.m */; };
+		DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB6527343624002B0A8E /* MessageListViewController.xib */; };
+		DD6EDB6B2734420C002B0A8E /* MessageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB692734420C002B0A8E /* MessageListTableViewCell.m */; };
+		DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB6A2734420C002B0A8E /* MessageListTableViewCell.xib */; };
+		DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB6E27344A50002B0A8E /* MessageListModel.m */; };
 		DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD742597272942F9005D636E /* UIImage+Extension.m */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
@@ -323,6 +328,14 @@
 		DD6EDB59272EFFFB002B0A8E /* CourseLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseLiveViewController.h; sourceTree = "<group>"; };
 		DD6EDB5A272EFFFB002B0A8E /* CourseMoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseMoreController.m; sourceTree = "<group>"; };
 		DD6EDB5B272EFFFB002B0A8E /* CourseLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseLiveViewController.m; sourceTree = "<group>"; };
+		DD6EDB6327343624002B0A8E /* MessageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListViewController.h; sourceTree = "<group>"; };
+		DD6EDB6427343624002B0A8E /* MessageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListViewController.m; sourceTree = "<group>"; };
+		DD6EDB6527343624002B0A8E /* MessageListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageListViewController.xib; sourceTree = "<group>"; };
+		DD6EDB682734420C002B0A8E /* MessageListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListTableViewCell.h; sourceTree = "<group>"; };
+		DD6EDB692734420C002B0A8E /* MessageListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListTableViewCell.m; sourceTree = "<group>"; };
+		DD6EDB6A2734420C002B0A8E /* MessageListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageListTableViewCell.xib; sourceTree = "<group>"; };
+		DD6EDB6D27344A50002B0A8E /* MessageListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListModel.h; sourceTree = "<group>"; };
+		DD6EDB6E27344A50002B0A8E /* MessageListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListModel.m; sourceTree = "<group>"; };
 		DD742588272942F9005D636E /* NSObject+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YCExtension.h"; sourceTree = "<group>"; };
 		DD742589272942F9005D636E /* NSDictionary+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YCExtension.h"; sourceTree = "<group>"; };
 		DD74258A272942F9005D636E /* UILabel+LabelTextModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LabelTextModel.h"; sourceTree = "<group>"; };
@@ -384,6 +397,7 @@
 		041510CF268F02810039FCD1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DD6EDB6227343601002B0A8E /* MessageList */,
 				DD6EDB50272EFFFB002B0A8E /* Buddy */,
 				DD6EDB57272EFFFB002B0A8E /* More */,
 				0456192E26ECEC8A00C0973F /* RegisterController.h */,
@@ -866,11 +880,11 @@
 		DD6EDB50272EFFFB002B0A8E /* Buddy */ = {
 			isa = PBXGroup;
 			children = (
-				DD6EDB51272EFFFB002B0A8E /* TrainingStartViewController.m */,
-				DD6EDB52272EFFFB002B0A8E /* TrainingInviteViewController.h */,
-				DD6EDB53272EFFFB002B0A8E /* TrainingViewController.m */,
 				DD6EDB54272EFFFB002B0A8E /* TrainingStartViewController.h */,
+				DD6EDB51272EFFFB002B0A8E /* TrainingStartViewController.m */,
 				DD6EDB55272EFFFB002B0A8E /* TrainingViewController.h */,
+				DD6EDB53272EFFFB002B0A8E /* TrainingViewController.m */,
+				DD6EDB52272EFFFB002B0A8E /* TrainingInviteViewController.h */,
 				DD6EDB56272EFFFB002B0A8E /* TrainingInviteViewController.m */,
 			);
 			path = Buddy;
@@ -885,6 +899,21 @@
 				DD6EDB5B272EFFFB002B0A8E /* CourseLiveViewController.m */,
 			);
 			path = More;
+			sourceTree = "<group>";
+		};
+		DD6EDB6227343601002B0A8E /* MessageList */ = {
+			isa = PBXGroup;
+			children = (
+				DD6EDB6327343624002B0A8E /* MessageListViewController.h */,
+				DD6EDB6427343624002B0A8E /* MessageListViewController.m */,
+				DD6EDB6527343624002B0A8E /* MessageListViewController.xib */,
+				DD6EDB682734420C002B0A8E /* MessageListTableViewCell.h */,
+				DD6EDB692734420C002B0A8E /* MessageListTableViewCell.m */,
+				DD6EDB6A2734420C002B0A8E /* MessageListTableViewCell.xib */,
+				DD6EDB6D27344A50002B0A8E /* MessageListModel.h */,
+				DD6EDB6E27344A50002B0A8E /* MessageListModel.m */,
+			);
+			path = MessageList;
 			sourceTree = "<group>";
 		};
 		DD742587272942F9005D636E /* Category */ = {
@@ -995,8 +1024,10 @@
 				DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */,
 				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
+				DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */,
 				04552B3C2696C3FD00C78706 /* entypo.ttf in Resources */,
 				04CD2E4A26982A45007814E6 /* GoodsCell.xib in Resources */,
+				DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */,
 				047DC206268CD09900A3E37E /* LaunchScreen.storyboard in Resources */,
 				04CD2E4C26982A45007814E6 /* TableCollectionViewCell.xib in Resources */,
 				04552B3F2696C3FD00C78706 /* material-design-icons.ttf in Resources */,
@@ -1082,7 +1113,9 @@
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,
 				DD6EDB41272D2FCD002B0A8E /* CommonTools.m in Sources */,
 				047DC209268CD09900A3E37E /* main.m in Sources */,
+				DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */,
 				DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */,
+				DD6EDB6B2734420C002B0A8E /* MessageListTableViewCell.m in Sources */,
 				04CD2E532698478C007814E6 /* BaseObject.m in Sources */,
 				0456193026ECEC8A00C0973F /* RegisterController.m in Sources */,
 				DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */,
@@ -1137,6 +1170,7 @@
 				DD25FEEA27226B5A0092CF87 /* JYImageDownloader.m in Sources */,
 				DD6EDB5D272EFFFB002B0A8E /* TrainingViewController.m in Sources */,
 				DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */,
+				DD6EDB6627343624002B0A8E /* MessageListViewController.m in Sources */,
 				04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */,
 				04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */,
 				DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */,

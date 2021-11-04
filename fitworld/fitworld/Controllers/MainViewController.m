@@ -17,9 +17,13 @@
 #import "TrainingViewController.h"
 #import "UserCenterViewController.h"
 #import "JYCarousel.h"
+#import "MessageListViewController.h"
 
 BOOL  hasrequest = NO;
-@interface MainViewController ()
+@interface MainViewController (){
+    BOOL hasNoReadMessage;
+    BOOL hasNewFrend;
+}
 @property (nonatomic, strong)UIView *sliderView; //轮播图的父视图
 @property (nonatomic, strong)NSMutableArray *livingClasses;//正在进行中
 @property (nonatomic, strong)NSMutableArray *groupClasses;//团课
@@ -51,6 +55,56 @@ BOOL  hasrequest = NO;
     _sliderView.clipsToBounds = YES;
     _sliderView.layer.cornerRadius = 5;
     [_mainTableview.mj_header beginRefreshing];
+//    [self headerRereshing];
+}
+
+- (void)reachNoReadMessageList{
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    NSDictionary *baddyParams = @{
+                           @"is_read": @"0",
+                           @"page": @"1",
+                           @"row": @"10"
+                       };
+    [manager GET:@"user_msg" parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        有数据就显示红点，没数据就不显示
+        if ([responseObject objectForKey:@"recordset"]) {
+            UIView *redview = [self.view viewWithTag:2000];
+            NSArray *array = [[responseObject objectForKey:@"recordset"] objectForKey:@"rows"];
+            if ([array isKindOfClass:[NSArray class]] && array.count >0) {
+                self->hasNoReadMessage = YES;
+                redview.hidden = NO;
+            }else{
+                self->hasNoReadMessage = NO;
+                redview.hidden = YES;
+            }
+        }
+       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }];
+}
+
+
+- (void)reachNoReadFrendList{
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    NSDictionary *baddyParams = @{
+                           @"status": @"1",
+                           @"page": @"1",
+                           @"row": @"10"
+                       };
+    [manager GET:@"friend/apply_list" parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        有数据就显示红点，没数据就不显示
+        if ([responseObject objectForKey:@"recordset"]) {
+            UIView *redview = [self.view viewWithTag:2001];
+            NSArray *array = [[responseObject objectForKey:@"recordset"] objectForKey:@"rows"];
+            if ([array isKindOfClass:[NSArray class]] && array.count >0) {
+                self->hasNewFrend = YES;
+                redview.hidden = NO;
+            }else{
+                self->hasNewFrend = NO;
+                redview.hidden = YES;
+            }
+        }
+       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -68,6 +122,9 @@ BOOL  hasrequest = NO;
     //下拉刷新，先还原上拉“已加载全部数据”的状态
     [self.mainTableview.mj_footer resetNoMoreData];
     [self reachHeadData];
+    [self reachSlideData];
+    [self reachNoReadMessageList];
+    [self reachNoReadFrendList];
 }
 
 - (void)addCarouselView:(NSArray*)dataArray{
@@ -106,6 +163,46 @@ BOOL  hasrequest = NO;
     
 }
 
+- (IBAction)actionBtnClick:(UIButton*)sender{
+    if (sender.tag == 101) {
+       
+    }else{
+        MessageListViewController *vc = [[MessageListViewController alloc] initWithNibName:@"MessageListViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+- (UIButton*)reachBtn:(int)type {
+    CGRect btnframe = CGRectMake(ScreenWidth-50, 30, 40, 40);
+    UIImage *image = [UIImage imageNamed:@"notification"];
+    if (type == 1) {
+        btnframe = CGRectMake(ScreenWidth-100, 30, 40, 40);
+        image = [UIImage imageNamed:@"friend_list"];
+    }
+    UIButton *vbtn = [[UIButton alloc] initWithFrame:btnframe];
+    UIImageView * vimage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
+    [vbtn addSubview:vimage];
+    vimage.image = image;
+    vbtn.tag = 100+type;
+    [vbtn addTarget:self action:@selector(actionBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *redview = [[UIView alloc] initWithFrame:CGRectMake(28, 8, 10, 10)];
+    redview.backgroundColor = [UIColor redColor];
+    [vbtn addSubview:redview];
+    redview.layer.cornerRadius = 5;
+    redview.clipsToBounds = YES;
+    
+    redview.tag = 2000+type;
+    redview.hidden = YES;
+    if (hasNoReadMessage && type ==0) {
+        redview.hidden = NO;
+    }
+    if (hasNewFrend && type ==1) {
+        redview.hidden = NO;
+    }
+    return  vbtn;
+}
+
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (!hasrequest) {
@@ -122,7 +219,7 @@ BOOL  hasrequest = NO;
         // 复用队列中没有时再创建
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier: indentifier];
         [cell.contentView addSubview: ({
-            UILabel *titleLable =  [[UILabel alloc] initWithFrame:CGRectMake(80, 20, 300, 50)];
+            UILabel *titleLable =  [[UILabel alloc] initWithFrame:CGRectMake(80, 20, ScreenWidth-180, 50)];
             titleLable.font = [UIFont systemFontOfSize: 16];
             titleLable.text = self.userInfo.nickname;
             titleLable.textColor = [UIColor whiteColor];
@@ -131,7 +228,7 @@ BOOL  hasrequest = NO;
         })];
         
         [cell.contentView addSubview: ({
-            UILabel *sourceLable = [[UILabel alloc] initWithFrame:CGRectMake(80, 50, 300, 20)];
+            UILabel *sourceLable = [[UILabel alloc] initWithFrame:CGRectMake(80, 50, ScreenWidth-180, 20)];
             sourceLable.font = [UIFont systemFontOfSize: 12];
             sourceLable.text = ChineseOrENFun(self.userInfo, @"msg");
             sourceLable.textColor = [UIColor whiteColor];
@@ -154,6 +251,13 @@ BOOL  hasrequest = NO;
         })];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = [UIColor blackColor];
+        
+        UIButton * vbtn = [self reachBtn:0];
+        [cell.contentView addSubview:vbtn];
+        
+        UIButton * userbtn = [self reachBtn:1];
+        [cell.contentView addSubview:userbtn];
+        
         return cell;
     }
     if (indexPath.row == 1){
@@ -173,8 +277,9 @@ BOOL  hasrequest = NO;
         cell.subTitleLabel.text = ChineseStringOrENFun(@"正在进行", @"LIVE & UPCOMING");
 
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-        [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:(UIControlEventTouchDown)];
+        [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:(UIControlEventTouchDown)];
 //            [self refreshData:cell :@""];
+        cell.attentionBtn.tag = 200;
         cell.backgroundColor = UIColor.blackColor;
         cell.dataArr = _livingClasses;
         [cell.myCollectionView reloadData];
@@ -188,7 +293,8 @@ BOOL  hasrequest = NO;
         cell.subTitleLabel.text = ChineseStringOrENFun(@"团课", @"GROUP CLASS");
         cell.dataArr = _groupClasses;
         [cell.myCollectionView reloadData];
-        [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchDown];
+        [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:UIControlEventTouchDown];
+        cell.attentionBtn.tag = 201;
         cell.backgroundColor = UIColor.blackColor;
         return cell;
     }
@@ -196,7 +302,8 @@ BOOL  hasrequest = NO;
         TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell"];
         // 创建新的 cell，默认为主标题模式
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-        [cell.attentionBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        cell.attentionBtn.tag = 202;
         [cell.logoImage setImage:[UIImage imageNamed:@"index_buddy"]];
         cell.subTitleLabel.text = ChineseStringOrENFun(@"对练课", @"BUDDY TRAINING");;
         cell.dataArr = _buddyClasses;
@@ -257,11 +364,11 @@ BOOL  hasrequest = NO;
     return 250;
 }
 
-- (void)moreBtnClick
+- (void)moreBtnClick:(UIButton*)sender
 {
     NSLog(@"more btn click");
     CourseMoreController *courseMoreVC = [[CourseMoreController alloc]init];
-    courseMoreVC.VCtype = [NSString stringWithFormat:@"%zd",0];
+    courseMoreVC.VCtype = [NSString stringWithFormat:@"%zd",sender.tag-200];
     courseMoreVC.navigationItem.title = @"Course";
     [self.navigationController pushViewController:courseMoreVC animated:YES];
 }
@@ -281,6 +388,7 @@ BOOL  hasrequest = NO;
 }
 
 - (void)reachHeadData {
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSDictionary *baddyParams = @{
                            @"type": @"",
@@ -335,9 +443,9 @@ BOOL  hasrequest = NO;
     
         [self.mainTableview.mj_header endRefreshing];
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+           [MBProgressHUD hideHUDForView:self.view animated:YES];
            [self.mainTableview.mj_header endRefreshing];
     }];
-    [self reachSlideData];
 }
 
 - (void)onClickUserCenter {

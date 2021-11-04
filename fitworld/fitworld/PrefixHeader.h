@@ -142,6 +142,43 @@ UIKIT_STATIC_INLINE  int statusBarHeight(){
 typedef void(^AnyBtnBlock)(id clickModel);
 
 
+static inline NSString *_Nonnull NSStringFromDic(NSDictionary *_Nullable info, NSString *_Nullable key, NSString *_Nullable defaultValue) {
+    if (![info isKindOfClass:[NSDictionary class]]) {
+        return defaultValue;
+    }
+    NSString *value = @"";
+    if (!((defaultValue)==nil || (defaultValue)==NULL || (NSNull *)(defaultValue)==[NSNull null] || (defaultValue).length == 0)) {
+        value = defaultValue;
+    }
+    if (!((info[key])==nil || (info[key])==NULL || (NSNull *)(info[key])==[NSNull null] || [(info[key])length] == 0)) {
+        value = info[key];
+    }
+    return value;
+}
+
+
+static inline long  LongValueFromDic(NSDictionary *_Nullable info, NSString * key, long defaultValue) {
+    if (![info isKindOfClass:[NSDictionary class]]) {
+        return defaultValue?defaultValue:0;
+    }
+    id value;
+    if (!((info[key])==nil || (info[key])==NULL || (NSNull *)(info[key])==[NSNull null])) {
+        value = info[key];
+    }
+    NSString *str = @"";
+    if ([value isKindOfClass:[NSString class]]) {
+        str = value;
+    }
+    if ([value isKindOfClass:[NSNumber class]]) {
+        
+        str = value;
+
+    }
+    
+    return [str longLongValue];
+}
+
+
 
 
 
