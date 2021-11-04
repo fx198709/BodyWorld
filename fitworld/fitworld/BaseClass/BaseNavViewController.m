@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
-
+//    self.navigationController.hidesNavigationBarWhenPush = NO;
     // Do any additional setup after loading the view.
 }
 
@@ -42,6 +42,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+
     //开启ios右滑返回
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.delegate = nil;

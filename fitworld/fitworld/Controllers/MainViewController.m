@@ -163,7 +163,7 @@ BOOL  hasrequest = NO;
     
 }
 
-- (IBAction)actionBtnClick:(UIButton*)sender{
+- (void)actionBtnClick:(UIButton*)sender{
     if (sender.tag == 101) {
        
     }else{

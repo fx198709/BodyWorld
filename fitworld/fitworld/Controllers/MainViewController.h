@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "UserInfo.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface MainViewController : BaseNavViewController<UITableViewDelegate,UITableViewDataSource>
+@interface MainViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) NSIndexPath *liveIndexPath;
 @property (weak, nonatomic) NSIndexPath *groupIndexPath;

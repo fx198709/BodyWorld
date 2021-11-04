@@ -7,6 +7,7 @@
 
 #import "MessageListViewController.h"
 #import "MessageListTableViewCell.h"
+#import "MessageListModel.h"
 
 @interface MessageListViewController (){
     BOOL isLoading;
@@ -23,6 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = ChineseStringOrENFun(@"消息", @"MESSAGE");
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.view.backgroundColor = [UIColor redColor];
     self.messageTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [self.view addSubview:self.messageTableview];
     [self.messageTableview registerNib:[UINib nibWithNibName:NSStringFromClass([MessageListTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"MessageListTableViewCellString"];
@@ -34,6 +38,8 @@
       make.left.with.top.equalTo(self.view);
       make.size.equalTo(self.view);
     }];
+    [self setupRefresh];
+    [_messageTableview.mj_header beginRefreshing];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -51,11 +57,11 @@
     if (heightCell == nil) {
      heightCell = [[[NSBundle mainBundle] loadNibNamed:@"MessageListTableViewCell" owner:self options:nil] lastObject];
     }
-//    NSString *remark = [userRemarkDic objectForKey:@"Remark"];
-//    [heightCell changeDataWithString:remark];
+
+    MessageListModel *model = dataArr[indexPath.row];
+    [heightCell changeDataWithModel:model];
     CGSize heightSize = [heightCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return heightSize.height+1;
-    return 70;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -63,11 +69,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellIdentifier = @"AddPeopleTableViewCellString";
     MessageListTableViewCell* cell = (MessageListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"MessageListTableViewCellString"];
 
-//    UserInfo *user = dataArr[indexPath.row];
-//    [cell changeViewWithModel:user];
+    MessageListModel *user = dataArr[indexPath.row];
+    [cell changeDataWithModel:user];
 //    __weak AddPeopleTableViewCell *weakcell = cell;
 //    WeakSelf
 //    cell.cellBtnClick = ^(UserInfo* clickModel) {
@@ -79,7 +84,7 @@
 #pragma mark - 刷新房间数据
 - (void) reachHeadData
 {
-    [dataArr removeAllObjects];
+    dataArr = [NSMutableArray array];
     _isLoadAllData =NO;
     [self loadDateIsLoadHead:YES];
 }
@@ -123,7 +128,7 @@
                                @"row": [NSString stringWithFormat:@"%d",size]
                            };
         
-        [manager GET:@"user/other" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        requestTask = [manager GET:@"user_msg" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (responseObject && responseObject[@"recordset"] ) {
                 NSArray *dataArray = responseObject[@"recordset"][@"rows"];
@@ -141,8 +146,8 @@
                     self->dataArr = [[NSMutableArray alloc] init];
                 }
                 for (int i = 0; i < [dataArray count]; i++) {
-//                    UserInfo *user = [[UserInfo alloc] initWithJSON: dataArray[i]];
-//                    [self->dataArr addObject: user];
+                    MessageListModel *user = [[MessageListModel alloc] initWithJSON: dataArray[i]];
+                    [self->dataArr addObject: user];
                 }
                 
                 if (isLoadHead) {
@@ -154,7 +159,7 @@
                 }
             
 
-                [self->_messageTableview reloadData];
+                [self.messageTableview reloadData];
             }
             self->isLoading = NO;
           

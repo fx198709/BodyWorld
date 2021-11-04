@@ -67,32 +67,32 @@ FOUNDATION_EXPORT CABasicAnimation *BodyGetPositionAnimation (id fromValue, id t
 }
 
 - (void)addFooterWithTarget:(id)target action:(SEL)action {
-//    CJMJRefreshBackNormalFooter *footer = [CJMJRefreshBackNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
-//    [footer setTitle:@"上拉加载更多数据" forState:MJRefreshStateIdle];
-//    [footer setTitle:@"松开加载更多数据" forState:MJRefreshStatePulling];
-//    [footer setTitle:@"正在加载中..." forState:MJRefreshStateRefreshing];
-//    [footer setTitle:@"松开加载更多数据" forState:MJRefreshStateWillRefresh];
-//    [footer setTitle:@"已经加载全部数据" forState:MJRefreshStateNoMoreData];
-//    footer.stateLabel.textColor = [UIColor lightGrayColor];
-//    self.mj_footer = footer;
-    
     CJMJRefreshBackNormalFooter *footer = [CJMJRefreshBackNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
-    [footer setTitle:@"" forState:MJRefreshStateIdle];
-    [footer setTitle:@"" forState:MJRefreshStatePulling];
-    [footer setTitle:@"" forState:MJRefreshStateRefreshing];
-    [footer setTitle:@"" forState:MJRefreshStateWillRefresh];
-    [footer setTitle:@"一 End 一" forState:MJRefreshStateNoMoreData];
+    [footer setTitle:@"上拉加载更多数据" forState:MJRefreshStateIdle];
+    [footer setTitle:@"松开加载更多数据" forState:MJRefreshStatePulling];
+    [footer setTitle:@"正在加载中..." forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"松开加载更多数据" forState:MJRefreshStateWillRefresh];
+    [footer setTitle:@"已经加载全部数据" forState:MJRefreshStateNoMoreData];
     footer.stateLabel.textColor = [UIColor lightGrayColor];
-    footer.stateLabel.font = SystemFontOfSize(11);
-
-    [footer setImages:@[[UIImage imageNamed:@"icon_loading_first"]] forState:MJRefreshStateIdle];
-    [footer setImages:@[[UIImage imageNamed:@"icon_loading_first"],
-                        [UIImage imageNamed:@"icon_loading_second"],
-                        [UIImage imageNamed:@"icon_loading_third"]]
-             duration:0.6
-             forState:MJRefreshStateRefreshing];
+    self.mj_footer = footer;
+    
+//    CJMJRefreshBackNormalFooter *footer = [CJMJRefreshBackNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
+//    [footer setTitle:@"" forState:MJRefreshStateIdle];
+//    [footer setTitle:@"" forState:MJRefreshStatePulling];
+//    [footer setTitle:@"" forState:MJRefreshStateRefreshing];
+//    [footer setTitle:@"" forState:MJRefreshStateWillRefresh];
+//    [footer setTitle:@"一 End 一" forState:MJRefreshStateNoMoreData];
+//    footer.stateLabel.textColor = [UIColor lightGrayColor];
+//    footer.stateLabel.font = SystemFontOfSize(11);
+//
+//    [footer setImages:@[[UIImage imageNamed:@"icon_loading_first"]] forState:MJRefreshStateIdle];
+//    [footer setImages:@[[UIImage imageNamed:@"icon_loading_first"],
+//                        [UIImage imageNamed:@"icon_loading_second"],
+//                        [UIImage imageNamed:@"icon_loading_third"]]
+//             duration:0.6
+//             forState:MJRefreshStateRefreshing];
     //9 为icon_loading_first的图片宽度的一半
-    footer.labelLeftInset = -9;
+//    footer.labelLeftInset = -9;
     self.mj_footer = footer;
 }
 
