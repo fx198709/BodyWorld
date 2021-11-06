@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -51,6 +52,14 @@
                         <color key="textColor" red="0.62745098040000002" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXy-tR-xN2">
+                        <rect key="frame" x="110.5" y="21.5" width="6" height="6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="6" id="I0r-RA-s8A"/>
+                            <constraint firstAttribute="width" constant="6" id="iAJ-9n-FGg"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -61,15 +70,18 @@
                     <constraint firstItem="evL-bk-tOG" firstAttribute="leading" secondItem="M88-VZ-dsr" secondAttribute="trailing" constant="20" id="90G-TZ-v84"/>
                     <constraint firstItem="lQr-DG-7zW" firstAttribute="leading" secondItem="M88-VZ-dsr" secondAttribute="trailing" constant="20" id="DNC-wC-atG"/>
                     <constraint firstItem="ZxO-mq-lya" firstAttribute="top" secondItem="evL-bk-tOG" secondAttribute="bottom" constant="10.5" id="O7A-YT-LKX"/>
+                    <constraint firstItem="fXy-tR-xN2" firstAttribute="centerY" secondItem="lQr-DG-7zW" secondAttribute="centerY" id="cjV-ZF-5Xo"/>
                     <constraint firstItem="lQr-DG-7zW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="czv-zR-BAb"/>
                     <constraint firstItem="M88-VZ-dsr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12.5" id="dR1-g7-ICJ"/>
                     <constraint firstAttribute="trailing" secondItem="Yv9-Wn-df3" secondAttribute="trailing" constant="10" id="fuN-e1-7Nb"/>
                     <constraint firstItem="ZxO-mq-lya" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="lou-zM-oat"/>
+                    <constraint firstItem="fXy-tR-xN2" firstAttribute="leading" secondItem="lQr-DG-7zW" secondAttribute="trailing" constant="5" id="tkv-dr-vZL"/>
                     <constraint firstAttribute="trailing" secondItem="ZxO-mq-lya" secondAttribute="trailing" constant="10" id="xMv-wf-M5p"/>
                     <constraint firstItem="Yv9-Wn-df3" firstAttribute="centerY" secondItem="lQr-DG-7zW" secondAttribute="centerY" id="y2c-iA-QRI"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="hasreadView" destination="fXy-tR-xN2" id="U2k-54-05e"/>
                 <outlet property="messageLabel" destination="evL-bk-tOG" id="v8C-KZ-Iul"/>
                 <outlet property="nameLabel" destination="lQr-DG-7zW" id="d7D-pG-aCQ"/>
                 <outlet property="timelabel" destination="Yv9-Wn-df3" id="Jde-t9-yha"/>
@@ -79,5 +91,8 @@
     </objects>
     <resources>
         <image name="message_type" width="42" height="42"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

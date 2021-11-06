@@ -6,7 +6,7 @@
 //
 
 #import "BaseNavViewController.h"
-
+//消息列表页面
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageListViewController : BaseNavViewController<UITableViewDelegate, UITableViewDataSource>

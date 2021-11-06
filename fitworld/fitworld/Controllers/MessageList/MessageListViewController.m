@@ -8,6 +8,7 @@
 #import "MessageListViewController.h"
 #import "MessageListTableViewCell.h"
 #import "MessageListModel.h"
+#import "MessageDetailViewController.h"
 
 @interface MessageListViewController (){
     BOOL isLoading;
@@ -85,6 +86,17 @@
 //    };
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (dataArr.count > indexPath.row) {
+        MessageListModel *message = dataArr[indexPath.row];
+        MessageDetailViewController * vc = [[MessageDetailViewController alloc] initWithNibName:@"MessageDetailViewController" bundle:nil];
+        vc.messageID = message.id;
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }
+}
+
 
 #pragma mark - 刷新房间数据
 - (void) reachHeadData

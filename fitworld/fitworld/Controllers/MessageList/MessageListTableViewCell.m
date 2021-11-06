@@ -15,7 +15,10 @@
     self.messageLabel.numberOfLines = 0;
     self.messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _messageLabel.preferredMaxLayoutWidth = ScreenWidth - 70 -10;
-//    [_messageLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    _hasreadView.layer.cornerRadius = 3;
+    _hasreadView.clipsToBounds = YES;
+    _hasreadView.backgroundColor = UIColor.redColor;
+ 
 
 }
 
@@ -26,9 +29,14 @@
 }
 
 - (void)changeDataWithModel:(MessageListModel*)messageModel{
-    self.nameLabel.text = ChineseStringOrENFun(@"课程提醒", @"Course Reminder");
+    self.nameLabel.text = messageModel.subject;//ChineseStringOrENFun(@"课程提醒", @"Course Reminder");
     self.messageLabel.text = messageModel.content;
     self.timelabel.text = messageModel.updated_atString;
+    if (messageModel.is_read) {
+        _hasreadView.hidden = YES;
+    }else{
+        _hasreadView.hidden = NO;
+    }
 }
 
 

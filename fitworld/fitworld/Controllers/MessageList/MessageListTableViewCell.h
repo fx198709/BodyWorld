@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timelabel;
+@property (weak, nonatomic) IBOutlet UIView *hasreadView;
 
 - (void)changeDataWithModel:(MessageListModel*)messageModel;
 
