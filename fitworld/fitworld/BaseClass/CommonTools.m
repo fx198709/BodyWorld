@@ -41,8 +41,8 @@
     NSMutableString  *realinDate = [[NSMutableString alloc] initWithString:inDateString];
     [realinDate replaceOccurrencesOfString:@"T" withString:@" " options:NSCaseInsensitiveSearch range:NSMakeRange(1,inDateString.length-1)];
     NSDateFormatter *dateFormate = [[NSDateFormatter alloc] init];
-    [dateFormate setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
-    [dateFormate setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
+//    [dateFormate setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
+//    [dateFormate setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
     dateFormate.dateFormat = @"yyyy-MM-dd HH:mm";
     NSDate *date = [dateFormate dateFromString:realinDate];
     if (date == nil) {

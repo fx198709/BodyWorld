@@ -16,7 +16,8 @@
         self.subject = NSStringFromDic(json, @"subject", @"");
         self.is_read = LongValueFromDic(json, @"is_read", 0);
         self.created_at = LongValueFromDic(json, @"created_at", 0);;
-        self.updated_at = LongValueFromDic(json, @"updated_at", 0);;
+        self.updated_at = LongValueFromDic(json, @"updated_at", 0);
+        self.updated_atString = ReachYearANDTime(self.updated_at);
     }
     return self;
     

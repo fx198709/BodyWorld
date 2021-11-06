@@ -28,6 +28,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor redColor];
     self.messageTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    _messageTableview.backgroundColor = BuddyTableBackColor;
     [self.view addSubview:self.messageTableview];
     [self.messageTableview registerNib:[UINib nibWithNibName:NSStringFromClass([MessageListTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"MessageListTableViewCellString"];
 
@@ -54,13 +55,17 @@
 */
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MessageListModel *model = dataArr[indexPath.row];
+//    if (model.rowHeight > 2) {
+//        return model.rowHeight;
+//    }
     if (heightCell == nil) {
      heightCell = [[[NSBundle mainBundle] loadNibNamed:@"MessageListTableViewCell" owner:self options:nil] lastObject];
     }
-
-    MessageListModel *model = dataArr[indexPath.row];
+    
     [heightCell changeDataWithModel:model];
     CGSize heightSize = [heightCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    model.rowHeight =heightSize.height+1;
     return heightSize.height+1;
 }
 

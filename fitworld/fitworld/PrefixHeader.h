@@ -122,6 +122,17 @@ UIKIT_STATIC_INLINE  NSString*  ReachWeekTime(NSInteger longtime){
     return timeString;
 }
 
+UIKIT_STATIC_INLINE  NSString*  ReachYearANDTime(NSInteger longtime){
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:longtime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+   // 使用formatter转换后的date字符串变成了当前时区的时间
+    NSString *dateStr = [formatter stringFromDate:date];
+    return dateStr;
+}
+
 
 //中英文对照
 UIKIT_STATIC_INLINE  NSString* ChineseStringOrENFun(NSString *chinses, NSString* engString){
@@ -157,7 +168,7 @@ static inline NSString *_Nonnull NSStringFromDic(NSDictionary *_Nullable info, N
 }
 
 
-static inline long  LongValueFromDic(NSDictionary *_Nullable info, NSString * key, long defaultValue) {
+static inline long  LongValueFromDic(NSDictionary *_Nullable info, NSString * _Nullable key, long defaultValue) {
     if (![info isKindOfClass:[NSDictionary class]]) {
         return defaultValue?defaultValue:0;
     }

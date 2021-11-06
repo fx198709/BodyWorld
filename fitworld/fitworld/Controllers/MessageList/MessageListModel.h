@@ -19,18 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) long updated_at;
 @property (nonatomic, copy) NSString *updated_atString;
 
+@property (nonatomic, assign) float rowHeight;
 
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-/*
- "id": "44651382707325444",
-             "send_to_uid": "44651294610164228",
-             "content": "您预约的测试用1分钟课程课程已经开课，快来一起锻炼吧！",
-             "subject": "课程提醒",
-             "is_read": "0",
-             "created_at": 1636044698,
-             "updated_at": 1636044698
- */
+
