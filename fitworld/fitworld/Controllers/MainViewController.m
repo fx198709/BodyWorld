@@ -37,6 +37,7 @@ BOOL  hasrequest = NO;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor blackColor];
     self.mainTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [self.view addSubview:self.mainTableview];
     [self.mainTableview registerNib:[UINib nibWithNibName:NSStringFromClass([TableCollectionViewCell class]) bundle:nil] forCellReuseIdentifier:@"liveCell"];
@@ -45,6 +46,7 @@ BOOL  hasrequest = NO;
     self.mainTableview.delegate = self;
     self.mainTableview.dataSource = self;
     _mainTableview.separatorStyle= UITableViewCellSeparatorStyleNone;
+    _mainTableview.backgroundColor = UIColor.blackColor;
     [self.mainTableview mas_makeConstraints:^(MASConstraintMaker *make) {
       make.left.with.top.equalTo(self.view);
       make.size.equalTo(self.view);

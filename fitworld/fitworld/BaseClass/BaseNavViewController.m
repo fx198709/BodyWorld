@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
+    self.view.backgroundColor = UIColor.blackColor;
 //    self.navigationController.hidesNavigationBarWhenPush = NO;
     // Do any additional setup after loading the view.
 }
@@ -42,6 +43,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+//    清除右侧的导航
+    self.navigationItem.rightBarButtonItem = nil;
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 
     //开启ios右滑返回

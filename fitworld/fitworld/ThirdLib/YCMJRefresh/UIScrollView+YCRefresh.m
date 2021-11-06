@@ -41,8 +41,9 @@ FOUNDATION_EXPORT CABasicAnimation *BodyGetPositionAnimation (id fromValue, id t
     [header setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
     [header setTitle:@"松开刷新" forState:MJRefreshStatePulling];
     [header setTitle:@"正在刷新中..." forState:MJRefreshStateRefreshing];
-    header.stateLabel.textColor = [UIColor lightGrayColor];
+    header.stateLabel.textColor = [UIColor whiteColor];
     header.lastUpdatedTimeLabel.textColor = [UIColor lightGrayColor];
+    header.backgroundColor = UIColor.blackColor;
     self.mj_header = header;
     
 //    CJMJRefreshGifHeader *header = [CJMJRefreshGifHeader headerWithRefreshingTarget:target refreshingAction:action];
@@ -73,7 +74,8 @@ FOUNDATION_EXPORT CABasicAnimation *BodyGetPositionAnimation (id fromValue, id t
     [footer setTitle:@"正在加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"松开加载更多数据" forState:MJRefreshStateWillRefresh];
     [footer setTitle:@"已经加载全部数据" forState:MJRefreshStateNoMoreData];
-    footer.stateLabel.textColor = [UIColor lightGrayColor];
+    footer.stateLabel.textColor = [UIColor whiteColor];
+    footer.backgroundColor = UIColor.blackColor;
     self.mj_footer = footer;
     
 //    CJMJRefreshBackNormalFooter *footer = [CJMJRefreshBackNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
