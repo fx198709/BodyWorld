@@ -52,7 +52,6 @@
 		04CD2E532698478C007814E6 /* BaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD2E502698478C007814E6 /* BaseObject.m */; };
 		04CD2E56269847F2007814E6 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD2E54269847F2007814E6 /* Course.m */; };
 		04DA746A26A86E2600257963 /* YJPageControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA746826A86E2600257963 /* YJPageControlView.m */; };
-		04E245CF26BA8CF0003F0674 /* CourseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E245CD26BA8CF0003F0674 /* CourseDetailViewController.m */; };
 		04EC004426BD2B8800DC0103 /* IJKMediaFrameworkWithSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EC004226BD2B8700DC0103 /* IJKMediaFrameworkWithSSL.framework */; };
 		04EC004526BD2B8800DC0103 /* IJKMediaFrameworkWithSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04EC004226BD2B8700DC0103 /* IJKMediaFrameworkWithSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04EC004626BD2B8800DC0103 /* VSRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EC004326BD2B8700DC0103 /* VSRTC.framework */; };
@@ -73,7 +72,6 @@
 		04EC01FE26BD8AC100DC0103 /* ClassRoom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04EC01F026BD8AC000DC0103 /* ClassRoom.mm */; };
 		04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EC020026BD8B0F00DC0103 /* LocalView.m */; };
 		04EC020526BD8B0F00DC0103 /* RemoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EC020226BD8B0F00DC0103 /* RemoteView.m */; };
-		04EC020B26BD8B6C00DC0103 /* RoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EC020926BD8B6C00DC0103 /* RoomVC.m */; };
 		04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3E34126E9325F00CEEC7D /* CalendarView.m */; };
 		04F3E34526E9326000CEEC7D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3E34226E9325F00CEEC7D /* UIView+Extension.m */; };
 		04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8AA5A270DE974009B125A /* ResetPwdController.m */; };
@@ -97,6 +95,8 @@
 		DD595EC327367FA700618D1A /* UserCenterMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EC127367FA700618D1A /* UserCenterMainViewController.m */; };
 		DD595EC427367FA700618D1A /* UserCenterMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD595EC227367FA700618D1A /* UserCenterMainViewController.xib */; };
 		DD595EC72736F10400618D1A /* UsermainMiddleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EC62736F10400618D1A /* UsermainMiddleView.m */; };
+		DD595ECD2736F5A000618D1A /* RoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595ECA2736F5A000618D1A /* RoomVC.m */; };
+		DD595ECE2736F5A000618D1A /* CourseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595ECB2736F5A000618D1A /* CourseDetailViewController.m */; };
 		DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */; };
 		DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */; };
 		DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB1A272D1A45002B0A8E /* TableHeadview.m */; };
@@ -229,8 +229,6 @@
 		04CD2E55269847F2007814E6 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
 		04DA746726A86E2600257963 /* YJPageControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJPageControlView.h; sourceTree = "<group>"; };
 		04DA746826A86E2600257963 /* YJPageControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJPageControlView.m; sourceTree = "<group>"; };
-		04E245CD26BA8CF0003F0674 /* CourseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailViewController.m; sourceTree = "<group>"; };
-		04E245CE26BA8CF0003F0674 /* CourseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailViewController.h; sourceTree = "<group>"; };
 		04EC004226BD2B8700DC0103 /* IJKMediaFrameworkWithSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFrameworkWithSSL.framework; path = fitworld/Frameworks/IJKMediaFrameworkWithSSL.framework; sourceTree = "<group>"; };
 		04EC004326BD2B8700DC0103 /* VSRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSRTC.framework; path = fitworld/Frameworks/VSRTC.framework; sourceTree = "<group>"; };
 		04EC01D026BD8ABF00DC0103 /* SidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidePanel.m; sourceTree = "<group>"; };
@@ -266,8 +264,6 @@
 		04EC020126BD8B0F00DC0103 /* RemoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteView.h; sourceTree = "<group>"; };
 		04EC020226BD8B0F00DC0103 /* RemoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteView.m; sourceTree = "<group>"; };
 		04EC020326BD8B0F00DC0103 /* LocalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalView.h; sourceTree = "<group>"; };
-		04EC020926BD8B6C00DC0103 /* RoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomVC.m; sourceTree = "<group>"; };
-		04EC020A26BD8B6C00DC0103 /* RoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomVC.h; sourceTree = "<group>"; };
 		04F3E34026E9325F00CEEC7D /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		04F3E34126E9325F00CEEC7D /* CalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarView.m; sourceTree = "<group>"; };
 		04F3E34226E9325F00CEEC7D /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
@@ -315,6 +311,10 @@
 		DD595EC227367FA700618D1A /* UserCenterMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCenterMainViewController.xib; sourceTree = "<group>"; };
 		DD595EC52736F10400618D1A /* UsermainMiddleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsermainMiddleView.h; sourceTree = "<group>"; };
 		DD595EC62736F10400618D1A /* UsermainMiddleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UsermainMiddleView.m; sourceTree = "<group>"; };
+		DD595EC92736F5A000618D1A /* CourseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailViewController.h; sourceTree = "<group>"; };
+		DD595ECA2736F5A000618D1A /* RoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomVC.m; sourceTree = "<group>"; };
+		DD595ECB2736F5A000618D1A /* CourseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailViewController.m; sourceTree = "<group>"; };
+		DD595ECC2736F5A000618D1A /* RoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomVC.h; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		DD6EDB14272CE587002B0A8E /* SelectClassHeadview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectClassHeadview.h; sourceTree = "<group>"; };
 		DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectClassHeadview.m; sourceTree = "<group>"; };
@@ -415,16 +415,13 @@
 		041510CF268F02810039FCD1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DD595EC82736F56B00618D1A /* RoomDetail */,
 				DD595EBF27367F5500618D1A /* UserCenter */,
 				DD6EDB6227343601002B0A8E /* MessageList */,
 				DD6EDB50272EFFFB002B0A8E /* Buddy */,
 				DD6EDB57272EFFFB002B0A8E /* More */,
 				0456192E26ECEC8A00C0973F /* RegisterController.h */,
 				0456192F26ECEC8A00C0973F /* RegisterController.m */,
-				04EC020A26BD8B6C00DC0103 /* RoomVC.h */,
-				04EC020926BD8B6C00DC0103 /* RoomVC.m */,
-				04E245CE26BA8CF0003F0674 /* CourseDetailViewController.h */,
-				04E245CD26BA8CF0003F0674 /* CourseDetailViewController.m */,
 				041510D2268F02DE0039FCD1 /* LoginController.h */,
 				041510D3268F02DE0039FCD1 /* LoginController.m */,
 				04F8AA5B270DE974009B125A /* ResetPwdController.h */,
@@ -872,6 +869,17 @@
 			path = UserCenter;
 			sourceTree = "<group>";
 		};
+		DD595EC82736F56B00618D1A /* RoomDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DD595EC92736F5A000618D1A /* CourseDetailViewController.h */,
+				DD595ECB2736F5A000618D1A /* CourseDetailViewController.m */,
+				DD595ECC2736F5A000618D1A /* RoomVC.h */,
+				DD595ECA2736F5A000618D1A /* RoomVC.m */,
+			);
+			path = RoomDetail;
+			sourceTree = "<group>";
+		};
 		DD6EDB13272CE546002B0A8E /* CustomerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1150,18 +1158,19 @@
 				DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */,
 				DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */,
 				DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */,
+				DD595ECD2736F5A000618D1A /* RoomVC.m in Sources */,
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,
 				DD6EDB41272D2FCD002B0A8E /* CommonTools.m in Sources */,
 				047DC209268CD09900A3E37E /* main.m in Sources */,
 				DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */,
 				DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */,
 				DD6EDB6B2734420C002B0A8E /* MessageListTableViewCell.m in Sources */,
+				DD595ECE2736F5A000618D1A /* CourseDetailViewController.m in Sources */,
 				04CD2E532698478C007814E6 /* BaseObject.m in Sources */,
 				0456193026ECEC8A00C0973F /* RegisterController.m in Sources */,
 				DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */,
 				04EC01F826BD8AC100DC0103 /* ToolFunc.m in Sources */,
 				0422BDBA269C96A90084000B /* DatePlan.m in Sources */,
-				04E245CF26BA8CF0003F0674 /* CourseDetailViewController.m in Sources */,
 				04EC01F326BD8AC000DC0103 /* MainPanel.m in Sources */,
 				DD25FED427215D580092CF87 /* AFAppNetAPIClient.m in Sources */,
 				0462BD9A26920BE8005827D1 /* MainViewController.m in Sources */,
@@ -1192,7 +1201,6 @@
 				04EC01FD26BD8AC100DC0103 /* ChatManager.m in Sources */,
 				04EC01F526BD8AC000DC0103 /* ClassMember.mm in Sources */,
 				DD25FEE727226B5A0092CF87 /* JYWeakTimer.m in Sources */,
-				04EC020B26BD8B6C00DC0103 /* RoomVC.m in Sources */,
 				04CD2E522698478C007814E6 /* UserInfo.m in Sources */,
 				04EC01F226BD8AC000DC0103 /* HeaderPanel.m in Sources */,
 				04747FBE27082BC700B3B5B8 /* PractiseStatic.m in Sources */,
