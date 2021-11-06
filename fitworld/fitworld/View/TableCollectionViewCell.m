@@ -126,9 +126,14 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if ([self.delegate respondsToSelector:@selector(didSelectItemAtIndexPath:)]) {
-        [self.delegate didSelectItemAtIndexPath:indexPath];
+//    选中某个课程的背景
+    if (_dataArr.count > indexPath.row) {
+        Room *selectRoom = [_dataArr objectAtIndex: indexPath.row];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
+        CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
+        vc.selectRoom = selectRoom;
+        [[self viewController].navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -140,14 +145,7 @@
 
 
 - (void)onClickCourseDetail:(UITapGestureRecognizer *)recognizer{
-    if (_dataArr.count > 0) {
-        Room *selectRoom = [_dataArr objectAtIndex: recognizer.view.tag];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
-        CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
-        vc.selectRoom = selectRoom;
-        [[self viewController].navigationController pushViewController:vc animated:YES];
-    }
+    
    
 }
 

@@ -22,6 +22,8 @@
 @property (nonatomic, strong) UIPickerView *countryPicker;
 @property (nonatomic, strong) NSArray *pickerArray;
 
+
+
 @end
 
 @implementation LoginController
@@ -29,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
     UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     bgImgView.image = [UIImage imageNamed:@"loginbg"];
     [self.view insertSubview: bgImgView atIndex:0];
@@ -55,6 +57,8 @@
         make.left.equalTo(inputBgView);
         make.width.height.mas_equalTo(40);
     }];
+    
+    
     
     UIImageView *pickerLeftImgView = [[UIImageView alloc] init];
     pickerLeftImgView.image = [UIImage imageNamed:@"login_world"];
@@ -136,7 +140,31 @@
         make.height.mas_equalTo(45);
     }];
     [loginBtn addTarget: self action: @selector(loginBtnClick) forControlEvents: UIControlEventTouchDown];
-        
+    float startx = ScreenWidth- 150-(ScreenWidth-300)/2-10;
+    UIButton *vbtn = [[UIButton alloc] initWithFrame:CGRectMake(startx, 100, 150, 40)];
+    [self.view addSubview:vbtn];
+    [vbtn setTitle:@"中文|English" forState:UIControlStateNormal];
+    [vbtn setTitle:@"中文|English" forState:UIControlStateHighlighted];
+    vbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    vbtn.titleLabel.font = SystemFontOfSize(20);
+    vbtn.titleLabel.textColor = [UIColor whiteColor];
+    [vbtn addTarget:self action:@selector(changeLanguageBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    vbtn.backgroundColor = [UIColor redColor];
+    [self.view bringSubviewToFront:vbtn];
+    
+    vbtn = [[UIButton alloc] initWithFrame:CGRectMake(startx, 170, 150, 50)];
+    [self.view addSubview:vbtn];
+    [vbtn setTitle:@"免密登录" forState:UIControlStateNormal];
+    [vbtn setTitle:@"免密登录" forState:UIControlStateHighlighted];
+    vbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    vbtn.titleLabel.font = SystemFontOfSize(30);
+    vbtn.titleLabel.textColor = [UIColor whiteColor];
+    [vbtn addTarget:self action:@selector(changeLanguageBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    vbtn.backgroundColor = [UIColor redColor];
+    [self.view bringSubviewToFront:vbtn];
+}
+
+- (void)changeLanguageBtnClick{
     
 }
 

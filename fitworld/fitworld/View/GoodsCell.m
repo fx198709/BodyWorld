@@ -33,7 +33,10 @@
     NSString *roomidhead = ChineseStringOrENFun(@"房间ID",@"Room ID");
     self.roomidLabel.text = [NSString stringWithFormat:@"%@:%@",roomidhead,room.event_id];
     _peopleLabel.text = [NSString stringWithFormat:@"已有%ld人",(long)room.invite_count];
-    _joinBtn.titleLabel.text = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+    NSString *title = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+    [_joinBtn setTitle:title forState:UIControlStateNormal];
+    [_joinBtn setTitle:title forState:UIControlStateHighlighted];
+
     [_joinBtn setBackgroundImage:[UIImage imageNamed:@"action_button_bg_red"] forState:UIControlStateNormal];
     [_joinBtn setBackgroundImage:[UIImage imageNamed:@"action_button_bg_red"] forState:UIControlStateHighlighted];
 

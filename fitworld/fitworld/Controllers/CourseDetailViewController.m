@@ -69,7 +69,7 @@
     
     UILabel *createUserName = [[UILabel alloc] init];
     NSDictionary *roomCreatorDic = self.selectRoom.room_creator;
-    createUserName.text = [NSString stringWithFormat: @"%@ %@", roomCreatorDic[@"nickname"], self.selectRoom.course.type];
+    createUserName.text = [NSString stringWithFormat: @"%@ %@", self.selectRoom.room_creator.nickname, self.selectRoom.course.type];
     createUserName.textColor = UIColor.whiteColor;
     [topImgBotView addSubview:createUserName];
     [createUserName mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -218,7 +218,7 @@
     
     UILabel *courseCityLabel = [[UILabel alloc] init];
     courseCityLabel.adjustsFontSizeToFitWidth = YES;
-    courseCityLabel.text = [NSString stringWithFormat:@"%@ - %@", roomCreatorDic[@"country"], roomCreatorDic[@"city"]];
+    courseCityLabel.text = [NSString stringWithFormat:@"%@ - %@", self.selectRoom.room_creator.country, self.selectRoom.room_creator.city];
     courseCityLabel.textColor = UIColor.whiteColor;
     [coachView addSubview:courseCityLabel];
     [courseCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -106,9 +106,6 @@
                         <state key="normal" title="JOIN">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
-                        <connections>
-                            <action selector="join:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Lee-Z1-SPp"/>
-                        </connections>
                     </button>
                 </subviews>
             </view>
@@ -133,7 +130,7 @@
             <connections>
                 <outlet property="countryimage" destination="Z3Q-4b-6ug" id="DIG-tY-f3e"/>
                 <outlet property="goodsImage" destination="6z9-oB-b6d" id="rK6-Ov-K3d"/>
-                <outlet property="joinBtn" destination="U9B-9O-7iH" id="A9O-NV-k7r"/>
+                <outlet property="joinBtn" destination="U9B-9O-7iH" id="Hr7-Yb-40F"/>
                 <outlet property="peopleLabel" destination="jrv-k0-1he" id="KqD-ND-wiw"/>
                 <outlet property="roomidLabel" destination="CU0-Wf-FNi" id="J06-49-dvY"/>
                 <outlet property="roomname" destination="n5q-PZ-rZ4" id="gYZ-Qs-0Pk"/>

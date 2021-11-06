@@ -102,7 +102,7 @@ UIKIT_STATIC_INLINE  NSString*  ReachWeekTime(NSInteger longtime){
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:longtime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
-    [formatter setDateFormat:@"yyyy/MM/dd HH:mm"];
+    [formatter setDateFormat:@"MM/dd HH:mm"];
    // 使用formatter转换后的date字符串变成了当前时区的时间
     NSString *dateStr = [formatter stringFromDate:date];
     
