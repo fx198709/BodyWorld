@@ -16,7 +16,7 @@
 #import "CourseDetailViewController.h"
 #import "ConfigManager.h"
 #import "RoomVC.h"
-
+#import "NoDataCollectionViewCell.h"
 @implementation TableCollectionLivingViewCell
 
 - (void)awakeFromNib {
@@ -43,7 +43,8 @@
     self.myCollectionView.dataSource = self;
     self.myCollectionView.showsHorizontalScrollIndicator = NO;
     [self.myCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([LivingGoodsCell class]) bundle:nil] forCellWithReuseIdentifier:@"LivingGoodsCellString"];
-    
+    [self.myCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([NoDataCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"NoDataCollectionViewCellString"];
+
     self.myCollectionView.backgroundColor = UIColor.clearColor;
 }
 
@@ -65,16 +66,22 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return _dataArr.count;
+    return _dataArr.count?_dataArr.count:1;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    LivingGoodsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LivingGoodsCellString" forIndexPath:indexPath];
-    Room *tmpRoom = [_dataArr objectAtIndex: indexPath.item];
-    [cell changedatawithmodel:tmpRoom];
-    cell.joinBtn.tag = indexPath.row;
-    [cell.joinBtn addTarget:self action:@selector(join:) forControlEvents:UIControlEventTouchUpInside];
-    return cell;
+    if (_dataArr.count > 0) {
+        LivingGoodsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LivingGoodsCellString" forIndexPath:indexPath];
+        Room *tmpRoom = [_dataArr objectAtIndex: indexPath.item];
+        [cell changedatawithmodel:tmpRoom];
+        cell.joinBtn.tag = indexPath.row;
+        [cell.joinBtn addTarget:self action:@selector(join:) forControlEvents:UIControlEventTouchUpInside];
+        return cell;
+    }else{
+        NoDataCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NoDataCollectionViewCellString" forIndexPath:indexPath];
+        return cell;
+    }
+    
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{

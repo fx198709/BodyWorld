@@ -16,6 +16,7 @@
 #import "CourseDetailViewController.h"
 #import "ConfigManager.h"
 #import "RoomVC.h"
+#import "NoDataCollectionViewCell.h"
 
 @implementation TableCollectionViewCell
 
@@ -43,6 +44,10 @@
     self.myCollectionView.dataSource = self;
     self.myCollectionView.showsHorizontalScrollIndicator = NO;
     [self.myCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([GoodsCell class]) bundle:nil] forCellWithReuseIdentifier:@"goodsCell"];
+    [self.myCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([NoDataCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"NoDataCollectionViewCellString"];
+
+    
+    
     
     self.myCollectionView.backgroundColor = UIColor.clearColor;
 }
@@ -65,16 +70,24 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return _dataArr.count;
+    return _dataArr.count?_dataArr.count:1;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    GoodsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"goodsCell" forIndexPath:indexPath];
-    Room *tmpRoom = [_dataArr objectAtIndex: indexPath.item];
-    [cell changedatawithmodel:tmpRoom];
-    cell.joinBtn.tag = indexPath.row;
-    [cell.joinBtn addTarget:self action:@selector(join:) forControlEvents:UIControlEventTouchUpInside];
-    return cell;
+    if (_dataArr.count >0) {
+        GoodsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"goodsCell" forIndexPath:indexPath];
+        Room *tmpRoom = [_dataArr objectAtIndex: indexPath.item];
+        [cell changedatawithmodel:tmpRoom];
+        cell.joinBtn.tag = indexPath.row;
+        [cell.joinBtn addTarget:self action:@selector(join:) forControlEvents:UIControlEventTouchUpInside];
+        return cell;
+    }else{
+        NoDataCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NoDataCollectionViewCellString" forIndexPath:indexPath];
+        return cell;
+        
+    }
+   
+    
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
@@ -127,13 +140,15 @@
 
 
 - (void)onClickCourseDetail:(UITapGestureRecognizer *)recognizer{
-    NSLog(@"onClickCourseDetail ----  ");
-    Room *selectRoom = [_dataArr objectAtIndex: recognizer.view.tag];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
-    CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
-    vc.selectRoom = selectRoom;
-    [[self viewController].navigationController pushViewController:vc animated:YES];
+    if (_dataArr.count > 0) {
+        Room *selectRoom = [_dataArr objectAtIndex: recognizer.view.tag];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
+        CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
+        vc.selectRoom = selectRoom;
+        [[self viewController].navigationController pushViewController:vc animated:YES];
+    }
+   
 }
 
 - (void)join:(UIButton *) recognizer{

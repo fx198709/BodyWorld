@@ -90,6 +90,8 @@
 		DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */; };
 		DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */; };
 		DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE427226B5A0092CF87 /* JYPageControl.m */; };
+		DD595EB82736224600618D1A /* NoDataCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EB62736224600618D1A /* NoDataCollectionViewCell.m */; };
+		DD595EB92736224600618D1A /* NoDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD595EB72736224600618D1A /* NoDataCollectionViewCell.xib */; };
 		DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */; };
 		DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */; };
 		DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB1A272D1A45002B0A8E /* TableHeadview.m */; };
@@ -297,6 +299,9 @@
 		DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+JYImageViewManager.m"; sourceTree = "<group>"; };
 		DD25FEE427226B5A0092CF87 /* JYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPageControl.m; sourceTree = "<group>"; };
 		DD25FEE527226B5A0092CF87 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
+		DD595EB52736224600618D1A /* NoDataCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoDataCollectionViewCell.h; sourceTree = "<group>"; };
+		DD595EB62736224600618D1A /* NoDataCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoDataCollectionViewCell.m; sourceTree = "<group>"; };
+		DD595EB72736224600618D1A /* NoDataCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDataCollectionViewCell.xib; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		DD6EDB14272CE587002B0A8E /* SelectClassHeadview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectClassHeadview.h; sourceTree = "<group>"; };
 		DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectClassHeadview.m; sourceTree = "<group>"; };
@@ -873,6 +878,9 @@
 				DD6EDB4A272E7AF9002B0A8E /* AddPeopleTableViewCell.xib */,
 				DD6EDB4D272EF15F002B0A8E /* HeadTimeCollectionViewCell.h */,
 				DD6EDB4E272EF15F002B0A8E /* HeadTimeCollectionViewCell.m */,
+				DD595EB52736224600618D1A /* NoDataCollectionViewCell.h */,
+				DD595EB62736224600618D1A /* NoDataCollectionViewCell.m */,
+				DD595EB72736224600618D1A /* NoDataCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1029,6 +1037,7 @@
 				04CD2E4A26982A45007814E6 /* GoodsCell.xib in Resources */,
 				DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */,
 				047DC206268CD09900A3E37E /* LaunchScreen.storyboard in Resources */,
+				DD595EB92736224600618D1A /* NoDataCollectionViewCell.xib in Resources */,
 				04CD2E4C26982A45007814E6 /* TableCollectionViewCell.xib in Resources */,
 				04552B3F2696C3FD00C78706 /* material-design-icons.ttf in Resources */,
 				0472011826B7BAF400C19437 /* Localizable.strings in Resources */,
@@ -1166,6 +1175,7 @@
 				DD25FEE827226B5A0092CF87 /* JYCarousel.m in Sources */,
 				047DC1F8268CD09700A3E37E /* SceneDelegate.m in Sources */,
 				DD6EDB4B272E7AF9002B0A8E /* AddPeopleTableViewCell.m in Sources */,
+				DD595EB82736224600618D1A /* NoDataCollectionViewCell.m in Sources */,
 				04EC01FE26BD8AC100DC0103 /* ClassRoom.mm in Sources */,
 				DD25FEEA27226B5A0092CF87 /* JYImageDownloader.m in Sources */,
 				DD6EDB5D272EFFFB002B0A8E /* TrainingViewController.m in Sources */,
