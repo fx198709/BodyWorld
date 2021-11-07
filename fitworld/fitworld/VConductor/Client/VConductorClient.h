@@ -3,7 +3,8 @@
 
 #import "ClassRoom.h"
 #import "ClassMember.h"
-#import "VSRTC/VSVideoRender.h"
+//#import "VSRTC/VSVideoRender.h"
+#import <VSRTC/VSVideoRender.h>
 
 #define VRC_URL   @"https://vrc.poc.videosolar.com"
 

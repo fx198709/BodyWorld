@@ -691,14 +691,14 @@
 		04EC01CF26BD8ABF00DC0103 /* Panel */ = {
 			isa = PBXGroup;
 			children = (
-				04EC01D026BD8ABF00DC0103 /* SidePanel.m */,
-				04EC01D126BD8ABF00DC0103 /* MainPanel.h */,
-				04EC01D326BD8ABF00DC0103 /* ViewerPanel.h */,
-				04EC01D426BD8ABF00DC0103 /* MainPanel.m */,
 				04EC01D526BD8ABF00DC0103 /* SidePanel.h */,
+				04EC01D026BD8ABF00DC0103 /* SidePanel.m */,
+				04EC01D326BD8ABF00DC0103 /* ViewerPanel.h */,
+				04EC01D726BD8ABF00DC0103 /* ViewerPanel.m */,
+				04EC01D126BD8ABF00DC0103 /* MainPanel.h */,
+				04EC01D426BD8ABF00DC0103 /* MainPanel.m */,
 				04EC01D626BD8ABF00DC0103 /* HeaderPanel.h */,
 				04EC01D226BD8ABF00DC0103 /* HeaderPanel.m */,
-				04EC01D726BD8ABF00DC0103 /* ViewerPanel.m */,
 			);
 			path = Panel;
 			sourceTree = "<group>";
@@ -706,18 +706,18 @@
 		04EC01D826BD8ABF00DC0103 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				04EC01DB26BD8ABF00DC0103 /* ClassMember.h */,
 				04EC01D926BD8ABF00DC0103 /* ClassMember.mm */,
 				04EC01DA26BD8ABF00DC0103 /* VConductorClient.h */,
-				04EC01DB26BD8ABF00DC0103 /* ClassMember.h */,
+				04EC01ED26BD8AC000DC0103 /* VConductorClient.m */,
 				04EC01DC26BD8ABF00DC0103 /* ConfigManager.h */,
+				04EC01EC26BD8AC000DC0103 /* ConfigManager.m */,
 				04EC01DD26BD8ABF00DC0103 /* Network */,
 				04EC01E026BD8AC000DC0103 /* ClassMember+private.h */,
 				04EC01E126BD8AC000DC0103 /* Utils */,
 				04EC01E626BD8AC000DC0103 /* ChatManager.h */,
-				04EC01E726BD8AC000DC0103 /* Loader */,
-				04EC01EC26BD8AC000DC0103 /* ConfigManager.m */,
-				04EC01ED26BD8AC000DC0103 /* VConductorClient.m */,
 				04EC01EE26BD8AC000DC0103 /* ChatManager.m */,
+				04EC01E726BD8AC000DC0103 /* Loader */,
 				04EC01EF26BD8AC000DC0103 /* ClassRoom.h */,
 				04EC01F026BD8AC000DC0103 /* ClassRoom.mm */,
 			);
