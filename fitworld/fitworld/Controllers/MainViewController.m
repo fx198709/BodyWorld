@@ -56,8 +56,14 @@ BOOL  hasrequest = NO;
     _sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 133)];
     _sliderView.clipsToBounds = YES;
     _sliderView.layer.cornerRadius = 5;
-    [_mainTableview.mj_header beginRefreshing];
 //    [self headerRereshing];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [_mainTableview.mj_header beginRefreshing];
+    self.navigationController.navigationBarHidden = YES;
+
 }
 
 - (void)reachNoReadMessageList{
@@ -109,9 +115,6 @@ BOOL  hasrequest = NO;
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBarHidden = YES;
-}
 
 - (void)setupRefresh
 {

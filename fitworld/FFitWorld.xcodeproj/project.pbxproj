@@ -95,8 +95,9 @@
 		DD595EC327367FA700618D1A /* UserCenterMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EC127367FA700618D1A /* UserCenterMainViewController.m */; };
 		DD595EC427367FA700618D1A /* UserCenterMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD595EC227367FA700618D1A /* UserCenterMainViewController.xib */; };
 		DD595EC72736F10400618D1A /* UsermainMiddleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EC62736F10400618D1A /* UsermainMiddleView.m */; };
-		DD595ECD2736F5A000618D1A /* RoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595ECA2736F5A000618D1A /* RoomVC.m */; };
 		DD595ECE2736F5A000618D1A /* CourseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595ECB2736F5A000618D1A /* CourseDetailViewController.m */; };
+		DD595ED42736F88D00618D1A /* RoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595ED22736F88D00618D1A /* RoomVC.m */; };
+		DD595ED72736FBB800618D1A /* CoachModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595ED62736FBB800618D1A /* CoachModel.m */; };
 		DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */; };
 		DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */; };
 		DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB1A272D1A45002B0A8E /* TableHeadview.m */; };
@@ -312,9 +313,11 @@
 		DD595EC52736F10400618D1A /* UsermainMiddleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsermainMiddleView.h; sourceTree = "<group>"; };
 		DD595EC62736F10400618D1A /* UsermainMiddleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UsermainMiddleView.m; sourceTree = "<group>"; };
 		DD595EC92736F5A000618D1A /* CourseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailViewController.h; sourceTree = "<group>"; };
-		DD595ECA2736F5A000618D1A /* RoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomVC.m; sourceTree = "<group>"; };
 		DD595ECB2736F5A000618D1A /* CourseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailViewController.m; sourceTree = "<group>"; };
-		DD595ECC2736F5A000618D1A /* RoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomVC.h; sourceTree = "<group>"; };
+		DD595ED22736F88D00618D1A /* RoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomVC.m; sourceTree = "<group>"; };
+		DD595ED32736F88D00618D1A /* RoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomVC.h; sourceTree = "<group>"; };
+		DD595ED52736FBB800618D1A /* CoachModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoachModel.h; sourceTree = "<group>"; };
+		DD595ED62736FBB800618D1A /* CoachModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoachModel.m; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		DD6EDB14272CE587002B0A8E /* SelectClassHeadview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectClassHeadview.h; sourceTree = "<group>"; };
 		DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectClassHeadview.m; sourceTree = "<group>"; };
@@ -463,6 +466,8 @@
 				04747FBA2708010000B3B5B8 /* PractiseWeek.m */,
 				04747FBD27082BC700B3B5B8 /* PractiseStatic.h */,
 				04747FBC27082BC700B3B5B8 /* PractiseStatic.m */,
+				DD595ED52736FBB800618D1A /* CoachModel.h */,
+				DD595ED62736FBB800618D1A /* CoachModel.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -872,10 +877,10 @@
 		DD595EC82736F56B00618D1A /* RoomDetail */ = {
 			isa = PBXGroup;
 			children = (
+				DD595ED32736F88D00618D1A /* RoomVC.h */,
+				DD595ED22736F88D00618D1A /* RoomVC.m */,
 				DD595EC92736F5A000618D1A /* CourseDetailViewController.h */,
 				DD595ECB2736F5A000618D1A /* CourseDetailViewController.m */,
-				DD595ECC2736F5A000618D1A /* RoomVC.h */,
-				DD595ECA2736F5A000618D1A /* RoomVC.m */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -1158,7 +1163,6 @@
 				DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */,
 				DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */,
 				DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */,
-				DD595ECD2736F5A000618D1A /* RoomVC.m in Sources */,
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,
 				DD6EDB41272D2FCD002B0A8E /* CommonTools.m in Sources */,
 				047DC209268CD09900A3E37E /* main.m in Sources */,
@@ -1198,6 +1202,7 @@
 				04552B3E2696C3FD00C78706 /* MaterialDesignSymbol.m in Sources */,
 				C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */,
 				047DC201268CD09700A3E37E /* fitworld.xcdatamodeld in Sources */,
+				DD595ED42736F88D00618D1A /* RoomVC.m in Sources */,
 				04EC01FD26BD8AC100DC0103 /* ChatManager.m in Sources */,
 				04EC01F526BD8AC000DC0103 /* ClassMember.mm in Sources */,
 				DD25FEE727226B5A0092CF87 /* JYWeakTimer.m in Sources */,
@@ -1229,6 +1234,7 @@
 				04552B4B2696C3FD00C78706 /* TWSReleaseNotesDownloadOperation.m in Sources */,
 				DD595EC72736F10400618D1A /* UsermainMiddleView.m in Sources */,
 				04EC020526BD8B0F00DC0103 /* RemoteView.m in Sources */,
+				DD595ED72736FBB800618D1A /* CoachModel.m in Sources */,
 				04EC01FC26BD8AC100DC0103 /* VConductorClient.m in Sources */,
 				040CED0B269F294900818D76 /* Room.m in Sources */,
 				04CD2E56269847F2007814E6 /* Course.m in Sources */,

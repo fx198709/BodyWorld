@@ -143,6 +143,19 @@ UIKIT_STATIC_INLINE  NSString* ChineseStringOrENFun(NSString *chinses, NSString*
     }
 }
 
+UIKIT_STATIC_INLINE  NSString* SexNameFormGender(long gender){
+    NSString *genderString = ChineseStringOrENFun(@"未知", @"unknow");
+    if (gender == 1) {
+//            男
+        genderString = ChineseStringOrENFun(@"男", @"male");
+    }
+    if (gender == 2) {
+//           女
+        genderString = ChineseStringOrENFun(@"女", @"female");
+    }
+    return  genderString;
+}
+
 
 //电池条高度
 UIKIT_STATIC_INLINE  int statusBarHeight(){
@@ -160,6 +173,11 @@ static inline NSString *_Nonnull NSStringFromDic(NSDictionary *_Nullable info, N
     NSString *value = @"";
     if (!((defaultValue)==nil || (defaultValue)==NULL || (NSNull *)(defaultValue)==[NSNull null] || (defaultValue).length == 0)) {
         value = defaultValue;
+    }
+    NSString *valuestring = info[key];
+    if ([valuestring isKindOfClass:NSNumber.class]) {
+        valuestring = [NSString stringWithFormat:@"%@",valuestring];
+        return  valuestring;
     }
     if (!((info[key])==nil || (info[key])==NULL || (NSNull *)(info[key])==[NSNull null] || [(info[key])length] == 0)) {
         value = info[key];
@@ -188,6 +206,30 @@ static inline long  LongValueFromDic(NSDictionary *_Nullable info, NSString * _N
     
     return [str longLongValue];
 }
+
+static inline BOOL BOOLValueFromDic(NSDictionary * _Nonnull info, NSString * _Nullable key, BOOL  defaultValue) {
+    if (![info isKindOfClass:[NSDictionary class]]) {
+        return defaultValue;
+    }
+    id value;
+    if (!((info[key])==nil || (info[key])==NULL || (NSNull *)(info[key])==[NSNull null])) {
+        value = info[key];
+    }
+    NSString *str = @"";
+    if ([value isKindOfClass:[NSString class]]) {
+        str = value;
+    }
+    if ([value isKindOfClass:[NSNumber class]]) {
+        NSNumber *num = (NSNumber *)value;
+        str = [NSString stringWithFormat:@"%@",@([num integerValue])];
+    }
+    
+    if ([str isEqualToString:@"1"]||[str isEqualToString:@"ture"]) {
+        return YES;
+    }
+    return NO;
+}
+
 
 
 

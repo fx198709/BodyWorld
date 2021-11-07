@@ -25,9 +25,14 @@
     self.navigationController.navigationBar.translucent = YES;
         
     self.view.backgroundColor = UIColor.blackColor;
-    
+    [self reachRoomDetailInfo];
+}
+
+- (void)addsubviews{
     UIImageView *topImgView = [[UIImageView alloc] init];
     topImgView.image = [UIImage imageNamed:@"coursedetail_top"];
+    NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, self.selectRoom.pic];
+    [topImgView sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
     [self.view addSubview:topImgView];
     [topImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.view);
@@ -35,7 +40,7 @@
         make.height.mas_equalTo(self.view.bounds.size.height / 3);
     }];
 
-    UIButton *countInBtn = [[UIButton alloc] init];	
+    UIButton *countInBtn = [[UIButton alloc] init];
     countInBtn.backgroundColor = UIColor.redColor;
     [countInBtn setTitle:@"JOIN CLASS" forState:UIControlStateNormal];
     [countInBtn addTarget:self action:@selector(joinClass) forControlEvents:UIControlEventTouchUpInside];
@@ -48,50 +53,73 @@
     }];
     
     UIView *topImgBotView = [[UIView alloc]init];
-    topImgBotView.backgroundColor = UIColor.darkGrayColor;
-    topImgBotView.alpha = 0.7;
+    topImgBotView.backgroundColor = UIColor.clearColor;
     [self.view addSubview:topImgBotView];
     [topImgBotView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.view);
-        make.height.equalTo(topImgView).multipliedBy(0.3);
-        make.bottom.mas_equalTo(topImgView.mas_bottom);
+        make.height.mas_equalTo(50);
+        make.top.equalTo(topImgView.mas_bottom).offset(-20);
+    }];
+//    不透明背景
+    UIView *topimagBotBackView = [[UIView alloc] init];
+    [topImgBotView addSubview:topimagBotBackView];
+    topimagBotBackView.backgroundColor = UIRGBColor(37, 37, 37, 0.3);
+    topimagBotBackView.alpha = 0.7;
+//    topimagBotBackView.backgroundColor = UIColor.redColor;
+    [topimagBotBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(topImgBotView);
+        make.top.equalTo(topImgBotView);
+        make.left.equalTo(topImgBotView);
     }];
     
     UILabel *courseNameLl = [[UILabel alloc] init];
-    courseNameLl.text = self.selectRoom.course.name;
+    courseNameLl.text = self.selectRoom.name;
     courseNameLl.textColor = UIColor.whiteColor;
+    courseNameLl.font = SystemFontOfSize(20);
     [topImgBotView addSubview:courseNameLl];
     [courseNameLl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(topImgBotView).offset(10);
+        make.top.equalTo(topImgBotView);
         make.left.equalTo(topImgBotView).offset(10);
-        make.width.mas_equalTo(100);
     }];
     
-    UILabel *createUserName = [[UILabel alloc] init];
-    NSDictionary *roomCreatorDic = self.selectRoom.room_creator;
-    createUserName.text = [NSString stringWithFormat: @"%@ %@", self.selectRoom.room_creator.nickname, self.selectRoom.course.type];
-    createUserName.textColor = UIColor.whiteColor;
-    [topImgBotView addSubview:createUserName];
-    [createUserName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(courseNameLl.mas_bottom).offset(10);
-        make.left.equalTo(topImgBotView).offset(10);
-        make.width.mas_equalTo(100);
+    UILabel *startTimelabel = [[UILabel alloc] init];
+    startTimelabel.text = ReachWeekTime(self.selectRoom.start_time);
+    startTimelabel.textColor = UIColorFromRGB(225, 225, 225);
+    startTimelabel.font = SystemFontOfSize(13);
+    [topImgBotView addSubview:startTimelabel];
+    [startTimelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(courseNameLl.mas_bottom).offset(5);
+        make.left.equalTo(courseNameLl);
     }];
+    
+//    滚动条
+//    UIScrollView * scrollview = [[UIScrollView alloc] init];
+//    [self.view addSubview:scrollview];
+//    [scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(topImgBotView.mas_bottom);
+//        make.left.bottom.right.equalTo(self.view);
+//    }];
     
     UIView *userLeftView = [[UIView alloc]init];
-    userLeftView.alpha = 0.8;
     userLeftView.backgroundColor = UIColor.blackColor;
     [self.view addSubview:userLeftView];
+    [userLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view);
+        make.top.equalTo(topImgBotView.mas_bottom).offset(0);
+        make.height.mas_equalTo(50);
+        make.width.equalTo(self.view.mas_width).multipliedBy(0.33);
+    }];
+    
     
     UILabel *getTimeLabel = [[UILabel alloc] init];
-    getTimeLabel.text = [NSString stringWithFormat:@"%d", _selectRoom.course.duration]; //@"5";
-    getTimeLabel.font = [UIFont systemFontOfSize:10];
+    getTimeLabel.text = [NSString stringWithFormat:@"%ld", (long)_selectRoom.duration]; //@"5";
+    getTimeLabel.font = [UIFont boldSystemFontOfSize:17];
     getTimeLabel.textColor= UIColor.whiteColor;
     getTimeLabel.adjustsFontSizeToFitWidth = YES;
     
     UILabel *timeLabel = [[UILabel alloc] init];
-    timeLabel.text = @"Time(mins)";
-    timeLabel.font = [UIFont systemFontOfSize:10];
+    timeLabel.text = ChineseStringOrENFun(@"时长(分)", @"Time(mins)");
+    timeLabel.font = [UIFont systemFontOfSize:13];
     timeLabel.textColor= UIColor.whiteColor;
 
     timeLabel.adjustsFontSizeToFitWidth = YES;
@@ -100,28 +128,35 @@
     [userLeftView addSubview:getTimeLabel];
     
     [getTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.centerY.equalTo(userLeftView);
+        make.centerX.equalTo(userLeftView);
+        make.top.equalTo(userLeftView).offset(5);
     }];
     
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(getTimeLabel.mas_bottom).offset(2);
+        make.top.equalTo(getTimeLabel.mas_bottom).offset(8);
         make.centerX.equalTo(userLeftView);
     }];
     
     UIView *userMidView = [[UIView alloc]init];
-//    userMidView.alpha = 0.7;
     userMidView.backgroundColor = UIColor.blackColor;
     [self.view addSubview:userMidView];
+    [userMidView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(userLeftView);
+        make.left.equalTo(userLeftView.mas_right);
+        make.height.mas_equalTo(50);
+        make.width.equalTo(self.view.mas_width).multipliedBy(0.34);
+    }];
+    
 
     UILabel *getHeartLabel = [[UILabel alloc] init];
-    getHeartLabel.text = @"0";
-    getHeartLabel.font = [UIFont systemFontOfSize:10];
+    getHeartLabel.text = _selectRoom.heart_rate;
+    getHeartLabel.font = [UIFont boldSystemFontOfSize:17];;
     getHeartLabel.textColor= UIColor.whiteColor;
     getHeartLabel.adjustsFontSizeToFitWidth = YES;
     
     UILabel *heartLabel = [[UILabel alloc] init];
-    heartLabel.text = @"Heart rate(Bpm)";
-    heartLabel.font = [UIFont systemFontOfSize:10];
+    heartLabel.text = ChineseStringOrENFun(@"心率(Bpm)", @"Heart rate(Bpm)");
+    heartLabel.font = [UIFont systemFontOfSize:13];
     heartLabel.textColor= UIColor.whiteColor;
     heartLabel.adjustsFontSizeToFitWidth = YES;
 
@@ -129,63 +164,52 @@
     [userMidView addSubview:getHeartLabel];
     
     [getHeartLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.centerY.equalTo(userMidView);
+        make.centerX.equalTo(userMidView);
+        make.top.equalTo(userMidView).offset(5);
     }];
-    
     [heartLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(getHeartLabel.mas_bottom).offset(2);
+        make.top.equalTo(getHeartLabel.mas_bottom).offset(8);
         make.centerX.equalTo(userMidView);
     }];
     
     
     UIView *userRightView = [[UIView alloc]init];
-    userRightView.alpha = 0.8;
     userRightView.backgroundColor = UIColor.blackColor;
     [self.view addSubview:userRightView];
+    [userRightView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(userLeftView);
+        make.right.equalTo(self.view);
+        make.height.equalTo(userLeftView);
+        make.left.equalTo(userMidView.mas_right);
+    }];
     
     UILabel *getKcalLabel = [[UILabel alloc] init];
-    getKcalLabel.text = [NSString stringWithFormat:@"%d", _selectRoom.course.cal];
-    getKcalLabel.font = [UIFont systemFontOfSize:10];
+    getKcalLabel.text = [NSString stringWithFormat:@"%@", _selectRoom.cal];
+    getKcalLabel.font = [UIFont boldSystemFontOfSize:17];;
     getKcalLabel.textColor= UIColor.whiteColor;
     getKcalLabel.adjustsFontSizeToFitWidth = YES;
     
     UILabel *kcalLabel = [[UILabel alloc] init];
-    kcalLabel.text = @"Consumption(Kcal)";
+    kcalLabel.text =ChineseStringOrENFun(@"卡路里(Kcal)", @"Consumption(Kcal)");
     kcalLabel.textColor= UIColor.whiteColor;
-    kcalLabel.font = [UIFont systemFontOfSize:10];
+    kcalLabel.font = [UIFont systemFontOfSize:13];
     kcalLabel.adjustsFontSizeToFitWidth = YES;
 
     [userRightView addSubview:kcalLabel];
     [userRightView addSubview:getKcalLabel];
     
     [getKcalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.centerY.equalTo(userRightView);
+        make.centerX.equalTo(userRightView);
+        make.top.equalTo(userRightView).offset(5);
     }];
     
     [kcalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(getKcalLabel.mas_bottom).offset(2);
+        make.top.equalTo(getKcalLabel.mas_bottom).offset(8);
         make.centerX.equalTo(userRightView);
     }];
     
-    [userLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(topImgView);
-        make.top.equalTo(topImgView.mas_bottom).offset(0);
-        make.height.mas_equalTo(50);
-        make.right.equalTo(userMidView.mas_left);
-    }];
-    
-    [userMidView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(userLeftView);
-        make.height.equalTo(userLeftView);
-        make.right.equalTo(userRightView.mas_left);
-    }];
-
-    [userRightView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(userLeftView);
-        make.right.equalTo(topImgView);
-        make.height.equalTo(userLeftView);
-        make.width.equalTo(@[userLeftView, userMidView]);
-    }];
+//    备注
+//    UILabel *vlabel
     
     UIView *coachView = [[UIView alloc] init];
     coachView.backgroundColor = UIColor.darkGrayColor;
@@ -244,7 +268,28 @@
     [programLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(programView).offset(10);
     }];
+}
+
+- (void)reachRoomDetailInfo
+{
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+
+        NSDictionary *baddyParams = @{
+                               @"event_id": self.selectRoom.event_id,
+                           };
+        [manager GET:@"room/detail" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            NSDictionary *roomJson = responseObject[@"recordset"];
+            self->_selectRoom = [[Room alloc] initWithJSON:roomJson];
+            [self addsubviews];
+          
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
     
+ 
 }
 
 - (void)viewWillAppear:(BOOL)animated{

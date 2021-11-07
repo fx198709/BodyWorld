@@ -121,8 +121,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if ([self.delegate respondsToSelector:@selector(didSelectLivingCellDelegateItemAtIndexPath:)]) {
-        [self.delegate didSelectLivingCellDelegateItemAtIndexPath:indexPath];
+    if (_dataArr.count > indexPath.row) {
+        Room *selectRoom = [_dataArr objectAtIndex: indexPath.row];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
+        CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
+        vc.selectRoom = selectRoom;
+        [[self viewController].navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -133,15 +138,7 @@
 }
 
 
-- (void)onClickCourseDetail:(UITapGestureRecognizer *)recognizer{
-    Room *selectRoom = [_dataArr objectAtIndex: recognizer.view.tag];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
-    CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
-    vc.selectRoom = selectRoom;
-    [[self viewController].navigationController pushViewController:vc animated:YES];
-}
-
+ 
 - (void)join:(UIButton *) recognizer{
     NSLog(@"join ----");
     Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];

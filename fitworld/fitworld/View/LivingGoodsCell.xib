@@ -63,9 +63,6 @@
                                 <state key="normal" title="JOIN CLASS" backgroundImage="action_button_bg_red">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="join:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Lee-Z1-SPp"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
