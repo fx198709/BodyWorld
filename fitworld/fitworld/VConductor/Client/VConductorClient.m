@@ -27,9 +27,9 @@
 @property (nonatomic, strong) VSRoomLoader *mRoomLoader;
 
 @property (nonatomic, strong) ClassRoom* mRoom;
-@property (nonatomic, strong) ClassMember* mMySession;
-@property (nonatomic, strong) ClassMember* mHostMember;
-@property (nonatomic, strong) NSMutableDictionary* mGuestMembers;
+@property (nonatomic, strong) ClassMember* mMySession; //自己
+@property (nonatomic, strong) ClassMember* mHostMember; //老师
+@property (nonatomic, strong) NSMutableDictionary* mGuestMembers; //其他成员
 
 @property (nonatomic, assign) BOOL mDoReport;
 @property (nonatomic, assign) BOOL mFirstReport;
@@ -507,6 +507,7 @@
 }
 
 - (void) onMemberJoin:(VSRoomUser*)user {
+//    获取一次全部的人员信息
   ClassMember *member = [[ClassMember alloc] initWith:user];
   if ([member isHost]) {
     [self setHostMember:member];

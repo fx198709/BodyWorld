@@ -46,8 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (VSVideoRender*)createVideoRender;
 - (void)destroyVideoRender:(VSVideoRender*)videoRender;
 
-- (ClassMember*)getMySession;
-- (ClassMember*)getHostMember;
+- (ClassMember*)getMySession; //自己
+- (ClassMember*)getHostMember; //老师 / 教练
 
 - (NSInteger)getElapsedSeconds;
 

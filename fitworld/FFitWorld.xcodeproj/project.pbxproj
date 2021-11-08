@@ -98,6 +98,8 @@
 		DD595ECE2736F5A000618D1A /* CourseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595ECB2736F5A000618D1A /* CourseDetailViewController.m */; };
 		DD595ED42736F88D00618D1A /* RoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595ED22736F88D00618D1A /* RoomVC.m */; };
 		DD595ED72736FBB800618D1A /* CoachModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595ED62736FBB800618D1A /* CoachModel.m */; };
+		DD595EDB2737D25800618D1A /* CreateCourseSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595ED92737D25800618D1A /* CreateCourseSuccessViewController.m */; };
+		DD595EDC2737D25800618D1A /* CreateCourseSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD595EDA2737D25800618D1A /* CreateCourseSuccessViewController.xib */; };
 		DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */; };
 		DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */; };
 		DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB1A272D1A45002B0A8E /* TableHeadview.m */; };
@@ -318,6 +320,9 @@
 		DD595ED32736F88D00618D1A /* RoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomVC.h; sourceTree = "<group>"; };
 		DD595ED52736FBB800618D1A /* CoachModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoachModel.h; sourceTree = "<group>"; };
 		DD595ED62736FBB800618D1A /* CoachModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoachModel.m; sourceTree = "<group>"; };
+		DD595ED82737D25800618D1A /* CreateCourseSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateCourseSuccessViewController.h; sourceTree = "<group>"; };
+		DD595ED92737D25800618D1A /* CreateCourseSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateCourseSuccessViewController.m; sourceTree = "<group>"; };
+		DD595EDA2737D25800618D1A /* CreateCourseSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateCourseSuccessViewController.xib; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		DD6EDB14272CE587002B0A8E /* SelectClassHeadview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectClassHeadview.h; sourceTree = "<group>"; };
 		DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectClassHeadview.m; sourceTree = "<group>"; };
@@ -881,6 +886,9 @@
 				DD595ED22736F88D00618D1A /* RoomVC.m */,
 				DD595EC92736F5A000618D1A /* CourseDetailViewController.h */,
 				DD595ECB2736F5A000618D1A /* CourseDetailViewController.m */,
+				DD595ED82737D25800618D1A /* CreateCourseSuccessViewController.h */,
+				DD595ED92737D25800618D1A /* CreateCourseSuccessViewController.m */,
+				DD595EDA2737D25800618D1A /* CreateCourseSuccessViewController.xib */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -1077,6 +1085,7 @@
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
 				DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */,
 				04552B3C2696C3FD00C78706 /* entypo.ttf in Resources */,
+				DD595EDC2737D25800618D1A /* CreateCourseSuccessViewController.xib in Resources */,
 				04CD2E4A26982A45007814E6 /* GoodsCell.xib in Resources */,
 				DD595EBE27364D0300618D1A /* MessageDetailViewController.xib in Resources */,
 				DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */,
@@ -1209,6 +1218,7 @@
 				04CD2E522698478C007814E6 /* UserInfo.m in Sources */,
 				04EC01F226BD8AC000DC0103 /* HeaderPanel.m in Sources */,
 				04747FBE27082BC700B3B5B8 /* PractiseStatic.m in Sources */,
+				DD595EDB2737D25800618D1A /* CreateCourseSuccessViewController.m in Sources */,
 				04EC01FB26BD8AC100DC0103 /* ConfigManager.m in Sources */,
 				DD595EBD27364D0300618D1A /* MessageDetailViewController.m in Sources */,
 				DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */,
