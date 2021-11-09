@@ -51,24 +51,6 @@ typedef NS_ENUM(NSInteger, SelecteMediaType){
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-/**
- *  
- *  新接口使用的方法
- *  @param URLString  <#URLString description#>
- *  @param moduleName    模块名称
- *  @param operationName 操作名称
- *  @param parameters    接口请求参数
- *  @param success       请求成功的block
- *  @param failure       请求失败的block
- *
- *  @return <#return value description#>
- */
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
-                    ModuleName:(NSString *)moduleName
-                 operationName:(NSString *)operationName
-                    parameters:(id)parameters
-                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 
 /**
@@ -119,15 +101,6 @@ typedef NS_ENUM(NSInteger, SelecteMediaType){
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 - (NSMutableDictionary *)addDefaultObjectTodic:(NSDictionary *)inDic;
-
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
-                    ModuleName:(NSString *)moduleName
-                 operationName:(NSString *)operationName
-                    parameters:(id)parameters
-                          file:(NSData *)fileData
-                     mediaType:(SelecteMediaType)mediaType
-                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 //获得设备型号
 - (NSString *)getCurrentDeviceInfoString;
 //系统版本号

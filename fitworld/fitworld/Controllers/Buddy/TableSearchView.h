@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol TableSearchViewDelegate <UIBarPositioningDelegate>
+@protocol TableSearchViewDelegate<NSObject>
 - (void)searhBarBtnClicked:(NSString*)searchString;
 - (void)allowOtherBtnClicked:(NSInteger)otherType;
 
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *titlelabel2;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchbarBtn;
 @property (nonatomic, assign) NSInteger canAllowOther;
-@property (nonatomic, weak)id<TableSearchViewDelegate> searchDelegate;
+@property (nonatomic, weak)id<TableSearchViewDelegate> searchviewDelegate;
 
 @end
 

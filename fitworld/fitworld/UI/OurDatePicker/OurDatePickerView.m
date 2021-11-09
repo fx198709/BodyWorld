@@ -102,7 +102,7 @@
         case YearMonDayAndHourMinute:
         {
             //IOS9 以下的选择器不太一样
-            
+           
                 int leftPickerWidth = 240;
                 if (width > 330) {
                     leftPickerWidth = 240*width/320;
@@ -195,7 +195,13 @@
             break;
     }
     
-    
+    if (self.miniDate) {
+        self.leftPicker.minimumDate = self.miniDate;
+    }
+    if (self.leftmaxDate) {
+        self.leftPicker.maximumDate = self.leftmaxDate;
+
+    }
     //底部按钮视图 对iPhone X 适配
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0,height - BottomButtonHeight,width,BottomButtonHeight)];
     bottomView.userInteractionEnabled = YES;

@@ -116,7 +116,9 @@
         datepickerView.pickerDelegate = self;
         datepickerView.pickerType = YearMonDayAndHourMinute;
         datepickerView.minuteInterval = 1;
-//        datepickerView.miniDate = [NSDate date];
+        
+        datepickerView.miniDate = [NSDate dateWithTimeIntervalSinceNow:0];
+        datepickerView.leftmaxDate = [NSDate dateWithTimeIntervalSinceNow:7*24*60*60];
         [datepickerView pickerViewWithView:self.view];
     }else{
         
