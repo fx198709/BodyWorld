@@ -44,7 +44,7 @@
         make.top.equalTo(_actionbackview.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
-    UIView *userlistView = [[UIView alloc] init];
+    UIView *userlistView = [[UIScrollView alloc] init];
     [_bottomScrollview addSubview:userlistView];
     [userlistView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_bottomScrollview);
@@ -52,6 +52,11 @@
         make.right.equalTo(_bottomScrollview).offset(-15);
         make.height.mas_equalTo(130);
     }];
+    
+//    for ( ; ; ) {
+//        <#statements#>
+//    }
+    
     
     UIView *courseDetailView = [[UIView alloc] init];
     [_bottomScrollview addSubview:courseDetailView];

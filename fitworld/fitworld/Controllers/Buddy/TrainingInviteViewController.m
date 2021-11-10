@@ -130,59 +130,59 @@
     if (frendIdArray.count > 0) {
         friendIds = [frendIdArray componentsJoinedByString:@","];
     }
+    NSString *allowWatch = _allowOtherType == 1?@"false":@"true";
     NSDictionary *baddyParams = @{
                            @"start_time": startTime,
                            @"friend_ids": friendIds,
                            @"course_id": _selectCourse.course_id,
-                           @"name": @"arms training",
-                           @"allow_watch": [NSNumber numberWithInteger:_allowOtherType]
+                           @"name": _selectCourse.name,
+                           @"allow_watch": allowWatch
                        };
     
 
 
-//    AFAppNetAPIClient *manager = [AFAppNetAPIClient sharedClient];
-//
-//    [manager POST:@"room/battle" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
-//        if ([[responseObject objectForKey:@"status"] longValue] == 0) {
-//            NSLog(@"responseObject ---- %@", responseObject);
-//            NSDictionary *dict = responseObject[@"recordset"];
-//            NSString *eventId = dict[@"event_id"];
-//            NSLog(@"eventId ----  %@", eventId);
-//
-//            NSString * nickName = @"123";
-//            CreateCourseSuccessViewController * successVC = [[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
-//            successVC.event_id = eventId;
-//            [self.navigationController pushViewController:successVC animated:YES];
-//        }
-//
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"error %@",error.description);
-//    }];
-    NSString *strUrl = [NSString stringWithFormat:@"%@room/battle", FITAPI_HTTPS_PREFIX];
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    [manager POST:strUrl parameters:baddyParams headers:nil progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject ---- %@", responseObject);
-        NSDictionary *dict = responseObject[@"recordset"];
-        NSString *eventId = dict[@"event_id"];
-        NSLog(@"eventId ----  %@", eventId);
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient sharedClient];
 
-        NSString * nickName = @"123";
-//        进入成功页面
-        
-        [ConfigManager sharedInstance].eventId = eventId;
-        [ConfigManager sharedInstance].nickName = nickName;
-        [[ConfigManager sharedInstance] saveConfig];
+    [manager POST:@"room/battle" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([[responseObject objectForKey:@"status"] longValue] == 0) {
+            NSLog(@"responseObject ---- %@", responseObject);
+            NSDictionary *dict = responseObject[@"recordset"];
+            NSString *eventId = dict[@"event_id"];
+            NSLog(@"eventId ----  %@", eventId);
 
-        NSDictionary *codeDict = @{@"eid":eventId, @"name":nickName};
-        RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
-        [self.navigationController pushViewController:roomVC animated:YES];
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       NSLog(@"failure ---- %@", error);
+            CreateCourseSuccessViewController * successVC = [[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
+            successVC.event_id = eventId;
+            [self.navigationController pushViewController:successVC animated:YES];
+        }
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error %@",error.description);
     }];
+//    NSString *strUrl = [NSString stringWithFormat:@"%@room/battle", FITAPI_HTTPS_PREFIX];
+//    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+//    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
+//    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+//    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+//    [manager POST:strUrl parameters:baddyParams headers:nil progress:nil
+//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"responseObject ---- %@", responseObject);
+//        NSDictionary *dict = responseObject[@"recordset"];
+//        NSString *eventId = dict[@"event_id"];
+//        NSLog(@"eventId ----  %@", eventId);
+//
+//        NSString * nickName = @"123";
+////        进入成功页面
+//
+//        [ConfigManager sharedInstance].eventId = eventId;
+//        [ConfigManager sharedInstance].nickName = nickName;
+//        [[ConfigManager sharedInstance] saveConfig];
+//
+//        NSDictionary *codeDict = @{@"eid":eventId, @"name":nickName};
+//        RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
+//        [self.navigationController pushViewController:roomVC animated:YES];
+//       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//       NSLog(@"failure ---- %@", error);
+//    }];
 }
 
 #pragma mark TableViewDelegate&DataSource
