@@ -13,6 +13,7 @@
 #import "UIDeps.h"
 #import "UserInfo.h"
 #import "MainViewController.h"
+#import "APPObjOnce.h"
 
 @interface LoginController ()
 
@@ -194,6 +195,7 @@
                 UINavigationController *vc = (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"mainNavVC"];
                 MainViewController *mainvc = [vc.viewControllers firstObject];
                 mainvc.userInfo = userInfo;
+                [APPObjOnce sharedAppOnce].currentUser = userInfo;
                 [self.view.window setRootViewController:vc];
             }
 

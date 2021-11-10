@@ -44,7 +44,7 @@
         make.top.equalTo(_actionbackview.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
-    UIView *userlistView = [[UIView alloc] init];
+    UIView *userlistView = [[UIScrollView alloc] init];
     [_bottomScrollview addSubview:userlistView];
     [userlistView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_bottomScrollview);
@@ -52,6 +52,11 @@
         make.right.equalTo(_bottomScrollview).offset(-15);
         make.height.mas_equalTo(130);
     }];
+    
+//    for ( ; ; ) {
+//        <#statements#>
+//    }
+    
     
     UIView *courseDetailView = [[UIView alloc] init];
     [_bottomScrollview addSubview:courseDetailView];
@@ -89,7 +94,21 @@
 
 
 - (void)startNowBtnClicked:(UIButton *)startNowBtn{
-    
+//http://1.117.70.210:8091/api/room/start_in_advance
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+
+    NSDictionary *baddyParams = @{
+                           @"event_id": self.event_id,
+                       };
+    [manager POST:@"room/start_in_advance" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSDictionary *roomJson = responseObject[@"recordset"];
+       
+      
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 
 /*

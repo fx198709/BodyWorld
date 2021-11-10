@@ -108,6 +108,8 @@
 		DD595EDC2737D25800618D1A /* CreateCourseSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD595EDA2737D25800618D1A /* CreateCourseSuccessViewController.xib */; };
 		DD595EE0273A68BE00618D1A /* TableSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD595EDE273A68BE00618D1A /* TableSearchView.xib */; };
 		DD595EE1273A68BE00618D1A /* TableSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EDF273A68BE00618D1A /* TableSearchView.m */; };
+		DD595EE7273BAF9A00618D1A /* APPObjOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EE6273BAF9A00618D1A /* APPObjOnce.m */; };
+		DD595EEA273BB15800618D1A /* UserHeadPicView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EE9273BB15800618D1A /* UserHeadPicView.m */; };
 		DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */; };
 		DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */; };
 		DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB1A272D1A45002B0A8E /* TableHeadview.m */; };
@@ -344,6 +346,10 @@
 		DD595EDD273A68BE00618D1A /* TableSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSearchView.h; sourceTree = "<group>"; };
 		DD595EDE273A68BE00618D1A /* TableSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableSearchView.xib; sourceTree = "<group>"; };
 		DD595EDF273A68BE00618D1A /* TableSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableSearchView.m; sourceTree = "<group>"; };
+		DD595EE5273BAF9900618D1A /* APPObjOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPObjOnce.h; sourceTree = "<group>"; };
+		DD595EE6273BAF9A00618D1A /* APPObjOnce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPObjOnce.m; sourceTree = "<group>"; };
+		DD595EE8273BB15800618D1A /* UserHeadPicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserHeadPicView.h; sourceTree = "<group>"; };
+		DD595EE9273BB15800618D1A /* UserHeadPicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserHeadPicView.m; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		DD6EDB14272CE587002B0A8E /* SelectClassHeadview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectClassHeadview.h; sourceTree = "<group>"; };
 		DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectClassHeadview.m; sourceTree = "<group>"; };
@@ -839,6 +845,8 @@
 		C8E2F71E27131B7600FEE021 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
+				DD595EE5273BAF9900618D1A /* APPObjOnce.h */,
+				DD595EE6273BAF9A00618D1A /* APPObjOnce.m */,
 				C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */,
 				C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */,
 				DD6EDB3F272D2FCD002B0A8E /* CommonTools.h */,
@@ -924,6 +932,8 @@
 				DD595ED82737D25800618D1A /* CreateCourseSuccessViewController.h */,
 				DD595ED92737D25800618D1A /* CreateCourseSuccessViewController.m */,
 				DD595EDA2737D25800618D1A /* CreateCourseSuccessViewController.xib */,
+				DD595EE8273BB15800618D1A /* UserHeadPicView.h */,
+				DD595EE9273BB15800618D1A /* UserHeadPicView.m */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -1216,6 +1226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */,
+				DD595EEA273BB15800618D1A /* UserHeadPicView.m in Sources */,
 				DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */,
 				DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */,
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,
@@ -1223,6 +1234,7 @@
 				047DC209268CD09900A3E37E /* main.m in Sources */,
 				DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */,
 				DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */,
+				DD595EE7273BAF9A00618D1A /* APPObjOnce.m in Sources */,
 				DD6EDB6B2734420C002B0A8E /* MessageListTableViewCell.m in Sources */,
 				DD595ECE2736F5A000618D1A /* CourseDetailViewController.m in Sources */,
 				04CD2E532698478C007814E6 /* BaseObject.m in Sources */,

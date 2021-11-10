@@ -2,6 +2,16 @@
 
 @implementation UserInfo
 
++ (instancetype)sharedUserInfo {
+    static UserInfo *_shareduser = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _shareduser = [[UserInfo alloc] init];
+    });
+    
+    return _shareduser;
+}
+
 - (instancetype)initWithJSON:(NSDictionary *)json
 {
     if (self = [super init]) {
