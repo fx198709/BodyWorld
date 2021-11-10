@@ -32,13 +32,22 @@
     self.navigationController.navigationBar.translucent = YES;
     
     self.view.backgroundColor = UIColor.blackColor;
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    //设置图片
-    [button setTitle:@"设置" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    if (@available(iOS 11, *)) {
+        [settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.equalTo(@40);
+        }];
+    } else {
+        [settingBtn setFrame:CGRectMake(0, 0, 40, 40)];
+    }
+    UIImage *bgImg = [UIImage imageNamed:@"center_setting"];
+    [settingBtn setImage:bgImg forState:UIControlStateNormal];
+    [settingBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [settingBtn addTarget:self action:@selector(onClickSetting) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingBtn];
     self.navigationItem.rightBarButtonItem = barButtonItem;
-    [button addTarget:self action:@selector(onClickSetting) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *topImgView = [[UIImageView alloc] init];
     topImgView.image = [UIImage imageNamed:@"coursedetail_top"];
@@ -67,10 +76,10 @@
     UILabel *nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 100, 100, 20)];
     nickNameLabel.adjustsFontSizeToFitWidth = YES;
     nickNameLabel.textColor = UIColor.whiteColor;
-//    nickNameLabel.text = self.userInfo.nickname;
+    //    nickNameLabel.text = self.userInfo.nickname;
     nickNameLabel.font = [UIFont systemFontOfSize:12];
     [topImgView addSubview:nickNameLabel];
-
+    
     UIView *leftView = [[UIView alloc] init];
     leftView.backgroundColor = UIColor.blackColor;
     [self.view addSubview:leftView];
@@ -155,7 +164,7 @@
     
     timesTxtLabel = [[UILabel alloc] init];
     timesTxtLabel.adjustsFontSizeToFitWidth = YES;
-//    timesTxtLabel.text = [NSString stringWithFormat:@"%@ times", practiseWeek.total];
+    //    timesTxtLabel.text = [NSString stringWithFormat:@"%@ times", practiseWeek.total];
     timesTxtLabel.textColor = UIColor.whiteColor;
     timesTxtLabel.font = [UIFont systemFontOfSize:12];
     [summaryBgView addSubview:timesTxtLabel];
@@ -240,7 +249,7 @@
     
     historyCountTxtLb = [[UILabel alloc] init];
     historyCountTxtLb.adjustsFontSizeToFitWidth = YES;
-//    historyCountTxtLb.text = @"XXX >";
+    //    historyCountTxtLb.text = @"XXX >";
     historyCountTxtLb.textColor = UIColor.whiteColor;
     historyCountTxtLb.font = [UIFont systemFontOfSize:12];
     [historyBgView addSubview:historyCountTxtLb];
@@ -297,7 +306,7 @@
     
     [self getPractiseWeek];
     [self getPractiseStatic];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -305,18 +314,18 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (void)onClickSetting{
     NSLog(@"onClickSetting");
-
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
     UIViewController *vc = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"systemVC"];
@@ -336,45 +345,45 @@
 
 - (void) getPractiseWeek
 {
-
+    
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     NSLog(@"initroom userToken ---- %@", userToken);
-
+    
     NSString *strUrl = [NSString stringWithFormat:@"%@practise/week", FITAPI_HTTPS_PREFIX];
     AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
     [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-
+    
     [manager GET:strUrl parameters:nil headers:nil progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObject ---- %@", responseObject);
         practiseWeek = [[PractiseWeek alloc] initWithJSON:responseObject[@"recordset"]];
         timesTxtLabel.text = [NSString stringWithFormat:@"%d times", practiseWeek.total];
         getKcalLabelw.text = [NSString stringWithFormat:@"%d", practiseWeek.cal];
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       NSLog(@"failure ---- %@", error);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failure ---- %@", error);
     }];
 }
 
 - (void) getPractiseStatic
 {
-
+    
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     NSLog(@"initroom userToken ---- %@", userToken);
-
+    
     NSString *strUrl = [NSString stringWithFormat:@"%@practise/statistic", FITAPI_HTTPS_PREFIX];
     AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
     [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-
+    
     [manager GET:strUrl parameters:nil headers:nil progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObject ---- %@", responseObject);
         PractiseStatic *practiseStatic = [[PractiseStatic alloc] initWithJSON:responseObject[@"recordset"]];
         historyCountTxtLb.text = [NSString stringWithFormat:@"%d", practiseStatic.total];
-
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       NSLog(@"failure ---- %@", error);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failure ---- %@", error);
     }];
 }
 

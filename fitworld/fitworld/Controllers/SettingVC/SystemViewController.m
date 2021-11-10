@@ -64,13 +64,14 @@
     self.navigationItem.title = ChineseStringOrENFun(@"系统设置",@"PERSONAL SETTING");
     
     [self initUI];
+    [self loadData];
 }
 
 - (void)initUI {
     self.pwdTitleLabel.text = ChineseStringOrENFun(@"修改密码", @"Change the password");
     self.headTitleLabel.text = ChineseStringOrENFun(@"头像", @"Head portrait");
     self.nickTitleLabel.text = ChineseStringOrENFun(@"昵称", @"Nickname");
-    self.heightTitleLabel.text = ChineseStringOrENFun(@"语言", @"Language");
+    self.languageTitleLabel.text = ChineseStringOrENFun(@"语言", @"Language");
     self.sexTitleLabel.text = ChineseStringOrENFun(@"性别", @"Gender");
     self.mobileTitleLabel.text = ChineseStringOrENFun(@"手机号", @"Telephone");
     self.birthdayTitleLabel.text = ChineseStringOrENFun(@"生日", @"Date of birth");
@@ -84,6 +85,12 @@
     [self.headImg cornerHalfWithBorderColor:[UIColor darkGrayColor]];
     [self.logoutBtn cornerWithRadius:4.0 borderColor:[self.logoutBtn backgroundColor]];
     
+}
+
+- (void)loadData {
+    self.languageLabel.text = ISChinese() ? @"中文" : @"English";
+    self.sexLabel.text = [ConfigManager sharedInstance].sex == 1 ? ChineseStringOrENFun(@"男", @"Female") : ChineseStringOrENFun(@"女", @"Male");
+    self.nickLabel.text = [ConfigManager sharedInstance].nickName;
 }
 
 //修改密码
