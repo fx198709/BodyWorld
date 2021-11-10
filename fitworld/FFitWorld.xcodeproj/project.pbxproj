@@ -77,6 +77,10 @@
 		04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8AA5A270DE974009B125A /* ResetPwdController.m */; };
 		A2723EDA273B779300388B01 /* UIView+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723ED8273B779300388B01 /* UIView+MT.m */; };
 		A2723EDE273B7A0000388B01 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDD273B7A0000388B01 /* BaseViewController.m */; };
+		A2723EE1273BA3C400388B01 /* NSString+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDF273BA3C400388B01 /* NSString+MT.m */; };
+		A2723EE7273BA9C300388B01 /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EE6273BA9C300388B01 /* UIView+HUD.m */; };
+		A2723EEA273BAD4100388B01 /* UIButton+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EE9273BAD4100388B01 /* UIButton+MT.m */; };
+		A2723EEE273BBE2100388B01 /* Enum.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EED273BBE2100388B01 /* Enum.m */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
@@ -282,6 +286,14 @@
 		A2723ED9273B779300388B01 /* UIView+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MT.h"; sourceTree = "<group>"; };
 		A2723EDC273B7A0000388B01 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		A2723EDD273B7A0000388B01 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		A2723EDF273BA3C400388B01 /* NSString+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MT.m"; sourceTree = "<group>"; };
+		A2723EE0273BA3C400388B01 /* NSString+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MT.h"; sourceTree = "<group>"; };
+		A2723EE5273BA9C300388B01 /* UIView+HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+HUD.h"; sourceTree = "<group>"; };
+		A2723EE6273BA9C300388B01 /* UIView+HUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+HUD.m"; sourceTree = "<group>"; };
+		A2723EE8273BAD4100388B01 /* UIButton+MT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+MT.h"; sourceTree = "<group>"; };
+		A2723EE9273BAD4100388B01 /* UIButton+MT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MT.m"; sourceTree = "<group>"; };
+		A2723EEC273BBE2100388B01 /* Enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
+		A2723EED273BBE2100388B01 /* Enum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Enum.m; sourceTree = "<group>"; };
 		A423B18EF7C9C23904AE150A /* Pods-FFitWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.release.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.release.xcconfig"; sourceTree = "<group>"; };
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
@@ -443,8 +455,6 @@
 				0462BD9926920BE8005827D1 /* MainViewController.m */,
 				0433B9AE26A7108E004AAD5B /* UserCenterViewController.h */,
 				0433B9AF26A7108E004AAD5B /* UserCenterViewController.m */,
-				0449F80326DE688D00DE49A4 /* SystemViewController.h */,
-				0449F80426DE688D00DE49A4 /* SystemViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -640,6 +650,7 @@
 		047DC1F2268CD09700A3E37E /* fitworld */ = {
 			isa = PBXGroup;
 			children = (
+				A2723EEB273BBDFD00388B01 /* Common */,
 				DD742587272942F9005D636E /* Category */,
 				DD25FEC5272012DC0092CF87 /* ThirdLib */,
 				C8E2F71E27131B7600FEE021 /* BaseClass */,
@@ -808,10 +819,21 @@
 		A2723EDB273B794D00388B01 /* SettingVC */ = {
 			isa = PBXGroup;
 			children = (
+				0449F80326DE688D00DE49A4 /* SystemViewController.h */,
+				0449F80426DE688D00DE49A4 /* SystemViewController.m */,
 				04F8AA5B270DE974009B125A /* ResetPwdController.h */,
 				04F8AA5A270DE974009B125A /* ResetPwdController.m */,
 			);
 			path = SettingVC;
+			sourceTree = "<group>";
+		};
+		A2723EEB273BBDFD00388B01 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A2723EEC273BBE2100388B01 /* Enum.h */,
+				A2723EED273BBE2100388B01 /* Enum.m */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		C8E2F71E27131B7600FEE021 /* BaseClass */ = {
@@ -1005,6 +1027,8 @@
 				DD74259E272942F9005D636E /* NSObject+YCExtension.m */,
 				DD742592272942F9005D636E /* NSString+YCExtension.h */,
 				DD7425AA272942F9005D636E /* NSString+YCExtension.m */,
+				A2723EE0273BA3C400388B01 /* NSString+MT.h */,
+				A2723EDF273BA3C400388B01 /* NSString+MT.m */,
 				DD74258B272942F9005D636E /* TZImagePickerController+Vedio.h */,
 				DD74259B272942F9005D636E /* TZImagePickerController+Vedio.m */,
 				DD7425A8272942F9005D636E /* UIActionSheet+YCExtension.h */,
@@ -1031,6 +1055,10 @@
 				DD7425A2272942F9005D636E /* UITextField+YCExtension.m */,
 				A2723ED9273B779300388B01 /* UIView+MT.h */,
 				A2723ED8273B779300388B01 /* UIView+MT.m */,
+				A2723EE5273BA9C300388B01 /* UIView+HUD.h */,
+				A2723EE6273BA9C300388B01 /* UIView+HUD.m */,
+				A2723EE8273BAD4100388B01 /* UIButton+MT.h */,
+				A2723EE9273BAD4100388B01 /* UIButton+MT.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1226,6 +1254,7 @@
 				DD25FEE627226B5A0092CF87 /* JYTitleLabel.m in Sources */,
 				04552B4E2696C3FD00C78706 /* ConsoleTextView.m in Sources */,
 				04552B552696C3FD00C78706 /* QRCodeReader.m in Sources */,
+				A2723EEE273BBE2100388B01 /* Enum.m in Sources */,
 				04552B3E2696C3FD00C78706 /* MaterialDesignSymbol.m in Sources */,
 				C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */,
 				047DC201268CD09700A3E37E /* fitworld.xcdatamodeld in Sources */,
@@ -1249,6 +1278,7 @@
 				047DC1F8268CD09700A3E37E /* SceneDelegate.m in Sources */,
 				DD6EDB4B272E7AF9002B0A8E /* AddPeopleTableViewCell.m in Sources */,
 				DD595EB82736224600618D1A /* NoDataCollectionViewCell.m in Sources */,
+				A2723EEA273BAD4100388B01 /* UIButton+MT.m in Sources */,
 				04EC01FE26BD8AC100DC0103 /* ClassRoom.mm in Sources */,
 				DD25FEEA27226B5A0092CF87 /* JYImageDownloader.m in Sources */,
 				DD6EDB5D272EFFFB002B0A8E /* TrainingViewController.m in Sources */,
@@ -1263,6 +1293,7 @@
 				DD595EC72736F10400618D1A /* UsermainMiddleView.m in Sources */,
 				DD595EE1273A68BE00618D1A /* TableSearchView.m in Sources */,
 				04EC020526BD8B0F00DC0103 /* RemoteView.m in Sources */,
+				A2723EE1273BA3C400388B01 /* NSString+MT.m in Sources */,
 				A2723EDE273B7A0000388B01 /* BaseViewController.m in Sources */,
 				DD595ED72736FBB800618D1A /* CoachModel.m in Sources */,
 				04EC01FC26BD8AC100DC0103 /* VConductorClient.m in Sources */,
@@ -1270,6 +1301,7 @@
 				04CD2E56269847F2007814E6 /* Course.m in Sources */,
 				DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */,
 				04EC01F726BD8AC100DC0103 /* GenerateTestUserSig.m in Sources */,
+				A2723EE7273BA9C300388B01 /* UIView+HUD.m in Sources */,
 				0433B9B026A7108E004AAD5B /* UserCenterViewController.m in Sources */,
 				04552B4F2696C3FD00C78706 /* UIView+YYAdd.m in Sources */,
 				04552B3B2696C3FD00C78706 /* JTMaterialSwitch.m in Sources */,

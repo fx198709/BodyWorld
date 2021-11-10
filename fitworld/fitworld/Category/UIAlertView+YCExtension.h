@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIAlertView (YCExtension)
+
 + (void)YCAlertViewDissmissNotic;
 
 @end

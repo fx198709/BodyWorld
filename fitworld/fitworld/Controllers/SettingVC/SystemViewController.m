@@ -70,18 +70,20 @@
     self.pwdTitleLabel.text = ChineseStringOrENFun(@"修改密码", @"Change the password");
     self.headTitleLabel.text = ChineseStringOrENFun(@"头像", @"Head portrait");
     self.nickTitleLabel.text = ChineseStringOrENFun(@"昵称", @"Nickname");
+    self.heightTitleLabel.text = ChineseStringOrENFun(@"语言", @"Language");
     self.sexTitleLabel.text = ChineseStringOrENFun(@"性别", @"Gender");
     self.mobileTitleLabel.text = ChineseStringOrENFun(@"手机号", @"Telephone");
     self.birthdayTitleLabel.text = ChineseStringOrENFun(@"生日", @"Date of birth");
     self.heightTitleLabel.text = ChineseStringOrENFun(@"身高", @"Height");
     self.weightTitleLabel.text = ChineseStringOrENFun(@"体重", @"Weight");
     self.cityTitleLabel.text = ChineseStringOrENFun(@"所在城市", @"Location");
-    self.introductionTitleLabel.text = ChineseStringOrENFun(@"介绍", @"Motto");
+    self.introductionTitleLabel.text = ChineseStringOrENFun(@"介绍", @"Introduction");
     
+    self.logoutBtn.titleLabel.text = ChineseStringOrENFun(@"退出登录", @"Logout");
     
     [self.headImg cornerHalfWithBorderColor:[UIColor darkGrayColor]];
     [self.logoutBtn cornerWithRadius:4.0 borderColor:[self.logoutBtn backgroundColor]];
-
+    
 }
 
 //修改密码
@@ -102,7 +104,35 @@
 
 //修改语言
 -(IBAction)changeLanguage:(id)sender {
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
+    [ac addAction:[UIAlertAction actionWithTitle:@"English" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showChangeLanguageTip:LanguageEnum_English];
+    }]];
+    
+    [ac addAction:[UIAlertAction actionWithTitle:@"中文" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showChangeLanguageTip:LanguageEnum_Chinese];
+    }]];
+    [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"取消", @"Cancel") style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:ac animated:YES completion:nil];
+}
+
+- (void)showChangeLanguageTip:(LanguageEnum)languageEnum {
+    NSString *tips = ChineseStringOrENFun(@"是否确认更改默认语言?", @"the display lauguage will been changed");
+    UIAlertController *alter = [UIAlertController alertControllerWithTitle:ChineseStringOrENFun(@"提示", @"tips") message:tips preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:ChineseStringOrENFun(@"确定", @"yes") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //保存当前语言
+        
+        [ConfigManager sharedInstance].language = languageEnum;
+        [[ConfigManager sharedInstance] saveConfig];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+    UIAlertAction *cancle = [UIAlertAction actionWithTitle:ChineseStringOrENFun(@"取消", @"no") style:UIAlertActionStyleCancel handler:nil];
+    [alter addAction:cancle];
+    [alter addAction:sure];
+    
+    [self presentViewController:alter animated:YES completion:nil];
 }
 
 //修改性别

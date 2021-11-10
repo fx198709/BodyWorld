@@ -11,6 +11,9 @@
 
 #import "UIView+Extension.h"
 #import "BaseObject.h"
+#import "Enum.h"
+#import "ConfigManager.h"
+
 // 屏幕尺寸
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -33,14 +36,9 @@
 #define WeakSelf  __weak typeof(self)wSelf = self;
 #define StrongSelf(inself)  __strong typeof(self)strongSelf = inself;
 
-static inline  int ISChinese(){
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-       NSArray* languagesArray = [defaults objectForKey:@"AppleLanguages"];
-       NSString* systemlanguage = [languagesArray objectAtIndex:0];
-    if([systemlanguage.lowercaseString containsString:@"zh-"]){
-        return YES;
-    }
-    return NO;
+//当前语言是不是中文
+static inline BOOL ISChinese(){
+    return [ConfigManager sharedInstance].language == LanguageEnum_Chinese;
 }
 
 UIKIT_STATIC_INLINE  NSString* ChineseOrENFun(BaseObject* obj, NSString* key){
