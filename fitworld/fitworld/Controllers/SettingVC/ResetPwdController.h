@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResetPwdController : BaseNavViewController
+@interface ResetPwdController : BaseViewController
 
 @end
 

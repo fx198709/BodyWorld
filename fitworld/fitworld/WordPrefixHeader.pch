@@ -13,6 +13,7 @@
 
 #endif /* WordPrefixHeader_pch */
 #import "BaseNavViewController.h"
+#import "BaseViewController.h"
 #import "MJRefresh.h"
 #import "Masonry.h"
 #import "UIScrollView+YCRefresh.h"

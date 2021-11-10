@@ -76,6 +76,7 @@
 		04F3E34526E9326000CEEC7D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3E34226E9325F00CEEC7D /* UIView+Extension.m */; };
 		04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8AA5A270DE974009B125A /* ResetPwdController.m */; };
 		A2723EDA273B779300388B01 /* UIView+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723ED8273B779300388B01 /* UIView+MT.m */; };
+		A2723EDE273B7A0000388B01 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDD273B7A0000388B01 /* BaseViewController.m */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
@@ -279,6 +280,8 @@
 		5A752F19D1ECDDD6A8BC1286 /* Pods-fitworld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitworld.release.xcconfig"; path = "Target Support Files/Pods-fitworld/Pods-fitworld.release.xcconfig"; sourceTree = "<group>"; };
 		A2723ED8273B779300388B01 /* UIView+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MT.m"; sourceTree = "<group>"; };
 		A2723ED9273B779300388B01 /* UIView+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MT.h"; sourceTree = "<group>"; };
+		A2723EDC273B7A0000388B01 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		A2723EDD273B7A0000388B01 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		A423B18EF7C9C23904AE150A /* Pods-FFitWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.release.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.release.xcconfig"; sourceTree = "<group>"; };
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
@@ -431,12 +434,11 @@
 				DD6EDB6227343601002B0A8E /* MessageList */,
 				DD6EDB50272EFFFB002B0A8E /* Buddy */,
 				DD6EDB57272EFFFB002B0A8E /* More */,
+				A2723EDB273B794D00388B01 /* SettingVC */,
 				0456192E26ECEC8A00C0973F /* RegisterController.h */,
 				0456192F26ECEC8A00C0973F /* RegisterController.m */,
 				041510D2268F02DE0039FCD1 /* LoginController.h */,
 				041510D3268F02DE0039FCD1 /* LoginController.m */,
-				04F8AA5B270DE974009B125A /* ResetPwdController.h */,
-				04F8AA5A270DE974009B125A /* ResetPwdController.m */,
 				0462BD9826920BE8005827D1 /* MainViewController.h */,
 				0462BD9926920BE8005827D1 /* MainViewController.m */,
 				0433B9AE26A7108E004AAD5B /* UserCenterViewController.h */,
@@ -803,6 +805,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A2723EDB273B794D00388B01 /* SettingVC */ = {
+			isa = PBXGroup;
+			children = (
+				04F8AA5B270DE974009B125A /* ResetPwdController.h */,
+				04F8AA5A270DE974009B125A /* ResetPwdController.m */,
+			);
+			path = SettingVC;
+			sourceTree = "<group>";
+		};
 		C8E2F71E27131B7600FEE021 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +821,8 @@
 				C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */,
 				DD6EDB3F272D2FCD002B0A8E /* CommonTools.h */,
 				DD6EDB40272D2FCD002B0A8E /* CommonTools.m */,
+				A2723EDC273B7A0000388B01 /* BaseViewController.h */,
+				A2723EDD273B7A0000388B01 /* BaseViewController.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1250,6 +1263,7 @@
 				DD595EC72736F10400618D1A /* UsermainMiddleView.m in Sources */,
 				DD595EE1273A68BE00618D1A /* TableSearchView.m in Sources */,
 				04EC020526BD8B0F00DC0103 /* RemoteView.m in Sources */,
+				A2723EDE273B7A0000388B01 /* BaseViewController.m in Sources */,
 				DD595ED72736FBB800618D1A /* CoachModel.m in Sources */,
 				04EC01FC26BD8AC100DC0103 /* VConductorClient.m in Sources */,
 				040CED0B269F294900818D76 /* Room.m in Sources */,

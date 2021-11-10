@@ -11,6 +11,9 @@
 #define ViewByNib(nibName) [UIView viewByNib:nibName]
 #define ViewByNibWithClass(class) [UIView viewByNib:NSStringFromClass(class)]
 
+#define MainSB [UIStoryboard storyboardWithName:@"Main" bundle:nil]
+#define VCBySBName(vcName) [MainSB instantiateViewControllerWithIdentifier:vcName]
+
 
 @interface UIView (MT)
 

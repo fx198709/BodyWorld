@@ -61,13 +61,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"系统设置";
-    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    
-    self.view.backgroundColor = UIColor.blackColor;
+    self.navigationItem.title = ChineseStringOrENFun(@"系统设置",@"PERSONAL SETTING");
     
     [self initUI];
 }
@@ -92,7 +86,8 @@
 
 //修改密码
 -(IBAction)changePwd:(id)sender {
-    
+    ResetPwdController *nextVC = VCBySBName(@"ResetPwdController");
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 //修改头像

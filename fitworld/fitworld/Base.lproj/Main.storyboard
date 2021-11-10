@@ -844,6 +844,34 @@
             </objects>
             <point key="canvasLocation" x="-5515.9420289855079" y="1690.8482142857142"/>
         </scene>
+        <!--Reset Pwd Controller-->
+        <scene sceneID="tZO-lo-jlI">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a7A-Zk-s2K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="ResetPwdController" id="j9Q-sr-FaW" customClass="ResetPwdController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="cFq-bZ-bpJ"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-4607" y="2608"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OiY-f2-5Sv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uUV-Mv-1K1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WfZ-8p-0Wq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="j9Q-sr-FaW" kind="relationship" relationship="rootViewController" id="pB8-q0-d72"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mt8-G2-4qP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5516" y="2608"/>
+        </scene>
     </scenes>
     <resources>
         <image name="btn_next" width="7.6666665077209473" height="12.666666984558105"/>
