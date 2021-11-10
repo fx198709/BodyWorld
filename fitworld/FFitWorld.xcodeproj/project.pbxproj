@@ -75,6 +75,7 @@
 		04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3E34126E9325F00CEEC7D /* CalendarView.m */; };
 		04F3E34526E9326000CEEC7D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3E34226E9325F00CEEC7D /* UIView+Extension.m */; };
 		04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8AA5A270DE974009B125A /* ResetPwdController.m */; };
+		A2723EDA273B779300388B01 /* UIView+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723ED8273B779300388B01 /* UIView+MT.m */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
@@ -276,6 +277,8 @@
 		2B12690FCE930C0C330FD2A9 /* Pods-FFitWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.debug.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.debug.xcconfig"; sourceTree = "<group>"; };
 		3D98A0204D3DA5201CEC3B5A /* Pods-fitworld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitworld.debug.xcconfig"; path = "Target Support Files/Pods-fitworld/Pods-fitworld.debug.xcconfig"; sourceTree = "<group>"; };
 		5A752F19D1ECDDD6A8BC1286 /* Pods-fitworld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitworld.release.xcconfig"; path = "Target Support Files/Pods-fitworld/Pods-fitworld.release.xcconfig"; sourceTree = "<group>"; };
+		A2723ED8273B779300388B01 /* UIView+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MT.m"; sourceTree = "<group>"; };
+		A2723ED9273B779300388B01 /* UIView+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MT.h"; sourceTree = "<group>"; };
 		A423B18EF7C9C23904AE150A /* Pods-FFitWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.release.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.release.xcconfig"; sourceTree = "<group>"; };
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
@@ -1013,6 +1016,8 @@
 				DD7425A0272942F9005D636E /* UITableViewController+Extension.m */,
 				DD74258D272942F9005D636E /* UITextField+YCExtension.h */,
 				DD7425A2272942F9005D636E /* UITextField+YCExtension.m */,
+				A2723ED9273B779300388B01 /* UIView+MT.h */,
+				A2723ED8273B779300388B01 /* UIView+MT.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1204,6 +1209,7 @@
 				04552B522696C3FD00C78706 /* QRCameraSwitchButton.m in Sources */,
 				DD6EDB5F272EFFFB002B0A8E /* CourseMoreController.m in Sources */,
 				04DA746A26A86E2600257963 /* YJPageControlView.m in Sources */,
+				A2723EDA273B779300388B01 /* UIView+MT.m in Sources */,
 				DD25FEE627226B5A0092CF87 /* JYTitleLabel.m in Sources */,
 				04552B4E2696C3FD00C78706 /* ConsoleTextView.m in Sources */,
 				04552B552696C3FD00C78706 /* QRCodeReader.m in Sources */,
