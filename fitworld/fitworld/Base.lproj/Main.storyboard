@@ -772,6 +772,8 @@
                         <outlet property="birthdayTitleLabel" destination="GA0-qH-4iy" id="Ewj-Ga-pf0"/>
                         <outlet property="cityLabel" destination="lOr-1X-MYs" id="r0m-Kd-95l"/>
                         <outlet property="cityTitleLabel" destination="Eaf-cZ-PqV" id="cUp-eE-EE8"/>
+                        <outlet property="genderLabel" destination="d9l-OH-1zM" id="tNQ-oB-mQX"/>
+                        <outlet property="genderTitleLabel" destination="pRY-gQ-cZN" id="bX5-Hk-FP4"/>
                         <outlet property="headImg" destination="8rK-o5-Brw" id="hPY-6f-Aoc"/>
                         <outlet property="headTitleLabel" destination="AFa-16-cfe" id="Fs0-0C-f1R"/>
                         <outlet property="heightLabel" destination="wXx-gt-jy9" id="e0l-YG-iXr"/>
@@ -786,8 +788,6 @@
                         <outlet property="nickLabel" destination="fgi-U5-gyT" id="quT-rw-ogq"/>
                         <outlet property="nickTitleLabel" destination="04K-2B-aHe" id="v1T-nk-IaB"/>
                         <outlet property="pwdTitleLabel" destination="1Lm-d2-Ahq" id="8YW-M1-lPu"/>
-                        <outlet property="sexLabel" destination="d9l-OH-1zM" id="tNQ-oB-mQX"/>
-                        <outlet property="sexTitleLabel" destination="pRY-gQ-cZN" id="bX5-Hk-FP4"/>
                         <outlet property="weightLabel" destination="CC3-fH-anT" id="n0i-sW-6N9"/>
                         <outlet property="weightTitleLabel" destination="I10-wg-gC5" id="GQn-TT-d1f"/>
                     </connections>

@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSString* eventId;
 @property (nonatomic, strong) NSString* nickName;
 @property (nonatomic, assign) LanguageEnum language;
-@property (nonatomic, assign) int sex;
 
 + (instancetype)sharedInstance;
 

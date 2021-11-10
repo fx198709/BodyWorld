@@ -8,9 +8,10 @@
 #import "SystemViewController.h"
 #import "ResetPwdController.h"
 #import "LoginController.h"
-#import "UIView+MT.h"
+#import "YYMySelectDatePickerView.h"
 
-@interface SystemViewController ()
+
+@interface SystemViewController () <YYMySelectDatePickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *pwdTitleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *headTitleLabel;
@@ -23,8 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *languageLabel;
 
 
-@property (weak, nonatomic) IBOutlet UILabel *sexTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sexLabel;
+@property (weak, nonatomic) IBOutlet UILabel *genderTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *genderLabel;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *mobileTitleLabel;
@@ -53,6 +54,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 
+@property (nonatomic, strong) YYMySelectDatePickerView *datePicker;
+
+
 @end
 
 @implementation SystemViewController
@@ -64,6 +68,10 @@
     self.navigationItem.title = ChineseStringOrENFun(@"系统设置",@"PERSONAL SETTING");
     
     [self initUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self loadData];
 }
 
@@ -72,7 +80,7 @@
     self.headTitleLabel.text = ChineseStringOrENFun(@"头像", @"Head portrait");
     self.nickTitleLabel.text = ChineseStringOrENFun(@"昵称", @"Nickname");
     self.languageTitleLabel.text = ChineseStringOrENFun(@"语言", @"Language");
-    self.sexTitleLabel.text = ChineseStringOrENFun(@"性别", @"Gender");
+    self.genderTitleLabel.text = ChineseStringOrENFun(@"性别", @"Gender");
     self.mobileTitleLabel.text = ChineseStringOrENFun(@"手机号", @"Telephone");
     self.birthdayTitleLabel.text = ChineseStringOrENFun(@"生日", @"Date of birth");
     self.heightTitleLabel.text = ChineseStringOrENFun(@"身高", @"Height");
@@ -89,9 +97,25 @@
 
 - (void)loadData {
     self.languageLabel.text = ISChinese() ? @"中文" : @"English";
-    self.sexLabel.text = [ConfigManager sharedInstance].sex == 1 ? ChineseStringOrENFun(@"男", @"Female") : ChineseStringOrENFun(@"女", @"Male");
-    self.nickLabel.text = [ConfigManager sharedInstance].nickName;
+
+    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
+    
+    self.nickLabel.text = user.nickname;
+    self.genderLabel.text = SexNameFormGender(user.gender);
+    self.birthdayLabel.text = user.birthday;
+    
 }
+
+- (YYMySelectDatePickerView *)datePicker {
+    if (_datePicker == nil) {
+        _datePicker = ViewByNibWithClass([YYMySelectDatePickerView class]);
+        _datePicker.delegate = self;
+    }
+    return _datePicker;
+}
+
+#pragma mark - Action
+
 
 //修改密码
 -(IBAction)changePwd:(id)sender {
@@ -144,8 +168,28 @@
 
 //修改性别
 -(IBAction)changeSex:(id)sender {
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
+    [ac addAction:[UIAlertAction actionWithTitle:SexNameFormGender(GenderEnum_Male) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self changeSexFromServer:GenderEnum_Male];
+    }]];
+    
+    [ac addAction:[UIAlertAction actionWithTitle:SexNameFormGender(GenderEnum_Female) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self changeSexFromServer:GenderEnum_Female];
+    }]];
+    
+    [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"取消", @"Cancel") style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:ac animated:YES completion:nil];
 }
+
+- (void)changeSexFromServer:(GenderEnum)gender {
+    //todo:
+    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
+    user.gender = gender;
+    [self loadData];
+}
+
 
 //修改手机号
 -(IBAction)changeMobile:(id)sender {
@@ -154,7 +198,7 @@
 
 //修改生日
 -(IBAction)changeBirthday:(id)sender {
-    
+    [self.datePicker showWithAnimated:YES completedBlock:nil];
 }
 
 //修改身高
@@ -199,5 +243,18 @@
     [super didReceiveMemoryWarning];
 }
 
+
+#pragma mark - YYMySelectDatePickerViewDelegate
+
+- (void)selectDatePickerDidSelectDate:(NSDate *)date {
+    //todo
+
+    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
+    user.birthday =  [date mt_formatString:YYDateFormatter_Year];;
+    [self loadData];
+}
+
+- (void)selectDatePickerDidClickCancel {
+}
 
 @end

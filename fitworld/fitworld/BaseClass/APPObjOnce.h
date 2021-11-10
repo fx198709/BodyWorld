@@ -10,8 +10,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface APPObjOnce : NSObject
+
 @property (nonatomic, strong) UserInfo *currentUser;
+
+
 + (instancetype)sharedAppOnce;
+
 @end
 
 NS_ASSUME_NONNULL_END

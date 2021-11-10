@@ -41,10 +41,9 @@
     
     NSString *lanStr = [[NSUserDefaults standardUserDefaults] objectForKey:LANGUAGE_KEY];
     if(lanStr == nil) {
-        //根据系统语言判断
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        NSArray* languagesArray = [defaults objectForKey:@"AppleLanguages"];
-        NSString* systemlanguage = [languagesArray objectAtIndex:0];
+           NSArray* languagesArray = [defaults objectForKey:@"AppleLanguages"];
+           NSString* systemlanguage = [languagesArray objectAtIndex:0];
         if([systemlanguage.lowercaseString containsString:@"zh-"]){
             self.language = LanguageEnum_Chinese;
         } else {
