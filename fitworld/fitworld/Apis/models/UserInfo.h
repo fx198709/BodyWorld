@@ -40,4 +40,6 @@
 
 - (BOOL)isEqualToUserInfo:(UserInfo *)userInfo;
 
++ (instancetype)sharedUserInfo;
+
 @end

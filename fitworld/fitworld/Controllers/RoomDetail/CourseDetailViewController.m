@@ -10,6 +10,7 @@
 #import "FITAPI.h"
 #import "ConfigManager.h"
 #import "RoomVC.h"
+#import "APPObjOnce.h"
 
 @interface CourseDetailViewController ()
 
@@ -314,7 +315,7 @@
 
 - (void) joinClass{
     NSLog(@"inviteStart ----  ");
-    NSString * nickName = @"123";
+    NSString * nickName = [APPObjOnce sharedAppOnce].currentUser.nickname;
     [ConfigManager sharedInstance].eventId = _selectRoom.event_id;
     [ConfigManager sharedInstance].nickName = nickName;
     [[ConfigManager sharedInstance] saveConfig];

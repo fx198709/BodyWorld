@@ -89,7 +89,21 @@
 
 
 - (void)startNowBtnClicked:(UIButton *)startNowBtn{
-    
+//http://1.117.70.210:8091/api/room/start_in_advance
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+
+    NSDictionary *baddyParams = @{
+                           @"event_id": self.event_id,
+                       };
+    [manager POST:@"room/start_in_advance" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSDictionary *roomJson = responseObject[@"recordset"];
+       
+      
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 
 /*
