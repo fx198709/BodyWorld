@@ -9,6 +9,7 @@
 #import "ResetPwdController.h"
 #import "LoginController.h"
 #import "YYMySelectDatePickerView.h"
+#import "ChangeInfoViewController.h"
 
 
 @interface SystemViewController () <YYMySelectDatePickerViewDelegate>
@@ -193,7 +194,7 @@
 
 //修改手机号
 -(IBAction)changeMobile:(id)sender {
-    
+    //不能修改手机号
 }
 
 //修改生日
@@ -203,12 +204,12 @@
 
 //修改身高
 -(IBAction)changeHeight:(id)sender {
-    
+    [self goToChangeInfoViewController:ChangeTypeEnum_Height];
 }
 
 //修改体重
 -(IBAction)changeWeight:(id)sender {
-    
+    [self goToChangeInfoViewController:ChangeTypeEnum_Weight];
 }
 
 //修改所在城市
@@ -218,9 +219,14 @@
 
 //修改介绍
 -(IBAction)ChangeIntroduction:(id)sender {
-    
+    [self goToChangeInfoViewController:ChangeTypeEnum_Info];
 }
 
+//跳转到修改页面
+- (void)goToChangeInfoViewController:(ChangeTypeEnum)type {
+    ChangeInfoViewController *nextVC = VCBySBName(@"ChangeInfoViewController");
+    [self.navigationController pushViewController:nextVC animated:YES];
+}
 
 - (IBAction)loginOut:(id)sender {
     UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"确定退出？" message:@"" preferredStyle:UIAlertControllerStyleAlert];

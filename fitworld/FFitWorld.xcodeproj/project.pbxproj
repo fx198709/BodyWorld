@@ -85,6 +85,7 @@
 		A2723EF3273BCFA100388B01 /* YYMySelectDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2723EF1273BCFA100388B01 /* YYMySelectDatePickerView.xib */; };
 		A2723EF6273BD07700388B01 /* NSDate+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EF5273BD07700388B01 /* NSDate+MT.m */; };
 		A2723EF9273BD16500388B01 /* UIView+MTWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EF7273BD16500388B01 /* UIView+MTWindow.m */; };
+		A2723EFC273BD3D200388B01 /* ChangeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EFB273BD3D200388B01 /* ChangeInfoViewController.m */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
@@ -307,6 +308,8 @@
 		A2723EF5273BD07700388B01 /* NSDate+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MT.m"; sourceTree = "<group>"; };
 		A2723EF7273BD16500388B01 /* UIView+MTWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MTWindow.m"; sourceTree = "<group>"; };
 		A2723EF8273BD16500388B01 /* UIView+MTWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MTWindow.h"; sourceTree = "<group>"; };
+		A2723EFA273BD3D200388B01 /* ChangeInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeInfoViewController.h; sourceTree = "<group>"; };
+		A2723EFB273BD3D200388B01 /* ChangeInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeInfoViewController.m; sourceTree = "<group>"; };
 		A423B18EF7C9C23904AE150A /* Pods-FFitWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.release.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.release.xcconfig"; sourceTree = "<group>"; };
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
@@ -843,6 +846,8 @@
 				0449F80426DE688D00DE49A4 /* SystemViewController.m */,
 				04F8AA5B270DE974009B125A /* ResetPwdController.h */,
 				04F8AA5A270DE974009B125A /* ResetPwdController.m */,
+				A2723EFA273BD3D200388B01 /* ChangeInfoViewController.h */,
+				A2723EFB273BD3D200388B01 /* ChangeInfoViewController.m */,
 			);
 			path = SettingVC;
 			sourceTree = "<group>";
@@ -1316,6 +1321,7 @@
 				DD25FEEA27226B5A0092CF87 /* JYImageDownloader.m in Sources */,
 				DD6EDB5D272EFFFB002B0A8E /* TrainingViewController.m in Sources */,
 				DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */,
+				A2723EFC273BD3D200388B01 /* ChangeInfoViewController.m in Sources */,
 				DD6EDB6627343624002B0A8E /* MessageListViewController.m in Sources */,
 				04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */,
 				04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */,
