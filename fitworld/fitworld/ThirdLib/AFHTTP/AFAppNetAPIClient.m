@@ -63,8 +63,13 @@
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
+
+    [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+    [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
-    return nil;
+    return [self POST:strUrl parameters:parameters headers:nil progress:nil success:success failure:failure];
     
 }
 

@@ -58,8 +58,9 @@
                     <color key="textColor" red="0.69803921568627447" green="0.69803921568627447" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <searchBar contentMode="redraw" barStyle="blackTranslucent" placeholder="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="eDC-cK-Q2z">
+                <searchBar contentMode="redraw" barStyle="black" placeholder="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="eDC-cK-Q2z">
                     <rect key="frame" x="24" y="72" width="366" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="a6O-77-rdv"/>
                     </constraints>

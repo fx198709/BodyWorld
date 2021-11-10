@@ -6,6 +6,7 @@
 //
 
 #import "TableSearchView.h"
+#import "UIImage+Extension.h"
 
 @implementation TableSearchView
 
@@ -18,9 +19,20 @@
 */
 - (void)awakeFromNib{
     [super awakeFromNib];
+    _canAllowOther = 1;
     _titleLabel1.text = ChineseStringOrENFun(@"本次对练是否允许随机陌生人加入", @"本次对练是否允许随机陌生人加入");
     _titlelabel2.text = ChineseStringOrENFun(@"您可邀请好友参加对练（最多5个，在列表勾选或搜索）", @"您可邀请好友参加对练（最多5个，在列表勾选或搜索）");
     self.searchbarBtn.delegate = self;
+    _searchbarBtn.backgroundColor = [UIColor clearColor];
+    _searchbarBtn.showsCancelButton = YES;
+    _searchbarBtn.backgroundColor = BuddyTableBackColor;
+    
+    for (UIView *subView in _searchbarBtn.subviews) {
+        if ([subView isKindOfClass:[UIView  class]]) {
+            [[subView.subviews objectAtIndex:0] removeFromSuperview];
+        }
+    }
+    _searchbarBtn.backgroundImage = [UIImage imageWithColor:[UIColor clearColor]];
     [_selectedBtn addTarget:self action:@selector(canAllowOtherPeople ) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -36,16 +48,24 @@
     [_selectedBtn setTitle:@"" forState:UIControlStateNormal];
     [_selectedBtn setImage:currentimage forState:UIControlStateHighlighted];
     [_selectedBtn setImage:currentimage forState:UIControlStateNormal];
-    if ([_searchDelegate respondsToSelector:@selector(allowOtherBtnClicked:)]) {
-        [_searchDelegate allowOtherBtnClicked:_canAllowOther];
+    if ([_searchviewDelegate respondsToSelector:@selector(allowOtherBtnClicked:)]) {
+        [_searchviewDelegate allowOtherBtnClicked:_canAllowOther];
     }
 
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    if ([_searchDelegate respondsToSelector:@selector(searhBarBtnClicked:)]) {
-        [_searchDelegate searhBarBtnClicked:searchBar.text];
+    if ([_searchviewDelegate respondsToSelector:@selector(searhBarBtnClicked:)]) {
+        [_searchviewDelegate searhBarBtnClicked:searchBar.text];
     }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [self endEditing:YES];
+//    清除所有的
+//    if ([_searchviewDelegate respondsToSelector:@selector(searhBarBtnClicked:)]) {
+//        [_searchviewDelegate searhBarBtnClicked:@""];
+//    }
 }
 
 

@@ -17,8 +17,9 @@
 #import "SelectClassHeadview.h"
 #import "TableSearchView.h"
 #import "AddPeopleTableViewCell.h"
+#import "CreateCourseSuccessViewController.h"
 
-@interface TrainingInviteViewController ()<UITableViewDelegate, UITableViewDataSource>{
+@interface TrainingInviteViewController ()<UITableViewDelegate, UITableViewDataSource,TableSearchViewDelegate>{
     BOOL isLoading;
     int _pageCount;
     BOOL _isLoadAllData; //是否加载所有的数据，每次刷新的时候，都设置成no， 接口返回的数据小于需要的数量时，设置成yes
@@ -61,6 +62,7 @@
     
     TableSearchView *tableSearchView = (TableSearchView *)[[[NSBundle mainBundle] loadNibNamed:@"TableSearchView" owner:self options:nil] lastObject];
     [self.view addSubview:tableSearchView];
+    tableSearchView.searchviewDelegate = self;
     [tableSearchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(tableheadview.mas_bottom);
         make.left.equalTo(self.view.mas_left);
@@ -110,6 +112,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
 }
 
@@ -125,12 +128,13 @@
         
     }
     friendIds = [frendIdArray componentsJoinedByString:@","];
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+//    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
 
     NSString *strUrl = [NSString stringWithFormat:@"%@room/battle", FITAPI_HTTPS_PREFIX];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+//    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
+//    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+//    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient sharedClient];
     NSDictionary *baddyParams = @{
                            @"start_time": startTime,
                            @"friend_ids": friendIds,
@@ -138,24 +142,42 @@
                            @"name": @"arms training",
                            @"allow_watch": [NSNumber numberWithInteger:_allowOtherType]
                        };
-    [manager POST:strUrl parameters:baddyParams headers:nil progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject ---- %@", responseObject);
-        NSDictionary *dict = responseObject[@"recordset"];
-        NSString *eventId = dict[@"event_id"];
-        NSLog(@"eventId ----  %@", eventId);
+    [manager POST:@"room/battle" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([[responseObject objectForKey:@"status"] longValue] == 0) {
+            NSLog(@"responseObject ---- %@", responseObject);
+            NSDictionary *dict = responseObject[@"recordset"];
+            NSString *eventId = dict[@"event_id"];
+            NSLog(@"eventId ----  %@", eventId);
 
-        NSString * nickName = @"123";
-        [ConfigManager sharedInstance].eventId = eventId;
-        [ConfigManager sharedInstance].nickName = nickName;
-        [[ConfigManager sharedInstance] saveConfig];
-
-        NSDictionary *codeDict = @{@"eid":eventId, @"name":nickName};
-        RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
-        [self.navigationController pushViewController:roomVC animated:YES];
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       NSLog(@"failure ---- %@", error);
+            NSString * nickName = @"123";
+            CreateCourseSuccessViewController * successVC = [[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
+            successVC.event_id = eventId;
+            [self.navigationController pushViewController:successVC animated:YES];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
     }];
+//    [manager POST:strUrl parameters:baddyParams headers:nil progress:nil
+//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"responseObject ---- %@", responseObject);
+//        NSDictionary *dict = responseObject[@"recordset"];
+//        NSString *eventId = dict[@"event_id"];
+//        NSLog(@"eventId ----  %@", eventId);
+//
+//        NSString * nickName = @"123";
+//        进入成功页面
+        
+//        [ConfigManager sharedInstance].eventId = eventId;
+//        [ConfigManager sharedInstance].nickName = nickName;
+//        [[ConfigManager sharedInstance] saveConfig];
+//
+//        NSDictionary *codeDict = @{@"eid":eventId, @"name":nickName};
+//        RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
+//        [self.navigationController pushViewController:roomVC animated:YES];
+//       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//       NSLog(@"failure ---- %@", error);
+//    }];
 }
 
 #pragma mark TableViewDelegate&DataSource
@@ -379,6 +401,7 @@
 - (void)searhBarBtnClicked:(NSString*)searchString{
     _searchString = searchString;
     [self headerRereshing];
+    [self.view endEditing:YES];
 }
 - (void)allowOtherBtnClicked:(NSInteger)otherType{
     _allowOtherType = otherType;

@@ -10,6 +10,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CreateCourseSuccessViewController : BaseNavViewController
+@property (weak, nonatomic) IBOutlet UIButton *tillBtn;
+@property (weak, nonatomic) IBOutlet UIButton *startNowBtn;
+@property (weak, nonatomic) IBOutlet UIView *actionbackview;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *actionBtnTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tillBtnHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *headview;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *headTitle;
+
+@property (nonatomic, strong) NSString * event_id;
 
 @end
 
