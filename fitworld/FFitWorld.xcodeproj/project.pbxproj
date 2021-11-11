@@ -78,7 +78,6 @@
 		A2723EDA273B779300388B01 /* UIView+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723ED8273B779300388B01 /* UIView+MT.m */; };
 		A2723EDE273B7A0000388B01 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDD273B7A0000388B01 /* BaseViewController.m */; };
 		A2723EE1273BA3C400388B01 /* NSString+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDF273BA3C400388B01 /* NSString+MT.m */; };
-		A2723EE7273BA9C300388B01 /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EE6273BA9C300388B01 /* UIView+HUD.m */; };
 		A2723EEA273BAD4100388B01 /* UIButton+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EE9273BAD4100388B01 /* UIButton+MT.m */; };
 		A2723EEE273BBE2100388B01 /* Enum.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EED273BBE2100388B01 /* Enum.m */; };
 		A2723EF2273BCFA100388B01 /* YYMySelectDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EEF273BCFA100388B01 /* YYMySelectDatePickerView.m */; };
@@ -91,6 +90,8 @@
 		A2723F05273CF1BC00388B01 /* SelectCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F04273CF1BC00388B01 /* SelectCountryViewController.m */; };
 		A2723F09273CF22F00388B01 /* SelectCountryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F07273CF22F00388B01 /* SelectCountryCell.m */; };
 		A2723F0A273CF22F00388B01 /* SelectCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2723F08273CF22F00388B01 /* SelectCountryCell.xib */; };
+		A2723F0D273D087900388B01 /* MTHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F0C273D087900388B01 /* MTHUD.m */; };
+		A2723F10273D090E00388B01 /* UIColor+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F0F273D090E00388B01 /* UIColor+MT.m */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
@@ -300,8 +301,6 @@
 		A2723EDD273B7A0000388B01 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		A2723EDF273BA3C400388B01 /* NSString+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MT.m"; sourceTree = "<group>"; };
 		A2723EE0273BA3C400388B01 /* NSString+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MT.h"; sourceTree = "<group>"; };
-		A2723EE5273BA9C300388B01 /* UIView+HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+HUD.h"; sourceTree = "<group>"; };
-		A2723EE6273BA9C300388B01 /* UIView+HUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+HUD.m"; sourceTree = "<group>"; };
 		A2723EE8273BAD4100388B01 /* UIButton+MT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+MT.h"; sourceTree = "<group>"; };
 		A2723EE9273BAD4100388B01 /* UIButton+MT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MT.m"; sourceTree = "<group>"; };
 		A2723EEC273BBE2100388B01 /* Enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
@@ -324,6 +323,10 @@
 		A2723F06273CF22F00388B01 /* SelectCountryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCountryCell.h; sourceTree = "<group>"; };
 		A2723F07273CF22F00388B01 /* SelectCountryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCountryCell.m; sourceTree = "<group>"; };
 		A2723F08273CF22F00388B01 /* SelectCountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCountryCell.xib; sourceTree = "<group>"; };
+		A2723F0B273D087900388B01 /* MTHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTHUD.h; sourceTree = "<group>"; };
+		A2723F0C273D087900388B01 /* MTHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHUD.m; sourceTree = "<group>"; };
+		A2723F0E273D090E00388B01 /* UIColor+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MT.h"; sourceTree = "<group>"; };
+		A2723F0F273D090E00388B01 /* UIColor+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MT.m"; sourceTree = "<group>"; };
 		A423B18EF7C9C23904AE150A /* Pods-FFitWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.release.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.release.xcconfig"; sourceTree = "<group>"; };
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
@@ -1067,6 +1070,8 @@
 			children = (
 				A2723F01273CC9FE00388B01 /* BaseJSONModel.h */,
 				A2723F00273CC9FD00388B01 /* BaseJSONModel.m */,
+				A2723F0B273D087900388B01 /* MTHUD.h */,
+				A2723F0C273D087900388B01 /* MTHUD.m */,
 				DD7425AC272942F9005D636E /* NSArray+YCCategory.h */,
 				DD74259A272942F9005D636E /* NSArray+YCCategory.m */,
 				DD74258E272942F9005D636E /* NSDate+Extension.h */,
@@ -1093,6 +1098,8 @@
 				DD7425A7272942F9005D636E /* UIBarButtonItem+Extension.m */,
 				A2723EE8273BAD4100388B01 /* UIButton+MT.h */,
 				A2723EE9273BAD4100388B01 /* UIButton+MT.m */,
+				A2723F0E273D090E00388B01 /* UIColor+MT.h */,
+				A2723F0F273D090E00388B01 /* UIColor+MT.m */,
 				DD7425A6272942F9005D636E /* UIImage+Extension.h */,
 				DD742597272942F9005D636E /* UIImage+Extension.m */,
 				DD7425A4272942F9005D636E /* UILabel+ChangeLineSpaceAndWordSpace.h */,
@@ -1109,8 +1116,6 @@
 				DD7425A0272942F9005D636E /* UITableViewController+Extension.m */,
 				DD74258D272942F9005D636E /* UITextField+YCExtension.h */,
 				DD7425A2272942F9005D636E /* UITextField+YCExtension.m */,
-				A2723EE5273BA9C300388B01 /* UIView+HUD.h */,
-				A2723EE6273BA9C300388B01 /* UIView+HUD.m */,
 				A2723ED9273B779300388B01 /* UIView+MT.h */,
 				A2723ED8273B779300388B01 /* UIView+MT.m */,
 				A2723EF8273BD16500388B01 /* UIView+MTWindow.h */,
@@ -1307,6 +1312,7 @@
 				04552B4D2696C3FD00C78706 /* UIImage+ImageEffects.m in Sources */,
 				DD6EDB5E272EFFFB002B0A8E /* TrainingInviteViewController.m in Sources */,
 				04552B3A2696C3FD00C78706 /* MaterialDesignColor.m in Sources */,
+				A2723F0D273D087900388B01 /* MTHUD.m in Sources */,
 				04552B512696C3FD00C78706 /* QRToggleTorchButton.m in Sources */,
 				0422BDBD269C98300084000B /* Plan.m in Sources */,
 				04552B542696C3FD00C78706 /* QRCodeReaderView.m in Sources */,
@@ -1331,6 +1337,7 @@
 				04747FBE27082BC700B3B5B8 /* PractiseStatic.m in Sources */,
 				DD595EDB2737D25800618D1A /* CreateCourseSuccessViewController.m in Sources */,
 				04EC01FB26BD8AC100DC0103 /* ConfigManager.m in Sources */,
+				A2723F10273D090E00388B01 /* UIColor+MT.m in Sources */,
 				DD595EBD27364D0300618D1A /* MessageDetailViewController.m in Sources */,
 				DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */,
 				A2723F05273CF1BC00388B01 /* SelectCountryViewController.m in Sources */,
@@ -1368,7 +1375,6 @@
 				04CD2E56269847F2007814E6 /* Course.m in Sources */,
 				DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */,
 				04EC01F726BD8AC100DC0103 /* GenerateTestUserSig.m in Sources */,
-				A2723EE7273BA9C300388B01 /* UIView+HUD.m in Sources */,
 				0433B9B026A7108E004AAD5B /* UserCenterViewController.m in Sources */,
 				04552B4F2696C3FD00C78706 /* UIView+YYAdd.m in Sources */,
 				04552B3B2696C3FD00C78706 /* JTMaterialSwitch.m in Sources */,

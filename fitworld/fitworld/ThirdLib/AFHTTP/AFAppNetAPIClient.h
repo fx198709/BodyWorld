@@ -52,6 +52,20 @@ typedef NS_ENUM(NSInteger, SelecteMediaType){
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 
+/**
+ 覆盖AFHTTPSessionManager方法  添加了安全访问的内容
+ 
+ @param 请求的url
+ @param 请求的参数
+ @param 请求成功的block
+ @param 请求失败的block
+ 
+ @see -dataTaskWithRequest:completionHandler:
+ */
+- (NSURLSessionDataTask *)PUT:(NSString *)URLString
+                    parameters:(id)parameters
+                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 /**
  覆盖AFHTTPSessionManager方法  添加了安全访问的内容
@@ -99,6 +113,7 @@ typedef NS_ENUM(NSInteger, SelecteMediaType){
                           file:(NSData*)fileData
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 
 - (NSMutableDictionary *)addDefaultObjectTodic:(NSDictionary *)inDic;
 //获得设备型号

@@ -74,43 +74,60 @@
 }
 
 - (void)saveHeight {
-    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
     NSString *valueStr = self.inputField.text;
     if (![NSString isNullString:valueStr] &&  [NSString isNumberString:valueStr]) {
-        int h = [valueStr intValue];
-        //todo: send
-        user.height = h;
+        NSDictionary *param = @{@"height" : valueStr};
+        [self changeUserInfoFromServer:param];
         
     }
-    
-    [self.view showTextNotice:ChineseStringOrENFun(@"修改成功", @"Success changed")];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)saveNickName {
-    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
     NSString *valueStr = self.inputField.text;
     if (![NSString isNullString:valueStr]) {
-        //todo: send
-        user.nickname = valueStr;
+        NSDictionary *param = @{@"nickname" : valueStr};
+        [self changeUserInfoFromServer:param];
     }
-
-    [self.view showTextNotice:ChineseStringOrENFun(@"修改成功", @"Success changed")];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)saveWeight {
-    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
     NSString *valueStr = self.inputField.text;
     if (![NSString isNullString:valueStr] &&  [NSString isNumberString:valueStr]) {
-        int w = [valueStr intValue];
-        //todo: send
-        user.weight = w;
+        NSDictionary *param = @{@"weight" : valueStr};
+        [self changeUserInfoFromServer:param];
     }
-    
-    [self.view showTextNotice:ChineseStringOrENFun(@"修改成功", @"Success changed")];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+
+//发送修改信息到服务器
+- (void)changeUserInfoFromServer:(NSDictionary *)param {
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
+    [MTHUD showLoadingHUD];
+    [manager PUT:@"user" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSLog(@"====respong:%@", responseObject);
+        if ([responseObject objectForKey:@"recordset"]) {
+            [APPObjOnce sharedAppOnce].currentUser = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
+            [self showSuccessNotice];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD hideHUD:YES completedBlock:^{
+            [self showChangeFailedError:error];
+        }];
+    }];
+}
+
+- (void)showSuccessNotice {
+    NSString *msg = ChineseStringOrENFun(@"修改成功", @"Success changed");
+    [MTHUD showDurationSuccessHUD:msg animated:YES completedBlock:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
+- (void)showChangeFailedError:(NSError *)error {
+    NSString *msg = error == nil ? ChineseStringOrENFun(@"修改失败", @"Change failed") : error.localizedDescription;
+    [MTHUD showDurationSuccessHUD:msg];
+}
 
 @end

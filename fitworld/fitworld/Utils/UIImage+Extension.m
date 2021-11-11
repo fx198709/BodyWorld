@@ -216,4 +216,31 @@ qualityCompressFirst:(BOOL)qualityCompressFirst
     data = UIImageJPEGRepresentation(image, compressionQuality);
     return data;
 }
+
+/**
+ *  指定Size压缩图片 (图片会压缩变形)
+ *
+ *  @param size  压缩size
+ *
+ *  @return 压缩后的图片
+ */
+- (UIImage *)scaleImageToSize:(CGSize)size {
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    UIGraphicsBeginImageContext(size);
+    
+    // 绘制改变大小的图片
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    
+    // 从当前context中创建一个改变大小后的图片
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    
+    // 返回新的改变大小后的图片
+    return scaledImage;
+}
+
+
 @end

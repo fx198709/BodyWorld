@@ -12,7 +12,7 @@
 #import "ChangeInfoViewController.h"
 #import "ChangeIntroductionViewController.h"
 #import "SelectCountryViewController.h"
-
+#import "UIImage+Extension.h"
 
 @interface SystemViewController ()
 <UINavigationControllerDelegate, UIImagePickerControllerDelegate,
@@ -162,7 +162,7 @@ YYMySelectDatePickerViewDelegate>
 - (void)showImgPicker:(UIImagePickerControllerSourceType)sourceType {
     if (![UIImagePickerController isSourceTypeAvailable:sourceType]) {
         NSString *msg = ChineseStringOrENFun(@"请打开相册权限", @"Please open photo privacy");
-        [self.view showTextNotice:msg];
+        [MTHUD showDurationSuccessHUD:msg];
         return;
     }
     UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
@@ -221,15 +221,6 @@ YYMySelectDatePickerViewDelegate>
     
     [self presentViewController:ac animated:YES completion:nil];
 }
-
-//发送修改性别
-- (void)changeSexFromServer:(GenderEnum)gender {
-    //todo:
-    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
-    user.gender = gender;
-    [self loadData];
-}
-
 
 //修改手机号
 -(IBAction)changeMobile:(id)sender {
@@ -290,15 +281,74 @@ YYMySelectDatePickerViewDelegate>
     [self presentViewController:alter animated:YES completion:nil];
 }
 
+#pragma mark - server
+
+
+- (void)changeSexFromServer:(GenderEnum)gender {
+    NSDictionary *param = @{@"gender" : IntToString(gender)};
+    [self changeUserInfoFromServer:param];
+}
+
+//发送修改信息到服务器
+- (void)changeUserInfoFromServer:(NSDictionary *)param {
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
+    [MTHUD showLoadingHUD];
+    [manager PUT:@"user" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSLog(@"====respong:%@", responseObject);
+        if ([responseObject objectForKey:@"recordset"]) {
+            [APPObjOnce sharedAppOnce].currentUser = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
+            [self loadData];
+            [self showSuccessNotice];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD hideHUD:YES completedBlock:^{
+            [self showChangeFailedError:error];
+        }];
+    }];
+}
+
+- (void)changeAvatarImageFromServer:(NSData *)imgData {
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
+    NSString *url = @"user/avatar";
+    [MTHUD showLoadingHUD];
+    [manager POST:url parameters:nil file:imgData success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSLog(@"====respong:%@", responseObject);
+        if ([responseObject objectForKey:@"recordset"]) {
+            [APPObjOnce sharedAppOnce].currentUser.avatar = responseObject;
+            [self loadData];
+            [self showSuccessNotice];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD hideHUD:YES completedBlock:^{
+            [self showChangeFailedError:error];
+        }];
+    }];
+}
+
+- (void)showSuccessNotice {
+    NSString *msg = ChineseStringOrENFun(@"修改成功", @"Success changed");
+    [MTHUD showDurationSuccessHUD:msg];
+}
+
+- (void)showChangeFailedError:(NSError *)error {
+    NSString *msg = error == nil ? ChineseStringOrENFun(@"修改失败", @"Change failed") : error.localizedDescription;
+    [MTHUD showDurationSuccessHUD:msg];
+}
+
 
 #pragma mark - YYMySelectDatePickerViewDelegate
 
 - (void)selectDatePickerDidSelectDate:(NSDate *)date {
-    //todo
+    if (date == nil) {
+        return;
+    }
     
-    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
-    user.birthday =  [date mt_formatString:YYDateFormatter_Year];;
-    [self loadData];
+    NSString *dateStr = [date mt_formatString:YYDateFormatter_Second];
+    NSDictionary *param = @{@"birthday": dateStr};
+    [self changeUserInfoFromServer:param];
 }
 
 - (void)selectDatePickerDidClickCancel {
@@ -310,10 +360,11 @@ YYMySelectDatePickerViewDelegate>
     UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     UIImage *editImg = [info objectForKey:UIImagePickerControllerEditedImage];
     UIImage *img = editImg == nil ? originImage : editImg;
-    //todo
-    
+    img = [img scaleImageToSize:CGSizeMake(60, 60)];
     [picker dismissViewControllerAnimated:YES completion:^{
-        [self.headImg setImage:img];
+        NSData *imgData = UIImageJPEGRepresentation(img, 0.5);
+        NSLog(@"====1111===%lu", imgData.length / 1024);
+        [self changeAvatarImageFromServer:imgData];
     }];
 }
 
