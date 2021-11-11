@@ -1,6 +1,6 @@
 #import "GuestPanel.h"
 #import "UIDeps.h"
-#import "LocalView.h"
+#import "GuestRenderView.h"
 
 @interface GuestPanel ()
 {
@@ -10,7 +10,7 @@
 @property (nonatomic, strong) UILabel* mNameLabel;
 @property (nonatomic, strong) UIButton* mChatBtn;
 
-@property (nonatomic, strong) LocalView* mLocalView;
+@property (nonatomic, strong) GuestRenderView* mGuestRenderView;
 @end
 
 @implementation GuestPanel
@@ -20,7 +20,7 @@
 @synthesize mNameLabel;
 @synthesize mChatBtn;
 
-@synthesize mLocalView;
+@synthesize mGuestRenderView;
 
 - (void)dealloc{
   NSLog(@"GuestPanel dealloc");
@@ -39,7 +39,7 @@
   }];
   
   mMyLabel = [[UILabel alloc] init];
-  [mMyLabel setText:@"我"];
+  [mMyLabel setText:@"guest"];
   [mMyLabel setTextColor:[UIColor whiteColor]];
   [mMyLabel setTextAlignment:NSTextAlignmentCenter];
   [mMyLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
@@ -93,25 +93,27 @@
   }
 }
 
-- (void)attachLocalView {
-  if (mLocalView == nil) {
-    mLocalView = [LocalView new];
-    [mMyView addSubview:mLocalView];
-    [mLocalView mas_makeConstraints:^(MASConstraintMaker *make) {
-      make.left.and.top.equalTo(self.mMyView);
-      make.width.and.height.equalTo(self.mMyView);
+- (void)attachGuestRenderView {
+  if (mGuestRenderView == nil) {
+    mGuestRenderView = [[GuestRenderView alloc] initWithUserId:_mUserId forMainVideo:NO];
+      mGuestRenderView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:mGuestRenderView];
+    [mGuestRenderView mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.left.and.top.equalTo(self);
+      make.width.and.height.equalTo(self);
     }];
+      mGuestRenderView.backgroundColor = [UIColor greenColor];
   }
-  [mLocalView bindMedia];
+  [mGuestRenderView bindMedia];
 }
 
-- (void)detachLocalView {
-  if (mLocalView == nil) {
+- (void)detachGuestRenderView {
+  if (mGuestRenderView == nil) {
     return;
   }
-  [mLocalView unbindMedia];
-  [mLocalView removeFromSuperview];
-  mLocalView = nil;
+  [mGuestRenderView unbindMedia];
+  [mGuestRenderView removeFromSuperview];
+  mGuestRenderView = nil;
 }
 
 @end

@@ -13,11 +13,14 @@
 
 @property (copy) void(^pressBtnChat)(void);
 
+@property (nonatomic, strong) NSString * mUserId;
+
 - (id)init;
+
 
 - (void)syncSession:(ClassMember*)session;
 
-- (void)attachLocalView;
-- (void)detachLocalView;
+- (void)attachGuestRenderView;
+- (void)detachGuestRenderView;
 
 @end

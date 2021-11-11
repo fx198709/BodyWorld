@@ -1,9 +1,9 @@
-#import "RemoteView.h"
+#import "GuestRenderView.h"
 #import "UIDeps.h"
 
 #import "VConductorClient.h"
 
-@interface RemoteView()
+@interface GuestRenderView()
 {
 }
 @property (nonatomic, strong) NSString* mUserId;
@@ -15,7 +15,7 @@
 @end
 
 
-@implementation RemoteView
+@implementation GuestRenderView
 
 @synthesize mUserId;
 @synthesize mIsMain;
@@ -23,7 +23,7 @@
 @synthesize mLabel;
 
 - (void)dealloc{
-  NSLog(@"RemoteView dealloc");
+  NSLog(@"GuestRenderView dealloc");
 }
 
 - (id)initWithUserId:(NSString*)uId forMainVideo:(BOOL)main {
@@ -38,13 +38,14 @@
     make.left.with.top.equalTo(self);
     make.size.equalTo(self);
   }];
+    mVideoRender.render_view.backgroundColor = [UIColor blueColor];
 //    展示形式
 //  if (!mIsMain) {
     [mVideoRender set_content_mode:UIViewContentModeScaleAspectFill];
 //  }
 
   mLabel = [[UILabel alloc] init];
-  [mLabel setText:@""];
+  [mLabel setText:@"GUEST"];
   [mLabel setTextColor:[UIColor whiteColor]];
   [mLabel setBackgroundColor:[UIColor darkGrayColor]];
   [mLabel setTextAlignment:NSTextAlignmentRight];

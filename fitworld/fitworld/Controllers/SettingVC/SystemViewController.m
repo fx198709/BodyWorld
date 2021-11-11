@@ -8,15 +8,16 @@
 #import "SystemViewController.h"
 #import "ResetPwdController.h"
 #import "LoginController.h"
-#import "YYMySelectDatePickerView.h"
 #import "ChangeInfoViewController.h"
 #import "ChangeIntroductionViewController.h"
 #import "SelectCountryViewController.h"
+#import "OurDatePickerView.h"
+#import "NSDate+MT.h"
 
 
 @interface SystemViewController ()
 <UINavigationControllerDelegate, UIImagePickerControllerDelegate,
-YYMySelectDatePickerViewDelegate>
+OurDatePickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *pwdTitleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *headTitleLabel;
@@ -59,7 +60,6 @@ YYMySelectDatePickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 
-@property (nonatomic, strong) YYMySelectDatePickerView *datePicker;
 
 
 @end
@@ -125,13 +125,6 @@ YYMySelectDatePickerViewDelegate>
     self.introductionLabel.text = user.introduction;
 }
 
-- (YYMySelectDatePickerView *)datePicker {
-    if (_datePicker == nil) {
-        _datePicker = ViewByNibWithClass([YYMySelectDatePickerView class]);
-        _datePicker.delegate = self;
-    }
-    return _datePicker;
-}
 
 #pragma mark - Action
 
@@ -235,10 +228,23 @@ YYMySelectDatePickerViewDelegate>
 -(IBAction)changeMobile:(id)sender {
     //不能修改手机号
 }
+- (void)seletedDate:(NSDate*)selectedDate andview:(OurDatePickerView*)pickerView{
+    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
+    user.birthday =  [selectedDate mt_formatString:@"yyyy-MM-dd"];;
+    [self loadData];
+}
 
 //修改生日
 -(IBAction)changeBirthday:(id)sender {
-    [self.datePicker showWithAnimated:YES completedBlock:nil];
+//    [self.datePicker showWithAnimated:YES completedBlock:nil];
+    OurDatePickerView *datepickerView = [[OurDatePickerView alloc] init];
+    datepickerView.pickerDelegate = self;
+    datepickerView.pickerType = YearMonAndDay;
+    datepickerView.minuteInterval = 1;
+    
+    datepickerView.miniDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    datepickerView.leftmaxDate = [NSDate dateWithTimeIntervalSinceNow:7*24*60*60];
+    [datepickerView pickerViewWithView:self.view];
 }
 
 //修改昵称
@@ -291,18 +297,6 @@ YYMySelectDatePickerViewDelegate>
 }
 
 
-#pragma mark - YYMySelectDatePickerViewDelegate
-
-- (void)selectDatePickerDidSelectDate:(NSDate *)date {
-    //todo
-    
-    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
-    user.birthday =  [date mt_formatString:YYDateFormatter_Year];;
-    [self loadData];
-}
-
-- (void)selectDatePickerDidClickCancel {
-}
 
 #pragma mark - UIImagePickerControllerDelegate
 

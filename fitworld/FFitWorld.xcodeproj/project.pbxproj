@@ -81,8 +81,6 @@
 		A2723EE7273BA9C300388B01 /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EE6273BA9C300388B01 /* UIView+HUD.m */; };
 		A2723EEA273BAD4100388B01 /* UIButton+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EE9273BAD4100388B01 /* UIButton+MT.m */; };
 		A2723EEE273BBE2100388B01 /* Enum.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EED273BBE2100388B01 /* Enum.m */; };
-		A2723EF2273BCFA100388B01 /* YYMySelectDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EEF273BCFA100388B01 /* YYMySelectDatePickerView.m */; };
-		A2723EF3273BCFA100388B01 /* YYMySelectDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2723EF1273BCFA100388B01 /* YYMySelectDatePickerView.xib */; };
 		A2723EF6273BD07700388B01 /* NSDate+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EF5273BD07700388B01 /* NSDate+MT.m */; };
 		A2723EF9273BD16500388B01 /* UIView+MTWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EF7273BD16500388B01 /* UIView+MTWindow.m */; };
 		A2723EFC273BD3D200388B01 /* ChangeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EFB273BD3D200388B01 /* ChangeInfoViewController.m */; };
@@ -121,6 +119,7 @@
 		DD595EE7273BAF9A00618D1A /* APPObjOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EE6273BAF9A00618D1A /* APPObjOnce.m */; };
 		DD595EEA273BB15800618D1A /* UserHeadPicView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EE9273BB15800618D1A /* UserHeadPicView.m */; };
 		DD595EED273D7D5F00618D1A /* GuestPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EEB273D7D5F00618D1A /* GuestPanel.m */; };
+		DD595EF0273D9EFE00618D1A /* GuestRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EEF273D9EFD00618D1A /* GuestRenderView.m */; };
 		DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */; };
 		DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */; };
 		DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB1A272D1A45002B0A8E /* TableHeadview.m */; };
@@ -307,9 +306,6 @@
 		A2723EE9273BAD4100388B01 /* UIButton+MT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MT.m"; sourceTree = "<group>"; };
 		A2723EEC273BBE2100388B01 /* Enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
 		A2723EED273BBE2100388B01 /* Enum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Enum.m; sourceTree = "<group>"; };
-		A2723EEF273BCFA100388B01 /* YYMySelectDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMySelectDatePickerView.m; sourceTree = "<group>"; };
-		A2723EF0273BCFA100388B01 /* YYMySelectDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYMySelectDatePickerView.h; sourceTree = "<group>"; };
-		A2723EF1273BCFA100388B01 /* YYMySelectDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYMySelectDatePickerView.xib; sourceTree = "<group>"; };
 		A2723EF4273BD07700388B01 /* NSDate+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MT.h"; sourceTree = "<group>"; };
 		A2723EF5273BD07700388B01 /* NSDate+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MT.m"; sourceTree = "<group>"; };
 		A2723EF7273BD16500388B01 /* UIView+MTWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MTWindow.m"; sourceTree = "<group>"; };
@@ -381,6 +377,8 @@
 		DD595EE9273BB15800618D1A /* UserHeadPicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserHeadPicView.m; sourceTree = "<group>"; };
 		DD595EEB273D7D5F00618D1A /* GuestPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestPanel.m; sourceTree = "<group>"; };
 		DD595EEC273D7D5F00618D1A /* GuestPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestPanel.h; sourceTree = "<group>"; };
+		DD595EEE273D9EFD00618D1A /* GuestRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestRenderView.h; sourceTree = "<group>"; };
+		DD595EEF273D9EFD00618D1A /* GuestRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestRenderView.m; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		DD6EDB14272CE587002B0A8E /* SelectClassHeadview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectClassHeadview.h; sourceTree = "<group>"; };
 		DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectClassHeadview.m; sourceTree = "<group>"; };
@@ -661,9 +659,6 @@
 				04CD2E4626982A45007814E6 /* TableCollectionViewCell.h */,
 				04CD2E4926982A45007814E6 /* TableCollectionViewCell.m */,
 				04CD2E4826982A45007814E6 /* TableCollectionViewCell.xib */,
-				A2723EF0273BCFA100388B01 /* YYMySelectDatePickerView.h */,
-				A2723EEF273BCFA100388B01 /* YYMySelectDatePickerView.m */,
-				A2723EF1273BCFA100388B01 /* YYMySelectDatePickerView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -818,10 +813,12 @@
 		04EC01FF26BD8B0F00DC0103 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				DD595EEE273D9EFD00618D1A /* GuestRenderView.h */,
+				DD595EEF273D9EFD00618D1A /* GuestRenderView.m */,
+				04EC020326BD8B0F00DC0103 /* LocalView.h */,
 				04EC020026BD8B0F00DC0103 /* LocalView.m */,
 				04EC020126BD8B0F00DC0103 /* RemoteView.h */,
 				04EC020226BD8B0F00DC0103 /* RemoteView.m */,
-				04EC020326BD8B0F00DC0103 /* LocalView.h */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -1192,7 +1189,6 @@
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
 				DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */,
 				04552B3C2696C3FD00C78706 /* entypo.ttf in Resources */,
-				A2723EF3273BCFA100388B01 /* YYMySelectDatePickerView.xib in Resources */,
 				DD595EDC2737D25800618D1A /* CreateCourseSuccessViewController.xib in Resources */,
 				04CD2E4A26982A45007814E6 /* GoodsCell.xib in Resources */,
 				DD595EBE27364D0300618D1A /* MessageDetailViewController.xib in Resources */,
@@ -1291,7 +1287,7 @@
 				DD595EE7273BAF9A00618D1A /* APPObjOnce.m in Sources */,
 				DD6EDB6B2734420C002B0A8E /* MessageListTableViewCell.m in Sources */,
 				DD595ECE2736F5A000618D1A /* CourseDetailViewController.m in Sources */,
-				A2723EF2273BCFA100388B01 /* YYMySelectDatePickerView.m in Sources */,
+				DD595EF0273D9EFE00618D1A /* GuestRenderView.m in Sources */,
 				04CD2E532698478C007814E6 /* BaseObject.m in Sources */,
 				0456193026ECEC8A00C0973F /* RegisterController.m in Sources */,
 				DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */,

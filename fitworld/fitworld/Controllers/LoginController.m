@@ -91,7 +91,7 @@
     self.userNameTxt.attributedPlaceholder = placeholderString;
     self.userNameTxt.textColor = UIColor.whiteColor;
     // TODO 默认账号
-    self.userNameTxt.text = @"+86:13501173505";
+    self.userNameTxt.text = @"+86:18600411689";
     [self.view addSubview: self.userNameTxt];
     [self.userNameTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(inputBgView);

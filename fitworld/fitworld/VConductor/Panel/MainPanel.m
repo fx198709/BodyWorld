@@ -128,20 +128,6 @@
     }
     [mainView bindMedia];
   }
-//  for (ClassMember *guest in onAirMembers.allValues) {
-//    if (!guest.hasShareStream) {
-//      continue;
-//    }
-//    RemoteView *shareView = [mShareViews objectForKey:guest.userId];
-//    if (shareView == nil) {
-//      shareView = [[RemoteView alloc] initWithUserId:guest.userId forMainVideo:NO];
-//      [self addSubview:shareView];
-//      [mShareViews setObject:shareView forKey:guest.userId];
-//      needLayout = YES;
-//    }
-//    [shareView bindMedia];
-//  }
-
   if (needLayout) {
     [self relayoutVideoView];
   }
