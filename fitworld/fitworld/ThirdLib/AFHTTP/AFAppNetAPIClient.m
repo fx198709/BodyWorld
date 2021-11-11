@@ -25,7 +25,7 @@
         // 是否在证书域字段中验证域名
         
         securityPolicy.validatesDomainName = NO;
- 
+        
         _sharedClient.securityPolicy = securityPolicy;
         _sharedClient.requestSerializer.timeoutInterval = 30;
         
@@ -65,7 +65,7 @@
 {
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
-
+    
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
@@ -73,36 +73,52 @@
     
 }
 
+
+- (NSURLSessionDataTask *)PUT:(NSString *)URLString
+                   parameters:(id)parameters
+                      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
+    
+    [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+    [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    
+    return [self PUT:strUrl parameters:parameters headers:nil success:success failure:failure];
+}
+
+
 /*
- Permission	JSON字符串	
+ Permission	JSON字符串
  操作说明
  Status	状态	0是正常 ,1 请求参数问题
  
  Msg
  
  Title	字符串
-        
+ 
  Line	字符串数组
-        
+ 
  IsNeedUpdate	是否需要升级
  0是正常
  1是当前APP版本不支持本操作,需要升级
  2是本操作已经下线不再支持
-       
+ 
  IsContinue	是否继续执行
  0是正常 1是停止继续操作
-        
+ 
  UpdateUrl	更新APP地址
-        
+ 
  IsLoginErr	是否登录	0是正常 1是停止操作 要求用户重新登录APP
-        
+ 
  Response	JSON字符串
-	
+ 
  返回数据
  Status	状态	0是正常 非0是表示调用接口出现异常
-        
+ 
  Msg	说明	异常说明
-        
+ 
  Data	返回数据 具体结构参考相关接口说明	接口返回的数据
  */
 
@@ -112,7 +128,7 @@
                          JSONData:(id) JSON
                           success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
-      
+    
     
     /*
      [CommonTools showAlertWithContent:@"检测到非法登录，请重新登录系统"];
@@ -125,7 +141,7 @@
     if(success){
         success(task,Data);
     }
-  
+    
 }
 
 - (NSURLSessionDataTask *)GETFILE:(NSString *)URLString
@@ -145,12 +161,11 @@
     
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
-
+    
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
     return [self GET:strUrl parameters:parameters headers:nil progress:nil success:success failure:failure];
-//    return [self GET:URLString parameters:parameters progress:nil success:success failure:failure];
 }
 
 /**
@@ -162,8 +177,17 @@
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
     
-     
-    return nil;
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
+    
+    [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+    [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    
+    return [self POST:strUrl parameters:parameters headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        [formData appendPartWithFormData:fileData name:@"avatarImg"];
+        //给定数据流的数据名，文件名，文件类型（以图片为例）
+        [formData appendPartWithFileData:fileData name:@"uploadFile" fileName:@"img1" mimeType:@"image/jpeg"];
+    } progress:nil success:success failure:failure];;
 }
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
@@ -188,7 +212,7 @@
 }
 
 -(void)willErrorWithTask:(NSURLSessionDataTask*)intask error:(NSError *)inError failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
-
+    
 }
 
 
@@ -203,7 +227,7 @@
     return result;
 }
 
- 
+
 //系统版本号
 - (NSString*)systemVersionString
 {

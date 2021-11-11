@@ -20,7 +20,7 @@
 }
 
 - (void)getUserinfo:(nullable void(^)(bool isSuccess))completedBlock {
-    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
     
     [manager GET:@"user_info" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject objectForKey:@"recordset"]) {
@@ -30,9 +30,7 @@
             }
         }
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-           NSLog(@"===reachUserinfo error:%@", error.localizedDescription);
-           [[UIView getCurrentWindow] showTextNotice:ChineseStringOrENFun(@"提示", @"error")
-                                              detail:error.localizedDescription];
+           [MTHUD showDurationNoticeHUD:error.localizedDescription];
            if (completedBlock) {
                completedBlock(NO);
            }

@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterController : BaseNavViewController<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface RegisterController : BaseNavViewController
 
 @end
 

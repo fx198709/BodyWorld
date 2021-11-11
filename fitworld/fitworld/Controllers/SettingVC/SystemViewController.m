@@ -13,7 +13,7 @@
 #import "SelectCountryViewController.h"
 #import "OurDatePickerView.h"
 #import "NSDate+MT.h"
-
+#import "UIImage+Extension.h"
 
 @interface SystemViewController ()
 <UINavigationControllerDelegate, UIImagePickerControllerDelegate,
@@ -155,7 +155,7 @@ OurDatePickerViewDelegate>
 - (void)showImgPicker:(UIImagePickerControllerSourceType)sourceType {
     if (![UIImagePickerController isSourceTypeAvailable:sourceType]) {
         NSString *msg = ChineseStringOrENFun(@"请打开相册权限", @"Please open photo privacy");
-        [self.view showTextNotice:msg];
+        [MTHUD showDurationNoticeHUD:msg];
         return;
     }
     UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
@@ -186,7 +186,6 @@ OurDatePickerViewDelegate>
     UIAlertController *alter = [UIAlertController alertControllerWithTitle:ChineseStringOrENFun(@"提示", @"tips") message:tips preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:ChineseStringOrENFun(@"确定", @"yes") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         //保存当前语言
-        
         [ConfigManager sharedInstance].language = languageEnum;
         [[ConfigManager sharedInstance] saveConfig];
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -214,15 +213,6 @@ OurDatePickerViewDelegate>
     
     [self presentViewController:ac animated:YES completion:nil];
 }
-
-//发送修改性别
-- (void)changeSexFromServer:(GenderEnum)gender {
-    //todo:
-    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
-    user.gender = gender;
-    [self loadData];
-}
-
 
 //修改手机号
 -(IBAction)changeMobile:(id)sender {
@@ -286,8 +276,8 @@ OurDatePickerViewDelegate>
     UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"确定退出？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
-        LoginController *loginVC = [[LoginController alloc] init];
-        [self.navigationController pushViewController:loginVC animated:YES];
+        LoginController *loginVC = VCBySBName(@"LoginController");
+        [self.navigationController setViewControllers:[NSArray arrayWithObject:loginVC] animated:YES];
     }];
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alter addAction:sure];
@@ -296,6 +286,62 @@ OurDatePickerViewDelegate>
     [self presentViewController:alter animated:YES completion:nil];
 }
 
+#pragma mark - server
+
+
+- (void)changeSexFromServer:(GenderEnum)gender {
+    NSDictionary *param = @{@"gender" : IntToString(gender)};
+    [self changeUserInfoFromServer:param];
+}
+
+//发送修改信息到服务器
+- (void)changeUserInfoFromServer:(NSDictionary *)param {
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
+    [MTHUD showLoadingHUD];
+    [manager PUT:@"user" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSLog(@"====respong:%@", responseObject);
+        if ([responseObject objectForKey:@"recordset"]) {
+            [APPObjOnce sharedAppOnce].currentUser = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
+            [self loadData];
+            [self showSuccessNotice];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD hideHUD:YES completedBlock:^{
+            [self showChangeFailedError:error];
+        }];
+    }];
+}
+
+- (void)changeAvatarImageFromServer:(NSData *)imgData {
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
+    NSString *url = @"user/avatar";
+    [MTHUD showLoadingHUD];
+    [manager POST:url parameters:nil file:imgData success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSLog(@"====respong:%@", responseObject);
+        if ([responseObject objectForKey:@"recordset"]) {
+            [APPObjOnce sharedAppOnce].currentUser.avatar = responseObject;
+            [self loadData];
+            [self showSuccessNotice];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD hideHUD:YES completedBlock:^{
+            [self showChangeFailedError:error];
+        }];
+    }];
+}
+
+- (void)showSuccessNotice {
+    NSString *msg = ChineseStringOrENFun(@"修改成功", @"Success changed");
+    [MTHUD showDurationNoticeHUD:msg];
+}
+
+- (void)showChangeFailedError:(NSError *)error {
+    NSString *msg = error == nil ? ChineseStringOrENFun(@"修改失败", @"Change failed") : error.localizedDescription;
+    [MTHUD showDurationNoticeHUD:msg];
+}
 
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -304,10 +350,11 @@ OurDatePickerViewDelegate>
     UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     UIImage *editImg = [info objectForKey:UIImagePickerControllerEditedImage];
     UIImage *img = editImg == nil ? originImage : editImg;
-    //todo
-    
+    img = [img scaleImageToSize:CGSizeMake(60, 60)];
     [picker dismissViewControllerAnimated:YES completion:^{
-        [self.headImg setImage:img];
+        NSData *imgData = UIImageJPEGRepresentation(img, 0.5);
+        NSLog(@"====1111===%lu", imgData.length / 1024);
+        [self changeAvatarImageFromServer:imgData];
     }];
 }
 

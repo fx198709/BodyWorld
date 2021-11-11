@@ -62,4 +62,13 @@ qualityCompressFirst:(BOOL)qualityCompressFirst
  @return
  */
 + (NSData *)compressJPGEImage:(UIImage *)image maxByte:(CGFloat)maxByte;
+
+/*
+*  指定Size压缩图片 (图片会压缩变形)
+*  @param size  压缩size
+*
+*  @return 压缩后的图片
+*/
+- (UIImage *)scaleImageToSize:(CGSize)size;
+
 @end

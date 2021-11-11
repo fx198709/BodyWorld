@@ -79,17 +79,17 @@
 - (IBAction)submit:(id)sender {
     NSString *validCode = self.validCodeLabel.text;
     if ([NSString isNullString:validCode]) {
-        [self.view showTextNotice:ChineseStringOrENFun(@"请输入验证码", @"Please enter verifycode")];
+        [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请输入验证码", @"Please enter verifycode")];
         return;
     }
     NSString *pwd = self.pwdLabel.text;
     if ([NSString isNullString:pwd]) {
-        [self.view showTextNotice:ChineseStringOrENFun(@"请输入新密码", @"The new password can not be empty")];
+        [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请输入新密码", @"The new password can not be empty")];
         return;
     }
     NSString *repeatPwd = self.repeatLabel.text;
     if ([NSString isNullString:repeatPwd]) {
-        [self.view showTextNotice:ChineseStringOrENFun(@"请输入确认密码", @"Please repeat the new password again")];
+        [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请输入确认密码", @"Please repeat the new password again")];
         return;
     }
     

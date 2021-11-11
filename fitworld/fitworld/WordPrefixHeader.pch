@@ -19,7 +19,7 @@
 #import "UIScrollView+YCRefresh.h"
 #import "NSString+MT.h"
 #import "UIView+MT.h"
-#import "UIView+HUD.h"
+#import "MTHUD.h"
 #import "NSDate+MT.h"
 #import "UIButton+MT.h"
 #import "PrefixHeader.h"
@@ -31,6 +31,8 @@
 #import "CommonTools.h"
 #import "ConfigManager.h"
 #import "APPObjOnce.h"
+#import "AFNetworking.h"
+
 
 
 
