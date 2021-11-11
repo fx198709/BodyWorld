@@ -58,21 +58,64 @@
             </objects>
             <point key="canvasLocation" x="-3074" y="803"/>
         </scene>
-        <!--Change Info View Controller-->
+        <!--修改资料-->
         <scene sceneID="6iM-2C-dXL">
             <objects>
                 <viewController storyboardIdentifier="ChangeInfoViewController" id="iL2-aY-Sbh" customClass="ChangeInfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="olT-Vi-x94">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SrK-29-1zU">
+                                <rect key="frame" x="30" y="54" width="354" height="48"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tht-Xx-9C8">
+                                        <rect key="frame" x="12" y="15.666666666666671" width="44" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="z1U-JI-CbI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aGJ-Qh-Dco">
+                                        <rect key="frame" x="62" y="0.0" width="282" height="48"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="tht-Xx-9C8" firstAttribute="leading" secondItem="SrK-29-1zU" secondAttribute="leading" constant="12" id="Ay3-fF-bnx"/>
+                                    <constraint firstItem="tht-Xx-9C8" firstAttribute="centerY" secondItem="SrK-29-1zU" secondAttribute="centerY" id="COp-8s-qSM"/>
+                                    <constraint firstAttribute="trailing" secondItem="aGJ-Qh-Dco" secondAttribute="trailing" constant="10" id="GYS-yT-w06"/>
+                                    <constraint firstItem="aGJ-Qh-Dco" firstAttribute="top" secondItem="SrK-29-1zU" secondAttribute="top" id="HY7-Zz-AP0"/>
+                                    <constraint firstAttribute="height" constant="48" id="I5q-3M-acK"/>
+                                    <constraint firstItem="aGJ-Qh-Dco" firstAttribute="leading" secondItem="tht-Xx-9C8" secondAttribute="trailing" constant="6" id="ZW9-YE-pEb"/>
+                                    <constraint firstItem="aGJ-Qh-Dco" firstAttribute="centerY" secondItem="SrK-29-1zU" secondAttribute="centerY" id="eWk-Bd-ciS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="loN-Hc-7Lp"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SrK-29-1zU" firstAttribute="top" secondItem="loN-Hc-7Lp" secondAttribute="top" constant="10" id="CdK-36-xiG"/>
+                            <constraint firstItem="SrK-29-1zU" firstAttribute="centerX" secondItem="olT-Vi-x94" secondAttribute="centerX" id="GQr-Xq-zdZ"/>
+                            <constraint firstItem="SrK-29-1zU" firstAttribute="leading" secondItem="loN-Hc-7Lp" secondAttribute="leading" constant="30" id="wLm-ih-VxV"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="W2E-vG-SMj"/>
+                    <navigationItem key="navigationItem" title="修改资料" id="W2E-vG-SMj"/>
+                    <connections>
+                        <outlet property="containerView" destination="SrK-29-1zU" id="0HX-ZV-ZfH"/>
+                        <outlet property="inputField" destination="aGJ-Qh-Dco" id="oDb-pR-XVc"/>
+                        <outlet property="titleLabel" destination="tht-Xx-9C8" id="tbp-kV-QTv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7A1-er-rTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2168.1159420289855" y="1491.0326086956522"/>
+            <point key="canvasLocation" x="-433" y="3142"/>
         </scene>
         <!--系统设置-->
         <scene sceneID="bcf-su-FHk">
@@ -810,7 +853,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V94-ql-rea" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4605.7971014492759" y="1690.8482142857142"/>
+            <point key="canvasLocation" x="-2190" y="2450"/>
         </scene>
         <!--Course Detail View Controller-->
         <scene sceneID="pDh-Wt-DrT">
@@ -858,7 +901,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kfq-E1-OdL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5515.9420289855079" y="1690.8482142857142"/>
+            <point key="canvasLocation" x="-3100" y="2450"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OiY-f2-5Sv">
@@ -876,7 +919,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mt8-G2-4qP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5516" y="2608"/>
+            <point key="canvasLocation" x="-1374" y="2419"/>
         </scene>
         <!--修改密码-->
         <scene sceneID="97v-mc-6yx">
@@ -1096,25 +1139,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fst-37-YJ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4633.3333333333339" y="2607.880434782609"/>
+            <point key="canvasLocation" x="-433" y="2419"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="eoz-WJ-Gap">
+        <scene sceneID="da8-zx-P3c">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Og9-Pm-oq2" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cqg-3i-4Fr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vOs-f6-Y7Q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OXF-1c-od4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="iL2-aY-Sbh" kind="relationship" relationship="rootViewController" id="3fH-M5-Byn"/>
+                        <segue destination="iL2-aY-Sbh" kind="relationship" relationship="rootViewController" id="9gc-Rj-BKl"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b55-UJ-lKA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="42B-t8-NKE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3075.36231884058" y="1490.217391304348"/>
+            <point key="canvasLocation" x="-1375" y="3142"/>
         </scene>
     </scenes>
     <resources>
