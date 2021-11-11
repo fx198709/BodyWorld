@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.inputField becomeFirstResponder];
     
     self.navigationItem.title = ChineseStringOrENFun(@"修改介绍", @"Change Introduction");
     self.titleLabel.text = ChineseStringOrENFun(@"介绍", @"Introduction");
@@ -38,6 +39,8 @@
 
 //点击保存
 - (void)clickSave {
+    [self.inputField resignFirstResponder];
+
     NSString *valueStr = self.inputField.text;
     if (![NSString isNullString:valueStr]) {
         NSDictionary *param = @{@"introduction": valueStr};

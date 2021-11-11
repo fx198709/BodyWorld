@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define YYDateFormatter_Year @"yyyy-MM-dd"
-#define YYDateFormatter_Second @"yyyy-MM-dd'T'HH:mm:ss"
+#define YYDateFormatter_Day @"yyyy-MM-dd"
+#define YYDateFormatter_Second @"yyyy-MM-dd HH:mm:ss"
 
 NS_ASSUME_NONNULL_BEGIN
 

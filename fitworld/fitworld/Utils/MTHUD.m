@@ -67,7 +67,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         self.containerView = [[UIView alloc] init];
-        self.containerView.backgroundColor = [[UIColor blackColor] colorWithAlpha:0.5];
+        self.containerView.backgroundColor = [[UIColor darkGrayColor] colorWithAlpha:0.5];
         [self.containerView cornerWithRadius:3.0 borderColor:nil];
         [self addSubview:self.containerView];
         [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.inputField becomeFirstResponder];
 
     UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
 
@@ -56,8 +56,10 @@
     
 }
 
+
 //点击保存
 - (void)clickSave {
+    [self.inputField resignFirstResponder];
     switch (self.changeType) {
         case ChangeTypeEnum_Height:
             [self saveHeight];

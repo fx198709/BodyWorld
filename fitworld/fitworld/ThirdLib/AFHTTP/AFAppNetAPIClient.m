@@ -166,7 +166,6 @@
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
     return [self GET:strUrl parameters:parameters headers:nil progress:nil success:success failure:failure];
-    //    return [self GET:URLString parameters:parameters progress:nil success:success failure:failure];
 }
 
 /**
@@ -184,7 +183,11 @@
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
-    return [self POST:strUrl parameters:parameters file:fileData mediaType:SelecteMediaTypeImage success:success failure:failure];
+    return [self POST:strUrl parameters:parameters headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        [formData appendPartWithFormData:fileData name:@"avatarImg"];
+        //给定数据流的数据名，文件名，文件类型（以图片为例）
+        [formData appendPartWithFileData:fileData name:@"uploadFile" fileName:@"img1" mimeType:@"image/jpeg"];
+    } progress:nil success:success failure:failure];;
 }
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString

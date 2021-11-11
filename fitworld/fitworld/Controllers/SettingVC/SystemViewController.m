@@ -346,7 +346,7 @@ YYMySelectDatePickerViewDelegate>
         return;
     }
     
-    NSString *dateStr = [date mt_formatString:YYDateFormatter_Second];
+    NSString *dateStr = [date mt_formatString:YYDateFormatter_Day];
     NSDictionary *param = @{@"birthday": dateStr};
     [self changeUserInfoFromServer:param];
 }
