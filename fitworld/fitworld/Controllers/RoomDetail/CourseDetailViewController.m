@@ -319,8 +319,11 @@
     [ConfigManager sharedInstance].eventId = _selectRoom.event_id;
     [ConfigManager sharedInstance].nickName = nickName;
     [[ConfigManager sharedInstance] saveConfig];
+    NSMutableDictionary *codeDict = [NSMutableDictionary dictionary];
+    codeDict[@"eid"] =_selectRoom.event_id;
+    codeDict[@"name"] =nickName;
 
-    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
+//    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
     RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
     [self.navigationController pushViewController:roomVC animated:YES];
 }

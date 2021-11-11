@@ -153,7 +153,7 @@
         // 进度
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"请求成功---%@", responseObject);
-        if ([responseObject count] > 0) {
+        if ([responseObject objectForKey:@"status"] && [[responseObject objectForKey:@"status"] longLongValue] == 0)  {
             UserInfo *userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"][@"user"]];
             NSString *userToken = responseObject[@"recordset"][@"token"];
             if(userToken != nil){

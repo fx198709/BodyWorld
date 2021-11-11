@@ -51,6 +51,7 @@ BOOL  hasrequest = NO;
       make.left.with.top.equalTo(self.view);
       make.size.equalTo(self.view);
     }];
+    [self reachUserinfo];
     [self setupRefresh];
     _mainTableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     _sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 133)];
@@ -110,6 +111,22 @@ BOOL  hasrequest = NO;
                 self->hasNewFrend = NO;
                 redview.hidden = YES;
             }
+        }
+       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }];
+}
+
+
+- (void) reachUserinfo
+{
+    
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    
+    [manager GET:@"user_info" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        有数据就显示红点，没数据就不显示
+        if ([responseObject objectForKey:@"recordset"]) {
+            self.userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
+            [APPObjOnce sharedAppOnce].currentUser = self.userInfo;
         }
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];

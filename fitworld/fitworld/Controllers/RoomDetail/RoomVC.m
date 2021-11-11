@@ -23,7 +23,7 @@
 @property (nonatomic, strong) MBProgressHUD *mHud;
 
 @property (nonatomic, strong) UIImageView* mBkImg;
-@property (nonatomic, strong) HeaderPanel *mHeaderPanel;
+@property (nonatomic, strong) HeaderPanel *mHeaderPanel; //头部的信息和操作
 @property (nonatomic, strong) SidePanel *mSidePanel;
 @property (nonatomic, strong) MainPanel* mMainPanel;
 @property (nonatomic, strong) ViewerPanel* mViewerPanel;

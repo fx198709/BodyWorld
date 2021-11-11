@@ -73,7 +73,7 @@
 
 - (BOOL)isGuest {
   NSString *role = mBaseInfo.custom[@"extend"][@"room_active_role"];
-  if ([role isEqualToString:@"guest"]) {
+  if ([role isEqualToString:@"guest"]|| [role isEqualToString:@"participant"]) {
     return YES;
   }
   return NO;

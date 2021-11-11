@@ -183,7 +183,7 @@
             // 进度
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"请求成功---%@", responseObject);
-            if ([responseObject count] > 0) {
+            if ([responseObject objectForKey:@"status"] && [[responseObject objectForKey:@"status"] longLongValue] == 0) {
                 UserInfo *userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"][@"user"]];
                 userInfo.msg = responseObject[@"recordset"][@"msg"];
                 userInfo.msg_cn = responseObject[@"recordset"][@"msg_cn"];
@@ -197,8 +197,11 @@
                 mainvc.userInfo = userInfo;
                 [APPObjOnce sharedAppOnce].currentUser = userInfo;
                 [self.view.window setRootViewController:vc];
-            }
 
+            }else{
+                [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] showWaitTime:0 afterDelay:2 control:self];
+            }
+           
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         }];
 }
