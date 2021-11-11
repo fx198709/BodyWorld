@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "UserInfo.h"
+
+#define Notification_GetUserInfo @"Notification_GetUserInfo"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface APPObjOnce : NSObject
@@ -15,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 + (instancetype)sharedAppOnce;
+
+//获取用户信息
+- (void)getUserinfo:(nullable void(^)(bool isSuccess))completedBlock;
 
 @end
 

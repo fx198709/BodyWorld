@@ -86,6 +86,8 @@
 		A2723EF6273BD07700388B01 /* NSDate+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EF5273BD07700388B01 /* NSDate+MT.m */; };
 		A2723EF9273BD16500388B01 /* UIView+MTWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EF7273BD16500388B01 /* UIView+MTWindow.m */; };
 		A2723EFC273BD3D200388B01 /* ChangeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EFB273BD3D200388B01 /* ChangeInfoViewController.m */; };
+		A2723EFF273CC28C00388B01 /* ChangeIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EFE273CC28C00388B01 /* ChangeIntroductionViewController.m */; };
+		A2723F02273CC9FE00388B01 /* BaseJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F00273CC9FD00388B01 /* BaseJSONModel.m */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
@@ -310,6 +312,10 @@
 		A2723EF8273BD16500388B01 /* UIView+MTWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MTWindow.h"; sourceTree = "<group>"; };
 		A2723EFA273BD3D200388B01 /* ChangeInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeInfoViewController.h; sourceTree = "<group>"; };
 		A2723EFB273BD3D200388B01 /* ChangeInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeInfoViewController.m; sourceTree = "<group>"; };
+		A2723EFD273CC28C00388B01 /* ChangeIntroductionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeIntroductionViewController.h; sourceTree = "<group>"; };
+		A2723EFE273CC28C00388B01 /* ChangeIntroductionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeIntroductionViewController.m; sourceTree = "<group>"; };
+		A2723F00273CC9FD00388B01 /* BaseJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseJSONModel.m; sourceTree = "<group>"; };
+		A2723F01273CC9FE00388B01 /* BaseJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseJSONModel.h; sourceTree = "<group>"; };
 		A423B18EF7C9C23904AE150A /* Pods-FFitWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.release.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.release.xcconfig"; sourceTree = "<group>"; };
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
@@ -674,7 +680,7 @@
 			isa = PBXGroup;
 			children = (
 				A2723EEB273BBDFD00388B01 /* Common */,
-				DD742587272942F9005D636E /* Category */,
+				DD742587272942F9005D636E /* Utils */,
 				DD25FEC5272012DC0092CF87 /* ThirdLib */,
 				C8E2F71E27131B7600FEE021 /* BaseClass */,
 				04EC01CE26BD8ABF00DC0103 /* VConductor */,
@@ -777,10 +783,10 @@
 		04EC01E126BD8AC000DC0103 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				04EC01E226BD8AC000DC0103 /* GenerateTestUserSig.m */,
-				04EC01E326BD8AC000DC0103 /* ToolFunc.m */,
 				04EC01E426BD8AC000DC0103 /* GenerateTestUserSig.h */,
+				04EC01E226BD8AC000DC0103 /* GenerateTestUserSig.m */,
 				04EC01E526BD8AC000DC0103 /* ToolFunc.h */,
+				04EC01E326BD8AC000DC0103 /* ToolFunc.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -848,6 +854,8 @@
 				04F8AA5A270DE974009B125A /* ResetPwdController.m */,
 				A2723EFA273BD3D200388B01 /* ChangeInfoViewController.h */,
 				A2723EFB273BD3D200388B01 /* ChangeInfoViewController.m */,
+				A2723EFD273CC28C00388B01 /* ChangeIntroductionViewController.h */,
+				A2723EFE273CC28C00388B01 /* ChangeIntroductionViewController.m */,
 			);
 			path = SettingVC;
 			sourceTree = "<group>";
@@ -1041,9 +1049,11 @@
 			path = MessageList;
 			sourceTree = "<group>";
 		};
-		DD742587272942F9005D636E /* Category */ = {
+		DD742587272942F9005D636E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A2723F01273CC9FE00388B01 /* BaseJSONModel.h */,
+				A2723F00273CC9FD00388B01 /* BaseJSONModel.m */,
 				DD7425AC272942F9005D636E /* NSArray+YCCategory.h */,
 				DD74259A272942F9005D636E /* NSArray+YCCategory.m */,
 				DD74258E272942F9005D636E /* NSDate+Extension.h */,
@@ -1093,7 +1103,7 @@
 				A2723EF8273BD16500388B01 /* UIView+MTWindow.h */,
 				A2723EF7273BD16500388B01 /* UIView+MTWindow.m */,
 			);
-			path = Category;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1276,6 +1286,7 @@
 				DD6EDB5C272EFFFB002B0A8E /* TrainingStartViewController.m in Sources */,
 				DD6EDB33272D2C89002B0A8E /* OurDatePickerView.m in Sources */,
 				DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */,
+				A2723F02273CC9FE00388B01 /* BaseJSONModel.m in Sources */,
 				DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */,
 				04552B3D2696C3FD00C78706 /* EntypoSymbol.m in Sources */,
 				04552B4D2696C3FD00C78706 /* UIImage+ImageEffects.m in Sources */,
@@ -1307,6 +1318,7 @@
 				04EC01FB26BD8AC100DC0103 /* ConfigManager.m in Sources */,
 				DD595EBD27364D0300618D1A /* MessageDetailViewController.m in Sources */,
 				DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */,
+				A2723EFF273CC28C00388B01 /* ChangeIntroductionViewController.m in Sources */,
 				DD25FEE927226B5A0092CF87 /* JYImageCache.m in Sources */,
 				04552B502696C3FD00C78706 /* UIControl+YYAdd.m in Sources */,
 				04552B4C2696C3FD00C78706 /* TWSReleaseNotesView.m in Sources */,

@@ -20,8 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:ChineseStringOrENFun(@"保存", @"Save") style:UIBarButtonItemStylePlain target:self action:@selector(clickSave)];
-    self.navigationItem.rightBarButtonItem = barButtonItem;
 
     UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
 
@@ -40,14 +38,22 @@
         case ChangeTypeEnum_NickName:
             changeTitle = ChineseStringOrENFun(@"昵称", @"Nickname");
             self.inputField.text = user.nickname;
+            self.inputField.keyboardType = UIKeyboardTypeDefault;
             break;
         default:
             break;
     }
     
     NSString *navTitle = ChineseStringOrENFun(@"修改", @"Change");
-    self.navigationItem.title = [[navTitle stringByAppendingString:changeTitle] uppercaseString];
+    self.navigationItem.title = [[navTitle stringByAppendingString:changeTitle] capitalizedString];
     self.titleLabel.text = changeTitle;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:ChineseStringOrENFun(@"保存", @"Save") style:UIBarButtonItemStylePlain target:self action:@selector(clickSave)];
+    self.navigationItem.rightBarButtonItem = barButtonItem;
+    
 }
 
 //点击保存

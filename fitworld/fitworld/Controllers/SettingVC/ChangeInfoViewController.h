@@ -8,10 +8,9 @@
 #import "BaseNavViewController.h"
 
 typedef enum : int {
-    ChangeTypeEnum_NickName,
+    ChangeTypeEnum_NickName = 0,
     ChangeTypeEnum_Height,
-    ChangeTypeEnum_Weight,
-    ChangeTypeEnum_Info
+    ChangeTypeEnum_Weight
 }ChangeTypeEnum;
 
 NS_ASSUME_NONNULL_BEGIN

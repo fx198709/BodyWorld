@@ -10,6 +10,7 @@
 #import "LoginController.h"
 #import "YYMySelectDatePickerView.h"
 #import "ChangeInfoViewController.h"
+#import "ChangeIntroductionViewController.h"
 
 
 @interface SystemViewController () <YYMySelectDatePickerViewDelegate>
@@ -74,6 +75,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self loadData];
+    //获取用户信息
+    [[APPObjOnce sharedAppOnce] getUserinfo:^(bool isSuccess) {
+        if (isSuccess) {
+            [self loadData];
+        }
+    }];
 }
 
 - (void)initUI {
@@ -97,14 +104,22 @@
 }
 
 - (void)loadData {
-    self.languageLabel.text = ISChinese() ? @"中文" : @"English";
-
     UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
     
+    self.headImg.hidden = [NSString isNullString:user.avatar];
+    if (!self.headImg.hidden) {
+        NSString *url = [FITAPI_HTTPS_ROOT stringByAppendingString:user.avatar];
+        [self.headImg sd_setImageWithURL:[NSURL URLWithString:url]];
+    }
     self.nickLabel.text = user.nickname;
+    self.languageLabel.text = ISChinese() ? @"中文" : @"English";
     self.genderLabel.text = SexNameFormGender(user.gender);
+    self.mobileLabel.text = user.mobile;
     self.birthdayLabel.text = user.birthday;
-    
+    self.weightLabel.text = IntToString(user.weight);
+    self.heightLabel.text = IntToString(user.height);
+    self.cityLabel.text = user.city;
+    self.introductionLabel.text = user.introduction;
 }
 
 - (YYMySelectDatePickerView *)datePicker {
@@ -126,11 +141,6 @@
 
 //修改头像
 - (IBAction)changeHeadImg:(id)sender {
-    
-}
-
-//修改昵称
--(IBAction)changeNickName:(id)sender {
     
 }
 
@@ -202,6 +212,12 @@
     [self.datePicker showWithAnimated:YES completedBlock:nil];
 }
 
+//修改昵称
+-(IBAction)changeNickName:(id)sender {
+    [self goToChangeInfoViewController:ChangeTypeEnum_NickName];
+
+}
+
 //修改身高
 -(IBAction)changeHeight:(id)sender {
     [self goToChangeInfoViewController:ChangeTypeEnum_Height];
@@ -219,12 +235,14 @@
 
 //修改介绍
 -(IBAction)ChangeIntroduction:(id)sender {
-    [self goToChangeInfoViewController:ChangeTypeEnum_Info];
+    ChangeIntroductionViewController *nextVC = VCBySBName(@"ChangeIntroductionViewController");
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 //跳转到修改页面
 - (void)goToChangeInfoViewController:(ChangeTypeEnum)type {
     ChangeInfoViewController *nextVC = VCBySBName(@"ChangeInfoViewController");
+    nextVC.changeType = type;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -239,14 +257,7 @@
     [alter addAction:sure];
     [alter addAction:cancle];
     
-    [self presentViewController:alter animated:YES completion:^{
-        
-    }];
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    [self presentViewController:alter animated:YES completion:nil];
 }
 
 

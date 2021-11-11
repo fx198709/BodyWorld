@@ -9,4 +9,5 @@ target 'FFitWorld' do
     pod 'Masonry'
     pod 'MBProgressHUD'
     pod 'HMSegmentedControl'
+    pod 'JSONModel'
 end

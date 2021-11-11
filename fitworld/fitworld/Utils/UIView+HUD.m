@@ -13,9 +13,17 @@
 
 //显示文字提示
 - (void)showTextNotice:(NSString *)msg {
+    [self showTextNotice:msg detail:nil];
+}
+
+//显示标题 +文字提示
+- (void)showTextNotice:(NSString *)title detail:(NSString *)detail {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     hud.mode = MBProgressHUDModeText;
-    hud.label.text = msg;
+    hud.label.text = title;
+    if (![NSString isNullString:detail]) {
+        hud.detailsLabel.text = detail;
+    }
     hud.removeFromSuperViewOnHide = YES;
     [hud hideAnimated:YES afterDelay:2.0];
 }
