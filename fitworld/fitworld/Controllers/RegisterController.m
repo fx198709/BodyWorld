@@ -7,14 +7,14 @@
 
 #import "AppDelegate.h"
 #import "RegisterController.h"
-
+#import "LoginController.h"
 #import "FITAPI.h"
 #import "UIDeps.h"
 #import "UserInfo.h"
 
 @interface RegisterController ()
 @property (weak, nonatomic) IBOutlet UIButton *changeLanguageBtn;
-@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) IBOutlet UIButton *accountBtn;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
@@ -34,6 +34,12 @@
     [self reloadTextView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.leftBarButtonItem = nil;
+
+}
+
 - (void)initView {
     [self.nameField cornerHalfWithBorderColor:[self.nameField backgroundColor]];
     [self.pwdField cornerHalfWithBorderColor:[self.pwdField backgroundColor]];
@@ -42,7 +48,7 @@
 
 - (void)reloadTextView {
     [self.loginBtn setTitle:ChineseStringOrENFun(@"登录", @"Login") forState:UIControlStateNormal];
-    [self.registerBtn setTitle:ChineseStringOrENFun(@"免密登录", @"SMS Code Login") forState:UIControlStateNormal];
+    [self.accountBtn setTitle:ChineseStringOrENFun(@"密码登录", @"Account Login") forState:UIControlStateNormal];
     
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
     self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入账号", @"Please enter the account number") attributes:attr];
@@ -70,8 +76,8 @@
 }
 
 
-- (IBAction)goToRegister:(id)sender {
-    RegisterController *nextVC = VCBySBName(@"RegisterController");
+- (IBAction)goToAccountLogin:(id)sender {
+    LoginController *nextVC = VCBySBName(@"LoginController");
     [self.navigationController setViewControllers:[NSArray arrayWithObject:nextVC] animated:YES];
 }
 

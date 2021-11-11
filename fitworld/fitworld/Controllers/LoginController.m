@@ -38,11 +38,17 @@
     [self reloadTextView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.leftBarButtonItem = nil;
+}
+
 - (void)initView {
     [self.nameField cornerHalfWithBorderColor:[self.nameField backgroundColor]];
     [self.pwdField cornerHalfWithBorderColor:[self.pwdField backgroundColor]];
     [self.loginBtn cornerHalfWithBorderColor:[self.loginBtn backgroundColor]];
 }
+
 
 - (void)reloadTextView {
     [self.loginBtn setTitle:ChineseStringOrENFun(@"登录", @"Login") forState:UIControlStateNormal];
