@@ -8,6 +8,7 @@
 #import "HeaderPanel.h"
 #import "SidePanel.h"
 #import "ViewerPanel.h"
+#import "GuestPanel.h"
 #import "UIDeps.h"
 #import "VConductorClient.h"
 #import "ToolFunc.h"
@@ -27,7 +28,10 @@
 @property (nonatomic, strong) SidePanel *mSidePanel;
 @property (nonatomic, strong) MainPanel* mMainPanel;
 @property (nonatomic, strong) ViewerPanel* mViewerPanel;
+@property (nonatomic, strong) NSMutableArray* guestPanels;
 @property (nonatomic, assign) BOOL mFullScreen;
+
+@property (nonatomic, strong) UIView *bottomPanelView;
 
 @end
 
@@ -61,7 +65,8 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(guestMemberChangetoView) name:@"GuestMemberChange" object:nil];
+
   mBkImg = [UIImageView new];
   [mBkImg setImage:[UIImage imageNamed:@"bg_jscn.jpg"]];
   [self.view addSubview:mBkImg];
@@ -73,10 +78,15 @@
   mHeaderPanel = [HeaderPanel new];
   [self.view addSubview:mHeaderPanel];
   
+    _bottomPanelView = [[UIView alloc] init];
+    [self.view addSubview:_bottomPanelView];
+    
   mSidePanel = [SidePanel new];
   mSidePanel.layer.cornerRadius = 5;
   mSidePanel.layer.masksToBounds = YES;
-  [self.view addSubview:mSidePanel];
+  [_bottomPanelView addSubview:mSidePanel];
+    
+    
   
   mMainPanel = [MainPanel new];
   mMainPanel.layer.cornerRadius = 5;
@@ -186,7 +196,11 @@
       make.right.equalTo(self.mSidePanel.mas_left).offset(-midPadding);
       make.bottom.equalTo(self.view).offset(-sidePadding);
     }];
+      [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+      }];
   } else {
+//      都在这边布局的
     [mHeaderPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
       make.left.and.top.equalTo(self.view);
       make.width.equalTo(self.view);
@@ -196,7 +210,7 @@
         make.height.equalTo(@90);
       }
     }];
-    
+      
       [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
           make.left.right.equalTo(self.view).offset(sidePadding);
           make.right.equalTo(self.view).offset(-sidePadding);
@@ -204,25 +218,43 @@
           make.height.equalTo(self.view).multipliedBy(0.3);
       }];
       
-      [mSidePanel mas_remakeConstraints:^(MASConstraintMaker *make) {
+      [_bottomPanelView mas_remakeConstraints:^(MASConstraintMaker *make) {
           make.left.right.equalTo(self.view).offset(sidePadding);
           make.right.equalTo(self.view).offset(-sidePadding);
           make.top.equalTo(self.mMainPanel.mas_bottom).offset(sidePadding);
           make.bottom.equalTo(self.view).offset(-sidePadding);
       }];
+      [self.view setNeedsLayout];
+      [self.view layoutIfNeeded];
+      [UIView animateWithDuration:0.3 animations:^{
+          //    获取所有的成员列表
+          CGRect bottomframe = self->_bottomPanelView.frame;
+          VConductorClient *client = [VConductorClient sharedInstance];
+          NSDictionary * memberDic = [client getGustMemberData];
+          NSInteger count = memberDic.allKeys.count;
+          if (count == 0) {
+          //        清楚所有的直播
+              self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width, bottomframe.size.height);
+
+          }else{
+              if (count == 1){
+              //            一行两个
+
+              }else if (count == 3 || count == 2){
+              //            一行2个
+              } else{
+              //            一行3个 2行
+              }
+          }
+      }];
+        
       
-//    [mViewerPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
-//      make.left.equalTo(self.view).offset(sidePadding);
-//      make.top.equalTo(self.mMainPanel.mas_bottom);
-//      make.right.equalTo(self.mSidePanel.mas_left).offset(-midPadding);
-//      make.bottom.equalTo(self.view).offset(-sidePadding);
-//    }];
+      
+      
   }
   
   
-  [UIView animateWithDuration:0.3 animations:^{
-    [self.view layoutIfNeeded];
-  }];
+  
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -407,6 +439,12 @@
   
   //显示分享窗口
   [self presentViewController:activituVC animated:YES completion:nil];
+}
+
+//改变成员
+- (void)guestMemberChangetoView{
+    [self layoutPanel];
+    
 }
 
 @end

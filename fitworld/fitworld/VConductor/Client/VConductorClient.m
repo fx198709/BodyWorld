@@ -271,6 +271,11 @@
   return mHostMember;
 }
 
+- (NSDictionary*)getGustMemberData{
+    return mGuestMembers;
+}
+
+
 - (NSInteger)getElapsedSeconds {
   if (mRoom == nil) {
     return 0;
@@ -513,11 +518,13 @@
     [self setHostMember:member];
   } else if ([member isGuest]) {
     [self setGuestMember:member];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"GuestMemberChange" object:nil];
   } else {
     
   }
 }
 
+//成员信息更新
 - (void) onMemberUpdate:(VSRoomUser*)user {
   ClassMember *member = [[ClassMember alloc] initWith:user];
   if ([member isHost]) {
@@ -529,12 +536,14 @@
   }
 }
 
+//有成员离开，处理host 或者member数据  发出人员更新的通知
 - (void) onMemberLeave:(VSRoomUser*)user {
   ClassMember *member = [[ClassMember alloc] initWith:user];
   if ([member isHost]) {
     [self clearHostMember:member];
   } else if ([member isGuest]) {
     [self clearGuestMember:member];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GuestMemberChange" object:nil];
   } else {
     
   }

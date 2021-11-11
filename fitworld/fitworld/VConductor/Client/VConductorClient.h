@@ -49,6 +49,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (ClassMember*)getMySession; //自己
 - (ClassMember*)getHostMember; //老师 / 教练
 
+- (NSDictionary*)getGustMemberData; //老师 / 教练
+
+
 - (NSInteger)getElapsedSeconds;
 
 - (PlayoutLayoutMode)memberLayoutMode;

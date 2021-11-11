@@ -120,6 +120,7 @@
 		DD595EE1273A68BE00618D1A /* TableSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EDF273A68BE00618D1A /* TableSearchView.m */; };
 		DD595EE7273BAF9A00618D1A /* APPObjOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EE6273BAF9A00618D1A /* APPObjOnce.m */; };
 		DD595EEA273BB15800618D1A /* UserHeadPicView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EE9273BB15800618D1A /* UserHeadPicView.m */; };
+		DD595EED273D7D5F00618D1A /* GuestPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EEB273D7D5F00618D1A /* GuestPanel.m */; };
 		DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */; };
 		DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */; };
 		DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB1A272D1A45002B0A8E /* TableHeadview.m */; };
@@ -378,6 +379,8 @@
 		DD595EE6273BAF9A00618D1A /* APPObjOnce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPObjOnce.m; sourceTree = "<group>"; };
 		DD595EE8273BB15800618D1A /* UserHeadPicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserHeadPicView.h; sourceTree = "<group>"; };
 		DD595EE9273BB15800618D1A /* UserHeadPicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserHeadPicView.m; sourceTree = "<group>"; };
+		DD595EEB273D7D5F00618D1A /* GuestPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestPanel.m; sourceTree = "<group>"; };
+		DD595EEC273D7D5F00618D1A /* GuestPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestPanel.h; sourceTree = "<group>"; };
 		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		DD6EDB14272CE587002B0A8E /* SelectClassHeadview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectClassHeadview.h; sourceTree = "<group>"; };
 		DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectClassHeadview.m; sourceTree = "<group>"; };
@@ -746,6 +749,8 @@
 		04EC01CF26BD8ABF00DC0103 /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				DD595EEC273D7D5F00618D1A /* GuestPanel.h */,
+				DD595EEB273D7D5F00618D1A /* GuestPanel.m */,
 				04EC01D526BD8ABF00DC0103 /* SidePanel.h */,
 				04EC01D026BD8ABF00DC0103 /* SidePanel.m */,
 				04EC01D326BD8ABF00DC0103 /* ViewerPanel.h */,
@@ -1340,6 +1345,7 @@
 				04552B4C2696C3FD00C78706 /* TWSReleaseNotesView.m in Sources */,
 				04F3E34526E9326000CEEC7D /* UIView+Extension.m in Sources */,
 				047DC1F5268CD09700A3E37E /* AppDelegate.m in Sources */,
+				DD595EED273D7D5F00618D1A /* GuestPanel.m in Sources */,
 				DD25FEE827226B5A0092CF87 /* JYCarousel.m in Sources */,
 				047DC1F8268CD09700A3E37E /* SceneDelegate.m in Sources */,
 				DD6EDB4B272E7AF9002B0A8E /* AddPeopleTableViewCell.m in Sources */,
