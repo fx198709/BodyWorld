@@ -11,6 +11,7 @@
 #import "YYMySelectDatePickerView.h"
 #import "ChangeInfoViewController.h"
 #import "ChangeIntroductionViewController.h"
+#import "SelectCountryViewController.h"
 
 
 @interface SystemViewController ()
@@ -258,7 +259,8 @@ YYMySelectDatePickerViewDelegate>
 
 //修改所在城市
 -(IBAction)changeCity:(id)sender {
-    
+    SelectCountryViewController *nextVC = VCBySBName(@"SelectCountryViewController");
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 //修改介绍

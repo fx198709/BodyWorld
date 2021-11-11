@@ -88,6 +88,9 @@
 		A2723EFC273BD3D200388B01 /* ChangeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EFB273BD3D200388B01 /* ChangeInfoViewController.m */; };
 		A2723EFF273CC28C00388B01 /* ChangeIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EFE273CC28C00388B01 /* ChangeIntroductionViewController.m */; };
 		A2723F02273CC9FE00388B01 /* BaseJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F00273CC9FD00388B01 /* BaseJSONModel.m */; };
+		A2723F05273CF1BC00388B01 /* SelectCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F04273CF1BC00388B01 /* SelectCountryViewController.m */; };
+		A2723F09273CF22F00388B01 /* SelectCountryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F07273CF22F00388B01 /* SelectCountryCell.m */; };
+		A2723F0A273CF22F00388B01 /* SelectCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2723F08273CF22F00388B01 /* SelectCountryCell.xib */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
@@ -316,6 +319,11 @@
 		A2723EFE273CC28C00388B01 /* ChangeIntroductionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeIntroductionViewController.m; sourceTree = "<group>"; };
 		A2723F00273CC9FD00388B01 /* BaseJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseJSONModel.m; sourceTree = "<group>"; };
 		A2723F01273CC9FE00388B01 /* BaseJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseJSONModel.h; sourceTree = "<group>"; };
+		A2723F03273CF1BC00388B01 /* SelectCountryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCountryViewController.h; sourceTree = "<group>"; };
+		A2723F04273CF1BC00388B01 /* SelectCountryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCountryViewController.m; sourceTree = "<group>"; };
+		A2723F06273CF22F00388B01 /* SelectCountryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCountryCell.h; sourceTree = "<group>"; };
+		A2723F07273CF22F00388B01 /* SelectCountryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCountryCell.m; sourceTree = "<group>"; };
+		A2723F08273CF22F00388B01 /* SelectCountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCountryCell.xib; sourceTree = "<group>"; };
 		A423B18EF7C9C23904AE150A /* Pods-FFitWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.release.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.release.xcconfig"; sourceTree = "<group>"; };
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
@@ -856,6 +864,8 @@
 				A2723EFB273BD3D200388B01 /* ChangeInfoViewController.m */,
 				A2723EFD273CC28C00388B01 /* ChangeIntroductionViewController.h */,
 				A2723EFE273CC28C00388B01 /* ChangeIntroductionViewController.m */,
+				A2723F03273CF1BC00388B01 /* SelectCountryViewController.h */,
+				A2723F04273CF1BC00388B01 /* SelectCountryViewController.m */,
 			);
 			path = SettingVC;
 			sourceTree = "<group>";
@@ -1000,6 +1010,9 @@
 				DD595EB52736224600618D1A /* NoDataCollectionViewCell.h */,
 				DD595EB62736224600618D1A /* NoDataCollectionViewCell.m */,
 				DD595EB72736224600618D1A /* NoDataCollectionViewCell.xib */,
+				A2723F06273CF22F00388B01 /* SelectCountryCell.h */,
+				A2723F07273CF22F00388B01 /* SelectCountryCell.m */,
+				A2723F08273CF22F00388B01 /* SelectCountryCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1169,6 +1182,7 @@
 			files = (
 				DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */,
 				DD595EC427367FA700618D1A /* UserCenterMainViewController.xib in Resources */,
+				A2723F0A273CF22F00388B01 /* SelectCountryCell.xib in Resources */,
 				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
 				DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */,
@@ -1259,6 +1273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2723F09273CF22F00388B01 /* SelectCountryCell.m in Sources */,
 				DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */,
 				DD595EEA273BB15800618D1A /* UserHeadPicView.m in Sources */,
 				DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */,
@@ -1318,6 +1333,7 @@
 				04EC01FB26BD8AC100DC0103 /* ConfigManager.m in Sources */,
 				DD595EBD27364D0300618D1A /* MessageDetailViewController.m in Sources */,
 				DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */,
+				A2723F05273CF1BC00388B01 /* SelectCountryViewController.m in Sources */,
 				A2723EFF273CC28C00388B01 /* ChangeIntroductionViewController.m in Sources */,
 				DD25FEE927226B5A0092CF87 /* JYImageCache.m in Sources */,
 				04552B502696C3FD00C78706 /* UIControl+YYAdd.m in Sources */,
