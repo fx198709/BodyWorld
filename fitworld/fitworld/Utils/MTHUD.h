@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  弹出闪现的成功提示窗口
  */
-+ (void)showDurationSuccessHUD:(NSString *)message;
++ (void)showDurationNoticeHUD:(NSString *)message;
 
 /**
  弹出闪现的成功提示窗口
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param animated 是否需要动画
  @param completedBlock 完成Block
  */
-+ (void)showDurationSuccessHUD:(NSString *)message animated:(BOOL)animated completedBlock:(nullable void(^)(void))completedBlock;
++ (void)showDurationNoticeHUD:(NSString *)message animated:(BOOL)animated completedBlock:(nullable void(^)(void))completedBlock;
 
 /**
  弹出加载中图文提示窗口

@@ -30,7 +30,7 @@
             }
         }
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-           [MTHUD showDurationSuccessHUD:error.localizedDescription];
+           [MTHUD showDurationNoticeHUD:error.localizedDescription];
            if (completedBlock) {
                completedBlock(NO);
            }

@@ -35,11 +35,11 @@
     return hudView;
 }
 
-+ (void)showDurationSuccessHUD:(NSString *)message {
-    [self showDurationSuccessHUD:message animated:YES completedBlock:nil];
++ (void)showDurationNoticeHUD:(NSString *)message {
+    [self showDurationNoticeHUD:message animated:YES completedBlock:nil];
 }
 
-+ (void)showDurationSuccessHUD:(NSString *)message animated:(BOOL)animated completedBlock:(nullable void(^)(void))completedBlock {
++ (void)showDurationNoticeHUD:(NSString *)message animated:(BOOL)animated completedBlock:(nullable void(^)(void))completedBlock {
 
     MTHUD *hudView = [MTHUD instance];
     [hudView refreshUpDownView:message];

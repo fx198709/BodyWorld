@@ -7,7 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginController : BaseNavViewController<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface LoginController : BaseNavViewController
+
 
 @end
 

@@ -69,14 +69,14 @@
 
 - (void)showSuccessNotice {
     NSString *msg = ChineseStringOrENFun(@"修改成功", @"Success changed");
-    [MTHUD showDurationSuccessHUD:msg animated:YES completedBlock:^{
+    [MTHUD showDurationNoticeHUD:msg animated:YES completedBlock:^{
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 
 - (void)showChangeFailedError:(NSError *)error {
     NSString *msg = error == nil ? ChineseStringOrENFun(@"修改失败", @"Change failed") : error.localizedDescription;
-    [MTHUD showDurationSuccessHUD:msg];
+    [MTHUD showDurationNoticeHUD:msg];
 }
 
 @end

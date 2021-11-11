@@ -162,7 +162,7 @@ YYMySelectDatePickerViewDelegate>
 - (void)showImgPicker:(UIImagePickerControllerSourceType)sourceType {
     if (![UIImagePickerController isSourceTypeAvailable:sourceType]) {
         NSString *msg = ChineseStringOrENFun(@"请打开相册权限", @"Please open photo privacy");
-        [MTHUD showDurationSuccessHUD:msg];
+        [MTHUD showDurationNoticeHUD:msg];
         return;
     }
     UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
@@ -193,7 +193,6 @@ YYMySelectDatePickerViewDelegate>
     UIAlertController *alter = [UIAlertController alertControllerWithTitle:ChineseStringOrENFun(@"提示", @"tips") message:tips preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:ChineseStringOrENFun(@"确定", @"yes") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         //保存当前语言
-        
         [ConfigManager sharedInstance].language = languageEnum;
         [[ConfigManager sharedInstance] saveConfig];
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -271,8 +270,8 @@ YYMySelectDatePickerViewDelegate>
     UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"确定退出？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
-        LoginController *loginVC = [[LoginController alloc] init];
-        [self.navigationController pushViewController:loginVC animated:YES];
+        LoginController *loginVC = VCBySBName(@"LoginController");
+        [self.navigationController setViewControllers:[NSArray arrayWithObject:loginVC] animated:YES];
     }];
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alter addAction:sure];
@@ -330,12 +329,12 @@ YYMySelectDatePickerViewDelegate>
 
 - (void)showSuccessNotice {
     NSString *msg = ChineseStringOrENFun(@"修改成功", @"Success changed");
-    [MTHUD showDurationSuccessHUD:msg];
+    [MTHUD showDurationNoticeHUD:msg];
 }
 
 - (void)showChangeFailedError:(NSError *)error {
     NSString *msg = error == nil ? ChineseStringOrENFun(@"修改失败", @"Change failed") : error.localizedDescription;
-    [MTHUD showDurationSuccessHUD:msg];
+    [MTHUD showDurationNoticeHUD:msg];
 }
 
 
