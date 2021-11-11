@@ -51,7 +51,9 @@ BOOL  hasrequest = NO;
       make.left.with.top.equalTo(self.view);
       make.size.equalTo(self.view);
     }];
-    [[APPObjOnce sharedAppOnce] getUserinfo:nil];
+    [[APPObjOnce sharedAppOnce] getUserinfo:^(bool isSuccess) {
+        self.userInfo = [[APPObjOnce sharedAppOnce] currentUser];
+    }];
     [self setupRefresh];
     _mainTableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     _sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 133)];
@@ -67,9 +69,9 @@ BOOL  hasrequest = NO;
 
 }
 
-- (UserInfo *)userInfo {
-    return [APPObjOnce sharedAppOnce].currentUser;
-}
+//- (UserInfo *)userInfo {
+//    return [APPObjOnce sharedAppOnce].currentUser;
+//}
 
 - (void)reachNoReadMessageList{
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
