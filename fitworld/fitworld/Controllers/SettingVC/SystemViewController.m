@@ -13,7 +13,9 @@
 #import "ChangeIntroductionViewController.h"
 
 
-@interface SystemViewController () <YYMySelectDatePickerViewDelegate>
+@interface SystemViewController ()
+<UINavigationControllerDelegate, UIImagePickerControllerDelegate,
+YYMySelectDatePickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *pwdTitleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *headTitleLabel;
@@ -141,7 +143,32 @@
 
 //修改头像
 - (IBAction)changeHeadImg:(id)sender {
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
+    [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"拍照", @"Camera") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showImgPicker:UIImagePickerControllerSourceTypeCamera];
+    }]];
+    
+    [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"相册", @"Photo") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showImgPicker:UIImagePickerControllerSourceTypePhotoLibrary];
+    }]];
+    [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"取消", @"Cancel") style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:ac animated:YES completion:nil];
+}
+
+//显示拍摄/照片
+- (void)showImgPicker:(UIImagePickerControllerSourceType)sourceType {
+    if (![UIImagePickerController isSourceTypeAvailable:sourceType]) {
+        NSString *msg = ChineseStringOrENFun(@"请打开相册权限", @"Please open photo privacy");
+        [self.view showTextNotice:msg];
+        return;
+    }
+    UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+    imgPicker.delegate = self;
+    imgPicker.allowsEditing = YES;
+    imgPicker.sourceType = sourceType;
+    [self presentViewController:imgPicker animated:YES completion:nil];
 }
 
 //修改语言
@@ -194,6 +221,7 @@
     [self presentViewController:ac animated:YES completion:nil];
 }
 
+//发送修改性别
 - (void)changeSexFromServer:(GenderEnum)gender {
     //todo:
     UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
@@ -215,7 +243,7 @@
 //修改昵称
 -(IBAction)changeNickName:(id)sender {
     [self goToChangeInfoViewController:ChangeTypeEnum_NickName];
-
+    
 }
 
 //修改身高
@@ -265,7 +293,7 @@
 
 - (void)selectDatePickerDidSelectDate:(NSDate *)date {
     //todo
-
+    
     UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
     user.birthday =  [date mt_formatString:YYDateFormatter_Year];;
     [self loadData];
@@ -273,5 +301,25 @@
 
 - (void)selectDatePickerDidClickCancel {
 }
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *editImg = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *img = editImg == nil ? originImage : editImg;
+    //todo
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [self.headImg setImage:img];
+    }];
+}
+
+
+// 取消图片选择调用此方法
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end
