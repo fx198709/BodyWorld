@@ -13,24 +13,24 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SelectCountryCell" rowHeight="56" id="KGk-i7-Jjw" customClass="SelectCountryCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-yE-pBI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="国家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBo-OD-vch">
-                                <rect key="frame" x="24" y="0.0" width="29" height="62"/>
+                                <rect key="frame" x="24" y="0.0" width="29" height="56"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="btn_next" translatesAutoresizingMaskIntoConstraints="NO" id="gHg-UQ-6bh">
-                                <rect key="frame" x="288" y="24.5" width="8" height="13"/>
+                                <rect key="frame" x="288" y="21.5" width="8" height="13"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bx-5a-8ge" userLabel="line">
-                                <rect key="frame" x="24" y="61.5" width="296" height="0.5"/>
+                                <rect key="frame" x="24" y="55.5" width="296" height="0.5"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="rRJ-Rq-82q"/>
@@ -46,7 +46,6 @@
                             <constraint firstItem="aBo-OD-vch" firstAttribute="top" secondItem="dMK-yE-pBI" secondAttribute="top" id="aL7-1t-9i2"/>
                             <constraint firstItem="gHg-UQ-6bh" firstAttribute="centerY" secondItem="dMK-yE-pBI" secondAttribute="centerY" id="cUm-HF-x9Q"/>
                             <constraint firstItem="aBo-OD-vch" firstAttribute="leading" secondItem="dMK-yE-pBI" secondAttribute="leading" constant="24" id="dTb-gy-U0s"/>
-                            <constraint firstAttribute="height" constant="62" id="mIy-Bk-aSn"/>
                             <constraint firstAttribute="trailing" secondItem="3bx-5a-8ge" secondAttribute="trailing" id="noQ-FN-DWx"/>
                             <constraint firstItem="gHg-UQ-6bh" firstAttribute="centerY" secondItem="dMK-yE-pBI" secondAttribute="centerY" id="tJr-gn-oMA"/>
                         </constraints>

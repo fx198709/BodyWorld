@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Country : BaseJSONModel
 
 @property (nonatomic, assign) NSInteger id;
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *name_en;
 @property (nonatomic, copy) NSString *code;
 

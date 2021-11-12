@@ -8,19 +8,35 @@
 #import "AppDelegate.h"
 #import "RegisterController.h"
 #import "LoginController.h"
+#import "SelectCountryCodeViewController.h"
+
 #import "FITAPI.h"
 #import "UIDeps.h"
 #import "UserInfo.h"
 
 @interface RegisterController ()
-@property (weak, nonatomic) IBOutlet UIButton *changeLanguageBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *zhLanguageBtn;
+@property (weak, nonatomic) IBOutlet UIButton *enLanguageBtn;
+
 @property (weak, nonatomic) IBOutlet UIButton *accountBtn;
 
+
+@property (weak, nonatomic) IBOutlet UIView *nameView;
+
+@property (weak, nonatomic) IBOutlet UILabel *countryCodeLabel;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UITextField *pwdField;
-@property (weak, nonatomic) IBOutlet UIButton *showPwdBtn;
+@property (weak, nonatomic) IBOutlet UIButton *getCountryBtn;
+
+
+@property (weak, nonatomic) IBOutlet UIView *codeView;
+@property (weak, nonatomic) IBOutlet UITextField *codeField;
+@property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+
+
+@property (nonatomic, strong) CountryCode *code;
 
 
 
@@ -41,8 +57,9 @@
 }
 
 - (void)initView {
-    [self.nameField cornerHalfWithBorderColor:[self.nameField backgroundColor]];
-    [self.pwdField cornerHalfWithBorderColor:[self.pwdField backgroundColor]];
+    [self.nameView cornerHalfWithBorderColor:[self.nameField backgroundColor]];
+    [self.codeView cornerHalfWithBorderColor:[self.codeView backgroundColor]];
+    [self.codeBtn cornerHalfWithBorderColor:[self.codeBtn backgroundColor]];
     [self.loginBtn cornerHalfWithBorderColor:[self.loginBtn backgroundColor]];
 }
 
@@ -52,25 +69,32 @@
     
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
     self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入账号", @"Please enter the account number") attributes:attr];
-    self.pwdField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入密码", @"Please input a password") attributes:attr];
+    self.codeField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"短信验证码", @"SMS Code") attributes:attr];
     
     // TODO 默认账号
-        self.nameField.text = @"+86:13501173505";
-    // TODO 默认密码
-        self.pwdField.text = @"1122";
+//        self.nameField.text = @"+86:13501173505";
+}
+
+#pragma mark - data
+
+- (void)setCode:(CountryCode *)code {
+    _code = code;
+    self.countryCodeLabel.text = [NSString stringWithFormat:@"+%d", code.code];
 }
 
 #pragma mark - action
 
 //修改语言
-- (IBAction)ChangeLanguage:(id)sender {
-    if (ISChinese()) {
-        [ConfigManager sharedInstance].language = LanguageEnum_English;
+- (IBAction)ChangeLanguage:(UIButton *)sender {
+    LanguageEnum language;
+    if (sender == self.enLanguageBtn) {
+        language = LanguageEnum_English;
     } else {
-        [ConfigManager sharedInstance].language = LanguageEnum_Chinese;
+        language = LanguageEnum_Chinese;
     }
     
     //保存当前语言
+    [ConfigManager sharedInstance].language = language;
     [[ConfigManager sharedInstance] saveConfig];
     [self reloadTextView];
 }
@@ -82,16 +106,38 @@
 }
 
 
-//点击显示密码
-- (IBAction)clickShowPwd:(id)sender {
-    [self.showPwdBtn setSelected:!self.showPwdBtn.isSelected];
-    [self.pwdField setSecureTextEntry:!self.showPwdBtn.isSelected];
+//获取验证码
+- (IBAction)getValidCode:(id)sender {
+    UserInfo *userInfo = [APPObjOnce sharedAppOnce].currentUser;
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
+    //账号 邮箱格式 : xx@xx.xx 手机格式: '国际区号:手机号'
+    NSString *account = nil;
+    if (![NSString isNullString:userInfo.mobile]) {
+        account = [NSString stringWithFormat:@"%@:%@", userInfo.mobile_code, userInfo.mobile];
+    } else {
+        account = userInfo.username;
+    }
+    
+    NSDictionary *param = @{@"account":account};
+    [manager PUT:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"====respong:%@", responseObject);
+        //显示倒计时
+        [self.codeBtn countdownWithStartTime:60
+                                            title:GetValidCodeBtnTitle
+                                   countDownTitle:GetValidCodeBtnTitle_H];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD showDurationNoticeHUD:error.localizedDescription];
+    }];
 }
 
+//点击切换区码
+- (IBAction)clickSelectCode:(id)sender {
+    [self performSegueWithIdentifier:@"selectCodeSegue" sender:nil];
+}
 
 - (IBAction)clickLogin {
     NSString *name = self.nameField.text;
-    NSString *pwd = self.pwdField.text;
+    NSString *pwd = self.codeField.text;
     
     if ([NSString isNullString:name] || [NSString isNullString:pwd]) {
         [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"用户名和密码不能为空", @"Account and password can not be emtpy")];
@@ -101,12 +147,9 @@
     NSString *strUrl = [NSString stringWithFormat:@"%@login", FITAPI_HTTPS_PREFIX];
     NSLog(@"uuid>>>>%@", [UIDevice currentDevice].identifierForVendor.UUIDString);
     [MTHUD showLoadingHUD];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    NSDictionary *dict = @{
-        @"username":name,
-        @"password":pwd
+    NSDictionary *dict = @{ @"username":name,  @"password":pwd
     };
-    [manager POST:strUrl parameters:dict headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    [[AFHTTPSessionManager manager] POST:strUrl parameters:dict headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         // 进度
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MTHUD hideHUD];
@@ -140,5 +183,17 @@
     [self.view.window setRootViewController:vc];
 }
 
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"selectCodeSegue"]) {
+        SelectCountryCodeViewController *nextVC = segue.destinationViewController;
+        nextVC.callback = ^(CountryCode *code) {
+            self.code = code;
+        };
+    }
+}
 
 @end

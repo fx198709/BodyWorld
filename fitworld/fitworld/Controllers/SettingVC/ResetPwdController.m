@@ -14,10 +14,6 @@
 #import "UserInfo.h"
 #import "MBProgressHUD.h"
 
-
-#define GetCodeBtnTitle ChineseStringOrENFun(@"获取验证码", @"Request Code")
-#define GetCodeBtnTitle_H ChineseStringOrENFun(@"重新获取", @"Request Again")
-
 @interface ResetPwdController ()
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -77,16 +73,14 @@
     } else {
         account = userInfo.username;
     }
-    //test
-    account = @"+86:13810661684";
     
     NSDictionary *param = @{@"account":account};
     [manager PUT:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"====respong:%@", responseObject);
         //显示倒计时
         [self.validCodeBtn countdownWithStartTime:60
-                                            title:GetCodeBtnTitle
-                                   countDownTitle:GetCodeBtnTitle_H];
+                                            title:GetValidCodeBtnTitle
+                                   countDownTitle:GetValidCodeBtnTitle_H];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MTHUD showDurationNoticeHUD:error.localizedDescription];
     }];

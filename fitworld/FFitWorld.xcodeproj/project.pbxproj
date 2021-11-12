@@ -92,6 +92,11 @@
 		A2723F10273D090E00388B01 /* UIColor+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F0F273D090E00388B01 /* UIColor+MT.m */; };
 		A2A94DC2273E5BA000D02C77 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC1273E5BA000D02C77 /* Country.m */; };
 		A2A94DC5273E610900D02C77 /* UIViewController+MTNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */; };
+		A2A94DC9273E718200D02C77 /* SelectCountryCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC8273E718200D02C77 /* SelectCountryCodeViewController.m */; };
+		A2A94DCB273E722E00D02C77 /* code.json in Resources */ = {isa = PBXBuildFile; fileRef = A2A94DCA273E722E00D02C77 /* code.json */; };
+		A2A94DCE273E744E00D02C77 /* CountryCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DCD273E744E00D02C77 /* CountryCode.m */; };
+		A2A94DD2273E76CA00D02C77 /* SelectCountryCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DD0273E76CA00D02C77 /* SelectCountryCodeCell.m */; };
+		A2A94DD3273E76CA00D02C77 /* SelectCountryCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A94DD1273E76CA00D02C77 /* SelectCountryCodeCell.xib */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
@@ -330,6 +335,14 @@
 		A2A94DC1273E5BA000D02C77 /* Country.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MTNavigation.m"; sourceTree = "<group>"; };
 		A2A94DC4273E610900D02C77 /* UIViewController+MTNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MTNavigation.h"; sourceTree = "<group>"; };
+		A2A94DC7273E718200D02C77 /* SelectCountryCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCountryCodeViewController.h; sourceTree = "<group>"; };
+		A2A94DC8273E718200D02C77 /* SelectCountryCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCountryCodeViewController.m; sourceTree = "<group>"; };
+		A2A94DCA273E722E00D02C77 /* code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = code.json; path = "../../0文档/code.json"; sourceTree = "<group>"; };
+		A2A94DCC273E744E00D02C77 /* CountryCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryCode.h; sourceTree = "<group>"; };
+		A2A94DCD273E744E00D02C77 /* CountryCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountryCode.m; sourceTree = "<group>"; };
+		A2A94DCF273E76CA00D02C77 /* SelectCountryCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCountryCodeCell.h; sourceTree = "<group>"; };
+		A2A94DD0273E76CA00D02C77 /* SelectCountryCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCountryCodeCell.m; sourceTree = "<group>"; };
+		A2A94DD1273E76CA00D02C77 /* SelectCountryCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCountryCodeCell.xib; sourceTree = "<group>"; };
 		A423B18EF7C9C23904AE150A /* Pods-FFitWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.release.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.release.xcconfig"; sourceTree = "<group>"; };
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
@@ -491,10 +504,7 @@
 				DD6EDB50272EFFFB002B0A8E /* Buddy */,
 				DD6EDB57272EFFFB002B0A8E /* More */,
 				A2723EDB273B794D00388B01 /* SettingVC */,
-				0456192E26ECEC8A00C0973F /* RegisterController.h */,
-				0456192F26ECEC8A00C0973F /* RegisterController.m */,
-				041510D2268F02DE0039FCD1 /* LoginController.h */,
-				041510D3268F02DE0039FCD1 /* LoginController.m */,
+				A2A94DC6273E714300D02C77 /* Login */,
 				0462BD9826920BE8005827D1 /* MainViewController.h */,
 				0462BD9926920BE8005827D1 /* MainViewController.m */,
 				0433B9AE26A7108E004AAD5B /* UserCenterViewController.h */,
@@ -503,15 +513,7 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		041510D1268F02AB0039FCD1 /* Apis */ = {
-			isa = PBXGroup;
-			children = (
-				041510D5268F03D20039FCD1 /* models */,
-			);
-			path = Apis;
-			sourceTree = "<group>";
-		};
-		041510D5268F03D20039FCD1 /* models */ = {
+		041510D5268F03D20039FCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				040CED0A269F294900818D76 /* Room.h */,
@@ -534,8 +536,10 @@
 				DD595ED62736FBB800618D1A /* CoachModel.m */,
 				A2A94DC0273E5BA000D02C77 /* Country.h */,
 				A2A94DC1273E5BA000D02C77 /* Country.m */,
+				A2A94DCC273E744E00D02C77 /* CountryCode.h */,
+				A2A94DCD273E744E00D02C77 /* CountryCode.m */,
 			);
-			path = models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		04552AF22696C3FD00C78706 /* UI */ = {
@@ -703,7 +707,7 @@
 				04EC01CE26BD8ABF00DC0103 /* VConductor */,
 				04552AF22696C3FD00C78706 /* UI */,
 				0462BD9B2692AB00005827D1 /* View */,
-				041510D1268F02AB0039FCD1 /* Apis */,
+				041510D5268F03D20039FCD1 /* Model */,
 				041510CF268F02810039FCD1 /* Controllers */,
 				048A1767268EA93500A52EBF /* Application */,
 				047DC1F3268CD09700A3E37E /* AppDelegate.h */,
@@ -712,6 +716,7 @@
 				047DC1F7268CD09700A3E37E /* SceneDelegate.m */,
 				DD59F5D8271BEB6600551E2C /* PrefixHeader.h */,
 				04552B562696C46E00C78706 /* UIDeps.h */,
+				A2A94DCA273E722E00D02C77 /* code.json */,
 				047DC1FC268CD09700A3E37E /* Main.storyboard */,
 				047DC202268CD09900A3E37E /* Assets.xcassets */,
 				047DC204268CD09900A3E37E /* LaunchScreen.storyboard */,
@@ -892,6 +897,19 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		A2A94DC6273E714300D02C77 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0456192E26ECEC8A00C0973F /* RegisterController.h */,
+				0456192F26ECEC8A00C0973F /* RegisterController.m */,
+				041510D2268F02DE0039FCD1 /* LoginController.h */,
+				041510D3268F02DE0039FCD1 /* LoginController.m */,
+				A2A94DC7273E718200D02C77 /* SelectCountryCodeViewController.h */,
+				A2A94DC8273E718200D02C77 /* SelectCountryCodeViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		C8E2F71E27131B7600FEE021 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -1026,6 +1044,9 @@
 				A2723F06273CF22F00388B01 /* SelectCountryCell.h */,
 				A2723F07273CF22F00388B01 /* SelectCountryCell.m */,
 				A2723F08273CF22F00388B01 /* SelectCountryCell.xib */,
+				A2A94DCF273E76CA00D02C77 /* SelectCountryCodeCell.h */,
+				A2A94DD0273E76CA00D02C77 /* SelectCountryCodeCell.m */,
+				A2A94DD1273E76CA00D02C77 /* SelectCountryCodeCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1204,11 +1225,13 @@
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
 				DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */,
 				04552B3C2696C3FD00C78706 /* entypo.ttf in Resources */,
+				A2A94DD3273E76CA00D02C77 /* SelectCountryCodeCell.xib in Resources */,
 				DD595EDC2737D25800618D1A /* CreateCourseSuccessViewController.xib in Resources */,
 				04CD2E4A26982A45007814E6 /* GoodsCell.xib in Resources */,
 				DD595EBE27364D0300618D1A /* MessageDetailViewController.xib in Resources */,
 				DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */,
 				047DC206268CD09900A3E37E /* LaunchScreen.storyboard in Resources */,
+				A2A94DCB273E722E00D02C77 /* code.json in Resources */,
 				DD595EB92736224600618D1A /* NoDataCollectionViewCell.xib in Resources */,
 				04CD2E4C26982A45007814E6 /* TableCollectionViewCell.xib in Resources */,
 				04552B3F2696C3FD00C78706 /* material-design-icons.ttf in Resources */,
@@ -1334,7 +1357,9 @@
 				A2723EDA273B779300388B01 /* UIView+MT.m in Sources */,
 				DD25FEE627226B5A0092CF87 /* JYTitleLabel.m in Sources */,
 				04552B4E2696C3FD00C78706 /* ConsoleTextView.m in Sources */,
+				A2A94DCE273E744E00D02C77 /* CountryCode.m in Sources */,
 				04552B552696C3FD00C78706 /* QRCodeReader.m in Sources */,
+				A2A94DC9273E718200D02C77 /* SelectCountryCodeViewController.m in Sources */,
 				A2723EEE273BBE2100388B01 /* Enum.m in Sources */,
 				04552B3E2696C3FD00C78706 /* MaterialDesignSymbol.m in Sources */,
 				C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */,
@@ -1400,6 +1425,7 @@
 				DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */,
 				04CD2E4B26982A45007814E6 /* GoodsCell.m in Sources */,
 				04747FBB2708010000B3B5B8 /* PractiseWeek.m in Sources */,
+				A2A94DD2273E76CA00D02C77 /* SelectCountryCodeCell.m in Sources */,
 				04EC01F926BD8AC100DC0103 /* VSRoomParam.mm in Sources */,
 				04EC01FA26BD8AC100DC0103 /* VSRoomLoader.m in Sources */,
 			);

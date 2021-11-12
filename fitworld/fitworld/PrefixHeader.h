@@ -231,3 +231,7 @@ static inline BOOL BOOLValueFromDic(NSDictionary * _Nonnull info, NSString * _Nu
 
 #define ChangeSuccessMsg ChineseStringOrENFun(@"修改成功", @"Success changed")
 #define ChangeErrorMsg ChineseStringOrENFun(@"修改失败", @"Change failed")
+
+
+#define GetValidCodeBtnTitle ChineseStringOrENFun(@"获取验证码", @"Request Code")
+#define GetValidCodeBtnTitle_H ChineseStringOrENFun(@"重新获取", @"Request Again")

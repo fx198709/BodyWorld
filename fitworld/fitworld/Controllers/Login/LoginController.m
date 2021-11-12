@@ -17,7 +17,8 @@
 
 @interface LoginController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *changeLanguageBtn;
+@property (weak, nonatomic) IBOutlet UIButton *zhLanguageBtn;
+@property (weak, nonatomic) IBOutlet UIButton *enLanguageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
@@ -66,14 +67,16 @@
 #pragma mark - action
 
 //修改语言
-- (IBAction)ChangeLanguage:(id)sender {
-    if (ISChinese()) {
-        [ConfigManager sharedInstance].language = LanguageEnum_English;
+- (IBAction)ChangeLanguage:(UIButton *)sender {
+    LanguageEnum language;
+    if (sender == self.enLanguageBtn) {
+        language = LanguageEnum_English;
     } else {
-        [ConfigManager sharedInstance].language = LanguageEnum_Chinese;
+        language = LanguageEnum_Chinese;
     }
     
     //保存当前语言
+    [ConfigManager sharedInstance].language = language;
     [[ConfigManager sharedInstance] saveConfig];
     [self reloadTextView];
 }
@@ -101,19 +104,22 @@
         return;
     }
     
-    NSString *strUrl = [NSString stringWithFormat:@"%@login", FITAPI_HTTPS_PREFIX];
-    NSLog(@"uuid>>>>%@", [UIDevice currentDevice].identifierForVendor.UUIDString);
+    NSDictionary *param = @{@"username":name, @"password":pwd};
+    [self loginToServer:param];
+}
+
+//到首页
+- (void)goToMainVC {
+    UINavigationController *vc = VCBySBName(@"mainNavVC");
+    [self.view.window setRootViewController:vc];
+}
+
+#pragma mark - server
+
+- (void)loginToServer:(NSDictionary *)param {
     [MTHUD showLoadingHUD];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    NSDictionary *dict = @{
-        @"username":name,
-        @"password":pwd
-    };
-    [manager POST:strUrl parameters:dict headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        // 进度
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFAppNetAPIClient manager] POST:@"login" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
-        NSLog(@"请求成功---%@", responseObject);
         if ([responseObject objectForKey:@"status"] && [[responseObject objectForKey:@"status"] longLongValue] == 0) {
             UserInfo *userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"][@"user"]];
             userInfo.msg = responseObject[@"recordset"][@"msg"];
@@ -129,20 +135,9 @@
             NSString *msg = [responseObject objectForKey:@"msg"];
             [MTHUD showDurationNoticeHUD:msg];
         }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MTHUD hideHUD:YES completedBlock:^{
-            [MTHUD showDurationNoticeHUD:error.localizedDescription];
-        }];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD showDurationNoticeHUD:error.localizedDescription];
     }];
 }
-
-//到首页
-- (void)goToMainVC {
-    UINavigationController *vc = VCBySBName(@"mainNavVC");
-    [self.view.window setRootViewController:vc];
-}
-
-
 
 @end
