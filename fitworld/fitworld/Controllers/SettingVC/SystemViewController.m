@@ -118,8 +118,7 @@ OurDatePickerViewDelegate>
     self.languageLabel.text = ISChinese() ? @"中文" : @"English";
     self.genderLabel.text = SexNameFormGender(user.gender);
     self.mobileLabel.text = user.mobile;
-    NSDate *birthday = [NSDate dateWithTimeIntervalSince1970:user.birthday.longLongValue];
-    self.birthdayLabel.text = [birthday mt_formatString:DateFormatter_Day];
+    self.birthdayLabel.text = user.birthday;
     self.weightLabel.text = IntToString(user.weight);
     self.heightLabel.text = IntToString(user.height);
     self.cityLabel.text = user.city;
@@ -361,7 +360,7 @@ OurDatePickerViewDelegate>
 
 - (void)seletedDate:(NSDate*)selectedDate andview:(OurDatePickerView*)pickerView{
     NSString *birthday =  [selectedDate mt_formatString:DateFormatter_Day];
-    NSDictionary *param = @{@"birthday" : IntToString(birthday)};
+    NSDictionary *param = @{@"birthday" : birthday};
     [self changeUserInfoFromServer:param];
 }
 
