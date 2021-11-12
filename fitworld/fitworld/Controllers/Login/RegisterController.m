@@ -36,9 +36,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 
-@property (nonatomic, strong) CountryCode *code;
-
-
 
 @end
 
@@ -77,11 +74,6 @@
 
 #pragma mark - data
 
-- (void)setCode:(CountryCode *)code {
-    _code = code;
-    self.countryCodeLabel.text = [NSString stringWithFormat:@"+%d", code.code];
-}
-
 #pragma mark - action
 
 //修改语言
@@ -108,18 +100,23 @@
 
 //获取验证码
 - (IBAction)getValidCode:(id)sender {
-    UserInfo *userInfo = [APPObjOnce sharedAppOnce].currentUser;
-    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
-    //账号 邮箱格式 : xx@xx.xx 手机格式: '国际区号:手机号'
-    NSString *account = nil;
-    if (![NSString isNullString:userInfo.mobile]) {
-        account = [NSString stringWithFormat:@"%@:%@", userInfo.mobile_code, userInfo.mobile];
-    } else {
-        account = userInfo.username;
+    [self.view endEditing:YES];
+    
+    NSString *code = self.countryCodeLabel.text;
+    if ([NSString isNullString:code]) {
+        [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请选择地区编码", @"Please select country code")];
+        return;
     }
     
-    NSDictionary *param = @{@"account":account};
-    [manager PUT:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSString *number = self.nameField.text;
+    if ([NSString isNullString:number]) {
+        [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请输入手机号", @"Please enter the account number")];
+        return;
+    }
+    
+    NSString *mobile = [NSString stringWithFormat:@"%@:%@", code, number];
+    NSDictionary *param = @{@"account":mobile};
+    [[AFAppNetAPIClient manager] PUT:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"====respong:%@", responseObject);
         //显示倒计时
         [self.codeBtn countdownWithStartTime:60
@@ -136,11 +133,14 @@
 }
 
 - (IBAction)clickLogin {
+    [self resignFirstResponder];
+
     NSString *name = self.nameField.text;
     NSString *pwd = self.codeField.text;
     
     if ([NSString isNullString:name] || [NSString isNullString:pwd]) {
-        [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"用户名和密码不能为空", @"Account and password can not be emtpy")];
+        [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"账号和验证码不能为空",
+                                                          @"Account and code can not be emtpy")];
         return;
     }
     
@@ -191,7 +191,7 @@
     if ([segue.identifier isEqualToString:@"selectCodeSegue"]) {
         SelectCountryCodeViewController *nextVC = segue.destinationViewController;
         nextVC.callback = ^(CountryCode *code) {
-            self.code = code;
+            self.countryCodeLabel.text = [NSString stringWithFormat:@"+%d", code.code];
         };
     }
 }

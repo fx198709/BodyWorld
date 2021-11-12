@@ -64,8 +64,9 @@
 
 //获取验证码
 - (IBAction)getValidCode:(id)sender {
+    [self.view endEditing:YES];
+
     UserInfo *userInfo = [APPObjOnce sharedAppOnce].currentUser;
-    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
     //账号 邮箱格式 : xx@xx.xx 手机格式: '国际区号:手机号'
     NSString *account = nil;
     if (![NSString isNullString:userInfo.mobile]) {
@@ -75,7 +76,7 @@
     }
     
     NSDictionary *param = @{@"account":account};
-    [manager PUT:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] PUT:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"====respong:%@", responseObject);
         //显示倒计时
         [self.validCodeBtn countdownWithStartTime:60
@@ -90,6 +91,8 @@
 
 //确认修改
 - (IBAction)submit:(id)sender {
+    [self.view endEditing:YES];
+
     NSString *validCode = self.validCodeLabel.text;
     if ([NSString isNullString:validCode]) {
         [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请输入验证码", @"Please enter verifycode")];
@@ -130,10 +133,9 @@
 
 //服务器验证验证码 - 暂时不用
 - (void)validCodeFromServer:(NSString *)code complete:(void(^)(bool isSuccess))completeBlock {
-    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
     [MTHUD showLoadingHUD];
     NSDictionary *param = @{@"captcha":code, @"no_login":@"false", @"invite_code":@""};
-    [manager PUT:@"captcha/validate" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] PUT:@"captcha/validate" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         NSLog(@"====respong:%@", responseObject);
         if ([responseObject objectForKey:@"recordset"]) {
@@ -145,10 +147,9 @@
 
 //发送修改密码请求
 - (void)changePwdFromServer:(NSString *)code pwd:(NSString *)pwd {
-    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
     [MTHUD showLoadingHUD];
     NSDictionary *param = @{@"captcha":code, @"password":pwd};
-    [manager PUT:@"password/reset" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] PUT:@"password/reset" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         [self showSuccessNoticeAndPopVC];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

@@ -83,6 +83,8 @@
 
 
 - (IBAction)goToRegister:(id)sender {
+    [self resignFirstResponder];
+
     RegisterController *nextVC = VCBySBName(@"RegisterController");
     [self.navigationController setViewControllers:[NSArray arrayWithObject:nextVC] animated:YES];
 }
@@ -96,6 +98,8 @@
 
 
 - (IBAction)clickLogin {
+    [self.view endEditing:YES];
+
     NSString *name = self.nameField.text;
     NSString *pwd = self.pwdField.text;
     

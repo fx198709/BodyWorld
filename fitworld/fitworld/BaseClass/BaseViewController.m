@@ -23,6 +23,10 @@
     self.view.backgroundColor = UIColor.blackColor;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
 - (void)showChangeFailedError:(NSError *)error {
     NSString *msg = error == nil ? ChangeErrorMsg : error.localizedDescription;
     [MTHUD showDurationNoticeHUD:msg];

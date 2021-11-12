@@ -74,12 +74,10 @@
 }
 
 - (void)reachData{
-    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
-
     NSDictionary *baddyParams = @{
                            @"event_id": self.event_id,
                        };
-    [manager GET:@"room/user" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] GET:@"room/user" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         NSDictionary *roomJson = responseObject[@"recordset"];

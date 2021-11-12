@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="code" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zo2-1G-K37">
-                                <rect key="frame" x="227.5" y="0.0" width="32.5" height="44"/>
+                                <rect key="frame" x="239.5" y="0.0" width="32.5" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                             <constraint firstItem="afh-6V-0qX" firstAttribute="top" secondItem="Cew-r5-geP" secondAttribute="top" id="jmz-DM-VMV"/>
                             <constraint firstItem="afh-6V-0qX" firstAttribute="leading" secondItem="Cew-r5-geP" secondAttribute="leading" constant="24" id="sDX-X1-WNL"/>
                             <constraint firstAttribute="trailing" secondItem="ZnS-fu-xi6" secondAttribute="trailing" id="siD-gn-icG"/>
-                            <constraint firstItem="gaV-yM-0gV" firstAttribute="trailing" secondItem="zo2-1G-K37" secondAttribute="trailing" constant="60" id="vbE-sZ-Tvw"/>
+                            <constraint firstItem="gaV-yM-0gV" firstAttribute="trailing" secondItem="zo2-1G-K37" secondAttribute="trailing" constant="48" id="vbE-sZ-Tvw"/>
                         </constraints>
                     </view>
                 </subviews>

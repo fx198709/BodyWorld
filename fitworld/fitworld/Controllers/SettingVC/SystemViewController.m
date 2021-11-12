@@ -102,7 +102,7 @@ OurDatePickerViewDelegate>
     self.logoutBtn.titleLabel.text = ChineseStringOrENFun(@"退出登录", @"Logout");
     
     [self.headImg cornerHalfWithBorderColor:[UIColor darkGrayColor]];
-    [self.logoutBtn cornerWithRadius:4.0 borderColor:[self.logoutBtn backgroundColor]];
+    [self.logoutBtn cornerWithRadius:6.0 borderColor:[self.logoutBtn backgroundColor]];
     
 }
 
@@ -131,12 +131,16 @@ OurDatePickerViewDelegate>
 
 //修改密码
 -(IBAction)changePwd:(id)sender {
+    [self.view endEditing:YES];
+
     ResetPwdController *nextVC = VCBySBName(@"ResetPwdController");
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 //修改头像
 - (IBAction)changeHeadImg:(id)sender {
+    [self.view endEditing:YES];
+
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"拍照", @"Camera") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -167,6 +171,8 @@ OurDatePickerViewDelegate>
 
 //修改语言
 -(IBAction)changeLanguage:(id)sender {
+    [self.view endEditing:YES];
+
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [ac addAction:[UIAlertAction actionWithTitle:@"English" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -199,6 +205,8 @@ OurDatePickerViewDelegate>
 
 //修改性别
 -(IBAction)changeSex:(id)sender {
+    [self.view endEditing:YES];
+
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [ac addAction:[UIAlertAction actionWithTitle:SexNameFormGender(GenderEnum_Male) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -221,6 +229,8 @@ OurDatePickerViewDelegate>
 
 //修改生日
 -(IBAction)changeBirthday:(id)sender {
+    [self.view endEditing:YES];
+
     OurDatePickerView *datepickerView = [[OurDatePickerView alloc] init];
     datepickerView.pickerDelegate = self;
     datepickerView.pickerType = YearMonAndDay;
@@ -232,40 +242,48 @@ OurDatePickerViewDelegate>
 
 //修改昵称
 -(IBAction)changeNickName:(id)sender {
+    [self.view endEditing:YES];
     [self goToChangeInfoViewController:ChangeTypeEnum_NickName];
     
 }
 
 //修改身高
 -(IBAction)changeHeight:(id)sender {
+    [self.view endEditing:YES];
     [self goToChangeInfoViewController:ChangeTypeEnum_Height];
 }
 
 //修改体重
 -(IBAction)changeWeight:(id)sender {
+    [self.view endEditing:YES];
     [self goToChangeInfoViewController:ChangeTypeEnum_Weight];
 }
 
 //修改所在城市
 -(IBAction)changeCity:(id)sender {
+    [self.view endEditing:YES];
     SelectCountryViewController *nextVC = VCBySBName(@"SelectCountryViewController");
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 //修改介绍
 -(IBAction)ChangeIntroduction:(id)sender {
+    [self.view endEditing:YES];
     ChangeIntroductionViewController *nextVC = VCBySBName(@"ChangeIntroductionViewController");
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 //跳转到修改页面
 - (void)goToChangeInfoViewController:(ChangeTypeEnum)type {
+    [self.view endEditing:YES];
     ChangeInfoViewController *nextVC = VCBySBName(@"ChangeInfoViewController");
     nextVC.changeType = type;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (IBAction)loginOut:(id)sender {
+    [self.view endEditing:YES];
+
     UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"确定退出？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];

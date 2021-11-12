@@ -19,10 +19,8 @@
     return _sharedApp;
 }
 
-- (void)getUserinfo:(nullable void(^)(bool isSuccess))completedBlock {
-    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
-    
-    [manager GET:@"user_info" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+- (void)getUserinfo:(nullable void(^)(bool isSuccess))completedBlock {    
+    [[AFAppNetAPIClient manager] GET:@"user_info" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject objectForKey:@"recordset"]) {
             self.currentUser = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
             if (completedBlock) {
