@@ -40,7 +40,7 @@
 }
 
 + (void)showDurationNoticeHUD:(NSString *)message animated:(BOOL)animated completedBlock:(nullable void(^)(void))completedBlock {
-
+    [self hideHUD];
     MTHUD *hudView = [MTHUD instance];
     [hudView refreshUpDownView:message];
     [hudView showWithAnimated:animated completedBlock:completedBlock];

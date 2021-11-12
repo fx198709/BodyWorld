@@ -23,6 +23,17 @@
     self.view.backgroundColor = UIColor.blackColor;
 }
 
+- (void)showChangeFailedError:(NSError *)error {
+    NSString *msg = error == nil ? ChangeErrorMsg : error.localizedDescription;
+    [MTHUD showDurationNoticeHUD:msg];
+}
+
+- (void)showSuccessNoticeAndPopVC {
+    [MTHUD showDurationNoticeHUD:ChangeSuccessMsg animated:YES completedBlock:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
 /*
 #pragma mark - Navigation
 

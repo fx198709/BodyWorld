@@ -14,6 +14,10 @@
 #import "UserInfo.h"
 #import "MBProgressHUD.h"
 
+
+#define GetCodeBtnTitle ChineseStringOrENFun(@"获取验证码", @"Request Code")
+#define GetCodeBtnTitle_H ChineseStringOrENFun(@"重新获取", @"Request Again")
+
 @interface ResetPwdController ()
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -64,13 +68,28 @@
 
 //获取验证码
 - (IBAction)getValidCode:(id)sender {
-    //todo:发送短信验证码
+    UserInfo *userInfo = [APPObjOnce sharedAppOnce].currentUser;
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
+    //账号 邮箱格式 : xx@xx.xx 手机格式: '国际区号:手机号'
+    NSString *account = nil;
+    if (![NSString isNullString:userInfo.mobile]) {
+        account = [NSString stringWithFormat:@"%@:%@", userInfo.mobile_code, userInfo.mobile];
+    } else {
+        account = userInfo.username;
+    }
+    //test
+    account = @"+86:13810661684";
     
-    //显示倒计时
-    NSString *normalTitle = ChineseStringOrENFun(@"获取验证码", @"Request Code");
-
-    NSString *hTitle = ChineseStringOrENFun(@"重新获取", @"Request Again");
-    [self.validCodeBtn countdownWithStartTime:60 title:normalTitle countDownTitle:hTitle];
+    NSDictionary *param = @{@"account":account};
+    [manager PUT:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"====respong:%@", responseObject);
+        //显示倒计时
+        [self.validCodeBtn countdownWithStartTime:60
+                                            title:GetCodeBtnTitle
+                                   countDownTitle:GetCodeBtnTitle_H];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD showDurationNoticeHUD:error.localizedDescription];
+    }];
 }
 
 
@@ -93,8 +112,12 @@
         return;
     }
     
-    //todo:
-    [self.navigationController popViewControllerAnimated:YES];
+    if (![repeatPwd isEqualToString:pwd]) {
+        [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"两次密码不一致", @"Two input password must be consistent")];
+        return;
+    }
+    
+    [self changePwdFromServer:validCode pwd:pwd];
 }
 
 //点击显示新密码
@@ -107,6 +130,36 @@
 - (IBAction)clickShowRepeatPwd:(id)sender {
     [self.showRepeatPwdBtn setSelected:!self.showRepeatPwdBtn.isSelected];
     [self.repeatLabel setSecureTextEntry:!self.showRepeatPwdBtn.isSelected];
+}
+
+#pragma mark - server
+
+//服务器验证验证码 - 暂时不用
+- (void)validCodeFromServer:(NSString *)code complete:(void(^)(bool isSuccess))completeBlock {
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
+    [MTHUD showLoadingHUD];
+    NSDictionary *param = @{@"captcha":code, @"no_login":@"false", @"invite_code":@""};
+    [manager PUT:@"captcha/validate" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSLog(@"====respong:%@", responseObject);
+        if ([responseObject objectForKey:@"recordset"]) {
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD showDurationNoticeHUD:error.localizedDescription];
+    }];
+}
+
+//发送修改密码请求
+- (void)changePwdFromServer:(NSString *)code pwd:(NSString *)pwd {
+    AFAppNetAPIClient *manager = [AFAppNetAPIClient manager];
+    [MTHUD showLoadingHUD];
+    NSDictionary *param = @{@"captcha":code, @"password":pwd};
+    [manager PUT:@"password/reset" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        [self showSuccessNoticeAndPopVC];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self showChangeFailedError:error];
+    }];
 }
 
 /*

@@ -229,7 +229,5 @@ static inline BOOL BOOLValueFromDic(NSDictionary * _Nonnull info, NSString * _Nu
 }
 
 
-
-
-
-
+#define ChangeSuccessMsg ChineseStringOrENFun(@"修改成功", @"Success changed")
+#define ChangeErrorMsg ChineseStringOrENFun(@"修改失败", @"Change failed")

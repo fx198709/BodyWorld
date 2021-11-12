@@ -297,12 +297,10 @@ OurDatePickerViewDelegate>
         if ([responseObject objectForKey:@"recordset"]) {
             [APPObjOnce sharedAppOnce].currentUser = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
             [self loadData];
-            [self showSuccessNotice];
+            [MTHUD showDurationNoticeHUD:ChangeSuccessMsg];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MTHUD hideHUD:YES completedBlock:^{
-            [self showChangeFailedError:error];
-        }];
+        [self showChangeFailedError:error];
     }];
 }
 
@@ -316,24 +314,13 @@ OurDatePickerViewDelegate>
         if ([responseObject objectForKey:@"recordset"]) {
             [APPObjOnce sharedAppOnce].currentUser.avatar = responseObject;
             [self loadData];
-            [self showSuccessNotice];
+            [MTHUD showDurationNoticeHUD:ChangeSuccessMsg];
         }
-        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MTHUD hideHUD:YES completedBlock:^{
             [self showChangeFailedError:error];
         }];
     }];
-}
-
-- (void)showSuccessNotice {
-    NSString *msg = ChineseStringOrENFun(@"修改成功", @"Success changed");
-    [MTHUD showDurationNoticeHUD:msg];
-}
-
-- (void)showChangeFailedError:(NSError *)error {
-    NSString *msg = error == nil ? ChineseStringOrENFun(@"修改失败", @"Change failed") : error.localizedDescription;
-    [MTHUD showDurationNoticeHUD:msg];
 }
 
 

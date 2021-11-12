@@ -11,6 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseViewController : BaseNavViewController
 
+- (void)showChangeFailedError:(NSError *)error;
+
+- (void)showSuccessNoticeAndPopVC;
+
 @end
 
 NS_ASSUME_NONNULL_END

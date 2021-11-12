@@ -55,28 +55,16 @@
     [MTHUD showLoadingHUD];
     [manager PUT:@"user" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
-        NSLog(@"====respong:%@", responseObject);
         if ([responseObject objectForKey:@"recordset"]) {
             [APPObjOnce sharedAppOnce].currentUser = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
-            [self showSuccessNotice];
+            [self showSuccessNoticeAndPopVC];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MTHUD hideHUD:YES completedBlock:^{
-            [self showChangeFailedError:error];
-        }];
+        [self showChangeFailedError:error];
     }];
 }
 
-- (void)showSuccessNotice {
-    NSString *msg = ChineseStringOrENFun(@"修改成功", @"Success changed");
-    [MTHUD showDurationNoticeHUD:msg animated:YES completedBlock:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-}
 
-- (void)showChangeFailedError:(NSError *)error {
-    NSString *msg = error == nil ? ChineseStringOrENFun(@"修改失败", @"Change failed") : error.localizedDescription;
-    [MTHUD showDurationNoticeHUD:msg];
-}
+
 
 @end

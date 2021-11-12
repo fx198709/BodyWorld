@@ -15,7 +15,7 @@ typedef enum : int {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ChangeInfoViewController : BaseNavViewController
+@interface ChangeInfoViewController : BaseViewController
 
 @property (nonatomic, assign) ChangeTypeEnum changeType;
 @end

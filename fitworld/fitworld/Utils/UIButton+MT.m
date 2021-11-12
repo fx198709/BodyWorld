@@ -22,22 +22,23 @@
         if (timeOut == 0) {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
-//                button.backgroundColor = mColor;
                 [self setTitle:title forState:UIControlStateNormal];
                 self.userInteractionEnabled = YES;
             });
         } else {
-            int seconds = timeOut % 60;
-            NSString *timeStr = [NSString stringWithFormat:@"%0.1d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
-//                button.backgroundColor = color;
-                [self setTitle:[NSString stringWithFormat:@"%@(%@)", subTitle, timeStr]forState:UIControlStateNormal];
+                [self setTitle:[NSString stringWithFormat:@"%@(%@)", subTitle, IntToString(timeOut)]
+                      forState:UIControlStateNormal];
                 self.userInteractionEnabled = NO;
             });
             timeOut--;
         }
     });
     dispatch_resume(_timer);
+}
+
+- (void)stopCountDownTime {
+    
 }
 
 @end
