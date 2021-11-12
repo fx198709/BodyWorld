@@ -37,7 +37,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="aBo-OD-vch" secondAttribute="bottom" id="2I6-Ma-QQO"/>
                             <constraint firstAttribute="bottom" secondItem="3bx-5a-8ge" secondAttribute="bottom" id="HKP-aB-v4O"/>
@@ -52,6 +52,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="dMK-yE-pBI" secondAttribute="trailing" id="13z-Wr-a44"/>
                     <constraint firstItem="dMK-yE-pBI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UUd-hB-x36"/>
@@ -60,6 +61,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="titleLabel" destination="aBo-OD-vch" id="cxf-eP-iQa"/>
             </connections>

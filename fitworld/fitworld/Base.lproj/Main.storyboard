@@ -1378,6 +1378,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="选择国家" id="dtP-Pt-6PM"/>
+                    <connections>
+                        <outlet property="tableView" destination="st1-DF-f6j" id="887-zj-2vp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhM-nD-gAT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

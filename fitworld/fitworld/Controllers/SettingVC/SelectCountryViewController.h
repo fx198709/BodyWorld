@@ -6,6 +6,8 @@
 //
 
 #import "BaseViewController.h"
+#import "Country.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +20,7 @@ typedef enum {
 
 @property (nonatomic, assign) SelectCountryType selectType;
 
+@property (nonatomic, strong) Country *country;
 @end
 
 NS_ASSUME_NONNULL_END

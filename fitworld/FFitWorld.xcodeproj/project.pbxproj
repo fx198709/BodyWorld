@@ -90,6 +90,8 @@
 		A2723F0A273CF22F00388B01 /* SelectCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2723F08273CF22F00388B01 /* SelectCountryCell.xib */; };
 		A2723F0D273D087900388B01 /* MTHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F0C273D087900388B01 /* MTHUD.m */; };
 		A2723F10273D090E00388B01 /* UIColor+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F0F273D090E00388B01 /* UIColor+MT.m */; };
+		A2A94DC2273E5BA000D02C77 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC1273E5BA000D02C77 /* Country.m */; };
+		A2A94DC5273E610900D02C77 /* UIViewController+MTNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
@@ -324,6 +326,10 @@
 		A2723F0C273D087900388B01 /* MTHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHUD.m; sourceTree = "<group>"; };
 		A2723F0E273D090E00388B01 /* UIColor+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MT.h"; sourceTree = "<group>"; };
 		A2723F0F273D090E00388B01 /* UIColor+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MT.m"; sourceTree = "<group>"; };
+		A2A94DC0273E5BA000D02C77 /* Country.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
+		A2A94DC1273E5BA000D02C77 /* Country.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
+		A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MTNavigation.m"; sourceTree = "<group>"; };
+		A2A94DC4273E610900D02C77 /* UIViewController+MTNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MTNavigation.h"; sourceTree = "<group>"; };
 		A423B18EF7C9C23904AE150A /* Pods-FFitWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.release.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.release.xcconfig"; sourceTree = "<group>"; };
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
@@ -526,6 +532,8 @@
 				04747FBC27082BC700B3B5B8 /* PractiseStatic.m */,
 				DD595ED52736FBB800618D1A /* CoachModel.h */,
 				DD595ED62736FBB800618D1A /* CoachModel.m */,
+				A2A94DC0273E5BA000D02C77 /* Country.h */,
+				A2A94DC1273E5BA000D02C77 /* Country.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1122,6 +1130,8 @@
 				A2723ED8273B779300388B01 /* UIView+MT.m */,
 				A2723EF8273BD16500388B01 /* UIView+MTWindow.h */,
 				A2723EF7273BD16500388B01 /* UIView+MTWindow.m */,
+				A2A94DC4273E610900D02C77 /* UIViewController+MTNavigation.h */,
+				A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1335,6 +1345,7 @@
 				DD25FEE727226B5A0092CF87 /* JYWeakTimer.m in Sources */,
 				04CD2E522698478C007814E6 /* UserInfo.m in Sources */,
 				04EC01F226BD8AC000DC0103 /* HeaderPanel.m in Sources */,
+				A2A94DC2273E5BA000D02C77 /* Country.m in Sources */,
 				04747FBE27082BC700B3B5B8 /* PractiseStatic.m in Sources */,
 				DD595EDB2737D25800618D1A /* CreateCourseSuccessViewController.m in Sources */,
 				04EC01FB26BD8AC100DC0103 /* ConfigManager.m in Sources */,
@@ -1343,6 +1354,7 @@
 				DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */,
 				A2723F05273CF1BC00388B01 /* SelectCountryViewController.m in Sources */,
 				A2723EFF273CC28C00388B01 /* ChangeIntroductionViewController.m in Sources */,
+				A2A94DC5273E610900D02C77 /* UIViewController+MTNavigation.m in Sources */,
 				DD25FEE927226B5A0092CF87 /* JYImageCache.m in Sources */,
 				04552B502696C3FD00C78706 /* UIControl+YYAdd.m in Sources */,
 				04552B4C2696C3FD00C78706 /* TWSReleaseNotesView.m in Sources */,
