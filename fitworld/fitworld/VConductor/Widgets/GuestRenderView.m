@@ -65,19 +65,39 @@
 }
 
 - (void)bindMedia {
-  if (mIsMain) {
+//  if (mIsMain) {
     [[VConductorClient sharedInstance] bindMainVideoRender:mVideoRender ofUser:mUserId];
-  } else {
-    [[VConductorClient sharedInstance] bindShareVideoRender:mVideoRender ofUser:mUserId];
-  }
+//  } else {
+//    [[VConductorClient sharedInstance] bindShareVideoRender:mVideoRender ofUser:mUserId];
+//  }
 }
 
 - (void)unbindMedia {
-  if (mIsMain) {
+//  if (mIsMain) {
     [[VConductorClient sharedInstance] unbindMainVideoRender:mVideoRender ofUser:mUserId];
-  } else {
-    [[VConductorClient sharedInstance] unbindShareVideoRender:mVideoRender ofUser:mUserId];
-  }
+//  } else {
+//    [[VConductorClient sharedInstance] unbindShareVideoRender:mVideoRender ofUser:mUserId];
+//  }
+}
+
+- (ClassMember*)reachGuestMember{
+    NSDictionary *mGuestMembers = [[VConductorClient sharedInstance] getGustMemberData];
+    ClassMember *member = [mGuestMembers objectForKey:mUserId];
+    return member;
+        
+}
+
+- (void)openGuestMedia{
+    ClassMember *guestMember = [self reachGuestMember];
+//    self.guestMember =guestMember;
+    if (guestMember) {
+        [guestMember checkStream];
+    }
+}
+- (void)closeGuestMedia{
+    if (self.guestMember) {
+        [_guestMember closeShareStream];
+    }
 }
 
 @end

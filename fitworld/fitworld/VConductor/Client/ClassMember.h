@@ -60,5 +60,9 @@ typedef NS_ENUM(NSInteger, ClassGroup) {
 - (void)bindShareVideoRender:(VSVideoRender*)render;
 - (void)unbindShareVideoRender:(VSVideoRender*)render;
 
+//是否正在推流 是否正在直播
+- (BOOL)isonTheAir;
+
+
 @end
 

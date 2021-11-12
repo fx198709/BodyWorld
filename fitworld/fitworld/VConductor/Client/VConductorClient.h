@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (ClassMember*)getMySession; //自己
 - (ClassMember*)getHostMember; //老师 / 教练
 
-- (NSDictionary*)getGustMemberData; //老师 / 教练
+- (NSDictionary*)getGustMemberData; //获取游客
 
 
 - (NSInteger)getElapsedSeconds;
@@ -61,9 +61,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)bindLocalVideoRender:(VSVideoRender*)render;
 - (void)unbindLocalVideoRender:(VSVideoRender*)render;
-
+//绑定主流
 - (void)bindMainVideoRender:(VSVideoRender*)render ofUser:(NSString*)userId;
 - (void)unbindMainVideoRender:(VSVideoRender*)render ofUser:(NSString*)userId;
+
+//副流的操作
 - (void)bindShareVideoRender:(VSVideoRender*)render ofUser:(NSString*)userId;
 - (void)unbindShareVideoRender:(VSVideoRender*)render ofUser:(NSString*)userId;
 

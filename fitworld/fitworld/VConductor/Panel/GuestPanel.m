@@ -95,7 +95,7 @@
 
 - (void)attachGuestRenderView {
   if (mGuestRenderView == nil) {
-    mGuestRenderView = [[GuestRenderView alloc] initWithUserId:_mUserId forMainVideo:NO];
+    mGuestRenderView = [[GuestRenderView alloc] initWithUserId:_mUserId forMainVideo:YES];
       mGuestRenderView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:mGuestRenderView];
     [mGuestRenderView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -105,6 +105,7 @@
       mGuestRenderView.backgroundColor = [UIColor greenColor];
   }
   [mGuestRenderView bindMedia];
+//    [mGuestRenderView openGuestMedia];
 }
 
 - (void)detachGuestRenderView {
@@ -112,6 +113,7 @@
     return;
   }
   [mGuestRenderView unbindMedia];
+//[mGuestRenderView closeGuestMedia];
   [mGuestRenderView removeFromSuperview];
   mGuestRenderView = nil;
 }
