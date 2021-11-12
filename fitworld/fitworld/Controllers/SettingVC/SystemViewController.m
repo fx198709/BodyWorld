@@ -118,7 +118,8 @@ OurDatePickerViewDelegate>
     self.languageLabel.text = ISChinese() ? @"中文" : @"English";
     self.genderLabel.text = SexNameFormGender(user.gender);
     self.mobileLabel.text = user.mobile;
-    self.birthdayLabel.text = user.birthday;
+    NSDate *birthday = [NSDate dateWithTimeIntervalSince1970:user.birthday.longLongValue];
+    self.birthdayLabel.text = [birthday mt_formatString:DateFormatter_Day];
     self.weightLabel.text = IntToString(user.weight);
     self.heightLabel.text = IntToString(user.height);
     self.cityLabel.text = user.city;
@@ -218,22 +219,15 @@ OurDatePickerViewDelegate>
 -(IBAction)changeMobile:(id)sender {
     //不能修改手机号
 }
-- (void)seletedDate:(NSDate*)selectedDate andview:(OurDatePickerView*)pickerView{
-    UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
-    user.birthday =  [selectedDate mt_formatString:@"yyyy-MM-dd"];;
-    [self loadData];
-}
 
 //修改生日
 -(IBAction)changeBirthday:(id)sender {
-//    [self.datePicker showWithAnimated:YES completedBlock:nil];
     OurDatePickerView *datepickerView = [[OurDatePickerView alloc] init];
     datepickerView.pickerDelegate = self;
     datepickerView.pickerType = YearMonAndDay;
     datepickerView.minuteInterval = 1;
     
-    datepickerView.miniDate = [NSDate dateWithTimeIntervalSinceNow:0];
-    datepickerView.leftmaxDate = [NSDate dateWithTimeIntervalSinceNow:7*24*60*60];
+    datepickerView.leftmaxDate = [NSDate date];
     [datepickerView pickerViewWithView:self.view];
 }
 
@@ -353,7 +347,6 @@ OurDatePickerViewDelegate>
     img = [img scaleImageToSize:CGSizeMake(60, 60)];
     [picker dismissViewControllerAnimated:YES completion:^{
         NSData *imgData = UIImageJPEGRepresentation(img, 0.5);
-        NSLog(@"====1111===%lu", imgData.length / 1024);
         [self changeAvatarImageFromServer:imgData];
     }];
 }
@@ -364,5 +357,12 @@ OurDatePickerViewDelegate>
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - DataPicker
+
+- (void)seletedDate:(NSDate*)selectedDate andview:(OurDatePickerView*)pickerView{
+    NSString *birthday =  [selectedDate mt_formatString:DateFormatter_Day];
+    NSDictionary *param = @{@"birthday" : IntToString(birthday)};
+    [self changeUserInfoFromServer:param];
+}
 
 @end

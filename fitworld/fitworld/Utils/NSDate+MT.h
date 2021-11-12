@@ -9,6 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+#define DateFormatter_Day @"yyyy-MM-dd"
+
 @interface NSDate (MT)
 
 + (NSDate *)mt_dateFromString:(NSString *)dateString format:(NSString *)format;

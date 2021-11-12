@@ -60,7 +60,6 @@
     
     // TODO 默认账号
         self.nameField.text = @"+86:13501173505";
-    // TODO 默认密码
         self.pwdField.text = @"1122";
 }
 
