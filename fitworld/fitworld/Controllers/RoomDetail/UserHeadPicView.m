@@ -20,7 +20,7 @@
     whiteBackView.clipsToBounds = YES;
     whiteBackView.layer.cornerRadius = parentSize.width/2;
     
-    UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(2,2, parentSize.width-6, parentSize.height-4)];
+    UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(2,2, parentSize.width-4, parentSize.height-4)];
     [self addSubview:userImage];
     userImage.clipsToBounds = YES;
     userImage.layer.cornerRadius = parentSize.width/2;
@@ -28,6 +28,11 @@
 }
 
 - (void)changeCoachModelData:(CoachModel*)headModel{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, headModel.avatar];
+    [self changeDataWithModel:urlString];
+}
+
+- (void)changeUserInfoModelData:(UserInfo*)headModel{
     NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, headModel.avatar];
     [self changeDataWithModel:urlString];
 }

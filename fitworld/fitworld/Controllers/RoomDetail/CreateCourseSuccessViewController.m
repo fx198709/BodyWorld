@@ -11,24 +11,106 @@
 #import "UIImage+Extension.h"
 #import "CourseDetailSmallview.h"
 #import "CourseDetailViewController.h"
+#import "ChoosePeopleViewController.h"
+
+@interface UserInfoView:UIView
+@property(nonatomic, strong)UserInfo * user;
+@property(nonatomic, strong)NSString * userID;
+@property(nonatomic, strong)UIButton * deleteBtn;
+
+@end
+
+@implementation UserInfoView
+
+- (void)changeDatawithModel:(UserInfo*)userInfo andIsCreater:(BOOL)isCreate{
+    self.user = userInfo;
+    UserHeadPicView * coachimageview = [[UserHeadPicView alloc] initWithFrame:CGRectMake(0, 10, 50, 50)];
+    [self addSubview:coachimageview];
+    [coachimageview changeUserInfoModelData:userInfo];
+    
+    UITextView *textview = [[UITextView alloc] initWithFrame:CGRectMake(0, 60, 50, 50)];
+    textview.backgroundColor = UIColor.clearColor;
+    textview.textColor = UIColor.whiteColor;
+    textview.text = userInfo.nickname;
+    [self addSubview:textview];
+    
+//
+    if (isCreate) {
+        if (!userInfo.is_creator && !userInfo.is_join) {
+            coachimageview.alpha = 0.5;
+            _deleteBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, 5, 30, 30)];
+            [self addSubview:_deleteBtn];
+            UIImage *delImage = [UIImage imageNamed:@"prepared_course_user_remove"];
+            UIImageView *delImageview = [[UIImageView alloc] initWithImage:delImage];
+            delImageview.frame = CGRectMake(7, 7, 16, 16);
+            [_deleteBtn addSubview:delImageview];
+        }
+    }
+}
+
+
+@end
+
 @interface CreateCourseSuccessViewController (){
     UIScrollView * _bottomScrollview;
     UIScrollView *userlistView;
     Room *currentRoom;
     NSArray *currentUserList;
+    NSTimer * dataTimer;
+    int userListHeight;
 }
 
 @end
 
 @implementation CreateCourseSuccessViewController
 
-- (UIView*)userView{
+- (void)deleteBtnClicked:(UIButton*)sender{
     
-    return nil;
+}
+
+- (void)addPeopleBtnClick{
+    ChoosePeopleViewController * peopleVC = [[ChoosePeopleViewController alloc] init];
+    
+    [self.navigationController pushViewController:peopleVC animated:YES];
+    
 }
 
 - (void)changeUserList{
-    
+//
+    NSInteger x = userlistView.contentOffset.x;
+    RemoveSubviews(userlistView, @[@"UserInfoView"]);;
+    int startX = 0;
+    BOOL isCreate = [currentRoom.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
+    for (int index = 0; index < currentUserList.count; index++) {
+        UserInfo *user = currentUserList[index];
+        UserInfoView * userView = [[UserInfoView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
+        [userlistView addSubview:userView];
+        userView.deleteBtn.tag = 1000+ index;
+        [userView.deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [userView changeDatawithModel:user andIsCreater:isCreate];
+        startX = startX+70;
+    }
+    if (currentUserList.count < 6) {
+//        可以添加人
+        
+        UIView * userView = [[UIView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
+        CGSize  parentSize = CGSizeMake(50, 50);
+        UIButton  *addPeopleBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, parentSize.width, parentSize.height)];
+        [userView addSubview:addPeopleBtn];
+        addPeopleBtn.backgroundColor = UIRGBColor(80, 80, 80, 1);
+        addPeopleBtn.clipsToBounds = YES;
+        addPeopleBtn.layer.cornerRadius = parentSize.width/2;
+        
+        UIImageView *userImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"add_plus_button.png"]];
+        [addPeopleBtn addSubview:userImageView];
+        userImageView.frame = CGRectMake(0, 0, 50, 50);
+        [addPeopleBtn addTarget:self action:@selector(addPeopleBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        startX = startX+70;
+
+    }
+    int contentsizex = startX;
+    userlistView.contentSize = CGSizeMake(contentsizex, 0);
+    userlistView.contentOffset =CGPointMake(contentsizex>x?x:contentsizex,0);
 }
 
 - (void)addsubviews{
@@ -87,18 +169,20 @@
         make.right.equalTo(_bottomScrollview).offset(-15);
         make.height.mas_equalTo(25);
     }];
-
-    userlistView = [[UIScrollView alloc] init];
-    [_bottomScrollview addSubview:userlistView];
-    _bottomScrollview.backgroundColor = BuddyTableBackColor;
+    UIView *scrollBackView = [[UIView alloc] init];
+    [_bottomScrollview addSubview:scrollBackView];
     int listwidth = ScreenWidth - 30;
-    [userlistView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(titleLabel);
+    [scrollBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(titleLabel.mas_bottom).offset(10);
         make.left.equalTo(_bottomScrollview).offset(15);
         make.right.equalTo(_bottomScrollview).offset(-15);
-        make.height.mas_equalTo(130);
+        make.height.mas_equalTo(userListHeight);
         make.width.mas_equalTo(listwidth);
     }];
+
+    userlistView = [[UIScrollView alloc] init];
+    [scrollBackView addSubview:userlistView];
+    userlistView.frame = CGRectMake(0, 0, listwidth, userListHeight);
     [self changeUserList];
 //    for ( ; ; ) {
 //        <#statements#>
@@ -169,7 +253,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.hidden = YES;
-   
+    userListHeight = 100;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self reachData];
 
