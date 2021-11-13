@@ -40,6 +40,11 @@
 
 @property (nonatomic , assign) BOOL hasSelect;
 
+//参与课程的成员信息
+@property (nonatomic, strong)NSString*last_login_ip;
+@property (nonatomic , assign) BOOL is_join;
+@property (nonatomic , assign) BOOL is_creator;
+@property (nonatomic , assign) BOOL is_friend;
 
 
 + (instancetype)sharedUserInfo;

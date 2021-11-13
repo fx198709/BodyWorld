@@ -149,6 +149,8 @@
 		DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB6E27344A50002B0A8E /* MessageListModel.m */; };
 		DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD742597272942F9005D636E /* UIImage+Extension.m */; };
 		DD8E328E273F226B008995E9 /* code.json in Resources */ = {isa = PBXBuildFile; fileRef = DD8E328D273F226B008995E9 /* code.json */; };
+		DD98BC6B273F653900D3B59F /* CourseDetailSmallview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */; };
+		DD98BC6D273F655300D3B59F /* CourseDetailSmallview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
 		DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */; };
@@ -473,6 +475,9 @@
 		DD7425AC272942F9005D636E /* NSArray+YCCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+YCCategory.h"; sourceTree = "<group>"; };
 		DD7425AD272942F9005D636E /* UIPickerView+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIPickerView+YCExtension.h"; sourceTree = "<group>"; };
 		DD8E328D273F226B008995E9 /* code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = code.json; sourceTree = "<group>"; };
+		DD98BC69273F653900D3B59F /* CourseDetailSmallview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseDetailSmallview.h; sourceTree = "<group>"; };
+		DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseDetailSmallview.m; sourceTree = "<group>"; };
+		DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDetailSmallview.xib; sourceTree = "<group>"; };
 		DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCollectionLivingViewCell.xib; sourceTree = "<group>"; };
 		DDEE67D32725744900D0C310 /* TableCollectionLivingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionLivingViewCell.h; sourceTree = "<group>"; };
 		DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionLivingViewCell.m; sourceTree = "<group>"; };
@@ -1002,6 +1007,9 @@
 				DD595EDA2737D25800618D1A /* CreateCourseSuccessViewController.xib */,
 				DD595EE8273BB15800618D1A /* UserHeadPicView.h */,
 				DD595EE9273BB15800618D1A /* UserHeadPicView.m */,
+				DD98BC69273F653900D3B59F /* CourseDetailSmallview.h */,
+				DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */,
+				DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -1236,6 +1244,7 @@
 				04CD2E4C26982A45007814E6 /* TableCollectionViewCell.xib in Resources */,
 				04552B3F2696C3FD00C78706 /* material-design-icons.ttf in Resources */,
 				0472011826B7BAF400C19437 /* Localizable.strings in Resources */,
+				DD98BC6D273F655300D3B59F /* CourseDetailSmallview.xib in Resources */,
 				DD6EDB1D272D1A70002B0A8E /* TableHeadview.xib in Resources */,
 				047DC203268CD09900A3E37E /* Assets.xcassets in Resources */,
 				DD595EE0273A68BE00618D1A /* TableSearchView.xib in Resources */,
@@ -1322,6 +1331,7 @@
 				047DC209268CD09900A3E37E /* main.m in Sources */,
 				DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */,
 				DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */,
+				DD98BC6B273F653900D3B59F /* CourseDetailSmallview.m in Sources */,
 				DD595EE7273BAF9A00618D1A /* APPObjOnce.m in Sources */,
 				DD6EDB6B2734420C002B0A8E /* MessageListTableViewCell.m in Sources */,
 				DD595ECE2736F5A000618D1A /* CourseDetailViewController.m in Sources */,
