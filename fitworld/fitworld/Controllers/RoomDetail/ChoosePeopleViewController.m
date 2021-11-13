@@ -18,6 +18,7 @@
     NSURLSessionDataTask *requestTask;//请求用的task
     NSMutableArray *dataArr;
     NSString *_searchString;
+    UISearchBar *searchBar;
     
 }
 @property(nonatomic,strong)UITableView*tableView;
@@ -30,10 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-70, 40)];
     searchBar.delegate = self;
-    searchBar.backgroundColor = [UIColor clearColor];
-    searchBar.showsCancelButton = YES;
     searchBar.backgroundColor = UIColor.blackColor;
     [self.view addSubview:searchBar];
     for (UIView *view in searchBar.subviews.lastObject.subviews) {
@@ -43,14 +42,32 @@
             break;
         }
     }
-    searchBar.showsCancelButton = YES;
     searchBar.backgroundImage = [UIImage imageWithColor:[UIColor clearColor]];
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(100);
         make.height.mas_equalTo(40);
         make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-105);
+    }];
+    
+    UIButton *searchBtn = [[UIButton alloc] init];
+    [self.view addSubview:searchBtn];
+    [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(100);
+        make.height.mas_equalTo(40);
+        make.left.equalTo(searchBar.mas_right).offset(5);
         make.right.equalTo(self.view).offset(-15);
     }];
+    NSString *searchString = ChineseStringOrENFun(@"搜索", @"Search");
+    [searchBtn setTitle:searchString forState:UIControlStateHighlighted];
+    [searchBtn setTitle:searchString forState:UIControlStateNormal];
+    [searchBtn setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
+    [searchBtn setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
+    searchBtn.backgroundColor = UIRGBColor(28, 28, 30, 1);
+    searchBtn.layer.cornerRadius = 8;
+    searchBtn.clipsToBounds = YES;
+    [searchBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
+
     TableHeadview *tableheadview = (TableHeadview *)[[[NSBundle mainBundle] loadNibNamed:@"TableHeadview" owner:self options:nil] lastObject];
     [self.view addSubview:tableheadview];
     [tableheadview mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -257,6 +274,11 @@
     
 }
 
+- (void)searchBtnClick{
+    _searchString = searchBar.text;
+    [self headerRereshing];
+    [self.view endEditing:YES];
+}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     _searchString = searchBar.text;

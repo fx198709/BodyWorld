@@ -90,7 +90,7 @@
         [userView changeDatawithModel:user andIsCreater:isCreate];
         startX = startX+70;
     }
-    if (currentUserList.count < 6) {
+    if (currentUserList.count < 6 && isCreate) {
 //        可以添加人
         UIView * userView = [[UIView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];

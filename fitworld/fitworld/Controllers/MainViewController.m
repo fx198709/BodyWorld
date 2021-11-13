@@ -55,6 +55,7 @@ BOOL  hasrequest = NO;
         self.userInfo = [[APPObjOnce sharedAppOnce] currentUser];
     }];
     [self setupRefresh];
+    _mainTableview.mj_header.backgroundColor = UIColor.blackColor;
     _mainTableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     _sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 133)];
     _sliderView.clipsToBounds = YES;
