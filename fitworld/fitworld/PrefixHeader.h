@@ -50,6 +50,12 @@ UIKIT_STATIC_INLINE  NSString* ChineseOrENFun(BaseObject* obj, NSString* key){
     }
 }
 
+UIKIT_STATIC_INLINE  BOOL CheckResponseObject(id responseObject){
+    return [responseObject objectForKey:@"status"] && [[responseObject objectForKey:@"status"] longLongValue] == 0;
+}
+
+
+
 UIKIT_STATIC_INLINE  int  RemoveSubviews(UIView* superview, NSArray * classArray){
     
     for (UIView *view in superview.subviews) {

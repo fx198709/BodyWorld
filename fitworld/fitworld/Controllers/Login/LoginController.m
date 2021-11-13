@@ -60,7 +60,7 @@
     self.pwdField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入密码", @"Please input a password") attributes:attr];
     
     // TODO 默认账号
-        self.nameField.text = @"+86:13501173505";
+        self.nameField.text = @"+86:18600411689";
         self.pwdField.text = @"1122";
 }
 

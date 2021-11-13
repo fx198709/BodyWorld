@@ -10,6 +10,9 @@
 @implementation UserHeadPicView
 
 - (void)changeHeadData:(BaseObject*)headModel{
+    
+}
+- (void)changeDataWithModel:(NSString*)url{
     RemoveSubviews(self, @[]);
     CGSize  parentSize = self.frame.size;
     UIView  *whiteBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, parentSize.width, parentSize.height)];
@@ -18,13 +21,22 @@
     whiteBackView.clipsToBounds = YES;
     whiteBackView.layer.cornerRadius = parentSize.width/2;
     
-    UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(3,3, parentSize.width-6, parentSize.height-6)];
+    UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(2,2, parentSize.width-6, parentSize.height-4)];
     [self addSubview:userImage];
     userImage.clipsToBounds = YES;
     userImage.layer.cornerRadius = parentSize.width/2;
-    NSString *url = @"";
     [userImage sd_setImageWithURL:[NSURL URLWithString:url]];
 }
+
+- (void)changeCoachModelData:(CoachModel*)headModel{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, headModel.avatar];
+    [self changeDataWithModel:urlString];
+}
+- (void)changeRoomModelData:(Room*)roomModel{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, roomModel.creator_avatar];
+    [self changeDataWithModel:urlString];
+}
+
 
 
 @end
