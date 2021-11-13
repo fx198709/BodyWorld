@@ -140,10 +140,11 @@
                        };
     
 
-
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     AFAppNetAPIClient *manager = [AFAppNetAPIClient sharedClient];
 
     [manager POST:@"room/battle" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if ([[responseObject objectForKey:@"status"] longValue] == 0) {
             NSLog(@"responseObject ---- %@", responseObject);
             NSDictionary *dict = responseObject[@"recordset"];
@@ -156,6 +157,7 @@
         }
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"error %@",error.description);
     }];
 //    NSString *strUrl = [NSString stringWithFormat:@"%@room/battle", FITAPI_HTTPS_PREFIX];

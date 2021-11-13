@@ -6,7 +6,6 @@
 //
 
 #import "UserHeadPicView.h"
-
 @implementation UserHeadPicView
 
 - (void)changeHeadData:(BaseObject*)headModel{

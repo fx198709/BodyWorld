@@ -17,6 +17,7 @@
 #import "ConfigManager.h"
 #import "RoomVC.h"
 #import "NoDataCollectionViewCell.h"
+#import "CreateCourseSuccessViewController.h"
 
 @implementation TableCollectionViewCell
 
@@ -131,9 +132,16 @@
         Room *selectRoom = [_dataArr objectAtIndex: indexPath.row];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
-        CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
-        vc.selectRoom = selectRoom;
-        [[self viewController].navigationController pushViewController:vc animated:YES];
+        if (selectRoom.is_join) {
+            CreateCourseSuccessViewController *vc =[[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
+            vc.event_id = selectRoom.event_id;
+            [[self viewController].navigationController pushViewController:vc animated:YES];
+        }else{
+            CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
+            vc.selectRoom = selectRoom;
+            [[self viewController].navigationController pushViewController:vc animated:YES];
+        }
+      
     }
 }
 
@@ -151,6 +159,8 @@
 
 - (void)join:(UIButton *) recognizer{
     NSLog(@"join ----");
+//    这边需要正在进行中的，才能开始，需要判断状态
+    return;
     Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];
     NSString * nickName = @"123";
     [ConfigManager sharedInstance].eventId = selectRoom.event_id;

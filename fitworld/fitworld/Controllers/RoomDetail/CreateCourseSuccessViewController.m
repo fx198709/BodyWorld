@@ -6,16 +6,26 @@
 //
 
 #import "CreateCourseSuccessViewController.h"
- 
+#import "UserHeadPicView.h"
+
 
 @interface CreateCourseSuccessViewController (){
     UIScrollView * _bottomScrollview;
-    
+    UIScrollView *userlistView;
 }
 
 @end
 
 @implementation CreateCourseSuccessViewController
+
+- (UIView*)userView{
+    
+    return nil;
+}
+
+- (void)addsubviews{
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,8 +36,8 @@
     [self.startNowBtn setTitle:startNowString forState:UIControlStateNormal];
     [self.startNowBtn setTitle:startNowString forState:UIControlStateHighlighted];
     UIImage * image1 = [UIImage imageNamed:@"greenbtn"];
-    [self.startNowBtn setImage:image1 forState:UIControlStateNormal];
-    [self.startNowBtn setImage:image1 forState:UIControlStateHighlighted];
+    [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateNormal];
+    [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateHighlighted];
     [self.startNowBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [self.startNowBtn setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
     [self.startNowBtn addTarget:self action:@selector(startNowBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -44,13 +54,29 @@
         make.top.equalTo(_actionbackview.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
-    UIView *userlistView = [[UIScrollView alloc] init];
-    [_bottomScrollview addSubview:userlistView];
-    [userlistView mas_makeConstraints:^(MASConstraintMaker *make) {
+   
+    
+    UILabel *titleLabel = [[UILabel alloc] init];
+    [_bottomScrollview addSubview:titleLabel];
+    titleLabel.text = ChineseStringOrENFun(@"修改成员", @"People List");
+    titleLabel.textColor = UIColor.whiteColor;
+    titleLabel.font = SystemFontOfSize(20);
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_bottomScrollview);
         make.left.equalTo(_bottomScrollview).offset(15);
         make.right.equalTo(_bottomScrollview).offset(-15);
+        make.height.mas_equalTo(25);
+    }];
+
+    userlistView = [[UIScrollView alloc] init];
+    [_bottomScrollview addSubview:userlistView];
+    int listwidth = ScreenWidth - 30;
+    [userlistView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(titleLabel);
+        make.left.equalTo(_bottomScrollview).offset(15);
+        make.right.equalTo(_bottomScrollview).offset(-15);
         make.height.mas_equalTo(130);
+        make.width.mas_equalTo(listwidth);
     }];
     
 //    for ( ; ; ) {
@@ -60,7 +86,7 @@
     
     UIView *courseDetailView = [[UIView alloc] init];
     [_bottomScrollview addSubview:courseDetailView];
-    [userlistView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [courseDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(userlistView.mas_bottom);
         make.left.equalTo(_bottomScrollview).offset(15);
         make.right.equalTo(_bottomScrollview).offset(-15);
@@ -79,7 +105,9 @@
                        };
     [[AFAppNetAPIClient manager] GET:@"room/user" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
+        if (CheckResponseObject(responseObject)) {
+            
+        }
         NSDictionary *roomJson = responseObject[@"recordset"];
        
       

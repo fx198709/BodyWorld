@@ -54,9 +54,9 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9B-9O-7iH">
-                                <rect key="frame" x="170" y="10" width="90" height="20"/>
+                                <rect key="frame" x="170" y="7.5" width="90" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="01N-iC-9Ty"/>
+                                    <constraint firstAttribute="height" constant="25" id="01N-iC-9Ty"/>
                                     <constraint firstAttribute="width" constant="90" id="hHB-fv-Bgs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>

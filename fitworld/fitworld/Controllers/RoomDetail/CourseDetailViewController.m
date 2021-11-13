@@ -354,6 +354,7 @@
     [programLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineview.mas_bottom).offset(16);
         make.left.equalTo(scrollview).offset(10);
+        make.height.mas_equalTo(35);
     }];
     
     int planCount = (int)self.selectRoom.plan.count;
