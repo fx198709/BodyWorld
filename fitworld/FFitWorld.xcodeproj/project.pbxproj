@@ -96,6 +96,10 @@
 		A2A94DCE273E744E00D02C77 /* CountryCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DCD273E744E00D02C77 /* CountryCode.m */; };
 		A2A94DD2273E76CA00D02C77 /* SelectCountryCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DD0273E76CA00D02C77 /* SelectCountryCodeCell.m */; };
 		A2A94DD3273E76CA00D02C77 /* SelectCountryCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A94DD1273E76CA00D02C77 /* SelectCountryCodeCell.xib */; };
+		A2A94DDD273FC5B200D02C77 /* FriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DDC273FC5B200D02C77 /* FriendViewController.m */; };
+		A2A94DE1273FC64900D02C77 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DDF273FC64900D02C77 /* FriendCell.m */; };
+		A2A94DE2273FC64900D02C77 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A94DE0273FC64900D02C77 /* FriendCell.xib */; };
+		A2A94DE8273FD8DD00D02C77 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DE7273FD8DD00D02C77 /* AddFriendViewController.m */; };
 		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
@@ -345,6 +349,13 @@
 		A2A94DCF273E76CA00D02C77 /* SelectCountryCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCountryCodeCell.h; sourceTree = "<group>"; };
 		A2A94DD0273E76CA00D02C77 /* SelectCountryCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCountryCodeCell.m; sourceTree = "<group>"; };
 		A2A94DD1273E76CA00D02C77 /* SelectCountryCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCountryCodeCell.xib; sourceTree = "<group>"; };
+		A2A94DDB273FC5B200D02C77 /* FriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendViewController.h; sourceTree = "<group>"; };
+		A2A94DDC273FC5B200D02C77 /* FriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendViewController.m; sourceTree = "<group>"; };
+		A2A94DDE273FC64900D02C77 /* FriendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendCell.h; sourceTree = "<group>"; };
+		A2A94DDF273FC64900D02C77 /* FriendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendCell.m; sourceTree = "<group>"; };
+		A2A94DE0273FC64900D02C77 /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
+		A2A94DE6273FD8DD00D02C77 /* AddFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
+		A2A94DE7273FD8DD00D02C77 /* AddFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
 		A423B18EF7C9C23904AE150A /* Pods-FFitWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.release.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.release.xcconfig"; sourceTree = "<group>"; };
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
@@ -506,6 +517,7 @@
 		041510CF268F02810039FCD1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A2A94DDA273FC5B200D02C77 /* Friend */,
 				DD595EC82736F56B00618D1A /* RoomDetail */,
 				DD595EBF27367F5500618D1A /* UserCenter */,
 				DD6EDB6227343601002B0A8E /* MessageList */,
@@ -918,6 +930,20 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		A2A94DDA273FC5B200D02C77 /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				A2A94DDB273FC5B200D02C77 /* FriendViewController.h */,
+				A2A94DDC273FC5B200D02C77 /* FriendViewController.m */,
+				A2A94DE6273FD8DD00D02C77 /* AddFriendViewController.h */,
+				A2A94DE7273FD8DD00D02C77 /* AddFriendViewController.m */,
+				A2A94DDE273FC64900D02C77 /* FriendCell.h */,
+				A2A94DDF273FC64900D02C77 /* FriendCell.m */,
+				A2A94DE0273FC64900D02C77 /* FriendCell.xib */,
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
 		C8E2F71E27131B7600FEE021 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -1235,6 +1261,7 @@
 				DD595EC427367FA700618D1A /* UserCenterMainViewController.xib in Resources */,
 				DD8E328E273F226B008995E9 /* code.json in Resources */,
 				A2723F0A273CF22F00388B01 /* SelectCountryCell.xib in Resources */,
+				A2A94DE2273FC64900D02C77 /* FriendCell.xib in Resources */,
 				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
 				DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */,
@@ -1353,6 +1380,7 @@
 				04EC01F426BD8AC000DC0103 /* ViewerPanel.m in Sources */,
 				04552B532696C3FD00C78706 /* QRCodeReaderViewController.m in Sources */,
 				A2723EF6273BD07700388B01 /* NSDate+MT.m in Sources */,
+				A2A94DE8273FD8DD00D02C77 /* AddFriendViewController.m in Sources */,
 				DD6EDB5C272EFFFB002B0A8E /* TrainingStartViewController.m in Sources */,
 				DD6EDB33272D2C89002B0A8E /* OurDatePickerView.m in Sources */,
 				DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */,
@@ -1413,7 +1441,9 @@
 				DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */,
 				A2723EFC273BD3D200388B01 /* ChangeInfoViewController.m in Sources */,
 				DD6EDB6627343624002B0A8E /* MessageListViewController.m in Sources */,
+				A2A94DE1273FC64900D02C77 /* FriendCell.m in Sources */,
 				04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */,
+				A2A94DDD273FC5B200D02C77 /* FriendViewController.m in Sources */,
 				04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */,
 				DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */,
 				DD595EC327367FA700618D1A /* UserCenterMainViewController.m in Sources */,

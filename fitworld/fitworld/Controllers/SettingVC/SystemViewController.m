@@ -110,10 +110,10 @@ OurDatePickerViewDelegate>
     UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
     
     self.headImg.hidden = [NSString isNullString:user.avatar];
-    if (!self.headImg.hidden) {
+    
         NSString *url = [FITAPI_HTTPS_ROOT stringByAppendingString:user.avatar];
-        [self.headImg sd_setImageWithURL:[NSURL URLWithString:url]];
-    }
+        [self.headImg sd_setImageWithURL:[NSURL URLWithString:url]
+                        placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     self.nickLabel.text = user.nickname;
     self.languageLabel.text = ISChinese() ? @"中文" : @"English";
     self.genderLabel.text = SexNameFormGender(user.gender);
@@ -333,9 +333,7 @@ OurDatePickerViewDelegate>
             [MTHUD showDurationNoticeHUD:ChangeSuccessMsg];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MTHUD hideHUD:YES completedBlock:^{
-            [self showChangeFailedError:error];
-        }];
+        [self showChangeFailedError:error];
     }];
 }
 

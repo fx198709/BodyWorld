@@ -66,7 +66,11 @@ BOOL  hasrequest = NO;
     [super viewWillAppear:animated];
     [_mainTableview.mj_header beginRefreshing];
     self.navigationController.navigationBarHidden = YES;
+}
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    NSLog(@"viewDidAppear %@",self.class);
 }
 
 //- (UserInfo *)userInfo {
@@ -177,7 +181,8 @@ BOOL  hasrequest = NO;
 
 - (void)actionBtnClick:(UIButton*)sender{
     if (sender.tag == 101) {
-       
+       //朋友列表
+        [self performSegueWithIdentifier:@"friendListSegue" sender:nil];
     }else{
         MessageListViewController *vc = [[MessageListViewController alloc] initWithNibName:@"MessageListViewController" bundle:nil];
         [self.navigationController pushViewController:vc animated:YES];
@@ -478,8 +483,4 @@ BOOL  hasrequest = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    NSLog(@"viewDidAppear %@",self.class);
-}
 @end

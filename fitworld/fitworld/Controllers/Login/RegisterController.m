@@ -67,9 +67,6 @@
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
     self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入账号", @"Please enter the account number") attributes:attr];
     self.codeField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"短信验证码", @"SMS Code") attributes:attr];
-    
-    // TODO 默认账号
-//        self.nameField.text = @"+86:13501173505";
 }
 
 #pragma mark - data
