@@ -232,22 +232,6 @@
     return cell;
 }
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [self updateDataWithTableview:tableView];
-//}
-//-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [self updateDataWithTableview:tableView];
-//}
-//
-//- (void)updateDataWithTableview:(UITableView *)tableView {
-//    NSArray *indexpaths = [tableView indexPathsForSelectedRows];
-//    selectedItems = [NSMutableArray new];
-//    for (NSIndexPath *indexpath in indexpaths) {
-//        UserInfo *userInfo = dataArr[indexpath.row];
-//        [selectedItems addObject:userInfo.id];
-//    }
-//}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

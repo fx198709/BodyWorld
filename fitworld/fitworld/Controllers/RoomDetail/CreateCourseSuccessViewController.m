@@ -69,8 +69,8 @@
 }
 
 - (void)addPeopleBtnClick{
-    ChoosePeopleViewController * peopleVC = [[ChoosePeopleViewController alloc] init];
-    
+    ChoosePeopleViewController * peopleVC = [[ChoosePeopleViewController alloc] initWithNibName:@"ChoosePeopleViewController" bundle:nil];
+    peopleVC.currentRoom = currentRoom;
     [self.navigationController pushViewController:peopleVC animated:YES];
     
 }
@@ -90,10 +90,10 @@
         [userView changeDatawithModel:user andIsCreater:isCreate];
         startX = startX+70;
     }
-    if (currentUserList.count < 6) {
+    if (currentUserList.count < 6 && isCreate) {
 //        可以添加人
-        
         UIView * userView = [[UIView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
+        [userlistView addSubview:userView];
         CGSize  parentSize = CGSizeMake(50, 50);
         UIButton  *addPeopleBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, parentSize.width, parentSize.height)];
         [userView addSubview:addPeopleBtn];
@@ -106,7 +106,6 @@
         userImageView.frame = CGRectMake(0, 0, 50, 50);
         [addPeopleBtn addTarget:self action:@selector(addPeopleBtnClick) forControlEvents:UIControlEventTouchUpInside];
         startX = startX+70;
-
     }
     int contentsizex = startX;
     userlistView.contentSize = CGSizeMake(contentsizex, 0);
@@ -184,9 +183,6 @@
     [scrollBackView addSubview:userlistView];
     userlistView.frame = CGRectMake(0, 0, listwidth, userListHeight);
     [self changeUserList];
-//    for ( ; ; ) {
-//        <#statements#>
-//    }
     
     UIView *lineview = [[UIView alloc] init];
     lineview.backgroundColor = UIRGBColor(225, 225, 225, 0.5);
@@ -255,9 +251,21 @@
     self.view.hidden = YES;
     userListHeight = 100;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self reachData];
+}
 
-    
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self reachData];
+    dataTimer = [NSTimer timerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [self reachData];
+    }];
+    [dataTimer fire];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [dataTimer invalidate];
+    dataTimer = nil;
 }
 
 - (void)reachData{
@@ -280,11 +288,8 @@
             }
             
         }
-       
-      
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
-    
 }
 
 - (void)reachRoomDetailInfo

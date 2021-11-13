@@ -113,7 +113,8 @@
 		DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */; };
 		DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */; };
 		DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE427226B5A0092CF87 /* JYPageControl.m */; };
-		DD51EE4B273F9AAA00153A67 /* ChoosePeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD51EE4A273F9AAA00153A67 /* ChoosePeopleViewController.m */; };
+		DD51EE4F273FB9BE00153A67 /* ChoosePeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD51EE4D273FB9BE00153A67 /* ChoosePeopleViewController.m */; };
+		DD51EE50273FB9BE00153A67 /* ChoosePeopleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD51EE4E273FB9BE00153A67 /* ChoosePeopleViewController.xib */; };
 		DD595EB82736224600618D1A /* NoDataCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EB62736224600618D1A /* NoDataCollectionViewCell.m */; };
 		DD595EB92736224600618D1A /* NoDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD595EB72736224600618D1A /* NoDataCollectionViewCell.xib */; };
 		DD595EBD27364D0300618D1A /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EBB27364D0300618D1A /* MessageDetailViewController.m */; };
@@ -383,8 +384,9 @@
 		DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+JYImageViewManager.m"; sourceTree = "<group>"; };
 		DD25FEE427226B5A0092CF87 /* JYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPageControl.m; sourceTree = "<group>"; };
 		DD25FEE527226B5A0092CF87 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
-		DD51EE49273F9AAA00153A67 /* ChoosePeopleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleViewController.h; sourceTree = "<group>"; };
-		DD51EE4A273F9AAA00153A67 /* ChoosePeopleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePeopleViewController.m; sourceTree = "<group>"; };
+		DD51EE4C273FB9BE00153A67 /* ChoosePeopleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleViewController.h; sourceTree = "<group>"; };
+		DD51EE4D273FB9BE00153A67 /* ChoosePeopleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePeopleViewController.m; sourceTree = "<group>"; };
+		DD51EE4E273FB9BE00153A67 /* ChoosePeopleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoosePeopleViewController.xib; sourceTree = "<group>"; };
 		DD595EB52736224600618D1A /* NoDataCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoDataCollectionViewCell.h; sourceTree = "<group>"; };
 		DD595EB62736224600618D1A /* NoDataCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoDataCollectionViewCell.m; sourceTree = "<group>"; };
 		DD595EB72736224600618D1A /* NoDataCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDataCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1039,8 +1041,9 @@
 				DD98BC69273F653900D3B59F /* CourseDetailSmallview.h */,
 				DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */,
 				DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */,
-				DD51EE49273F9AAA00153A67 /* ChoosePeopleViewController.h */,
-				DD51EE4A273F9AAA00153A67 /* ChoosePeopleViewController.m */,
+				DD51EE4C273FB9BE00153A67 /* ChoosePeopleViewController.h */,
+				DD51EE4D273FB9BE00153A67 /* ChoosePeopleViewController.m */,
+				DD51EE4E273FB9BE00153A67 /* ChoosePeopleViewController.xib */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -1281,6 +1284,7 @@
 				047DC203268CD09900A3E37E /* Assets.xcassets in Resources */,
 				DD595EE0273A68BE00618D1A /* TableSearchView.xib in Resources */,
 				DD6EDB4C272E7AF9002B0A8E /* AddPeopleTableViewCell.xib in Resources */,
+				DD51EE50273FB9BE00153A67 /* ChoosePeopleViewController.xib in Resources */,
 				0433C0EF268D63DC00EB47B1 /* Podfile in Resources */,
 				0472011226B7934300C19437 /* InfoPlist.strings in Resources */,
 				047DC1FE268CD09700A3E37E /* Main.storyboard in Resources */,
@@ -1361,7 +1365,7 @@
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,
 				DD6EDB41272D2FCD002B0A8E /* CommonTools.m in Sources */,
 				047DC209268CD09900A3E37E /* main.m in Sources */,
-				DD51EE4B273F9AAA00153A67 /* ChoosePeopleViewController.m in Sources */,
+				DD51EE4F273FB9BE00153A67 /* ChoosePeopleViewController.m in Sources */,
 				DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */,
 				DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */,
 				DD98BC6B273F653900D3B59F /* CourseDetailSmallview.m in Sources */,
