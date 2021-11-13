@@ -111,9 +111,9 @@ OurDatePickerViewDelegate>
     
     self.headImg.hidden = [NSString isNullString:user.avatar];
     
-        NSString *url = [FITAPI_HTTPS_ROOT stringByAppendingString:user.avatar];
-        [self.headImg sd_setImageWithURL:[NSURL URLWithString:url]
-                        placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
+    NSString *url = [FITAPI_HTTPS_ROOT stringByAppendingString:user.avatar];
+    [self.headImg sd_setImageWithURL:[NSURL URLWithString:url]
+                    placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     self.nickLabel.text = user.nickname;
     self.languageLabel.text = ISChinese() ? @"中文" : @"English";
     self.genderLabel.text = SexNameFormGender(user.gender);
@@ -132,7 +132,7 @@ OurDatePickerViewDelegate>
 //修改密码
 -(IBAction)changePwd:(id)sender {
     [self.view endEditing:YES];
-
+    
     ResetPwdController *nextVC = VCBySBName(@"ResetPwdController");
     [self.navigationController pushViewController:nextVC animated:YES];
 }
@@ -140,7 +140,7 @@ OurDatePickerViewDelegate>
 //修改头像
 - (IBAction)changeHeadImg:(id)sender {
     [self.view endEditing:YES];
-
+    
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"拍照", @"Camera") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -172,7 +172,7 @@ OurDatePickerViewDelegate>
 //修改语言
 -(IBAction)changeLanguage:(id)sender {
     [self.view endEditing:YES];
-
+    
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [ac addAction:[UIAlertAction actionWithTitle:@"English" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -206,7 +206,7 @@ OurDatePickerViewDelegate>
 //修改性别
 -(IBAction)changeSex:(id)sender {
     [self.view endEditing:YES];
-
+    
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [ac addAction:[UIAlertAction actionWithTitle:SexNameFormGender(GenderEnum_Male) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -230,7 +230,7 @@ OurDatePickerViewDelegate>
 //修改生日
 -(IBAction)changeBirthday:(id)sender {
     [self.view endEditing:YES];
-
+    
     OurDatePickerView *datepickerView = [[OurDatePickerView alloc] init];
     datepickerView.pickerDelegate = self;
     datepickerView.pickerType = YearMonAndDay;
@@ -283,7 +283,7 @@ OurDatePickerViewDelegate>
 
 - (IBAction)loginOut:(id)sender {
     [self.view endEditing:YES];
-
+    
     UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"确定退出？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
