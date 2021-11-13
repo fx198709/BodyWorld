@@ -75,6 +75,9 @@
 		04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3E34126E9325F00CEEC7D /* CalendarView.m */; };
 		04F3E34526E9326000CEEC7D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3E34226E9325F00CEEC7D /* UIView+Extension.m */; };
 		04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8AA5A270DE974009B125A /* ResetPwdController.m */; };
+		A256300A273FE2430030D6B2 /* FriendPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A2563009273FE2430030D6B2 /* FriendPageInfo.m */; };
+		A256300D273FE6850030D6B2 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A256300C273FE6850030D6B2 /* Friend.m */; };
+		A2563010273FE6EA0030D6B2 /* AddFriendPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */; };
 		A2723EDA273B779300388B01 /* UIView+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723ED8273B779300388B01 /* UIView+MT.m */; };
 		A2723EDE273B7A0000388B01 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDD273B7A0000388B01 /* BaseViewController.m */; };
 		A2723EE1273BA3C400388B01 /* NSString+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDF273BA3C400388B01 /* NSString+MT.m */; };
@@ -310,6 +313,12 @@
 		2B12690FCE930C0C330FD2A9 /* Pods-FFitWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.debug.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.debug.xcconfig"; sourceTree = "<group>"; };
 		3D98A0204D3DA5201CEC3B5A /* Pods-fitworld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitworld.debug.xcconfig"; path = "Target Support Files/Pods-fitworld/Pods-fitworld.debug.xcconfig"; sourceTree = "<group>"; };
 		5A752F19D1ECDDD6A8BC1286 /* Pods-fitworld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitworld.release.xcconfig"; path = "Target Support Files/Pods-fitworld/Pods-fitworld.release.xcconfig"; sourceTree = "<group>"; };
+		A2563008273FE2430030D6B2 /* FriendPageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendPageInfo.h; sourceTree = "<group>"; };
+		A2563009273FE2430030D6B2 /* FriendPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendPageInfo.m; sourceTree = "<group>"; };
+		A256300B273FE6850030D6B2 /* Friend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		A256300C273FE6850030D6B2 /* Friend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		A256300E273FE6EA0030D6B2 /* AddFriendPageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendPageInfo.h; sourceTree = "<group>"; };
+		A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendPageInfo.m; sourceTree = "<group>"; };
 		A2723ED8273B779300388B01 /* UIView+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MT.m"; sourceTree = "<group>"; };
 		A2723ED9273B779300388B01 /* UIView+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MT.h"; sourceTree = "<group>"; };
 		A2723EDC273B7A0000388B01 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -560,6 +569,12 @@
 				A2A94DC1273E5BA000D02C77 /* Country.m */,
 				A2A94DCC273E744E00D02C77 /* CountryCode.h */,
 				A2A94DCD273E744E00D02C77 /* CountryCode.m */,
+				A2563008273FE2430030D6B2 /* FriendPageInfo.h */,
+				A2563009273FE2430030D6B2 /* FriendPageInfo.m */,
+				A256300E273FE6EA0030D6B2 /* AddFriendPageInfo.h */,
+				A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */,
+				A256300B273FE6850030D6B2 /* Friend.h */,
+				A256300C273FE6850030D6B2 /* Friend.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1365,6 +1380,7 @@
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,
 				DD6EDB41272D2FCD002B0A8E /* CommonTools.m in Sources */,
 				047DC209268CD09900A3E37E /* main.m in Sources */,
+				A2563010273FE6EA0030D6B2 /* AddFriendPageInfo.m in Sources */,
 				DD51EE4F273FB9BE00153A67 /* ChoosePeopleViewController.m in Sources */,
 				DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */,
 				DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */,
@@ -1425,6 +1441,7 @@
 				A2723F10273D090E00388B01 /* UIColor+MT.m in Sources */,
 				DD595EBD27364D0300618D1A /* MessageDetailViewController.m in Sources */,
 				DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */,
+				A256300A273FE2430030D6B2 /* FriendPageInfo.m in Sources */,
 				A2723F05273CF1BC00388B01 /* SelectCountryViewController.m in Sources */,
 				A2723EFF273CC28C00388B01 /* ChangeIntroductionViewController.m in Sources */,
 				A2A94DC5273E610900D02C77 /* UIViewController+MTNavigation.m in Sources */,
@@ -1443,6 +1460,7 @@
 				DD25FEEA27226B5A0092CF87 /* JYImageDownloader.m in Sources */,
 				DD6EDB5D272EFFFB002B0A8E /* TrainingViewController.m in Sources */,
 				DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */,
+				A256300D273FE6850030D6B2 /* Friend.m in Sources */,
 				A2723EFC273BD3D200388B01 /* ChangeInfoViewController.m in Sources */,
 				DD6EDB6627343624002B0A8E /* MessageListViewController.m in Sources */,
 				A2A94DE1273FC64900D02C77 /* FriendCell.m in Sources */,

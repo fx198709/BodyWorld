@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^AgreeAddCallBack)(void);
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FriendCell : UITableViewCell
@@ -16,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 //是否是添加
 @property (nonatomic, assign) BOOL isAdd;
+@property (nonatomic, assign) int addStatus;
+
+@property (nonatomic, copy)AgreeAddCallBack callBack;
 
 @end
 

@@ -7,13 +7,14 @@
 
 #import "AddFriendViewController.h"
 #import "FriendCell.h"
+#import "AddFriendPageInfo.h"
 
 @interface AddFriendViewController ()
 <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) NSMutableArray<UserInfo *> *dataList;
+@property (nonatomic, strong) NSMutableArray<Friend *> *dataList;
 @property (nonatomic, assign) NSInteger currentPage;
 @property (nonatomic, assign) BOOL isFinished;
 @property (nonatomic, assign) BOOL isRequesting;
@@ -26,7 +27,9 @@
     [super viewDidLoad];
     self.navigationItem.title = ChineseStringOrENFun(@"好友", @"Friends");
     [self initView];
-    [self getDataListFromServer:YES];
+    self.dataList = [NSMutableArray array];
+    [self resetData];
+    [self MJRefreshData];
 }
 
 
@@ -38,10 +41,28 @@
     [self addMJRefreshToTable:self.tableView];
 }
 
+#pragma mark - refresh
+
+- (void)MJRefreshData {
+    [self resetData];
+    [self getFriendListFromServer:YES];
+}
+
+- (void)MJRequestMoreData {
+    [self getFriendListFromServer:NO];
+}
+
+- (void)resetData {
+    self.currentPage = 0;
+    self.isFinished = NO;
+    [self.dataList removeAllObjects];
+}
+
+
 #pragma mark - server
 
-- (void)getDataListFromServer:(BOOL)isRefresh {
-    if (self.isFinished || self.isRequesting) {
+- (void)getFriendListFromServer:(BOOL)isRefresh {
+    if (self.isRequesting || self.isFinished) {
         return;
     }
     
@@ -49,31 +70,50 @@
     NSInteger nextPage = self.currentPage + 1;
     
     NSString *url = @"friend/apply_list";
-    NSDictionary *param = @{@"row":@"10", @"page":IntToString(nextPage)};
+    int perCount = 10;
+    NSDictionary *param = @{@"row":IntToString(perCount), @"page":IntToString(nextPage)};
     [[AFAppNetAPIClient manager] GET:url parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         self.isRequesting = NO;
-        [self finishMJRefresh:self.tableView isFinished:self.isFinished];
-
+        
         NSLog(@"====respong:%@", responseObject);
-        NSArray *result = [responseObject objectForKey:@"recordset"];
+        NSDictionary *result = [responseObject objectForKey:@"recordset"];
         NSError *error;
-        NSArray<UserInfo *> *resultList = [UserInfo arrayOfModelsFromDictionaries:result error:&error];
+        AddFriendPageInfo *pageInfo = [[AddFriendPageInfo alloc] initWithDictionary:result error:&error];
         if (error == nil) {
             if (isRefresh) {
-                self.dataList = [NSMutableArray arrayWithArray:resultList];
+                self.dataList = [NSMutableArray arrayWithArray:pageInfo.rows];
             } else {
-                [self.dataList addObjectsFromArray:resultList];
+                [self.dataList addObjectsFromArray:pageInfo.rows];
+            }
+            if (pageInfo.rows.count < perCount) {
+                self.isFinished = YES;
             }
             self.currentPage += 1;
             [self.tableView reloadData];
         } else {
             [MTHUD showDurationNoticeHUD:error.localizedDescription];
         }
+        [self finishMJRefresh:self.tableView isFinished:self.isFinished];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.isRequesting = NO;
         [self finishMJRefresh:self.tableView isFinished:self.isFinished];
         [MTHUD showDurationNoticeHUD:error.localizedDescription];
+    }];
+}
+
+//添加好友
+- (void)addUserToServer:(Friend *)friend {
+    NSDictionary *param = @{@"friend_id": StringWithDefaultValue(friend.friend_id, @"")};
+    [MTHUD showLoadingHUD];
+    [[AFAppNetAPIClient manager] PUT:@"friend/agree" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        if ([responseObject objectForKey:@"recordset"]) {
+            friend.status = FriendStatus_added;
+            [self.tableView reloadData];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self showChangeFailedError:error];
     }];
 }
 
@@ -90,11 +130,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([FriendCell class])];
-    UserInfo *friend = [self.dataList objectAtIndex:indexPath.row];
+    Friend *friend = [self.dataList objectAtIndex:indexPath.row];
     NSString *url = [FITAPI_HTTPS_ROOT stringByAppendingString:friend.avatar];
     [cell.imgView sd_setImageWithURL:[NSURL URLWithString:url]
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
-    cell.titleLabel.text = friend.nickname;
+    cell.titleLabel.text = friend.friend_name;
+    cell.addStatus = friend.status;
+    cell.isAdd = YES;
+    cell.callBack = ^{
+        [self addUserToServer:friend];
+    };
     return cell;
 }
 

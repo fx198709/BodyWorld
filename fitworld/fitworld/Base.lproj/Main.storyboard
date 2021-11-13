@@ -1763,28 +1763,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQL-iX-Xy8">
-                                <rect key="frame" x="0.0" y="48" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="48"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_people" translatesAutoresizingMaskIntoConstraints="NO" id="Al9-nT-xUO">
-                                        <rect key="frame" x="40" y="2" width="38" height="56"/>
+                                        <rect key="frame" x="40" y="2" width="38" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="38" id="7dv-aj-QgF"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新的朋友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjb-ub-Gkm">
-                                        <rect key="frame" x="88" y="20.333333333333329" width="65.333333333333314" height="19.333333333333329"/>
+                                        <rect key="frame" x="88" y="14.333333333333334" width="65.333333333333314" height="19.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSg-6r-HAl">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="changeHeadImg:" destination="tNA-x5-hao" eventType="touchUpInside" id="Du9-dw-EDl"/>
+                                            <segue destination="7Z7-JM-0RN" kind="show" id="7xc-Jr-qYH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1793,7 +1794,7 @@
                                     <constraint firstAttribute="bottom" secondItem="uSg-6r-HAl" secondAttribute="bottom" id="0Dq-o0-32S"/>
                                     <constraint firstItem="Tjb-ub-Gkm" firstAttribute="centerY" secondItem="SQL-iX-Xy8" secondAttribute="centerY" id="BkZ-Bj-c0h"/>
                                     <constraint firstItem="Tjb-ub-Gkm" firstAttribute="leading" secondItem="Al9-nT-xUO" secondAttribute="trailing" constant="10" id="DZA-Uz-dbL"/>
-                                    <constraint firstAttribute="height" constant="60" id="DxN-ve-ers"/>
+                                    <constraint firstAttribute="height" constant="48" id="DxN-ve-ers"/>
                                     <constraint firstItem="Al9-nT-xUO" firstAttribute="leading" secondItem="SQL-iX-Xy8" secondAttribute="leading" constant="40" id="LHr-qq-AN5"/>
                                     <constraint firstItem="uSg-6r-HAl" firstAttribute="top" secondItem="SQL-iX-Xy8" secondAttribute="top" id="MM6-uE-3bw"/>
                                     <constraint firstAttribute="trailing" secondItem="uSg-6r-HAl" secondAttribute="trailing" id="mzD-3t-02b"/>
@@ -1803,7 +1804,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kpl-Yx-V16">
-                                <rect key="frame" x="0.0" y="120" width="414" height="616"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="628"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="stL-mK-2FH" id="qA7-Ym-Qkh"/>
@@ -1831,6 +1832,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aCq-vJ-gBd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1220.2898550724638" y="1537.5000000000002"/>
+        </scene>
+        <!--新的好友-->
+        <scene sceneID="vIB-41-c5B">
+            <objects>
+                <viewController storyboardIdentifier="AddFriendViewController" id="7Z7-JM-0RN" customClass="AddFriendViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DhG-Ev-xAO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BIo-gD-NQV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="7Z7-JM-0RN" id="8Me-rN-6lL"/>
+                                    <outlet property="delegate" destination="7Z7-JM-0RN" id="7IS-M7-hB1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wXh-lf-yx7"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BIo-gD-NQV" firstAttribute="top" secondItem="wXh-lf-yx7" secondAttribute="top" id="Mtg-ma-1g9"/>
+                            <constraint firstItem="BIo-gD-NQV" firstAttribute="trailing" secondItem="wXh-lf-yx7" secondAttribute="trailing" id="edQ-7s-Xo6"/>
+                            <constraint firstItem="BIo-gD-NQV" firstAttribute="leading" secondItem="wXh-lf-yx7" secondAttribute="leading" id="vAT-SK-pag"/>
+                            <constraint firstAttribute="bottom" secondItem="BIo-gD-NQV" secondAttribute="bottom" id="vl8-T9-2bp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="新的好友" id="t8N-UP-AOG"/>
+                    <connections>
+                        <outlet property="tableView" destination="BIo-gD-NQV" id="yFI-6D-Ilf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="83X-wv-Iml" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-413" y="1538"/>
         </scene>
     </scenes>
     <resources>

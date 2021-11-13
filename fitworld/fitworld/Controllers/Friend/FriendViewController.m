@@ -7,7 +7,7 @@
 
 #import "FriendViewController.h"
 #import "FriendCell.h"
-#import "UserInfo.h"
+#import "FriendPageInfo.h"
 
 @interface FriendViewController ()
 <UITableViewDelegate, UITableViewDataSource>
@@ -27,6 +27,7 @@
     [super viewDidLoad];
     self.navigationItem.title = ChineseStringOrENFun(@"好友", @"Friends");
     [self initView];
+    self.dataList = [NSMutableArray array];
     [self resetData];
     [self MJRefreshData];
 }
@@ -43,6 +44,7 @@
 #pragma mark - refresh
 
 - (void)MJRefreshData {
+    [self resetData];
     [self getFriendListFromServer:YES];
 }
 
@@ -63,32 +65,34 @@
     if (self.isFinished || self.isRequesting) {
         return;
     }
-    
     self.isRequesting = YES;
     NSInteger nextPage = self.currentPage + 1;
-    
     NSString *url = @"friends";
-    NSDictionary *param = @{@"row":@"10", @"page":IntToString(nextPage)};
+    int perCount = 10;
+    NSDictionary *param = @{@"row":IntToString(perCount), @"page":IntToString(nextPage)};
     [[AFAppNetAPIClient manager] GET:url parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         self.isRequesting = NO;
-        [self finishMJRefresh:self.tableView isFinished:self.isFinished];
-
+        
         NSLog(@"====respong:%@", responseObject);
-        NSArray *result = [responseObject objectForKey:@"recordset"];
+        NSDictionary *result = [responseObject objectForKey:@"recordset"];
         NSError *error;
-        NSArray<UserInfo *> *resultList = [UserInfo arrayOfModelsFromDictionaries:result error:&error];
+        FriendPageInfo *pageInfo = [[FriendPageInfo alloc] initWithDictionary:result error:&error];
         if (error == nil) {
             if (isRefresh) {
-                self.dataList = [NSMutableArray arrayWithArray:resultList];
+                self.dataList = [NSMutableArray arrayWithArray:pageInfo.rows];
             } else {
-                [self.dataList addObjectsFromArray:resultList];
+                [self.dataList addObjectsFromArray:pageInfo.rows];
+            }
+            if (pageInfo.rows.count < perCount) {
+                self.isFinished = YES;
             }
             self.currentPage += 1;
             [self.tableView reloadData];
         } else {
             [MTHUD showDurationNoticeHUD:error.localizedDescription];
         }
+        [self finishMJRefresh:self.tableView isFinished:self.isFinished];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.isRequesting = NO;
         [self finishMJRefresh:self.tableView isFinished:self.isFinished];
