@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = ChineseStringOrENFun(@"好友", @"Friends");
+    self.navigationItem.title = ChineseStringOrENFun(@"新的好友", @"New friends");
     [self initView];
     self.dataList = [NSMutableArray array];
     [self resetData];

@@ -468,12 +468,7 @@ BOOL  hasrequest = NO;
 
 - (void)onClickUserCenter {
     NSLog(@"onClickUserCenter ----  ");
-
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
-    UserCenterViewController *vc = (UserCenterViewController *)[storyboard instantiateViewControllerWithIdentifier:@"userCenterVC"];
-    vc.userInfo = self.userInfo;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self performSegueWithIdentifier:@"goToUserCenterSegue" sender:nil];
     
 }
 

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserCenterViewController : BaseNavViewController
+@interface UserCenterViewController : BaseViewController
 @property (nonatomic, strong) UserInfo *userInfo;
 @end
 
