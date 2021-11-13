@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UISearchBar *searchbarBtn;
 @property (nonatomic, assign) NSInteger canAllowOther;
 @property (nonatomic, weak)id<TableSearchViewDelegate> searchviewDelegate;
+@property (weak, nonatomic) IBOutlet UIButton *searchActionBtn;
 
 @end
 

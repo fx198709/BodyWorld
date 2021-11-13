@@ -24,7 +24,7 @@
     _titlelabel2.text = ChineseStringOrENFun(@"您可邀请好友参加对练（最多5个，在列表勾选或搜索）", @"您可邀请好友参加对练（最多5个，在列表勾选或搜索）");
     self.searchbarBtn.delegate = self;
     _searchbarBtn.backgroundColor = [UIColor clearColor];
-    _searchbarBtn.showsCancelButton = YES;
+    _searchbarBtn.showsCancelButton = NO;
     _searchbarBtn.backgroundColor = BuddyTableBackColor;
     
     for (UIView *subView in _searchbarBtn.subviews) {
@@ -34,6 +34,15 @@
     }
     _searchbarBtn.backgroundImage = [UIImage imageWithColor:[UIColor clearColor]];
     [_selectedBtn addTarget:self action:@selector(canAllowOtherPeople ) forControlEvents:UIControlEventTouchUpInside];
+    NSString *searchString = ChineseStringOrENFun(@"搜索", @"Search");
+    [_searchActionBtn setTitle:searchString forState:UIControlStateHighlighted];
+    [_searchActionBtn setTitle:searchString forState:UIControlStateNormal];
+    [_searchActionBtn setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
+    [_searchActionBtn setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
+    _searchActionBtn.backgroundColor = UIRGBColor(28, 28, 30, 1);
+    _searchActionBtn.layer.cornerRadius = 8;
+    _searchActionBtn.clipsToBounds = YES;
+    [_searchActionBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)canAllowOtherPeople{
@@ -52,6 +61,12 @@
         [_searchviewDelegate allowOtherBtnClicked:_canAllowOther];
     }
 
+}
+
+- (void)searchBtnClick {
+    if ([_searchviewDelegate respondsToSelector:@selector(searhBarBtnClicked:)]) {
+        [_searchviewDelegate searhBarBtnClicked:_searchbarBtn.text];
+    }
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
