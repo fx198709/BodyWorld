@@ -26,6 +26,8 @@
 	<string>Capture video for sharing</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Capture audio for sharing</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo for sharing</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -75,7 +77,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Photo for sharing</string>
 </dict>
 </plist>
