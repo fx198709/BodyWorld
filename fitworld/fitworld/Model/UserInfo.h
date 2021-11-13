@@ -39,6 +39,8 @@
 @property (nonatomic , copy) NSString *msg_cn;
 
 @property (nonatomic , assign) BOOL hasSelect;
+@property (nonatomic , assign) BOOL lastLevelSelect;
+
 
 //参与课程的成员信息
 @property (nonatomic, strong)NSString*last_login_ip;

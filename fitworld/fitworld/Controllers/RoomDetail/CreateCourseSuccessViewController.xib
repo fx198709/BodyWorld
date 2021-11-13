@@ -16,6 +16,7 @@
                 <outlet property="headTitle" destination="0j3-i1-Epg" id="E8l-Oa-cOi"/>
                 <outlet property="headview" destination="Mqd-4u-qK8" id="aBC-qX-npH"/>
                 <outlet property="startNowBtn" destination="4aX-1D-q8W" id="Dcu-7u-wLx"/>
+                <outlet property="startNowBtnHeightCon" destination="PyD-S4-8nP" id="RGH-Dv-n3f"/>
                 <outlet property="tillBtn" destination="pFt-Tg-SKh" id="BvN-ap-pYO"/>
                 <outlet property="tillBtnHeightConstraint" destination="28M-xM-fmw" id="cMs-kU-FOP"/>
                 <outlet property="timeLabel" destination="E2l-VI-w2V" id="8QX-Jg-Heq"/>

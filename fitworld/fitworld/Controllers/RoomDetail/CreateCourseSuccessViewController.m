@@ -12,6 +12,8 @@
 #import "CourseDetailSmallview.h"
 #import "CourseDetailViewController.h"
 #import "ChoosePeopleViewController.h"
+#import "MainViewController.h"
+#import "RoomVC.h"
 
 @interface UserInfoView:UIView
 @property(nonatomic, strong)UserInfo * user;
@@ -57,6 +59,8 @@
     Room *currentRoom;
     NSArray *currentUserList;
     NSTimer * dataTimer;
+    NSTimer * numberTimer;
+
     int userListHeight;
 }
 
@@ -65,6 +69,30 @@
 @implementation CreateCourseSuccessViewController
 
 - (void)deleteBtnClicked:(UIButton*)sender{
+//    /api/room/kickout
+    int tag = (int)sender.tag - 1000;
+    if (currentUserList.count > tag) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        UserInfo *user = [currentUserList objectAtIndex:tag];
+        AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+
+        NSDictionary *baddyParams = @{
+                               @"event_id": self.event_id,
+                               @"friend_id":user.id};
+        [manager POST:@"room/kickout" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (CheckResponseObject(responseObject)) {
+//               删除成功，重新获取一次列表数据
+                [self reachData];
+            }else{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+            }
+           
+          
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    }
     
 }
 
@@ -78,16 +106,17 @@
 - (void)changeUserList{
 //
     NSInteger x = userlistView.contentOffset.x;
-    RemoveSubviews(userlistView, @[@"UserInfoView"]);;
+    RemoveSubviews(userlistView, [NSArray array]);;
     int startX = 0;
     BOOL isCreate = [currentRoom.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
     for (int index = 0; index < currentUserList.count; index++) {
         UserInfo *user = currentUserList[index];
         UserInfoView * userView = [[UserInfoView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
+        userView.userInteractionEnabled = YES;
+        [userView changeDatawithModel:user andIsCreater:isCreate];
         userView.deleteBtn.tag = 1000+ index;
         [userView.deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [userView changeDatawithModel:user andIsCreater:isCreate];
         startX = startX+70;
     }
     if (currentUserList.count < 6 && isCreate) {
@@ -112,6 +141,27 @@
     userlistView.contentOffset =CGPointMake(contentsizex>x?x:contentsizex,0);
 }
 
+//修改倒计时按钮
+- (void)changetillBtnTitle{
+    
+    if (currentRoom.status !=0) {
+//    表示已经开始
+    }
+    if (currentRoom.start_time) {
+        long currentTime = [[NSDate date] timeIntervalSince1970];
+        long diff = currentRoom.start_time - currentTime;
+        if (diff > 0) {
+            int hour = (int)diff/3600;
+            int hourleft = diff%3600;
+            int min = hourleft/60;
+            int sec = hourleft%60;
+            NSString *titleString = [NSString stringWithFormat:@"Till start %02d:%02d:%02d",hour,min,sec];
+            [self.tillBtn setTitle:titleString forState:UIControlStateNormal];
+            [self.tillBtn setTitle:titleString forState:UIControlStateHighlighted];
+        }
+    }
+}
+
 - (void)addsubviews{
     self.view.hidden = NO;
     _headview.backgroundColor = [UIColor clearColor];
@@ -131,6 +181,12 @@
     NSString *startNowString = ChineseStringOrENFun(@"提前开始", @"Start Now");
     self.startNowBtn.layer.cornerRadius =5;
     self.startNowBtn.clipsToBounds =YES;
+    BOOL isCreate = [currentRoom.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
+//    是自己创建的，才有提前开始按钮
+    if (!isCreate) {
+        _startNowBtnHeightCon.constant = 0;
+        _actionBtnTopConstraint.constant = 0;
+    }
 
     [self.startNowBtn setTitle:startNowString forState:UIControlStateNormal];
     [self.startNowBtn setTitle:startNowString forState:UIControlStateHighlighted];
@@ -146,11 +202,12 @@
     [self.tillBtn setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
     self.tillBtn.layer.cornerRadius =5;
     self.tillBtn.clipsToBounds =YES;
+    [self changetillBtnTitle];
     // Do any additional setup after loading the view from its nib.
     
     _bottomScrollview = [[UIScrollView alloc] init];
     [self.view addSubview:_bottomScrollview];
-    
+    _bottomScrollview.backgroundColor= BuddyTableBackColor;
     [_bottomScrollview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_actionbackview.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
@@ -256,16 +313,23 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self reachData];
-    dataTimer = [NSTimer timerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        [self reachData];
-    }];
-    [dataTimer fire];
+//    dataTimer = [NSTimer timerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//        [self reachData];
+//    }];
+    
+    [self changetillBtnTitle];
+    dataTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(reachData) userInfo:nil repeats:YES];
+    numberTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changetillBtnTitle) userInfo:nil repeats:YES];
+        
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [dataTimer invalidate];
     dataTimer = nil;
+    [numberTimer invalidate];
+    numberTimer = nil;
+    
 }
 
 - (void)reachData{
@@ -281,7 +345,6 @@
                 for (NSDictionary *dic in userlist) {
                     UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
                     [list addObject:user];
-                    
                 }
                 self->currentUserList = list;
                 [self changeUserList];
@@ -310,6 +373,7 @@
                 [self addsubviews];
             }else{
 //                只改变状态
+                [self changetillBtnTitle];
             }
             
           
@@ -324,7 +388,6 @@
 
 
 - (void)startNowBtnClicked:(UIButton *)startNowBtn{
-//http://1.117.70.210:8091/api/room/start_in_advance
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
 
     NSDictionary *baddyParams = @{
@@ -333,8 +396,18 @@
     [manager POST:@"room/start_in_advance" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (CheckResponseObject(responseObject)) {
-            NSDictionary *roomJson = responseObject[@"recordset"];
-
+//            NSDictionary *roomJson = responseObject[@"recordset"];
+            NSString * nickName = [APPObjOnce sharedAppOnce].currentUser.nickname;
+            [ConfigManager sharedInstance].eventId = self.event_id;
+            [ConfigManager sharedInstance].nickName = nickName;
+            [[ConfigManager sharedInstance] saveConfig];
+            NSMutableDictionary *codeDict = [NSMutableDictionary dictionary];
+            codeDict[@"eid"] =self.event_id;
+            codeDict[@"name"] =nickName;
+        
+        //    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
+            RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
+            [self.navigationController pushViewController:roomVC animated:YES];
         }
        
       
@@ -352,5 +425,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)backPopViewcontroller:(id) sender
+{
+    UIViewController * popVC = nil;
+    NSArray *vcs = self.navigationController.viewControllers;
+    for (UIViewController * vc in vcs) {
+        if ([vc isKindOfClass:[MainViewController class]]) {
+            popVC = vc;
+        }
+    }
+    if (popVC) {
+        [self.navigationController popToViewController:popVC animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 @end
