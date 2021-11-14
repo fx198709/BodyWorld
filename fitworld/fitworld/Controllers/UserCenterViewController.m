@@ -9,10 +9,10 @@
 #import "UIDeps.h"
 #import "FITAPI.h"
 #import "CalendarView.h"
-#import "PrefixHeader.h"
-#import "AFNetworking.h"
 #import "PractiseWeek.h"
 #import "PractiseStatic.h"
+
+#import "UserCenterInfo.h"
 
 @interface UserCenterViewController ()
 
@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *historyView;
 @property (weak, nonatomic) IBOutlet UILabel *historyTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *historyDetailBtn;
+@property (weak, nonatomic) IBOutlet UILabel *historyCountTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *historyCountLabel;
 
 //团课
@@ -46,6 +47,10 @@
 @property (weak, nonatomic) IBOutlet UIView *calenderContainerView;
 
 @property (nonatomic, strong) CalendarView *calendar;
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
+
+@property (nonatomic, strong) UserCenterInfo *centerInfo;
 
 @end
 
@@ -56,9 +61,7 @@
     
     self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"User Center");
     [self initView];
-    [self getPractiseWeek];
-    [self getPractiseStatic];
-    
+    [self getUserDateFromServer];    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -72,23 +75,25 @@
     
     self.totalTimeTitleLabel.text = ChineseStringOrENFun(@"累计锻炼时长(min)", @"Training time(min)");
     self.kcatTitleLabel.text = ChineseStringOrENFun(@"卡路里消耗(kcal)", @"Calories burned(kcal)");
-    self.killoTitleLabel.text = ChineseStringOrENFun(@"里程", @"");
+    self.killoTitleLabel.text = ChineseStringOrENFun(@"里程", @"Ranking");
     
-    self.historyTitleLabel.text = ChineseStringOrENFun(@"历史统计", @"");
+    self.historyTitleLabel.text = ChineseStringOrENFun(@"历史统计", @"Historical Data");
+    self.historyCountTitleLabel.text = ChineseStringOrENFun(@"次", @"times");
     
-    self.tuanTitleLabel.text = ChineseStringOrENFun(@"团课", @"");
-    self.dlTitleLabel.text = ChineseStringOrENFun(@"对练课", @"");
+    self.tuanTitleLabel.text = ChineseStringOrENFun(@"团课", @"Group class");
+    self.dlTitleLabel.text = ChineseStringOrENFun(@"对练课", @"Buddy training");
     
-    self.calenderTitleLabel.text = ChineseStringOrENFun(@"最近30天打卡记录", @"");
-    //todo:
-    self.calenderTimeLabel.text = @"10月14-11月12";
-    
-    [self addCalendarView];
-    [self loadUserData];
-}
-
-
-- (void)loadUserData {
+    self.calenderTitleLabel.text = ChineseStringOrENFun(@"最近30天打卡记录", @"30 Day activity");
+    self.endDate = [[NSDate date] mt_previousDate];
+    self.startDate = [self.endDate mt_previousDate:29];
+    NSString *chDayStr =  [NSString stringWithFormat:@"%ld月%ld日 - %ld月%ld日",
+                           self.startDate.mt_month, self.startDate.mt_day,
+                           self.endDate.mt_month, self.endDate.mt_day];
+    NSString *enDayStr = [NSString stringWithFormat:@"%@ %ldday - %@ %ldday",
+                          self.startDate.mt_englishtMonth, self.startDate.mt_day,
+                          self.endDate.mt_englishtMonth, self.endDate.mt_day];
+    self.calenderTimeLabel.text = ChineseStringOrENFun(chDayStr, enDayStr);
+        
     UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
     self.headImg.hidden = [NSString isNullString:user.avatar];
     
@@ -96,6 +101,22 @@
     [self.headImg sd_setImageWithURL:[NSURL URLWithString:url]
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     self.nameLabel.text = user.nickname;
+    [self addCalendarView];
+}
+
+//加载数据
+- (void)loadUserData {
+    self.totalTimeLabel.text = IntToString(self.centerInfo.week_data.duration);
+    self.kcatLabel.text = IntToString(self.centerInfo.week_data.cal);
+    self.killoLabel.text = IntToString(self.centerInfo.week_data.total);
+    
+    self.historyCountLabel.text = IntToString(self.centerInfo.total);
+    
+    self.dlCountLabel.text = IntToString(self.centerInfo.buddy.count);
+    self.dlTimeLabel.text = IntToString(self.centerInfo.buddy.duration);
+    
+    self.tuanCountLabel.text = IntToString(self.centerInfo.group.count);
+    self.tuanTimeLabel.text = IntToString(self.centerInfo.group.duration);
 }
 
 
@@ -156,48 +177,25 @@
     
 }
 
+#pragma mark - server
 
-- (void) getPractiseWeek
-{
-    
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-    NSLog(@"initroom userToken ---- %@", userToken);
-    
-    NSString *strUrl = [NSString stringWithFormat:@"%@practise/week", FITAPI_HTTPS_PREFIX];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    
-    [manager GET:strUrl parameters:nil headers:nil progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject ---- %@", responseObject);
-        //        practiseWeek = [[PractiseWeek alloc] initWithJSON:responseObject[@"recordset"]];
-        //        timesTxtLabel.text = [NSString stringWithFormat:@"%d times", practiseWeek.total];
-        //        getKcalLabelw.text = [NSString stringWithFormat:@"%d", practiseWeek.cal];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"failure ---- %@", error);
-    }];
-}
-
-- (void) getPractiseStatic
-{
-    
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-    NSLog(@"initroom userToken ---- %@", userToken);
-    
-    NSString *strUrl = [NSString stringWithFormat:@"%@practise/statistic", FITAPI_HTTPS_PREFIX];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    
-    [manager GET:strUrl parameters:nil headers:nil progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject ---- %@", responseObject);
-        PractiseStatic *practiseStatic = [[PractiseStatic alloc] initWithJSON:responseObject[@"recordset"]];
-        //        historyCountTxtLb.text = [NSString stringWithFormat:@"%d", practiseStatic.total];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"failure ---- %@", error);
+- (void)getUserDateFromServer {
+    NSString *url = @"practise/info";
+    [MTHUD showLoadingHUD];
+    [[AFAppNetAPIClient manager] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSLog(@"=====respong:%@", responseObject);
+        NSDictionary *result = [responseObject objectForKey:@"recordset"];
+        NSError *error;
+        UserCenterInfo *centerInfo = [[UserCenterInfo alloc] initWithDictionary:result error:&error];
+        if (error == nil) {
+            self.centerInfo = centerInfo;
+            [self loadUserData];
+        } else {
+            [MTHUD showDurationNoticeHUD:error.localizedDescription];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self showChangeFailedError:error];
     }];
 }
 

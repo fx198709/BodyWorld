@@ -58,6 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDate *)mt_previousDate;
 
 /**
+ 几天前
+ */
+- (NSDate *)mt_previousDate:(int)day;
+
+/**
  明天
  
  @return 明天
@@ -105,6 +110,11 @@ NS_ASSUME_NONNULL_BEGIN
  @return 月
  */
 - (NSInteger)mt_month;
+
+/**
+ 英文月份
+ */
+- (NSString *)mt_englishtMonth;
 
 /**
  当前天
