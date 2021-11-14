@@ -57,7 +57,7 @@ BOOL  hasrequest = NO;
     [self setupRefresh];
     _mainTableview.mj_header.backgroundColor = UIColor.blackColor;
     _mainTableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    _sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 133)];
+    _sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 173)];
     _sliderView.clipsToBounds = YES;
     _sliderView.layer.cornerRadius = 5;
 //    [self headerRereshing];
@@ -375,7 +375,7 @@ BOOL  hasrequest = NO;
     if(indexPath.row == 0){
         return 80;
     } else if(indexPath.row == 1){
-        return 133;
+        return 173;
     }else if(indexPath.row == 2){
         return 200;
     }

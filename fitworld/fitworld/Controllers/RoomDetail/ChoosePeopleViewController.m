@@ -123,7 +123,7 @@
         make.width.mas_equalTo(200);
         make.centerX.equalTo(self.view);
     }];
-    NSString *submitString = ChineseStringOrENFun(@"确认", @"Search");
+    NSString *submitString = ChineseStringOrENFun(@"确认", @"OK");
     UIImage *backImage = [UIImage imageNamed:@"action_button_bg_green1"];
     [sumbitBtn setTitle:submitString forState:UIControlStateHighlighted];
     [sumbitBtn setTitle:submitString forState:UIControlStateNormal];
