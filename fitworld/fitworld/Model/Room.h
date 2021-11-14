@@ -46,7 +46,7 @@
 
 //详情多用的字段
 @property (nonatomic , strong) NSString              *type;
-@property (nonatomic , assign) NSInteger              type_int;
+@property (nonatomic , assign) NSInteger              type_int;//0 对练课  1团课
 @property (nonatomic , strong) NSString              *course_type;
 @property (nonatomic , strong) NSString              *course_type_name;
 @property (nonatomic , strong) NSString              *pic;

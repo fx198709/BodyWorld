@@ -26,7 +26,12 @@
     NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, room.course.pic];
     [self.goodsImage sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
     self.roomname.text = room.name;
-    self.roomuser.text = room.room_creator.nickname;
+    NSString *perString = ChineseStringOrENFun(@"创建人", @"Creator");
+    if (room.course.type_int == 1) {
+        perString = ChineseStringOrENFun(@"直播教练", @"Coach");
+    }
+    NSString *nickname = [NSString stringWithFormat:@"%@:%@",perString,room.room_creator.nickname];
+    self.roomuser.text = nickname;
    
     [self.countryimage sd_setImageWithURL: [NSURL URLWithString:room.room_creator.country_icon] placeholderImage:nil];
 
