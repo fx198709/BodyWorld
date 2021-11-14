@@ -10,40 +10,23 @@
 #import "YJPageControlView.h"
 #import "CourseLiveViewController.h"
 #import "BaseJSONModel.h"
-
+#import "RightTopSearchView.h"
+#import "ScreenModel.h"
+#import "ScreenAboveView.h"
 
 #define KStatushight [[UIApplication sharedApplication] statusBarFrame].size.height
 #define KNavhight self.navigationController.navigationBar.frame.size.height
 #define kScreenWidth   [UIScreen mainScreen].bounds.size.width
 #define KSystemHeight  [UIScreen mainScreen].bounds.size.height
 
-@interface ScreenModel:BaseJSONModel
- 
-@property(nonatomic,strong) NSString *id;
-@property(nonatomic,strong) NSString *name;
-@property(nonatomic,assign) BOOL    hasSelected;
-
-
-@end
-
-@implementation ScreenModel
-- (instancetype)initWithJSON:(NSDictionary *)json
-{
-    NSError *error;
-
-    if (self = [[ScreenModel alloc] initWithDictionary:json error:&error]) {
-        _hasSelected = NO;
-    }
-    return self;
-}
-
-@end
-
 @interface CourseMoreController ()
 {
     YJPageControlView * PageControlView;
     NSArray *curse_type_array;
     NSArray *curse_time_array;
+    RightTopSearchView *searchView;
+    UIButton *screenBackbutton;
+    ScreenAboveView *aboveView;
 
 }
 @property(nonatomic,strong) NSMutableArray *viewControllers;
@@ -72,21 +55,58 @@
     
     PageControlView = [[YJPageControlView alloc] initWithFrame:frame Titles:titles viewControllers:self.viewControllers Selectindex:0];
     [PageControlView showInViewController:self];
+    [self reachSearchOption];
     
 }
 - (void)createRightBtn{
     if (curse_type_array.count || curse_time_array.count) {
 //        UINavigationBar
-        NSString *searchString = ChineseStringOrENFun(@"搜索", @"Search");
-        UIButton *searchView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-//        UIImageView *searchImage = [[UIImageView alloc] ]
-//        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:searchView];
-//        
-//        self.navigationItem.rightBarButtonItem = item;
-        
+        searchView = (RightTopSearchView *)[[[NSBundle mainBundle] loadNibNamed:@"RightTopSearchView" owner:self options:nil] lastObject];
+        searchView.frame = CGRectMake(0, 0, 100, 44);
+        searchView.backgroundColor = UIColor.clearColor;
+        BOOL hasSelected = NO;
+        for (ScreenModel *vmodel in curse_time_array) {
+            if (vmodel.hasSelected) {
+                hasSelected = YES;
+            }
+        }
+        for (ScreenModel *vmodel in curse_time_array) {
+            if (vmodel.hasSelected) {
+                hasSelected = YES;
+            }
+        }
+        searchView.redView.hidden = !hasSelected;
+        [searchView.bottomBtn addTarget:self action:@selector(screenBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:searchView];
+        item.target = self;
+        item.action = @selector(screenBtnClicked);
+        self.navigationItem.rightBarButtonItem = item;
+    }else{
+        self.navigationItem.rightBarButtonItem = nil;
     }
 }
 
+//NSDictionary *dict = @{NSFontAttributeName : SystemFontOfSize(15)};
+//// 如果将来计算的文字的范围超出了指定的范围,返回的就是指定的范围
+//// 如果将来计算的文字的范围小于指定的范围, 返回的就是真实的范围
+//CGSize size =  [inString boundingRectWithSize:CGSizeMake(ScreenWidth *3, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
+
+- (void)screenBtnClicked{
+    screenBackbutton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    aboveView = [[[NSBundle mainBundle] loadNibNamed:@"ScreenAboveView" owner:self options:nil] lastObject];
+    aboveView.frame = CGRectMake(10, (ScreenHeight-450)/2, ScreenWidth-20, 450);
+    [screenBackbutton addSubview:aboveView];
+    aboveView.backgroundColor = UIColor.whiteColor;
+    [aboveView changeData:curse_time_array andType:curse_type_array];
+    UIWindow *keywindow = [CommonTools mainWindow];
+    [keywindow addSubview:screenBackbutton];
+    [screenBackbutton addTarget:self action:@selector(screenBackbuttonClicked) forControlEvents:UIControlEventTouchUpInside];
+}
+
+//弹层背景消失
+- (void)screenBackbuttonClicked{
+    [self createRightBtn];
+}
 
 - (void)reachSearchOption{
 //    room/search_opt

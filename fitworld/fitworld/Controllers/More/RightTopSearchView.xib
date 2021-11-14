@@ -13,12 +13,58 @@
         <view contentMode="scaleToFill" id="CV5-jZ-ViU" customClass="RightTopSearchView">
             <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7iH-yL-CWh">
+                    <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more_select" translatesAutoresizingMaskIntoConstraints="NO" id="mJZ-VS-NFz">
+                    <rect key="frame" x="19" y="11" width="18" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="0q6-bE-agw"/>
+                        <constraint firstAttribute="width" constant="18" id="RI7-2v-hxx"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Se-IK-maN">
+                    <rect key="frame" x="42" y="11" width="48" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ai1-dD-oB9">
+                    <rect key="frame" x="29" y="11" width="6" height="6"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="6" id="83h-m9-Lmb"/>
+                        <constraint firstAttribute="width" constant="6" id="hPD-l1-9pT"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="7iH-yL-CWh" firstAttribute="leading" secondItem="CV5-jZ-ViU" secondAttribute="leading" id="71w-od-He3"/>
+                <constraint firstAttribute="trailing" secondItem="7iH-yL-CWh" secondAttribute="trailing" id="AnS-Od-baq"/>
+                <constraint firstItem="Ai1-dD-oB9" firstAttribute="leading" secondItem="mJZ-VS-NFz" secondAttribute="trailing" constant="-8" id="T7F-2Q-vp6"/>
+                <constraint firstItem="6Se-IK-maN" firstAttribute="leading" secondItem="mJZ-VS-NFz" secondAttribute="trailing" constant="5" id="Wji-DO-fAC"/>
+                <constraint firstAttribute="bottom" secondItem="7iH-yL-CWh" secondAttribute="bottom" id="f5c-py-RKC"/>
+                <constraint firstItem="Ai1-dD-oB9" firstAttribute="top" secondItem="mJZ-VS-NFz" secondAttribute="top" id="kOO-np-euD"/>
+                <constraint firstItem="7iH-yL-CWh" firstAttribute="top" secondItem="CV5-jZ-ViU" secondAttribute="top" id="n1T-9R-20O"/>
+                <constraint firstAttribute="trailing" secondItem="6Se-IK-maN" secondAttribute="trailing" constant="10" id="oCu-HT-VtY"/>
+                <constraint firstItem="6Se-IK-maN" firstAttribute="centerY" secondItem="CV5-jZ-ViU" secondAttribute="centerY" id="vAY-KA-fhP"/>
+                <constraint firstItem="mJZ-VS-NFz" firstAttribute="centerY" secondItem="CV5-jZ-ViU" secondAttribute="centerY" id="yPF-fa-QbX"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-109" y="133"/>
+            <connections>
+                <outlet property="bottomBtn" destination="7iH-yL-CWh" id="OfC-jg-Ais"/>
+                <outlet property="redView" destination="Ai1-dD-oB9" id="Bu4-72-HHu"/>
+                <outlet property="searchLabel" destination="6Se-IK-maN" id="qK4-TC-zAj"/>
+            </connections>
+            <point key="canvasLocation" x="-110.14492753623189" y="132.58928571428572"/>
         </view>
     </objects>
     <resources>
+        <image name="more_select" width="14.333333015441895" height="14.333333015441895"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
