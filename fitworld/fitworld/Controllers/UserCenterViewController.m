@@ -8,7 +8,7 @@
 #import "UserCenterViewController.h"
 #import "UIDeps.h"
 #import "FITAPI.h"
-#import "CalendarView.h"
+#import "MTCalendarView.h"
 #import "PractiseWeek.h"
 #import "PractiseStatic.h"
 
@@ -19,6 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImg;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalTimeTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *kcatLabel;
@@ -46,7 +47,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *calenderTimeLabel;
 @property (weak, nonatomic) IBOutlet UIView *calenderContainerView;
 
-@property (nonatomic, strong) CalendarView *calendar;
+@property (nonatomic, strong) MTCalendarView *calenderView;
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
 
@@ -61,12 +62,13 @@
     
     self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"User Center");
     [self initView];
-    [self getUserDateFromServer];    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self addSettingBtn];
+    [self loadCurrentInfoData];
+    [self getUserDataFromServer];
 }
 
 - (void)initView {
@@ -93,7 +95,10 @@
                           self.startDate.mt_englishtMonth, self.startDate.mt_day,
                           self.endDate.mt_englishtMonth, self.endDate.mt_day];
     self.calenderTimeLabel.text = ChineseStringOrENFun(chDayStr, enDayStr);
-        
+    [self addCalendarView];
+}
+
+- (void)loadCurrentInfoData {
     UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
     self.headImg.hidden = [NSString isNullString:user.avatar];
     
@@ -101,7 +106,7 @@
     [self.headImg sd_setImageWithURL:[NSURL URLWithString:url]
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     self.nameLabel.text = user.nickname;
-    [self addCalendarView];
+    self.cityLabel.text = [NSString stringWithFormat:@"%@,%@", user.city, user.country];
 }
 
 //加载数据
@@ -139,14 +144,17 @@
 }
 
 - (void)addCalendarView {
-    self.calendar = [[CalendarView alloc] init];
-    self.calendar.backgroundColor = self.calenderContainerView.backgroundColor;
-    [self.calenderContainerView addSubview: self.calendar];
-    [self.calendar mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.calenderContainerView clearAllSubViews];
+    self.calenderView = [[MTCalendarView alloc] init];
+    self.calenderView.backgroundColor = self.calenderContainerView.superview.backgroundColor;
+    self.calenderView.startDate = self.startDate;
+    self.calenderView.endDate = self.endDate;
+    [self.calenderContainerView addSubview:self.calenderView];
+    [self.calenderView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.calenderContainerView);
         make.height.mas_equalTo(300);
     }];
-    
+    [self.calenderView reloadData];
 }
 #pragma mark - action
 
@@ -179,12 +187,11 @@
 
 #pragma mark - server
 
-- (void)getUserDateFromServer {
+- (void)getUserDataFromServer {
     NSString *url = @"practise/info";
     [MTHUD showLoadingHUD];
     [[AFAppNetAPIClient manager] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
-        NSLog(@"=====respong:%@", responseObject);
         NSDictionary *result = [responseObject objectForKey:@"recordset"];
         NSError *error;
         UserCenterInfo *centerInfo = [[UserCenterInfo alloc] initWithDictionary:result error:&error];

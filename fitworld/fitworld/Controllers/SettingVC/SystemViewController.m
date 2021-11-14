@@ -121,7 +121,7 @@ OurDatePickerViewDelegate>
     self.birthdayLabel.text = user.birthday;
     self.weightLabel.text = IntToString(user.weight);
     self.heightLabel.text = IntToString(user.height);
-    self.cityLabel.text = [NSString stringWithFormat:@"%@-%@", user.country, user.city];
+    self.cityLabel.text = [NSString stringWithFormat:@"%@,%@",user.city, user.country];
     self.introductionLabel.text = user.introduction;
 }
 

@@ -79,10 +79,10 @@
 //        UINavigationBar
         NSString *searchString = ChineseStringOrENFun(@"搜索", @"Search");
         UIButton *searchView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-        UIImageView *searchImage = [[UIImageView alloc] ]
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:searchView];
-        
-        self.navigationItem.rightBarButtonItem = item;
+//        UIImageView *searchImage = [[UIImageView alloc] ]
+//        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:searchView];
+//        
+//        self.navigationItem.rightBarButtonItem = item;
         
     }
 }
