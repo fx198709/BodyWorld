@@ -99,7 +99,7 @@ OurDatePickerViewDelegate>
     self.cityTitleLabel.text = ChineseStringOrENFun(@"所在城市", @"Location");
     self.introductionTitleLabel.text = ChineseStringOrENFun(@"介绍", @"Introduction");
     
-    self.logoutBtn.titleLabel.text = ChineseStringOrENFun(@"退出登录", @"Logout");
+    [self.logoutBtn setTitle:ChineseStringOrENFun(@"退出登录", @"Logout") forState:UIControlStateNormal];
     
     [self.headImg cornerHalfWithBorderColor:[UIColor darkGrayColor]];
     [self.logoutBtn cornerWithRadius:6.0 borderColor:[self.logoutBtn backgroundColor]];

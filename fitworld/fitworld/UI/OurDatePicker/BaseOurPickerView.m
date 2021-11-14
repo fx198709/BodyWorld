@@ -45,16 +45,18 @@
         vbutton.frame = CGRectMake(0, 0, width/2, 49);
         vbutton.backgroundColor = [UIColor colorWithRed:196.0f/255.0f green:196.0f/255.0f blue:206.0f/255.0f alpha:1];
         [vbutton addTarget:self action:@selector(cancelPicker) forControlEvents:UIControlEventTouchUpInside];
-        [vbutton setTitle:@"取消" forState:UIControlStateNormal];
-        [vbutton setTitle:@"取消" forState:UIControlStateHighlighted];
+        NSString *title = ChineseStringOrENFun(@"取消", @"Cancel");
+        [vbutton setTitle:title forState:UIControlStateNormal];
+        [vbutton setTitle:title forState:UIControlStateHighlighted];
     }
     else
     {
         vbutton.frame = CGRectMake(width/2, 0, width/2, 49);
         vbutton.backgroundColor = UIColorFromRGB(0x0084FF);
         [vbutton addTarget:self action:@selector(oKPicker) forControlEvents:UIControlEventTouchUpInside];
-        [vbutton setTitle:@"确定" forState:UIControlStateNormal];
-        [vbutton setTitle:@"确定" forState:UIControlStateHighlighted];
+        NSString *title = ChineseStringOrENFun(@"确定", @"Yes");
+        [vbutton setTitle:title forState:UIControlStateNormal];
+        [vbutton setTitle:title forState:UIControlStateHighlighted];
     }
     return vbutton;
 }

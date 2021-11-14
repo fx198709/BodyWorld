@@ -50,7 +50,7 @@
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
     
     self.validCodeLabel.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"短信验证码", @"SMS Code") attributes:attr];
-    self.validCodeBtn.titleLabel.text = ChineseStringOrENFun(@"获取验证码", @"Request Code");
+    [self.validCodeBtn setTitle:ChineseStringOrENFun(@"获取验证码", @"Request Code") forState:UIControlStateNormal];
     
     self.pwdTitleLabel.text = ChineseStringOrENFun(@"新密码", @"New Password");
     
@@ -58,8 +58,8 @@
     
     self.repeatTitleLabel.text = ChineseStringOrENFun(@"重复确认密码", @"New Password Again");
     self.repeatLabel.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请重复输入一次新密码", @"Repeat the new password again") attributes:attr];
-    
-    self.submitBtn.titleLabel.text = ChineseStringOrENFun(@"确认修改", @"SAVE");
+     
+    [self.submitBtn setTitle:ChineseStringOrENFun(@"确认修改", @"SAVE") forState:UIControlStateNormal];
 }
 
 //获取验证码

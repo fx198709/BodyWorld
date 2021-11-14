@@ -1533,10 +1533,10 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFA-qQ-HN4">
-                                                <rect key="frame" x="254" y="10" width="110" height="36"/>
+                                                <rect key="frame" x="244" y="10" width="120" height="36"/>
                                                 <color key="backgroundColor" red="0.058823529409999999" green="0.36862745099999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="110" id="G2y-5k-kas"/>
+                                                    <constraint firstAttribute="width" constant="120" id="G2y-5k-kas"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="获取验证码"/>
@@ -1972,17 +1972,17 @@
                                         <rect key="frame" x="0.0" y="60" width="302" height="48"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2dL-IK-vF9">
-                                                <rect key="frame" x="0.0" y="0.0" width="200" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="168" height="48"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nm-79-wqb">
-                                                <rect key="frame" x="210" y="6" width="88" height="36"/>
+                                                <rect key="frame" x="178" y="6" width="120" height="36"/>
                                                 <color key="backgroundColor" red="0.058823529409999999" green="0.36862745099999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="88" id="rvN-B9-4Le"/>
+                                                    <constraint firstAttribute="width" constant="120" id="rvN-B9-4Le"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="获取验证码"/>
