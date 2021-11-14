@@ -1585,7 +1585,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMh-dH-9Nj">
+                                            <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMh-dH-9Nj">
                                                 <rect key="frame" x="320" y="0.0" width="44" height="56"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -2303,8 +2303,8 @@
         <image name="activity_login_bg" width="360" height="780"/>
         <image name="add_people" width="99" height="99"/>
         <image name="arrow_down" width="50" height="50"/>
-        <image name="btn_list_mimabukejian" width="15" height="15"/>
-        <image name="btn_list_mimakejian" width="15" height="15"/>
+        <image name="btn_list_mimabukejian" width="20" height="20"/>
+        <image name="btn_list_mimakejian" width="20" height="20"/>
         <image name="btn_next" width="7.6666665077209473" height="12.666666984558105"/>
         <image name="choose_course_foot_logo3_unselected" width="30" height="30"/>
         <image name="close_empty" width="75" height="75"/>
