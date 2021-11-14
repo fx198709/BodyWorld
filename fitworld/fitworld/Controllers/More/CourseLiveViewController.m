@@ -100,7 +100,7 @@
 #pragma mark TableViewDelegate&DataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 85;
+    return 100;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -116,10 +116,10 @@
     }
     cell.contentView.backgroundColor = BuddyTableBackColor;
     RemoveSubviews(cell.contentView, @[]);
-
+    int leftdif = 15;
 
     Room *room = dataArr[indexPath.row];
-    UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 8, 56, 56)];
+    UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20,22, 56, 56)];
     [leftImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, room.course.pic]]];
     [cell.contentView addSubview:leftImageView];
     leftImageView.clipsToBounds = YES;
@@ -127,21 +127,22 @@
     
     UILabel *label1 = [[UILabel alloc] init];
     label1.text = room.course.name;
-    label1.font = [UIFont systemFontOfSize:14];
+    label1.font = [UIFont systemFontOfSize:17];
+    label1.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:label1];
     [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(cell.contentView).offset(20);
-        make.left.equalTo(leftImageView.mas_right).offset(10);
+        make.left.equalTo(leftImageView.mas_right).offset(leftdif);
     }];
     
     UILabel *label2 = [[UILabel alloc] init];
     label2.text = room.room_creator.nickname;
     [cell.contentView addSubview:label2];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label1.mas_bottom).offset(10);
-        make.left.equalTo(leftImageView.mas_right).offset(8);
+        make.top.equalTo(label1.mas_bottom).offset(5);
+        make.left.equalTo(leftImageView.mas_right).offset(leftdif);
     }];
-    label2.font = [UIFont systemFontOfSize:12];
+    label2.font = [UIFont systemFontOfSize:15];
     label2.textColor = LittleTextColor;
 
     UIImageView *countryImageView = [[UIImageView alloc] init];
@@ -158,10 +159,10 @@
     label3.text = ReachWeekTime(room.updated_at.longLongValue);
     [cell.contentView addSubview:label3];
     [label3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label2);
-        make.left.equalTo(countryImageView.mas_right).offset(6);
+        make.top.equalTo(label2.mas_bottom).offset(5);
+        make.left.equalTo(leftImageView.mas_right).offset(leftdif);
     }];
-    label3.font = [UIFont systemFontOfSize:12];
+    label3.font = [UIFont systemFontOfSize:13];
     label3.textColor = LittleTextColor;
 
     UIButton *joinBtn = [[UIButton alloc] init];

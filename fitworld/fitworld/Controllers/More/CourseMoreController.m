@@ -30,8 +30,11 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor blackColor];
     self.viewControllers = [NSMutableArray array];
-    
-    NSArray *titles = @[@"Live", @"Group", @"Buddy"];
+    NSString *livingString = ChineseStringOrENFun(@"正在进行", @"Live");
+    NSString *GroupString = ChineseStringOrENFun(@"团课", @"Group");
+    NSString *BuddyString = ChineseStringOrENFun(@"对练课", @"Buddy");
+
+    NSArray *titles = @[livingString, GroupString, BuddyString];
     CGRect frame =CGRectMake(0, 0, kScreenWidth, self.view.bounds.size.height-KNavhight-KStatushight);
 
     for (int i = 0 ; i<titles.count; i++) {
