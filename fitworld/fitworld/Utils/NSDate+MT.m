@@ -237,4 +237,12 @@
     return result;
 }
 
+
+//获取星期几
+- (NSInteger)weekdayIndex {
+    NSDateComponents *componets = [[NSCalendar autoupdatingCurrentCalendar] components:NSCalendarUnitWeekday fromDate:self];
+    NSInteger weekday = [componets weekday];
+    return weekday;
+}
+
 @end

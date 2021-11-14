@@ -98,14 +98,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)mt_firstWeekDayInMonth;
 
 /**
- 当前年
+ 年
  
  @return 年
  */
 - (NSInteger)mt_year;
 
 /**
- 当前月
+ 月
  
  @return 月
  */
@@ -117,11 +117,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)mt_englishtMonth;
 
 /**
- 当前天
+ 天
  
  @return 天
  */
 - (NSInteger)mt_day;
+
+/**
+ 日期是周几（周天开始）
+ */
+- (NSInteger)weekdayIndex;
 
 
 @end

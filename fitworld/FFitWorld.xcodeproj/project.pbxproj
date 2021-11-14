@@ -81,6 +81,10 @@
 		A256301327408AD10030D6B2 /* UserCenterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A256301227408AD10030D6B2 /* UserCenterInfo.m */; };
 		A256301627408B500030D6B2 /* UserCenterWeekData.m in Sources */ = {isa = PBXBuildFile; fileRef = A256301527408B500030D6B2 /* UserCenterWeekData.m */; };
 		A256301C27408BD90030D6B2 /* UserCenterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = A256301B27408BD90030D6B2 /* UserCenterGroup.m */; };
+		A2563037274094450030D6B2 /* MTCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A256302B274094440030D6B2 /* MTCalendarCell.m */; };
+		A2563039274094450030D6B2 /* MTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A256302E274094440030D6B2 /* MTCalendarView.m */; };
+		A256303B274094450030D6B2 /* UILabel+MTCalender.m in Sources */ = {isa = PBXBuildFile; fileRef = A2563034274094440030D6B2 /* UILabel+MTCalender.m */; };
+		A256303F274099CE0030D6B2 /* MTCalenderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A256303E274099CE0030D6B2 /* MTCalenderModel.m */; };
 		A2723EDA273B779300388B01 /* UIView+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723ED8273B779300388B01 /* UIView+MT.m */; };
 		A2723EDE273B7A0000388B01 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDD273B7A0000388B01 /* BaseViewController.m */; };
 		A2723EE1273BA3C400388B01 /* NSString+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDF273BA3C400388B01 /* NSString+MT.m */; };
@@ -328,6 +332,14 @@
 		A256301527408B500030D6B2 /* UserCenterWeekData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCenterWeekData.m; sourceTree = "<group>"; };
 		A256301A27408BD90030D6B2 /* UserCenterGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCenterGroup.h; sourceTree = "<group>"; };
 		A256301B27408BD90030D6B2 /* UserCenterGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCenterGroup.m; sourceTree = "<group>"; };
+		A256302B274094440030D6B2 /* MTCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCalendarCell.m; sourceTree = "<group>"; };
+		A256302C274094440030D6B2 /* UILabel+MTCalender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+MTCalender.h"; sourceTree = "<group>"; };
+		A256302E274094440030D6B2 /* MTCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCalendarView.m; sourceTree = "<group>"; };
+		A2563031274094440030D6B2 /* MTCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCalendarCell.h; sourceTree = "<group>"; };
+		A2563032274094440030D6B2 /* MTCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCalendarView.h; sourceTree = "<group>"; };
+		A2563034274094440030D6B2 /* UILabel+MTCalender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+MTCalender.m"; sourceTree = "<group>"; };
+		A256303D274099CE0030D6B2 /* MTCalenderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTCalenderModel.h; sourceTree = "<group>"; };
+		A256303E274099CE0030D6B2 /* MTCalenderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTCalenderModel.m; sourceTree = "<group>"; };
 		A2723ED8273B779300388B01 /* UIView+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MT.m"; sourceTree = "<group>"; };
 		A2723ED9273B779300388B01 /* UIView+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MT.h"; sourceTree = "<group>"; };
 		A2723EDC273B7A0000388B01 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -691,6 +703,7 @@
 		0462BD9B2692AB00005827D1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A256302A274094440030D6B2 /* MTCalenderView */,
 				DD6EDB47272E7AD0002B0A8E /* Cell */,
 				DDEE67D7272577EC00D0C310 /* LivingGoodsCell.h */,
 				DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */,
@@ -899,6 +912,21 @@
 				DB4B81011D05364E70937961 /* libPods-FFitWorld.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A256302A274094440030D6B2 /* MTCalenderView */ = {
+			isa = PBXGroup;
+			children = (
+				A2563031274094440030D6B2 /* MTCalendarCell.h */,
+				A256302B274094440030D6B2 /* MTCalendarCell.m */,
+				A2563032274094440030D6B2 /* MTCalendarView.h */,
+				A256302E274094440030D6B2 /* MTCalendarView.m */,
+				A256302C274094440030D6B2 /* UILabel+MTCalender.h */,
+				A2563034274094440030D6B2 /* UILabel+MTCalender.m */,
+				A256303D274099CE0030D6B2 /* MTCalenderModel.h */,
+				A256303E274099CE0030D6B2 /* MTCalenderModel.m */,
+			);
+			path = MTCalenderView;
 			sourceTree = "<group>";
 		};
 		A2723EDB273B794D00388B01 /* SettingVC */ = {
@@ -1380,6 +1408,7 @@
 				04552B3D2696C3FD00C78706 /* EntypoSymbol.m in Sources */,
 				04552B4D2696C3FD00C78706 /* UIImage+ImageEffects.m in Sources */,
 				DD6EDB5E272EFFFB002B0A8E /* TrainingInviteViewController.m in Sources */,
+				A256303F274099CE0030D6B2 /* MTCalenderModel.m in Sources */,
 				04552B3A2696C3FD00C78706 /* MaterialDesignColor.m in Sources */,
 				A2723F0D273D087900388B01 /* MTHUD.m in Sources */,
 				04552B512696C3FD00C78706 /* QRToggleTorchButton.m in Sources */,
@@ -1420,6 +1449,7 @@
 				DD25FEE927226B5A0092CF87 /* JYImageCache.m in Sources */,
 				04552B502696C3FD00C78706 /* UIControl+YYAdd.m in Sources */,
 				04552B4C2696C3FD00C78706 /* TWSReleaseNotesView.m in Sources */,
+				A256303B274094450030D6B2 /* UILabel+MTCalender.m in Sources */,
 				04F3E34526E9326000CEEC7D /* UIView+Extension.m in Sources */,
 				047DC1F5268CD09700A3E37E /* AppDelegate.m in Sources */,
 				DD595EED273D7D5F00618D1A /* GuestPanel.m in Sources */,
@@ -1435,6 +1465,7 @@
 				DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */,
 				A256300D273FE6850030D6B2 /* Friend.m in Sources */,
 				A2723EFC273BD3D200388B01 /* ChangeInfoViewController.m in Sources */,
+				A2563039274094450030D6B2 /* MTCalendarView.m in Sources */,
 				DD6EDB6627343624002B0A8E /* MessageListViewController.m in Sources */,
 				A2A94DE1273FC64900D02C77 /* FriendCell.m in Sources */,
 				04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */,
@@ -1445,6 +1476,7 @@
 				DD595EC327367FA700618D1A /* UserCenterMainViewController.m in Sources */,
 				04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */,
 				04552B4B2696C3FD00C78706 /* TWSReleaseNotesDownloadOperation.m in Sources */,
+				A2563037274094450030D6B2 /* MTCalendarCell.m in Sources */,
 				DD595EC72736F10400618D1A /* UsermainMiddleView.m in Sources */,
 				DD595EE1273A68BE00618D1A /* TableSearchView.m in Sources */,
 				04EC020526BD8B0F00DC0103 /* RemoteView.m in Sources */,
