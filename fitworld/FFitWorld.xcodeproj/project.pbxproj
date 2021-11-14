@@ -78,6 +78,9 @@
 		A256300A273FE2430030D6B2 /* FriendPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A2563009273FE2430030D6B2 /* FriendPageInfo.m */; };
 		A256300D273FE6850030D6B2 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A256300C273FE6850030D6B2 /* Friend.m */; };
 		A2563010273FE6EA0030D6B2 /* AddFriendPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */; };
+		A256301327408AD10030D6B2 /* UserCenterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A256301227408AD10030D6B2 /* UserCenterInfo.m */; };
+		A256301627408B500030D6B2 /* UserCenterWeekData.m in Sources */ = {isa = PBXBuildFile; fileRef = A256301527408B500030D6B2 /* UserCenterWeekData.m */; };
+		A256301C27408BD90030D6B2 /* UserCenterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = A256301B27408BD90030D6B2 /* UserCenterGroup.m */; };
 		A2723EDA273B779300388B01 /* UIView+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723ED8273B779300388B01 /* UIView+MT.m */; };
 		A2723EDE273B7A0000388B01 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDD273B7A0000388B01 /* BaseViewController.m */; };
 		A2723EE1273BA3C400388B01 /* NSString+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723EDF273BA3C400388B01 /* NSString+MT.m */; };
@@ -319,6 +322,12 @@
 		A256300C273FE6850030D6B2 /* Friend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		A256300E273FE6EA0030D6B2 /* AddFriendPageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendPageInfo.h; sourceTree = "<group>"; };
 		A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendPageInfo.m; sourceTree = "<group>"; };
+		A256301127408AD10030D6B2 /* UserCenterInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCenterInfo.h; sourceTree = "<group>"; };
+		A256301227408AD10030D6B2 /* UserCenterInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCenterInfo.m; sourceTree = "<group>"; };
+		A256301427408B500030D6B2 /* UserCenterWeekData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCenterWeekData.h; sourceTree = "<group>"; };
+		A256301527408B500030D6B2 /* UserCenterWeekData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCenterWeekData.m; sourceTree = "<group>"; };
+		A256301A27408BD90030D6B2 /* UserCenterGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCenterGroup.h; sourceTree = "<group>"; };
+		A256301B27408BD90030D6B2 /* UserCenterGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCenterGroup.m; sourceTree = "<group>"; };
 		A2723ED8273B779300388B01 /* UIView+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MT.m"; sourceTree = "<group>"; };
 		A2723ED9273B779300388B01 /* UIView+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MT.h"; sourceTree = "<group>"; };
 		A2723EDC273B7A0000388B01 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -553,6 +562,12 @@
 				A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */,
 				A256300B273FE6850030D6B2 /* Friend.h */,
 				A256300C273FE6850030D6B2 /* Friend.m */,
+				A256301127408AD10030D6B2 /* UserCenterInfo.h */,
+				A256301227408AD10030D6B2 /* UserCenterInfo.m */,
+				A256301A27408BD90030D6B2 /* UserCenterGroup.h */,
+				A256301B27408BD90030D6B2 /* UserCenterGroup.m */,
+				A256301427408B500030D6B2 /* UserCenterWeekData.h */,
+				A256301527408B500030D6B2 /* UserCenterWeekData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1385,6 +1400,7 @@
 				C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */,
 				047DC201268CD09700A3E37E /* fitworld.xcdatamodeld in Sources */,
 				DD595ED42736F88D00618D1A /* RoomVC.m in Sources */,
+				A256301C27408BD90030D6B2 /* UserCenterGroup.m in Sources */,
 				04EC01FD26BD8AC100DC0103 /* ChatManager.m in Sources */,
 				04EC01F526BD8AC000DC0103 /* ClassMember.mm in Sources */,
 				DD25FEE727226B5A0092CF87 /* JYWeakTimer.m in Sources */,
@@ -1413,6 +1429,7 @@
 				DD595EB82736224600618D1A /* NoDataCollectionViewCell.m in Sources */,
 				A2723EEA273BAD4100388B01 /* UIButton+MT.m in Sources */,
 				04EC01FE26BD8AC100DC0103 /* ClassRoom.mm in Sources */,
+				A256301327408AD10030D6B2 /* UserCenterInfo.m in Sources */,
 				DD25FEEA27226B5A0092CF87 /* JYImageDownloader.m in Sources */,
 				DD6EDB5D272EFFFB002B0A8E /* TrainingViewController.m in Sources */,
 				DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */,
@@ -1424,6 +1441,7 @@
 				A2A94DDD273FC5B200D02C77 /* FriendViewController.m in Sources */,
 				04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */,
 				DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */,
+				A256301627408B500030D6B2 /* UserCenterWeekData.m in Sources */,
 				DD595EC327367FA700618D1A /* UserCenterMainViewController.m in Sources */,
 				04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */,
 				04552B4B2696C3FD00C78706 /* TWSReleaseNotesDownloadOperation.m in Sources */,

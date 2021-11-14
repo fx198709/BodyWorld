@@ -111,6 +111,16 @@
     return nextDate;
 }
 
+/**
+ 几天前
+ 
+ @return 前几天
+ */
+- (NSDate *)mt_previousDate:(int)day {
+    NSDate *preDate = [[NSDate alloc]initWithTimeIntervalSinceReferenceDate:([self timeIntervalSinceReferenceDate] - 24 * day * 3600)];
+    return preDate;
+}
+
 
 /**
  获取上个月日期
@@ -209,6 +219,12 @@
     return result;
 }
 
+
+- (NSString *)mt_englishtMonth {
+    NSArray *array = @[@"Jan", @"Feb", @"Mar", @"Apr", @"May", @"Jun", @"Jul", @"Aug", @"Sep", @"Oct", @"Nov", @"Dec"];
+    NSInteger month = self.mt_month;
+    return [array objectAtIndex:(month-1) % array.count];
+}
 /**
  当前天
  

@@ -609,6 +609,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="dTl-c6-noB"/>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="RnY-QX-3wk"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="PlT-fq-iw3" firstAttribute="trailing" secondItem="C0g-xr-7wd" secondAttribute="trailing" id="7JJ-jr-E1p"/>
@@ -627,6 +628,7 @@
                         <outlet property="dlTitleLabel" destination="HfH-zI-qJP" id="mgY-pU-tV6"/>
                         <outlet property="headImg" destination="jGc-wn-wKy" id="pEH-qw-z9J"/>
                         <outlet property="historyCountLabel" destination="jyJ-eF-5jP" id="Rtl-sX-gep"/>
+                        <outlet property="historyCountTitleLabel" destination="jLN-jY-T59" id="OIB-ZY-i7H"/>
                         <outlet property="historyDetailBtn" destination="EyD-4x-2PK" id="dYi-5J-OoG"/>
                         <outlet property="historyTitleLabel" destination="YUe-Jx-Lcb" id="ZGp-bP-f9r"/>
                         <outlet property="historyView" destination="4YF-uq-CO0" id="cM4-AZ-KPK"/>
