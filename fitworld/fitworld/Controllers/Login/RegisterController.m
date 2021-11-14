@@ -50,7 +50,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationItem.leftBarButtonItem = nil;
-
+    
 }
 
 - (void)initView {
@@ -117,8 +117,8 @@
         NSLog(@"====respong:%@", responseObject);
         //显示倒计时
         [self.codeBtn countdownWithStartTime:60
-                                            title:GetValidCodeBtnTitle
-                                   countDownTitle:GetValidCodeBtnTitle_H];
+                                       title:GetValidCodeBtnTitle
+                              countDownTitle:GetValidCodeBtnTitle_H];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MTHUD showDurationNoticeHUD:error.localizedDescription];
     }];
@@ -131,7 +131,7 @@
 
 - (IBAction)clickLogin {
     [self resignFirstResponder];
-
+    
     NSString *name = self.nameField.text;
     NSString *pwd = self.codeField.text;
     
@@ -141,11 +141,12 @@
         return;
     }
     
-    NSString *strUrl = [NSString stringWithFormat:@"%@login", FITAPI_HTTPS_PREFIX];
+    NSString *strUrl = [NSString stringWithFormat:@"%@captcha/validate", FITAPI_HTTPS_PREFIX];
     NSLog(@"uuid>>>>%@", [UIDevice currentDevice].identifierForVendor.UUIDString);
     [MTHUD showLoadingHUD];
-    NSDictionary *dict = @{ @"username":name,  @"password":pwd
-    };
+    NSString *account = [NSString stringWithFormat:@"%@:%@",self.countryCodeLabel.text,name];
+    
+    NSDictionary *dict = @{ @"account":account,  @"captcha":pwd};
     [[AFHTTPSessionManager manager] POST:strUrl parameters:dict headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         // 进度
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
