@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RightTopSearchView : UIView
+@interface RightTopSearchView : UIButton
 @property (weak, nonatomic) IBOutlet UIButton *bottomBtn;
 @property (weak, nonatomic) IBOutlet UILabel *searchLabel;
 @property (weak, nonatomic) IBOutlet UIView *redView;

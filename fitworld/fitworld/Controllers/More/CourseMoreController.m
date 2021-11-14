@@ -78,6 +78,7 @@
         searchView.redView.hidden = !hasSelected;
         [searchView.bottomBtn addTarget:self action:@selector(screenBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:searchView];
+        item.width=100;
         item.target = self;
         item.action = @selector(screenBtnClicked);
         self.navigationItem.rightBarButtonItem = item;
@@ -98,14 +99,52 @@
     [screenBackbutton addSubview:aboveView];
     aboveView.backgroundColor = UIColor.whiteColor;
     [aboveView changeData:curse_time_array andType:curse_type_array];
+    WeakSelf
+    aboveView.screenOKClick = ^(NSArray * _Nonnull timeArray, NSArray * _Nonnull typeArray) {
+        StrongSelf(wSelf);
+        strongSelf->curse_time_array = timeArray;
+        strongSelf->curse_type_array = typeArray;
+        [strongSelf createRightBtn];
+        [strongSelf reloadControls];
+        [strongSelf->screenBackbutton removeFromSuperview];
+        strongSelf->screenBackbutton= nil;
+    };
     UIWindow *keywindow = [CommonTools mainWindow];
     [keywindow addSubview:screenBackbutton];
     [screenBackbutton addTarget:self action:@selector(screenBackbuttonClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
+//重新加载页面
+- (void)reloadControls{
+    
+}
+
+- (void)getScreenData{
+    
+}
+
 //弹层背景消失
 - (void)screenBackbuttonClicked{
+//    恢复默认值
+    NSArray *defaultIds = aboveView.lastSelectedIds;
+    for (ScreenModel *vmodel in curse_type_array) {
+        if ([defaultIds containsObject:vmodel.id]) {
+            vmodel.hasSelected = YES;
+        }else{
+            vmodel.hasSelected = NO;
+        }
+    }
+    
+    for (ScreenModel *vmodel in curse_time_array) {
+        if ([defaultIds containsObject:vmodel.id]) {
+            vmodel.hasSelected = YES;
+        }else{
+            vmodel.hasSelected = NO;
+        }
+    }
     [self createRightBtn];
+    [screenBackbutton removeFromSuperview];
+    screenBackbutton= nil;
 }
 
 - (void)reachSearchOption{

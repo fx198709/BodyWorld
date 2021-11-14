@@ -16,7 +16,7 @@
     _searchLabel.text = ChineseStringOrENFun(@"搜索", @"Search");
     [_bottomBtn setTitle:@"" forState:UIControlStateHighlighted];
     [_bottomBtn setTitle:@"" forState:UIControlStateNormal];
-
+    
 }
 
 /*
