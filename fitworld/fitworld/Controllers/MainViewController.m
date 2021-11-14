@@ -23,6 +23,10 @@ BOOL  hasrequest = NO;
 @interface MainViewController (){
     BOOL hasNoReadMessage;
     BOOL hasNewFrend;
+    NSTimer *mainTimer;
+    TableCollectionViewCell * groupCell;
+    TableCollectionViewCell * buddyCell;
+
 }
 @property (nonatomic, strong)UIView *sliderView; //轮播图的父视图
 @property (nonatomic, strong)NSMutableArray *livingClasses;//正在进行中
@@ -67,6 +71,23 @@ BOOL  hasrequest = NO;
     [super viewWillAppear:animated];
     [_mainTableview.mj_header beginRefreshing];
     self.navigationController.navigationBarHidden = YES;
+    mainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(mainTimerAction) userInfo:nil repeats:YES];
+
+}
+
+- (void)mainTimerAction{
+    if ( buddyCell && [buddyCell respondsToSelector:@selector(timerToReloadCollectionView)]) {
+        [buddyCell timerToReloadCollectionView];
+    }
+    if ( groupCell && [groupCell respondsToSelector:@selector(timerToReloadCollectionView)]) {
+        [groupCell timerToReloadCollectionView];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [mainTimer invalidate];
+    mainTimer = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -290,7 +311,7 @@ BOOL  hasrequest = NO;
 
     if (indexPath.row == 2){
         // 复用队列中没有时再创建
-        TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveTableviewCell" forIndexPath:indexPath];
+        TableCollectionLivingViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveTableviewCell" forIndexPath:indexPath];
         [cell.logoImage setImage:[UIImage imageNamed:@"index_live"]];
         cell.subTitleLabel.text = ChineseStringOrENFun(@"正在进行", @"LIVE & UPCOMING");
 
@@ -306,6 +327,7 @@ BOOL  hasrequest = NO;
     if (indexPath.row == 3 ){
         // 创建新的 cell，默认为主标题模式
         TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
+        groupCell = cell;
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
         [cell.logoImage setImage:[UIImage imageNamed:@"index_group"]];
         cell.subTitleLabel.text = ChineseStringOrENFun(@"团课", @"GROUP CLASS");
@@ -319,6 +341,7 @@ BOOL  hasrequest = NO;
     if (indexPath.row == 4 ){
         TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell"];
         // 创建新的 cell，默认为主标题模式
+        buddyCell = cell;
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         cell.attentionBtn.tag = 202;

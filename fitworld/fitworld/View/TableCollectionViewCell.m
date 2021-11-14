@@ -62,6 +62,11 @@
     [self.attentionBtn setTitle:actionString forState:UIControlStateHighlighted];
 }
 
+- (void)timerToReloadCollectionView{
+    [self.myCollectionView reloadData];
+}
+
+
 
 #pragma mark - Collection Delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{

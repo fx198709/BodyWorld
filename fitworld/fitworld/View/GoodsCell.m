@@ -33,6 +33,27 @@
     NSString *roomidhead = ChineseStringOrENFun(@"房间ID",@"Room ID");
     self.roomidLabel.text = [NSString stringWithFormat:@"%@:%@",roomidhead,room.event_id];
     _peopleLabel.text = [NSString stringWithFormat:@"已有%ld人",(long)room.invite_count];
+//    3小时以上的 这个label不显示
+    
+    long currentTime = [[NSDate date] timeIntervalSince1970];
+    long diff = room.start_time - currentTime;
+    if (diff > 3600*3) {
+        _timeDuringLabel.hidden = YES;
+    }else{
+        if (diff > 0) {
+            _timeDuringLabel.hidden = NO;
+            int hour = (int)diff/3600;
+            int hourleft = diff%3600;
+            int min = hourleft/60;
+            int sec = hourleft%60;
+            NSString *titleString = [NSString stringWithFormat:@"Till start %02d:%02d:%02d",hour,min,sec];
+            NSString *chineseString = [NSString stringWithFormat:@"开始 %02d:%02d:%02d",hour,min,sec];
+            _timeDuringLabel.text = ChineseStringOrENFun(chineseString, titleString);
+        }else{
+            _timeDuringLabel.hidden = NO;
+        }
+    }
+    
      
     NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"已预约");
     UIImage *joinImage = [UIImage imageNamed:@"action_button_bg_green"];
