@@ -61,8 +61,8 @@
     
     // TODO 默认账号
 //    self.nameField.text = @"+86:13501173505";
-//    self.nameField.text = @"+86:18600411689";
-    self.nameField.text = @"+86:18601061163";
+    self.nameField.text = @"+86:18600411689";
+//    self.nameField.text = @"+86:18601061163";
     self.pwdField.text = @"1122";
 }
 

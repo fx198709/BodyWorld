@@ -171,7 +171,7 @@
     [cell.contentView addSubview:joinBtn];
     [joinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(cell.contentView).offset(-10);
-        make.centerY.equalTo(cell.contentView).offset(-10);
+        make.centerY.equalTo(cell.contentView);
         make.height.mas_equalTo(25);
         make.width.mas_equalTo(80);
     }];

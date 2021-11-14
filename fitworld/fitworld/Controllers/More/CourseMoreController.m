@@ -9,15 +9,42 @@
 #import "CourseMoreController.h"
 #import "YJPageControlView.h"
 #import "CourseLiveViewController.h"
+#import "BaseJSONModel.h"
+
 
 #define KStatushight [[UIApplication sharedApplication] statusBarFrame].size.height
 #define KNavhight self.navigationController.navigationBar.frame.size.height
 #define kScreenWidth   [UIScreen mainScreen].bounds.size.width
 #define KSystemHeight  [UIScreen mainScreen].bounds.size.height
 
+@interface ScreenModel:BaseJSONModel
+ 
+@property(nonatomic,strong) NSString *id;
+@property(nonatomic,strong) NSString *name;
+@property(nonatomic,assign) BOOL    hasSelected;
+
+
+@end
+
+@implementation ScreenModel
+- (instancetype)initWithJSON:(NSDictionary *)json
+{
+    NSError *error;
+
+    if (self = [[ScreenModel alloc] initWithDictionary:json error:&error]) {
+        _hasSelected = NO;
+    }
+    return self;
+}
+
+@end
+
 @interface CourseMoreController ()
 {
     YJPageControlView * PageControlView;
+    NSArray *curse_type_array;
+    NSArray *curse_time_array;
+
 }
 @property(nonatomic,strong) NSMutableArray *viewControllers;
 @end
@@ -47,10 +74,57 @@
     [PageControlView showInViewController:self];
     
 }
+- (void)createRightBtn{
+    if (curse_type_array.count || curse_time_array.count) {
+//        UINavigationBar
+        NSString *searchString = ChineseStringOrENFun(@"搜索", @"Search");
+        UIButton *searchView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+        UIImageView *searchImage = [[UIImageView alloc] ]
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:searchView];
+        
+        self.navigationItem.rightBarButtonItem = item;
+        
+    }
+}
+
+
+- (void)reachSearchOption{
+//    room/search_opt
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSDictionary *baddyParams = @{};
+    [[AFAppNetAPIClient manager] GET:@"room/search_opt" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (CheckResponseObject(responseObject)) {
+            NSDictionary *dataDic = responseObject[@"recordset"];
+            NSMutableArray *tempArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataDic objectForKey:@"curse_type"]) {
+                ScreenModel *vmodel = [[ScreenModel alloc] initWithJSON:dic];
+                [tempArray addObject:vmodel];
+            }
+            self->curse_type_array = tempArray;
+            tempArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataDic objectForKey:@"curse_time"]) {
+                ScreenModel *vmodel = [[ScreenModel alloc] initWithJSON:dic];
+                [tempArray addObject:vmodel];
+            }
+            self->curse_time_array = tempArray;
+            [self createRightBtn];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+}
+
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+//    创建一个右上角的searchBtn
+    [self createRightBtn];
+    
+   
+    
 }
 
 - (CourseLiveViewController *)viewControllerIndex:(NSInteger)index {
