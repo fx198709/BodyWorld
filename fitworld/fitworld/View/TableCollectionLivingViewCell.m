@@ -50,7 +50,6 @@
 
 // Data Source
 - (void)baseCellDataSource{
-    self.logoImage.image = [UIImage imageNamed:@"shakehideimg_man"];
     self.subTitleLabel.text = @"";
     NSString *actionString = ChineseStringOrENFun(@"更多", @"More");
     [self.attentionBtn setTitle:actionString forState:UIControlStateNormal];

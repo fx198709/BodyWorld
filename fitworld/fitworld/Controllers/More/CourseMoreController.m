@@ -99,6 +99,8 @@
     [screenBackbutton addSubview:aboveView];
     aboveView.backgroundColor = UIColor.whiteColor;
     [aboveView changeData:curse_time_array andType:curse_type_array];
+    aboveView.layer.cornerRadius = 10;
+    aboveView.clipsToBounds = YES;
     WeakSelf
     aboveView.screenOKClick = ^(NSArray * _Nonnull timeArray, NSArray * _Nonnull typeArray) {
         StrongSelf(wSelf);
