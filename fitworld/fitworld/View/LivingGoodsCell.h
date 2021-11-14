@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *countryimage;
 @property (weak, nonatomic) IBOutlet UILabel *roomidLabel;
 @property (weak, nonatomic) IBOutlet UILabel *peopleLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomview;
 
 @property (nonatomic, strong) Room * cellRoom;
 

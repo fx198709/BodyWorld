@@ -113,7 +113,7 @@
     
     NSString *mobile = [NSString stringWithFormat:@"%@:%@", code, number];
     NSDictionary *param = @{@"account":mobile};
-    [[AFAppNetAPIClient manager] PUT:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] POST:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"====respong:%@", responseObject);
         //显示倒计时
         [self.codeBtn countdownWithStartTime:60

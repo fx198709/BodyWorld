@@ -62,10 +62,10 @@ typedef NS_ENUM(NSInteger, SelecteMediaType){
  
  @see -dataTaskWithRequest:completionHandler:
  */
-- (NSURLSessionDataTask *)PUT:(NSString *)URLString
-                    parameters:(id)parameters
-                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+//- (NSURLSessionDataTask *)PUT:(NSString *)URLString
+//                    parameters:(id)parameters
+//                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+//                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 /**
  覆盖AFHTTPSessionManager方法  添加了安全访问的内容

@@ -52,7 +52,7 @@
 //发送修改信息到服务器
 - (void)changeUserInfoFromServer:(NSDictionary *)param {
     [MTHUD showLoadingHUD];
-    [[AFAppNetAPIClient manager] PUT:@"user" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] POST:@"user" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         if ([responseObject objectForKey:@"recordset"]) {
             [APPObjOnce sharedAppOnce].currentUser = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];

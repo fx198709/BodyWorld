@@ -165,7 +165,10 @@
             UIImage * image1 = [UIImage imageWithColor:SelectGreenColor];
             [self.tillBtn setBackgroundImage:image1 forState:UIControlStateNormal];
             [self.tillBtn setBackgroundImage:image1 forState:UIControlStateHighlighted];
-            [self.tillBtn addTarget:self action:@selector(joinInRoomClicked) forControlEvents:UIControlEventTouchUpInside];
+            if (currentRoom.status != 0) {
+//                已经开始直播了
+                [self.tillBtn addTarget:self action:@selector(joinInRoomClicked) forControlEvents:UIControlEventTouchUpInside];
+            }
             _startNowBtnHeightCon.constant = 0;
             _actionBtnTopConstraint.constant = 0;
 

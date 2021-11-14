@@ -149,7 +149,7 @@
         @"city":ChineseStringOrENFun(city.name, city.name_en)
     };
     [MTHUD showLoadingHUD];
-    [[AFAppNetAPIClient manager] PUT:@"user" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] POST:@"user" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         if ([responseObject objectForKey:@"recordset"]) {
             UserInfo *userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];

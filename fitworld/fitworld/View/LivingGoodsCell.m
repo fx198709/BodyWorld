@@ -19,6 +19,7 @@
     self.clipsToBounds = YES;
     self.goodsImage.contentMode = UIViewContentModeScaleToFill;
     self.goodsImage.clipsToBounds = YES;
+    _bottomview.clipsToBounds = YES;
 
 }
 

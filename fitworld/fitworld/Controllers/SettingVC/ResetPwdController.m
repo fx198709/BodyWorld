@@ -76,7 +76,7 @@
     }
     
     NSDictionary *param = @{@"account":account};
-    [[AFAppNetAPIClient manager] PUT:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] POST:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"====respong:%@", responseObject);
         //显示倒计时
         [self.validCodeBtn countdownWithStartTime:60
@@ -135,7 +135,7 @@
 - (void)validCodeFromServer:(NSString *)code complete:(void(^)(bool isSuccess))completeBlock {
     [MTHUD showLoadingHUD];
     NSDictionary *param = @{@"captcha":code, @"no_login":@"false", @"invite_code":@""};
-    [[AFAppNetAPIClient manager] PUT:@"captcha/validate" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] POST:@"captcha/validate" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         NSLog(@"====respong:%@", responseObject);
         if ([responseObject objectForKey:@"recordset"]) {
@@ -149,7 +149,7 @@
 - (void)changePwdFromServer:(NSString *)code pwd:(NSString *)pwd {
     [MTHUD showLoadingHUD];
     NSDictionary *param = @{@"captcha":code, @"password":pwd};
-    [[AFAppNetAPIClient manager] PUT:@"password/reset" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] POST:@"password/reset" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         [self showSuccessNoticeAndPopVC];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

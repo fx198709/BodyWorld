@@ -32,7 +32,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czm-jy-kaU">
-                        <rect key="frame" x="0.0" y="90" width="260" height="40"/>
+                        <rect key="frame" x="0.0" y="90" width="250" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5q-PZ-rZ4">
                                 <rect key="frame" x="8" y="0.0" width="34" height="18"/>
@@ -54,7 +54,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9B-9O-7iH">
-                                <rect key="frame" x="170" y="7.5" width="90" height="25"/>
+                                <rect key="frame" x="160" y="7.5" width="90" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="01N-iC-9Ty"/>
                                     <constraint firstAttribute="width" constant="90" id="hHB-fv-Bgs"/>
@@ -84,7 +84,7 @@
                 <constraint firstItem="6z9-oB-b6d" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1Mz-iA-I8m"/>
                 <constraint firstItem="6z9-oB-b6d" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Jgd-uB-gzV"/>
                 <constraint firstItem="czm-jy-kaU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NE7-2h-T18"/>
-                <constraint firstAttribute="trailing" secondItem="czm-jy-kaU" secondAttribute="trailing" id="OQw-vb-qC7"/>
+                <constraint firstAttribute="trailing" secondItem="czm-jy-kaU" secondAttribute="trailing" constant="10" id="OQw-vb-qC7"/>
                 <constraint firstItem="BZQ-6R-9ij" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="PTP-Eu-gAg"/>
                 <constraint firstAttribute="bottom" secondItem="czm-jy-kaU" secondAttribute="bottom" id="Usk-hv-1Jn"/>
                 <constraint firstItem="BZQ-6R-9ij" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="oZU-qQ-JEp"/>
@@ -92,6 +92,7 @@
             </constraints>
             <size key="customSize" width="189" height="183"/>
             <connections>
+                <outlet property="bottomview" destination="czm-jy-kaU" id="gZw-u2-LaZ"/>
                 <outlet property="countryimage" destination="Z3Q-4b-6ug" id="DIG-tY-f3e"/>
                 <outlet property="goodsImage" destination="6z9-oB-b6d" id="rK6-Ov-K3d"/>
                 <outlet property="joinBtn" destination="U9B-9O-7iH" id="A9O-NV-k7r"/>

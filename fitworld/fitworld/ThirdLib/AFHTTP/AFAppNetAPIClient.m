@@ -65,8 +65,10 @@
 {
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
-    
-    [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+    NSArray *noapis = @[@"login",@"captcha",@"captcha/validate",@"register"];
+    if (![noapis containsObject:URLString]) {
+        [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+    }
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
     return [self POST:strUrl parameters:parameters headers:nil progress:nil success:success failure:failure];

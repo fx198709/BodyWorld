@@ -106,7 +106,7 @@
 - (void)addUserToServer:(Friend *)friend {
     NSDictionary *param = @{@"friend_id": StringWithDefaultValue(friend.friend_id, @"")};
     [MTHUD showLoadingHUD];
-    [[AFAppNetAPIClient manager] PUT:@"friend/agree" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] POST:@"friend/agree" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         if ([responseObject objectForKey:@"recordset"]) {
             friend.status = FriendStatus_added;
