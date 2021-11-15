@@ -20,6 +20,7 @@
     [self.imgView cornerHalfWithBorderColor:[UIColor whiteColor]];
     [self.addBtn cornerHalfWithBorderColor:self.addBtn.backgroundColor];
     self.addBtn.hidden = YES;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setIsAdd:(BOOL)isAdd {

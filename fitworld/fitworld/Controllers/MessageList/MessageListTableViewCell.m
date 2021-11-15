@@ -18,8 +18,7 @@
     _hasreadView.layer.cornerRadius = 3;
     _hasreadView.clipsToBounds = YES;
     _hasreadView.backgroundColor = UIColor.redColor;
- 
-
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

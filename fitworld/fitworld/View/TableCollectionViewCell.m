@@ -27,6 +27,7 @@
 
     [self baseCellConfig];
     [self baseCellDataSource];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
 }
 

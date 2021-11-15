@@ -31,7 +31,7 @@
 
 // Config
 - (void)baseCellConfig{
-        
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.logoImage.layer.masksToBounds = YES;
     self.logoImage.layer.borderWidth = 0.5f;
     

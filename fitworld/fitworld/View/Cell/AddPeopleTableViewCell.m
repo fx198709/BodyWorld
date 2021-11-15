@@ -13,6 +13,7 @@
     _imagebackview.layer.cornerRadius = 20;
     _userimageview.layer.cornerRadius = 18;
     [_selectBtn addTarget:self action:@selector(btnclick) forControlEvents:UIControlEventTouchUpInside];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     // Initialization code
 }
 
