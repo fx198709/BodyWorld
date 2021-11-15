@@ -2256,6 +2256,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="好友" id="Y4l-pl-6xY"/>
                     <connections>
+                        <outlet property="addTitleLabel" destination="Tjb-ub-Gkm" id="wfI-8t-Mka"/>
                         <outlet property="tableView" destination="Kpl-Yx-V16" id="xCB-aO-QZe"/>
                     </connections>
                 </viewController>
