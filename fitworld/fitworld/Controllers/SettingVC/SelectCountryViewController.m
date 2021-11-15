@@ -21,13 +21,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = [self getNavTitle];
     [self initView];
-    if (self.selectType == SelectCountryType_Country) {
-        [self getCountryListFromServer];
-    } else {
-        [self getCityListFromServer:self.country];
+    NSString *title = nil;
+    switch (self.selectType) {
+        case SelectCountryType_Country:
+        {
+            
+                title = ChineseStringOrENFun(@"选择国家", @"Select country");
+                [self getCountryListFromServer];
+        }
+            break;
+        case SelectCountryType_City:
+        {
+            title = ChineseStringOrENFun(@"选择城市", @"Select city");
+            [self getCityListFromServer];
+            break;
+        }
+        case SelectCountryType_SubCity:
+        {
+            title = ChineseStringOrENFun(@"选择城市", @"Select city");
+            [self getSubCityFromServer];
+            break;
+        }
+        default:
+            break;
     }
+    
+    self.navigationItem.title = title;
 }
 
 
@@ -38,17 +58,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil] forCellReuseIdentifier:NSStringFromClass(cellClass)];
 }
 
-- (NSString *)getNavTitle {
-    switch (self.selectType) {
-        case SelectCountryType_Country:
-            return ChineseStringOrENFun(@"选择国家", @"Select country");
-        case SelectCountryType_City:
-            return ChineseStringOrENFun(@"选择城市", @"Select city");
-        default:
-            break;
-    }
-    return @"";
-}
 
 
 - (void)loadData {
@@ -78,20 +87,28 @@
     switch (self.selectType) {
         case SelectCountryType_Country:
         {
-            SelectCountryViewController *nextVC = VCBySBName(@"SelectCountryViewController");
-            nextVC.selectType = SelectCountryType_City;
-            nextVC.country = country;
-            [self.navigationController pushViewController:nextVC animated:YES];
+            [self goToNextView:country type:SelectCountryType_City];
         }
             break;
         case SelectCountryType_City:
         {
-            [self sendChangeToServer:country];
+            if (country.level == 4) {
+                [self sendChangeToServer:country];
+            } else {
+                [self goToNextView:country type:SelectCountryType_SubCity];
+            }
         }
             break;
         default:
             break;
     }
+}
+
+- (void)goToNextView:(Country *)country type:(SelectCountryType)type {
+    SelectCountryViewController *nextVC = VCBySBName(@"SelectCountryViewController");
+    nextVC.selectType = type;
+    nextVC.country = country;
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 #pragma mark - server
@@ -119,10 +136,33 @@
 }
 
 
-//请求国家列表
-- (void)getCityListFromServer:(Country *)country {
+//请求城市列表
+- (void)getCityListFromServer {
     [MTHUD showLoadingHUD];
-    NSDictionary *param = @{@"name_en": StringWithDefaultValue(country.name_en, @"")};
+    NSDictionary *param = @{@"name_en": StringWithDefaultValue(self.country.name_en, @"")};
+    [[AFAppNetAPIClient manager] GET:@"city" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            NSLog(@"====respong:%@", responseObject);
+            NSArray *result = [responseObject objectForKey:@"recordset"];
+            NSError *error;
+            NSArray<Country *> *countryList = [Country arrayOfModelsFromDictionaries:result error:&error];
+            if (error == nil) {
+                self.dataList = countryList;
+                [self loadData];
+            } else {
+                [MTHUD showDurationNoticeHUD:error.localizedDescription];
+            }
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD showDurationNoticeHUD:error.localizedDescription];
+    }];
+}
+
+//请求城市列表
+- (void)getSubCityFromServer {
+    [MTHUD showLoadingHUD];
+    NSDictionary *param = @{@"name_en": StringWithDefaultValue(self.country.name_en, @"")};
     [[AFAppNetAPIClient manager] GET:@"city" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -155,7 +195,8 @@
             UserInfo *userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
             [APPObjOnce sharedAppOnce].currentUser = userInfo;
             [MTHUD showDurationNoticeHUD:ChangeSuccessMsg animated:YES completedBlock:^{
-                [self popToViewControllerWithPreCount:2 animated:YES];
+                int count = self.selectType == SelectCountryType_City ? 2 : 3;
+                [self popToViewControllerWithPreCount:count animated:YES];
             }];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

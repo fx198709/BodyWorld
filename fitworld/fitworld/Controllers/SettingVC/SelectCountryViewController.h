@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef enum {
     SelectCountryType_Country, //国家
     SelectCountryType_City, //城市
+    SelectCountryType_SubCity, //地级市
 } SelectCountryType;
 
 @interface SelectCountryViewController : BaseViewController
