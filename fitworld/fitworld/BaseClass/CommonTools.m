@@ -41,8 +41,8 @@
     NSMutableString  *realinDate = [[NSMutableString alloc] initWithString:inDateString];
     [realinDate replaceOccurrencesOfString:@"T" withString:@" " options:NSCaseInsensitiveSearch range:NSMakeRange(1,inDateString.length-1)];
     NSDateFormatter *dateFormate = [[NSDateFormatter alloc] init];
-//    [dateFormate setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
-//    [dateFormate setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
+    //    [dateFormate setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
+    //    [dateFormate setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
     dateFormate.dateFormat = @"yyyy-MM-dd HH:mm";
     NSDate *date = [dateFormate dateFromString:realinDate];
     if (date == nil) {
@@ -165,7 +165,7 @@
     
     NSDateFormatter *dateFormate = [[NSDateFormatter alloc] init];
     dateFormate.dateFormat = formatString;//@"yyyy.MM.dd";
-//    设置时区
+    //    设置时区
     [dateFormate setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
     NSString *dateString = [dateFormate stringFromDate:dealDate];
     return dateString;
@@ -174,7 +174,7 @@
 + (NSString *)reachDateStringFromTimeStamp:(NSString *)timeStamp{
     NSTimeInterval interval = [timeStamp doubleValue] / 1000.0;
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
-     
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *dateString = [formatter stringFromDate: date];
@@ -183,14 +183,27 @@
 
 + (UIWindow *)mainWindow
 {
-    UIApplication *app = [UIApplication sharedApplication];
-    if ([app.delegate respondsToSelector:@selector(window)])
-    {
-        return [app.delegate window];
-    }
-    else
-    {
-        return [app keyWindow];
+    if([[[UIApplication sharedApplication] delegate] window]) {
+        return[[[UIApplication sharedApplication] delegate] window];
+    }else{
+        if(@available(iOS 13.0, *)) {
+            NSArray *array =[[[UIApplication sharedApplication] connectedScenes] allObjects];
+            UIWindowScene* windowScene = (UIWindowScene*)array[0];
+            //如果是普通App开发，可以使用
+            //            SceneDelegate * delegate = (SceneDelegate *)windowScene.delegate;
+            //            UIWindow * mainWindow = delegate.window;
+            
+            //由于在sdk开发中，引入不了SceneDelegate的头文件，所以需要用kvc获取宿主app的window.
+            UIWindow* mainWindow = [windowScene valueForKeyPath:@"delegate.window"];
+            if(mainWindow) {
+                return mainWindow;
+            }else{
+                return[UIApplication sharedApplication].windows.lastObject;
+            }
+            
+        }else{
+            return[UIApplication sharedApplication].keyWindow;
+        }
     }
 }
 
@@ -204,7 +217,7 @@
     
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC));
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
-
+    
     dispatch_after(popTime, dispatch_get_main_queue(), ^{
         [strongControl presentViewController:alert animated:YES completion:nil];
         dispatch_after(delayTime, dispatch_get_main_queue(), ^{

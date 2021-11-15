@@ -164,6 +164,11 @@
 		DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB6A2734420C002B0A8E /* MessageListTableViewCell.xib */; };
 		DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB6E27344A50002B0A8E /* MessageListModel.m */; };
 		DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD742597272942F9005D636E /* UIImage+Extension.m */; };
+		DD84CB9227412A2800EB8C61 /* RightTopSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD84CB9127412A2800EB8C61 /* RightTopSearchView.m */; };
+		DD84CB9427412A3D00EB8C61 /* RightTopSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD84CB9327412A3D00EB8C61 /* RightTopSearchView.xib */; };
+		DD84CB97274163C500EB8C61 /* ScreenAboveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD84CB96274163C500EB8C61 /* ScreenAboveView.m */; };
+		DD84CB99274163E900EB8C61 /* ScreenAboveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD84CB98274163E900EB8C61 /* ScreenAboveView.xib */; };
+		DD84CB9C27416D5D00EB8C61 /* ScreenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD84CB9B27416D5D00EB8C61 /* ScreenModel.m */; };
 		DD8E328E273F226B008995E9 /* code.json in Resources */ = {isa = PBXBuildFile; fileRef = DD8E328D273F226B008995E9 /* code.json */; };
 		DD98BC6B273F653900D3B59F /* CourseDetailSmallview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */; };
 		DD98BC6D273F655300D3B59F /* CourseDetailSmallview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */; };
@@ -498,6 +503,14 @@
 		DD7425A6272942F9005D636E /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		DD7425A8272942F9005D636E /* UIActionSheet+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+YCExtension.h"; sourceTree = "<group>"; };
 		DD7425AA272942F9005D636E /* NSString+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+YCExtension.m"; sourceTree = "<group>"; };
+		DD84CB9027412A2800EB8C61 /* RightTopSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightTopSearchView.h; sourceTree = "<group>"; };
+		DD84CB9127412A2800EB8C61 /* RightTopSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightTopSearchView.m; sourceTree = "<group>"; };
+		DD84CB9327412A3D00EB8C61 /* RightTopSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightTopSearchView.xib; sourceTree = "<group>"; };
+		DD84CB95274163C500EB8C61 /* ScreenAboveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenAboveView.h; sourceTree = "<group>"; };
+		DD84CB96274163C500EB8C61 /* ScreenAboveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenAboveView.m; sourceTree = "<group>"; };
+		DD84CB98274163E900EB8C61 /* ScreenAboveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenAboveView.xib; sourceTree = "<group>"; };
+		DD84CB9A27416D5D00EB8C61 /* ScreenModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenModel.h; sourceTree = "<group>"; };
+		DD84CB9B27416D5D00EB8C61 /* ScreenModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenModel.m; sourceTree = "<group>"; };
 		DD8E328D273F226B008995E9 /* code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = code.json; sourceTree = "<group>"; };
 		DD98BC69273F653900D3B59F /* CourseDetailSmallview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseDetailSmallview.h; sourceTree = "<group>"; };
 		DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseDetailSmallview.m; sourceTree = "<group>"; };
@@ -1152,6 +1165,14 @@
 				DD6EDB5A272EFFFB002B0A8E /* CourseMoreController.m */,
 				DD6EDB59272EFFFB002B0A8E /* CourseLiveViewController.h */,
 				DD6EDB5B272EFFFB002B0A8E /* CourseLiveViewController.m */,
+				DD84CB9027412A2800EB8C61 /* RightTopSearchView.h */,
+				DD84CB9127412A2800EB8C61 /* RightTopSearchView.m */,
+				DD84CB9327412A3D00EB8C61 /* RightTopSearchView.xib */,
+				DD84CB95274163C500EB8C61 /* ScreenAboveView.h */,
+				DD84CB96274163C500EB8C61 /* ScreenAboveView.m */,
+				DD84CB98274163E900EB8C61 /* ScreenAboveView.xib */,
+				DD84CB9A27416D5D00EB8C61 /* ScreenModel.h */,
+				DD84CB9B27416D5D00EB8C61 /* ScreenModel.m */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -1277,8 +1298,10 @@
 				DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */,
 				DD595EC427367FA700618D1A /* UserCenterMainViewController.xib in Resources */,
 				DD8E328E273F226B008995E9 /* code.json in Resources */,
+				DD84CB9427412A3D00EB8C61 /* RightTopSearchView.xib in Resources */,
 				A2723F0A273CF22F00388B01 /* SelectCountryCell.xib in Resources */,
 				A2A94DE2273FC64900D02C77 /* FriendCell.xib in Resources */,
+				DD84CB99274163E900EB8C61 /* ScreenAboveView.xib in Resources */,
 				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
 				DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */,
@@ -1426,6 +1449,7 @@
 				A2A94DC9273E718200D02C77 /* SelectCountryCodeViewController.m in Sources */,
 				A2723EEE273BBE2100388B01 /* Enum.m in Sources */,
 				04552B3E2696C3FD00C78706 /* MaterialDesignSymbol.m in Sources */,
+				DD84CB9C27416D5D00EB8C61 /* ScreenModel.m in Sources */,
 				C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */,
 				047DC201268CD09700A3E37E /* fitworld.xcdatamodeld in Sources */,
 				DD595ED42736F88D00618D1A /* RoomVC.m in Sources */,
@@ -1449,11 +1473,13 @@
 				DD25FEE927226B5A0092CF87 /* JYImageCache.m in Sources */,
 				04552B502696C3FD00C78706 /* UIControl+YYAdd.m in Sources */,
 				04552B4C2696C3FD00C78706 /* TWSReleaseNotesView.m in Sources */,
+				DD84CB97274163C500EB8C61 /* ScreenAboveView.m in Sources */,
 				A256303B274094450030D6B2 /* UILabel+MTCalender.m in Sources */,
 				04F3E34526E9326000CEEC7D /* UIView+Extension.m in Sources */,
 				047DC1F5268CD09700A3E37E /* AppDelegate.m in Sources */,
 				DD595EED273D7D5F00618D1A /* GuestPanel.m in Sources */,
 				DD25FEE827226B5A0092CF87 /* JYCarousel.m in Sources */,
+				DD84CB9227412A2800EB8C61 /* RightTopSearchView.m in Sources */,
 				047DC1F8268CD09700A3E37E /* SceneDelegate.m in Sources */,
 				DD6EDB4B272E7AF9002B0A8E /* AddPeopleTableViewCell.m in Sources */,
 				DD595EB82736224600618D1A /* NoDataCollectionViewCell.m in Sources */,
