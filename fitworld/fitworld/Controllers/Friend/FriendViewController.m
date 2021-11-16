@@ -116,6 +116,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([FriendCell class])];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     UserInfo *friend = [self.dataList objectAtIndex:indexPath.row];
     NSString *url = [FITAPI_HTTPS_ROOT stringByAppendingString:friend.avatar];
     [cell.imgView sd_setImageWithURL:[NSURL URLWithString:url]

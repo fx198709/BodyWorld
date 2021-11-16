@@ -114,6 +114,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.backgroundColor = BuddyTableBackColor;
     RemoveSubviews(cell.contentView, @[]);
     int leftdif = 15;

@@ -296,7 +296,7 @@ BOOL  hasrequest = NO;
         
         UIButton * userbtn = [self reachBtn:1];
         [cell.contentView addSubview:userbtn];
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     if (indexPath.row == 1){
@@ -306,6 +306,7 @@ BOOL  hasrequest = NO;
             [slidercell.contentView addSubview:_sliderView];
             slidercell.contentView.backgroundColor = BuddyTableBackColor;
         }
+        slidercell.selectionStyle = UITableViewCellSelectionStyleNone;
         return slidercell;
     }
 
@@ -322,6 +323,7 @@ BOOL  hasrequest = NO;
         cell.backgroundColor = UIColor.blackColor;
         cell.dataArr = _livingClasses;
         [cell.myCollectionView reloadData];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     if (indexPath.row == 3 ){
@@ -336,6 +338,7 @@ BOOL  hasrequest = NO;
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:UIControlEventTouchDown];
         cell.attentionBtn.tag = 201;
         cell.backgroundColor = UIColor.blackColor;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     if (indexPath.row == 4 ){
@@ -370,6 +373,7 @@ BOOL  hasrequest = NO;
             [createSessionBtn addTarget:self action:@selector(clickCreateSessionTraining) forControlEvents:UIControlEventTouchUpInside];
         }
         cell.backgroundColor = UIColor.blackColor;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
         
     }else{
@@ -379,7 +383,7 @@ BOOL  hasrequest = NO;
             cell.textLabel.text = @"aaaa";
         }
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

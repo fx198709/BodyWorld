@@ -76,6 +76,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageListTableViewCell* cell = (MessageListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"MessageListTableViewCellString"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     MessageListModel *user = dataArr[indexPath.row];
     [cell changeDataWithModel:user];

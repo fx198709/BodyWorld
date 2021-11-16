@@ -102,6 +102,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     RemoveSubviews(cell.contentView, @[]);
     UIView *cellView = cell.contentView;
     UIView *cellBgView = [[UIView alloc] init];

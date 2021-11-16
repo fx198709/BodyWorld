@@ -130,6 +130,7 @@
     CountryCode *code = [valueList objectAtIndex:indexPath.row];
     
     SelectCountryCodeCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SelectCountryCodeCell class])];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLabel.text = code.en;
     cell.codeLabel.text = [NSString stringWithFormat:@"+%d", code.code];
     

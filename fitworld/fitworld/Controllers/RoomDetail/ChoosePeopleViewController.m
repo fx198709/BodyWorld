@@ -231,6 +231,7 @@
     if (cell == nil) {
         cell =  [[[NSBundle mainBundle] loadNibNamed:@"AddPeopleTableViewCell" owner:self options:nil] lastObject];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     UserInfo *user = dataArr[indexPath.row];
     [cell changeViewWithModel:user];
 //    已经选择过的用户， 不让点击

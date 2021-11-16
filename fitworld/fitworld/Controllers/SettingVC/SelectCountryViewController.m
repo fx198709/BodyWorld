@@ -76,6 +76,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SelectCountryCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SelectCountryCell class])];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     Country *country = [self.dataList objectAtIndex:indexPath.row];
     cell.titleLabel.text = ChineseStringOrENFun(country.name, country.name_en);
     return cell;
