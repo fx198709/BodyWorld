@@ -214,7 +214,7 @@ BOOL  hasrequest = NO;
 - (UIButton*)reachBtn:(int)type {
     CGFloat btnW = 25;
     CGFloat btnTop = 25;
-    CGFloat btnX = ScreenWidth - btnW - 28;
+    CGFloat btnX = ScreenWidth - btnW - 24;
     UIImage *image = [UIImage imageNamed:@"notification"];
     if (type == 1) {
         image = [UIImage imageNamed:@"friend_list"];
@@ -226,11 +226,10 @@ BOOL  hasrequest = NO;
     vbtn.tag = 100+type;
     [vbtn addTarget:self action:@selector(actionBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *redview = [[UIView alloc] initWithFrame:CGRectMake(28, 8, 10, 10)];
+    UIView *redview = [[UIView alloc] initWithFrame:CGRectMake(btnW, 9, 6, 6)];
     redview.backgroundColor = [UIColor redColor];
+    [redview cornerHalfWithBorderColor:redview.backgroundColor];
     [vbtn addSubview:redview];
-    redview.layer.cornerRadius = 5;
-    redview.clipsToBounds = YES;
     
     redview.tag = 2000+type;
     redview.hidden = YES;
@@ -240,6 +239,7 @@ BOOL  hasrequest = NO;
     if (hasNewFrend && type ==1) {
         redview.hidden = NO;
     }
+    
     return  vbtn;
 }
 
