@@ -21,9 +21,7 @@
 
 @interface CourseMoreController ()
 {
-    YJPageControlView * PageControlView;
-    NSArray *curse_type_array;
-    NSArray *curse_time_array;
+    YJPageControlView * pageControlView;
     RightTopSearchView *searchView;
     UIButton *screenBackbutton;
     ScreenAboveView *aboveView;
@@ -50,27 +48,29 @@
     for (int i = 0 ; i<titles.count; i++) {
         CourseLiveViewController *vc = [self viewControllerIndex:i];
         vc.viewheight = frame.size.height;
+        vc.parentVC = self;
+        vc.pageVCindex = i;
         [self.viewControllers addObject:vc];
     }
     
-    PageControlView = [[YJPageControlView alloc] initWithFrame:frame Titles:titles viewControllers:self.viewControllers Selectindex:0];
-    [PageControlView showInViewController:self];
+    pageControlView = [[YJPageControlView alloc] initWithFrame:frame Titles:titles viewControllers:self.viewControllers Selectindex:0];
+    [pageControlView showInViewController:self];
     [self reachSearchOption];
     
 }
 - (void)createRightBtn{
-    if (curse_type_array.count || curse_time_array.count) {
+    if (_curse_type_array.count || _curse_time_array.count) {
 //        UINavigationBar
         searchView = (RightTopSearchView *)[[[NSBundle mainBundle] loadNibNamed:@"RightTopSearchView" owner:self options:nil] lastObject];
         searchView.frame = CGRectMake(0, 0, 100, 44);
         searchView.backgroundColor = UIColor.clearColor;
         BOOL hasSelected = NO;
-        for (ScreenModel *vmodel in curse_time_array) {
+        for (ScreenModel *vmodel in _curse_time_array) {
             if (vmodel.hasSelected) {
                 hasSelected = YES;
             }
         }
-        for (ScreenModel *vmodel in curse_time_array) {
+        for (ScreenModel *vmodel in _curse_time_array) {
             if (vmodel.hasSelected) {
                 hasSelected = YES;
             }
@@ -98,14 +98,14 @@
     aboveView.frame = CGRectMake(10, (ScreenHeight-450)/2, ScreenWidth-20, 450);
     [screenBackbutton addSubview:aboveView];
     aboveView.backgroundColor = UIColor.whiteColor;
-    [aboveView changeData:curse_time_array andType:curse_type_array];
+    [aboveView changeData:_curse_time_array andType:_curse_type_array];
     aboveView.layer.cornerRadius = 10;
     aboveView.clipsToBounds = YES;
     WeakSelf
     aboveView.screenOKClick = ^(NSArray * _Nonnull timeArray, NSArray * _Nonnull typeArray) {
         StrongSelf(wSelf);
-        strongSelf->curse_time_array = timeArray;
-        strongSelf->curse_type_array = typeArray;
+        strongSelf.curse_time_array = timeArray;
+        strongSelf.curse_type_array = typeArray;
         [strongSelf createRightBtn];
         [strongSelf reloadControls];
         [strongSelf->screenBackbutton removeFromSuperview];
@@ -118,7 +118,9 @@
 
 //重新加载页面
 - (void)reloadControls{
-    
+//    判断当前哪个页面在最上面，重新加载
+    CourseLiveViewController *vc = [self.viewControllers objectAtIndex:pageControlView.selectedIndex];
+    [vc reReahSearchData];
 }
 
 - (void)getScreenData{
@@ -129,7 +131,7 @@
 - (void)screenBackbuttonClicked{
 //    恢复默认值
     NSArray *defaultIds = aboveView.lastSelectedIds;
-    for (ScreenModel *vmodel in curse_type_array) {
+    for (ScreenModel *vmodel in _curse_type_array) {
         if ([defaultIds containsObject:vmodel.id]) {
             vmodel.hasSelected = YES;
         }else{
@@ -137,7 +139,7 @@
         }
     }
     
-    for (ScreenModel *vmodel in curse_time_array) {
+    for (ScreenModel *vmodel in _curse_time_array) {
         if ([defaultIds containsObject:vmodel.id]) {
             vmodel.hasSelected = YES;
         }else{
@@ -162,13 +164,13 @@
                 ScreenModel *vmodel = [[ScreenModel alloc] initWithJSON:dic];
                 [tempArray addObject:vmodel];
             }
-            self->curse_type_array = tempArray;
+            self->_curse_type_array = tempArray;
             tempArray = [NSMutableArray array];
             for (NSDictionary *dic in [dataDic objectForKey:@"curse_time"]) {
                 ScreenModel *vmodel = [[ScreenModel alloc] initWithJSON:dic];
                 [tempArray addObject:vmodel];
             }
-            self->curse_time_array = tempArray;
+            self->_curse_time_array = tempArray;
             [self createRightBtn];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

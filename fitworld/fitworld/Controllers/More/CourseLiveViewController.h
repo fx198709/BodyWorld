@@ -11,4 +11,8 @@
 @interface CourseLiveViewController : BaseNavViewController
 @property(nonatomic,assign)NSInteger pageVCindex;
 @property(nonatomic,assign) CGFloat viewheight;
+@property(nonatomic,assign) id parentVC;;
+
+//重新获取数据
+- (void)reReahSearchData;
 @end

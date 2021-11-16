@@ -14,6 +14,7 @@
 #import "Room.h"
 #import <math.h>
 #import "HeadTimeCollectionViewCell.h"
+#import "CourseMoreController.h"
 
 @interface CourseLiveViewController ()<UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate>
 @property(nonatomic,strong)UITableView*tableView;
@@ -94,6 +95,11 @@
 
     [self refreshData];
     
+}
+
+- (void)reReahSearchData{
+    [self refreshData];
+//    course_type=31035841618905604,31035841619102212&course_time=1200,3000&
 }
 
  
@@ -279,45 +285,57 @@
 #pragma mark - 刷新房间数据
 - (void) refreshData
 {
+    CourseMoreController *vc = (CourseMoreController*)self.parentVC;
+    NSArray *screenTypes = vc.curse_type_array;
+    NSArray *screenTimes = vc.curse_time_array;
+//day=2021-11-16&page=1&row=10&course_type=31035841618905604,31035841619102212&course_time=1200,3000&status=1
     NSDate *toDay = [[NSDate alloc] init];
     NSDateFormatter *f = [NSDateFormatter new];
-    NSString *ft = @"Y-MM-dd";
+    NSString *ft = @"yyyy-MM-dd";
     [f setDateFormat:ft];
     NSString *currentDay = [f stringFromDate: toDay];
     if(selectDay == nil){
         selectDay = currentDay;
     }
+//    [dataArr removeAllObjects];
+    NSMutableDictionary *baddyParams = [NSMutableDictionary dictionary];
+    if (_pageVCindex == 0) {
+//        直播课
+        [baddyParams setValue:@"1" forKey:@"status"];
+    }else if (_pageVCindex == 1) {
+        [baddyParams setValue:@"团课" forKey:@"type"];
+    }else if (_pageVCindex == 2) {
+        [baddyParams setValue:@"对练课" forKey:@"type"];
+    }
+    [baddyParams setValue:selectDay forKey:@"day"];
+    [baddyParams setValue:@"100" forKey:@"row"];
+    [baddyParams setValue:@"1" forKey:@"page"];
+    if (screenTypes.count > 0) {
+        [baddyParams setValue:[screenTypes componentsJoinedByString:@","] forKey:@"course_type"];
+    }
+    if (screenTimes.count > 0) {
+        [baddyParams setValue:[screenTimes componentsJoinedByString:@","] forKey:@"course_time"];
+    }
     
-    [dataArr removeAllObjects];
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     NSLog(@"initroom userToken ---- %@", userToken);
-
-    NSString *strUrl = [NSString stringWithFormat:@"%@room", FITAPI_HTTPS_PREFIX];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    NSDictionary *baddyParams = @{
-                           @"type": @"对练课",
-                           @"page": @"1",
-                           @"row": @"5",
-                           @"day": selectDay
-                       };
-    [manager GET:strUrl parameters:baddyParams headers:nil progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject ---- %@", responseObject);
-        long total =  [responseObject[@"recordset"][@"total"] longValue];
-        if(total > 0){
-            Room *room = [[Room alloc] initWithJSON: responseObject[@"recordset"][@"rows"][0]];
-            self->dataArr = [[NSMutableArray alloc] init];
-            [self->dataArr addObject: room];
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    [manager GET:@"room" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        self->dataArr = [NSMutableArray array];
+        if (CheckResponseObject(responseObject)) {
+            NSArray *dataArray = responseObject[@"recordset"][@"rows"];
+            for (NSDictionary * dic in dataArray) {
+                Room *room = [[Room alloc] initWithJSON: dic];
+                [self->dataArr addObject: room];
+            }
+            [self.tableView reloadData];
+            if ([self.tableView.refreshControl isRefreshing]) {
+                [self.tableView.refreshControl endRefreshing];
+            }
         }
-        [self.tableView reloadData];
-        if ([self.tableView.refreshControl isRefreshing]) {
-            [self.tableView.refreshControl endRefreshing];
-        }
-        
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       NSLog(@"failure ---- %@", error);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 

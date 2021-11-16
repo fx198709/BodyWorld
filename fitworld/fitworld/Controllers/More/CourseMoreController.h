@@ -10,4 +10,7 @@
 //更多
 @interface CourseMoreController : BaseNavViewController
 @property(nonatomic,copy)NSString*VCtype;
+@property (nonatomic, strong)NSArray *curse_type_array;
+@property (nonatomic, strong)NSArray *curse_time_array;
+
 @end
