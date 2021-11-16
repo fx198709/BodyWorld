@@ -218,14 +218,11 @@ BOOL  hasrequest = NO;
     UIImage *image = [UIImage imageNamed:@"notification"];
     if (type == 1) {
         image = [UIImage imageNamed:@"friend_list"];
-        btnX -= btnW + 18;
+        btnX -= btnW + 15;
     }
     CGRect btnframe = CGRectMake(btnX, btnTop, btnW, btnW);
     UIButton *vbtn = [[UIButton alloc] initWithFrame:btnframe];
     [vbtn setImage:image forState:UIControlStateNormal];
-//    UIImageView * vimage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, btnw, btnw)];
-//    [vbtn addSubview:vimage];
-//    vimage.image = image;
     vbtn.tag = 100+type;
     [vbtn addTarget:self action:@selector(actionBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
