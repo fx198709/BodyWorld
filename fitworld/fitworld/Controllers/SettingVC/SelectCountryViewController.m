@@ -32,17 +32,12 @@
         }
             break;
         case SelectCountryType_City:
-        {
-            title = ChineseStringOrENFun(@"选择城市", @"Select city");
-            [self getCityListFromServer];
-            break;
-        }
         case SelectCountryType_SubCity:
         {
             title = ChineseStringOrENFun(@"选择城市", @"Select city");
-            [self getSubCityFromServer];
-            break;
+            [self getCityListFromServer];
         }
+            break;
         default:
             break;
     }
@@ -100,6 +95,12 @@
             }
         }
             break;
+        case SelectCountryType_SubCity:
+        {
+            [self sendChangeToServer:country];
+        }
+            break;
+            
         default:
             break;
     }
@@ -160,28 +161,6 @@
     }];
 }
 
-//请求城市列表
-- (void)getSubCityFromServer {
-    [MTHUD showLoadingHUD];
-    NSDictionary *param = @{@"name_en": StringWithDefaultValue(self.country.name_en, @"")};
-    [[AFAppNetAPIClient manager] GET:@"city" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MTHUD hideHUD];
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            NSLog(@"====respong:%@", responseObject);
-            NSArray *result = [responseObject objectForKey:@"recordset"];
-            NSError *error;
-            NSArray<Country *> *countryList = [Country arrayOfModelsFromDictionaries:result error:&error];
-            if (error == nil) {
-                self.dataList = countryList;
-                [self loadData];
-            } else {
-                [MTHUD showDurationNoticeHUD:error.localizedDescription];
-            }
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MTHUD showDurationNoticeHUD:error.localizedDescription];
-    }];
-}
 
 //修改城市
 - (void)sendChangeToServer:(Country *)city {
