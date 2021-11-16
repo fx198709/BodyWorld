@@ -212,16 +212,17 @@ BOOL  hasrequest = NO;
 }
 
 - (UIButton*)reachBtn:(int)type {
-    CGRect btnframe = CGRectMake(ScreenWidth-50, 30, 40, 40);
+    CGFloat btnW = 25;
+    CGFloat btnTop = 25;
+    CGFloat btnX = ScreenWidth - btnW - 28;
     UIImage *image = [UIImage imageNamed:@"notification"];
     if (type == 1) {
-        btnframe = CGRectMake(ScreenWidth-100, 30, 40, 40);
         image = [UIImage imageNamed:@"friend_list"];
+        btnX -= btnW + 15;
     }
+    CGRect btnframe = CGRectMake(btnX, btnTop, btnW, btnW);
     UIButton *vbtn = [[UIButton alloc] initWithFrame:btnframe];
-    UIImageView * vimage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
-    [vbtn addSubview:vimage];
-    vimage.image = image;
+    [vbtn setImage:image forState:UIControlStateNormal];
     vbtn.tag = 100+type;
     [vbtn addTarget:self action:@selector(actionBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -501,7 +502,6 @@ BOOL  hasrequest = NO;
 
 - (void)clickCreateSessionTraining{
     NSLog(@"createSessionTraining ----  ");
-    
     TrainingViewController *vc = [[TrainingViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }

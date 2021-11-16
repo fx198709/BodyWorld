@@ -73,10 +73,7 @@
     int perCount = 10;
     NSDictionary *param = @{@"row":IntToString(perCount), @"page":IntToString(nextPage)};
     [[AFAppNetAPIClient manager] GET:url parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MTHUD hideHUD];
         self.isRequesting = NO;
-        
-        NSLog(@"====respong:%@", responseObject);
         NSDictionary *result = [responseObject objectForKey:@"recordset"];
         NSError *error;
         AddFriendPageInfo *pageInfo = [[AddFriendPageInfo alloc] initWithDictionary:result error:&error];
@@ -137,6 +134,7 @@
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     cell.titleLabel.text = friend.friend_name;
     cell.addStatus = friend.status;
+    cell.line.hidden = indexPath.row == self.dataList.count - 1;
     cell.isAdd = YES;
     cell.callBack = ^{
         [self addUserToServer:friend];

@@ -122,6 +122,7 @@
     [cell.imgView sd_setImageWithURL:[NSURL URLWithString:url]
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     cell.titleLabel.text = friend.nickname;
+    cell.line.hidden = indexPath.row == self.dataList.count - 1;
     cell.isAdd = NO;
     return cell;
 }
