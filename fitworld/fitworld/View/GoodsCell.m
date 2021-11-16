@@ -35,9 +35,10 @@
    
     [self.countryimage sd_setImageWithURL: [NSURL URLWithString:room.room_creator.country_icon] placeholderImage:nil];
 
-    NSString *roomidhead = ChineseStringOrENFun(@"房间ID",@"Room ID");
+    NSString *roomidhead = ChineseStringOrENFun(@"房间ID", @"Room ID");
     self.roomidLabel.text = [NSString stringWithFormat:@"%@:%@",roomidhead,room.event_id];
-    _peopleLabel.text = [NSString stringWithFormat:@"已有%ld人",(long)room.invite_count];
+    _peopleLabel.text = [NSString stringWithFormat:ChineseStringOrENFun(@"已有%ld人", @"%ld p in"),
+                         (long)room.invite_count];
 //    3小时以上的 这个label不显示
     
     long currentTime = [[NSDate date] timeIntervalSince1970];
