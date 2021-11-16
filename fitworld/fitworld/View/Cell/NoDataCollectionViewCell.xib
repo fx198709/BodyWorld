@@ -19,7 +19,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNh-5H-phG">
                         <rect key="frame" x="50" y="50" width="100" height="100"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_login_logo" translatesAutoresizingMaskIntoConstraints="NO" id="hWr-IL-IlH">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_login_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="hWr-IL-IlH">
                                 <rect key="frame" x="10" y="0.0" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="KAW-zQ-Z4d"/>
@@ -58,6 +58,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="activity_login_logo" width="48" height="48"/>
+        <image name="activity_login_logo_white" width="334" height="302.33334350585938"/>
     </resources>
 </document>

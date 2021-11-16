@@ -317,7 +317,7 @@
                                @"row": [NSString stringWithFormat:@"%d",size]
                            };
         
-        [manager GET:@"user/other" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [manager GET:@"friends" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (responseObject && responseObject[@"recordset"] ) {
                 NSArray *dataArray = responseObject[@"recordset"][@"rows"];

@@ -1,13 +1,13 @@
 {
   "images" : [
     {
-      "filename" : "40-40.png",
+      "filename" : "activity_logo_40.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "60-60.png",
+      "filename" : "activity_logo_60.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"

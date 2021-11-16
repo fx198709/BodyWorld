@@ -11,7 +11,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _noDataLabel.text = ChineseStringOrENFun(@"暂无数据", @"NO Data");
+    _noDataLabel.text = ChineseStringOrENFun(@"暂无数据", @"NO WorkOut");
     // Initialization code
 }
 
