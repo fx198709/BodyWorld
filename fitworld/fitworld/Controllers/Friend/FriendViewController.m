@@ -13,6 +13,8 @@
 <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UILabel *addTitleLabel;
+
 @property (nonatomic, strong) NSMutableArray<UserInfo *> *dataList;
 
 @property (nonatomic, assign) NSInteger currentPage;
@@ -34,6 +36,7 @@
 
 
 - (void)initView {
+    self.addTitleLabel.text = ChineseStringOrENFun(@"新的朋友", @"New friend");
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     Class cellClass = [FriendCell class];
