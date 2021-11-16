@@ -2196,13 +2196,13 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="48"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_people" translatesAutoresizingMaskIntoConstraints="NO" id="Al9-nT-xUO">
-                                        <rect key="frame" x="40" y="2" width="38" height="44"/>
+                                        <rect key="frame" x="40" y="2" width="32" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="38" id="7dv-aj-QgF"/>
+                                            <constraint firstAttribute="width" constant="32" id="7dv-aj-QgF"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新的朋友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjb-ub-Gkm">
-                                        <rect key="frame" x="88" y="14.5" width="65.5" height="19"/>
+                                        <rect key="frame" x="82" y="14.5" width="65.5" height="19"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -2302,7 +2302,7 @@
     </scenes>
     <resources>
         <image name="activity_login_bg" width="360" height="780"/>
-        <image name="add_people" width="99" height="99"/>
+        <image name="add_people" width="16.666666030883789" height="16.666666030883789"/>
         <image name="arrow_down" width="50" height="50"/>
         <image name="btn_list_mimabukejian" width="20" height="20"/>
         <image name="btn_list_mimakejian" width="20" height="20"/>
