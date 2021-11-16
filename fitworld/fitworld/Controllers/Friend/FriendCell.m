@@ -17,7 +17,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self.imgView cornerHalfWithBorderColor:[UIColor whiteColor]];
+    [self.imgView cornerHalfWithBorderColor:[UIColor clearColor]];
     [self.addBtn cornerHalfWithBorderColor:self.addBtn.backgroundColor];
     self.addBtn.hidden = YES;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -42,7 +42,9 @@
 
 
 -(IBAction)agreeAdd:(id)sender {
-    
+    if (self.callBack) {
+        self.callBack();
+    }
 }
 
 @end
