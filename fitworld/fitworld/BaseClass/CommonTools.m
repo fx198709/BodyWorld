@@ -230,6 +230,16 @@
     [alert dismissViewControllerAnimated:YES completion:nil];
 }
 
++ (NSString*)reachLeftString:(double)diff{
+    int hour = (int)diff/3600;
+    int hourleft = (long)diff % 3600;
+    int min = hourleft/60;
+    int sec = hourleft%60;
+    NSString *leftString = [NSString stringWithFormat:@"%d:%02d:%02d",hour,min,sec];
+    return leftString;
+}
+
+
 
 
 

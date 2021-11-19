@@ -15,4 +15,8 @@
 
 //重新获取数据
 - (void)reReahSearchData;
+
+//重新刷新页面时间
+- (void)reloadTabelviewCell;
+
 @end

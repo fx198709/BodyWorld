@@ -23,7 +23,7 @@
     UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(2,2, parentSize.width-4, parentSize.height-4)];
     [self addSubview:userImage];
     userImage.clipsToBounds = YES;
-    userImage.layer.cornerRadius = parentSize.width/2;
+    userImage.layer.cornerRadius = (parentSize.width-4)/2;
     [userImage sd_setImageWithURL:[NSURL URLWithString:url]];
 }
 

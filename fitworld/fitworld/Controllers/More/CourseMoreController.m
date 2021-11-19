@@ -25,7 +25,7 @@
     RightTopSearchView *searchView;
     UIButton *screenBackbutton;
     ScreenAboveView *aboveView;
-
+    NSTimer *timeLimitTimer;
 }
 @property(nonatomic,strong) NSMutableArray *viewControllers;
 @end
@@ -107,7 +107,7 @@
         strongSelf.curse_time_array = timeArray;
         strongSelf.curse_type_array = typeArray;
         [strongSelf createRightBtn];
-        [strongSelf reloadControls];
+        [strongSelf getVCScreenData];
         [strongSelf->screenBackbutton removeFromSuperview];
         strongSelf->screenBackbutton= nil;
     };
@@ -117,14 +117,20 @@
 }
 
 //重新加载页面
-- (void)reloadControls{
+- (void)reloadControlsCell{
 //    判断当前哪个页面在最上面，重新加载
-    CourseLiveViewController *vc = [self.viewControllers objectAtIndex:pageControlView.selectedIndex];
-    [vc reReahSearchData];
+    if (self.viewControllers && self.viewControllers.count > pageControlView.selectedIndex) {
+        CourseLiveViewController *vc = [self.viewControllers objectAtIndex:pageControlView.selectedIndex];
+        [vc reloadTabelviewCell];
+    }
+    
 }
 
-- (void)getScreenData{
-    
+- (void)getVCScreenData{
+    if (self.viewControllers && self.viewControllers.count > pageControlView.selectedIndex) {
+        CourseLiveViewController *vc = [self.viewControllers objectAtIndex:pageControlView.selectedIndex];
+        [vc reReahSearchData];
+    }
 }
 
 //弹层背景消失
@@ -185,10 +191,19 @@
     self.navigationController.navigationBarHidden = NO;
 //    创建一个右上角的searchBtn
     [self createRightBtn];
-    
-   
+    timeLimitTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadControlsCell) userInfo:nil repeats:YES];
+}
+
+ 
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [timeLimitTimer invalidate];
+    timeLimitTimer = nil;
     
 }
+
+
 
 - (CourseLiveViewController *)viewControllerIndex:(NSInteger)index {
     CourseLiveViewController *vc = [[CourseLiveViewController alloc] init];

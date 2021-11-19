@@ -32,7 +32,7 @@
 }
 
 - (void)changejoinBtn{
-    NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"已预约");
+    NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
     UIImage *joinImage = [UIImage imageNamed:@"action_button_bg_green"];
     if (!self.selectRoom.is_join) {
         joinTitle = ChineseStringOrENFun(@"预约", @"Count me in");
@@ -314,26 +314,26 @@
         make.left.equalTo(courseLabel);
     }];
     
-    UIButton *followCoachBtn = [[UIButton alloc] init];
-    
-    NSString *btntitle = ChineseStringOrENFun(@"关注", @"Follow");
-    [followCoachBtn setTitle:btntitle forState:UIControlStateNormal];
-    [followCoachBtn setTitle:btntitle forState:UIControlStateHighlighted];
-    followCoachBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
-    UIColor *greenColor = SelectGreenColor;
-    [followCoachBtn setTitleColor:greenColor forState:UIControlStateNormal];
-     [followCoachBtn setTitleColor:greenColor forState:UIControlStateHighlighted];
-    [coachView addSubview:followCoachBtn];
-    [followCoachBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(coachView.mas_top).offset(20);
-        make.right.equalTo(coachView).offset(-10);
-        make.height.mas_equalTo(40);
-        make.width.mas_equalTo(90);
-    }];
-    followCoachBtn.layer.cornerRadius = 20;
-    followCoachBtn.clipsToBounds = YES;
-    followCoachBtn.backgroundColor = UIColorFromRGB(37, 37, 37);
-    [followCoachBtn addTarget:self action:@selector(followBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *followCoachBtn = [[UIButton alloc] init];
+//    
+//    NSString *btntitle = ChineseStringOrENFun(@"关注", @"Follow");
+//    [followCoachBtn setTitle:btntitle forState:UIControlStateNormal];
+//    [followCoachBtn setTitle:btntitle forState:UIControlStateHighlighted];
+//    followCoachBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+//    UIColor *greenColor = SelectGreenColor;
+//    [followCoachBtn setTitleColor:greenColor forState:UIControlStateNormal];
+//     [followCoachBtn setTitleColor:greenColor forState:UIControlStateHighlighted];
+//    [coachView addSubview:followCoachBtn];
+//    [followCoachBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(coachView.mas_top).offset(20);
+//        make.right.equalTo(coachView).offset(-10);
+//        make.height.mas_equalTo(40);
+//        make.width.mas_equalTo(90);
+//    }];
+//    followCoachBtn.layer.cornerRadius = 20;
+//    followCoachBtn.clipsToBounds = YES;
+//    followCoachBtn.backgroundColor = UIColorFromRGB(37, 37, 37);
+//    [followCoachBtn addTarget:self action:@selector(followBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     lineview = [[UIView alloc] init];
     lineview.backgroundColor = UIRGBColor(225, 225, 225, 0.5);

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)showAlertDismissWithContent:(NSString*)content showWaitTime:(NSTimeInterval)time afterDelay:(NSTimeInterval)delay control:(UIViewController*)control;
 
++ (NSString*)reachLeftString:(double)diff;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -101,6 +101,11 @@
     [self refreshData];
 //    course_type=31035841618905604,31035841619102212&course_time=1200,3000&
 }
+- (void)reloadTabelviewCell{
+    if (dataArr.count>0) {
+        [self.tableView reloadData];
+    }
+}
 
  
 #pragma mark TableViewDelegate&DataSource
@@ -120,9 +125,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         
     }
+    RemoveSubviews(cell.contentView, @[]);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.backgroundColor = BuddyTableBackColor;
-    RemoveSubviews(cell.contentView, @[]);
     int leftdif = 15;
 
     Room *room = dataArr[indexPath.row];
@@ -171,21 +176,42 @@
     }];
     label3.font = [UIFont systemFontOfSize:13];
     label3.textColor = LittleTextColor;
-
+    UILabel *limitLabel = nil;
+    
+    if (room.status != 0) {
+//        处在直播状态
+        long currentTime = [[NSDate date] timeIntervalSince1970];
+        long diff = room.end_time - currentTime;
+        if (diff > 0) {
+            NSString *leftString = [CommonTools reachLeftString:diff];
+            limitLabel = [[UILabel alloc] init];
+            limitLabel.text = leftString;
+            limitLabel.font = SystemFontOfSize(14);
+            [cell.contentView addSubview:limitLabel];
+            limitLabel.textAlignment = NSTextAlignmentRight;
+            [cell mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(cell.contentView).offset(-10);
+                make.height.mas_equalTo(25);
+             }];
+        }
+    }
     UIButton *joinBtn = [[UIButton alloc] init];
     [joinBtn setTitle:@"Join" forState:UIControlStateNormal];
     [joinBtn addTarget:self action:@selector(joinBtn) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:joinBtn];
     [joinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(cell.contentView).offset(-10);
-        make.centerY.equalTo(cell.contentView);
+        if (limitLabel) {
+            make.centerY.equalTo(cell.contentView).offset(20);
+        }else{
+            make.centerY.equalTo(cell.contentView);
+        }
         make.height.mas_equalTo(25);
         make.width.mas_equalTo(80);
     }];
     UIImage *image = [UIImage imageNamed:@"action_button_bg_red1"];
     [joinBtn setBackgroundImage:image forState:UIControlStateNormal];
     [joinBtn setBackgroundImage:image forState:UIControlStateHighlighted];
-    cell.backgroundColor = UIColor.blackColor;
     return cell;
 }
 
@@ -338,5 +364,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
+
+
 
 @end

@@ -357,7 +357,7 @@ BOOL  hasrequest = NO;
         if (view == nil) {
             UIButton *createSessionBtn = [[UIButton alloc] init];
             createSessionBtn.tag = 100001;
-            NSString *creatString = ChineseStringOrENFun(@"  创建房间  ", @"  Create a session  ");
+            NSString *creatString = ChineseStringOrENFun(@"  创建房间  ", @"  Create A Session  ");
             [createSessionBtn setTitle:creatString forState:UIControlStateNormal];
             [createSessionBtn setTitle:creatString forState:UIControlStateHighlighted];
             createSessionBtn.titleLabel.font = [UIFont systemFontOfSize:12];

@@ -26,15 +26,20 @@
 
 - (void)changeDatawithModel:(UserInfo*)userInfo andIsCreater:(BOOL)isCreate{
     self.user = userInfo;
-    UserHeadPicView * coachimageview = [[UserHeadPicView alloc] initWithFrame:CGRectMake(0, 10, 50, 50)];
+    UserHeadPicView * coachimageview = [[UserHeadPicView alloc] initWithFrame:CGRectMake(0, 10, 60, 60)];
     [self addSubview:coachimageview];
     [coachimageview changeUserInfoModelData:userInfo];
     
-    UITextView *textview = [[UITextView alloc] initWithFrame:CGRectMake(0, 60, 50, 50)];
+    UILabel *textview = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, 60, 40)];
     textview.backgroundColor = UIColor.clearColor;
     textview.textColor = UIColor.whiteColor;
     textview.text = userInfo.nickname;
+    textview.numberOfLines = 0;
+    textview.preferredMaxLayoutWidth = 60;
+    textview.lineBreakMode = NSLineBreakByWordWrapping;
     [self addSubview:textview];
+    textview.font = SystemFontOfSize(11);
+    textview.clipsToBounds = YES;
     
 //
     if (isCreate) {
@@ -117,13 +122,13 @@
         [userView changeDatawithModel:user andIsCreater:isCreate];
         userView.deleteBtn.tag = 1000+ index;
         [userView.deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        startX = startX+70;
+        startX = startX+80;
     }
     if (currentUserList.count < 6 && isCreate) {
 //        可以添加人
         UIView * userView = [[UIView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
-        CGSize  parentSize = CGSizeMake(50, 50);
+        CGSize  parentSize = CGSizeMake(60, 60);
         UIButton  *addPeopleBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, parentSize.width, parentSize.height)];
         [userView addSubview:addPeopleBtn];
         addPeopleBtn.backgroundColor = UIRGBColor(80, 80, 80, 1);
@@ -132,7 +137,7 @@
         
         UIImageView *userImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"add_plus_button.png"]];
         [addPeopleBtn addSubview:userImageView];
-        userImageView.frame = CGRectMake(0, 0, 50, 50);
+        userImageView.frame = CGRectMake(0, 0, parentSize.width, parentSize.height);
         [addPeopleBtn addTarget:self action:@selector(addPeopleBtnClick) forControlEvents:UIControlEventTouchUpInside];
         startX = startX+70;
     }
@@ -151,11 +156,9 @@
         long currentTime = [[NSDate date] timeIntervalSince1970];
         long diff = currentRoom.start_time - currentTime;
         if (diff > 0) {
-            int hour = (int)diff/3600;
-            int hourleft = diff%3600;
-            int min = hourleft/60;
-            int sec = hourleft%60;
-            NSString *titleString = [NSString stringWithFormat:@"Till start %02d:%02d:%02d",hour,min,sec];
+        
+            NSString *leftString = [CommonTools reachLeftString:diff];
+            NSString *titleString = [NSString stringWithFormat:@"Till start %@",leftString];
             [self.tillBtn setTitle:titleString forState:UIControlStateNormal];
             [self.tillBtn setTitle:titleString forState:UIControlStateHighlighted];
         }else{
@@ -334,7 +337,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.hidden = YES;
-    userListHeight = 100;
+    userListHeight = 110;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
