@@ -68,7 +68,7 @@
         joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
     }
 //    已经开始 或者自己是创建者
-    BOOL isCreate = [room.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
+    BOOL isCreate = [room.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
     if (room.status != 0 || isCreate) {
         joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
         joinImage = [UIImage imageNamed:@"action_button_bg_red"];

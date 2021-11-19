@@ -113,7 +113,7 @@
     NSInteger x = userlistView.contentOffset.x;
     RemoveSubviews(userlistView, [NSArray array]);;
     int startX = 0;
-    BOOL isCreate = [currentRoom.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
+    BOOL isCreate = [currentRoom.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
     for (int index = 0; index < currentUserList.count; index++) {
         UserInfo *user = currentUserList[index];
         UserInfoView * userView = [[UserInfoView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
@@ -198,7 +198,7 @@
     NSString *startNowString = ChineseStringOrENFun(@"提前开始", @"Start Now");
     self.startNowBtn.layer.cornerRadius =5;
     self.startNowBtn.clipsToBounds =YES;
-    BOOL isCreate = [currentRoom.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
+    BOOL isCreate = [currentRoom.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
 //    是自己创建的，才有提前开始按钮
     if (!isCreate) {
         _startNowBtnHeightCon.constant = 0;
