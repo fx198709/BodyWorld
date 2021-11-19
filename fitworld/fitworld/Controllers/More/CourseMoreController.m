@@ -228,4 +228,29 @@
 }
 */
 
+- (void)reachSeletedValue:(void(^)(NSString*typeSelected,NSString*timeSelected))selectedValue{
+    NSString *timeString = @"";
+    NSString *typeString = @"";
+    if (_curse_time_array) {
+        NSMutableArray *tempArray = [NSMutableArray array];
+        for (ScreenModel *vmodel in _curse_time_array) {
+            if (vmodel.hasSelected) {
+                [tempArray addObject:vmodel.id];
+            }
+        }
+        timeString = [tempArray componentsJoinedByString:@","];
+    }
+    if (_curse_type_array) {
+        NSMutableArray *tempArray = [NSMutableArray array];
+        for (ScreenModel *vmodel in _curse_type_array) {
+            if (vmodel.hasSelected) {
+                [tempArray addObject:vmodel.id];
+            }
+        }
+        typeString = [tempArray componentsJoinedByString:@","];
+    }
+    selectedValue(typeString,timeString);
+}
+
+
 @end

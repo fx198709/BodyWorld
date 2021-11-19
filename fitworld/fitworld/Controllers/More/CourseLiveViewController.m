@@ -26,6 +26,10 @@
     UICollectionView *collectionView;
     NSMutableArray *dayArrs;
     NSString *selectDay;
+    BOOL isLoading;
+    int _pageCount;
+    BOOL _isLoadAllData; //是否加载所有的数据，每次刷新的时候，都设置成no， 接口返回的数据小于需要的数量时，设置成yes
+    NSURLSessionDataTask *requestTask;//请求用的task
 }
 
 - (void)viewDidLoad {
@@ -65,10 +69,7 @@
     }
 
 
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.tintColor = [UIColor whiteColor];
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..." attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    
     _tableView=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -87,18 +88,21 @@
     if (@available(iOS 11.0, *)) {
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-    self.tableView.refreshControl = refreshControl;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = UIColor.blackColor;
     self.tableView.layoutMargins = UIEdgeInsetsZero;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self setupRefresh];
+    self.tableView.mj_header.backgroundColor = UIColor.blackColor;
+    self.tableView.mj_footer.backgroundColor = UIColor.blackColor;
 
-    [self refreshData];
+    [self headerRereshing];
     
 }
 
 - (void)reReahSearchData{
-    [self refreshData];
+    [self headerRereshing];
+//    [self refreshData];
 //    course_type=31035841618905604,31035841619102212&course_time=1200,3000&
 }
 - (void)reloadTabelviewCell{
@@ -301,7 +305,7 @@
     //[f setDateStyle:NSDateFormatterFullStyle];
     [f setDateFormat:ft];
     selectDay = [f stringFromDate: selectDate];
-    [self refreshData];
+    [self headerRereshing];
 }
 
 - (void)joinBtn{
@@ -309,61 +313,147 @@
 }
 
 #pragma mark - 刷新房间数据
-- (void) refreshData
+- (void) reachHeadData
 {
-    CourseMoreController *vc = (CourseMoreController*)self.parentVC;
-    NSArray *screenTypes = vc.curse_type_array;
-    NSArray *screenTimes = vc.curse_time_array;
-//day=2021-11-16&page=1&row=10&course_type=31035841618905604,31035841619102212&course_time=1200,3000&status=1
-    NSDate *toDay = [[NSDate alloc] init];
-    NSDateFormatter *f = [NSDateFormatter new];
-    NSString *ft = @"yyyy-MM-dd";
-    [f setDateFormat:ft];
-    NSString *currentDay = [f stringFromDate: toDay];
-    if(selectDay == nil){
-        selectDay = currentDay;
+    dataArr = [NSMutableArray array];
+    _isLoadAllData =NO;
+    [self loadDateIsLoadHead:YES];
+}
+
+
+ 
+
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+//开始进入刷新状态
+- (void)headerRereshing
+{
+    //下拉刷新，先还原上拉“已加载全部数据”的状态
+    [self.tableView.mj_footer resetNoMoreData];
+    [self reachHeadData];
+}
+
+
+//下拉刷新
+
+
+- (void)loadDateIsLoadHead:(BOOL)isLoadHead
+{
+    if (!isLoading) {
+        isLoading = YES;
+        [requestTask cancel];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+        int size = 20;
+        int page = 1;
+        if (!isLoadHead) {
+//            加载更多
+            page = _pageCount+1;
+        }
+       
+        if(selectDay == nil){
+            NSDate *toDay = [[NSDate alloc] init];
+            NSDateFormatter *f = [NSDateFormatter new];
+            NSString *ft = @"yyyy-MM-dd";
+            [f setDateFormat:ft];
+            NSString *currentDay = [f stringFromDate: toDay];
+            selectDay = currentDay;
+        }
+    //    [dataArr removeAllObjects];
+        NSMutableDictionary *baddyParams = [NSMutableDictionary dictionary];
+        if (_pageVCindex == 0) {
+    //        直播课
+            [baddyParams setValue:@"1" forKey:@"status"];
+        }else if (_pageVCindex == 1) {
+            [baddyParams setValue:@"团课" forKey:@"type"];
+        }else if (_pageVCindex == 2) {
+            [baddyParams setValue:@"对练课" forKey:@"type"];
+        }
+        [baddyParams setValue:selectDay forKey:@"day"];
+        CourseMoreController *vc = (CourseMoreController*)self.parentVC;
+        [vc reachSeletedValue:^(NSString *typeSelected, NSString *timeSelected) {
+            [baddyParams setValue:typeSelected forKey:@"course_type"];
+            [baddyParams setValue:timeSelected forKey:@"course_time"];
+        }];
+        
+        [baddyParams setValue:@"20" forKey:@"row"];
+        [baddyParams setValue:[NSString stringWithFormat:@"%d",page] forKey:@"page"];
+        
+        requestTask = [manager GET:@"room" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (responseObject && responseObject[@"recordset"] ) {
+                NSArray *dataArray = responseObject[@"recordset"][@"rows"];
+                if (dataArray.count < size) {
+                    self->_isLoadAllData = YES;
+                }
+                if (isLoadHead) {
+                    self->_pageCount = 1;
+                }
+                else
+                {
+                    self->_pageCount =self->_pageCount+1;
+                }
+                if (isLoadHead) {
+                    self->dataArr = [[NSMutableArray alloc] init];
+                }
+                for (int i = 0; i < [dataArray count]; i++) {
+                    Room *room = [[Room alloc] initWithJSON: dataArray[i]];
+                    [self->dataArr addObject: room];
+                }
+                
+                if (isLoadHead) {
+                    [self.tableView.mj_header endRefreshing];
+                }
+                else
+                {
+                    [self loadNextPageData];
+                }
+            
+
+                [self.tableView reloadData];
+            }
+            self->isLoading = NO;
+          
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
     }
-//    [dataArr removeAllObjects];
-    NSMutableDictionary *baddyParams = [NSMutableDictionary dictionary];
-    if (_pageVCindex == 0) {
-//        直播课
-        [baddyParams setValue:@"1" forKey:@"status"];
-    }else if (_pageVCindex == 1) {
-        [baddyParams setValue:@"团课" forKey:@"type"];
-    }else if (_pageVCindex == 2) {
-        [baddyParams setValue:@"对练课" forKey:@"type"];
+    else
+    {
     }
-    [baddyParams setValue:selectDay forKey:@"day"];
-    [baddyParams setValue:@"100" forKey:@"row"];
-    [baddyParams setValue:@"1" forKey:@"page"];
-    if (screenTypes.count > 0) {
-        [baddyParams setValue:[screenTypes componentsJoinedByString:@","] forKey:@"course_type"];
+ 
+}
+
+//上拉加载更多
+- (void)loadMore
+{
+    if (!_isLoadAllData) {
+        [self loadDateIsLoadHead:NO];
     }
-    if (screenTimes.count > 0) {
-        [baddyParams setValue:[screenTimes componentsJoinedByString:@","] forKey:@"course_time"];
+    else
+    {
+        [self loadNextPageData];
+    }
+}
+
+- (void)footerRereshing
+{
+    [self loadMore];
+}
+
+-(void)loadNextPageData{
+
+    [self.tableView.mj_footer endRefreshing];
+    if (_isLoadAllData) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
     }
     
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-    NSLog(@"initroom userToken ---- %@", userToken);
-    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
-    [manager GET:@"room" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        self->dataArr = [NSMutableArray array];
-        if (CheckResponseObject(responseObject)) {
-            NSArray *dataArray = responseObject[@"recordset"][@"rows"];
-            for (NSDictionary * dic in dataArray) {
-                Room *room = [[Room alloc] initWithJSON: dic];
-                [self->dataArr addObject: room];
-            }
-            [self.tableView reloadData];
-            if ([self.tableView.refreshControl isRefreshing]) {
-                [self.tableView.refreshControl endRefreshing];
-            }
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
 }
+
 
 
 
