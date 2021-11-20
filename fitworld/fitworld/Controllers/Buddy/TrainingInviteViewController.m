@@ -160,31 +160,6 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"error %@",error.description);
     }];
-//    NSString *strUrl = [NSString stringWithFormat:@"%@room/battle", FITAPI_HTTPS_PREFIX];
-//    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-//    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-//    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-//    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-//    [manager POST:strUrl parameters:baddyParams headers:nil progress:nil
-//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"responseObject ---- %@", responseObject);
-//        NSDictionary *dict = responseObject[@"recordset"];
-//        NSString *eventId = dict[@"event_id"];
-//        NSLog(@"eventId ----  %@", eventId);
-//
-//        NSString * nickName = @"123";
-////        进入成功页面
-//
-//        [ConfigManager sharedInstance].eventId = eventId;
-//        [ConfigManager sharedInstance].nickName = nickName;
-//        [[ConfigManager sharedInstance] saveConfig];
-//
-//        NSDictionary *codeDict = @{@"eid":eventId, @"name":nickName};
-//        RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
-//        [self.navigationController pushViewController:roomVC animated:YES];
-//       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//       NSLog(@"failure ---- %@", error);
-//    }];
 }
 
 #pragma mark TableViewDelegate&DataSource

@@ -141,14 +141,7 @@
 - (void)join:(UIButton *) recognizer{
     NSLog(@"join ----");
     Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];
-    NSString * nickName = @"123";
-    [ConfigManager sharedInstance].eventId = selectRoom.event_id;
-    [ConfigManager sharedInstance].nickName = nickName;
-    [[ConfigManager sharedInstance] saveConfig];
-
-    NSDictionary *codeDict = @{@"eid":selectRoom.event_id, @"name":nickName};
-    RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
-    [[self viewController].navigationController pushViewController:roomVC animated:YES];
+    [[APPObjOnce sharedAppOnce] joinRoom:selectRoom withInvc:[self viewController]];
 }
 
 

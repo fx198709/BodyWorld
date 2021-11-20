@@ -166,15 +166,9 @@
     NSLog(@"join ----");
 //    这边需要正在进行中的，才能开始，需要判断状态
     return;
+    
     Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];
-    NSString * nickName = @"123";
-    [ConfigManager sharedInstance].eventId = selectRoom.event_id;
-    [ConfigManager sharedInstance].nickName = nickName;
-    [[ConfigManager sharedInstance] saveConfig];
-
-    NSDictionary *codeDict = @{@"eid":selectRoom.event_id, @"name":nickName};
-    RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
-    [[self viewController].navigationController pushViewController:roomVC animated:YES];
+    [[APPObjOnce sharedAppOnce] joinRoom:selectRoom withInvc:[self viewController]];
 }
 
 

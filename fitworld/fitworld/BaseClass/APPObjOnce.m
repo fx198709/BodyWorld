@@ -7,7 +7,8 @@
 
 #import "APPObjOnce.h"
 #import "UIView+MT.h"
-
+#import "Room.h"
+#import "RoomVC.h"
 @implementation APPObjOnce
 + (instancetype)sharedAppOnce {
     static APPObjOnce *_sharedApp = nil;
@@ -34,5 +35,19 @@
            }
     }];
 }
+
+- (void)joinRoom:(Room*)selectRoom withInvc:(UIViewController*)invc{
+//    Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];
+    NSString * nickName = [APPObjOnce sharedAppOnce].currentUser.nickname;
+    [ConfigManager sharedInstance].eventId = selectRoom.event_id;
+    [ConfigManager sharedInstance].nickName = nickName;
+    [[ConfigManager sharedInstance] saveConfig];
+
+    NSDictionary *codeDict = @{@"eid":selectRoom.event_id, @"name":nickName};
+    RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
+    [invc.navigationController pushViewController:roomVC animated:YES];
+    roomVC.invc = invc;
+}
+
 
 @end

@@ -30,10 +30,11 @@
     [self addSubview:coachimageview];
     [coachimageview changeUserInfoModelData:userInfo];
     
-    UILabel *textview = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, 60, 40)];
+    UILabel *textview = [[UILabel alloc] initWithFrame:CGRectMake(0, 66, 60, 40)];
     textview.backgroundColor = UIColor.clearColor;
     textview.textColor = UIColor.whiteColor;
     textview.text = userInfo.nickname;
+    textview.textAlignment = NSTextAlignmentCenter;
     textview.numberOfLines = 0;
     textview.preferredMaxLayoutWidth = 60;
     textview.lineBreakMode = NSLineBreakByWordWrapping;
@@ -325,6 +326,7 @@
 //    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
     RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
     [self.navigationController pushViewController:roomVC animated:YES];
+    roomVC.invc = self;
 }
 
 - (void)detailBtnClick{
@@ -439,6 +441,7 @@
         //    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
             RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
             [self.navigationController pushViewController:roomVC animated:YES];
+            roomVC.invc = self;
         }
        
       

@@ -140,6 +140,11 @@
     [cell.contentView addSubview:leftImageView];
     leftImageView.clipsToBounds = YES;
     leftImageView.layer.cornerRadius = 28;
+    [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(cell.contentView).offset(22);
+        make.left.equalTo(cell.contentView).offset(20);
+        make.size.mas_equalTo(CGSizeMake(56, 56));
+    }];
     
     UILabel *label1 = [[UILabel alloc] init];
     label1.text = room.course.name;
@@ -185,28 +190,34 @@
     if (room.status != 0) {
 //        处在直播状态
         long currentTime = [[NSDate date] timeIntervalSince1970];
-        long diff = room.end_time - currentTime;
+        long diff = currentTime- room.start_time;
         if (diff > 0) {
             NSString *leftString = [CommonTools reachLeftString:diff];
             limitLabel = [[UILabel alloc] init];
+            leftString = [NSString stringWithFormat:@"%@  %@",leftString,ChineseStringOrENFun(@"Elapsed", @"Elapsed")];
             limitLabel.text = leftString;
             limitLabel.font = SystemFontOfSize(14);
             [cell.contentView addSubview:limitLabel];
             limitLabel.textAlignment = NSTextAlignmentRight;
-            [cell mas_makeConstraints:^(MASConstraintMaker *make) {
+            limitLabel.textColor = UIColor.whiteColor;
+            [limitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(cell.contentView).offset(-10);
                 make.height.mas_equalTo(25);
+                
              }];
         }
     }
     UIButton *joinBtn = [[UIButton alloc] init];
-    [joinBtn setTitle:@"Join" forState:UIControlStateNormal];
-    [joinBtn addTarget:self action:@selector(joinBtn) forControlEvents:UIControlEventTouchUpInside];
+    NSString *joinString = ChineseStringOrENFun(@"立即进入", @"Join");
+    [joinBtn setTitle:joinString forState:UIControlStateNormal];
+    [joinBtn addTarget:self action:@selector(joinBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:joinBtn];
+    joinBtn.tag = 100+indexPath.row;
     [joinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(cell.contentView).offset(-10);
         if (limitLabel) {
             make.centerY.equalTo(cell.contentView).offset(20);
+            make.top.equalTo(limitLabel.mas_bottom).offset(10);
         }else{
             make.centerY.equalTo(cell.contentView);
         }
@@ -308,7 +319,13 @@
     [self headerRereshing];
 }
 
-- (void)joinBtn{
+- (void)joinBtnClicked:(UIButton*)btn{
+    int tag = btn.tag - 100;
+    if (dataArr.count > tag) {
+        Room *selectedRoom = [dataArr objectAtIndex:tag];
+        
+        
+    }
     NSLog(@"Join");
 }
 

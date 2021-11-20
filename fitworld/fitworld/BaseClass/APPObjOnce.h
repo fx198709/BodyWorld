@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 //获取用户信息
 - (void)getUserinfo:(nullable void(^)(bool isSuccess))completedBlock;
 
+- (void)joinRoom:(id)room withInvc:(UIViewController*)vc;
+
 @end
 
 NS_ASSUME_NONNULL_END
