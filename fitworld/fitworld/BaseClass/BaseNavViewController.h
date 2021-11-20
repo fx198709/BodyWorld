@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseNavViewController : UIViewController
+@property (nonatomic, assign)BOOL isTapBack;
 
 @end
 

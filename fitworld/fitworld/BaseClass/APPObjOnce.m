@@ -20,10 +20,14 @@
     return _sharedApp;
 }
 
-- (void)getUserinfo:(nullable void(^)(bool isSuccess))completedBlock {    
+- (void)getUserinfo:(nullable void(^)(bool isSuccess))completedBlock {
+    UserInfo * tempInfo = [[APPObjOnce sharedAppOnce] currentUser];
+
     [[AFAppNetAPIClient manager] GET:@"user_info" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject objectForKey:@"recordset"]) {
             self.currentUser = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
+            self.currentUser.msg = tempInfo.msg;
+            self.currentUser.msg_cn = tempInfo.msg_cn;
             if (completedBlock) {
                 completedBlock(YES);
             }

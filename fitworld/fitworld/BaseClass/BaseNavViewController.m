@@ -10,7 +10,6 @@
 #import "UIImage+Extension.h"
 
 @interface BaseNavViewController ()
-
 @end
 
 @implementation BaseNavViewController
@@ -19,6 +18,7 @@
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
     self.view.backgroundColor = UIColor.blackColor;
+    self.isTapBack = YES;
 //    self.navigationController.hidesNavigationBarWhenPush = NO;
     // Do any additional setup after loading the view.
 }
@@ -47,12 +47,13 @@
     self.navigationItem.rightBarButtonItem = nil;
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 
-    //开启ios右滑返回
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
-    }
 
 }
+
+- (void)interactivePopGestureRecognizer{
+    return; 
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     NSLog(@"%@ didReceiveMemoryWarning",[self class]);
@@ -63,13 +64,28 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     NSLog(@"viewDidAppear %@",NSStringFromClass(self.class));
+    self.isTapBack = YES;
+    //开启ios右滑返回
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    //开启ios右滑返回
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
  
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer
+                                      *)gestureRecognizer{
+    return self.isTapBack; //YES：允许右滑返回  NO：禁止右滑返回
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

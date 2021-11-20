@@ -319,6 +319,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     [super viewDidAppear:animated];
+    self.isTapBack = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -499,6 +500,11 @@
 - (void)guestMemberChangetoView{
     [self layoutPanel];
     
+}
+
+- (void)backPopViewcontroller:(id) sender
+{
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
