@@ -165,9 +165,9 @@
     }];
     label2.font = [UIFont systemFontOfSize:15];
     label2.textColor = LittleTextColor;
-
+    NSString *countryUrl = [room.room_creator.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     UIImageView *countryImageView = [[UIImageView alloc] init];
-    [countryImageView sd_setImageWithURL:[NSURL URLWithString:room.room_creator.country_icon]];
+    [countryImageView sd_setImageWithURL:[NSURL URLWithString:countryUrl]];
     [cell.contentView addSubview:countryImageView];
     countryImageView.contentMode = UIViewContentModeScaleAspectFit;
     [countryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -175,7 +175,6 @@
         make.left.equalTo(label2.mas_right).offset(6);
         make.size.mas_equalTo(CGSizeMake(16, 16));
     }];
-    
     UILabel *label3 = [[UILabel alloc] init];
     label3.text = ReachWeekTime(room.updated_at.longLongValue);
     [cell.contentView addSubview:label3];
@@ -186,7 +185,7 @@
     label3.font = [UIFont systemFontOfSize:13];
     label3.textColor = LittleTextColor;
     UILabel *limitLabel = nil;
-    
+     
     if (room.status != 0) {
 //        处在直播状态
         long currentTime = [[NSDate date] timeIntervalSince1970];
@@ -199,7 +198,26 @@
             limitLabel.font = SystemFontOfSize(14);
             [cell.contentView addSubview:limitLabel];
             limitLabel.textAlignment = NSTextAlignmentRight;
-            limitLabel.textColor = UIColor.whiteColor;
+            limitLabel.textColor = LittleTextColor;
+            [limitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(cell.contentView).offset(-10);
+                make.height.mas_equalTo(25);
+                
+             }];
+        }
+    }else{
+        //        还没开始 判断开始时间和现在时间的差
+        long currentTime = [[NSDate date] timeIntervalSince1970];
+        long diff = room.start_time - currentTime;
+        if (diff < 3600*3) {
+            NSString *leftString = [CommonTools reachLeftString:diff];
+            limitLabel = [[UILabel alloc] init];
+            leftString = [NSString stringWithFormat:@"%@  %@",leftString,ChineseStringOrENFun(@"to start", @"to start")];
+            limitLabel.text = leftString;
+            limitLabel.font = SystemFontOfSize(14);
+            [cell.contentView addSubview:limitLabel];
+            limitLabel.textAlignment = NSTextAlignmentRight;
+            limitLabel.textColor = LittleTextColor;
             [limitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(cell.contentView).offset(-10);
                 make.height.mas_equalTo(25);
@@ -323,7 +341,10 @@
     int tag = btn.tag - 100;
     if (dataArr.count > tag) {
         Room *selectedRoom = [dataArr objectAtIndex:tag];
-        
+        if (selectedRoom.status != 0) {
+//            已经开始了，就进入
+            [[APPObjOnce sharedAppOnce] joinRoom:selectedRoom withInvc:self];
+        }
         
     }
     NSLog(@"Join");

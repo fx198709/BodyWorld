@@ -44,7 +44,8 @@
     }
     NSString *nickname = [NSString stringWithFormat:@"%@:%@",perString,room.room_creator.nickname];
     self.roomuser.text = nickname;
-    [self.countryimage sd_setImageWithURL: [NSURL URLWithString:room.room_creator.country_icon] placeholderImage:nil];
+    NSString *countryUrl = [room.room_creator.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [self.countryimage sd_setImageWithURL: [NSURL URLWithString:countryUrl] placeholderImage:nil];
     NSString *roomidhead = ChineseStringOrENFun(@"房间ID",@"Room ID");
     self.roomidLabel.text = [NSString stringWithFormat:@"%@:%@",roomidhead,room.course.course_id];
     
