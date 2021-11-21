@@ -39,14 +39,15 @@
   }];
   
   mMyLabel = [[UILabel alloc] init];
-  [mMyLabel setText:@"我"];
+  [mMyLabel setText:[APPObjOnce sharedAppOnce].currentUser.nickname];
   [mMyLabel setTextColor:[UIColor whiteColor]];
   [mMyLabel setTextAlignment:NSTextAlignmentCenter];
   [mMyLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
   [mMyLabel sizeToFit];
   [mMyView addSubview:mMyLabel];
   [mMyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.and.centerY.equalTo(self.mMyView);
+      make.left.equalTo(mMyView).offset(5);
+      make.top.equalTo(mMyView).offset(5);
   }];
   
 //  mNameLabel = [[UILabel alloc] init];

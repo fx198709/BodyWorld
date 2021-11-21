@@ -10,7 +10,10 @@
 #import "ClassMember.h"
 
 @interface GuestPanel : UIView
-
+@property (nonatomic, strong) UIView* mMyView;
+@property (nonatomic, strong) UILabel* mMyLabel;
+@property (nonatomic, strong) UILabel* mNameLabel;
+@property (nonatomic, strong) UIButton* mChatBtn;
 @property (copy) void(^pressBtnChat)(void);
 
 @property (nonatomic, strong) NSString * mUserId;

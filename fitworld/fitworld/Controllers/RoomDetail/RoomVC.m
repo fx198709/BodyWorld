@@ -167,7 +167,7 @@
     [self joinStateRequest:YES success:^{
         
     }];
-    [self reachRoomDetailInfo];
+//    [self reachRoomDetailInfo];
 }
 
 - (void)layoutPanel {
@@ -270,6 +270,11 @@
                         [strongSelf.guestPanels addObject:guestpanel];
                         [self->_bottomPanelView addSubview:guestpanel];
                         [guestpanel attachGuestRenderView];
+                        ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
+                    if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
+                        guestpanel.mMyLabel.text = [[[currentMember copyInfo].custom objectForKey:@"internal"] objectForKey:@"nickName"];
+
+                    }
                         guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
 //                    }
                     

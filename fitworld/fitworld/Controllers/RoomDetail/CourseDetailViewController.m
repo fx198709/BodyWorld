@@ -65,6 +65,7 @@
 //    [countInBtn setTitle:@"JOIN CLASS" forState:UIControlStateNormal];
     [_joinBtn addTarget:self action:@selector(joinClass) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_joinBtn];
+    _joinBtn.titleLabel.font =SystemFontOfSize(13);
     [_joinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(topImgView.mas_bottom).offset(-30);
         make.right.equalTo(topImgView.mas_right).offset(-10);
