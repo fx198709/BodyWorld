@@ -19,6 +19,7 @@
 #define LOG_FOLDER        @"Log"
 
 @interface RoomVC () <VConductorClientDelegate> {
+    BOOL canErrorToPOP;//进入房间失败，就可以pop出去
 }
 
 @property (nonatomic, strong) NSDictionary* mCode;
@@ -62,6 +63,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    canErrorToPOP = YES;
     // Do any additional setup after loading the view.
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -388,7 +390,9 @@
 - (void)onJoinRoomFailed:(NSString *)error {
     [self hideHud];
     [self showHud:error withDuration:3];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (canErrorToPOP) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)onLostRoomWithCode:(NSInteger)code andError:(NSString*)err {
@@ -398,7 +402,9 @@
 - (void)onLeaveRom {
     [mSidePanel detachLocalView];
     [mMainPanel detachLocalView];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (canErrorToPOP) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)onRoomUpdate:(ClassRoom*)room {
@@ -510,10 +516,10 @@
 - (void)backPopViewcontroller:(id) sender
 {
 //    [self.navigationController popViewControllerAnimated:YES];
-    NSString *titleString = ChineseStringOrENFun(@"是否要退出房间", @"exit");
-    NSString *contentString = ChineseStringOrENFun(@"", @"");
+    NSString *titleString = ChineseStringOrENFun(@"提示", @"Alert");
+    NSString *contentString = ChineseStringOrENFun(@"你将退出此次课程，确认退出吗？", @"");
     UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:titleString message:contentString preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [alertControl addAction:cancelAction];
     __weak UIAlertController *weakalert = alertControl;
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -533,6 +539,7 @@
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
 //             跳转到健身完成页面
+            self->canErrorToPOP = NO;
             AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
             trainingvc.event_id = self->mCode[@"eid"];
             trainingvc.invc = self.invc;

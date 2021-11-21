@@ -15,6 +15,9 @@
 
 #import "APPObjOnce.h"
 
+#define ProtocolShowKey @"ProtocolDisplay"
+
+
 @interface LoginController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *zhLanguageBtn;
@@ -26,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *showPwdBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+
+@property (nonatomic, strong) UIView *protocolView;
 
 
 
@@ -44,10 +49,28 @@
     self.navigationItem.leftBarButtonItem = nil;
 }
 
+- (void)viewDidArrpear:(BOOL)animated {
+    [super viewDidArrpear:animated];
+    [self showProtocolView];
+}
+
 - (void)initView {
     [self.nameField cornerHalfWithBorderColor:[self.nameField backgroundColor]];
     [self.pwdField cornerHalfWithBorderColor:[self.pwdField backgroundColor]];
     [self.loginBtn cornerHalfWithBorderColor:[self.loginBtn backgroundColor]];
+}
+
+- (void)showProtocolView {
+    NSString *hasShow = [[NSUserDefaults standardUserDefaults] objectForKey:ProtocolShowKey];
+    if (hasShow != nil) {
+        return;
+    }
+    
+    //显示协议
+    if (self.protocolView == nil) {
+        self.protocolView = LoadXib(@"protocolView");
+    }
+    [self.view addSubView:self.protocolView];
 }
 
 
