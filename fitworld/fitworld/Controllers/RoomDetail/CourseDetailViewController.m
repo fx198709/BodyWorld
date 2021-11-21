@@ -465,9 +465,12 @@
         if (CheckResponseObject(responseObject)) {
             self.selectRoom.is_join = postBool;
             [self changejoinBtn];
+        }else{
+            [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [CommonTools showNETErrorcontrol:self];
     }];
 }
 

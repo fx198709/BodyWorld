@@ -153,6 +153,7 @@
                            @"friend_ids":userIdsString
                        };
     [[AFAppNetAPIClient manager] POST:@"room/invite" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (CheckResponseObject(responseObject)) {
             [CommonTools showAlertDismissWithContent:@"添加成功" showWaitTime:0 afterDelay:1 control:self];
             
@@ -160,12 +161,14 @@
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
+        }else{
+            [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
         }
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+       
             
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-         
+        [CommonTools showNETErrorcontrol:self];
     }];
 
 }

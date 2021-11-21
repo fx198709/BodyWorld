@@ -91,12 +91,13 @@
                 [self reachData];
             }else{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-
+                [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
             }
            
           
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [CommonTools showNETErrorcontrol:self];
         }];
     }
     
@@ -356,6 +357,12 @@
         
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+//    不能左滑点击
+    self.isTapBack = NO;
+}
+
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [dataTimer invalidate];
@@ -442,11 +449,15 @@
             RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
             [self.navigationController pushViewController:roomVC animated:YES];
             roomVC.invc = self;
+        }else{
+            [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
         }
        
       
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [CommonTools showNETErrorcontrol:self];
+
     }];
 }
 

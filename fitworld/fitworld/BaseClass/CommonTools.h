@@ -17,7 +17,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)showAlertDismissWithContent:(NSString*)content showWaitTime:(NSTimeInterval)time afterDelay:(NSTimeInterval)delay control:(UIViewController*)control;
 
++ (void)showAlertDismissWithContent:(NSString*)content control:(UIViewController*)control;
+
++ (void)showNETErrorcontrol:(UIViewController*)control;
+
+
 + (NSString*)reachLeftString:(double)diff;
+
+/* 根据room的状态，改变按钮
+ */
++ (void)changeBtnState:(UIButton*)vbutn btnData:(id)roomData;
+
 
 @end
 

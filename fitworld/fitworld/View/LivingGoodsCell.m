@@ -27,7 +27,6 @@
     [_joinBtn setTitle:titleText forState:UIControlStateHighlighted];
 
     _joinBtn.titleLabel.font = SystemFontOfSize(14);
-    
     [_joinBtn setBackgroundImage:[UIImage imageNamed:@"action_button_bg_red"] forState:UIControlStateNormal];
     [_joinBtn setBackgroundImage:[UIImage imageNamed:@"action_button_bg_red"] forState:UIControlStateHighlighted];
 
@@ -51,6 +50,8 @@
     
     UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"type-calss%ld",(long)room.course.type_int]];
     _rightTopImage.image = image;
+    [CommonTools changeBtnState:_joinBtn btnData:room];
+
 }
 
 

@@ -19,7 +19,7 @@
 @interface Room : BaseObject
 
 @property (nonatomic , assign) BOOL              allow_record;
-@property (nonatomic , assign) BOOL              allow_watch;
+@property (nonatomic , assign) BOOL              allow_watch; //允许观察
 @property (nonatomic , assign) BOOL              count_me_in;
 @property (nonatomic , strong) Course              * course;
 @property (nonatomic , copy) NSString              * course_id;
@@ -80,7 +80,25 @@
 @property (nonatomic , assign) NSInteger              calorie;
 
 
+@property (nonatomic , assign) NSInteger              roomDealState; //自己添加的一个状态
+
+
 - (BOOL)isEqualToRoom:(Room *)room;
+
+- (BOOL)isBegin;
+
+//获取房间的真正状态
+
+- (int)reachRoomDealState;
+/*
+ public static int ROOM_ITEM_APPOINTMENT = 1;    //1  显示预约    -> 预约 1  显示预约    -> 预约        绿色背景
+ public static int ROOM_ITEM_ALREADY_APPOINTMENT = 2;    // //显示已预约 2  显示已预约  --> 取消预约    绿色背景
+ public static int ROOM_ITEM_LOCK = 3;       //显示上锁 3  显示上锁   -- >无操作       灰色
+ public static int ROOM_ITEM_FULL = 4;  //已约满    --> 无操作 4  已约满    --> 无操作       灰色
+ public static int ROOM_ITEM_IN = 5;      //5  立即进入 5  立即进入   -->进入房间       红
+ public static int ROOM_ITEM_PREPER = 6;  //6  房东立即进入  -->进入准备页面   红
+ */
+
 
 @end
 

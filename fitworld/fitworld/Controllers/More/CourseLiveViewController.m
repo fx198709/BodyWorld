@@ -186,7 +186,7 @@
     label3.textColor = LittleTextColor;
     UILabel *limitLabel = nil;
      
-    if (room.status != 0) {
+    if ([room isBegin]) {
 //        处在直播状态
         long currentTime = [[NSDate date] timeIntervalSince1970];
         long diff = currentTime- room.start_time;
@@ -209,7 +209,7 @@
         //        还没开始 判断开始时间和现在时间的差
         long currentTime = [[NSDate date] timeIntervalSince1970];
         long diff = room.start_time - currentTime;
-        if (diff < 3600*3) {
+        if (diff < 3600*3 && diff >0) {
             NSString *leftString = [CommonTools reachLeftString:diff];
             limitLabel = [[UILabel alloc] init];
             leftString = [NSString stringWithFormat:@"%@  %@",leftString,ChineseStringOrENFun(@"to start", @"to start")];
@@ -226,11 +226,11 @@
         }
     }
     UIButton *joinBtn = [[UIButton alloc] init];
-    NSString *joinString = ChineseStringOrENFun(@"立即进入", @"Join");
-    [joinBtn setTitle:joinString forState:UIControlStateNormal];
+    
     [joinBtn addTarget:self action:@selector(joinBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:joinBtn];
     joinBtn.tag = 100+indexPath.row;
+    joinBtn.titleLabel.font =SystemFontOfSize(13);
     [joinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(cell.contentView).offset(-10);
         if (limitLabel) {
@@ -242,9 +242,8 @@
         make.height.mas_equalTo(25);
         make.width.mas_equalTo(80);
     }];
-    UIImage *image = [UIImage imageNamed:@"action_button_bg_red1"];
-    [joinBtn setBackgroundImage:image forState:UIControlStateNormal];
-    [joinBtn setBackgroundImage:image forState:UIControlStateHighlighted];
+    
+    [CommonTools changeBtnState:joinBtn btnData:room];
     return cell;
 }
 
@@ -338,14 +337,10 @@
 }
 
 - (void)joinBtnClicked:(UIButton*)btn{
-    int tag = btn.tag - 100;
+    int tag = (int)btn.tag - 100;
     if (dataArr.count > tag) {
         Room *selectedRoom = [dataArr objectAtIndex:tag];
-        if (selectedRoom.status != 0) {
-//            已经开始了，就进入
-            [[APPObjOnce sharedAppOnce] joinRoom:selectedRoom withInvc:self];
-        }
-        
+        [[APPObjOnce sharedAppOnce] joinRoom:selectedRoom withInvc:self];
     }
     NSLog(@"Join");
 }

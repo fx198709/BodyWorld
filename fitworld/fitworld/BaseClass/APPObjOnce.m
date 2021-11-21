@@ -42,15 +42,20 @@
 
 - (void)joinRoom:(Room*)selectRoom withInvc:(UIViewController*)invc{
 //    Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];
-    NSString * nickName = [APPObjOnce sharedAppOnce].currentUser.nickname;
-    [ConfigManager sharedInstance].eventId = selectRoom.event_id;
-    [ConfigManager sharedInstance].nickName = nickName;
-    [[ConfigManager sharedInstance] saveConfig];
+//    判断一下房间的状态
+    int roomRealState = [selectRoom reachRoomDealState];
+    if (roomRealState == 5) {
+        NSString * nickName = [APPObjOnce sharedAppOnce].currentUser.nickname;
+        [ConfigManager sharedInstance].eventId = selectRoom.event_id;
+        [ConfigManager sharedInstance].nickName = nickName;
+        [[ConfigManager sharedInstance] saveConfig];
 
-    NSDictionary *codeDict = @{@"eid":selectRoom.event_id, @"name":nickName};
-    RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
-    [invc.navigationController pushViewController:roomVC animated:YES];
-    roomVC.invc = invc;
+        NSDictionary *codeDict = @{@"eid":selectRoom.event_id, @"name":nickName};
+        RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
+        [invc.navigationController pushViewController:roomVC animated:YES];
+        roomVC.invc = invc;
+    }
+    
 }
 
 

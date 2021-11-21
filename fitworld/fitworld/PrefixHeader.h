@@ -51,9 +51,6 @@ UIKIT_STATIC_INLINE  NSString* ChineseOrENFun(NSObject* obj, NSString* key){
     }
 }
 
-UIKIT_STATIC_INLINE  BOOL CheckResponseObject(id responseObject){
-    return [responseObject objectForKey:@"status"] && [[responseObject objectForKey:@"status"] longLongValue] == 0;
-}
 
 
 
@@ -244,6 +241,18 @@ static inline BOOL BOOLValueFromDic(NSDictionary * _Nonnull info, NSString * _Nu
     }
     return NO;
 }
+
+UIKIT_STATIC_INLINE  BOOL CheckResponseObject(id responseObject){
+    return [responseObject objectForKey:@"status"] && [[responseObject objectForKey:@"status"] longLongValue] == 0;
+}
+//UIKIT_STATIC_INLINE  BOOL ShowErrorResponseObject(id responseObject,UIViewController *control){
+//    NSString *errorMessage = [responseObject objectForKey:@"msg"];
+//    if (errorMessage == nil) {
+//        errorMessage = ChineseStringOrENFun(@"未知错误", @"Unknown Error");
+//    }
+//    [CommonTools showAlertDismissWithContent:errorMessage showWaitTime:0.2 afterDelay:2 control:control];
+//}
+
 
 
 #define ChangeSuccessMsg ChineseStringOrENFun(@"修改成功", @"Success changed")

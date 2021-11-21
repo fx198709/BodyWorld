@@ -156,5 +156,60 @@
     return YES;
 }
 
+//这个课程，是否已经开始了
+- (BOOL)isBegin{
+    NSTimeInterval timeNow = [[NSDate date] timeIntervalSince1970];
+//     当前时间 大于房间开始时间
+    return (self.status != 0 || self.start_time < timeNow);
+}
+
+//commtools 里面还有一份处理
+- (int)reachRoomDealState{
+    if ([self isBegin]) {
+//        已经开始直播
+        if ([self.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
+//            房主
+            self.roomDealState = 5;
+        }else{
+            if (self.is_join) {
+                self.roomDealState = 5;
+            }else{
+                if (self.allow_watch) {
+                    if (self.course.max_num > self.invite_count) {
+                        self.roomDealState = 5;
+                    }else{
+                        self.roomDealState = 4;
+                    }
+                }else{
+                    self.roomDealState = 3;
+                }
+            }
+        }
+    }else{
+        if ([self.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
+    //        当前使用人
+            self.roomDealState = 6;
+        }else{
+            if (self.is_join) {
+                self.roomDealState = 2;
+            }else{
+                if (self.allow_watch) {
+                    if (self.course.max_num > self.invite_count) {
+                        self.roomDealState = 1;
+                       
+                    }else{
+                        self.roomDealState = 4;
+                    }
+                }else{
+                    self.roomDealState = 3;
+                }
+            }
+        }
+    }
+    return  self.roomDealState;
+}
+
+
+
 
 @end

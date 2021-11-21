@@ -6,8 +6,103 @@
 //
 
 #import "CommonTools.h"
-
+#import "Room.h"
 @implementation CommonTools
+
+/*
+ 0 课程未开始  房主                                       显示立即进入     6   房东立即进入
+     1 课程未开始  受邀好友   未预约                            显示预约     1
+     2 课程未开始  受邀好友   已预约                            显示已预约    2
+     3 课程未开始  陌生人              不允许陌生人              显示上锁      3
+     4 课程未开始  陌生人    未预约     允许陌生人      未满6人    显示预约     1
+     5 课程未开始  陌生人    未预约     允许陌生人      满6人     显示已约满     4
+     6 课程未开始  陌生人    已预约                             显示已预约   2  (这种情况不存在）
+    10 课程已开始  房主                                        显示立即进入     5
+    11 课程已开始  受邀好友                                    显示立即进入     5
+    12 课程已开始  陌生人              不允许陌生人              显示上锁      3
+    13 课程已开始  陌生人              允许陌生人      未满6人    显示立即进入     5
+    14 课程已开始  陌生人              允许陌生人      满6人     显示满员       4
+
+1  显示预约    -> 预约        绿色背景
+2  显示已预约  --> 取消预约    绿色背景
+3  显示上锁   -- >无操作       灰色
+4  已约满    --> 无操作       灰色
+5  立即进入   -->进入房间       红
+6  房东立即进入  -->进入准备页面   红
+  */
+
++ (void)changeBtnState:(UIButton*)vbutn btnData:(Room*)roomData{
+    NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
+    UIImage *joinImage = [UIImage imageNamed:@"action_button_bg_green"];
+    if ([roomData isBegin]) {
+//        已经开始直播
+        if ([roomData.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
+//            房主
+            joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+            joinImage = [UIImage imageNamed:@"action_button_bg_red"];
+            roomData.roomDealState = 5;
+        }else{
+            if (roomData.is_join) {
+                roomData.roomDealState = 5;
+                joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+                joinImage = [UIImage imageNamed:@"action_button_bg_red"];
+               
+            }else{
+                if (roomData.allow_watch) {
+                    if (roomData.course.max_num > roomData.invite_count) {
+                        roomData.roomDealState = 5;
+                        joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+                        joinImage = [UIImage imageNamed:@"action_button_bg_red"];
+                    }else{
+                        roomData.roomDealState = 4;
+                        joinTitle = ChineseStringOrENFun(@"已约满", @"Count me in");
+                        joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
+                    }
+                }else{
+                    roomData.roomDealState = 3;
+                    joinTitle = ChineseStringOrENFun(@"上锁", @"Lock");
+                    joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
+                }
+            }
+        }
+    }else{
+        if ([roomData.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
+    //        当前使用人
+            joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+            joinImage = [UIImage imageNamed:@"action_button_bg_red"];
+            roomData.roomDealState = 6;
+        }else{
+            if (roomData.is_join) {
+                roomData.roomDealState = 2;
+                joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
+                joinImage = [UIImage imageNamed:@"action_button_bg_green"];
+               
+            }else{
+                if (roomData.allow_watch) {
+                    if (roomData.course.max_num > roomData.invite_count) {
+                        roomData.roomDealState = 1;
+                        joinTitle = ChineseStringOrENFun(@"预约", @"Count me in");
+                        joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
+                    }else{
+                        roomData.roomDealState = 4;
+                        joinTitle = ChineseStringOrENFun(@"已约满", @"Count me in");
+                        joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
+                    }
+                }else{
+                    roomData.roomDealState = 3;
+                    joinTitle = ChineseStringOrENFun(@"上锁", @"Lock");
+                    joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
+                }
+            }
+        }
+    }
+    [vbutn setTitle:joinTitle forState:UIControlStateNormal];
+    [vbutn setTitle:joinTitle forState:UIControlStateHighlighted];
+    [vbutn setBackgroundImage:joinImage forState:UIControlStateNormal];
+    [vbutn setBackgroundImage:joinImage forState:UIControlStateHighlighted];
+
+}
+
 + (NSString *)reachDateFromInDate:(id)inDate{
     NSDate *date = [CommonTools dateFromInDate:inDate];
     NSDateFormatter *dateFormate = [[NSDateFormatter alloc] init];
@@ -207,13 +302,19 @@
     }
 }
 
-+ (void)showAlertDismissWithContent:(NSString*)content afterDelay:(NSTimeInterval)delay control:(UIViewController*)control{
-    [self showAlertDismissWithContent:content showWaitTime:0.2 afterDelay:delay control:control];
++ (void)showNETErrorcontrol:(UIViewController*)control{
+    NSString *error =ChineseStringOrENFun(@"网络错误", @"NET Error");
+    [self showAlertDismissWithContent:error showWaitTime:0.2 afterDelay:2 control:control];
+}
+
++ (void)showAlertDismissWithContent:(NSString*)content control:(UIViewController*)control{
+    [self showAlertDismissWithContent:content showWaitTime:0.2 afterDelay:2 control:control];
 }
 
 + (void)showAlertDismissWithContent:(NSString*)content showWaitTime:(NSTimeInterval)time afterDelay:(NSTimeInterval)delay control:(UIViewController*)control {
     __strong UIViewController * strongControl = control;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:content preferredStyle:UIAlertControllerStyleAlert];
+    NSString *alertString = ChineseStringOrENFun(@"提示", @"Alert");
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:alertString message:content preferredStyle:UIAlertControllerStyleAlert];
     
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC));
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
