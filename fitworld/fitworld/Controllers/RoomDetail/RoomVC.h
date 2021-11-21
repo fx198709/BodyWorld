@@ -6,10 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Room.h"
 @interface RoomVC : BaseNavViewController
 //进入直播间的前一个vc
 @property(nonatomic, weak)UIViewController * invc;
+@property(nonatomic, strong)Room * currentRoom;
 
 - (id)initWith:(NSDictionary*)code;
 

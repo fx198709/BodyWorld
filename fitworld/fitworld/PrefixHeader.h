@@ -13,6 +13,7 @@
 #import "BaseObject.h"
 #import "Enum.h"
 #import "ConfigManager.h"
+#import "BaseTableViewCell.h"
 
 // 屏幕尺寸
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -41,7 +42,7 @@ static inline BOOL ISChinese(){
     return [ConfigManager sharedInstance].language == LanguageEnum_Chinese;
 }
 
-UIKIT_STATIC_INLINE  NSString* ChineseOrENFun(BaseObject* obj, NSString* key){
+UIKIT_STATIC_INLINE  NSString* ChineseOrENFun(NSObject* obj, NSString* key){
     if(ISChinese()){
         NSString *keyString = [NSString stringWithFormat:@"%@_cn",key];
         return [obj valueForKey:keyString];

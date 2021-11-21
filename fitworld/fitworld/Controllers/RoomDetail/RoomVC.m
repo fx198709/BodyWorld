@@ -14,6 +14,7 @@
 #import "ToolFunc.h"
 
 #import "TUIKit.h"
+#import "AfterTrainingViewController.h"
 
 #define LOG_FOLDER        @"Log"
 
@@ -160,6 +161,11 @@
     };
     
     [[VConductorClient sharedInstance] joinwithEntry:VRC_URL andCode:mCode asViewer:NO withDelegate:self];
+//    进入房间
+    [self joinStateRequest:YES success:^{
+        
+    }];
+    [self reachRoomDetailInfo];
 }
 
 - (void)layoutPanel {
@@ -505,6 +511,83 @@
 - (void)backPopViewcontroller:(id) sender
 {
 //    [self.navigationController popViewControllerAnimated:YES];
+    NSString *titleString = ChineseStringOrENFun(@"是否要退出房间", @"exit");
+    NSString *contentString = ChineseStringOrENFun(@"", @"");
+    UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:titleString message:contentString preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
+        [alertControl addAction:cancelAction];
+    __weak UIAlertController *weakalert = alertControl;
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
+        __strong UIAlertController* strongalert = weakalert;
+        [self leaveToSuccessview:strongalert];
+    }];
+    [alertControl addAction:sureAction];
+    [self presentViewController:alertControl animated:YES completion:nil];
+    
 }
+
+- (void)leaveToSuccessview:(UIAlertController*)alertControl{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self joinStateRequest:NO success:^{
+        [alertControl dismissViewControllerAnimated:YES completion:nil];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+//             跳转到健身完成页面
+            AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
+            [self.navigationController pushViewController:trainingvc animated:YES];
+        });
+     }];
+}
+
+- (void)joinStateRequest:(BOOL)isJoin success:(void(^)(void))successBlock{
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+
+    NSDictionary *baddyParams = @{
+                           @"event_id": mCode[@"eid"],
+                           @"is_join":[NSNumber numberWithBool:isJoin]
+                       };
+    [manager POST:@"practise/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (successBlock) {
+            successBlock();
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (successBlock) {
+            successBlock();
+        }
+    }];
+}
+
+//更新进度条
+- (void)updateProLabel{
+    
+}
+
+//获取房间的详情
+- (void)reachRoomDetailInfo
+{
+        AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+        NSString *eventid = mCode[@"eid"];
+        NSDictionary *baddyParams = @{
+                               @"event_id": eventid,
+                           };
+        [manager GET:@"room/detail" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (CheckResponseObject(responseObject)) {
+                NSDictionary *roomJson = responseObject[@"recordset"];
+                self.currentRoom = [[Room alloc] initWithJSON:roomJson];
+                self.currentRoom.event_id = eventid;
+//                显示进度条
+                [self updateProLabel];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    
+ 
+}
+
 
 @end

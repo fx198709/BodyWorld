@@ -18,6 +18,7 @@
 #import "RoomVC.h"
 #import "NoDataCollectionViewCell.h"
 #import "CreateCourseSuccessViewController.h"
+#import "AfterTrainingViewController.h"
 
 @implementation TableCollectionViewCell
 
@@ -165,6 +166,12 @@
 - (void)join:(UIButton *) recognizer{
     NSLog(@"join ----");
 //    这边需要正在进行中的，才能开始，需要判断状态
+//    做测试用
+    Room *room = [_dataArr objectAtIndex: recognizer.tag];
+
+    AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
+    [[self viewController].navigationController pushViewController:trainingvc animated:YES];
+    trainingvc.event_id = room.event_id;
     return;
     
     Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];

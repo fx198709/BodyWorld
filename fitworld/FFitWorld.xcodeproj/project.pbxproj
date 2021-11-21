@@ -172,6 +172,15 @@
 		DD8E328E273F226B008995E9 /* code.json in Resources */ = {isa = PBXBuildFile; fileRef = DD8E328D273F226B008995E9 /* code.json */; };
 		DD98BC6B273F653900D3B59F /* CourseDetailSmallview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */; };
 		DD98BC6D273F655300D3B59F /* CourseDetailSmallview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */; };
+		DDB1380427489A2E009A44FD /* AfterTrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB1380227489A2E009A44FD /* AfterTrainingViewController.m */; };
+		DDB1380527489A2E009A44FD /* AfterTrainingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */; };
+		DDB1380A2748E347009A44FD /* Train1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB138082748E347009A44FD /* Train1TableViewCell.m */; };
+		DDB1380B2748E347009A44FD /* Train1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB138092748E347009A44FD /* Train1TableViewCell.xib */; };
+		DDB1380E2748E36F009A44FD /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB1380D2748E36F009A44FD /* BaseTableViewCell.m */; };
+		DDB138122748EAF6009A44FD /* Train2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB138102748EAF6009A44FD /* Train2TableViewCell.m */; };
+		DDB138132748EAF6009A44FD /* Train2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB138112748EAF6009A44FD /* Train2TableViewCell.xib */; };
+		DDB138172748EB07009A44FD /* Train3TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB138152748EB07009A44FD /* Train3TableViewCell.m */; };
+		DDB138182748EB07009A44FD /* Train3TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB138162748EB07009A44FD /* Train3TableViewCell.xib */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
 		DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */; };
@@ -515,6 +524,20 @@
 		DD98BC69273F653900D3B59F /* CourseDetailSmallview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseDetailSmallview.h; sourceTree = "<group>"; };
 		DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseDetailSmallview.m; sourceTree = "<group>"; };
 		DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDetailSmallview.xib; sourceTree = "<group>"; };
+		DDB1380127489A2E009A44FD /* AfterTrainingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AfterTrainingViewController.h; sourceTree = "<group>"; };
+		DDB1380227489A2E009A44FD /* AfterTrainingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AfterTrainingViewController.m; sourceTree = "<group>"; };
+		DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AfterTrainingViewController.xib; sourceTree = "<group>"; };
+		DDB138072748E347009A44FD /* Train1TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Train1TableViewCell.h; sourceTree = "<group>"; };
+		DDB138082748E347009A44FD /* Train1TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Train1TableViewCell.m; sourceTree = "<group>"; };
+		DDB138092748E347009A44FD /* Train1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Train1TableViewCell.xib; sourceTree = "<group>"; };
+		DDB1380C2748E36F009A44FD /* BaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		DDB1380D2748E36F009A44FD /* BaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		DDB1380F2748EAF6009A44FD /* Train2TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Train2TableViewCell.h; sourceTree = "<group>"; };
+		DDB138102748EAF6009A44FD /* Train2TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Train2TableViewCell.m; sourceTree = "<group>"; };
+		DDB138112748EAF6009A44FD /* Train2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Train2TableViewCell.xib; sourceTree = "<group>"; };
+		DDB138142748EB07009A44FD /* Train3TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Train3TableViewCell.h; sourceTree = "<group>"; };
+		DDB138152748EB07009A44FD /* Train3TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Train3TableViewCell.m; sourceTree = "<group>"; };
+		DDB138162748EB07009A44FD /* Train3TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Train3TableViewCell.xib; sourceTree = "<group>"; };
 		DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCollectionLivingViewCell.xib; sourceTree = "<group>"; };
 		DDEE67D32725744900D0C310 /* TableCollectionLivingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionLivingViewCell.h; sourceTree = "<group>"; };
 		DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionLivingViewCell.m; sourceTree = "<group>"; };
@@ -1006,6 +1029,8 @@
 				DD6EDB40272D2FCD002B0A8E /* CommonTools.m */,
 				A2723EDC273B7A0000388B01 /* BaseViewController.h */,
 				A2723EDD273B7A0000388B01 /* BaseViewController.m */,
+				DDB1380C2748E36F009A44FD /* BaseTableViewCell.h */,
+				DDB1380D2748E36F009A44FD /* BaseTableViewCell.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1078,6 +1103,7 @@
 		DD595EC82736F56B00618D1A /* RoomDetail */ = {
 			isa = PBXGroup;
 			children = (
+				DDB138062748E2DB009A44FD /* TrainingCell */,
 				DD595ED32736F88D00618D1A /* RoomVC.h */,
 				DD595ED22736F88D00618D1A /* RoomVC.m */,
 				DD595EC92736F5A000618D1A /* CourseDetailViewController.h */,
@@ -1093,6 +1119,9 @@
 				DD51EE4C273FB9BE00153A67 /* ChoosePeopleViewController.h */,
 				DD51EE4D273FB9BE00153A67 /* ChoosePeopleViewController.m */,
 				DD51EE4E273FB9BE00153A67 /* ChoosePeopleViewController.xib */,
+				DDB1380127489A2E009A44FD /* AfterTrainingViewController.h */,
+				DDB1380227489A2E009A44FD /* AfterTrainingViewController.m */,
+				DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -1234,6 +1263,22 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		DDB138062748E2DB009A44FD /* TrainingCell */ = {
+			isa = PBXGroup;
+			children = (
+				DDB138072748E347009A44FD /* Train1TableViewCell.h */,
+				DDB138082748E347009A44FD /* Train1TableViewCell.m */,
+				DDB138092748E347009A44FD /* Train1TableViewCell.xib */,
+				DDB1380F2748EAF6009A44FD /* Train2TableViewCell.h */,
+				DDB138102748EAF6009A44FD /* Train2TableViewCell.m */,
+				DDB138112748EAF6009A44FD /* Train2TableViewCell.xib */,
+				DDB138142748EB07009A44FD /* Train3TableViewCell.h */,
+				DDB138152748EB07009A44FD /* Train3TableViewCell.m */,
+				DDB138162748EB07009A44FD /* Train3TableViewCell.xib */,
+			);
+			path = TrainingCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1301,6 +1346,7 @@
 				DD84CB9427412A3D00EB8C61 /* RightTopSearchView.xib in Resources */,
 				A2723F0A273CF22F00388B01 /* SelectCountryCell.xib in Resources */,
 				A2A94DE2273FC64900D02C77 /* FriendCell.xib in Resources */,
+				DDB138182748EB07009A44FD /* Train3TableViewCell.xib in Resources */,
 				DD84CB99274163E900EB8C61 /* ScreenAboveView.xib in Resources */,
 				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
@@ -1309,10 +1355,12 @@
 				A2A94DD3273E76CA00D02C77 /* SelectCountryCodeCell.xib in Resources */,
 				DD595EDC2737D25800618D1A /* CreateCourseSuccessViewController.xib in Resources */,
 				04CD2E4A26982A45007814E6 /* GoodsCell.xib in Resources */,
+				DDB1380527489A2E009A44FD /* AfterTrainingViewController.xib in Resources */,
 				DD595EBE27364D0300618D1A /* MessageDetailViewController.xib in Resources */,
 				DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */,
 				047DC206268CD09900A3E37E /* LaunchScreen.storyboard in Resources */,
 				DD595EB92736224600618D1A /* NoDataCollectionViewCell.xib in Resources */,
+				DDB138132748EAF6009A44FD /* Train2TableViewCell.xib in Resources */,
 				04CD2E4C26982A45007814E6 /* TableCollectionViewCell.xib in Resources */,
 				04552B3F2696C3FD00C78706 /* material-design-icons.ttf in Resources */,
 				0472011826B7BAF400C19437 /* Localizable.strings in Resources */,
@@ -1320,6 +1368,7 @@
 				DD6EDB1D272D1A70002B0A8E /* TableHeadview.xib in Resources */,
 				047DC203268CD09900A3E37E /* Assets.xcassets in Resources */,
 				DD595EE0273A68BE00618D1A /* TableSearchView.xib in Resources */,
+				DDB1380B2748E347009A44FD /* Train1TableViewCell.xib in Resources */,
 				DD6EDB4C272E7AF9002B0A8E /* AddPeopleTableViewCell.xib in Resources */,
 				DD51EE50273FB9BE00153A67 /* ChoosePeopleViewController.xib in Resources */,
 				0433C0EF268D63DC00EB47B1 /* Podfile in Resources */,
@@ -1412,9 +1461,12 @@
 				DD595ECE2736F5A000618D1A /* CourseDetailViewController.m in Sources */,
 				DD595EF0273D9EFE00618D1A /* GuestRenderView.m in Sources */,
 				04CD2E532698478C007814E6 /* BaseObject.m in Sources */,
+				DDB1380A2748E347009A44FD /* Train1TableViewCell.m in Sources */,
 				0456193026ECEC8A00C0973F /* RegisterController.m in Sources */,
 				DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */,
+				DDB1380427489A2E009A44FD /* AfterTrainingViewController.m in Sources */,
 				04EC01F826BD8AC100DC0103 /* ToolFunc.m in Sources */,
+				DDB138122748EAF6009A44FD /* Train2TableViewCell.m in Sources */,
 				0422BDBA269C96A90084000B /* DatePlan.m in Sources */,
 				04EC01F326BD8AC000DC0103 /* MainPanel.m in Sources */,
 				DD25FED427215D580092CF87 /* AFAppNetAPIClient.m in Sources */,
@@ -1422,6 +1474,7 @@
 				04EC01F426BD8AC000DC0103 /* ViewerPanel.m in Sources */,
 				04552B532696C3FD00C78706 /* QRCodeReaderViewController.m in Sources */,
 				A2723EF6273BD07700388B01 /* NSDate+MT.m in Sources */,
+				DDB1380E2748E36F009A44FD /* BaseTableViewCell.m in Sources */,
 				A2A94DE8273FD8DD00D02C77 /* AddFriendViewController.m in Sources */,
 				DD6EDB5C272EFFFB002B0A8E /* TrainingStartViewController.m in Sources */,
 				DD6EDB33272D2C89002B0A8E /* OurDatePickerView.m in Sources */,
@@ -1431,6 +1484,7 @@
 				04552B3D2696C3FD00C78706 /* EntypoSymbol.m in Sources */,
 				04552B4D2696C3FD00C78706 /* UIImage+ImageEffects.m in Sources */,
 				DD6EDB5E272EFFFB002B0A8E /* TrainingInviteViewController.m in Sources */,
+				DDB138172748EB07009A44FD /* Train3TableViewCell.m in Sources */,
 				A256303F274099CE0030D6B2 /* MTCalenderModel.m in Sources */,
 				04552B3A2696C3FD00C78706 /* MaterialDesignColor.m in Sources */,
 				A2723F0D273D087900388B01 /* MTHUD.m in Sources */,
