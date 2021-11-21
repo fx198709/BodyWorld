@@ -147,7 +147,6 @@
             vc.selectRoom = selectRoom;
             [[self viewController].navigationController pushViewController:vc animated:YES];
         }
-      
     }
 }
 

@@ -32,16 +32,17 @@
 }
 
 - (void)changejoinBtn{
-    NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
-    UIImage *joinImage = [UIImage imageNamed:@"action_button_bg_green"];
-    if (!self.selectRoom.is_join) {
-        joinTitle = ChineseStringOrENFun(@"预约", @"Count me in");
-        joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
-    }
-    [_joinBtn setBackgroundImage:joinImage forState:UIControlStateNormal];
-    [_joinBtn setBackgroundImage:joinImage forState:UIControlStateNormal];
-    [_joinBtn setTitle:joinTitle forState:UIControlStateNormal];
-    [_joinBtn setTitle:joinTitle forState:UIControlStateNormal];
+    [CommonTools changeBtnState:_joinBtn btnData:self.selectRoom];
+//    NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
+//    UIImage *joinImage = [UIImage imageNamed:@"action_button_bg_green"];
+//    if (!self.selectRoom.is_join) {
+//        joinTitle = ChineseStringOrENFun(@"预约", @"Count me in");
+//        joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
+//    }
+//    [_joinBtn setBackgroundImage:joinImage forState:UIControlStateNormal];
+//    [_joinBtn setBackgroundImage:joinImage forState:UIControlStateNormal];
+//    [_joinBtn setTitle:joinTitle forState:UIControlStateNormal];
+//    [_joinBtn setTitle:joinTitle forState:UIControlStateNormal];
 
 }
 
@@ -454,25 +455,34 @@
 */
 
 - (void) joinClass{
+//    需要判断状态
+    int realState = [self.selectRoom reachRoomDealState];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
-    BOOL postBool =!self.selectRoom.is_join;
-    NSMutableDictionary *baddyParams = [NSMutableDictionary dictionary];
-    [baddyParams setObject:self.selectRoom.event_id forKey:@"event_id"];
-    [baddyParams setObject:[NSNumber numberWithBool:postBool] forKey:@"is_join"];
-    [manager POST:@"room/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if (CheckResponseObject(responseObject)) {
-            self.selectRoom.is_join = postBool;
-            [self changejoinBtn];
-        }else{
-            [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [CommonTools showNETErrorcontrol:self];
-    }];
+    if (realState == 1 || realState == 2) {
+//        预约
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+        BOOL postBool =!self.selectRoom.is_join;
+        NSMutableDictionary *baddyParams = [NSMutableDictionary dictionary];
+        [baddyParams setObject:self.selectRoom.event_id forKey:@"event_id"];
+        [baddyParams setObject:[NSNumber numberWithBool:postBool] forKey:@"is_join"];
+        [manager POST:@"room/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (CheckResponseObject(responseObject)) {
+                self.selectRoom.is_join = postBool;
+                [self changejoinBtn];
+            }else{
+                [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [CommonTools showNETErrorcontrol:self];
+        }];
+    }else if(realState == 5){
+//        直接开始
+        [[APPObjOnce sharedAppOnce] joinRoom:self.selectRoom withInvc:self];
+    }
+    
 }
 
 

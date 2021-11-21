@@ -15,6 +15,8 @@
 #import <math.h>
 #import "HeadTimeCollectionViewCell.h"
 #import "CourseMoreController.h"
+#import "CourseDetailViewController.h"
+#import "CreateCourseSuccessViewController.h"
 
 @interface CourseLiveViewController ()<UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate>
 @property(nonatomic,strong)UITableView*tableView;
@@ -250,6 +252,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    YJTwoViewController *vc = [[YJTwoViewController alloc] init];
 //    [self.navigationController pushViewController:vc animated:true];
+    if (dataArr.count > indexPath.row) {
+        Room *selectRoom = [dataArr objectAtIndex: indexPath.row];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
+        if (selectRoom.is_join) {
+            CreateCourseSuccessViewController *vc =[[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
+            vc.event_id = selectRoom.event_id;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
+            vc.selectRoom = selectRoom;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -109,6 +109,8 @@
         self.creator_country = NSStringFromDic(json, @"creator_country", @"");
         self.creator_city = NSStringFromDic(json, @"creator_city", @"");
         self.creator_country_icon = NSStringFromDic(json, @"creator_country_icon", @"");
+        self.creator_country_icon = [self.creator_country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
         self.calorie = LongValueFromDic(json, @"calorie", 0);
 
     }
