@@ -536,6 +536,7 @@
 //             跳转到健身完成页面
             AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
             trainingvc.event_id = self->mCode[@"eid"];
+            trainingvc.invc = self.invc;
             [self.navigationController pushViewController:trainingvc animated:YES];
         });
      }];

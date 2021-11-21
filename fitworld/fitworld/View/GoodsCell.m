@@ -65,7 +65,7 @@
     NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
     UIImage *joinImage = [UIImage imageNamed:@"action_button_bg_green"];
     if (!room.is_join) {
-        joinTitle = ChineseStringOrENFun(@"预约", @"预约");
+        joinTitle = ChineseStringOrENFun(@"预约", @"Count me in");
         joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
     }
 //    已经开始 或者自己是创建者
@@ -74,6 +74,7 @@
         joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
         joinImage = [UIImage imageNamed:@"action_button_bg_red"];
     }
+    _joinBtn.titleLabel.font =SystemFontOfSize(13);
     [_joinBtn setTitle:joinTitle forState:UIControlStateNormal];
     [_joinBtn setTitle:joinTitle forState:UIControlStateHighlighted];
     [_joinBtn setBackgroundImage:joinImage forState:UIControlStateNormal];

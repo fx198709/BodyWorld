@@ -35,6 +35,7 @@
     _successTabelview.delegate = self;
     _successTabelview.backgroundColor = UIColor.blackColor;
     [self reachData];
+    self.isTapBack = NO;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -171,6 +172,17 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
      }];
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.isTapBack = NO;
+}
+
+- (void)backPopViewcontroller:(id) sender
+{
+    [self.navigationController popToViewController:self.invc animated:YES];
+}
+
 
 
 

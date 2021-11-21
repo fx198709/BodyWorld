@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSString *event_id;
 @property (nonatomic, strong)Room *currentRoom;
 @property (nonatomic, strong)NSMutableArray *userList;
+@property (nonatomic, weak)UIViewController *invc;
 
 
 

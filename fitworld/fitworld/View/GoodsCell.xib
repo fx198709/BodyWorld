@@ -27,7 +27,7 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="6"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shakehideimg_man" translatesAutoresizingMaskIntoConstraints="NO" id="6z9-oB-b6d">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6z9-oB-b6d">
                         <rect key="frame" x="0.0" y="0.0" width="230" height="120"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="120" id="jGc-Rh-EBW"/>
@@ -86,13 +86,12 @@
                             <constraint firstItem="jrv-k0-1he" firstAttribute="centerY" secondItem="L0I-Wp-cl2" secondAttribute="centerY" id="ub5-nx-1gv"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9B-9O-7iH">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9B-9O-7iH">
                         <rect key="frame" x="150" y="90" width="80" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="01N-iC-9Ty"/>
                             <constraint firstAttribute="width" constant="80" id="hHB-fv-Bgs"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <state key="normal" title="JOIN">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -132,7 +131,4 @@
             <point key="canvasLocation" x="105.79710144927537" y="160.04464285714286"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="shakehideimg_man" width="75" height="100"/>
-    </resources>
 </document>
