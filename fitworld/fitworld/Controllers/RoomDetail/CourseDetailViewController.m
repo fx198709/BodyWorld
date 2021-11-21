@@ -115,7 +115,7 @@
     UIScrollView * scrollview = [[UIScrollView alloc] init];
     [self.view addSubview:scrollview];
     [scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(topImgBotView.mas_bottom);
+        make.top.equalTo(topImgBotView.mas_bottom).offset(15);
         make.left.bottom.right.equalTo(self.view);
     }];
     int outwith = ScreenWidth;
@@ -143,12 +143,12 @@
     
     UILabel *getTimeLabel = [[UILabel alloc] init];
     getTimeLabel.text = [NSString stringWithFormat:@"%ld", (long)_selectRoom.duration]; //@"5";
-    getTimeLabel.font = [UIFont boldSystemFontOfSize:17];
+    getTimeLabel.font = [UIFont boldSystemFontOfSize:20];
     getTimeLabel.textColor= UIColor.whiteColor;
     getTimeLabel.adjustsFontSizeToFitWidth = YES;
     
     UILabel *timeLabel = [[UILabel alloc] init];
-    timeLabel.text = ChineseStringOrENFun(@"时长(分)", @"Time(mins)");
+    timeLabel.text = ChineseStringOrENFun(@"时长(分)", @"Time(min)");
     timeLabel.font = [UIFont systemFontOfSize:13];
     timeLabel.textColor= UIColor.whiteColor;
 
@@ -181,7 +181,7 @@
 
     UILabel *getHeartLabel = [[UILabel alloc] init];
     getHeartLabel.text = _selectRoom.heart_rate;
-    getHeartLabel.font = [UIFont boldSystemFontOfSize:17];;
+    getHeartLabel.font = [UIFont boldSystemFontOfSize:20];;
     getHeartLabel.textColor= UIColor.whiteColor;
     getHeartLabel.adjustsFontSizeToFitWidth = YES;
     
@@ -216,7 +216,7 @@
     
     UILabel *getKcalLabel = [[UILabel alloc] init];
     getKcalLabel.text = [NSString stringWithFormat:@"%@", _selectRoom.cal];
-    getKcalLabel.font = [UIFont boldSystemFontOfSize:17];;
+    getKcalLabel.font = [UIFont boldSystemFontOfSize:20];;
     getKcalLabel.textColor= UIColor.whiteColor;
     getKcalLabel.adjustsFontSizeToFitWidth = YES;
     
@@ -244,20 +244,20 @@
     UILabel *vdesclabel = [[UILabel alloc]init];
     [scrollview addSubview:vdesclabel];
     [vdesclabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(userLeftView.mas_bottom).offset(10);
+        make.top.equalTo(userLeftView.mas_bottom).offset(25);
         make.left.equalTo(scrollview).offset(10);
         make.right.equalTo(scrollview).offset(-10);
 
     }];
     vdesclabel.preferredMaxLayoutWidth = ScreenWidth-20;
     vdesclabel.numberOfLines = 0;
-    vdesclabel.font = SystemFontOfSize(14);
+    vdesclabel.font = SystemFontOfSize(15);
     vdesclabel.textColor = UIRGBColor(225, 225, 225, 1);
     vdesclabel.text = self.selectRoom.desc;
     [vdesclabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [vdesclabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     UIView *lineview = [[UIView alloc] init];
-    lineview.backgroundColor = UIRGBColor(225, 225, 225, 0.5);
+    lineview.backgroundColor = LineColor;
     [scrollview addSubview:lineview];
     [lineview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(vdesclabel.mas_bottom).offset(15);
@@ -278,7 +278,7 @@
         make.height.mas_equalTo(80);
     }];
     
-    UserHeadPicView * coachimageview = [[UserHeadPicView alloc] initWithFrame:CGRectMake(10, 20, 40, 40)];
+    UserHeadPicView * coachimageview = [[UserHeadPicView alloc] initWithFrame:CGRectMake(10, 20, 50, 50)];
     [coachView addSubview:coachimageview];
     [coachimageview changeRoomModelData:self.selectRoom];
 
@@ -287,10 +287,10 @@
     courseLabel.adjustsFontSizeToFitWidth = YES;
     courseLabel.text = self.selectRoom.creator_nickname;
     courseLabel.textColor = UIColor.whiteColor;
-    courseLabel.font =SystemFontOfSize(14);
+    courseLabel.font =SystemFontOfSize(16);
     [coachView addSubview:courseLabel];
     [courseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(coachView.mas_left).offset(60);
+        make.left.equalTo(coachView.mas_left).offset(75);
         make.top.equalTo(coachView).offset(25);
     }];
     
@@ -307,7 +307,8 @@
     UILabel *courseCityLabel = [[UILabel alloc] init];
     courseCityLabel.adjustsFontSizeToFitWidth = YES;
     courseCityLabel.text = [NSString stringWithFormat:@"%@ - %@", self.selectRoom.creator_city, self.selectRoom.creator_country];
-    courseCityLabel.textColor = UIColor.whiteColor;
+    courseCityLabel.textColor = LittleTextColor;
+    courseCityLabel.font = SystemFontOfSize(14);
     [coachView addSubview:courseCityLabel];
     [courseCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(courseLabel.mas_bottom).offset(6);
@@ -335,11 +336,11 @@
 //    followCoachBtn.backgroundColor = UIColorFromRGB(37, 37, 37);
 //    [followCoachBtn addTarget:self action:@selector(followBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
-    lineview = [[UIView alloc] init];
-    lineview.backgroundColor = UIRGBColor(225, 225, 225, 0.5);
-    [scrollview addSubview:lineview];
-    [lineview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(coachView.mas_bottom).offset(10);
+    UIView *lineview1 = [[UIView alloc] init];
+    lineview1.backgroundColor = LineColor;
+    [scrollview addSubview:lineview1];
+    [lineview1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(coachView.mas_bottom).offset(15);
         make.left.equalTo(scrollview).offset(10);
         make.right.equalTo(scrollview).offset(-10);
         make.height.mas_equalTo(0.5);
@@ -352,7 +353,7 @@
     programLabel.adjustsFontSizeToFitWidth = YES;
     [scrollview addSubview:programLabel];
     [programLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(lineview.mas_bottom).offset(16);
+        make.top.equalTo(lineview1.mas_bottom).offset(16);
         make.left.equalTo(scrollview).offset(10);
         make.height.mas_equalTo(35);
     }];
