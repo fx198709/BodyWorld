@@ -20,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-//    [[VConductorClient sharedInstance] initSDK];
+    [[VConductorClient sharedInstance] initSDK];
 //    if (@available(iOS 13.0, *)) {
 //        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDarkContent; //黑色
 //    }else{
