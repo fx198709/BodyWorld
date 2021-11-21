@@ -75,6 +75,8 @@
 		04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3E34126E9325F00CEEC7D /* CalendarView.m */; };
 		04F3E34526E9326000CEEC7D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3E34226E9325F00CEEC7D /* UIView+Extension.m */; };
 		04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8AA5A270DE974009B125A /* ResetPwdController.m */; };
+		464387B6274A7B3700A2D9A4 /* ProtocolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 464387B3274A7B3700A2D9A4 /* ProtocolView.m */; };
+		464387B7274A7B3700A2D9A4 /* ProtocolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 464387B5274A7B3700A2D9A4 /* ProtocolView.xib */; };
 		A256300A273FE2430030D6B2 /* FriendPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A2563009273FE2430030D6B2 /* FriendPageInfo.m */; };
 		A256300D273FE6850030D6B2 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A256300C273FE6850030D6B2 /* Friend.m */; };
 		A2563010273FE6EA0030D6B2 /* AddFriendPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */; };
@@ -333,6 +335,9 @@
 		04F8AA5B270DE974009B125A /* ResetPwdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPwdController.h; sourceTree = "<group>"; };
 		2B12690FCE930C0C330FD2A9 /* Pods-FFitWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFitWorld.debug.xcconfig"; path = "Target Support Files/Pods-FFitWorld/Pods-FFitWorld.debug.xcconfig"; sourceTree = "<group>"; };
 		3D98A0204D3DA5201CEC3B5A /* Pods-fitworld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitworld.debug.xcconfig"; path = "Target Support Files/Pods-fitworld/Pods-fitworld.debug.xcconfig"; sourceTree = "<group>"; };
+		464387B3274A7B3700A2D9A4 /* ProtocolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolView.m; sourceTree = "<group>"; };
+		464387B4274A7B3700A2D9A4 /* ProtocolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolView.h; sourceTree = "<group>"; };
+		464387B5274A7B3700A2D9A4 /* ProtocolView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProtocolView.xib; sourceTree = "<group>"; };
 		5A752F19D1ECDDD6A8BC1286 /* Pods-fitworld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitworld.release.xcconfig"; path = "Target Support Files/Pods-fitworld/Pods-fitworld.release.xcconfig"; sourceTree = "<group>"; };
 		A2563008273FE2430030D6B2 /* FriendPageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendPageInfo.h; sourceTree = "<group>"; };
 		A2563009273FE2430030D6B2 /* FriendPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendPageInfo.m; sourceTree = "<group>"; };
@@ -750,6 +755,9 @@
 				04CD2E4426982A45007814E6 /* GoodsCell.h */,
 				04CD2E4726982A45007814E6 /* GoodsCell.m */,
 				04CD2E4526982A45007814E6 /* GoodsCell.xib */,
+				464387B4274A7B3700A2D9A4 /* ProtocolView.h */,
+				464387B3274A7B3700A2D9A4 /* ProtocolView.m */,
+				464387B5274A7B3700A2D9A4 /* ProtocolView.xib */,
 				04CD2E4626982A45007814E6 /* TableCollectionViewCell.h */,
 				04CD2E4926982A45007814E6 /* TableCollectionViewCell.m */,
 				04CD2E4826982A45007814E6 /* TableCollectionViewCell.xib */,
@@ -1354,6 +1362,7 @@
 				04552B3C2696C3FD00C78706 /* entypo.ttf in Resources */,
 				A2A94DD3273E76CA00D02C77 /* SelectCountryCodeCell.xib in Resources */,
 				DD595EDC2737D25800618D1A /* CreateCourseSuccessViewController.xib in Resources */,
+				464387B7274A7B3700A2D9A4 /* ProtocolView.xib in Resources */,
 				04CD2E4A26982A45007814E6 /* GoodsCell.xib in Resources */,
 				DDB1380527489A2E009A44FD /* AfterTrainingViewController.xib in Resources */,
 				DD595EBE27364D0300618D1A /* MessageDetailViewController.xib in Resources */,
@@ -1497,6 +1506,7 @@
 				04DA746A26A86E2600257963 /* YJPageControlView.m in Sources */,
 				A2723EDA273B779300388B01 /* UIView+MT.m in Sources */,
 				DD25FEE627226B5A0092CF87 /* JYTitleLabel.m in Sources */,
+				464387B6274A7B3700A2D9A4 /* ProtocolView.m in Sources */,
 				04552B4E2696C3FD00C78706 /* ConsoleTextView.m in Sources */,
 				A2A94DCE273E744E00D02C77 /* CountryCode.m in Sources */,
 				04552B552696C3FD00C78706 /* QRCodeReader.m in Sources */,
