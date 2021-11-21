@@ -49,8 +49,8 @@
     self.navigationItem.leftBarButtonItem = nil;
 }
 
-- (void)viewDidArrpear:(BOOL)animated {
-    [super viewDidArrpear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self showProtocolView];
 }
 
@@ -68,9 +68,9 @@
     
     //显示协议
     if (self.protocolView == nil) {
-        self.protocolView = LoadXib(@"protocolView");
+//        self.protocolView = LoadXib(@"protocolView");
     }
-    [self.view addSubView:self.protocolView];
+//    [self.view addSubView:self.protocolView];
 }
 
 
