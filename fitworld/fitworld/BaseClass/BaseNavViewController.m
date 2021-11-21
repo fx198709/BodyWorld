@@ -9,7 +9,7 @@
 #import "SDImageCache.h"
 #import "UIImage+Extension.h"
 
-@interface BaseNavViewController ()
+@interface BaseNavViewController ()<UIGestureRecognizerDelegate>
 @end
 
 @implementation BaseNavViewController
@@ -21,6 +21,12 @@
     self.isTapBack = YES;
 //    self.navigationController.hidesNavigationBarWhenPush = NO;
     // Do any additional setup after loading the view.
+    
+    //开启ios右滑返回
+    __weak typeof(self) weakSelf = self;
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = weakSelf;
+    }
 }
 
 //- (UIViewController *)childViewControllerForStatusBarStyle {
@@ -50,9 +56,6 @@
 
 }
 
-- (void)interactivePopGestureRecognizer{
-    return; 
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -65,21 +68,15 @@
     [super viewDidAppear:animated];
     NSLog(@"viewDidAppear %@",NSStringFromClass(self.class));
     self.isTapBack = YES;
-    //开启ios右滑返回
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
-    }
+    
+        
+        
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    //开启ios右滑返回
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
-    }
  
 }
 

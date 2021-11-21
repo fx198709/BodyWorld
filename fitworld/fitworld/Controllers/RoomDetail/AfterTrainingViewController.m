@@ -35,7 +35,6 @@
     _successTabelview.delegate = self;
     _successTabelview.backgroundColor = UIColor.blackColor;
     [self reachData];
-    self.isTapBack = NO;
     // Do any additional setup after loading the view from its nib.
 }
 

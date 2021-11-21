@@ -325,7 +325,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     [super viewDidAppear:animated];
-    self.isTapBack = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
