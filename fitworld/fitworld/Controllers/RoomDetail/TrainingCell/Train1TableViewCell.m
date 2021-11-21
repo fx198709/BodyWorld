@@ -29,8 +29,8 @@
     
     [detailView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(10);
-        make.left.right.equalTo(self.contentView).offset(-10);
-        make.height.mas_equalTo(50);
+        make.left.equalTo(self.contentView).offset(10);
+        make.height.mas_equalTo(90);
         make.width.mas_equalTo(outwith);
     }];
     
@@ -40,7 +40,7 @@
     [detailView addSubview:userLeftView];
     [userLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(detailView);
-        make.top.equalTo(detailView);
+        make.top.equalTo(detailView).offset(15);
         make.height.mas_equalTo(50);
         make.width.equalTo(detailView).multipliedBy(0.33);
 
@@ -48,23 +48,33 @@
     
     
     UILabel *getTimeLabel = [[UILabel alloc] init];
-    getTimeLabel.text = [NSString stringWithFormat:@"%ld", (long)roominfo.duration]; //@"5";
-    getTimeLabel.font = [UIFont boldSystemFontOfSize:20];
+    NSString *actionString = [NSString stringWithFormat:@"%ld",roominfo.plan.count];
+    getTimeLabel.text = actionString; //@"5";
+    getTimeLabel.font = [UIFont boldSystemFontOfSize:22];
     getTimeLabel.textColor= UIColor.whiteColor;
-    getTimeLabel.adjustsFontSizeToFitWidth = YES;
+    
+   
+    
     
     UILabel *timeLabel = [[UILabel alloc] init];
     timeLabel.text = ChineseStringOrENFun(@"Action", @"Action");
     timeLabel.font = [UIFont systemFontOfSize:13];
     timeLabel.textColor= UIColor.whiteColor;
-
-    timeLabel.adjustsFontSizeToFitWidth = YES;
-
     [userLeftView addSubview:timeLabel];
     [userLeftView addSubview:getTimeLabel];
     
+    UILabel *groupLabel = [[UILabel alloc] init];
+    groupLabel.text = ChineseStringOrENFun(@"Group", @"Group"); //@"5";
+    groupLabel.font = SystemFontOfSize(14);
+    groupLabel.textColor= UIColor.whiteColor;
+    [userLeftView addSubview:groupLabel];
+    [groupLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(userLeftView).offset(10);
+        make.top.equalTo(userLeftView).offset(12);
+    }];
+    
     [getTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(userLeftView);
+        make.right.equalTo(groupLabel.mas_left).offset(-2);
         make.top.equalTo(userLeftView).offset(5);
     }];
     
@@ -86,16 +96,16 @@
     
 
     UILabel *getHeartLabel = [[UILabel alloc] init];
-    getHeartLabel.text = roominfo.heart_rate;
-    getHeartLabel.font = [UIFont boldSystemFontOfSize:20];;
+    NSString *timeString = [NSString stringWithFormat:@"%02ld:%02ld:00",(long)roominfo.duration/60,(long)roominfo.duration%60];
+
+    getHeartLabel.text = timeString;
+    getHeartLabel.font = [UIFont boldSystemFontOfSize:22];;
     getHeartLabel.textColor= UIColor.whiteColor;
-    getHeartLabel.adjustsFontSizeToFitWidth = YES;
     
     UILabel *heartLabel = [[UILabel alloc] init];
     heartLabel.text = ChineseStringOrENFun(@"时长(分)", @"Time(min)");
     heartLabel.font = [UIFont systemFontOfSize:13];
     heartLabel.textColor= UIColor.whiteColor;
-    heartLabel.adjustsFontSizeToFitWidth = YES;
 
     [userMidView addSubview:heartLabel];
     [userMidView addSubview:getHeartLabel];
@@ -122,15 +132,13 @@
     
     UILabel *getKcalLabel = [[UILabel alloc] init];
     getKcalLabel.text = [NSString stringWithFormat:@"%@", roominfo.cal];
-    getKcalLabel.font = [UIFont boldSystemFontOfSize:20];
+    getKcalLabel.font = [UIFont boldSystemFontOfSize:22];
     getKcalLabel.textColor= UIColor.whiteColor;
-    getKcalLabel.adjustsFontSizeToFitWidth = YES;
     
     UILabel *kcalLabel = [[UILabel alloc] init];
     kcalLabel.text =ChineseStringOrENFun(@"卡路里(Kcal)", @"Consumption(Kcal)");
     kcalLabel.textColor= UIColor.whiteColor;
     kcalLabel.font = [UIFont systemFontOfSize:13];
-    kcalLabel.adjustsFontSizeToFitWidth = YES;
 
     [userRightView addSubview:kcalLabel];
     [userRightView addSubview:getKcalLabel];

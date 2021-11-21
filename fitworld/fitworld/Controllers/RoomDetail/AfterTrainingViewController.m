@@ -26,7 +26,7 @@
     _titleLabel.font = SystemFontOfSize(17);
     _titleLabel.textColor = UIColor.whiteColor;
     
-    _timeLabel.text = @"2012";
+    _timeLabel.text = @"";
     _timeLabel.textColor = LittleTextColor;
     _timeLabel.font =SystemFontOfSize(14);
     
@@ -39,13 +39,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    int dif = 15;
     if (indexPath.row == 0) {
-        return 100;
+        return 90+dif;
     }else if (indexPath.row == 1) {
-        return 60+ self.currentRoom.plan.count * 40+20;
-//        return 60+ self.currentRoom.plan.count*50+20;
+        return 60+ self.currentRoom.plan.count * 40+dif;
     }else {
-        return 60+ (self.userList.count-1)*50+20;
+        return 60+ self.userList.count * 50+dif;
     }
     return 100;
 }
@@ -66,6 +66,12 @@
         return cell;
     }else if (indexPath.row == 2) {
         Train3TableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Train3TableViewCell" owner:self options:nil] lastObject];
+        [cell changeDataWithUserList:self.userList];
+        WeakSelf
+        cell.peopleBtnClick = ^(UserInfo* user) {
+            StrongSelf(wSelf);
+            [strongSelf addPeopleWithPeopleId:user.id];
+        };
 //        [cell changeDateWithRoomInfo:self.currentRoom];
         return cell;
     }
@@ -98,8 +104,11 @@
             if ([userlist isKindOfClass:[NSArray class]]) {
                 NSMutableArray *list = [NSMutableArray array];
                 for (NSDictionary *dic in userlist) {
+//                    不需要把自己放入伙伴中
                     UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
-                    [list addObject:user];
+                    if (user.id != [APPObjOnce sharedAppOnce].currentUser.id) {
+                        [list addObject:user];
+                    }
                 }
                 self.userList = list;
             }
@@ -134,6 +143,7 @@
             self.currentRoom.event_id = eventid;
         }
         self->reachRoomInfo =YES;
+        self.timeLabel.text = ReachYearANDTime(self.currentRoom.end_time);
         [self reloadtable];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -141,6 +151,25 @@
         [self reloadtable];
 
     }];
+}
+
+- (void)addPeopleWithPeopleId:(NSString*)peopleId{
+//    /api/friend/require
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    NSDictionary *baddyParams = @{
+                           @"friend_id": peopleId,
+                       };
+    [manager POST:@"friend/require" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+        if (CheckResponseObject(responseObject)) {
+            NSString *title = @"添加成功";
+            [CommonTools showAlertDismissWithContent:title showWaitTime:0 afterDelay:2 control:self];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+     }];
 }
 
 

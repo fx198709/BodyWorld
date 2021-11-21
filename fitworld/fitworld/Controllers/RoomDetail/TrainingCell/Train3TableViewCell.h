@@ -11,6 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Train3TableViewCell : BaseTableViewCell
 
+@property (nonatomic, strong)NSArray *currentUsers;
+@property (nonatomic, copy)AnyBtnBlock peopleBtnClick;
+
+
 - (void)changeDataWithUserList:(NSArray*)userList;
 
 @end

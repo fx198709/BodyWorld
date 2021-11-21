@@ -535,6 +535,7 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
 //             跳转到健身完成页面
             AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
+            trainingvc.event_id = self->mCode[@"eid"];
             [self.navigationController pushViewController:trainingvc animated:YES];
         });
      }];
