@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface APPObjOnce : NSObject
 
 @property (nonatomic, strong) UserInfo *currentUser;
-
+@property (nonatomic, strong) NSString *userId;
 
 + (instancetype)sharedAppOnce;
 
@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getUserinfo:(nullable void(^)(bool isSuccess))completedBlock;
 
 - (void)joinRoom:(id)room withInvc:(UIViewController*)vc;
+
+
 
 @end
 

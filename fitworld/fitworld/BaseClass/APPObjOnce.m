@@ -20,6 +20,10 @@
     return _sharedApp;
 }
 
+- (NSString*)getUserId{
+    return _currentUser.id;
+}
+
 - (void)getUserinfo:(nullable void(^)(bool isSuccess))completedBlock {
     UserInfo * tempInfo = [[APPObjOnce sharedAppOnce] currentUser];
 
