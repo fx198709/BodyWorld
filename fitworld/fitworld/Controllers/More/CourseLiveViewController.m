@@ -218,7 +218,13 @@
     label2left.font = [UIFont systemFontOfSize:13];
     label2left.textColor = LittleTextColor;
     UILabel *label2 = [[UILabel alloc] init];
-    label2.text = room.room_creator.nickname;
+    if (room.type_int == 0) {
+        label2.text = room.room_creator.nickname;
+    }else if (room.type_int == 1){
+        label2.text = room.coach.nickname;
+    }else{
+        label2.text = @"";
+    }
     [cell.contentView addSubview:label2];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(label1.mas_bottom).offset(5);
@@ -226,7 +232,14 @@
     }];
     label2.font = [UIFont systemFontOfSize:13];
     label2.textColor = LittleTextColor;
-    NSString *countryUrl = [room.room_creator.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSString *countryUrl = @"";
+    if (room.type_int == 0) {
+        countryUrl = [room.room_creator.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
+    }else if (room.type_int == 1){
+//        教练图标
+        countryUrl = room.coach.country;
+    }
+    
     UIImageView *countryImageView = [[UIImageView alloc] init];
     [countryImageView sd_setImageWithURL:[NSURL URLWithString:countryUrl]];
     [cell.contentView addSubview:countryImageView];

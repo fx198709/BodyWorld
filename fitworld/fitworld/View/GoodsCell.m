@@ -63,10 +63,7 @@
     
     _joinBtn.titleLabel.font =SystemFontOfSize(13);
     [CommonTools changeBtnState:_joinBtn btnData:room];
-
 }
-
-
 
 
 @end

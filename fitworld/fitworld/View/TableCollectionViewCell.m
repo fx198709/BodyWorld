@@ -85,8 +85,11 @@
         GoodsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"goodsCell" forIndexPath:indexPath];
         Room *tmpRoom = [_dataArr objectAtIndex: indexPath.item];
         [cell changedatawithmodel:tmpRoom];
-        cell.joinBtn.tag = indexPath.row;
-        [cell.joinBtn addTarget:self action:@selector(join:) forControlEvents:UIControlEventTouchUpInside];
+        cell.joinBtn.tag = indexPath.row+100;
+        int state = [tmpRoom reachRoomDealState];
+        if (state == 1 || state == 2) {
+            [cell.joinBtn addTarget:self action:@selector(joinBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        }
         return cell;
     }else{
         NoDataCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NoDataCollectionViewCellString" forIndexPath:indexPath];
@@ -162,8 +165,58 @@
    
 }
 
-- (void)join:(UIButton *) recognizer{
-    NSLog(@"join ----");
+- (void)joinBtnClicked:(UIButton *) recognizer{
+    
+    Room *room = [_dataArr objectAtIndex: recognizer.tag-100];
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    UIView *parentView =[[self viewController] view];
+    UIViewController *parentControl = [self viewController];
+    [MBProgressHUD showHUDAddedTo:parentView animated:YES];
+    if (room.is_join) {
+//        取消选中
+        
+        NSDictionary *baddyParams = @{
+                               @"event_id": room.event_id,
+                               @"friend_id":[APPObjOnce sharedAppOnce].currentUser.id
+                           };
+        [manager POST:@"room/kickout" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            [MBProgressHUD hideHUDForView:parentView animated:YES];
+            if (CheckResponseObject(responseObject)) {
+                [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"操作成功", @"操作成功") control:[self viewController]];
+                if ([parentControl respondsToSelector:@selector(headerRereshing)]) {
+                    [parentControl performSelector:@selector(headerRereshing)];
+                }
+                
+            }else{
+                [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:[self viewController]];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [CommonTools showNETErrorcontrol:[self viewController]];
+            [MBProgressHUD hideHUDForView:parentView animated:YES];
+             
+        }];
+    }else{
+        NSDictionary *baddyParams = @{
+                               @"event_id": room.event_id,
+                               @"is_join":[NSNumber numberWithBool:!room.is_join]
+                           };
+        [manager POST:@"practise/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            [MBProgressHUD hideHUDForView:parentView animated:YES];
+            if (CheckResponseObject(responseObject)) {
+                [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"操作成功", @"操作成功") control:[self viewController]];
+                if ([parentControl respondsToSelector:@selector(headerRereshing)]) {
+                    [parentControl performSelector:@selector(headerRereshing)];
+                }
+            }else{
+                [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:[self viewController]];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [CommonTools showNETErrorcontrol:[self viewController]];
+            [MBProgressHUD hideHUDForView:parentView animated:YES];
+             
+        }];
+    }
+    
 //    这边需要正在进行中的，才能开始，需要判断状态
 //    做测试用
 //    Room *room = [_dataArr objectAtIndex: recognizer.tag];
