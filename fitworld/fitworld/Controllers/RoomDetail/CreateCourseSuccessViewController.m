@@ -116,8 +116,18 @@
     RemoveSubviews(userlistView, [NSArray array]);;
     int startX = 0;
     BOOL isCreate = [currentRoom.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
-    for (int index = 0; index < currentUserList.count; index++) {
-        UserInfo *user = currentUserList[index];
+//    房主要在第一位
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (UserInfo *tempuser in currentUserList) {
+        if (tempuser.is_creator) {
+//            房主要放第一个
+            [tempArray insertObject:tempuser atIndex:0];
+        }else{
+            [tempArray addObject:tempuser];
+        }
+    }
+    for (int index = 0; index < tempArray.count; index++) {
+        UserInfo *user = tempArray[index];
         UserInfoView * userView = [[UserInfoView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
         userView.userInteractionEnabled = YES;
