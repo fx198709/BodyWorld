@@ -574,7 +574,7 @@
 				DD6EDB6227343601002B0A8E /* MessageList */,
 				DD6EDB50272EFFFB002B0A8E /* Buddy */,
 				DD6EDB57272EFFFB002B0A8E /* More */,
-				A2723EDB273B794D00388B01 /* SettingVC */,
+				A2723EDB273B794D00388B01 /* Setting */,
 				A2A94DC6273E714300D02C77 /* Login */,
 				0462BD9826920BE8005827D1 /* MainViewController.h */,
 				0462BD9926920BE8005827D1 /* MainViewController.m */,
@@ -973,7 +973,7 @@
 			path = MTCalenderView;
 			sourceTree = "<group>";
 		};
-		A2723EDB273B794D00388B01 /* SettingVC */ = {
+		A2723EDB273B794D00388B01 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
 				0449F80326DE688D00DE49A4 /* SystemViewController.h */,
@@ -987,7 +987,7 @@
 				A2723F03273CF1BC00388B01 /* SelectCountryViewController.h */,
 				A2723F04273CF1BC00388B01 /* SelectCountryViewController.m */,
 			);
-			path = SettingVC;
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		A2723EEB273BBDFD00388B01 /* Common */ = {

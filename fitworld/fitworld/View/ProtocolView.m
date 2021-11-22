@@ -31,6 +31,15 @@
     [self.containerView cornerWithRadius:8.0 borderColor:self.containerView.backgroundColor];
     [self.okBtn cornerHalfWithBorderColor:self.okBtn.backgroundColor];
     [self.noBtn cornerHalfWithBorderColor:self.noBtn.backgroundColor];
+    
+    float top = 20.0;
+    float maxH = 465;
+    if (ScreenHeight > maxH + top * 2.0) {
+        self.containerH.constant = maxH;
+    } else {
+        self.containerH.constant = ScreenHeight * 0.65;
+    }
+    [self updateConstraintsIfNeeded];
         
     self.textView.delegate = self;
     

@@ -60,8 +60,6 @@ OurDatePickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 
-
-
 @end
 
 @implementation SystemViewController
@@ -78,12 +76,7 @@ OurDatePickerViewDelegate>
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self loadData];
-    //获取用户信息
-    [[APPObjOnce sharedAppOnce] getUserinfo:^(bool isSuccess) {
-        if (isSuccess) {
-            [self loadData];
-        }
-    }];
+    [self reloadUserDataFromServer];
 }
 
 - (void)initUI {
@@ -125,6 +118,15 @@ OurDatePickerViewDelegate>
     self.introductionLabel.text = user.introduction;
 }
 
+//获取用户信息
+- (void)reloadUserDataFromServer {
+    
+    [[APPObjOnce sharedAppOnce] getUserinfo:^(bool isSuccess) {
+        if (isSuccess) {
+            [self loadData];
+        }
+    }];
+}
 
 #pragma mark - Action
 
@@ -326,11 +328,11 @@ OurDatePickerViewDelegate>
     [MTHUD showLoadingHUD];
     [[AFAppNetAPIClient manager] POST:url parameters:nil file:imgData success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
-        NSLog(@"====respong:%@", responseObject);
-        if ([responseObject objectForKey:@"recordset"]) {
-            [APPObjOnce sharedAppOnce].currentUser.avatar = responseObject;
-            [self loadData];
+        NSString *avatarUrl = [responseObject objectForKey:@"recordset"];
+        if (avatarUrl) {
+            [APPObjOnce sharedAppOnce].currentUser.avatar = avatarUrl;
             [MTHUD showDurationNoticeHUD:ChangeSuccessMsg];
+            [self loadData];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self showChangeFailedError:error];
@@ -345,8 +347,9 @@ OurDatePickerViewDelegate>
     UIImage *editImg = [info objectForKey:UIImagePickerControllerEditedImage];
     UIImage *img = editImg == nil ? originImage : editImg;
     img = [img scaleImageToSize:CGSizeMake(60, 60)];
+    
+    NSData *imgData = UIImageJPEGRepresentation(img, 0.5);
     [picker dismissViewControllerAnimated:YES completion:^{
-        NSData *imgData = UIImageJPEGRepresentation(img, 0.5);
         [self changeAvatarImageFromServer:imgData];
     }];
 }

@@ -186,9 +186,8 @@
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
     return [self POST:strUrl parameters:parameters headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        [formData appendPartWithFormData:fileData name:@"avatarImg"];
         //给定数据流的数据名，文件名，文件类型（以图片为例）
-        [formData appendPartWithFileData:fileData name:@"uploadFile" fileName:@"img1" mimeType:@"image/jpeg"];
+        [formData appendPartWithFileData:fileData name:@"file" fileName:@"img1" mimeType:@"image/jpeg"];
     } progress:nil success:success failure:failure];;
 }
 
