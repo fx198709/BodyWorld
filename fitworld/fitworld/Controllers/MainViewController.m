@@ -415,7 +415,7 @@ BOOL  hasrequest = NO;
     NSLog(@"more btn click");
     CourseMoreController *courseMoreVC = [[CourseMoreController alloc]init];
     courseMoreVC.VCtype = [NSString stringWithFormat:@"%zd",sender.tag-200];
-    courseMoreVC.navigationItem.title = @"Course";
+//    courseMoreVC.navigationItem.title = @"Course";
     [self.navigationController pushViewController:courseMoreVC animated:YES];
 }
 

@@ -83,8 +83,8 @@
         }else{
             make.top.equalTo(self.view);
         }
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(-10);
         make.bottom.equalTo(self.view);
     }];
     if (@available(iOS 11.0, *)) {
@@ -115,6 +115,41 @@
 
  
 #pragma mark TableViewDelegate&DataSource
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-20, 10)];
+    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-20, 20)];
+    grayView.layer.cornerRadius =10;
+    grayView.clipsToBounds = YES;
+    grayView.backgroundColor = BuddyTableBackColor;
+    [view addSubview:grayView];
+    view.clipsToBounds = YES;
+    return view;
+}
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-20, 10)];
+    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, -10, ScreenWidth-20, 20)];
+    grayView.layer.cornerRadius =10;
+    grayView.clipsToBounds = YES;
+    grayView.backgroundColor = BuddyTableBackColor;
+    [view addSubview:grayView];
+    view.clipsToBounds = YES;
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (dataArr.count >0) {
+        return 10;
+    }
+    return 0;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (dataArr.count >0) {
+        return 10;
+    }
+    return 0;
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
@@ -155,17 +190,41 @@
     [cell.contentView addSubview:label1];
     [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(cell.contentView).offset(20);
+        make.left.equalTo(leftImageView.mas_right).offset(leftdif+25);
+    }];
+    UIImage *classimage = [UIImage imageNamed:[NSString stringWithFormat:@"more_type_icon%ld",room.type_int]];
+    UIImageView *classimageview = [[UIImageView alloc] initWithImage:classimage];
+    [cell.contentView addSubview:classimageview];
+    [classimageview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(label1);
         make.left.equalTo(leftImageView.mas_right).offset(leftdif);
+        make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
     
+    UILabel *label2left = [[UILabel alloc] init];
+    if (room.type_int == 0) {
+        label2left.text = ChineseStringOrENFun(@"创建人:", @"创建人:");
+    }else if (room.type_int == 1){
+        label2left.text = ChineseStringOrENFun(@"直播教练人:", @"直播教练:");
+    }else{
+        label2left.text = @"";
+    }
+    
+    [cell.contentView addSubview:label2left];
+    [label2left mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(label1.mas_bottom).offset(5);
+        make.left.equalTo(leftImageView.mas_right).offset(leftdif);
+    }];
+    label2left.font = [UIFont systemFontOfSize:13];
+    label2left.textColor = LittleTextColor;
     UILabel *label2 = [[UILabel alloc] init];
     label2.text = room.room_creator.nickname;
     [cell.contentView addSubview:label2];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(label1.mas_bottom).offset(5);
-        make.left.equalTo(leftImageView.mas_right).offset(leftdif);
+        make.left.equalTo(label2left.mas_right).offset(1);
     }];
-    label2.font = [UIFont systemFontOfSize:15];
+    label2.font = [UIFont systemFontOfSize:13];
     label2.textColor = LittleTextColor;
     NSString *countryUrl = [room.room_creator.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     UIImageView *countryImageView = [[UIImageView alloc] init];
@@ -236,8 +295,8 @@
     [joinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(cell.contentView).offset(-10);
         if (limitLabel) {
-            make.centerY.equalTo(cell.contentView).offset(20);
-            make.top.equalTo(limitLabel.mas_bottom).offset(10);
+            make.centerY.equalTo(cell.contentView).offset(8);
+            make.top.equalTo(limitLabel.mas_bottom).offset(3);
         }else{
             make.centerY.equalTo(cell.contentView);
         }
@@ -246,6 +305,18 @@
     }];
     
     [CommonTools changeBtnState:joinBtn btnData:room];
+    if (indexPath.row != dataArr.count -1) {
+        UIView *lineview = [[UIView alloc] init];
+        lineview.backgroundColor = LineColor;
+        [cell.contentView addSubview:lineview];
+        [lineview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(cell.contentView);
+            make.left.equalTo(cell.contentView);
+            make.height.mas_equalTo(1);
+            make.bottom.equalTo(cell.contentView);
+        }];
+    }
+    
     return cell;
 }
 

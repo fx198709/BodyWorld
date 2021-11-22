@@ -45,7 +45,7 @@
             break;
         }
     }
-    searchBar.backgroundImage = [UIImage imageWithColor:[UIColor clearColor]];
+    searchBar.backgroundImage = [UIImage imageWithColor:BuddyTableBackColor];
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(100);
         make.height.mas_equalTo(40);
@@ -323,7 +323,7 @@
                                @"row": [NSString stringWithFormat:@"%d",size]
                            };
         
-        [manager GET:@"user/other" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [manager GET:@"friends" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             self->allPeoplelistRequestReady = YES;
             if (self->allPeoplelistRequestReady && self->hasUserlistReady) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];

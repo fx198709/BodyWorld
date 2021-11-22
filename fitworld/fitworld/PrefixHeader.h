@@ -31,8 +31,8 @@
 //
 #define BuddyTableBackColor UIRGBColor(37, 37, 37, 1)
 #define SelectGreenColor  UIRGBColor(86, 186, 111, 1)
-#define LittleTextColor  UIRGBColor(218, 218, 218, 1)
-#define LineColor  UIRGBColor(168, 168, 168, 1)
+#define LittleTextColor  UIRGBColor(198, 198, 198, 1)
+#define LineColor  UIRGBColor(138, 138, 138, 0.5)
 
 
 #define WeakSelf  __weak typeof(self)wSelf = self;
