@@ -70,7 +70,7 @@
         WeakSelf
         cell.peopleBtnClick = ^(UserInfo* user) {
             StrongSelf(wSelf);
-            [strongSelf addPeopleWithPeopleId:user.id];
+            [strongSelf addPeopleWithPeopleId:user];
         };
 //        [cell changeDateWithRoomInfo:self.currentRoom];
         return cell;
@@ -106,9 +106,11 @@
                 for (NSDictionary *dic in userlist) {
 //                    不需要把自己放入伙伴中
                     UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
-                    if (user.id != [APPObjOnce sharedAppOnce].currentUser.id) {
+                    NSString *userId = user.id;
+                    NSString *currentId =[APPObjOnce sharedAppOnce].currentUser.id;
+//                    if (![userId isEqualToString:currentId]) {
                         [list addObject:user];
-                    }
+//                    }
                 }
                 self.userList = list;
             }
@@ -143,7 +145,7 @@
             self.currentRoom.event_id = eventid;
         }
         self->reachRoomInfo =YES;
-        self.timeLabel.text = ReachYearANDTime(self.currentRoom.end_time);
+        self.timeLabel.text = ReachYearANDTime(self.currentRoom.start_time);
         [self reloadtable];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -153,12 +155,12 @@
     }];
 }
 
-- (void)addPeopleWithPeopleId:(NSString*)peopleId{
+- (void)addPeopleWithPeopleId:(UserInfo*)people{
 //    /api/friend/require
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSDictionary *baddyParams = @{
-                           @"friend_id": peopleId,
+                           @"friend_id": people.id,
                        };
     [manager POST:@"friend/require" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -166,6 +168,10 @@
         if (CheckResponseObject(responseObject)) {
             NSString *title = @"添加成功";
             [CommonTools showAlertDismissWithContent:title showWaitTime:0 afterDelay:2 control:self];
+            people.is_friend = YES;
+            [self->_successTabelview reloadData];
+        }else{
+            [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:self];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

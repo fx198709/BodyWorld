@@ -54,15 +54,25 @@
         [planView addSubview:coachimageview];
         [coachimageview changeUserInfoModelData:user];
         
-        UILabel *planTitle = [[UILabel alloc] initWithFrame:CGRectMake(80, 15, outwith-220, 20)];
+        UILabel *planTitle = [[UILabel alloc] initWithFrame:CGRectMake(80, 15, 120, 20)];
         planTitle.textColor = LittleTextColor;
         planTitle.font = SystemFontOfSize(14);
         [planView addSubview:planTitle];
         planTitle.text = user.nickname;
+       
+        UILabel *cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 15, outwith-230, 20)];
+        cityLabel.textColor = LittleTextColor;
+        cityLabel.font = SystemFontOfSize(14);
+        [planView addSubview:cityLabel];
+        cityLabel.text = [NSString stringWithFormat:@"%@,%@",user.city,user.country];
+
         
-        if (!user.is_friend && user.id != [APPObjOnce sharedAppOnce].currentUser.id) {
+        
+        NSString *userId = user.id;
+        NSString *currentId =[APPObjOnce sharedAppOnce].currentUser.id;
+        if (!user.is_friend && ![userId isEqualToString:currentId]) {
 //            不是好友，增加一个好友的功能
-            UIButton *vbutton = [[UIButton alloc] initWithFrame:CGRectMake(outwith-80, 3, 40, 40)];
+            UIButton *vbutton = [[UIButton alloc] initWithFrame:CGRectMake(outwith-50, 3, 40, 40)];
             [planView addSubview:vbutton];
             UIImage *peopleImage = [UIImage imageNamed:@"add_people"];
             [vbutton setImage:peopleImage forState:UIControlStateNormal];
