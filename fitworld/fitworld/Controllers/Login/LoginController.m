@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "LoginController.h"
 #import "RegisterController.h"
+#import "ProtocolView.h"
 
 #import "FITAPI.h"
 #import "UIDeps.h"
@@ -15,7 +16,6 @@
 
 #import "APPObjOnce.h"
 
-#define ProtocolShowKey @"ProtocolDisplay"
 
 
 @interface LoginController ()
@@ -30,7 +30,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
-@property (nonatomic, strong) UIView *protocolView;
+@property (nonatomic, strong) ProtocolView *protocolView;
 
 
 
@@ -68,9 +68,12 @@
     
     //显示协议
     if (self.protocolView == nil) {
-//        self.protocolView = LoadXib(@"protocolView");
+        self.protocolView = LoadXib(NSStringFromClass([ProtocolView class]));
     }
-//    [self.view addSubView:self.protocolView];
+    [self.view addSubview:self.protocolView];
+    [self.protocolView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+    }];
 }
 
 

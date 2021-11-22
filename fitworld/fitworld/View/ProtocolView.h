@@ -7,12 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
+#define ProtocolShowKey @"ProtocolDisplay"
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProtocolView : UIView
-
-@property (nonatomic, weak) IBOutlet UIButton *okBtn;
-@property (nonatomic, weak) IBOutlet UIButton *noBtn;
 
 @end
 

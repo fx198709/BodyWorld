@@ -14,6 +14,7 @@
 #define MainSB [UIStoryboard storyboardWithName:@"Main" bundle:nil]
 #define VCBySBName(vcName) [MainSB instantiateViewControllerWithIdentifier:vcName]
 
+#define LoadXib(xibName) [[[NSBundle mainBundle] loadNibNamed:xibName owner:nil options:nil] lastObject]
 
 @interface UIView (MT)
 
