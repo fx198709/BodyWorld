@@ -9,7 +9,7 @@
 #import "Train1TableViewCell.h"
 #import "Train2TableViewCell.h"
 #import "Train3TableViewCell.h"
-
+#import "MainViewController.h"
 
 @interface AfterTrainingViewController (){
     BOOL reachRoomInfo;
@@ -182,13 +182,27 @@
     [super viewDidAppear:animated];
     self.isTapBack = NO;
 }
+//
+//- (void)backPopViewcontroller:(id) sender
+//{
+//    [self.navigationController popToViewController:self.invc animated:YES];
+//}
 
 - (void)backPopViewcontroller:(id) sender
 {
-    [self.navigationController popToViewController:self.invc animated:YES];
+    UIViewController * popVC = nil;
+    NSArray *vcs = self.navigationController.viewControllers;
+    for (UIViewController * vc in vcs) {
+        if ([vc isKindOfClass:[MainViewController class]]) {
+            popVC = vc;
+        }
+    }
+    if (popVC) {
+        [self.navigationController popToViewController:popVC animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
-
-
 
 
 

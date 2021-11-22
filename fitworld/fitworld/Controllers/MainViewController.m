@@ -315,7 +315,7 @@ BOOL  hasrequest = NO;
         // 复用队列中没有时再创建
         TableCollectionLivingViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveTableviewCell" forIndexPath:indexPath];
         [cell.logoImage setImage:[UIImage imageNamed:@"index_live"]];
-        cell.subTitleLabel.text = ChineseStringOrENFun(@"正在进行", @"LIVE & UPCOMING");
+        cell.subTitleLabel.text = ChineseStringOrENFun(@"正在进行", @"LIVE NOW");
 
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:(UIControlEventTouchDown)];

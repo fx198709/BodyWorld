@@ -305,6 +305,7 @@
     }];
     NSString *url = self.selectRoom.creator_country_icon;
     [countryImage sd_setImageWithURL:[NSURL URLWithString:url]];
+    countryImage.contentMode = UIViewContentModeScaleAspectFit;
     
     UILabel *courseCityLabel = [[UILabel alloc] init];
     courseCityLabel.adjustsFontSizeToFitWidth = YES;

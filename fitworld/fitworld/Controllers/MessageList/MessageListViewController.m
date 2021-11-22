@@ -93,8 +93,9 @@
         MessageListModel *message = dataArr[indexPath.row];
         MessageDetailViewController * vc = [[MessageDetailViewController alloc] initWithNibName:@"MessageDetailViewController" bundle:nil];
         vc.messageID = message.id;
+        message.is_read = YES;
         [self.navigationController pushViewController:vc animated:YES];
-
+        [tableView reloadData];
     }
 }
 
