@@ -22,13 +22,13 @@
     self.goodsImage.contentMode = UIViewContentModeScaleToFill;
     _bottomview.clipsToBounds = YES;
     
-    NSString *titleText = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
-    [_joinBtn setTitle:titleText forState:UIControlStateNormal];
-    [_joinBtn setTitle:titleText forState:UIControlStateHighlighted];
+//    NSString *titleText = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+//    [_joinBtn setTitle:titleText forState:UIControlStateNormal];
+//    [_joinBtn setTitle:titleText forState:UIControlStateHighlighted];
 
     _joinBtn.titleLabel.font = SystemFontOfSize(14);
-    [_joinBtn setBackgroundImage:[UIImage imageNamed:@"action_button_bg_red"] forState:UIControlStateNormal];
-    [_joinBtn setBackgroundImage:[UIImage imageNamed:@"action_button_bg_red"] forState:UIControlStateHighlighted];
+//    [_joinBtn setBackgroundImage:[UIImage imageNamed:@"action_button_bg_red"] forState:UIControlStateNormal];
+//    [_joinBtn setBackgroundImage:[UIImage imageNamed:@"action_button_bg_red"] forState:UIControlStateHighlighted];
 
 }
 

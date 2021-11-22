@@ -98,6 +98,12 @@
     }
     [vbutn setTitle:joinTitle forState:UIControlStateNormal];
     [vbutn setTitle:joinTitle forState:UIControlStateHighlighted];
+    if (roomData.roomDealState == 3) {
+        UIImage *lockImage = [UIImage imageNamed:@"activity_login_paasswd_img"];
+        [vbutn setImage:lockImage forState:UIControlStateNormal];
+        [vbutn setImage:lockImage forState:UIControlStateHighlighted];
+        vbutn.imageEdgeInsets = UIEdgeInsetsMake(5, 8, 8, 15);
+    }
     [vbutn setBackgroundImage:joinImage forState:UIControlStateNormal];
     [vbutn setBackgroundImage:joinImage forState:UIControlStateHighlighted];
 

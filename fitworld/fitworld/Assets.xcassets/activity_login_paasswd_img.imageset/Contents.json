@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "activity_login_paasswd_img.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "activity_login_paasswd_img.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
