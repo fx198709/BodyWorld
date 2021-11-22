@@ -60,7 +60,7 @@
         [planView addSubview:planTitle];
         planTitle.text = user.nickname;
         
-        if (!user.is_friend) {
+        if (!user.is_friend && user.id != [APPObjOnce sharedAppOnce].currentUser.id) {
 //            不是好友，增加一个好友的功能
             UIButton *vbutton = [[UIButton alloc] initWithFrame:CGRectMake(outwith-80, 3, 40, 40)];
             [planView addSubview:vbutton];
