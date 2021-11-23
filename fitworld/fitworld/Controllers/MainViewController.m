@@ -467,7 +467,7 @@ BOOL  hasrequest = NO;
     NSDictionary *baddyParams = @{
                            @"type": @"",
                            @"page": @"1",
-                           @"row": @"5"
+                           @"row": @"50"
                        };
     [manager GET:@"room" parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         self.buddyClasses = [NSMutableArray array];
