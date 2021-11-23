@@ -77,7 +77,9 @@ OurDatePickerViewDelegate>
     [super viewWillAppear:animated];
     [self loadData];
     [self reloadUserDataFromServer];
+
 }
+
 
 - (void)initUI {
     self.pwdTitleLabel.text = ChineseStringOrENFun(@"修改密码", @"Change the password");
@@ -120,9 +122,8 @@ OurDatePickerViewDelegate>
 
 //获取用户信息
 - (void)reloadUserDataFromServer {
-    
-    [[APPObjOnce sharedAppOnce] getUserinfo:^(bool isSuccess) {
-        if (isSuccess) {
+    [[APPObjOnce sharedAppOnce] getUserinfo:^(NSError * _Nonnull error) {
+        if (error == nil) {
             [self loadData];
         }
     }];
@@ -288,9 +289,8 @@ OurDatePickerViewDelegate>
     
     UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"确定退出？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
-        LoginController *loginVC = VCBySBName(@"LoginController");
-        [self.navigationController setViewControllers:[NSArray arrayWithObject:loginVC] animated:YES];
+        [APPObjOnce clearUserToken];
+        [[APPObjOnce sharedAppOnce] showLoginView];
     }];
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alter addAction:sure];

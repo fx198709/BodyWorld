@@ -9,7 +9,9 @@
 #import "UIView+MT.h"
 #import "Room.h"
 #import "RoomVC.h"
+
 @implementation APPObjOnce
+
 + (instancetype)sharedAppOnce {
     static APPObjOnce *_sharedApp = nil;
     static dispatch_once_t onceToken;
@@ -20,11 +22,25 @@
     return _sharedApp;
 }
 
++ (NSString *)getUserToken {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+}
+
++ (void)saveUserToken:(NSString *)token {
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"userToken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (void)clearUserToken {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (NSString*)getUserId{
     return _currentUser.id;
 }
 
-- (void)getUserinfo:(nullable void(^)(bool isSuccess))completedBlock {
+- (void)getUserinfo:(nullable void(^)(NSError * error))completedBlock {
     UserInfo * tempInfo = [[APPObjOnce sharedAppOnce] currentUser];
 
     [[AFAppNetAPIClient manager] GET:@"user_info" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -32,16 +48,29 @@
             self.currentUser = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
             self.currentUser.msg = tempInfo.msg;
             self.currentUser.msg_cn = tempInfo.msg_cn;
-            if (completedBlock) {
-                completedBlock(YES);
-            }
+        }
+        if (completedBlock) {
+            completedBlock(nil);
         }
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-           [MTHUD showDurationNoticeHUD:error.localizedDescription];
+           if (error.code == 401) {
+               [APPObjOnce clearUserToken];
+               [self showLoginView];
+           } else {
+               [MTHUD showDurationNoticeHUD:error.localizedDescription];
+           }
            if (completedBlock) {
-               completedBlock(NO);
+               completedBlock(error);
            }
     }];
+}
+
+- (void)showLoginView {
+    [self.mainVC.navigationController popToRootViewControllerAnimated:NO];
+}
+
+- (void)showMainView {
+    [self.mainVC.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)joinRoom:(Room*)selectRoom withInvc:(UIViewController*)invc{

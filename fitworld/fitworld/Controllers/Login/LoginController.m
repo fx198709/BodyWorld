@@ -114,7 +114,7 @@
     [self resignFirstResponder];
     
     RegisterController *nextVC = VCBySBName(@"RegisterController");
-    [self.navigationController setViewControllers:[NSArray arrayWithObject:nextVC] animated:YES];
+    [self.navigationController setViewControllers:@[nextVC] animated:YES];
 }
 
 
@@ -140,12 +140,6 @@
     [self loginToServer:param];
 }
 
-//到首页
-- (void)goToMainVC {
-    UINavigationController *vc = VCBySBName(@"mainNavVC");
-    [self.view.window setRootViewController:vc];
-}
-
 #pragma mark - server
 
 - (void)loginToServer:(NSDictionary *)param {
@@ -160,9 +154,9 @@
             
             NSString *userToken = responseObject[@"recordset"][@"token"];
             if(userToken != nil){
-                [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"userToken"];
+                [APPObjOnce saveUserToken:userToken];
             }
-            [self goToMainVC];
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         } else {
             NSString *msg = [responseObject objectForKey:@"msg"];
             [MTHUD showDurationNoticeHUD:msg];

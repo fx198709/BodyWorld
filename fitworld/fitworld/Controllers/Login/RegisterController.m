@@ -91,8 +91,9 @@
 
 
 - (IBAction)goToAccountLogin:(id)sender {
+    [self resignFirstResponder];
     LoginController *nextVC = VCBySBName(@"LoginController");
-    [self.navigationController setViewControllers:[NSArray arrayWithObject:nextVC] animated:YES];
+    [self.navigationController setViewControllers:@[nextVC] animated:YES];
 }
 
 
@@ -161,9 +162,9 @@
             
             NSString *userToken = responseObject[@"recordset"][@"token"];
             if(userToken != nil){
-                [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"userToken"];
+                [APPObjOnce saveUserToken:userToken];
             }
-            [self goToMainVC];
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         } else {
             NSString *msg = [responseObject objectForKey:@"msg"];
             [MTHUD showDurationNoticeHUD:msg];
@@ -176,11 +177,6 @@
     }];
 }
 
-//到首页
-- (void)goToMainVC {
-    UINavigationController *vc = VCBySBName(@"mainNavVC");
-    [self.view.window setRootViewController:vc];
-}
 
 
 #pragma mark - Navigation

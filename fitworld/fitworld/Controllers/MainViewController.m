@@ -20,6 +20,7 @@
 #import "MessageListViewController.h"
 
 BOOL  hasrequest = NO;
+
 @interface MainViewController (){
     BOOL hasNoReadMessage;
     BOOL hasNewFrend;
@@ -41,6 +42,9 @@ BOOL  hasrequest = NO;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //保存全局唯一单例
+    [APPObjOnce sharedAppOnce].mainVC = self;
+    
     self.view.backgroundColor = [UIColor blackColor];
     self.mainTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [self.view addSubview:self.mainTableview];
@@ -55,9 +59,7 @@ BOOL  hasrequest = NO;
       make.left.with.top.equalTo(self.view);
       make.size.equalTo(self.view);
     }];
-    [[APPObjOnce sharedAppOnce] getUserinfo:^(bool isSuccess) {
-        self.userInfo = [[APPObjOnce sharedAppOnce] currentUser];
-    }];
+    
     [self setupRefresh];
     _mainTableview.mj_header.backgroundColor = UIColor.blackColor;
     _mainTableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -65,6 +67,7 @@ BOOL  hasrequest = NO;
     _sliderView.clipsToBounds = YES;
     _sliderView.layer.cornerRadius = 5;
 //    [self headerRereshing];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -72,7 +75,30 @@ BOOL  hasrequest = NO;
     [_mainTableview.mj_header beginRefreshing];
     self.navigationController.navigationBarHidden = YES;
     mainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(mainTimerAction) userInfo:nil repeats:YES];
+}
 
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    NSString *userToken = [APPObjOnce getUserToken];
+    if (userToken == nil) {
+        [self showLoginView];
+    } else {
+        [[APPObjOnce sharedAppOnce] getUserinfo:nil];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [mainTimer invalidate];
+    mainTimer = nil;
+}
+
+#pragma mark - action
+
+- (UserInfo *)userInfo {
+    return [APPObjOnce sharedAppOnce].currentUser;
 }
 
 - (void)mainTimerAction{
@@ -84,15 +110,8 @@ BOOL  hasrequest = NO;
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [mainTimer invalidate];
-    mainTimer = nil;
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    NSLog(@"viewDidAppear %@",self.class);
+- (void)showLoginView {
+    [self performSegueWithIdentifier:@"goToLoginSegue" sender:nil];
 }
 
 //- (UserInfo *)userInfo {

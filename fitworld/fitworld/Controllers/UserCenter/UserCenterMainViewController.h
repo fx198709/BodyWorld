@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserCenterMainViewController : BaseNavViewController
+
 @property (weak, nonatomic) IBOutlet UIView *headimageview;
 @property (weak, nonatomic) IBOutlet UIView *headimagebackview;
 @property (weak, nonatomic) IBOutlet UIImageView *userimageview;

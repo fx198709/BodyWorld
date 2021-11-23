@@ -210,7 +210,7 @@
 - (void) refreshData
 {
     [dataArr removeAllObjects];
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    NSString *userToken = [APPObjOnce getUserToken ];
     NSLog(@"initroom userToken ---- %@", userToken);
 
     NSString *strUrl = [NSString stringWithFormat:@"%@course", FITAPI_HTTPS_PREFIX];

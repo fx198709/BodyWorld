@@ -7,7 +7,6 @@
 
 #import "AppDelegate.h"
 #import "ResetPwdController.h"
-#import "MainViewController.h"
 #import "AFNetworking.h"
 #import "FITAPI.h"
 #import "UIDeps.h"
@@ -166,7 +165,7 @@
  return;
  }
  NSString *strUrl = [NSString stringWithFormat:@"%@password/reset", FITAPI_HTTPS_PREFIX];
- NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+ NSString *userToken = [APPObjOnce getUserToken ];
  AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
  [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
  [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bev-47-2PQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mbk-qS-1SX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,21 +14,21 @@
             <objects>
                 <viewController storyboardIdentifier="LoginController" id="BYZ-38-t0r" customClass="LoginController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D1v-0c-S11">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="HkP-oJ-oqV">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="fitworld_logo_heng" translatesAutoresizingMaskIntoConstraints="NO" id="YUs-8s-MYI">
-                                <rect key="frame" x="147" y="696" width="120" height="100"/>
+                                <rect key="frame" x="147" y="642" width="120" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="4Qo-YM-Rwz"/>
                                     <constraint firstAttribute="width" constant="120" id="O0F-ng-5wS"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xoW-Zj-XE8" userLabel="languageView">
-                                <rect key="frame" x="269" y="88" width="105" height="32"/>
+                                <rect key="frame" x="269" y="56" width="105" height="32"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJm-pO-Jt3">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="32"/>
@@ -75,7 +75,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJe-fa-AAK">
-                                <rect key="frame" x="42" y="144" width="74" height="44"/>
+                                <rect key="frame" x="42" y="112" width="74" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="YGk-5g-hHI"/>
                                 </constraints>
@@ -86,7 +86,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k50-pl-1rt">
-                                <rect key="frame" x="56" y="236" width="302" height="168"/>
+                                <rect key="frame" x="56" y="204" width="302" height="168"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F20-9W-V6W">
                                         <rect key="frame" x="0.0" y="0.0" width="302" height="48"/>
@@ -197,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1086.9565217391305" y="34.239130434782609"/>
+            <point key="canvasLocation" x="-314" y="33"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="kkR-ch-ptx">
@@ -207,11 +207,12 @@
                     <connections>
                         <segue destination="stL-mK-2FH" kind="show" identifier="friendListSegue" id="xfH-Ia-55e"/>
                         <segue destination="mdC-bR-6Hn" kind="show" identifier="goToUserCenterSegue" id="L7f-k2-5iU"/>
+                        <segue destination="bev-47-2PQ" kind="presentation" identifier="goToLoginSegue" id="B57-L1-5uv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QRY-UH-qLj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1994" y="803"/>
+            <point key="canvasLocation" x="-2106" y="803"/>
         </scene>
         <!--个人中心-->
         <scene sceneID="7ef-h7-keB">
@@ -655,7 +656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="41L-EW-y1Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1994.2028985507247" y="1537.5"/>
+            <point key="canvasLocation" x="-2107" y="1554"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rPA-1i-flj">
@@ -1877,21 +1878,21 @@
             <objects>
                 <viewController storyboardIdentifier="RegisterController" id="qEd-U6-7La" customClass="RegisterController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2QX-nq-PVN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="o2p-XM-IMt">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="fitworld_logo_heng" translatesAutoresizingMaskIntoConstraints="NO" id="Yh1-MB-hbk">
-                                <rect key="frame" x="147" y="696" width="120" height="100"/>
+                                <rect key="frame" x="147" y="642" width="120" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Rd9-VB-SUA"/>
                                     <constraint firstAttribute="width" constant="120" id="rBc-Kq-9SD"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTB-fH-u74">
-                                <rect key="frame" x="42" y="144" width="74" height="44"/>
+                                <rect key="frame" x="42" y="112" width="74" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="e8U-Tw-Dgs"/>
                                 </constraints>
@@ -1902,7 +1903,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H1v-De-154">
-                                <rect key="frame" x="56" y="236" width="302" height="168"/>
+                                <rect key="frame" x="56" y="204" width="302" height="168"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Niw-vq-JXG">
                                         <rect key="frame" x="0.0" y="0.0" width="302" height="48"/>
@@ -2032,7 +2033,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTO-wF-npx" userLabel="languageView">
-                                <rect key="frame" x="269" y="88" width="105" height="32"/>
+                                <rect key="frame" x="269" y="56" width="105" height="32"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcL-wO-ErC">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="32"/>
@@ -2116,7 +2117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f0P-r7-4g3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-352" y="34"/>
+            <point key="canvasLocation" x="661" y="33"/>
         </scene>
         <!--Select Country Code View Controller-->
         <scene sceneID="LSh-EE-LoS">
@@ -2164,15 +2165,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIM-5r-gsA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="440.57971014492756" y="32.608695652173914"/>
+            <point key="canvasLocation" x="1859" y="34"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PfL-Oo-ize">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bev-47-2PQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginNavVC" automaticallyAdjustsScrollViewInsets="NO" id="bev-47-2PQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4LQ-e4-s17">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2182,7 +2183,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gut-qR-sDp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1994.2028985507247" y="34.239130434782609"/>
+            <point key="canvasLocation" x="-1220" y="33"/>
         </scene>
         <!--好友-->
         <scene sceneID="UQv-t5-jeA">
@@ -2262,7 +2263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aCq-vJ-gBd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1220.2898550724638" y="1537.5000000000002"/>
+            <point key="canvasLocation" x="-1220" y="1554"/>
         </scene>
         <!--新的好友-->
         <scene sceneID="vIB-41-c5B">
@@ -2297,12 +2298,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83X-wv-Iml" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-413" y="1538"/>
+            <point key="canvasLocation" x="-384" y="1554"/>
         </scene>
     </scenes>
     <resources>
         <image name="activity_login_bg" width="360" height="780"/>
-        <image name="add_people" width="16.666666030883789" height="16.666666030883789"/>
+        <image name="add_people" width="25" height="25"/>
         <image name="arrow_down" width="50" height="50"/>
         <image name="btn_list_mimabukejian" width="20" height="20"/>
         <image name="btn_list_mimakejian" width="20" height="20"/>

@@ -63,7 +63,7 @@
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    NSString *userToken = [APPObjOnce getUserToken ];
     NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
     NSArray *noapis = @[@"login",@"captcha",@"captcha/validate",@"register"];
     if (![noapis containsObject:URLString]) {
@@ -81,7 +81,7 @@
                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    NSString *userToken = [APPObjOnce getUserToken ];
     NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
     
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
@@ -161,7 +161,7 @@
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    NSString *userToken = [APPObjOnce getUserToken ];
     NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
     
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
@@ -179,7 +179,7 @@
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
     
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    NSString *userToken = [APPObjOnce getUserToken ];
     NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
     
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
