@@ -7,6 +7,7 @@
 
 #import "CommonTools.h"
 #import "Room.h"
+
 @implementation CommonTools
 
 /*
@@ -49,7 +50,8 @@
                
             }else{
                 if (roomData.allow_watch) {
-                    if (roomData.course.max_num > roomData.invite_count) {
+                    long maxnumber = MAX(roomData.max_num, roomData.course.max_num);
+                    if (maxnumber > roomData.invite_count) {
                         roomData.roomDealState = 5;
                         joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
                         joinImage = [UIImage imageNamed:@"action_button_bg_red"];
@@ -79,7 +81,8 @@
                
             }else{
                 if (roomData.allow_watch) {
-                    if (roomData.course.max_num > roomData.invite_count) {
+                    long maxnumber = MAX(roomData.max_num, roomData.course.max_num);
+                    if (maxnumber > roomData.invite_count) {
                         roomData.roomDealState = 1;
                         joinTitle = ChineseStringOrENFun(@"预约", @"Count me in");
                         joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
