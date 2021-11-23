@@ -203,9 +203,9 @@
     
     UILabel *label2left = [[UILabel alloc] init];
     if (room.type_int == 0) {
-        label2left.text = ChineseStringOrENFun(@"创建人:", @"创建人:");
+        label2left.text = ChineseStringOrENFun(@"创建人:", @"creater:");
     }else if (room.type_int == 1){
-        label2left.text = ChineseStringOrENFun(@"直播教练人:", @"直播教练:");
+        label2left.text = ChineseStringOrENFun(@"直播教练人:", @"coach:");
     }else{
         label2left.text = @"";
     }

@@ -146,6 +146,7 @@
     }
     if (userIds.count < 1) {
         [CommonTools showAlertDismissWithContent:@"请选择用户" showWaitTime:0 afterDelay:2 control:self];
+        return;
     }
     NSString *userIdsString = [userIds componentsJoinedByString:@","];
     NSDictionary *baddyParams = @{
