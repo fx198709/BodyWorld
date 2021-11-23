@@ -353,6 +353,8 @@
     self.view.hidden = YES;
     userListHeight = 110;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    进来就调用，进入房间
+    [self joinRoom];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -415,20 +417,23 @@
                            };
         [manager GET:@"room/detail" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            NSDictionary *roomJson = responseObject[@"recordset"];
-            self->currentRoom = [[Room alloc] initWithJSON:roomJson];
-            self->currentRoom.event_id = eventid;
-//            没有创建过视图，处理一下
-            if (!self->_bottomScrollview) {
-                [self addsubviews];
-            }else{
-//                只改变状态
-                [self changetillBtnTitle];
+            if (CheckResponseObject(responseObject)) {
+                NSDictionary *roomJson = responseObject[@"recordset"];
+                self->currentRoom = [[Room alloc] initWithJSON:roomJson];
+                self->currentRoom.event_id = eventid;
+    //            没有创建过视图，处理一下
+                if (!self->_bottomScrollview) {
+                    [self addsubviews];
+                }else{
+    //                只改变状态
+                    [self changetillBtnTitle];
+                }
             }
+
             
           
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [CommonTools showNETErrorcontrol:self];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
     
@@ -496,6 +501,16 @@
     }else{
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+//每次进入，都调用一下 room/join接口，表示自己进入了
+- (void)joinRoom{
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    NSMutableDictionary *baddyParams = [NSMutableDictionary dictionary];
+    [baddyParams setObject:self.event_id forKey:@"event_id"];
+    [baddyParams setObject:[NSNumber numberWithBool:1] forKey:@"is_join"];
+    [manager POST:@"room/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }];
 }
 
 @end
