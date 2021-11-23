@@ -73,6 +73,28 @@
     [self.mainVC.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (void)loginSuccess:(id _Nullable) responseObject {
+    NSLog(@"请求成功---%@", responseObject);
+    if ([responseObject objectForKey:@"status"] && [[responseObject objectForKey:@"status"] longLongValue] == 0) {
+        UserInfo *userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"][@"user"]];
+        userInfo.msg = responseObject[@"recordset"][@"msg"];
+        userInfo.msg_cn = responseObject[@"recordset"][@"msg_cn"];
+        [APPObjOnce sharedAppOnce].currentUser = userInfo;
+        
+        NSString *userToken = responseObject[@"recordset"][@"token"];
+        if(userToken != nil){
+            [APPObjOnce saveUserToken:userToken];
+        }
+        UIViewController *presentedVC = self.mainVC.presentedViewController;
+        [presentedVC dismissViewControllerAnimated:YES completion:^{
+            [self.mainVC reloadData];
+        }];
+    } else {
+        NSString *msg = [responseObject objectForKey:@"msg"];
+        [MTHUD showDurationNoticeHUD:msg];
+    }
+}
+
 - (void)joinRoom:(Room*)selectRoom withInvc:(UIViewController*)invc{
 //    Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];
 //    判断一下房间的状态

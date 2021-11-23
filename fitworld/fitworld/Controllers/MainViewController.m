@@ -72,9 +72,7 @@ BOOL  hasrequest = NO;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [_mainTableview.mj_header beginRefreshing];
     self.navigationController.navigationBarHidden = YES;
-    mainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(mainTimerAction) userInfo:nil repeats:YES];
 }
 
 
@@ -85,7 +83,7 @@ BOOL  hasrequest = NO;
     if (userToken == nil) {
         [self showLoginView];
     } else {
-        [[APPObjOnce sharedAppOnce] getUserinfo:nil];
+        [self reloadData];
     }
 }
 
@@ -115,6 +113,13 @@ BOOL  hasrequest = NO;
         return;
     }
     [self performSegueWithIdentifier:@"goToLoginSegue" sender:nil];
+}
+
+- (void)reloadData {
+        [[APPObjOnce sharedAppOnce] getUserinfo:^(NSError * _Nonnull error) {
+            [_mainTableview.mj_header beginRefreshing];
+            mainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(mainTimerAction) userInfo:nil repeats:YES];
+        }];
 }
 
 - (void)reachNoReadMessageList{
@@ -172,6 +177,7 @@ BOOL  hasrequest = NO;
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.mainTableview addHeaderWithTarget:self action:@selector(headerRereshing)];
 }
+
 //开始进入刷新状态
 - (void)headerRereshing
 {

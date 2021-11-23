@@ -50,15 +50,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationItem.leftBarButtonItem = nil;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    
     [APPObjOnce sharedAppOnce].isLogining = YES;
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [APPObjOnce sharedAppOnce].isLogining = NO;
 }
 
@@ -158,27 +155,13 @@
     NSString *account = [NSString stringWithFormat:@"%@:%@",self.countryCodeLabel.text,name];
     
     NSDictionary *dict = @{ @"account":account,  @"captcha":pwd};
-    [[AFHTTPSessionManager manager] POST:strUrl parameters:dict headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        // 进度
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] POST:strUrl
+                              parameters:dict
+                                 headers:nil
+                                progress:nil
+                                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MTHUD hideHUD];
-        NSLog(@"请求成功---%@", responseObject);
-        if ([responseObject objectForKey:@"status"] && [[responseObject objectForKey:@"status"] longLongValue] == 0) {
-            UserInfo *userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"][@"user"]];
-            userInfo.msg = responseObject[@"recordset"][@"msg"];
-            userInfo.msg_cn = responseObject[@"recordset"][@"msg_cn"];
-            [APPObjOnce sharedAppOnce].currentUser = userInfo;
-            
-            NSString *userToken = responseObject[@"recordset"][@"token"];
-            if(userToken != nil){
-                [APPObjOnce saveUserToken:userToken];
-            }
-            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        } else {
-            NSString *msg = [responseObject objectForKey:@"msg"];
-            [MTHUD showDurationNoticeHUD:msg];
-        }
-        
+        [[APPObjOnce sharedAppOnce] loginSuccess:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MTHUD hideHUD:YES completedBlock:^{
             [MTHUD showDurationNoticeHUD:error.localizedDescription];

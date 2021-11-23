@@ -32,8 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 //清除用户token
 + (void)clearUserToken;
 
+//登录成功后保存信息
+- (void)loginSuccess:(id _Nullable) responseObject;
+
 //获取用户信息
 - (void)getUserinfo:(nullable void(^)(NSError * error))completedBlock;
+
 
 //显示登录页面（pop到MainView 后会根据有没有token进行登录页面展示）
 - (void)showLoginView;

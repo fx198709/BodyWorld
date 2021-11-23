@@ -47,16 +47,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationItem.leftBarButtonItem = nil;
+    [APPObjOnce sharedAppOnce].isLogining = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [APPObjOnce sharedAppOnce].isLogining = YES;
     [self showProtocolView];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [APPObjOnce sharedAppOnce].isLogining = NO;
 }
 
@@ -152,21 +152,7 @@
     [MTHUD showLoadingHUD];
     [[AFAppNetAPIClient manager] POST:@"login" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
-        if ([responseObject objectForKey:@"status"] && [[responseObject objectForKey:@"status"] longLongValue] == 0) {
-            UserInfo *userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"][@"user"]];
-            userInfo.msg = responseObject[@"recordset"][@"msg"];
-            userInfo.msg_cn = responseObject[@"recordset"][@"msg_cn"];
-            [APPObjOnce sharedAppOnce].currentUser = userInfo;
-            
-            NSString *userToken = responseObject[@"recordset"][@"token"];
-            if(userToken != nil){
-                [APPObjOnce saveUserToken:userToken];
-            }
-            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        } else {
-            NSString *msg = [responseObject objectForKey:@"msg"];
-            [MTHUD showDurationNoticeHUD:msg];
-        }
+        [[APPObjOnce sharedAppOnce] loginSuccess:responseObject];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MTHUD showDurationNoticeHUD:error.localizedDescription];
     }];
