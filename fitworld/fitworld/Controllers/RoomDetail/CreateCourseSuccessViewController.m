@@ -126,8 +126,9 @@
             [tempArray addObject:tempuser];
         }
     }
-    for (int index = 0; index < tempArray.count; index++) {
-        UserInfo *user = tempArray[index];
+    currentUserList = tempArray;
+    for (int index = 0; index < currentUserList.count; index++) {
+        UserInfo *user = currentUserList[index];
         UserInfoView * userView = [[UserInfoView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
         userView.userInteractionEnabled = YES;

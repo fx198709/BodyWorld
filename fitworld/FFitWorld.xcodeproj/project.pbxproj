@@ -1004,10 +1004,10 @@
 			children = (
 				0456192E26ECEC8A00C0973F /* RegisterController.h */,
 				0456192F26ECEC8A00C0973F /* RegisterController.m */,
-				041510D2268F02DE0039FCD1 /* LoginController.h */,
 				041510D3268F02DE0039FCD1 /* LoginController.m */,
 				A2A94DC7273E718200D02C77 /* SelectCountryCodeViewController.h */,
 				A2A94DC8273E718200D02C77 /* SelectCountryCodeViewController.m */,
+				041510D2268F02DE0039FCD1 /* LoginController.h */,
 			);
 			path = Login;
 			sourceTree = "<group>";

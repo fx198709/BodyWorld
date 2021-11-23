@@ -102,7 +102,12 @@
         UIImage *lockImage = [UIImage imageNamed:@"activity_login_paasswd_img"];
         [vbutn setImage:lockImage forState:UIControlStateNormal];
         [vbutn setImage:lockImage forState:UIControlStateHighlighted];
-        vbutn.imageEdgeInsets = UIEdgeInsetsMake(5, 8, 8, 15);
+        vbutn.imageEdgeInsets = UIEdgeInsetsMake(5, 10, 8, 15);
+    }else{
+        [vbutn setImage:nil forState:UIControlStateNormal];
+        [vbutn setImage:nil forState:UIControlStateHighlighted];
+        vbutn.imageEdgeInsets = UIEdgeInsetsZero;
+
     }
     [vbutn setBackgroundImage:joinImage forState:UIControlStateNormal];
     [vbutn setBackgroundImage:joinImage forState:UIControlStateHighlighted];

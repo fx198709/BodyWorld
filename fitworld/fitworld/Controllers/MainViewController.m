@@ -362,6 +362,10 @@ BOOL  hasrequest = NO;
         [cell.myCollectionView reloadData];
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:UIControlEventTouchDown];
         cell.attentionBtn.tag = 201;
+        UIView * view = [cell.contentView viewWithTag:10001];
+        if (view) {
+            [view removeFromSuperview];
+        }
         cell.backgroundColor = UIColor.blackColor;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -377,7 +381,7 @@ BOOL  hasrequest = NO;
         cell.subTitleLabel.text = ChineseStringOrENFun(@"对练课", @"BUDDY TRAINING");;
         cell.dataArr = _buddyClasses;
         [cell.myCollectionView reloadData];
-        UIView * view = [cell viewWithTag:10001];
+        UIView * view = [cell.contentView viewWithTag:10001];
         if (view == nil) {
             UIButton *createSessionBtn = [[UIButton alloc] init];
             createSessionBtn.tag = 100001;
@@ -385,7 +389,7 @@ BOOL  hasrequest = NO;
             [createSessionBtn setTitle:creatString forState:UIControlStateNormal];
             [createSessionBtn setTitle:creatString forState:UIControlStateHighlighted];
             createSessionBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-            [cell addSubview:createSessionBtn];
+            [cell.contentView addSubview:createSessionBtn];
             [createSessionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(24);
                 make.centerY.equalTo(cell.subTitleLabel);
