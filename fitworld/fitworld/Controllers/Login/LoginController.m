@@ -51,7 +51,13 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [APPObjOnce sharedAppOnce].isLogining = YES;
     [self showProtocolView];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [APPObjOnce sharedAppOnce].isLogining = NO;
 }
 
 - (void)initView {

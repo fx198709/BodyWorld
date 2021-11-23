@@ -167,7 +167,16 @@
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
-    return [self GET:strUrl parameters:parameters headers:nil progress:nil success:success failure:failure];
+    return [self GET:strUrl parameters:parameters headers:nil progress:nil success:success failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure != nil) {
+            failure(task, error);
+        }
+        if (error.localizedDescription != nil && [error.localizedDescription containsString:@"(401)"]) {
+            //显示登录
+            [APPObjOnce clearUserToken];
+            [[APPObjOnce sharedAppOnce] showLoginView];
+        }
+    }];
 }
 
 /**
@@ -188,7 +197,16 @@
     return [self POST:strUrl parameters:parameters headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         //给定数据流的数据名，文件名，文件类型（以图片为例）
         [formData appendPartWithFileData:fileData name:@"file" fileName:@"img1" mimeType:@"image/jpeg"];
-    } progress:nil success:success failure:failure];;
+    } progress:nil success:success failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure != nil) {
+            failure(task, error);
+        }
+        if (error.code == 401) {
+            //显示登录
+            [APPObjOnce clearUserToken];
+            [[APPObjOnce sharedAppOnce] showLoginView];
+        }
+    }];
 }
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString

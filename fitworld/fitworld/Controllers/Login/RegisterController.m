@@ -50,7 +50,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationItem.leftBarButtonItem = nil;
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [APPObjOnce sharedAppOnce].isLogining = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [APPObjOnce sharedAppOnce].isLogining = NO;
 }
 
 - (void)initView {

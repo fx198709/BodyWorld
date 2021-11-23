@@ -27,6 +27,8 @@
 }
 
 + (void)saveUserToken:(NSString *)token {
+    //test
+//    token = @"123";
     [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"userToken"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -53,12 +55,7 @@
             completedBlock(nil);
         }
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-           if (error.code == 401) {
-               [APPObjOnce clearUserToken];
-               [self showLoginView];
-           } else {
-               [MTHUD showDurationNoticeHUD:error.localizedDescription];
-           }
+           [MTHUD showDurationNoticeHUD:error.localizedDescription];
            if (completedBlock) {
                completedBlock(error);
            }
@@ -66,6 +63,9 @@
 }
 
 - (void)showLoginView {
+    if (_isLogining) {
+        return;
+    }
     [self.mainVC.navigationController popToRootViewControllerAnimated:NO];
 }
 

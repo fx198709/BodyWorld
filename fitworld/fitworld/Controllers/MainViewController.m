@@ -111,12 +111,11 @@ BOOL  hasrequest = NO;
 }
 
 - (void)showLoginView {
+    if ([APPObjOnce sharedAppOnce].isLogining) {
+        return;
+    }
     [self performSegueWithIdentifier:@"goToLoginSegue" sender:nil];
 }
-
-//- (UserInfo *)userInfo {
-//    return [APPObjOnce sharedAppOnce].currentUser;
-//}
 
 - (void)reachNoReadMessageList{
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
