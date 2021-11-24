@@ -1,7 +1,7 @@
 #import "BaseObject.h"
 #import "DatePlan.h"
 #import "Plan.h"
-
+//课程对象
 @interface Course : BaseObject
 
 @property (nonatomic , strong) NSArray <DatePlan *>              * date_plan;

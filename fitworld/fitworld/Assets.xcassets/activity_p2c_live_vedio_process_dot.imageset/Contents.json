@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "activity_p2c_live_vedio_process_dot.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -10,6 +9,7 @@
       "scale" : "2x"
     },
     {
+      "filename" : "activity_p2c_live_vedio_process_dot.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
