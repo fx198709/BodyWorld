@@ -44,18 +44,18 @@
     [mVideoRender set_content_mode:UIViewContentModeScaleAspectFill];
 //  }
 
-  mLabel = [[UILabel alloc] init];
-  [mLabel setText:@"GUEST"];
-  [mLabel setTextColor:[UIColor whiteColor]];
-  [mLabel setBackgroundColor:[UIColor darkGrayColor]];
-  [mLabel setTextAlignment:NSTextAlignmentRight];
-  [mLabel setFont:[UIFont systemFontOfSize:10.0]];
-  [mLabel sizeToFit];
-  [mLabel setAlpha:0.7];
-  [self addSubview:mLabel];
-  [mLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.left.with.bottom.equalTo(self);
-  }];
+//  mLabel = [[UILabel alloc] init];
+//  [mLabel setText:@"GUEST"];
+//  [mLabel setTextColor:[UIColor whiteColor]];
+//  [mLabel setBackgroundColor:[UIColor darkGrayColor]];
+//  [mLabel setTextAlignment:NSTextAlignmentRight];
+//  [mLabel setFont:[UIFont systemFontOfSize:10.0]];
+//  [mLabel sizeToFit];
+//  [mLabel setAlpha:0.7];
+//  [self addSubview:mLabel];
+//  [mLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//    make.left.with.bottom.equalTo(self);
+//  }];
   
   return self;
 }

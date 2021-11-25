@@ -29,7 +29,8 @@
     _timeLabel.text = @"";
     _timeLabel.textColor = LittleTextColor;
     _timeLabel.font =SystemFontOfSize(14);
-    
+    self.timeLabel.text = ReachYearANDTime([[NSDate date] timeIntervalSince1970]);
+
     _successTabelview.separatorStyle = UITableViewCellSeparatorStyleNone;
     _successTabelview.dataSource = self;
     _successTabelview.delegate = self;
@@ -145,7 +146,6 @@
             self.currentRoom.event_id = eventid;
         }
         self->reachRoomInfo =YES;
-        self.timeLabel.text = ReachYearANDTime(self.currentRoom.start_time);
         [self reloadtable];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

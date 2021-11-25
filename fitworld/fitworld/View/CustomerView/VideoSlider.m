@@ -10,9 +10,8 @@
 @implementation VideoSlider
 
 - (void)createSubview{
-    int with = self.frame.size.width;
+    int with = ScreenWidth - 60;//self.frame.size.width;
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0,10, with,10)];
-    imageview.backgroundColor = UIColor.redColor;
     imageview.image = [UIImage imageNamed:@"activity_p2c_live_vedio_process"];
     [self addSubview:imageview];
     
@@ -30,7 +29,7 @@
     [_slider setThumbImage:[UIImage imageNamed:@"activity_p2c_live_vedio_process_dot"] forState:UIControlStateHighlighted];
     [_slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];// 针对值变化添加响应方法
     [_slider addTarget:self action:@selector(sliderClicked:) forControlEvents:UIControlEventTouchUpInside];// 针对值变化添加响应方法
-
+    [self addSubview:_slider];
     _slider.backgroundColor = UIColor.clearColor;
 }
 // slider变动时改变label值

@@ -166,7 +166,9 @@
 		DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB6A2734420C002B0A8E /* MessageListTableViewCell.xib */; };
 		DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB6E27344A50002B0A8E /* MessageListModel.m */; };
 		DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD742597272942F9005D636E /* UIImage+Extension.m */; };
-		DD794402274F7DCD00BEEF6B /* VideoSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = DD794401274F7DCD00BEEF6B /* VideoSlider.m */; };
+		DD794406274FEC9D00BEEF6B /* VideoSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = DD794405274FEC9D00BEEF6B /* VideoSlider.m */; };
+		DD794409274FECEC00BEEF6B /* RoomVCSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD794408274FECEC00BEEF6B /* RoomVCSettingView.m */; };
+		DD79440B274FED4900BEEF6B /* RoomVCSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD79440A274FED4900BEEF6B /* RoomVCSettingView.xib */; };
 		DD84CB9227412A2800EB8C61 /* RightTopSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD84CB9127412A2800EB8C61 /* RightTopSearchView.m */; };
 		DD84CB9427412A3D00EB8C61 /* RightTopSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD84CB9327412A3D00EB8C61 /* RightTopSearchView.xib */; };
 		DD84CB97274163C500EB8C61 /* ScreenAboveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD84CB96274163C500EB8C61 /* ScreenAboveView.m */; };
@@ -518,8 +520,11 @@
 		DD7425A6272942F9005D636E /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		DD7425A8272942F9005D636E /* UIActionSheet+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+YCExtension.h"; sourceTree = "<group>"; };
 		DD7425AA272942F9005D636E /* NSString+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+YCExtension.m"; sourceTree = "<group>"; };
-		DD794400274F7DCD00BEEF6B /* VideoSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoSlider.h; sourceTree = "<group>"; };
-		DD794401274F7DCD00BEEF6B /* VideoSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoSlider.m; sourceTree = "<group>"; };
+		DD794404274FEC9D00BEEF6B /* VideoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSlider.h; sourceTree = "<group>"; };
+		DD794405274FEC9D00BEEF6B /* VideoSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoSlider.m; sourceTree = "<group>"; };
+		DD794407274FECEC00BEEF6B /* RoomVCSettingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomVCSettingView.h; sourceTree = "<group>"; };
+		DD794408274FECEC00BEEF6B /* RoomVCSettingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomVCSettingView.m; sourceTree = "<group>"; };
+		DD79440A274FED4900BEEF6B /* RoomVCSettingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomVCSettingView.xib; sourceTree = "<group>"; };
 		DD84CB9027412A2800EB8C61 /* RightTopSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightTopSearchView.h; sourceTree = "<group>"; };
 		DD84CB9127412A2800EB8C61 /* RightTopSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightTopSearchView.m; sourceTree = "<group>"; };
 		DD84CB9327412A3D00EB8C61 /* RightTopSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightTopSearchView.xib; sourceTree = "<group>"; };
@@ -747,6 +752,7 @@
 		0462BD9B2692AB00005827D1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DD794403274FEC7D00BEEF6B /* CustomerView */,
 				A256302A274094440030D6B2 /* MTCalenderView */,
 				DD6EDB47272E7AD0002B0A8E /* Cell */,
 				DDEE67D7272577EC00D0C310 /* LivingGoodsCell.h */,
@@ -764,8 +770,6 @@
 				04CD2E4626982A45007814E6 /* TableCollectionViewCell.h */,
 				04CD2E4926982A45007814E6 /* TableCollectionViewCell.m */,
 				04CD2E4826982A45007814E6 /* TableCollectionViewCell.xib */,
-				DD794400274F7DCD00BEEF6B /* VideoSlider.h */,
-				DD794401274F7DCD00BEEF6B /* VideoSlider.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1276,6 +1280,18 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		DD794403274FEC7D00BEEF6B /* CustomerView */ = {
+			isa = PBXGroup;
+			children = (
+				DD794404274FEC9D00BEEF6B /* VideoSlider.h */,
+				DD794405274FEC9D00BEEF6B /* VideoSlider.m */,
+				DD794407274FECEC00BEEF6B /* RoomVCSettingView.h */,
+				DD794408274FECEC00BEEF6B /* RoomVCSettingView.m */,
+				DD79440A274FED4900BEEF6B /* RoomVCSettingView.xib */,
+			);
+			path = CustomerView;
+			sourceTree = "<group>";
+		};
 		DDB138062748E2DB009A44FD /* TrainingCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1370,6 +1386,7 @@
 				464387B7274A7B3700A2D9A4 /* ProtocolView.xib in Resources */,
 				04CD2E4A26982A45007814E6 /* GoodsCell.xib in Resources */,
 				DDB1380527489A2E009A44FD /* AfterTrainingViewController.xib in Resources */,
+				DD79440B274FED4900BEEF6B /* RoomVCSettingView.xib in Resources */,
 				DD595EBE27364D0300618D1A /* MessageDetailViewController.xib in Resources */,
 				DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */,
 				047DC206268CD09900A3E37E /* LaunchScreen.storyboard in Resources */,
@@ -1494,6 +1511,7 @@
 				DD6EDB33272D2C89002B0A8E /* OurDatePickerView.m in Sources */,
 				DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */,
 				A2723F02273CC9FE00388B01 /* BaseJSONModel.m in Sources */,
+				DD794409274FECEC00BEEF6B /* RoomVCSettingView.m in Sources */,
 				DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */,
 				04552B3D2696C3FD00C78706 /* EntypoSymbol.m in Sources */,
 				04552B4D2696C3FD00C78706 /* UIImage+ImageEffects.m in Sources */,
@@ -1596,7 +1614,7 @@
 				04747FBB2708010000B3B5B8 /* PractiseWeek.m in Sources */,
 				A2A94DD2273E76CA00D02C77 /* SelectCountryCodeCell.m in Sources */,
 				04EC01F926BD8AC100DC0103 /* VSRoomParam.mm in Sources */,
-				DD794402274F7DCD00BEEF6B /* VideoSlider.m in Sources */,
+				DD794406274FEC9D00BEEF6B /* VideoSlider.m in Sources */,
 				04EC01FA26BD8AC100DC0103 /* VSRoomLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

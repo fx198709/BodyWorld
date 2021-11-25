@@ -11,6 +11,7 @@
 
 #import "TUIKit.h"
 #import "AfterTrainingViewController.h"
+#import "RoomVCSettingView.h"
 
 #define LOG_FOLDER        @"Log"
 
@@ -59,8 +60,7 @@
 
 @interface RoomVC () <VConductorClientDelegate> {
     BOOL canErrorToPOP;//进入房间失败，就可以pop出去
-    BOOL needShowOthersVideo;//是否展示其他人的视频
-    BOOL canStartTimer;
+    BOOL needShowOthersVideo;//是否展示其他人的视频  免打扰
     NSTimer *roomTimer;  //定时器，用来刷新时间的
     SliderView *currentSlider;//滑块
     BOOL hasStartLiving;// 开始直播了
@@ -68,7 +68,9 @@
     UIButton *voiceBtn;// 头上视频的声音
     UILabel *vtitleLabel;//title 文件
     BOOL headHasVoice;//头部的有声音
-     
+    UIButton *settingBtn;//设置按钮
+    
+    RoomVCSettingView * settingView;//设置视图
 }
 
 @property (nonatomic, strong) NSDictionary* mCode;
@@ -127,6 +129,9 @@
         make.size.equalTo(self.view);
     }];
     
+    
+    settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
+    
     //    mHeaderPanel = [HeaderPanel new];
     //    [self.view addSubview:mHeaderPanel];
     
@@ -150,6 +155,8 @@
     
     mFullScreen = NO;
     [self layoutPanel];
+    
+    
     
     __weak RoomVC* weakSelf = self;
     //    mHeaderPanel.pressBtnQuit = ^() {
@@ -645,7 +652,6 @@
 
 //更新进度条
 - (void)startTimer{
-    //    canStartTimer = YES;
     if (!roomTimer) {
         roomTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(dealwithTimer) userInfo:nil repeats:YES];
         
@@ -710,9 +716,65 @@
             [voiceBtn setImage:image forState:UIControlStateNormal];
             [voiceBtn setImage:image forState:UIControlStateHighlighted];
         }
+        if (!settingBtn) {
+            settingBtn = [[UIButton alloc] init];
+            [self.view addSubview:settingBtn];
+            [settingBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(mMainPanel).offset(-20);
+                make.top.equalTo(mMainPanel.mas_bottom).offset(50);
+                make.size.mas_equalTo(CGSizeMake(40, 40));
+            }];
+            [settingBtn addTarget:self action:@selector(settingBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+            UIImage *image = [UIImage imageNamed:@"video_set_back"];
+            [settingBtn setImage:image forState:UIControlStateNormal];
+            [settingBtn setImage:image forState:UIControlStateHighlighted];
+        }
+        
     }
     
 }
+
+//设置按钮点击
+- (void)settingBtnClicked{
+    UIWindow *mainwindow = [CommonTools mainWindow];
+    [mainwindow addSubview:settingView];
+    [settingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(mainwindow);
+        make.left.top.equalTo(mainwindow);
+    }];
+    WeakSelf
+    settingView.cancelBtnClickedBlock = ^(id clickModel) {
+        StrongSelf(wSelf);
+        [strongSelf->settingView removeFromSuperview];
+    };
+    settingView.myCameraSwitchChanged = ^(id clickModel) {
+        
+    };
+    settingView.myMicSwicthChanged = ^(id clickModel) {
+        
+    };
+    settingView.notdisturbSwitchChanged = ^(NSNumber *clickModel) {
+//        免打扰
+        StrongSelf(wSelf);
+        [strongSelf changeNotDistrub:clickModel.boolValue];
+    };
+}
+
+//免打扰
+- (void)changeNotDistrub:(BOOL)need{
+    needShowOthersVideo = need;
+    for (GuestPanel * panel in _guestPanels) {
+        if (needShowOthersVideo) {
+//            开启免打扰
+            [panel detachGuestRenderView];
+        }else{
+//            关闭免打扰
+            [panel attachGuestRenderView];
+        }
+    }
+}
+
+
 #pragma mark  开启关闭 头部的声音
 //开启关闭声音 头部的直播课的声音
 - (void)headvoiceBtnClicked{
