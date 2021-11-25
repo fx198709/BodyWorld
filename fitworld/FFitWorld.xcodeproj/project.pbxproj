@@ -166,6 +166,7 @@
 		DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6EDB6A2734420C002B0A8E /* MessageListTableViewCell.xib */; };
 		DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6EDB6E27344A50002B0A8E /* MessageListModel.m */; };
 		DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD742597272942F9005D636E /* UIImage+Extension.m */; };
+		DD794402274F7DCD00BEEF6B /* VideoSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = DD794401274F7DCD00BEEF6B /* VideoSlider.m */; };
 		DD84CB9227412A2800EB8C61 /* RightTopSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD84CB9127412A2800EB8C61 /* RightTopSearchView.m */; };
 		DD84CB9427412A3D00EB8C61 /* RightTopSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD84CB9327412A3D00EB8C61 /* RightTopSearchView.xib */; };
 		DD84CB97274163C500EB8C61 /* ScreenAboveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD84CB96274163C500EB8C61 /* ScreenAboveView.m */; };
@@ -517,6 +518,8 @@
 		DD7425A6272942F9005D636E /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		DD7425A8272942F9005D636E /* UIActionSheet+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+YCExtension.h"; sourceTree = "<group>"; };
 		DD7425AA272942F9005D636E /* NSString+YCExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+YCExtension.m"; sourceTree = "<group>"; };
+		DD794400274F7DCD00BEEF6B /* VideoSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoSlider.h; sourceTree = "<group>"; };
+		DD794401274F7DCD00BEEF6B /* VideoSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoSlider.m; sourceTree = "<group>"; };
 		DD84CB9027412A2800EB8C61 /* RightTopSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightTopSearchView.h; sourceTree = "<group>"; };
 		DD84CB9127412A2800EB8C61 /* RightTopSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightTopSearchView.m; sourceTree = "<group>"; };
 		DD84CB9327412A3D00EB8C61 /* RightTopSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightTopSearchView.xib; sourceTree = "<group>"; };
@@ -761,6 +764,8 @@
 				04CD2E4626982A45007814E6 /* TableCollectionViewCell.h */,
 				04CD2E4926982A45007814E6 /* TableCollectionViewCell.m */,
 				04CD2E4826982A45007814E6 /* TableCollectionViewCell.xib */,
+				DD794400274F7DCD00BEEF6B /* VideoSlider.h */,
+				DD794401274F7DCD00BEEF6B /* VideoSlider.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1591,6 +1596,7 @@
 				04747FBB2708010000B3B5B8 /* PractiseWeek.m in Sources */,
 				A2A94DD2273E76CA00D02C77 /* SelectCountryCodeCell.m in Sources */,
 				04EC01F926BD8AC100DC0103 /* VSRoomParam.mm in Sources */,
+				DD794402274F7DCD00BEEF6B /* VideoSlider.m in Sources */,
 				04EC01FA26BD8AC100DC0103 /* VSRoomLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

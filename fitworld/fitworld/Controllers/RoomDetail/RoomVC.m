@@ -65,6 +65,10 @@
     SliderView *currentSlider;//滑块
     BOOL hasStartLiving;// 开始直播了
     UILabel *startDuringTimeLabel;//开始了多久 //long diff = currentTime- room.start_time;
+    UIButton *voiceBtn;// 头上视频的声音
+    UILabel *vtitleLabel;//title 文件
+    BOOL headHasVoice;//头部的有声音
+     
 }
 
 @property (nonatomic, strong) NSDictionary* mCode;
@@ -310,7 +314,6 @@
                     //                    ClassMember *currentMember = [memberDic objectForKey:userID];
                     //                    if ([currentMember isonTheAir]) {
                     guestcount++;
-                    
                     GuestPanel * guestpanel = [[GuestPanel alloc] init];
                     guestpanel.mUserId = userID;
                     [strongSelf.guestPanels addObject:guestpanel];
@@ -322,8 +325,7 @@
                         
                     }
                     guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
-                    //                    }
-                    
+                    //
                 }
             }
             if (guestcount == 0) {
@@ -360,14 +362,7 @@
                 }
             }
         }];
-        
-        
-        
-        
     }
-    
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -420,7 +415,7 @@
     BOOL isHandup = [[VConductorClient sharedInstance] isHandup];
     [[VConductorClient sharedInstance] requestHandup:!isHandup];
 }
-//关闭mac
+//关闭声音
 - (void)actMic {
     BOOL isAudioEnable = [[VConductorClient sharedInstance] isAudioEnable];
     [[VConductorClient sharedInstance] enableAudio:!isAudioEnable];
@@ -573,6 +568,25 @@
     
 }
 
+//设置导航栏左边按钮
+- (UIBarButtonItem *)leftMenuBarButtonItem {
+    UIView *backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-150, 40)];
+    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [backview addSubview:backBtn];
+    [backBtn addTarget:self action:@selector(backPopViewcontroller:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
+    imageview.image = [UIImage imageNamed:@"back_white"];
+    [backview addSubview:imageview];
+
+    vtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, ScreenWidth-150-20-60, 20)];
+    [backview addSubview:vtitleLabel];
+    vtitleLabel.textColor = UIColor.whiteColor;
+    
+    UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:backview];
+    return leftBtnItem;
+}
+
+
 - (void)backPopViewcontroller:(id) sender
 {
     //    [self.navigationController popViewControllerAnimated:YES];
@@ -627,6 +641,7 @@
         }
     }];
 }
+#pragma mark  获取详情，开启定时器
 
 //更新进度条
 - (void)startTimer{
@@ -673,6 +688,7 @@
             
             startDuringTimeLabel.text = ChineseStringOrENFun(timeCode, timeCodeEN);
         }
+        vtitleLabel.text = self.currentRoom.name;
         if (elapsedSecs > self.currentRoom.duration*60) {
             //            课程结束
             AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
@@ -680,8 +696,29 @@
             trainingvc.invc = self.invc;
             [self.navigationController pushViewController:trainingvc animated:YES];
         }
+        
+        if (!voiceBtn) {
+            voiceBtn = [[UIButton alloc] init];
+            [self.view addSubview:voiceBtn];
+            [voiceBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(mMainPanel).offset(-20);
+                make.bottom.equalTo(mMainPanel).offset(-55);
+                make.size.mas_equalTo(CGSizeMake(40, 40));
+            }];
+            voiceBtn.backgroundColor = UIColor.redColor;
+            [voiceBtn addTarget:self action:@selector(headvoiceBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+             
+        }
     }
     
+}
+#pragma mark  开启关闭 头部的声音
+//开启关闭声音 头部的直播课的声音
+- (void)headvoiceBtnClicked{
+    VConductorClient *client = [VConductorClient sharedInstance];
+    ClassMember *host = [client getHostMember];
+    BOOL isAudioEnable = [host isHostAudioEnable];
+    [host enableHostAudio:!isAudioEnable];
 }
 
 //获取房间的详情
@@ -698,7 +735,7 @@
             self.currentRoom = [[Room alloc] initWithJSON:roomJson];
             self.currentRoom.event_id = eventid;
             //                显示进度条
-            self.title = self.currentRoom.name;
+//            self.title = self.currentRoom.name;
             [self startTimer];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

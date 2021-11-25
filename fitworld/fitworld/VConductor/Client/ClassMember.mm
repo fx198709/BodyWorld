@@ -172,6 +172,30 @@
     return [mLocalMedia isAudioEnable];
 }
 
+#pragma mark 主视频的操作
+- (void)enableHostVideo:(BOOL)enable{
+    if (mMainMedia) {
+        [mMainMedia EnableVideo:enable];
+    }
+}
+- (BOOL)isHostVideoEnable{
+    if (mMainMedia == nil) {
+        return NO;
+    }
+    return [mMainMedia isVideoEnable];
+}
+- (void)enableHostAudio:(BOOL)enable{
+    if (mMainMedia) {
+        [mMainMedia EnableAudio:enable];
+    }
+}
+- (BOOL)isHostAudioEnable{
+    if (mMainMedia == nil) {
+        return NO;
+    }
+    return [mMainMedia isAudioEnable];
+}
+
 - (void)checkStream {
     BOOL needCloseOld = NO;
     BOOL needOpen = NO;
