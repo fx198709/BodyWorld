@@ -702,12 +702,13 @@
             [self.view addSubview:voiceBtn];
             [voiceBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(mMainPanel).offset(-20);
-                make.bottom.equalTo(mMainPanel).offset(-55);
+                make.bottom.equalTo(mMainPanel).offset(-50);
                 make.size.mas_equalTo(CGSizeMake(40, 40));
             }];
-            voiceBtn.backgroundColor = UIColor.redColor;
             [voiceBtn addTarget:self action:@selector(headvoiceBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-             
+            UIImage *image = [UIImage imageNamed:@"sound_on"];
+            [voiceBtn setImage:image forState:UIControlStateNormal];
+            [voiceBtn setImage:image forState:UIControlStateHighlighted];
         }
     }
     
@@ -719,6 +720,12 @@
     ClassMember *host = [client getHostMember];
     BOOL isAudioEnable = [host isHostAudioEnable];
     [host enableHostAudio:!isAudioEnable];
+    UIImage *image = [UIImage imageNamed:@"sound_on"];
+    if (isAudioEnable) {
+        image = [UIImage imageNamed:@"sound_minus"];
+    }
+    [voiceBtn setImage:image forState:UIControlStateNormal];
+    [voiceBtn setImage:image forState:UIControlStateHighlighted];
 }
 
 //获取房间的详情
