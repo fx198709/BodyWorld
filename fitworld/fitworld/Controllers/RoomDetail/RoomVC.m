@@ -277,8 +277,8 @@
         [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view).offset(sidePadding);
             make.right.equalTo(self.view).offset(-sidePadding);
-            make.top.equalTo(self.view).offset(44);
-            make.height.equalTo(self.view).multipliedBy(0.3);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);;
+            make.height.equalTo(self.view).multipliedBy(0.36);
         }];
         
         [_bottomPanelView mas_remakeConstraints:^(MASConstraintMaker *make) {

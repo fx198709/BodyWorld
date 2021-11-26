@@ -35,7 +35,7 @@
   [mMyView mas_makeConstraints:^(MASConstraintMaker *make) {
     make.left.and.top.equalTo(self);
     make.width.equalTo(self);
-    make.height.equalTo(self.mMyView.mas_width);
+    make.height.equalTo(self);
   }];
   
   mMyLabel = [[UILabel alloc] init];
@@ -104,6 +104,7 @@
     }];
   }
   [mLocalView bindMedia];
+    [mMyView bringSubviewToFront:mMyLabel];
 }
 
 - (void)detachLocalView {

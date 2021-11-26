@@ -117,7 +117,8 @@ BOOL  hasrequest = NO;
 
 - (void)reloadData {
         [[APPObjOnce sharedAppOnce] getUserinfo:^(NSError * _Nonnull error) {
-            [_mainTableview.mj_header beginRefreshing];
+//            [_mainTableview.mj_header beginRefreshing];
+            [self headerRereshing];
             mainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(mainTimerAction) userInfo:nil repeats:YES];
         }];
 }

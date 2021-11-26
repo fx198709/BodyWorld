@@ -109,9 +109,9 @@
                     UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
                     NSString *userId = user.id;
                     NSString *currentId =[APPObjOnce sharedAppOnce].currentUser.id;
-//                    if (![userId isEqualToString:currentId]) {
+                    if (![userId isEqualToString:currentId]) {
                         [list addObject:user];
-//                    }
+                    }
                 }
                 self.userList = list;
             }
