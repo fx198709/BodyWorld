@@ -296,7 +296,6 @@
             CGRect bottomframe = self->_bottomPanelView.frame;
             VConductorClient *client = [VConductorClient sharedInstance];
             NSDictionary * memberDic = [client getGustMemberData];
-            NSInteger guestcount = 0;//只添加能直播的 // memberDic.allKeys.count;
             //            拷贝一份key出来 这边的key就是userID
             NSMutableArray *keysArray = [[NSMutableArray alloc] initWithArray:memberDic.allKeys];
             int  guestPanelscount = (int)self.guestPanels.count;
@@ -308,7 +307,6 @@
                 if ([keysArray containsObject:guestpanel.mUserId] && [currentMember isonTheAir]) {
                     //                        存在，视图不需要处理，还保存着  userID数组里面，需要删除
                     [keysArray removeObject:guestpanel.mUserId];
-                    guestcount++;
                 }else{
                     //                        用户id不存在，需要把原来的删除
                     [guestpanel detachGuestRenderView];
@@ -316,42 +314,47 @@
                     [strongSelf.guestPanels removeObject:guestpanel];
                 }
             }
+//            还有没有添加进入的人员
             if (keysArray.count > 0) {
                 for (NSString *userID in keysArray) {
                     //                    ClassMember *currentMember = [memberDic objectForKey:userID];
                     //                    if ([currentMember isonTheAir]) {
-                    guestcount++;
-                    GuestPanel * guestpanel = [[GuestPanel alloc] init];
-                    guestpanel.mUserId = userID;
-                    [strongSelf.guestPanels addObject:guestpanel];
-                    [self->_bottomPanelView addSubview:guestpanel];
-                    [guestpanel attachGuestRenderView];
-                    ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
-                    if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
-                        guestpanel.mMyLabel.text = [[[currentMember copyInfo].custom objectForKey:@"internal"] objectForKey:@"nickName"];
-                        
+                    if (strongSelf.guestPanels.count < 5) {
+//                        游客小于5个，这边才用
+                        GuestPanel * guestpanel = [[GuestPanel alloc] init];
+                        guestpanel.mUserId = userID;
+                        [strongSelf.guestPanels addObject:guestpanel];
+                        [self->_bottomPanelView addSubview:guestpanel];
+                        [guestpanel attachGuestRenderView];
+                        ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
+                        if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
+                            guestpanel.mMyLabel.text = [[[currentMember copyInfo].custom objectForKey:@"internal"] objectForKey:@"nickName"];
+                            
+                        }
+                        guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
                     }
-                    guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
+                   
                     //
                 }
             }
-            if (guestcount == 0) {
+            int showguestcount = self.guestPanels.count;
+            if (showguestcount == 0) {
                 //        清楚所有的直播
                 self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width, bottomframe.size.height);
                 
             }else{
-                if (guestcount == 1){
+                if (showguestcount == 1){
                     //            一行两个
                     self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/2, bottomframe.size.height);
                     GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:0];
                     guestpanel.frame = CGRectMake(bottomframe.size.width/2, 0, bottomframe.size.width/2, bottomframe.size.height);
-                }else if (guestcount == 3 || guestcount == 2){
+                }else if (showguestcount == 3 || showguestcount == 2){
                     //            一行2个
                     self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/2, bottomframe.size.height/2);
                     for (int index = 0; index < strongSelf.guestPanels.count; index++) {
                         GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
                         CGFloat startX = index%2 == 0 ? bottomframe.size.width/2:0;
-                        CGFloat startY = index > 1? bottomframe.size.height/2:0;
+                        CGFloat startY = index > 0? bottomframe.size.height/2:0;
                         guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/2, bottomframe.size.height/2);
                         
                     }
@@ -359,11 +362,11 @@
                 } else{
                     //            一行3个 2行
                     self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/3, bottomframe.size.height/2);
-                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
+                    for (int index = 0; index < strongSelf.guestPanels.count && index < 5; index++) {
                         GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-                        CGFloat startX = index%3 == 0 ? bottomframe.size.width/3*((index+1)%3):0;
-                        CGFloat startY = index > 2? bottomframe.size.height/2:0;
-                        guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/2, bottomframe.size.height/2);
+                        CGFloat startX = bottomframe.size.width/3*((index+1)%3);
+                        CGFloat startY = index > 1? bottomframe.size.height/2:0;
+                        guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/3, bottomframe.size.height/2);
                         
                     }
                 }
