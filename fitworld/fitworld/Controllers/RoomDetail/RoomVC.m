@@ -70,6 +70,9 @@
     BOOL headHasVoice;//头部的有声音
     UIButton *settingBtn;//设置按钮
     
+    BOOL createRoomLiving;//已经开始直播
+    UILabel *leftTimeLabel;
+    UIView *leftTimeBackview;
     RoomVCSettingView * settingView;//设置视图
 }
 
@@ -219,7 +222,6 @@
         //        [strongSelf showGroupChatView];
     };
     
-    [[VConductorClient sharedInstance] joinwithEntry:VRC_URL andCode:mCode asViewer:NO withDelegate:self];
     //    进入房间
     [self joinStateRequest:YES success:^{
         
@@ -261,18 +263,6 @@
         //            [self.view layoutIfNeeded];
         //        }];
     } else {
-        //      都在这边布局的
-        //        [mHeaderPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        //            make.left.equalTo(self.view);
-        //            make.top.equalTo(self.view);
-        //            make.width.equalTo(self.view);
-        //            if (self.mFullScreen) {
-        //                make.height.equalTo(@0);
-        //            } else {
-        //                make.height.equalTo(@90);
-        //            }
-        //        }];
-        
         [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view);
             make.right.equalTo(self.view);
@@ -658,6 +648,40 @@
 }
 
 - (void)dealwithTimer{
+//    判断开始没有
+//    还没开始，需要设置倒计时
+    long dif = self.currentRoom.start_time- [[NSDate date] timeIntervalSince1970];
+    if (dif>0) {
+        if (!leftTimeLabel) {
+            leftTimeBackview = [[UIView alloc] init];
+            [mMainPanel addSubview:leftTimeBackview];
+            [leftTimeBackview mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.equalTo(mMainPanel);
+                make.left.top.equalTo(mMainPanel);
+            }];
+            leftTimeBackview.backgroundColor = UIColor.blackColor;
+            leftTimeLabel = [[UILabel alloc] init];
+            [leftTimeBackview addSubview:leftTimeLabel];
+            [leftTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.centerY.equalTo(leftTimeBackview);
+            }];
+            leftTimeLabel.font = [UIFont boldSystemFontOfSize:70];
+            leftTimeLabel.textColor = DarkGreen;
+        }
+        leftTimeLabel.text = [NSString stringWithFormat:@"%ld",dif];
+        return;
+    }else{
+        if (leftTimeBackview) {
+            [leftTimeBackview removeFromSuperview];
+        }
+        if (!createRoomLiving) {
+            createRoomLiving = YES;
+//            开启直播
+            [[VConductorClient sharedInstance] joinwithEntry:VRC_URL andCode:mCode asViewer:NO withDelegate:self];
+        }
+       
+    }
+    
     if (hasStartLiving) {
         if (!currentSlider) {
             currentSlider = [[SliderView alloc] init];
@@ -802,6 +826,7 @@
             //                显示进度条
 //            self.title = self.currentRoom.name;
             [self startTimer];
+            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];

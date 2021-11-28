@@ -163,7 +163,7 @@
     // Configure the view for the selected state
 }
 - (void)startLivingBtnClicked:(UIButton *) recognizer{
-    Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];
+    Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag-100];
     [[APPObjOnce sharedAppOnce] joinRoom:selectRoom withInvc:[self viewController]];
     
 //    Room *room1 = [_dataArr objectAtIndex: recognizer.tag-100];
