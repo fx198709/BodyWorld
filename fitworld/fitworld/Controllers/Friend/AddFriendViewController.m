@@ -34,8 +34,10 @@
 
 
 - (void)initView {
+    
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.separatorColor = UIColor.clearColor;
     Class cellClass = [FriendCell class];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil] forCellReuseIdentifier:NSStringFromClass(cellClass)];
     [self addMJRefreshToTable:self.tableView];

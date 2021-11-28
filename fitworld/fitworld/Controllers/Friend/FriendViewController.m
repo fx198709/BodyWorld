@@ -14,6 +14,8 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UILabel *addTitleLabel;
+@property (nonatomic, weak) IBOutlet UIView *addPeopleView;
+
 
 @property (nonatomic, strong) NSMutableArray<UserInfo *> *dataList;
 
@@ -36,9 +38,11 @@
 
 
 - (void)initView {
+    _addPeopleView.backgroundColor = BuddyTableBackColor;
     self.addTitleLabel.text = ChineseStringOrENFun(@"新的朋友", @"New friend");
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.separatorColor = UIColor.clearColor;
     Class cellClass = [FriendCell class];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil] forCellReuseIdentifier:NSStringFromClass(cellClass)];
     [self addMJRefreshToTable:self.tableView];
@@ -124,6 +128,7 @@
     cell.titleLabel.text = friend.nickname;
     cell.line.hidden = indexPath.row == self.dataList.count - 1;
     cell.isAdd = NO;
+    cell.backgroundColor = BuddyTableBackColor;
     return cell;
 }
 

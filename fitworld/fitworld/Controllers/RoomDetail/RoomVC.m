@@ -665,8 +665,8 @@
             [leftTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.centerY.equalTo(leftTimeBackview);
             }];
-            leftTimeLabel.font = [UIFont boldSystemFontOfSize:70];
-            leftTimeLabel.textColor = DarkGreen;
+            leftTimeLabel.font = [UIFont boldSystemFontOfSize:80];
+            leftTimeLabel.textColor = UIRGBColor(48, 180, 90, 1);
         }
         leftTimeLabel.text = [NSString stringWithFormat:@"%ld",dif];
         return;
