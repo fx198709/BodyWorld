@@ -69,6 +69,13 @@
     }
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+//    输入文字改变
+    if ([_searchviewDelegate respondsToSelector:@selector(searhBartextChanged:)]) {
+        [_searchviewDelegate searhBartextChanged:searchBar.text];
+    }
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     if ([_searchviewDelegate respondsToSelector:@selector(searhBarBtnClicked:)]) {
         [_searchviewDelegate searhBarBtnClicked:searchBar.text];

@@ -281,7 +281,7 @@
 #pragma mark - 刷新房间数据
 - (void) reachHeadData
 {
-    [dataArr removeAllObjects];
+//    [dataArr removeAllObjects];
     _isLoadAllData =NO;
     [self loadDateIsLoadHead:YES];
 }
@@ -296,6 +296,7 @@
 - (void)headerRereshing
 {
     //下拉刷新，先还原上拉“已加载全部数据”的状态
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.tableView.mj_footer resetNoMoreData];
     [self reachHeadData];
 }
@@ -309,7 +310,7 @@
     if (!isLoading) {
         isLoading = YES;
         [requestTask cancel];
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
         NSString *search = _searchString?_searchString:@"";
         int size = 20;
@@ -380,6 +381,7 @@
 - (void)loadMore
 {
     if (!_isLoadAllData) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [self loadDateIsLoadHead:NO];
     }
     else
@@ -408,9 +410,18 @@
     [self.view endEditing:YES];
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+//    输入文字改变
+    _searchString = searchBar.text;
+    [self.tableView.mj_footer resetNoMoreData];
+    [self reachHeadData];;
+}
+
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     _searchString = searchBar.text;
-    [self headerRereshing];
+    [self.tableView.mj_footer resetNoMoreData];
+    [self reachHeadData];
     [self.view endEditing:YES];
 }
 

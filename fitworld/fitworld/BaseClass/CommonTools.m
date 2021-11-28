@@ -7,6 +7,7 @@
 
 #import "CommonTools.h"
 #import "Room.h"
+#import "UserInfo.h"
 
 @implementation CommonTools
 
@@ -356,6 +357,9 @@
 
 
 
++ (void)findLocaltionCityName:(UserInfo*)user{
+    
+}
 
 
 @end

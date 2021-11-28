@@ -9,6 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol TableSearchViewDelegate<NSObject>
+- (void)searhBartextChanged:(NSString*)searchString;
 - (void)searhBarBtnClicked:(NSString*)searchString;
 - (void)allowOtherBtnClicked:(NSInteger)otherType;
 
