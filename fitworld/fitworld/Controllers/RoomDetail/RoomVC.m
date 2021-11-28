@@ -227,9 +227,8 @@
     [self reachRoomDetailInfo];
 }
 
+#pragma mark 设置所有的视图的视频
 - (void)layoutPanel {
-    NSInteger sidePadding = self.mFullScreen ? 0 : 15;
-    NSInteger midPadding = self.mFullScreen ? 0 : 5;
     if ([VConductorClient sharedInstance].isViewer) {
         //        [mHeaderPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
         //            make.left.and.top.equalTo(self.view);
@@ -275,17 +274,17 @@
         //        }];
         
         [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view).offset(sidePadding);
-            make.right.equalTo(self.view).offset(-sidePadding);
-            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);;
-            make.height.equalTo(self.view).multipliedBy(0.36);
+            make.left.equalTo(self.view);
+            make.right.equalTo(self.view);
+            make.top.equalTo(self.view);
+            make.height.equalTo(self.view).multipliedBy(0.4);
         }];
         
         [_bottomPanelView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view).offset(sidePadding);
-            make.right.equalTo(self.view).offset(-sidePadding);
-            make.top.equalTo(self.mMainPanel.mas_bottom).offset(sidePadding);
-            make.bottom.equalTo(self.view).offset(-sidePadding);
+            make.left.equalTo(self.view);
+            make.right.equalTo(self.view);
+            make.top.equalTo(self.mMainPanel.mas_bottom).offset(5);
+            make.bottom.equalTo(self.view);
         }];
         [self.view setNeedsLayout];
         [self.view layoutIfNeeded];
@@ -624,10 +623,7 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             //             跳转到健身完成页面
             self->canErrorToPOP = NO;
-            AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
-            trainingvc.event_id = self->mCode[@"eid"];
-            trainingvc.invc = self.invc;
-            [self.navigationController pushViewController:trainingvc animated:YES];
+            [self jumpToTrainingvc];
         });
     }];
 }
@@ -700,10 +696,7 @@
         vtitleLabel.text = self.currentRoom.name;
         if (elapsedSecs > self.currentRoom.duration*60) {
             //            课程结束
-            AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
-            trainingvc.event_id = self->mCode[@"eid"];
-            trainingvc.invc = self.invc;
-            [self.navigationController pushViewController:trainingvc animated:YES];
+            [self jumpToTrainingvc];
         }
         
         if (!voiceBtn) {
@@ -812,6 +805,14 @@
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
+}
+
+#pragma mark 跳转到完成页面
+- (void)jumpToTrainingvc{
+    AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
+    trainingvc.event_id = self->mCode[@"eid"];
+    trainingvc.invc = self.invc;
+    [self.navigationController pushViewController:trainingvc animated:YES];
 }
 
 

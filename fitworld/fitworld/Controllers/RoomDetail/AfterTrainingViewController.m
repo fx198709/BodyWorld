@@ -10,7 +10,7 @@
 #import "Train2TableViewCell.h"
 #import "Train3TableViewCell.h"
 #import "MainViewController.h"
-
+ 
 @interface AfterTrainingViewController (){
     BOOL reachRoomInfo;
     BOOL reachUserListInfo;
@@ -181,6 +181,16 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     self.isTapBack = NO;
+//    删除roomvc
+    NSMutableArray *marr = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+       for (UIViewController *vc in marr) {
+           if ([vc isKindOfClass:NSClassFromString(@"RoomVC")]) {
+               [marr removeObject:vc];
+               break;
+           }
+       }
+    self.navigationController.viewControllers = marr;
+   
 }
 //
 //- (void)backPopViewcontroller:(id) sender
