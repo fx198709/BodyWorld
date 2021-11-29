@@ -37,6 +37,7 @@
     
     Class cellClass = [self cellClass];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil] forCellReuseIdentifier:NSStringFromClass(cellClass)];
+    self.tableView.separatorColor = UIColor.clearColor;
     [self addMJRefreshToTable:self.tableView];
 }
 

@@ -27,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = ChineseStringOrENFun(@"添加好友", @"Add Friends");
+    self.tableView.separatorColor = UIColor.clearColor;
 }
 
 - (void)initView {
@@ -65,7 +66,7 @@
     }
     self.isRequesting = YES;
     NSInteger nextPage = self.currentPage + 1;
-    int perCount = 10;
+    int perCount = 20;
     
     NSString *searchString = self.searchBar.text;
     NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:@{@"row":IntToString(perCount), @"page":IntToString(nextPage)}];

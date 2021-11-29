@@ -38,7 +38,40 @@
 @property (nonatomic , copy) NSString              * updated_at;
 @property (nonatomic , assign) NSInteger              watch_count;
 @property (nonatomic , strong) NSString              *course_type;
-@property (nonatomic , assign) BOOL                  is_join;
+
+//详情多用的字段
+@property (nonatomic , strong) NSString              *type;
+@property (nonatomic , assign) NSInteger              type_int;//0 对练课  1团课
+@property (nonatomic , strong) NSString              *course_type_name;
+@property (nonatomic , strong) NSString              *pic;
+@property (nonatomic , strong) NSString              *desc;
+@property (nonatomic , strong) NSString              *video_id;
+@property (nonatomic , assign) NSInteger              duration;
+@property (nonatomic , strong) NSString              *cal;
+@property (nonatomic , strong) NSString              *heart_rate;
+@property (nonatomic , strong) NSString              *coach_id;
+@property (nonatomic , strong) NSString              *coach_name;
+@property (nonatomic , strong) NSString              *device_id;
+@property (nonatomic , strong) NSString              *device_name;
+@property (nonatomic , assign) NSInteger              max_num;
+@property (nonatomic , assign) NSInteger              check_status;
+@property (nonatomic , assign) NSInteger              active_status;
+@property (nonatomic , strong) NSString              *feedback;
+@property (nonatomic , strong) NSArray<Plan*>          *plan;
+@property (nonatomic , strong) NSArray<DatePlan*>      *dataPlan;
+@property (nonatomic , strong) CoachModel      *coach;
+@property (nonatomic , strong) NSString              *invite_user_count;
+@property (nonatomic , strong) NSString              *join_user_count;
+@property (nonatomic , strong) NSString              *watch_user_count;
+@property (nonatomic , assign) BOOL              is_join;
+@property (nonatomic , assign) NSInteger              room_status;
+@property (nonatomic , strong) NSString              *creator_nickname;
+@property (nonatomic , strong) NSString              *creator_userid;
+@property (nonatomic , strong) NSString              *creator_avatar;
+@property (nonatomic , strong) NSString              *creator_country;
+@property (nonatomic , strong) NSString              *creator_city;
+@property (nonatomic , strong) NSString              *creator_country_icon;
+@property (nonatomic , assign) NSInteger              calorie;
 
 #pragma mark - 自定义字段
 @property (nonatomic , assign) NSInteger              roomDealState; //自己添加的一个状态
