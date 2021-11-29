@@ -115,7 +115,7 @@
     NSInteger x = userlistView.contentOffset.x;
     RemoveSubviews(userlistView, [NSArray array]);;
     int startX = 0;
-    BOOL isCreate = [currentRoom.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
+    BOOL isCreate = [currentRoom.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
 //    房主要在第一位
     NSMutableArray *tempArray = [NSMutableArray array];
     for (UserInfo *tempuser in currentUserList) {
@@ -211,7 +211,7 @@
     NSString *startNowString = ChineseStringOrENFun(@"提前开始", @"Start Now");
     self.startNowBtn.layer.cornerRadius =5;
     self.startNowBtn.clipsToBounds =YES;
-    BOOL isCreate = [currentRoom.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
+    BOOL isCreate = [currentRoom.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
 //    是自己创建的，才有提前开始按钮
     if (!isCreate) {
         _startNowBtnHeightCon.constant = 0;
@@ -313,7 +313,7 @@
         make.left.right.equalTo(courseDetailView);
         make.height.mas_equalTo(210);
     }];
-    NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, currentRoom.pic];
+    NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, currentRoom.course.pic];
     [mainImageview sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
     CourseDetailSmallview *detailsmall = (CourseDetailSmallview *)[[[NSBundle mainBundle] loadNibNamed:@"CourseDetailSmallview" owner:self options:nil] lastObject];
     [courseDetailView addSubview:detailsmall];

@@ -23,7 +23,7 @@
     detailView.layer.cornerRadius = 8;
     detailView.clipsToBounds = YES;
     [self.contentView addSubview:detailView];
-    int allheight = 60+ (int)roominfo.plan.count * 40;
+    int allheight = 60+ (int)roominfo.course.plan.count * 40;
     [detailView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(10);
         make.right.equalTo(self.contentView).offset(-10);
@@ -45,8 +45,8 @@
     [topView addSubview:lineview];
     [self.contentView addSubview:topView];
     
-    for (int index = 0; index < roominfo.plan.count; index++) {
-        Plan *plan = [roominfo.plan objectAtIndex:index];
+    for (int index = 0; index < roominfo.course.plan.count; index++) {
+        Plan *plan = [roominfo.course.plan objectAtIndex:index];
         UIView *planView = [[UIView alloc] initWithFrame:CGRectMake(0, 60+40*index, outwith-20, 40)];
         [self.contentView addSubview:planView];
         UILabel *planTitle = [[UILabel alloc] initWithFrame:CGRectMake(40, 15, outwith-180, 20)];

@@ -37,7 +37,7 @@
     [self changeDataWithModel:urlString];
 }
 - (void)changeRoomModelData:(Room*)roomModel{
-    NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, roomModel.creator_avatar];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, roomModel.room_creator.avatar];
     [self changeDataWithModel:urlString];
 }
 

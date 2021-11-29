@@ -3,15 +3,6 @@
 
 @implementation Room
 
-
-- (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err {
-    if (self = [super initWithDictionary:dict error:err]) {
-        [self dealData];
-    }
-    return self;
-}
-- (void)dealData {
-    self.creator_country_icon = [self.creator_country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
 //    _allow_record = [json[@"allow_record"] boolValue];
 //    _allow_watch = [json[@"allow_watch"] boolValue];
@@ -72,8 +63,6 @@
 //    self.creator_country_icon = NSStringFromDic(json, @"creator_country_icon", @"");
 //
 //    self.calorie = LongValueFromDic(json, @"calorie", 0);
-
-}
 
 /*
  //详情多用的字段

@@ -49,7 +49,7 @@
 - (void)addsubviews{
     UIImageView *topImgView = [[UIImageView alloc] init];
     topImgView.image = [UIImage imageNamed:@"coursedetail_top"];
-    NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, self.selectRoom.pic];
+    NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, self.selectRoom.course.pic];
     [topImgView sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
     [self.view addSubview:topImgView];
     int topimageHeight = self.view.bounds.size.height / 3;
@@ -144,7 +144,7 @@
     
     
     UILabel *getTimeLabel = [[UILabel alloc] init];
-    getTimeLabel.text = [NSString stringWithFormat:@"%ld", (long)_selectRoom.duration]; //@"5";
+    getTimeLabel.text = [NSString stringWithFormat:@"%ld", (long)_selectRoom.course.duration]; //@"5";
     getTimeLabel.font = [UIFont boldSystemFontOfSize:20];
     getTimeLabel.textColor= UIColor.whiteColor;
     getTimeLabel.adjustsFontSizeToFitWidth = YES;
@@ -182,7 +182,7 @@
     
 
     UILabel *getHeartLabel = [[UILabel alloc] init];
-    getHeartLabel.text = _selectRoom.heart_rate;
+    getHeartLabel.text = _selectRoom.course.heart_rate;
     getHeartLabel.font = [UIFont boldSystemFontOfSize:20];;
     getHeartLabel.textColor= UIColor.whiteColor;
     getHeartLabel.adjustsFontSizeToFitWidth = YES;
@@ -217,7 +217,7 @@
     }];
     
     UILabel *getKcalLabel = [[UILabel alloc] init];
-    getKcalLabel.text = [NSString stringWithFormat:@"%@", _selectRoom.cal];
+    getKcalLabel.text = [NSString stringWithFormat:@"%@", _selectRoom.course.cal];
     getKcalLabel.font = [UIFont boldSystemFontOfSize:20];;
     getKcalLabel.textColor= UIColor.whiteColor;
     getKcalLabel.adjustsFontSizeToFitWidth = YES;
@@ -255,7 +255,7 @@
     vdesclabel.numberOfLines = 0;
     vdesclabel.font = SystemFontOfSize(15);
     vdesclabel.textColor = UIRGBColor(225, 225, 225, 1);
-    vdesclabel.text = self.selectRoom.desc;
+    vdesclabel.text = self.selectRoom.course.desc;
     [vdesclabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [vdesclabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     UIView *lineview = [[UIView alloc] init];
@@ -287,7 +287,7 @@
     
     UILabel *courseLabel = [[UILabel alloc] init];
     courseLabel.adjustsFontSizeToFitWidth = YES;
-    courseLabel.text = self.selectRoom.creator_nickname;
+    courseLabel.text = self.selectRoom.room_creator.nickname;
     courseLabel.textColor = UIColor.whiteColor;
     courseLabel.font =SystemFontOfSize(16);
     [coachView addSubview:courseLabel];
@@ -303,13 +303,13 @@
         make.centerY.equalTo(courseLabel);
         make.size.mas_equalTo(CGSizeMake(20, 10));
     }];
-    NSString *url = self.selectRoom.creator_country_icon;
+    NSString *url = self.selectRoom.room_creator.country_icon;
     [countryImage sd_setImageWithURL:[NSURL URLWithString:url]];
     countryImage.contentMode = UIViewContentModeScaleAspectFit;
     
     UILabel *courseCityLabel = [[UILabel alloc] init];
     courseCityLabel.adjustsFontSizeToFitWidth = YES;
-    courseCityLabel.text = [NSString stringWithFormat:@"%@ - %@", self.selectRoom.creator_city, self.selectRoom.creator_country];
+    courseCityLabel.text = [NSString stringWithFormat:@"%@ - %@", self.selectRoom.room_creator.city, self.selectRoom.room_creator.country];
     courseCityLabel.textColor = LittleTextColor;
     courseCityLabel.font = SystemFontOfSize(14);
     [coachView addSubview:courseCityLabel];
@@ -361,7 +361,7 @@
         make.height.mas_equalTo(35);
     }];
     
-    int planCount = (int)self.selectRoom.plan.count;
+    int planCount = (int)self.selectRoom.course.plan.count;
     int  backViewHeight = 40+ 30*planCount+30;
     UIView *planBackView = [[UIView alloc] init];
     [scrollview addSubview:planBackView];
@@ -391,7 +391,7 @@
     headrightLabel.text = ChineseStringOrENFun(@"内容", @"Content");
     for (int index=0; index< planCount; index++) {
         int starty = 40+10+30*index;
-        Plan * plan = [self.selectRoom.plan objectAtIndex:index];
+        Plan * plan = [self.selectRoom.course.plan objectAtIndex:index];
         UILabel *leftlabel = [self contentLabel];
         [planBackView addSubview:leftlabel];
         leftlabel.text = [NSString stringWithFormat:@"%ld",plan.duration];
