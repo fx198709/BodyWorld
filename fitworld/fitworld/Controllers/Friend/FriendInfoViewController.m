@@ -31,17 +31,14 @@
     self.navigationItem.title = ChineseStringOrENFun(@"添加好友", @"Add Friends");
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self loadUserData];
+}
+
 - (void)initView {
     [super initView];
-    self.nameLabel.text = self.user.nickname;
-    NSString *url = [FITAPI_HTTPS_ROOT stringByAppendingString:self.user.avatar];
-    [self.headImg sd_setImageWithURL:[NSURL URLWithString:url]
-                    placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
-    
-    [self.cityImg sd_setImageWithURL:[NSURL URLWithString:self.user.country_icon]
-                    placeholderImage:nil];
-    self.cityLabel.text = [NSString stringWithFormat:@"%@,%@", self.user.city, self.user.country];
-    self.descLabel.text = self.user.introduction;
+    [self.headImg cornerHalf];
     [self.addbtn cornerHalf];
     [self.addbtn setTitle:ChineseStringOrENFun(@"加好友", @"Add friends") forState:UIControlStateNormal];
 }
@@ -49,6 +46,16 @@
 
 - (Class)cellClass {
     return [FriendRoomCell class];
+}
+
+- (void)loadUserData {
+    self.nameLabel.text = self.user.nickname;
+    NSString *avatarUrl = [FITAPI_HTTPS_ROOT stringByAppendingString:self.user.avatar];
+    [self.headImg sd_setImageWithURL:[NSURL URLWithString:avatarUrl]
+                    placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
+    [self.cityImg sd_setImageWithURL:[NSURL URLWithString:self.user.country_icon]];
+    self.cityLabel.text = [NSString stringWithFormat:@"%@,%@", self.user.city, self.user.country];
+    self.descLabel.text = self.user.introduction;
 }
 
 

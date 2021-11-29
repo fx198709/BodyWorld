@@ -37,6 +37,15 @@
     [self.creatorImg sd_setImageWithURL:[NSURL URLWithString:room.room_creator.country_icon]
                     placeholderImage:nil];
     self.creatorNameLabel.text = room.room_creator.nickname;
+    if (room.course.date_plan.count > 0) {
+        DatePlan *dataPlan = room.course.date_plan.firstObject;
+        NSDate *date = [NSDate mt_dateFromString:dataPlan.plan_date format:DateFormatter_Day];
+        NSString *weekNum = [date getZHWeekDay];
+        self.timeLabel.text = [NSString stringWithFormat:@"%@ %@ %@",
+                               weekNum, dataPlan.plan_date, dataPlan.plan_time];
+    } else {
+        self.timeLabel.text = @"";
+    }
     
     if (room.is_join) {
         [self.clickBtn setTitle:ChineseStringOrENFun(@"已预约", @"Has join") forState:UIControlStateNormal];

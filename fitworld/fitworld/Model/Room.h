@@ -54,18 +54,18 @@
 @property (nonatomic , strong) NSString              *coach_name;
 @property (nonatomic , strong) NSString              *device_id;
 @property (nonatomic , strong) NSString              *device_name;
-@property (nonatomic , assign) NSInteger              max_num;
-@property (nonatomic , assign) NSInteger              check_status;
-@property (nonatomic , assign) NSInteger              active_status;
+@property (nonatomic , assign) NSInteger             max_num;
+@property (nonatomic , assign) NSInteger             check_status;
+@property (nonatomic , assign) NSInteger             active_status;
 @property (nonatomic , strong) NSString              *feedback;
-@property (nonatomic , strong) NSArray<Plan>          *plan;
-@property (nonatomic , strong) NSArray<DatePlan>      *dataPlan;
-@property (nonatomic , strong) CoachModel             *coach;
+@property (nonatomic , strong) NSArray<Plan>         *plan;
+@property (nonatomic , strong) NSArray<DatePlan>     *dataPlan;
+@property (nonatomic , strong) CoachModel            *coach;
 @property (nonatomic , strong) NSString              *invite_user_count;
 @property (nonatomic , strong) NSString              *join_user_count;
 @property (nonatomic , strong) NSString              *watch_user_count;
 @property (nonatomic , assign) BOOL                  is_join;
-@property (nonatomic , assign) NSInteger              room_status;
+@property (nonatomic , assign) NSInteger             room_status;
 @property (nonatomic , strong) NSString              *creator_nickname;
 @property (nonatomic , strong) NSString              *creator_userid;
 @property (nonatomic , strong) NSString              *creator_avatar;
@@ -73,7 +73,6 @@
 @property (nonatomic , strong) NSString              *creator_city;
 @property (nonatomic , strong) NSString              *creator_country_icon;
 @property (nonatomic , assign) NSInteger              calorie;
-
 
 @property (nonatomic , assign) NSInteger              roomDealState; //自己添加的一个状态
 

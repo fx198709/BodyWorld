@@ -128,6 +128,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSInteger)weekdayIndex;
 
+//获取中文星期几
+-(NSString *)getZHWeekDay;
+
 
 @end
 

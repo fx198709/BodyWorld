@@ -245,4 +245,14 @@
     return weekday;
 }
 
+//获取中文星期几
+-(NSString *)getZHWeekDay {
+//    NSArray *weekArr = @[@"星期日", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六"];
+    NSArray *weekArr = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
+    NSInteger weekNum = [self weekdayIndex] - 1;
+    NSString *weakStr = weekArr[weekNum % weekArr.count];
+    return weakStr;
+}
+
+
 @end
