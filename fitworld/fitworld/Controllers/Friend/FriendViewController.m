@@ -13,14 +13,7 @@
 @interface FriendViewController ()
 <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UILabel *addTitleLabel;
-
-@property (nonatomic, strong) NSMutableArray<UserInfo *> *dataList;
-
-@property (nonatomic, assign) NSInteger currentPage;
-@property (nonatomic, assign) BOOL isFinished;
-@property (nonatomic, assign) BOOL isRequesting;
 
 @end
 
@@ -29,52 +22,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = ChineseStringOrENFun(@"好友", @"Friends");
-    [self initView];
-    self.dataList = [NSMutableArray array];
-    [self resetData];
-    [self MJRefreshData];
 }
-
 
 - (void)initView {
+    [super initView];
     self.addTitleLabel.text = ChineseStringOrENFun(@"新的朋友", @"New friend");
-    self.tableView.estimatedSectionFooterHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 0;
-    Class cellClass = [FriendCell class];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil] forCellReuseIdentifier:NSStringFromClass(cellClass)];
-    [self addMJRefreshToTable:self.tableView];
 }
 
-#pragma mark - refresh
-
-- (void)MJRefreshData {
-    [self resetData];
-    [self getFriendListFromServer:YES];
+- (Class)cellClass {
+    return [FriendCell class];
 }
-
-- (void)MJRequestMoreData {
-    [self getFriendListFromServer:NO];
-}
-
-- (void)resetData {
-    self.currentPage = 0;
-    self.isFinished = NO;
-    [self.dataList removeAllObjects];
-}
-
 
 #pragma mark - server
 
-- (void)getFriendListFromServer:(BOOL)isRefresh {
+- (void)getDataListFromServer:(BOOL)isRefresh {
     if (self.isFinished || self.isRequesting) {
         return;
     }
     self.isRequesting = YES;
     NSInteger nextPage = self.currentPage + 1;
-    NSString *url = @"friends";
     int perCount = 10;
+
     NSDictionary *param = @{@"row":IntToString(perCount), @"page":IntToString(nextPage)};
-    [[AFAppNetAPIClient manager] GET:url parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] GET:@"friends" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         self.isRequesting = NO;
         

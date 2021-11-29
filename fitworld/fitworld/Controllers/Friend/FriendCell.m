@@ -31,13 +31,13 @@
 - (void)setCellType:(FriendCellType)cellType {
     _cellType = cellType;
     switch(cellType) {
-        case FriendCell_add: {
+        case FriendCell_agree: {
             self.addBtn.hidden = NO;
             [self.addBtn setTitle:ChineseStringOrENFun(@"同意", @"Agree") forState:UIControlStateNormal];
             [self.addBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
         }
             break;
-        case FriendCell_added: {
+        case FriendCell_agreeed: {
             self.addBtn.hidden = NO;
             [self.addBtn setTitle:ChineseStringOrENFun(@"已添加", @"Added") forState:UIControlStateNormal];
             [self.addBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
@@ -47,6 +47,13 @@
         {
             self.addBtn.hidden = NO;
             [self.addBtn setTitle:ChineseStringOrENFun(@"删除", @"Delete") forState:UIControlStateNormal];
+            [self.addBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        }
+            break;
+        case FriendCell_add:
+        {
+            self.addBtn.hidden = NO;
+            [self.addBtn setTitle:ChineseStringOrENFun(@"添加", @"Add") forState:UIControlStateNormal];
             [self.addBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
         }
             break;
@@ -60,8 +67,9 @@
 
 -(IBAction)friendActionClick:(id)sender {
     switch(self.cellType) {
-        case FriendCell_add:
+        case FriendCell_agree:
         case FriendCell_delete:
+        case FriendCell_add:
         {
             if (self.btnCallBack) {
                 self.btnCallBack();

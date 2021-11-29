@@ -5,11 +5,11 @@
 //  Created by xiejc on 2021/11/29.
 //
 
-#import "BaseViewController.h"
+#import "BaseRefreshViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SearchAddFriendViewController : BaseViewController
+@interface SearchAddFriendViewController : BaseRefreshViewController
 
 @end
 

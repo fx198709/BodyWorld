@@ -3,20 +3,9 @@
 #import "CoachModel.h"
 #import "Plan.h"
 #import "DatePlan.h"
-@interface Room_creator :BaseObject
-@property (nonatomic , copy) NSString              * avatar;
-@property (nonatomic , copy) NSString              * city;
-@property (nonatomic , copy) NSString              * country;
-@property (nonatomic , copy) NSString              * country_icon;
-@property (nonatomic , assign) NSInteger              gender;
-@property (nonatomic , copy) NSString              * genderString;
-@property (nonatomic , copy) NSString              * id;
-@property (nonatomic , copy) NSString              * nickname;
-@property (nonatomic , copy) NSString              * username;
+#import "RoomCreator.h"
 
-@end
-
-@interface Room : BaseObject
+@interface Room : BaseJSONModel
 
 @property (nonatomic , assign) BOOL              allow_record;
 @property (nonatomic , assign) BOOL              allow_watch; //允许观察
@@ -35,7 +24,7 @@
 @property (nonatomic , assign) BOOL              is_room_user;
 @property (nonatomic , assign) BOOL              is_start_in_advance;
 @property (nonatomic , copy) NSString              * name;
-@property (nonatomic , strong) Room_creator              * room_creator;
+@property (nonatomic , strong) RoomCreator              * room_creator;
 @property (nonatomic , copy) NSString              * sdk_status;
 @property (nonatomic , copy) NSString              * service_type;
 @property (nonatomic , assign) NSInteger              start_time;

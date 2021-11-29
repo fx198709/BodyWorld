@@ -96,8 +96,8 @@ OurDatePickerViewDelegate>
     
     [self.logoutBtn setTitle:ChineseStringOrENFun(@"退出登录", @"Logout") forState:UIControlStateNormal];
     
-    [self.headImg cornerHalfWithBorderColor:[UIColor darkGrayColor]];
-    [self.logoutBtn cornerWithRadius:6.0 borderColor:[self.logoutBtn backgroundColor]];
+    [self.headImg cornerHalf];
+    [self.logoutBtn cornerWithRadius:6.0];
     
 }
 

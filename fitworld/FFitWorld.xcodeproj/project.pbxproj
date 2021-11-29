@@ -103,6 +103,12 @@
 		A2723F0D273D087900388B01 /* MTHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F0C273D087900388B01 /* MTHUD.m */; };
 		A2723F10273D090E00388B01 /* UIColor+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F0F273D090E00388B01 /* UIColor+MT.m */; };
 		A296D68727547C1B00F73259 /* SearchAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D68627547C1B00F73259 /* SearchAddFriendViewController.m */; };
+		A296D68A2754A37400F73259 /* FriendInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D6892754A37400F73259 /* FriendInfoViewController.m */; };
+		A296D68D2754A3AB00F73259 /* BaseRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D68C2754A3AB00F73259 /* BaseRefreshViewController.m */; };
+		A296D6912754A82300F73259 /* FriendRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D68F2754A82300F73259 /* FriendRoomCell.m */; };
+		A296D6922754A82300F73259 /* FriendRoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A296D6902754A82300F73259 /* FriendRoomCell.xib */; };
+		A296D6982754AFC500F73259 /* FriendRoomPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D6972754AFC500F73259 /* FriendRoomPageInfo.m */; };
+		A296D69B2754D00400F73259 /* RoomCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D69A2754D00400F73259 /* RoomCreator.m */; };
 		A2A94DC2273E5BA000D02C77 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC1273E5BA000D02C77 /* Country.m */; };
 		A2A94DC5273E610900D02C77 /* UIViewController+MTNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */; };
 		A2A94DC9273E718200D02C77 /* SelectCountryCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC8273E718200D02C77 /* SelectCountryCodeViewController.m */; };
@@ -394,6 +400,17 @@
 		A2723F0F273D090E00388B01 /* UIColor+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MT.m"; sourceTree = "<group>"; };
 		A296D68527547C1B00F73259 /* SearchAddFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchAddFriendViewController.h; sourceTree = "<group>"; };
 		A296D68627547C1B00F73259 /* SearchAddFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchAddFriendViewController.m; sourceTree = "<group>"; };
+		A296D6882754A37400F73259 /* FriendInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendInfoViewController.h; sourceTree = "<group>"; };
+		A296D6892754A37400F73259 /* FriendInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendInfoViewController.m; sourceTree = "<group>"; };
+		A296D68B2754A3AB00F73259 /* BaseRefreshViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseRefreshViewController.h; sourceTree = "<group>"; };
+		A296D68C2754A3AB00F73259 /* BaseRefreshViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseRefreshViewController.m; sourceTree = "<group>"; };
+		A296D68E2754A82300F73259 /* FriendRoomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendRoomCell.h; sourceTree = "<group>"; };
+		A296D68F2754A82300F73259 /* FriendRoomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendRoomCell.m; sourceTree = "<group>"; };
+		A296D6902754A82300F73259 /* FriendRoomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendRoomCell.xib; sourceTree = "<group>"; };
+		A296D6962754AFC500F73259 /* FriendRoomPageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendRoomPageInfo.h; sourceTree = "<group>"; };
+		A296D6972754AFC500F73259 /* FriendRoomPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendRoomPageInfo.m; sourceTree = "<group>"; };
+		A296D6992754D00400F73259 /* RoomCreator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCreator.h; sourceTree = "<group>"; };
+		A296D69A2754D00400F73259 /* RoomCreator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCreator.m; sourceTree = "<group>"; };
 		A2A94DC0273E5BA000D02C77 /* Country.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
 		A2A94DC1273E5BA000D02C77 /* Country.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MTNavigation.m"; sourceTree = "<group>"; };
@@ -598,40 +615,44 @@
 		041510D5268F03D20039FCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				040CED0A269F294900818D76 /* Room.h */,
-				040CED09269F294900818D76 /* Room.m */,
-				0422BDBC269C98300084000B /* Plan.h */,
-				0422BDBB269C98300084000B /* Plan.m */,
-				0422BDB8269C96A90084000B /* DatePlan.h */,
-				0422BDB9269C96A90084000B /* DatePlan.m */,
+				A256300E273FE6EA0030D6B2 /* AddFriendPageInfo.h */,
+				A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */,
 				04CD2E4E2698478B007814E6 /* BaseObject.h */,
 				04CD2E502698478C007814E6 /* BaseObject.m */,
-				04CD2E512698478C007814E6 /* UserInfo.h */,
-				04CD2E4F2698478B007814E6 /* UserInfo.m */,
-				04CD2E55269847F2007814E6 /* Course.h */,
-				04CD2E54269847F2007814E6 /* Course.m */,
-				04747FB92708010000B3B5B8 /* PractiseWeek.h */,
-				04747FBA2708010000B3B5B8 /* PractiseWeek.m */,
-				04747FBD27082BC700B3B5B8 /* PractiseStatic.h */,
-				04747FBC27082BC700B3B5B8 /* PractiseStatic.m */,
 				DD595ED52736FBB800618D1A /* CoachModel.h */,
 				DD595ED62736FBB800618D1A /* CoachModel.m */,
 				A2A94DC0273E5BA000D02C77 /* Country.h */,
 				A2A94DC1273E5BA000D02C77 /* Country.m */,
 				A2A94DCC273E744E00D02C77 /* CountryCode.h */,
 				A2A94DCD273E744E00D02C77 /* CountryCode.m */,
-				A2563008273FE2430030D6B2 /* FriendPageInfo.h */,
-				A2563009273FE2430030D6B2 /* FriendPageInfo.m */,
-				A256300E273FE6EA0030D6B2 /* AddFriendPageInfo.h */,
-				A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */,
+				04CD2E55269847F2007814E6 /* Course.h */,
+				04CD2E54269847F2007814E6 /* Course.m */,
+				0422BDB8269C96A90084000B /* DatePlan.h */,
+				0422BDB9269C96A90084000B /* DatePlan.m */,
 				A256300B273FE6850030D6B2 /* Friend.h */,
 				A256300C273FE6850030D6B2 /* Friend.m */,
-				A256301127408AD10030D6B2 /* UserCenterInfo.h */,
-				A256301227408AD10030D6B2 /* UserCenterInfo.m */,
+				A2563008273FE2430030D6B2 /* FriendPageInfo.h */,
+				A2563009273FE2430030D6B2 /* FriendPageInfo.m */,
+				A296D6962754AFC500F73259 /* FriendRoomPageInfo.h */,
+				A296D6972754AFC500F73259 /* FriendRoomPageInfo.m */,
+				0422BDBC269C98300084000B /* Plan.h */,
+				0422BDBB269C98300084000B /* Plan.m */,
+				04747FBD27082BC700B3B5B8 /* PractiseStatic.h */,
+				04747FBC27082BC700B3B5B8 /* PractiseStatic.m */,
+				04747FB92708010000B3B5B8 /* PractiseWeek.h */,
+				04747FBA2708010000B3B5B8 /* PractiseWeek.m */,
+				040CED0A269F294900818D76 /* Room.h */,
+				040CED09269F294900818D76 /* Room.m */,
+				A296D6992754D00400F73259 /* RoomCreator.h */,
+				A296D69A2754D00400F73259 /* RoomCreator.m */,
 				A256301A27408BD90030D6B2 /* UserCenterGroup.h */,
 				A256301B27408BD90030D6B2 /* UserCenterGroup.m */,
+				A256301127408AD10030D6B2 /* UserCenterInfo.h */,
+				A256301227408AD10030D6B2 /* UserCenterInfo.m */,
 				A256301427408B500030D6B2 /* UserCenterWeekData.h */,
 				A256301527408B500030D6B2 /* UserCenterWeekData.m */,
+				04CD2E512698478C007814E6 /* UserInfo.h */,
+				04CD2E4F2698478B007814E6 /* UserInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1029,13 +1050,18 @@
 			children = (
 				A2A94DDB273FC5B200D02C77 /* FriendViewController.h */,
 				A2A94DDC273FC5B200D02C77 /* FriendViewController.m */,
-				A296D68527547C1B00F73259 /* SearchAddFriendViewController.h */,
-				A296D68627547C1B00F73259 /* SearchAddFriendViewController.m */,
 				A2A94DE6273FD8DD00D02C77 /* AddFriendViewController.h */,
 				A2A94DE7273FD8DD00D02C77 /* AddFriendViewController.m */,
+				A296D68527547C1B00F73259 /* SearchAddFriendViewController.h */,
+				A296D68627547C1B00F73259 /* SearchAddFriendViewController.m */,
+				A296D6882754A37400F73259 /* FriendInfoViewController.h */,
+				A296D6892754A37400F73259 /* FriendInfoViewController.m */,
 				A2A94DDE273FC64900D02C77 /* FriendCell.h */,
 				A2A94DDF273FC64900D02C77 /* FriendCell.m */,
 				A2A94DE0273FC64900D02C77 /* FriendCell.xib */,
+				A296D68E2754A82300F73259 /* FriendRoomCell.h */,
+				A296D68F2754A82300F73259 /* FriendRoomCell.m */,
+				A296D6902754A82300F73259 /* FriendRoomCell.xib */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -1051,6 +1077,8 @@
 				DD6EDB40272D2FCD002B0A8E /* CommonTools.m */,
 				A2723EDC273B7A0000388B01 /* BaseViewController.h */,
 				A2723EDD273B7A0000388B01 /* BaseViewController.m */,
+				A296D68B2754A3AB00F73259 /* BaseRefreshViewController.h */,
+				A296D68C2754A3AB00F73259 /* BaseRefreshViewController.m */,
 				DDB1380C2748E36F009A44FD /* BaseTableViewCell.h */,
 				DDB1380D2748E36F009A44FD /* BaseTableViewCell.m */,
 			);
@@ -1382,6 +1410,7 @@
 				A2A94DE2273FC64900D02C77 /* FriendCell.xib in Resources */,
 				DDB138182748EB07009A44FD /* Train3TableViewCell.xib in Resources */,
 				DD84CB99274163E900EB8C61 /* ScreenAboveView.xib in Resources */,
+				A296D6922754A82300F73259 /* FriendRoomCell.xib in Resources */,
 				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
 				DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */,
@@ -1483,10 +1512,12 @@
 				DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */,
 				DD595EEA273BB15800618D1A /* UserHeadPicView.m in Sources */,
 				DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */,
+				A296D6912754A82300F73259 /* FriendRoomCell.m in Sources */,
 				DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */,
 				0449F80526DE688D00DE49A4 /* SystemViewController.m in Sources */,
 				DD6EDB41272D2FCD002B0A8E /* CommonTools.m in Sources */,
 				047DC209268CD09900A3E37E /* main.m in Sources */,
+				A296D69B2754D00400F73259 /* RoomCreator.m in Sources */,
 				A2563010273FE6EA0030D6B2 /* AddFriendPageInfo.m in Sources */,
 				DD51EE4F273FB9BE00153A67 /* ChoosePeopleViewController.m in Sources */,
 				DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */,
@@ -1551,6 +1582,7 @@
 				DD25FEE727226B5A0092CF87 /* JYWeakTimer.m in Sources */,
 				04CD2E522698478C007814E6 /* UserInfo.m in Sources */,
 				04EC01F226BD8AC000DC0103 /* HeaderPanel.m in Sources */,
+				A296D68A2754A37400F73259 /* FriendInfoViewController.m in Sources */,
 				A296D68727547C1B00F73259 /* SearchAddFriendViewController.m in Sources */,
 				A2A94DC2273E5BA000D02C77 /* Country.m in Sources */,
 				04747FBE27082BC700B3B5B8 /* PractiseStatic.m in Sources */,
@@ -1560,6 +1592,7 @@
 				DD595EBD27364D0300618D1A /* MessageDetailViewController.m in Sources */,
 				DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */,
 				A256300A273FE2430030D6B2 /* FriendPageInfo.m in Sources */,
+				A296D68D2754A3AB00F73259 /* BaseRefreshViewController.m in Sources */,
 				A2723F05273CF1BC00388B01 /* SelectCountryViewController.m in Sources */,
 				A2723EFF273CC28C00388B01 /* ChangeIntroductionViewController.m in Sources */,
 				A2A94DC5273E610900D02C77 /* UIViewController+MTNavigation.m in Sources */,
@@ -1588,6 +1621,7 @@
 				DD6EDB6627343624002B0A8E /* MessageListViewController.m in Sources */,
 				A2A94DE1273FC64900D02C77 /* FriendCell.m in Sources */,
 				04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */,
+				A296D6982754AFC500F73259 /* FriendRoomPageInfo.m in Sources */,
 				A2A94DDD273FC5B200D02C77 /* FriendViewController.m in Sources */,
 				04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */,
 				DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */,

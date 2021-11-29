@@ -9,12 +9,11 @@
 
 
 typedef enum {
-    FriendCell_add, //添加好友
-    FriendCell_added, //已添加好友
-    FriendCell_delete //删除好友
+    FriendCell_agree, //同意添加好友
+    FriendCell_agreeed, //已添加好友
+    FriendCell_delete, //删除好友
+    FriendCell_add  //添加好友
 }FriendCellType;
-
-typedef void (^FriendCallBack)(void);
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) FriendCellType cellType;
 @property (nonatomic, assign) int addStatus;
 
-@property (nonatomic, copy) FriendCallBack btnCallBack;
+@property (nonatomic, copy) BaseCallBack btnCallBack;
 
 @end
 

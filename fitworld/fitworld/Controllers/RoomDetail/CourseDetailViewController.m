@@ -429,9 +429,9 @@
                            };
         [manager GET:@"room/detail" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
             NSDictionary *roomJson = responseObject[@"recordset"];
-            self->_selectRoom = [[Room alloc] initWithJSON:roomJson];
+            NSError *error;
+            self->_selectRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
             self.selectRoom.event_id = eventid;
             [self addsubviews];
           

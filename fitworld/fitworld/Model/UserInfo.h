@@ -15,6 +15,7 @@
 @property (nonatomic , assign) NSInteger cal;
 @property (nonatomic , copy) NSString * city;
 @property (nonatomic , copy) NSString * country;
+@property (nonatomic , copy) NSString * country_icon;
 @property (nonatomic , copy) NSString * created_at;
 @property (nonatomic , assign) NSInteger duration;
 @property (nonatomic , assign) NSInteger gender;

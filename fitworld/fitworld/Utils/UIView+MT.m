@@ -125,6 +125,26 @@
     self.layer.mask = maskLayer;
 }
 
+- (void)cornerLeftHalf {
+    [self cornerWithRadius:CGRectGetHeight(self.frame) * 0.5];
+}
+
+- (void)cornerLeftWithRadius:(float)cornerR {
+    [self cornerLeftWithRadius:cornerR borderColor:self.backgroundColor];
+}
+
+- (void)cornerLeftWithRadius:(float)cornerR borderColor:(UIColor *)borderColor {
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomLeft cornerRadii:CGSizeMake(cornerR, cornerR)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    if (borderColor) {
+        maskLayer.borderColor = borderColor.CGColor;
+    }
+    maskLayer.path = maskPath.CGPath;
+    self.layer.mask = maskLayer;
+}
+
+
 -(void)shadowWithColor:(UIColor *)color {
     [self shadowWithOffset:0 raduis:4.0 color:color opacity:0.1];
 }

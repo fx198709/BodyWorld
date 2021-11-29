@@ -12,13 +12,6 @@
 @interface AddFriendViewController ()
 <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-
-@property (nonatomic, strong) NSMutableArray<Friend *> *dataList;
-@property (nonatomic, assign) NSInteger currentPage;
-@property (nonatomic, assign) BOOL isFinished;
-@property (nonatomic, assign) BOOL isRequesting;
-
 @end
 
 @implementation AddFriendViewController
@@ -26,42 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = ChineseStringOrENFun(@"新的好友", @"New friend");
-    [self initView];
-    self.dataList = [NSMutableArray array];
-    [self resetData];
-    [self MJRefreshData];
 }
 
 
-- (void)initView {
-    self.tableView.estimatedSectionFooterHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 0;
-    Class cellClass = [FriendCell class];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil] forCellReuseIdentifier:NSStringFromClass(cellClass)];
-    [self addMJRefreshToTable:self.tableView];
-}
-
-#pragma mark - refresh
-
-- (void)MJRefreshData {
-    [self resetData];
-    [self getFriendListFromServer:YES];
-}
-
-- (void)MJRequestMoreData {
-    [self getFriendListFromServer:NO];
-}
-
-- (void)resetData {
-    self.currentPage = 0;
-    self.isFinished = NO;
-    [self.dataList removeAllObjects];
+- (Class)cellClass {
+    return [FriendCell class];
 }
 
 
 #pragma mark - server
 
-- (void)getFriendListFromServer:(BOOL)isRefresh {
+- (void)getDataListFromServer:(BOOL)isRefresh {
     if (self.isRequesting || self.isFinished) {
         return;
     }
@@ -135,7 +103,7 @@
     cell.titleLabel.text = friend.friend_name;
     cell.addStatus = friend.status;
     cell.line.hidden = indexPath.row == self.dataList.count - 1;
-    cell.cellType = friend.status == FriendStatus_wait ? FriendCell_add : FriendCell_added;
+    cell.cellType = friend.status == FriendStatus_wait ? FriendCell_agree : FriendCell_agreeed;
     cell.btnCallBack = ^{
         [self addUserToServer:friend];
     };
@@ -144,16 +112,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

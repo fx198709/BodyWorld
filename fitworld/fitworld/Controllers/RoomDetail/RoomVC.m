@@ -801,7 +801,9 @@
     [manager GET:@"room/detail" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         if (CheckResponseObject(responseObject)) {
             NSDictionary *roomJson = responseObject[@"recordset"];
-            self.currentRoom = [[Room alloc] initWithJSON:roomJson];
+            
+            NSError *error;
+            self.currentRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
             self.currentRoom.event_id = eventid;
             //                显示进度条
 //            self.title = self.currentRoom.name;

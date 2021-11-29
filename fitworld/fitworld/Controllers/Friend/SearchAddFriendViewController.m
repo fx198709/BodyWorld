@@ -6,6 +6,7 @@
 //
 
 #import "SearchAddFriendViewController.h"
+#import "FriendInfoViewController.h"
 #import "FriendCell.h"
 #import "FriendPageInfo.h"
 #import "UserInfo.h"
@@ -18,13 +19,6 @@
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak) IBOutlet UIButton *clearBtn;
 @property (nonatomic, weak) IBOutlet UIButton *searchBtn;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-
-@property (nonatomic, strong) NSMutableArray<UserInfo *> *dataList;
-
-@property (nonatomic, assign) NSInteger currentPage;
-@property (nonatomic, assign) BOOL isFinished;
-@property (nonatomic, assign) BOOL isRequesting;
 
 @end
 
@@ -33,42 +27,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = ChineseStringOrENFun(@"添加好友", @"Add Friends");
-    [self initView];
-    self.dataList = [NSMutableArray array];
-    [self resetData];
-    [self MJRefreshData];
 }
-
-
 
 - (void)initView {
+    [super initView];
     [self.searchView cornerWithRadius:6];
-    /** 设置背景色 */
     [UIView setupSearchBar:self.searchBar];
     [self.searchBtn setTitle:ChineseStringOrENFun(@"搜索", @"Search") forState:UIControlStateNormal];
-    self.tableView.estimatedSectionFooterHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 0;
-    Class cellClass = [FriendCell class];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil] forCellReuseIdentifier:NSStringFromClass(cellClass)];
-    [self addMJRefreshToTable:self.tableView];
+
 }
 
-#pragma mark - refresh
-
-- (void)MJRefreshData {
-    [self resetData];
-    [self getFriendListFromServer:YES];
+- (Class)cellClass {
+    return [FriendCell class];
 }
 
-- (void)MJRequestMoreData {
-    [self getFriendListFromServer:NO];
+- (BOOL)needUpdateWhenViewAppear {
+    return YES;
 }
 
-- (void)resetData {
-    self.currentPage = 0;
-    self.isFinished = NO;
-    [self.dataList removeAllObjects];
-}
 
 #pragma mark - action
 
@@ -78,12 +54,12 @@
 }
 
 - (IBAction)search:(id)sender {
-    [self getFriendListFromServer:YES];
+    [self MJRefreshData];
 }
 
 #pragma mark - server
 
-- (void)getFriendListFromServer:(BOOL)isRefresh {
+- (void)getDataListFromServer:(BOOL)isRefresh {
     if (self.isFinished || self.isRequesting) {
         return;
     }
@@ -97,7 +73,6 @@
         [param setObject:searchString forKey:@"kw"];
     }
     
-    NSLog(@"====request:%@", param);
     [[AFAppNetAPIClient manager] GET:@"stranger" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         self.isRequesting = NO;
@@ -132,7 +107,7 @@
 - (void)addUserToServer:(UserInfo *)friend {
     NSDictionary *param = @{@"friend_id": StringWithDefaultValue(friend.id, @"")};
     [MTHUD showLoadingHUD];
-    [[AFAppNetAPIClient manager] POST:@"friend/delete" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] POST:@"friend/require" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         NSString *result = [responseObject objectForKey:@"recordset"];
         if ([result isEqualToString:@"success"]) {
@@ -148,7 +123,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [self resetData];
-    [self getFriendListFromServer:YES];
+    [self getDataListFromServer:YES];
 }
 
 #pragma mark - table
@@ -177,18 +152,23 @@
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
+    UserInfo *friend = [self.dataList objectAtIndex:indexPath.row];
+    //跳转到详情页
+    [self performSegueWithIdentifier:@"addFriendToDetail" sender:friend];
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"addFriendToDetail"]) {
+        FriendInfoViewController *nextVC = segue.destinationViewController;
+        nextVC.user = sender;
+    }
 }
-*/
+
 
 @end

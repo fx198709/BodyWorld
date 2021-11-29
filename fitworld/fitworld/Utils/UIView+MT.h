@@ -93,6 +93,12 @@
  */
 - (void)cornerTopWithRadius:(float)cornerR borderColor:(UIColor *)borderColor;
 
+//左侧半圆角
+- (void)cornerLeftHalf;
+
+- (void)cornerLeftWithRadius:(float)cornerR;
+
+- (void)cornerLeftWithRadius:(float)cornerR borderColor:(UIColor *)borderColor;
 
 /**
  添加四边阴影颜色
@@ -106,8 +112,6 @@
  
  @param offset 偏移量
  @param cornerR 阴影半径
- @param theColor 阴影颜色
- @param shadowOpacity 阴影透明度
  */
 - (void)shadowWithOffset:(float)offset raduis:(float)cornerR color:(UIColor *)color opacity:(float)opacity;
 
