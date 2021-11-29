@@ -21,7 +21,8 @@ typedef enum {
 
 @property (nonatomic, assign) SelectCountryType selectType;
 
-@property (nonatomic, strong) Country *country;
+@property (nonatomic, strong) NSMutableArray<Country *> *countryList;
+
 @end
 
 NS_ASSUME_NONNULL_END

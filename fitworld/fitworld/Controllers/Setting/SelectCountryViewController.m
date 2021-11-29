@@ -109,7 +109,12 @@
 - (void)goToNextView:(Country *)country type:(SelectCountryType)type {
     SelectCountryViewController *nextVC = VCBySBName(@"SelectCountryViewController");
     nextVC.selectType = type;
-    nextVC.country = country;
+    NSMutableArray *nextCountryList = [NSMutableArray array];
+    if (self.countryList != nil && self.countryList.count > 0) {
+        [nextCountryList addObjectsFromArray:self.countryList];
+    }
+    [nextCountryList addObject:country];
+    nextVC.countryList = nextCountryList;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -141,7 +146,8 @@
 //请求城市列表
 - (void)getCityListFromServer {
     [MTHUD showLoadingHUD];
-    NSDictionary *param = @{@"name_en": StringWithDefaultValue(self.country.name_en, @"")};
+    Country *city = self.countryList.lastObject;
+    NSDictionary *param = @{@"name_en": StringWithDefaultValue(city.name_en, @"")};
     [[AFAppNetAPIClient manager] GET:@"city" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -164,8 +170,10 @@
 
 //修改城市
 - (void)sendChangeToServer:(Country *)city {
+    Country *country = self.countryList.firstObject;
+
     NSDictionary *param = @{
-        @"country":ChineseStringOrENFun(self.country.name, self.country.name_en),
+        @"country":ChineseStringOrENFun(country.name, country.name_en),
         @"city":ChineseStringOrENFun(city.name, city.name_en)
     };
     [MTHUD showLoadingHUD];
