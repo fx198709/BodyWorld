@@ -37,9 +37,12 @@
     NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, room.course.pic];
     [self.goodsImage sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
     self.roomname.text = room.name;
-    NSString *perString = ChineseStringOrENFun(@"创建人", @"Creator");
+    NSString *perString = ChineseStringOrENFun(@"创建人", @"Created by");
+    _classTypeLabel.text = ChineseStringOrENFun(@"对练课", @"Buddy");
+    _classTypeLabel.textColor = BuddyTableBackColor;
     if (room.course.type_int == 1) {
         perString = ChineseStringOrENFun(@"直播教练", @"Coach");
+        _classTypeLabel.text = ChineseStringOrENFun(@"团课", @"Group");
     }
     NSString *nickname = [NSString stringWithFormat:@"%@:%@",perString,room.room_creator.nickname];
     self.roomuser.text = nickname;

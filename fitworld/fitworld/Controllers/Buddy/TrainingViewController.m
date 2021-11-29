@@ -230,7 +230,8 @@
         if(total > 0){
             NSArray *array = responseObject[@"recordset"][@"rows"];
             for (int i = 0; i < [array count]; i++) {
-                Course *course = [[Course alloc] initWithJSON: array[i]];
+                NSError *error;
+                Course *course = [[Course alloc] initWithDictionary:array[i] error:&error];
                 [self->dataArr addObject: course];
             }
         }

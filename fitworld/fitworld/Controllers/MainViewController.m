@@ -482,7 +482,8 @@ BOOL  hasrequest = NO;
             NSArray *rows = [recordsetDic objectForKey:@"rows"];
             if ([rows isKindOfClass:[NSArray class]]) {
                 for (NSDictionary *dic in rows) {
-                    Room *room = [[Room alloc] initWithJSON: dic];
+                    NSError *error;
+                    Room *room = [[Room alloc] initWithDictionary:dic error:&error];
                     if (room.course.type_int == 0) {
                         if (room.status != 0) {
 //                            直播状态，第一个不能添加到这边

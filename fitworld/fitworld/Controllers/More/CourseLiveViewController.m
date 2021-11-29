@@ -534,7 +534,8 @@
                     self->dataArr = [[NSMutableArray alloc] init];
                 }
                 for (int i = 0; i < [dataArray count]; i++) {
-                    Room *room = [[Room alloc] initWithJSON: dataArray[i]];
+                    NSError *error;
+                    Room *room = [[Room alloc] initWithDictionary:dataArray[i] error:&error];
                     [self->dataArr addObject: room];
                 }
                 

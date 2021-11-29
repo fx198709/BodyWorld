@@ -21,6 +21,7 @@
     [self.addBtn cornerHalfWithBorderColor:self.addBtn.backgroundColor];
     self.addBtn.hidden = YES;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.contentView.backgroundColor = BuddyTableBackColor;
 }
 
 //- (void)setIsAdd:(BOOL)isAdd {

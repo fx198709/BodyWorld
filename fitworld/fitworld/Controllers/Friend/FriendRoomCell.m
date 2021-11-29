@@ -6,6 +6,7 @@
 //
 
 #import "FriendRoomCell.h"
+#import "UIColor+MT.h"
 
 @interface FriendRoomCell ()
 
@@ -40,7 +41,7 @@
     
     if (room.is_join) {
         [self.clickBtn setTitle:ChineseStringOrENFun(@"已预约", @"Has join") forState:UIControlStateNormal];
-        self.clickBtn.backgroundColor = [UIColor blueColor];
+        self.clickBtn.backgroundColor = [UIColor greenColor];
         [self.clickBtn cornerHalf];
         self.clickBtn.userInteractionEnabled = NO;
     } else {

@@ -1,11 +1,17 @@
 #import "BaseObject.h"
 #import "DatePlan.h"
 #import "Plan.h"
-//课程对象
-@interface Course : BaseObject
 
-@property (nonatomic , strong) NSArray <DatePlan *>              * date_plan;
-@property (nonatomic , strong) NSArray <Plan *>              * plan;
+
+@protocol DatePlan;
+@protocol Plan;
+
+
+//课程对象
+@interface Course : BaseJSONModel
+
+@property (nonatomic , strong) NSArray <DatePlan>              * date_plan;
+@property (nonatomic , strong) NSArray <Plan>              * plan;
 @property (nonatomic , assign) NSInteger              active_status;
 @property (nonatomic , assign) NSInteger              cal;
 @property (nonatomic , assign) NSInteger              check_status;

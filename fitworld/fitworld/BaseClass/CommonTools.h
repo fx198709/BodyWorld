@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)changeBtnState:(UIButton*)vbutn btnData:(id)roomData;
 
 
++ (void)findLocaltionCityName:(id)user;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

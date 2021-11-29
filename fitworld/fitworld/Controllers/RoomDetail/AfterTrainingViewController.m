@@ -10,7 +10,7 @@
 #import "Train2TableViewCell.h"
 #import "Train3TableViewCell.h"
 #import "MainViewController.h"
-
+ 
 @interface AfterTrainingViewController (){
     BOOL reachRoomInfo;
     BOOL reachUserListInfo;
@@ -142,7 +142,8 @@
     [manager GET:@"room/detail" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         if (CheckResponseObject(responseObject)) {
             NSDictionary *roomJson = responseObject[@"recordset"];
-            self.currentRoom = [[Room alloc] initWithJSON:roomJson];
+            NSError *error;
+            self.currentRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
             self.currentRoom.event_id = eventid;
         }
         self->reachRoomInfo =YES;
@@ -181,6 +182,16 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     self.isTapBack = NO;
+//    删除roomvc
+    NSMutableArray *marr = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+       for (UIViewController *vc in marr) {
+           if ([vc isKindOfClass:NSClassFromString(@"RoomVC")]) {
+               [marr removeObject:vc];
+               break;
+           }
+       }
+    self.navigationController.viewControllers = marr;
+   
 }
 //
 //- (void)backPopViewcontroller:(id) sender

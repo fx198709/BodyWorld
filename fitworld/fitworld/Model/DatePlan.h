@@ -1,6 +1,6 @@
 #import "BaseObject.h"
 
-@interface DatePlan : BaseObject
+@interface DatePlan : BaseJSONModel
 
 @property (nonatomic , copy) NSString              * plan_date;
 @property (nonatomic , copy) NSString              * plan_time;

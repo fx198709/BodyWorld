@@ -90,6 +90,10 @@
         if (state == 1 || state == 2) {
             [cell.joinBtn addTarget:self action:@selector(joinBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         }
+//        开始直播
+        if (state == 5) {
+            [cell.joinBtn addTarget:self action:@selector(startLivingBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        }
         return cell;
     }else{
         NoDataCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NoDataCollectionViewCellString" forIndexPath:indexPath];
@@ -158,12 +162,18 @@
 
     // Configure the view for the selected state
 }
-
-
-- (void)onClickCourseDetail:(UITapGestureRecognizer *)recognizer{
+- (void)startLivingBtnClicked:(UIButton *) recognizer{
+    Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag-100];
+    [[APPObjOnce sharedAppOnce] joinRoom:selectRoom withInvc:[self viewController]];
     
-   
+//    Room *room1 = [_dataArr objectAtIndex: recognizer.tag-100];
+//    AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
+//    [[self viewController].navigationController pushViewController:trainingvc animated:YES];
+//    trainingvc.event_id = room1.event_id;
+//    trainingvc.invc = [self viewController];
+//    return;
 }
+
 
 - (void)joinBtnClicked:(UIButton *) recognizer{
     //    这边需要正在进行中的，才能开始，需要判断状态
@@ -218,16 +228,7 @@
              
         }];
     }
-    return;
-    Room *room1 = [_dataArr objectAtIndex: recognizer.tag-100];
-    AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
-    [[self viewController].navigationController pushViewController:trainingvc animated:YES];
-    trainingvc.event_id = room1.event_id;
-    trainingvc.invc = [self viewController];
-    return;
-    
-    Room *selectRoom = [_dataArr objectAtIndex: recognizer.tag];
-    [[APPObjOnce sharedAppOnce] joinRoom:selectRoom withInvc:[self viewController]];
+   
 }
 
 

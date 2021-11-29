@@ -246,7 +246,6 @@
 #pragma mark - 刷新房间数据
 - (void) reachHeadData
 {
-    [dataArr removeAllObjects];
     _isLoadAllData =NO;
     [self loadDateIsLoadHead:YES];
 }
@@ -264,6 +263,7 @@
 - (void)headerRereshing
 {
     //下拉刷新，先还原上拉“已加载全部数据”的状态
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.tableView.mj_footer resetNoMoreData];
     [self reachHeadData];
 }
@@ -277,7 +277,6 @@
     if (!isLoading) {
         isLoading = YES;
         [requestTask cancel];
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
         NSString *search = _searchString?_searchString:@"";
         int size = 20;
@@ -364,10 +363,16 @@
 }
 
 
+- (void)searhBartextChanged:(NSString*)searchString{
+    _searchString = searchString;
+    [self.tableView.mj_footer resetNoMoreData];
+    [self reachHeadData];;
+}
 
 - (void)searhBarBtnClicked:(NSString*)searchString{
     _searchString = searchString;
-    [self headerRereshing];
+    [self.tableView.mj_footer resetNoMoreData];
+    [self reachHeadData];;
     [self.view endEditing:YES];
 }
 - (void)allowOtherBtnClicked:(NSInteger)otherType{

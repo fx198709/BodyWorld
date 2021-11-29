@@ -419,7 +419,8 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (CheckResponseObject(responseObject)) {
                 NSDictionary *roomJson = responseObject[@"recordset"];
-                self->currentRoom = [[Room alloc] initWithJSON:roomJson];
+                NSError *error;
+                self->currentRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
                 self->currentRoom.event_id = eventid;
     //            没有创建过视图，处理一下
                 if (!self->_bottomScrollview) {

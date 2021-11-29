@@ -5,6 +5,12 @@
 #import "DatePlan.h"
 #import "RoomCreator.h"
 
+
+//@protocol Course;
+//@protocol RoomCreator;
+@protocol Plan;
+@protocol DatePlan;
+
 @interface Room : BaseJSONModel
 
 @property (nonatomic , assign) BOOL              allow_record;
@@ -52,13 +58,13 @@
 @property (nonatomic , assign) NSInteger              check_status;
 @property (nonatomic , assign) NSInteger              active_status;
 @property (nonatomic , strong) NSString              *feedback;
-@property (nonatomic , strong) NSArray<Plan*>          *plan;
-@property (nonatomic , strong) NSArray<DatePlan*>      *dataPlan;
-@property (nonatomic , strong) CoachModel      *coach;
+@property (nonatomic , strong) NSArray<Plan>          *plan;
+@property (nonatomic , strong) NSArray<DatePlan>      *dataPlan;
+@property (nonatomic , strong) CoachModel             *coach;
 @property (nonatomic , strong) NSString              *invite_user_count;
 @property (nonatomic , strong) NSString              *join_user_count;
 @property (nonatomic , strong) NSString              *watch_user_count;
-@property (nonatomic , assign) BOOL              is_join;
+@property (nonatomic , assign) BOOL                  is_join;
 @property (nonatomic , assign) NSInteger              room_status;
 @property (nonatomic , strong) NSString              *creator_nickname;
 @property (nonatomic , strong) NSString              *creator_userid;

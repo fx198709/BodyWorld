@@ -70,6 +70,9 @@
     BOOL headHasVoice;//头部的有声音
     UIButton *settingBtn;//设置按钮
     
+    BOOL createRoomLiving;//已经开始直播
+    UILabel *leftTimeLabel;
+    UIView *leftTimeBackview;
     RoomVCSettingView * settingView;//设置视图
 }
 
@@ -219,7 +222,6 @@
         //        [strongSelf showGroupChatView];
     };
     
-    [[VConductorClient sharedInstance] joinwithEntry:VRC_URL andCode:mCode asViewer:NO withDelegate:self];
     //    进入房间
     [self joinStateRequest:YES success:^{
         
@@ -227,9 +229,8 @@
     [self reachRoomDetailInfo];
 }
 
+#pragma mark 设置所有的视图的视频
 - (void)layoutPanel {
-    NSInteger sidePadding = self.mFullScreen ? 0 : 15;
-    NSInteger midPadding = self.mFullScreen ? 0 : 5;
     if ([VConductorClient sharedInstance].isViewer) {
         //        [mHeaderPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
         //            make.left.and.top.equalTo(self.view);
@@ -262,30 +263,18 @@
         //            [self.view layoutIfNeeded];
         //        }];
     } else {
-        //      都在这边布局的
-        //        [mHeaderPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        //            make.left.equalTo(self.view);
-        //            make.top.equalTo(self.view);
-        //            make.width.equalTo(self.view);
-        //            if (self.mFullScreen) {
-        //                make.height.equalTo(@0);
-        //            } else {
-        //                make.height.equalTo(@90);
-        //            }
-        //        }];
-        
         [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view).offset(sidePadding);
-            make.right.equalTo(self.view).offset(-sidePadding);
-            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);;
-            make.height.equalTo(self.view).multipliedBy(0.36);
+            make.left.equalTo(self.view);
+            make.right.equalTo(self.view);
+            make.top.equalTo(self.view);
+            make.height.equalTo(self.view).multipliedBy(0.4);
         }];
         
         [_bottomPanelView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view).offset(sidePadding);
-            make.right.equalTo(self.view).offset(-sidePadding);
-            make.top.equalTo(self.mMainPanel.mas_bottom).offset(sidePadding);
-            make.bottom.equalTo(self.view).offset(-sidePadding);
+            make.left.equalTo(self.view);
+            make.right.equalTo(self.view);
+            make.top.equalTo(self.mMainPanel.mas_bottom).offset(5);
+            make.bottom.equalTo(self.view);
         }];
         [self.view setNeedsLayout];
         [self.view layoutIfNeeded];
@@ -296,7 +285,6 @@
             CGRect bottomframe = self->_bottomPanelView.frame;
             VConductorClient *client = [VConductorClient sharedInstance];
             NSDictionary * memberDic = [client getGustMemberData];
-            NSInteger guestcount = 0;//只添加能直播的 // memberDic.allKeys.count;
             //            拷贝一份key出来 这边的key就是userID
             NSMutableArray *keysArray = [[NSMutableArray alloc] initWithArray:memberDic.allKeys];
             int  guestPanelscount = (int)self.guestPanels.count;
@@ -308,7 +296,6 @@
                 if ([keysArray containsObject:guestpanel.mUserId] && [currentMember isonTheAir]) {
                     //                        存在，视图不需要处理，还保存着  userID数组里面，需要删除
                     [keysArray removeObject:guestpanel.mUserId];
-                    guestcount++;
                 }else{
                     //                        用户id不存在，需要把原来的删除
                     [guestpanel detachGuestRenderView];
@@ -316,42 +303,47 @@
                     [strongSelf.guestPanels removeObject:guestpanel];
                 }
             }
+//            还有没有添加进入的人员
             if (keysArray.count > 0) {
                 for (NSString *userID in keysArray) {
                     //                    ClassMember *currentMember = [memberDic objectForKey:userID];
                     //                    if ([currentMember isonTheAir]) {
-                    guestcount++;
-                    GuestPanel * guestpanel = [[GuestPanel alloc] init];
-                    guestpanel.mUserId = userID;
-                    [strongSelf.guestPanels addObject:guestpanel];
-                    [self->_bottomPanelView addSubview:guestpanel];
-                    [guestpanel attachGuestRenderView];
-                    ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
-                    if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
-                        guestpanel.mMyLabel.text = [[[currentMember copyInfo].custom objectForKey:@"internal"] objectForKey:@"nickName"];
-                        
+                    if (strongSelf.guestPanels.count < 5) {
+//                        游客小于5个，这边才用
+                        GuestPanel * guestpanel = [[GuestPanel alloc] init];
+                        guestpanel.mUserId = userID;
+                        [strongSelf.guestPanels addObject:guestpanel];
+                        [self->_bottomPanelView addSubview:guestpanel];
+                        [guestpanel attachGuestRenderView];
+                        ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
+                        if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
+                            guestpanel.mMyLabel.text = [[[currentMember copyInfo].custom objectForKey:@"internal"] objectForKey:@"nickName"];
+                            
+                        }
+                        guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
                     }
-                    guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
+                   
                     //
                 }
             }
-            if (guestcount == 0) {
+            int showguestcount = self.guestPanels.count;
+            if (showguestcount == 0) {
                 //        清楚所有的直播
                 self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width, bottomframe.size.height);
                 
             }else{
-                if (guestcount == 1){
+                if (showguestcount == 1){
                     //            一行两个
                     self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/2, bottomframe.size.height);
                     GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:0];
                     guestpanel.frame = CGRectMake(bottomframe.size.width/2, 0, bottomframe.size.width/2, bottomframe.size.height);
-                }else if (guestcount == 3 || guestcount == 2){
+                }else if (showguestcount == 3 || showguestcount == 2){
                     //            一行2个
                     self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/2, bottomframe.size.height/2);
                     for (int index = 0; index < strongSelf.guestPanels.count; index++) {
                         GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
                         CGFloat startX = index%2 == 0 ? bottomframe.size.width/2:0;
-                        CGFloat startY = index > 1? bottomframe.size.height/2:0;
+                        CGFloat startY = index > 0? bottomframe.size.height/2:0;
                         guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/2, bottomframe.size.height/2);
                         
                     }
@@ -359,11 +351,11 @@
                 } else{
                     //            一行3个 2行
                     self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/3, bottomframe.size.height/2);
-                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
+                    for (int index = 0; index < strongSelf.guestPanels.count && index < 5; index++) {
                         GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-                        CGFloat startX = index%3 == 0 ? bottomframe.size.width/3*((index+1)%3):0;
-                        CGFloat startY = index > 2? bottomframe.size.height/2:0;
-                        guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/2, bottomframe.size.height/2);
+                        CGFloat startX = bottomframe.size.width/3*((index+1)%3);
+                        CGFloat startY = index > 1? bottomframe.size.height/2:0;
+                        guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/3, bottomframe.size.height/2);
                         
                     }
                 }
@@ -621,10 +613,7 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             //             跳转到健身完成页面
             self->canErrorToPOP = NO;
-            AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
-            trainingvc.event_id = self->mCode[@"eid"];
-            trainingvc.invc = self.invc;
-            [self.navigationController pushViewController:trainingvc animated:YES];
+            [self jumpToTrainingvc];
         });
     }];
 }
@@ -659,6 +648,40 @@
 }
 
 - (void)dealwithTimer{
+//    判断开始没有
+//    还没开始，需要设置倒计时
+    long dif = self.currentRoom.start_time- [[NSDate date] timeIntervalSince1970];
+    if (dif>0) {
+        if (!leftTimeLabel) {
+            leftTimeBackview = [[UIView alloc] init];
+            [mMainPanel addSubview:leftTimeBackview];
+            [leftTimeBackview mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.equalTo(mMainPanel);
+                make.left.top.equalTo(mMainPanel);
+            }];
+            leftTimeBackview.backgroundColor = UIColor.blackColor;
+            leftTimeLabel = [[UILabel alloc] init];
+            [leftTimeBackview addSubview:leftTimeLabel];
+            [leftTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.centerY.equalTo(leftTimeBackview);
+            }];
+            leftTimeLabel.font = [UIFont boldSystemFontOfSize:80];
+            leftTimeLabel.textColor = UIRGBColor(48, 180, 90, 1);
+        }
+        leftTimeLabel.text = [NSString stringWithFormat:@"%ld",dif];
+        return;
+    }else{
+        if (leftTimeBackview) {
+            [leftTimeBackview removeFromSuperview];
+        }
+        if (!createRoomLiving) {
+            createRoomLiving = YES;
+//            开启直播
+            [[VConductorClient sharedInstance] joinwithEntry:VRC_URL andCode:mCode asViewer:NO withDelegate:self];
+        }
+       
+    }
+    
     if (hasStartLiving) {
         if (!currentSlider) {
             currentSlider = [[SliderView alloc] init];
@@ -697,10 +720,7 @@
         vtitleLabel.text = self.currentRoom.name;
         if (elapsedSecs > self.currentRoom.duration*60) {
             //            课程结束
-            AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
-            trainingvc.event_id = self->mCode[@"eid"];
-            trainingvc.invc = self.invc;
-            [self.navigationController pushViewController:trainingvc animated:YES];
+            [self jumpToTrainingvc];
         }
         
         if (!voiceBtn) {
@@ -808,9 +828,18 @@
             //                显示进度条
 //            self.title = self.currentRoom.name;
             [self startTimer];
+            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
+}
+
+#pragma mark 跳转到完成页面
+- (void)jumpToTrainingvc{
+    AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
+    trainingvc.event_id = self->mCode[@"eid"];
+    trainingvc.invc = self.invc;
+    [self.navigationController pushViewController:trainingvc animated:YES];
 }
 
 
