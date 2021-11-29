@@ -23,28 +23,59 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-- (void)setIsAdd:(BOOL)isAdd {
-    _isAdd = isAdd;
-    self.addBtn.hidden = !isAdd;
-}
+//- (void)setIsAdd:(BOOL)isAdd {
+//    _isAdd = isAdd;
+//    self.addBtn.hidden = !isAdd;
+//}
 
-- (void)setAddStatus:(int)addStatus {
-    _addStatus = addStatus;
-    UIColor *titleColor = [UIColor lightGrayColor];
-    NSString *title = ChineseStringOrENFun(@"已添加", @"Added");
-    if (addStatus == FriendStatus_wait) {
-        title = ChineseStringOrENFun(@"同意", @"Agree");
-        titleColor = [UIColor greenColor];
+- (void)setCellType:(FriendCellType)cellType {
+    _cellType = cellType;
+    switch(cellType) {
+        case FriendCell_add: {
+            self.addBtn.hidden = NO;
+            [self.addBtn setTitle:ChineseStringOrENFun(@"同意", @"Agree") forState:UIControlStateNormal];
+            [self.addBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        }
+            break;
+        case FriendCell_added: {
+            self.addBtn.hidden = NO;
+            [self.addBtn setTitle:ChineseStringOrENFun(@"已添加", @"Added") forState:UIControlStateNormal];
+            [self.addBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        }
+            break;
+        case FriendCell_delete:
+        {
+            self.addBtn.hidden = NO;
+            [self.addBtn setTitle:ChineseStringOrENFun(@"删除", @"Delete") forState:UIControlStateNormal];
+            [self.addBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        }
+            break;
+        default:
+        {
+            self.addBtn.hidden = YES;
+        }
     }
-    [self.addBtn setTitle:title forState:UIControlStateNormal];
-    [self.addBtn setTitleColor:titleColor forState:UIControlStateNormal];
 }
 
 
--(IBAction)agreeAdd:(id)sender {
-    if (self.callBack) {
-        self.callBack();
+-(IBAction)friendActionClick:(id)sender {
+    switch(self.cellType) {
+        case FriendCell_add:
+        case FriendCell_delete:
+        {
+            if (self.btnCallBack) {
+                self.btnCallBack();
+            }
+        }
+            break;
+        default:
+        {
+            self.addBtn.hidden = YES;
+        }
     }
 }
+
+
+
 
 @end

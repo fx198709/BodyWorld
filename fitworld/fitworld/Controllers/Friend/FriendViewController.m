@@ -8,6 +8,7 @@
 #import "FriendViewController.h"
 #import "FriendCell.h"
 #import "FriendPageInfo.h"
+#import "Friend.h"
 
 @interface FriendViewController ()
 <UITableViewDelegate, UITableViewDataSource>
@@ -103,6 +104,23 @@
     }];
 }
 
+//删除好友
+- (void)deleteUserToServer:(UserInfo *)friend {
+    NSDictionary *param = @{@"friend_id": StringWithDefaultValue(friend.id, @"")};
+    [MTHUD showLoadingHUD];
+    [[AFAppNetAPIClient manager] POST:@"friend/delete" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSString *result = [responseObject objectForKey:@"recordset"];
+        if ([result isEqualToString:@"success"]) {
+            [self.dataList removeObject:friend];
+            [self.tableView reloadData];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self showChangeFailedError:error];
+    }];
+}
+
+
 
 #pragma mark - table
 
@@ -123,7 +141,10 @@
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     cell.titleLabel.text = friend.nickname;
     cell.line.hidden = indexPath.row == self.dataList.count - 1;
-    cell.isAdd = NO;
+    cell.cellType = FriendCell_delete;
+    cell.btnCallBack = ^{
+        [self deleteUserToServer:friend];
+    };
     return cell;
 }
 

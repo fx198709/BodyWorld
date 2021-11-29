@@ -135,8 +135,8 @@
     cell.titleLabel.text = friend.friend_name;
     cell.addStatus = friend.status;
     cell.line.hidden = indexPath.row == self.dataList.count - 1;
-    cell.isAdd = YES;
-    cell.callBack = ^{
+    cell.cellType = friend.status == FriendStatus_wait ? FriendCell_add : FriendCell_added;
+    cell.btnCallBack = ^{
         [self addUserToServer:friend];
     };
     return cell;

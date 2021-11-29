@@ -7,7 +7,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^AgreeAddCallBack)(void);
+
+typedef enum {
+    FriendCell_add, //添加好友
+    FriendCell_added, //已添加好友
+    FriendCell_delete //删除好友
+}FriendCellType;
+
+typedef void (^FriendCallBack)(void);
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,11 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 @property (weak, nonatomic) IBOutlet UIView *line;
 
-//是否是添加
-@property (nonatomic, assign) BOOL isAdd;
+//cell类型
+@property (nonatomic, assign) FriendCellType cellType;
 @property (nonatomic, assign) int addStatus;
 
-@property (nonatomic, copy)AgreeAddCallBack callBack;
+@property (nonatomic, copy) FriendCallBack btnCallBack;
 
 @end
 
