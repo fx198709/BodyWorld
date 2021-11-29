@@ -67,12 +67,23 @@
 
 - (void)cornerWithRadius:(float)cornerR borderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth;
 
+
+- (void)cornerWithRadius:(float)cornerR;
+
 /**
  半圆角化
 
  @param borderColor 边线颜色
  */
 - (void)cornerHalfWithBorderColor:(UIColor *)borderColor;
+
+
+/**
+ 半圆角化
+
+ @param borderColor 边线颜色
+ */
+- (void)cornerHalf;
 
 /**
  *  顶部圆角化页面
@@ -100,7 +111,7 @@
  */
 - (void)shadowWithOffset:(float)offset raduis:(float)cornerR color:(UIColor *)color opacity:(float)opacity;
 
-
++ (void)setupSearchBar:(UISearchBar *)searchBar;
 
 #pragma mark - frame
 

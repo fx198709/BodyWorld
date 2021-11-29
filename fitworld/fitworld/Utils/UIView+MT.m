@@ -7,6 +7,7 @@
 //
 
 #import "UIView+MT.h"
+#import "UIImage+Extension.h"
 
 @implementation UIView (MT)
 
@@ -101,6 +102,14 @@
     [self cornerWithRadius:cornerR borderColor:borderColor borderWidth:1];
 }
 
+- (void)cornerWithRadius:(float)cornerR {
+    [self cornerWithRadius:cornerR borderColor:self.backgroundColor];
+}
+
+- (void)cornerHalf {
+    [self cornerHalfWithBorderColor:self.backgroundColor];
+}
+
 - (void)cornerHalfWithBorderColor:(UIColor *)borderColor {
     [self cornerWithRadius:CGRectGetHeight(self.frame) * 0.5 borderColor:borderColor];
 }
@@ -176,5 +185,36 @@
     self.frame = frame;
 }
 
++ (void)setupSearchBar2:(UISearchBar *)searchBar {
+    searchBar.backgroundColor = UIColor.blackColor;
+    for (UIView *view in searchBar.subviews.lastObject.subviews) {
+        if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+            view.layer.contents = nil;
+            break;
+        }
+    }
+    searchBar.backgroundImage = [UIImage imageWithColor:BuddyTableBackColor];
+}
+
++ (void)setupSearchBar:(UISearchBar *)searchBar {
+    searchBar.backgroundColor = BuddyTableBackColor;
+    for (UIView *view in searchBar.subviews.lastObject.subviews) {
+        if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+            view.layer.contents = nil;
+            break;
+        }
+    }
+    searchBar.backgroundImage = [UIImage imageWithColor:BuddyTableBackColor];
+    UITextField *searchField;
+    if (@available(iOS 13.0, *)) {
+        searchField = searchBar.searchTextField;
+    } else {
+        searchField = [searchBar valueForKey:@"_searchField"];
+    }
+    
+    searchField.textColor = [UIColor whiteColor];
+    searchField.font = [UIFont systemFontOfSize:14.0];
+    searchField.backgroundColor = BuddyTableBackColor;
+}
 
 @end
