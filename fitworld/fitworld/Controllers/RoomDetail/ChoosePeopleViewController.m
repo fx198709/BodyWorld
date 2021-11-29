@@ -36,16 +36,8 @@
     self.title = ChineseStringOrENFun(@"添加健身伙伴", @"添加健身伙伴");
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-70, 40)];
     searchBar.delegate = self;
-    searchBar.backgroundColor = UIColor.blackColor;
     [self.view addSubview:searchBar];
-    for (UIView *view in searchBar.subviews.lastObject.subviews) {
-        if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
-            // [view removeFromSuperview];
-            view.layer.contents = nil;
-            break;
-        }
-    }
-    searchBar.backgroundImage = [UIImage imageWithColor:BuddyTableBackColor];
+    [UIView setupSearchBar:searchBar];
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(100);
         make.height.mas_equalTo(40);

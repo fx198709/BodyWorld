@@ -102,6 +102,7 @@
 		A2723F0A273CF22F00388B01 /* SelectCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2723F08273CF22F00388B01 /* SelectCountryCell.xib */; };
 		A2723F0D273D087900388B01 /* MTHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F0C273D087900388B01 /* MTHUD.m */; };
 		A2723F10273D090E00388B01 /* UIColor+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A2723F0F273D090E00388B01 /* UIColor+MT.m */; };
+		A296D68727547C1B00F73259 /* SearchAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D68627547C1B00F73259 /* SearchAddFriendViewController.m */; };
 		A2A94DC2273E5BA000D02C77 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC1273E5BA000D02C77 /* Country.m */; };
 		A2A94DC5273E610900D02C77 /* UIViewController+MTNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */; };
 		A2A94DC9273E718200D02C77 /* SelectCountryCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC8273E718200D02C77 /* SelectCountryCodeViewController.m */; };
@@ -391,6 +392,8 @@
 		A2723F0C273D087900388B01 /* MTHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHUD.m; sourceTree = "<group>"; };
 		A2723F0E273D090E00388B01 /* UIColor+MT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MT.h"; sourceTree = "<group>"; };
 		A2723F0F273D090E00388B01 /* UIColor+MT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MT.m"; sourceTree = "<group>"; };
+		A296D68527547C1B00F73259 /* SearchAddFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchAddFriendViewController.h; sourceTree = "<group>"; };
+		A296D68627547C1B00F73259 /* SearchAddFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchAddFriendViewController.m; sourceTree = "<group>"; };
 		A2A94DC0273E5BA000D02C77 /* Country.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
 		A2A94DC1273E5BA000D02C77 /* Country.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MTNavigation.m"; sourceTree = "<group>"; };
@@ -1013,10 +1016,10 @@
 			children = (
 				0456192E26ECEC8A00C0973F /* RegisterController.h */,
 				0456192F26ECEC8A00C0973F /* RegisterController.m */,
+				041510D2268F02DE0039FCD1 /* LoginController.h */,
 				041510D3268F02DE0039FCD1 /* LoginController.m */,
 				A2A94DC7273E718200D02C77 /* SelectCountryCodeViewController.h */,
 				A2A94DC8273E718200D02C77 /* SelectCountryCodeViewController.m */,
-				041510D2268F02DE0039FCD1 /* LoginController.h */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1026,6 +1029,8 @@
 			children = (
 				A2A94DDB273FC5B200D02C77 /* FriendViewController.h */,
 				A2A94DDC273FC5B200D02C77 /* FriendViewController.m */,
+				A296D68527547C1B00F73259 /* SearchAddFriendViewController.h */,
+				A296D68627547C1B00F73259 /* SearchAddFriendViewController.m */,
 				A2A94DE6273FD8DD00D02C77 /* AddFriendViewController.h */,
 				A2A94DE7273FD8DD00D02C77 /* AddFriendViewController.m */,
 				A2A94DDE273FC64900D02C77 /* FriendCell.h */,
@@ -1546,6 +1551,7 @@
 				DD25FEE727226B5A0092CF87 /* JYWeakTimer.m in Sources */,
 				04CD2E522698478C007814E6 /* UserInfo.m in Sources */,
 				04EC01F226BD8AC000DC0103 /* HeaderPanel.m in Sources */,
+				A296D68727547C1B00F73259 /* SearchAddFriendViewController.m in Sources */,
 				A2A94DC2273E5BA000D02C77 /* Country.m in Sources */,
 				04747FBE27082BC700B3B5B8 /* PractiseStatic.m in Sources */,
 				DD595EDB2737D25800618D1A /* CreateCourseSuccessViewController.m in Sources */,

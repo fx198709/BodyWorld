@@ -47,7 +47,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <state key="normal" title="同意"/>
                         <connections>
-                            <action selector="agreeAdd:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="a3G-fI-0RU"/>
+                            <action selector="friendActionClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="a3G-fI-0RU"/>
                         </connections>
                     </button>
                 </subviews>
@@ -76,6 +76,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="choose_course_foot_logo3_unselected" width="45" height="45"/>
+        <image name="choose_course_foot_logo3_unselected" width="30" height="30"/>
     </resources>
 </document>

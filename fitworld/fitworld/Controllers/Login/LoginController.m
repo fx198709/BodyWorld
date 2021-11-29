@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "LoginController.h"
 #import "RegisterController.h"
+#import "SelectCountryCodeViewController.h"
 #import "ProtocolView.h"
 
 #import "FITAPI.h"
@@ -23,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *zhLanguageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *enLanguageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel *countryCodeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *getCountryBtn;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
@@ -138,13 +142,20 @@
     
     NSString *name = self.nameField.text;
     NSString *pwd = self.pwdField.text;
+    NSString *code = self.countryCodeLabel.text;
+    
+    if ([NSString isNullString:code]) {
+        [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请选择地区编码", @"Please select country code")];
+        return;
+    }
     
     if ([NSString isNullString:name] || [NSString isNullString:pwd]) {
         [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"用户名和密码不能为空", @"Account and password can not be emtpy")];
         return;
     }
     
-    NSDictionary *param = @{@"username":name, @"password":pwd};
+    NSString *mobile = [NSString stringWithFormat:@"%@:%@", code, name];
+    NSDictionary *param = @{@"username":mobile, @"password":pwd};
     [self loginToServer:param];
 }
 
@@ -159,5 +170,18 @@
         [MTHUD showDurationNoticeHUD:error.localizedDescription];
     }];
 }
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"loginToSelectCodeSegue"]) {
+        SelectCountryCodeViewController *nextVC = segue.destinationViewController;
+        nextVC.callback = ^(CountryCode *code) {
+            self.countryCodeLabel.text = [NSString stringWithFormat:@"+%d", code.code];
+        };
+    }
+}
+
 
 @end

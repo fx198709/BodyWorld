@@ -1,22 +1,24 @@
 //
-//  FriendViewController.m
+//  SearchAddFriendViewController.m
 //  FFitWorld
 //
-//  Created by xiejc on 2021/11/13.
+//  Created by xiejc on 2021/11/29.
 //
 
-#import "FriendViewController.h"
+#import "SearchAddFriendViewController.h"
 #import "FriendCell.h"
 #import "FriendPageInfo.h"
-#import "Friend.h"
+#import "UserInfo.h"
+#import "UIImage+Extension.h"
 
-@interface FriendViewController ()
-<UITableViewDelegate, UITableViewDataSource>
+@interface SearchAddFriendViewController ()
+<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
+@property (nonatomic, weak) IBOutlet UIView *searchView;
+@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, weak) IBOutlet UIButton *clearBtn;
+@property (nonatomic, weak) IBOutlet UIButton *searchBtn;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, weak) IBOutlet UILabel *addTitleLabel;
-@property (nonatomic, weak) IBOutlet UIView *addPeopleView;
-
 
 @property (nonatomic, strong) NSMutableArray<UserInfo *> *dataList;
 
@@ -26,11 +28,11 @@
 
 @end
 
-@implementation FriendViewController
+@implementation SearchAddFriendViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = ChineseStringOrENFun(@"好友", @"Friends");
+    self.navigationItem.title = ChineseStringOrENFun(@"添加好友", @"Add Friends");
     [self initView];
     self.dataList = [NSMutableArray array];
     [self resetData];
@@ -38,12 +40,14 @@
 }
 
 
+
 - (void)initView {
-    _addPeopleView.backgroundColor = BuddyTableBackColor;
-    self.addTitleLabel.text = ChineseStringOrENFun(@"新的朋友", @"New friend");
+    [self.searchView cornerWithRadius:6];
+    /** 设置背景色 */
+    [UIView setupSearchBar:self.searchBar];
+    [self.searchBtn setTitle:ChineseStringOrENFun(@"搜索", @"Search") forState:UIControlStateNormal];
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
-    self.tableView.separatorColor = UIColor.clearColor;
     Class cellClass = [FriendCell class];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil] forCellReuseIdentifier:NSStringFromClass(cellClass)];
     [self addMJRefreshToTable:self.tableView];
@@ -66,6 +70,16 @@
     [self.dataList removeAllObjects];
 }
 
+#pragma mark - action
+
+- (IBAction)clearSearch:(id)sender {
+    self.searchBar.text = nil;
+    [self.view endEditing:YES];
+}
+
+- (IBAction)search:(id)sender {
+    [self getFriendListFromServer:YES];
+}
 
 #pragma mark - server
 
@@ -75,10 +89,16 @@
     }
     self.isRequesting = YES;
     NSInteger nextPage = self.currentPage + 1;
-    NSString *url = @"friends";
     int perCount = 10;
-    NSDictionary *param = @{@"row":IntToString(perCount), @"page":IntToString(nextPage)};
-    [[AFAppNetAPIClient manager] GET:url parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    NSString *searchString = self.searchBar.text;
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:@{@"row":IntToString(perCount), @"page":IntToString(nextPage)}];
+    if (![NSString isNullString:searchString]) {
+        [param setObject:searchString forKey:@"kw"];
+    }
+    
+    NSLog(@"====request:%@", param);
+    [[AFAppNetAPIClient manager] GET:@"stranger" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         self.isRequesting = NO;
         
@@ -108,8 +128,8 @@
     }];
 }
 
-//删除好友
-- (void)deleteUserToServer:(UserInfo *)friend {
+//添加好友
+- (void)addUserToServer:(UserInfo *)friend {
     NSDictionary *param = @{@"friend_id": StringWithDefaultValue(friend.id, @"")};
     [MTHUD showLoadingHUD];
     [[AFAppNetAPIClient manager] POST:@"friend/delete" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -124,7 +144,12 @@
     }];
 }
 
+#pragma mark - UISearchBarDelegate
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self resetData];
+    [self getFriendListFromServer:YES];
+}
 
 #pragma mark - table
 
@@ -145,10 +170,9 @@
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     cell.titleLabel.text = friend.nickname;
     cell.line.hidden = indexPath.row == self.dataList.count - 1;
-    cell.backgroundColor = BuddyTableBackColor;
-    cell.cellType = FriendCell_delete;
+    cell.cellType = FriendCell_add;
     cell.btnCallBack = ^{
-        [self deleteUserToServer:friend];
+        [self addUserToServer:friend];
     };
     return cell;
 }
@@ -157,15 +181,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
-
 /*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
