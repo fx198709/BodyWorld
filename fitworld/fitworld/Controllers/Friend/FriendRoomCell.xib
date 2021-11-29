@@ -110,7 +110,7 @@
                             <constraint firstAttribute="width" constant="100" id="Kf7-SJ-3VM"/>
                             <constraint firstAttribute="height" constant="28" id="Qgh-gC-tb1"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="预约"/>
                         <connections>

@@ -34,8 +34,7 @@
     
     UIImage *typeImg = [UIImage imageNamed:[NSString stringWithFormat:@"type-calss%ld",(long)room.course.type_int]];
     self.typeImg.image = typeImg;
-    NSString *creatorImgUrl = [FITAPI_HTTPS_ROOT stringByAppendingString:room.room_creator.country_icon];
-    [self.creatorImg sd_setImageWithURL:[NSURL URLWithString:creatorImgUrl]
+    [self.creatorImg sd_setImageWithURL:[NSURL URLWithString:room.room_creator.country_icon]
                     placeholderImage:nil];
     self.creatorNameLabel.text = room.room_creator.nickname;
     

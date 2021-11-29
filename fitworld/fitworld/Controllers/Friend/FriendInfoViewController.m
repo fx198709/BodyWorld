@@ -38,8 +38,7 @@
     [self.headImg sd_setImageWithURL:[NSURL URLWithString:url]
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     
-    NSString *cityImgUrl = [FITAPI_HTTPS_ROOT stringByAppendingString:self.user.country_icon];
-    [self.cityImg sd_setImageWithURL:[NSURL URLWithString:cityImgUrl]
+    [self.cityImg sd_setImageWithURL:[NSURL URLWithString:self.user.country_icon]
                     placeholderImage:nil];
     self.cityLabel.text = [NSString stringWithFormat:@"%@,%@", self.user.city, self.user.country];
     self.descLabel.text = self.user.introduction;
