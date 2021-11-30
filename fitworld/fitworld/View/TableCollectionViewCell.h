@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 //主要是为了刷新 页面里面的倒计时
 - (void)timerToReloadCollectionView;
 
-- (void)reloadData;
+- (void)reloadData:(BOOL)isTraining;
 
 
 @end

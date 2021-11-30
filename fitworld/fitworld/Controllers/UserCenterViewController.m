@@ -83,7 +83,7 @@
     self.historyCountTitleLabel.text = ChineseStringOrENFun(@"次", @"times");
     
     self.tuanTitleLabel.text = Text_Group;
-    self.dlTitleLabel.text = Text_Buddy;
+    self.dlTitleLabel.text = Text_Training;
     
     self.calenderTitleLabel.text = ChineseStringOrENFun(@"最近30天打卡记录", @"30 Day activity");
     self.endDate = [[NSDate date] mt_previousDate];

@@ -26,7 +26,7 @@
     [super awakeFromNib];
 
     [self baseCellConfig];
-    [self reloadData];
+    [self reloadData:NO];
 }
 
 
@@ -53,15 +53,20 @@
 }
 
 // Data Source
-- (void)reloadData {
+- (void)reloadData:(BOOL)isTraining {
     self.backgroundColor = UIColor.blackColor;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.subTitleLabel.text = @"";
     [self.attentionBtn setTitle:Text_More forState:UIControlStateNormal];
     [self.attentionBtn setTitle:Text_More forState:UIControlStateHighlighted];
 
-    [self.logoImage setImage:[UIImage imageNamed:@"index_group"]];
-    self.subTitleLabel.text = Text_Group;
+    if (isTraining) {
+        [self.logoImage setImage:[UIImage imageNamed:@"index_buddy"]];
+        self.subTitleLabel.text = Text_Training;
+    } else {
+        [self.logoImage setImage:[UIImage imageNamed:@"index_group"]];
+        self.subTitleLabel.text = Text_Group;
+    }
     [self.myCollectionView reloadData];
 }
 

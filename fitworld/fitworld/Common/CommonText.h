@@ -43,7 +43,7 @@ return [obj objectForKey:key];\
 
 #define Text_More ChineseStringOrENFun(@"更多", @"More")
 
-#define Text_Buddy ChineseStringOrENFun(@"对练课", @"BUDDY TRAINING")
+#define Text_Training ChineseStringOrENFun(@"对练课", @"BUDDY TRAINING")
 #define Text_Group ChineseStringOrENFun(@"团课", @"GROUP CLASS")
 
 #endif /* CommonText_h */

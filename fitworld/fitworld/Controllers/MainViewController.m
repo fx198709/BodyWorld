@@ -361,7 +361,7 @@ BOOL  hasrequest = NO;
         if (view) {
             [view removeFromSuperview];
         }
-        [cell reloadData];
+        [cell reloadData:YES];
         return cell;
     }
     if (indexPath.row == 4 ){
@@ -371,10 +371,7 @@ BOOL  hasrequest = NO;
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         cell.attentionBtn.tag = 202;
-        [cell.logoImage setImage:[UIImage imageNamed:@"index_buddy"]];
-        cell.subTitleLabel.text = Text_Buddy;
         cell.dataArr = _buddyClasses;
-        [cell.myCollectionView reloadData];
         UIView * view = [cell.contentView viewWithTag:10001];
         if (view == nil) {
             UIButton *createSessionBtn = [[UIButton alloc] init];
@@ -395,8 +392,7 @@ BOOL  hasrequest = NO;
             createSessionBtn.clipsToBounds = YES;
             [createSessionBtn addTarget:self action:@selector(clickCreateSessionTraining) forControlEvents:UIControlEventTouchUpInside];
         }
-        cell.backgroundColor = UIColor.blackColor;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell reloadData:NO];
         return cell;
         
     }else{
