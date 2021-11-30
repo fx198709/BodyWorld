@@ -218,6 +218,7 @@
 
 + (void)setupSearchBar:(UISearchBar *)searchBar {
     searchBar.backgroundColor = BuddyTableBackColor;
+    searchBar.tintColor = [UIColor whiteColor];
     for (UIView *view in searchBar.subviews.lastObject.subviews) {
         if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
             view.layer.contents = nil;
