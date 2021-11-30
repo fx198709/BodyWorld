@@ -29,7 +29,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor redColor];
     self.messageTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    _messageTableview.backgroundColor = BuddyTableBackColor;
+    _messageTableview.backgroundColor = BgGrayColor;
     [self.view addSubview:self.messageTableview];
     [self.messageTableview registerNib:[UINib nibWithNibName:NSStringFromClass([MessageListTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"MessageListTableViewCellString"];
 

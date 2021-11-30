@@ -52,7 +52,7 @@
     
     UIView *grayBackview = [[UIView alloc] init];
     [self.view addSubview:grayBackview];
-    grayBackview.backgroundColor = UIRGBColor(37, 37, 37, 1);
+    grayBackview.backgroundColor = BgGrayColor;
     [grayBackview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(tableheadview.mas_bottom);
         make.left.equalTo(self.view.mas_left);

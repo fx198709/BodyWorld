@@ -51,7 +51,7 @@
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
 
         collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        collectionView.backgroundColor = BuddyTableBackColor;
+        collectionView.backgroundColor = BgGrayColor;
         collectionView.showsVerticalScrollIndicator = NO;   //是否显示滚动条
         collectionView.scrollEnabled = YES;  //滚动使能
         collectionView.allowsSelection = YES;
@@ -75,7 +75,7 @@
     _tableView=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.backgroundColor = BuddyTableBackColor;
+    _tableView.backgroundColor = BgGrayColor;
     [self.view addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (self.pageVCindex != 0){
@@ -121,7 +121,7 @@
     UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-20, 20)];
     grayView.layer.cornerRadius =10;
     grayView.clipsToBounds = YES;
-    grayView.backgroundColor = BuddyTableBackColor;
+    grayView.backgroundColor = BgGrayColor;
     [view addSubview:grayView];
     view.clipsToBounds = YES;
     return view;
@@ -131,7 +131,7 @@
     UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, -10, ScreenWidth-20, 20)];
     grayView.layer.cornerRadius =10;
     grayView.clipsToBounds = YES;
-    grayView.backgroundColor = BuddyTableBackColor;
+    grayView.backgroundColor = BgGrayColor;
     [view addSubview:grayView];
     view.clipsToBounds = YES;
     return view;
@@ -168,7 +168,7 @@
     }
     RemoveSubviews(cell.contentView, @[]);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.contentView.backgroundColor = BuddyTableBackColor;
+    cell.contentView.backgroundColor = BgGrayColor;
     int leftdif = 15;
 
     Room *room = dataArr[indexPath.row];
@@ -216,7 +216,7 @@
         make.left.equalTo(leftImageView.mas_right).offset(leftdif);
     }];
     label2left.font = [UIFont systemFontOfSize:13];
-    label2left.textColor = LittleTextColor;
+    label2left.textColor = LightGaryTextColor;
     UILabel *label2 = [[UILabel alloc] init];
     if (room.type_int == 0) {
         label2.text = room.room_creator.nickname;
@@ -231,7 +231,7 @@
         make.left.equalTo(label2left.mas_right).offset(1);
     }];
     label2.font = [UIFont systemFontOfSize:13];
-    label2.textColor = LittleTextColor;
+    label2.textColor = LightGaryTextColor;
     NSString *countryUrl = @"";
     if (room.type_int == 0) {
         countryUrl = [room.room_creator.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
@@ -257,7 +257,7 @@
         make.left.equalTo(leftImageView.mas_right).offset(leftdif);
     }];
     label3.font = [UIFont systemFontOfSize:13];
-    label3.textColor = LittleTextColor;
+    label3.textColor = LightGaryTextColor;
     UILabel *limitLabel = nil;
      
     if ([room isBegin]) {
@@ -272,7 +272,7 @@
             limitLabel.font = SystemFontOfSize(14);
             [cell.contentView addSubview:limitLabel];
             limitLabel.textAlignment = NSTextAlignmentRight;
-            limitLabel.textColor = LittleTextColor;
+            limitLabel.textColor = LightGaryTextColor;
             [limitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(cell.contentView).offset(-10);
                 make.height.mas_equalTo(25);
@@ -291,7 +291,7 @@
             limitLabel.font = SystemFontOfSize(14);
             [cell.contentView addSubview:limitLabel];
             limitLabel.textAlignment = NSTextAlignmentRight;
-            limitLabel.textColor = LittleTextColor;
+            limitLabel.textColor = LightGaryTextColor;
             [limitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(cell.contentView).offset(-10);
                 make.height.mas_equalTo(25);

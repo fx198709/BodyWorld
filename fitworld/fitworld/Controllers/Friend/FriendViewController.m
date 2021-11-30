@@ -113,7 +113,7 @@
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     cell.titleLabel.text = friend.nickname;
     cell.line.hidden = indexPath.row == self.dataList.count - 1;
-    cell.backgroundColor = BuddyTableBackColor;
+    cell.backgroundColor = BgGrayColor;
     cell.cellType = FriendCell_delete;
     cell.btnCallBack = ^{
         [self deleteUserToServer:friend];

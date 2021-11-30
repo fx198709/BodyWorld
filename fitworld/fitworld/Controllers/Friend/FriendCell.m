@@ -21,7 +21,7 @@
     [self.addBtn cornerHalfWithBorderColor:self.addBtn.backgroundColor];
     self.addBtn.hidden = YES;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.contentView.backgroundColor = BuddyTableBackColor;
+    self.contentView.backgroundColor = BgGrayColor;
 }
 
 //- (void)setIsAdd:(BOOL)isAdd {
@@ -35,7 +35,7 @@
         case FriendCell_agree: {
             self.addBtn.hidden = NO;
             [self.addBtn setTitle:ChineseStringOrENFun(@"同意", @"Agree") forState:UIControlStateNormal];
-            [self.addBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+            [self.addBtn setTitleColor:SelectGreenColor forState:UIControlStateNormal];
         }
             break;
         case FriendCell_agreeed: {
@@ -48,14 +48,14 @@
         {
             self.addBtn.hidden = NO;
             [self.addBtn setTitle:ChineseStringOrENFun(@"删除", @"Delete") forState:UIControlStateNormal];
-            [self.addBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+            [self.addBtn setTitleColor:SelectGreenColor forState:UIControlStateNormal];
         }
             break;
         case FriendCell_add:
         {
             self.addBtn.hidden = NO;
             [self.addBtn setTitle:ChineseStringOrENFun(@"添加", @"Add") forState:UIControlStateNormal];
-            [self.addBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+            [self.addBtn setTitleColor:SelectGreenColor forState:UIControlStateNormal];
         }
             break;
         default:

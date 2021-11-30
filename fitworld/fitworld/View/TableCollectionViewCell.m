@@ -24,12 +24,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 
     [self baseCellConfig];
-    [self baseCellDataSource];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    [self reloadData:NO];
 }
 
 
@@ -56,17 +53,26 @@
 }
 
 // Data Source
-- (void)baseCellDataSource{
+- (void)reloadData:(BOOL)isTraining {
+    self.backgroundColor = UIColor.blackColor;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.subTitleLabel.text = @"";
-    NSString *actionString = ChineseStringOrENFun(@"更多", @"More");
-    [self.attentionBtn setTitle:actionString forState:UIControlStateNormal];
-    [self.attentionBtn setTitle:actionString forState:UIControlStateHighlighted];
+    [self.attentionBtn setTitle:Text_More forState:UIControlStateNormal];
+    [self.attentionBtn setTitle:Text_More forState:UIControlStateHighlighted];
+
+    if (isTraining) {
+        [self.logoImage setImage:[UIImage imageNamed:@"index_buddy"]];
+        self.subTitleLabel.text = Text_Training;
+    } else {
+        [self.logoImage setImage:[UIImage imageNamed:@"index_group"]];
+        self.subTitleLabel.text = Text_Group;
+    }
+    [self.myCollectionView reloadData];
 }
 
 - (void)timerToReloadCollectionView{
     [self.myCollectionView reloadData];
 }
-
 
 
 #pragma mark - Collection Delegate

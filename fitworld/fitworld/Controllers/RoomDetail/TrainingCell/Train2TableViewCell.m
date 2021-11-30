@@ -19,7 +19,7 @@
     RemoveSubviews(self.contentView, @[]);
     int outwith = ScreenWidth-20;
     UIView *detailView = [[UIView alloc] init];
-    detailView.backgroundColor = BuddyTableBackColor;
+    detailView.backgroundColor = BgGrayColor;
     detailView.layer.cornerRadius = 8;
     detailView.clipsToBounds = YES;
     [self.contentView addSubview:detailView];
@@ -50,12 +50,12 @@
         UIView *planView = [[UIView alloc] initWithFrame:CGRectMake(0, 60+40*index, outwith-20, 40)];
         [self.contentView addSubview:planView];
         UILabel *planTitle = [[UILabel alloc] initWithFrame:CGRectMake(40, 15, outwith-180, 20)];
-        planTitle.textColor = LittleTextColor;
+        planTitle.textColor = LightGaryTextColor;
         planTitle.font = SystemFontOfSize(14);
         [planView addSubview:planTitle];
         planTitle.text = plan.stage;
         UILabel*timeLabel =  [[UILabel alloc] initWithFrame:CGRectMake(outwith-130, 15, 100, 20)];
-        timeLabel.textColor = LittleTextColor;
+        timeLabel.textColor = LightGaryTextColor;
         timeLabel.font = SystemFontOfSize(14);
         timeLabel.textAlignment = NSTextAlignmentRight;
         NSString *timeString = [NSString stringWithFormat:@"%02ld:%02ld:00",plan.duration/60,plan.duration%60];

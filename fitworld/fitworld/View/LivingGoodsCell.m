@@ -39,7 +39,7 @@
     self.roomname.text = room.name;
     NSString *perString = ChineseStringOrENFun(@"创建人", @"Created by");
     _classTypeLabel.text = ChineseStringOrENFun(@"对练课", @"Buddy");
-    _classTypeLabel.textColor = BuddyTableBackColor;
+    _classTypeLabel.textColor = BgGrayColor;
     if (room.course.type_int == 1) {
         perString = ChineseStringOrENFun(@"直播教练", @"Coach");
         _classTypeLabel.text = ChineseStringOrENFun(@"团课", @"Group");
