@@ -80,7 +80,7 @@
     }];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    self.tableView.backgroundColor = BuddyTableBackColor;
+    self.tableView.backgroundColor = BgGrayColor;
     self.tableView.layoutMargins = UIEdgeInsetsZero;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self setupRefresh];
@@ -95,7 +95,7 @@
         make.height.mas_equalTo(50);
 
     }];
-    btnview.backgroundColor = BuddyTableBackColor;
+    btnview.backgroundColor = BgGrayColor;
 
     UIButton *submittedBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 5, ScreenWidth-40*2, 40)];
 //    48 109  72

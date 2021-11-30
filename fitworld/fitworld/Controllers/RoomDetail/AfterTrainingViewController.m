@@ -27,7 +27,7 @@
     _titleLabel.textColor = UIColor.whiteColor;
     
     _timeLabel.text = @"";
-    _timeLabel.textColor = LittleTextColor;
+    _timeLabel.textColor = LightGaryTextColor;
     _timeLabel.font =SystemFontOfSize(14);
     self.timeLabel.text = ReachYearANDTime([[NSDate date] timeIntervalSince1970]);
 

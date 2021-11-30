@@ -47,7 +47,7 @@
     
     UIView *bottomview =[[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:bottomview];
-    bottomview.backgroundColor = BuddyTableBackColor;
+    bottomview.backgroundColor = BgGrayColor;
     [bottomview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view);
         make.height.mas_equalTo(140);
@@ -94,15 +94,15 @@
     }];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    self.tableView.backgroundColor = BuddyTableBackColor;
+    self.tableView.backgroundColor = BgGrayColor;
     self.tableView.layoutMargins = UIEdgeInsetsZero;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
     
     [self setupRefresh];
-    self.tableView.mj_header.backgroundColor = BuddyTableBackColor;
-    self.tableView.mj_footer.backgroundColor = BuddyTableBackColor;
+    self.tableView.mj_header.backgroundColor = BgGrayColor;
+    self.tableView.mj_footer.backgroundColor = BgGrayColor;
 
     
     UIButton *sumbitBtn = [[UIButton alloc] init];

@@ -20,7 +20,7 @@
     self.currentUsers = userList;
     int outwith = ScreenWidth-20;
     UIView *detailView = [[UIView alloc] init];
-    detailView.backgroundColor = BuddyTableBackColor;
+    detailView.backgroundColor = BgGrayColor;
     detailView.layer.cornerRadius = 8;
     detailView.clipsToBounds = YES;
     [self.contentView addSubview:detailView];
@@ -55,13 +55,13 @@
         [coachimageview changeUserInfoModelData:user];
         
         UILabel *planTitle = [[UILabel alloc] initWithFrame:CGRectMake(80, 15, 120, 20)];
-        planTitle.textColor = LittleTextColor;
+        planTitle.textColor = LightGaryTextColor;
         planTitle.font = SystemFontOfSize(14);
         [planView addSubview:planTitle];
         planTitle.text = user.nickname;
        
         UILabel *cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 15, outwith-230, 20)];
-        cityLabel.textColor = LittleTextColor;
+        cityLabel.textColor = LightGaryTextColor;
         cityLabel.font = SystemFontOfSize(14);
         [planView addSubview:cityLabel];
         cityLabel.text = [NSString stringWithFormat:@"%@,%@",user.city,user.country];

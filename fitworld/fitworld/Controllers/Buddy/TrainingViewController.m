@@ -56,7 +56,7 @@
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.tableView.refreshControl = refreshControl;
     self.tableView.tableFooterView = [UIView new];
-    self.tableView.backgroundColor = UIRGBColor(37, 37, 37, 1);
+    self.tableView.backgroundColor = BgGrayColor;
     self.tableView.layoutMargins = UIEdgeInsetsZero;
     self.tableView.separatorColor = UIColor.clearColor;
     [self refreshData];
@@ -77,7 +77,7 @@
         _tableView=[[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = UIRGBColor(37, 37, 37, 1);
+        _tableView.backgroundColor = BgGrayColor;
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
@@ -182,7 +182,7 @@
     UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(20, 89.5, ScreenWidth-20, 0.5)];
     lineview.backgroundColor = UIRGBColor(225, 225, 225, 0.5);
     [cell.contentView addSubview:lineview];
-    cell.contentView.backgroundColor = UIRGBColor(37, 37, 37, 1);
+    cell.contentView.backgroundColor = BgGrayColor;
     return cell;
 }
 

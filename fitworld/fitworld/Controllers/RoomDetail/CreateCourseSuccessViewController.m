@@ -207,7 +207,7 @@
     self.headTitle.font = SystemFontOfSize(20);
     self.timeLabel.text = ReachYearAndWeekTime(currentRoom.start_time);
     self.timeLabel.font = SystemFontOfSize(17);
-    self.actionbackview.backgroundColor = BuddyTableBackColor;
+    self.actionbackview.backgroundColor = BgGrayColor;
     NSString *startNowString = ChineseStringOrENFun(@"提前开始", @"Start Now");
     self.startNowBtn.layer.cornerRadius =5;
     self.startNowBtn.clipsToBounds =YES;
@@ -237,7 +237,7 @@
     
     _bottomScrollview = [[UIScrollView alloc] init];
     [self.view addSubview:_bottomScrollview];
-    _bottomScrollview.backgroundColor= BuddyTableBackColor;
+    _bottomScrollview.backgroundColor= BgGrayColor;
     [_bottomScrollview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_actionbackview.mas_bottom);
         make.left.right.bottom.equalTo(self.view);

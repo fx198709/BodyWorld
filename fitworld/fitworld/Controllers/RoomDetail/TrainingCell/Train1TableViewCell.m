@@ -19,11 +19,11 @@
     RemoveSubviews(self.contentView, @[]);
     int outwith = ScreenWidth-20;
     UIView *detailView = [[UIView alloc] init];
-    detailView.backgroundColor = BuddyTableBackColor;
+    detailView.backgroundColor = BgGrayColor;
     detailView.layer.cornerRadius = 8;
     detailView.clipsToBounds = YES;
     [self.contentView addSubview:detailView];
-    detailView.backgroundColor = BuddyTableBackColor;
+    detailView.backgroundColor = BgGrayColor;
     detailView.layer.cornerRadius = 8;
     detailView.clipsToBounds = YES;
     

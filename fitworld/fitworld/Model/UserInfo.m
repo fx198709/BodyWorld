@@ -11,6 +11,10 @@
     
     return _shareduser;
 }
+- (void)dealData {
+    self.country_icon = [self.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+}
+
 
 - (instancetype)initWithJSON:(NSDictionary *)json
 {

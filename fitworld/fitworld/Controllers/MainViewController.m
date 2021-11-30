@@ -330,7 +330,7 @@ BOOL  hasrequest = NO;
         if (slidercell == nil) {
             slidercell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"slidercellString"];
             [slidercell.contentView addSubview:_sliderView];
-            slidercell.contentView.backgroundColor = BuddyTableBackColor;
+            slidercell.contentView.backgroundColor = BgGrayColor;
         }
         slidercell.selectionStyle = UITableViewCellSelectionStyleNone;
         return slidercell;

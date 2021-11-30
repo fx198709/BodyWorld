@@ -1,58 +1,17 @@
 //
-//  PrefixHeader.h
-//  日历
+//  CommonFunc.h
+//  FFitWorld
 //
-//  Created by apple on 2017/12/28.
-//  Copyright © 2017年 HEJJY. All rights reserved.
+//  Created by xiejc on 2021/11/30.
 //
 
-#ifndef PrefixHeader_h
-#define PrefixHeader_h
+#ifndef CommonFunc_h
+#define CommonFunc_h
 
-#import "UIView+Extension.h"
-#import "BaseObject.h"
-#import "Enum.h"
-#import "ConfigManager.h"
-#import "BaseTableViewCell.h"
 
 // 屏幕尺寸
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
-
-// 随机颜色
-#define RandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1]
-#define Color(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
-#define ColorAlpha(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
-
-
-
-#endif /* PrefixHeader_h */
-
-//
-#define BuddyTableBackColor UIRGBColor(37, 37, 37, 1)
-#define SelectGreenColor  UIRGBColor(86, 186, 111, 1)
-#define LittleTextColor  UIRGBColor(198, 198, 198, 1)
-#define LineColor  UIRGBColor(138, 138, 138, 0.5)
-
-
-#define WeakSelf  __weak typeof(self)wSelf = self;
-#define StrongSelf(inself)  __strong typeof(self)strongSelf = inself;
-
-//当前语言是不是中文
-static inline BOOL ISChinese(){
-    return [ConfigManager sharedInstance].language == LanguageEnum_Chinese;
-}
-
-UIKIT_STATIC_INLINE  NSString* ChineseOrENFun(NSObject* obj, NSString* key){
-    if(ISChinese()){
-        NSString *keyString = [NSString stringWithFormat:@"%@_cn",key];
-        return [obj valueForKey:keyString];
-    }else{
-        return [obj valueForKey:key];;//[obj objectForKey:key];
-    }
-}
-
-
 
 
 UIKIT_STATIC_INLINE  int  RemoveSubviews(UIView* superview, NSArray * classArray){
@@ -76,27 +35,6 @@ UIKIT_STATIC_INLINE  int  RemoveSubviews(UIView* superview, NSArray * classArray
     }
     return 0;
 }
-
-#define ChineseOrEN(obj, key)   ({\
-if(ISChinese()){\
-NSString *keyString = [NSString stringWithFormat:@"%@_cn",key];\
-return [obj objectForKey:keyString];\
-}else{\
-return [obj objectForKey:key];\
-})
-
-
-#define SystemFontOfSize(size)  [UIFont systemFontOfSize:size]
-//等宽字体
-#define EqualFontWithSize(asize) [UIFont fontWithName:@"HelveticaNeue" size:asize]
-
-
-#define NumberToString(number)  [NSString stringWithFormat:@"%@",number]
-#define UIRGBColor(r,g,b,a) ([UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a])
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
-                                                 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
-                                                  blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-
 
 
 UIKIT_STATIC_INLINE  NSString*  ReachCutomerWeekTime(NSInteger longtime,NSString * formarter){
@@ -254,11 +192,4 @@ UIKIT_STATIC_INLINE  BOOL CheckResponseObject(id responseObject){
 //    [CommonTools showAlertDismissWithContent:errorMessage showWaitTime:0.2 afterDelay:2 control:control];
 //}
 
-
-
-#define ChangeSuccessMsg ChineseStringOrENFun(@"修改成功", @"Success changed")
-#define ChangeErrorMsg ChineseStringOrENFun(@"修改失败", @"Change failed")
-
-
-#define GetValidCodeBtnTitle ChineseStringOrENFun(@"获取验证码", @"Request Code")
-#define GetValidCodeBtnTitle_H ChineseStringOrENFun(@"重新获取", @"Request Again")
+#endif /* CommonFunc_h */

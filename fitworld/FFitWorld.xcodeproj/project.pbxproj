@@ -261,7 +261,7 @@
 		04552B372696C3FD00C78706 /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCameraSwitchButton.h; sourceTree = "<group>"; };
 		04552B382696C3FD00C78706 /* QRCodeReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderViewController.h; sourceTree = "<group>"; };
 		04552B392696C3FD00C78706 /* QRCodeReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReader.m; sourceTree = "<group>"; };
-		04552B562696C46E00C78706 /* UIDeps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeps.h; sourceTree = SOURCE_ROOT; };
+		04552B562696C46E00C78706 /* UIDeps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIDeps.h; path = fitworld/Common/UIDeps.h; sourceTree = SOURCE_ROOT; };
 		0456192E26ECEC8A00C0973F /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
 		0456192F26ECEC8A00C0973F /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
 		0462BD9826920BE8005827D1 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -411,6 +411,9 @@
 		A296D6972754AFC500F73259 /* FriendRoomPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendRoomPageInfo.m; sourceTree = "<group>"; };
 		A296D6992754D00400F73259 /* RoomCreator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCreator.h; sourceTree = "<group>"; };
 		A296D69A2754D00400F73259 /* RoomCreator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCreator.m; sourceTree = "<group>"; };
+		A296D69C2755CB2000F73259 /* FontColorHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontColorHeader.h; sourceTree = "<group>"; };
+		A296D69D2755CBB600F73259 /* CommonText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonText.h; sourceTree = "<group>"; };
+		A296D69E2755CC3F00F73259 /* CommonFunc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonFunc.h; sourceTree = "<group>"; };
 		A2A94DC0273E5BA000D02C77 /* Country.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
 		A2A94DC1273E5BA000D02C77 /* Country.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MTNavigation.m"; sourceTree = "<group>"; };
@@ -490,7 +493,6 @@
 		DD595EEC273D7D5F00618D1A /* GuestPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestPanel.h; sourceTree = "<group>"; };
 		DD595EEE273D9EFD00618D1A /* GuestRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestRenderView.h; sourceTree = "<group>"; };
 		DD595EEF273D9EFD00618D1A /* GuestRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestRenderView.m; sourceTree = "<group>"; };
-		DD59F5D8271BEB6600551E2C /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		DD6EDB14272CE587002B0A8E /* SelectClassHeadview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectClassHeadview.h; sourceTree = "<group>"; };
 		DD6EDB15272CE587002B0A8E /* SelectClassHeadview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectClassHeadview.m; sourceTree = "<group>"; };
 		DD6EDB17272CE5A7002B0A8E /* SelectClassHeadview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectClassHeadview.xib; sourceTree = "<group>"; };
@@ -835,8 +837,6 @@
 				047DC1F4268CD09700A3E37E /* AppDelegate.m */,
 				047DC1F6268CD09700A3E37E /* SceneDelegate.h */,
 				047DC1F7268CD09700A3E37E /* SceneDelegate.m */,
-				DD59F5D8271BEB6600551E2C /* PrefixHeader.h */,
-				04552B562696C46E00C78706 /* UIDeps.h */,
 				047DC1FC268CD09700A3E37E /* Main.storyboard */,
 				047DC202268CD09900A3E37E /* Assets.xcassets */,
 				047DC204268CD09900A3E37E /* LaunchScreen.storyboard */,
@@ -1028,6 +1028,10 @@
 			children = (
 				A2723EEC273BBE2100388B01 /* Enum.h */,
 				A2723EED273BBE2100388B01 /* Enum.m */,
+				04552B562696C46E00C78706 /* UIDeps.h */,
+				A296D69C2755CB2000F73259 /* FontColorHeader.h */,
+				A296D69D2755CBB600F73259 /* CommonText.h */,
+				A296D69E2755CC3F00F73259 /* CommonFunc.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";

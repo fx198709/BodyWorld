@@ -310,7 +310,7 @@
     UILabel *courseCityLabel = [[UILabel alloc] init];
     courseCityLabel.adjustsFontSizeToFitWidth = YES;
     courseCityLabel.text = [NSString stringWithFormat:@"%@ - %@", self.selectRoom.room_creator.city, self.selectRoom.room_creator.country];
-    courseCityLabel.textColor = LittleTextColor;
+    courseCityLabel.textColor = LightGaryTextColor;
     courseCityLabel.font = SystemFontOfSize(14);
     [coachView addSubview:courseCityLabel];
     [courseCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -372,7 +372,7 @@
         make.height.mas_equalTo(backViewHeight);
         make.bottom.equalTo(scrollview).offset(-10);
     }];
-    planBackView.backgroundColor = UIRGBColor(37, 37, 37, 1);
+    planBackView.backgroundColor = BgGrayColor;
     planBackView.layer.cornerRadius = 15;
     planBackView.clipsToBounds = YES;
     int allwith = outwith-60;

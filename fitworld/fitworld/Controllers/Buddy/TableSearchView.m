@@ -25,7 +25,7 @@
     self.searchbarBtn.delegate = self;
     _searchbarBtn.backgroundColor = [UIColor clearColor];
     _searchbarBtn.showsCancelButton = NO;
-    _searchbarBtn.backgroundColor = BuddyTableBackColor;
+    _searchbarBtn.backgroundColor = BgGrayColor;
     
     for (UIView *subView in _searchbarBtn.subviews) {
         if ([subView isKindOfClass:[UIView  class]]) {

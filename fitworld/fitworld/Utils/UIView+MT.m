@@ -213,11 +213,11 @@
             break;
         }
     }
-    searchBar.backgroundImage = [UIImage imageWithColor:BuddyTableBackColor];
+    searchBar.backgroundImage = [UIImage imageWithColor:BgGrayColor];
 }
 
 + (void)setupSearchBar:(UISearchBar *)searchBar {
-    searchBar.backgroundColor = BuddyTableBackColor;
+    searchBar.backgroundColor = BgGrayColor;
     searchBar.tintColor = [UIColor whiteColor];
     for (UIView *view in searchBar.subviews.lastObject.subviews) {
         if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
@@ -225,7 +225,7 @@
             break;
         }
     }
-    searchBar.backgroundImage = [UIImage imageWithColor:BuddyTableBackColor];
+    searchBar.backgroundImage = [UIImage imageWithColor:BgGrayColor];
     UITextField *searchField;
     if (@available(iOS 13.0, *)) {
         searchField = searchBar.searchTextField;
@@ -235,7 +235,13 @@
     
     searchField.textColor = [UIColor whiteColor];
     searchField.font = [UIFont systemFontOfSize:14.0];
-    searchField.backgroundColor = BuddyTableBackColor;
+    searchField.backgroundColor = BgGrayColor;
+    
+    //设置搜索图片
+    
+    [searchBar setImage:[UIImage imageNamed:@"icon_search_find"]
+       forSearchBarIcon:UISearchBarIconSearch
+                  state:UIControlStateNormal];
 }
 
 @end
