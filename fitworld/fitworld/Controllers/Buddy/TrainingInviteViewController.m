@@ -92,7 +92,7 @@
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(70);
 
     }];
     btnview.backgroundColor = BuddyTableBackColor;

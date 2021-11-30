@@ -26,6 +26,8 @@ typedef void(^ScreenBtnBlock)(NSArray*timeArray, NSArray*typeArray);
 @property (strong, nonatomic) NSArray *lastSelectedIds;
 
 @property (nonatomic, copy)ScreenBtnBlock screenOKClick;
+@property (weak, nonatomic) IBOutlet UILabel *canenterLabel;
+@property (weak, nonatomic) IBOutlet UIButton *canEnterBtn;
 
 - (void)changeData:(NSArray*)timeArray andType:(NSArray*)typeArray;
 

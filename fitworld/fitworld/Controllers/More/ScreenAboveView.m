@@ -44,6 +44,7 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
 //    72  225
+    _canenterLabel.text = ChineseStringOrENFun(@"只显示能加入的房间", @"Only show can inten room");
     _contentLabel.text = ChineseStringOrENFun(@"内容", @"By Content");
     _contentLabel.textColor = UIColor.blackColor;
     _durationLabel.text = ChineseStringOrENFun(@"时长", @"By Duration");
