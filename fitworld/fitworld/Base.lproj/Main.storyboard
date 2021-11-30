@@ -2252,7 +2252,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQL-iX-Xy8" userLabel="View1">
                                 <rect key="frame" x="0.0" y="92" width="414" height="48"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_people" translatesAutoresizingMaskIntoConstraints="NO" id="Al9-nT-xUO">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_new_frend_no" translatesAutoresizingMaskIntoConstraints="NO" id="Al9-nT-xUO">
                                         <rect key="frame" x="32" y="8" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="7dv-aj-QgF"/>
@@ -2293,7 +2293,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f4b-zI-3Q1" userLabel="View2">
                                 <rect key="frame" x="0.0" y="152" width="414" height="48"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_people" translatesAutoresizingMaskIntoConstraints="NO" id="YUZ-u9-Mgt">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_new_frend_no" translatesAutoresizingMaskIntoConstraints="NO" id="YUZ-u9-Mgt">
                                         <rect key="frame" x="32" y="8" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="ggF-UK-yfO"/>
@@ -2684,7 +2684,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="activity_login_bg" width="360" height="780"/>
-        <image name="add_people" width="25" height="25"/>
         <image name="arrow_down" width="50" height="50"/>
         <image name="btn_list_mimabukejian" width="20" height="20"/>
         <image name="btn_list_mimakejian" width="20" height="20"/>
@@ -2692,6 +2691,7 @@
         <image name="choose_course_foot_logo3_unselected" width="30" height="30"/>
         <image name="close_empty" width="75" height="75"/>
         <image name="fitworld_logo_heng" width="1435" height="434"/>
+        <image name="my_new_frend_no" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

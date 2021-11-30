@@ -74,7 +74,7 @@
 //            不是好友，增加一个好友的功能
             UIButton *vbutton = [[UIButton alloc] initWithFrame:CGRectMake(outwith-50, 3, 40, 40)];
             [planView addSubview:vbutton];
-            UIImage *peopleImage = [UIImage imageNamed:@"add_people"];
+            UIImage *peopleImage = [UIImage imageNamed:@"my_new_frend_no"];
             [vbutton setImage:peopleImage forState:UIControlStateNormal];
             [vbutton setImage:peopleImage forState:UIControlStateHighlighted];
             vbutton.tag = 100+index;
