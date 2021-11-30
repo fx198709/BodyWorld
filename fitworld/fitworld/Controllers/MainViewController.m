@@ -340,35 +340,28 @@ BOOL  hasrequest = NO;
         // 复用队列中没有时再创建
         TableCollectionLivingViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveTableviewCell" forIndexPath:indexPath];
         [cell.logoImage setImage:[UIImage imageNamed:@"index_live"]];
-        cell.subTitleLabel.text = ChineseStringOrENFun(@"正在进行", @"LIVE NOW");
 
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:(UIControlEventTouchDown)];
 //            [self refreshData:cell :@""];
         cell.attentionBtn.tag = 200;
-        cell.backgroundColor = UIColor.blackColor;
         cell.dataArr = _livingClasses;
-        [cell.myCollectionView reloadData];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell reloadData];
         return cell;
     }
     if (indexPath.row == 3 ){
         // 创建新的 cell，默认为主标题模式
         TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
         groupCell = cell;
-        [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-        [cell.logoImage setImage:[UIImage imageNamed:@"index_group"]];
-        cell.subTitleLabel.text = ChineseStringOrENFun(@"团课", @"GROUP CLASS");
         cell.dataArr = _groupClasses;
-        [cell.myCollectionView reloadData];
+        
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:UIControlEventTouchDown];
         cell.attentionBtn.tag = 201;
         UIView * view = [cell.contentView viewWithTag:10001];
         if (view) {
             [view removeFromSuperview];
         }
-        cell.backgroundColor = UIColor.blackColor;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell reloadData];
         return cell;
     }
     if (indexPath.row == 4 ){
@@ -379,7 +372,7 @@ BOOL  hasrequest = NO;
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         cell.attentionBtn.tag = 202;
         [cell.logoImage setImage:[UIImage imageNamed:@"index_buddy"]];
-        cell.subTitleLabel.text = ChineseStringOrENFun(@"对练课", @"BUDDY TRAINING");;
+        cell.subTitleLabel.text = Text_Buddy;
         cell.dataArr = _buddyClasses;
         [cell.myCollectionView reloadData];
         UIView * view = [cell.contentView viewWithTag:10001];

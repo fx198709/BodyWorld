@@ -82,8 +82,8 @@
     self.historyTitleLabel.text = ChineseStringOrENFun(@"历史统计", @"Historical Data");
     self.historyCountTitleLabel.text = ChineseStringOrENFun(@"次", @"times");
     
-    self.tuanTitleLabel.text = ChineseStringOrENFun(@"团课", @"Group class");
-    self.dlTitleLabel.text = ChineseStringOrENFun(@"对练课", @"Buddy training");
+    self.tuanTitleLabel.text = Text_Group;
+    self.dlTitleLabel.text = Text_Buddy;
     
     self.calenderTitleLabel.text = ChineseStringOrENFun(@"最近30天打卡记录", @"30 Day activity");
     self.endDate = [[NSDate date] mt_previousDate];

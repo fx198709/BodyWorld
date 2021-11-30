@@ -41,5 +41,9 @@ return [obj objectForKey:key];\
 #define GetValidCodeBtnTitle ChineseStringOrENFun(@"获取验证码", @"Request Code")
 #define GetValidCodeBtnTitle_H ChineseStringOrENFun(@"重新获取", @"Request Again")
 
+#define Text_More ChineseStringOrENFun(@"更多", @"More")
+
+#define Text_Buddy ChineseStringOrENFun(@"对练课", @"BUDDY TRAINING")
+#define Text_Group ChineseStringOrENFun(@"团课", @"GROUP CLASS")
 
 #endif /* CommonText_h */

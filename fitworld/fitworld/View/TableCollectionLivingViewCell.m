@@ -17,15 +17,14 @@
 #import "ConfigManager.h"
 #import "RoomVC.h"
 #import "NoDataCollectionViewCell.h"
+
 @implementation TableCollectionLivingViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 
     [self baseCellConfig];
-    [self baseCellDataSource];
-    
+    [self reloadData];
 }
 
 
@@ -49,11 +48,15 @@
 }
 
 // Data Source
-- (void)baseCellDataSource{
+- (void)reloadData {
     self.subTitleLabel.text = @"";
-    NSString *actionString = ChineseStringOrENFun(@"更多", @"More");
-    [self.attentionBtn setTitle:actionString forState:UIControlStateNormal];
-    [self.attentionBtn setTitle:actionString forState:UIControlStateHighlighted];
+    [self.attentionBtn setTitle:Text_More forState:UIControlStateNormal];
+    [self.attentionBtn setTitle:Text_More forState:UIControlStateHighlighted];
+    self.subTitleLabel.text = ChineseStringOrENFun(@"正在进行", @"LIVE NOW");
+    
+    self.backgroundColor = UIColor.blackColor;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    [self.myCollectionView reloadData];
 }
 
 
