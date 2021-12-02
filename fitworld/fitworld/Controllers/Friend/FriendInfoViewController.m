@@ -51,7 +51,9 @@
 }
 
 - (void)loadUserData {
-    self.addbtn.hidden = self.user.is_friend;
+    if (self.user.is_friend) {
+        [self hideAddBtn];
+    }
     self.nameLabel.text = self.user.nickname;
     NSString *avatarUrl = [FITAPI_HTTPS_ROOT stringByAppendingString:self.user.avatar];
     [self.headImg sd_setImageWithURL:[NSURL URLWithString:avatarUrl]
@@ -61,6 +63,11 @@
     self.descLabel.text = self.user.introduction;
 }
 
+- (void)hideAddBtn {
+    self.addbtn.hidden = YES;
+    self.addbtnW.constant = 0;
+    [self.view updateConstraintsIfNeeded];
+}
 
 #pragma mark - server
 
@@ -85,7 +92,7 @@
     self.isRequesting = YES;
     NSInteger nextPage = self.currentPage + 1;
     int perCount = 10;
-
+    
     NSDictionary *param = @{@"row":IntToString(perCount), @"page":IntToString(nextPage), @"user_id":self.userId};
     [[AFAppNetAPIClient manager] GET:@"user_room" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
@@ -144,9 +151,7 @@
         [MTHUD hideHUD];
         NSString *result = [responseObject objectForKey:@"recordset"];
         if ([result isEqualToString:@"success"]) {
-            self.addbtn.hidden = YES;
-            self.addbtnW.constant = 0;
-            [self.view updateConstraintsIfNeeded];
+            [self hideAddBtn];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self showChangeFailedError:error];
@@ -182,13 +187,13 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
