@@ -231,10 +231,10 @@ BOOL  hasrequest = NO;
 - (void)actionBtnClick:(UIButton*)sender{
     if (sender.tag == 101) {
         //todo:test
-        CoachViewController *coachVC = VCBySBName(@"CoachViewController");
-        coachVC.coacheId = @"44768959819483652";
-        [self.navigationController pushViewController:coachVC animated:YES];
-        return;;
+//        CoachViewController *coachVC = VCBySBName(@"CoachViewController");
+//        coachVC.coacheId = @"44768959819483652";
+//        [self.navigationController pushViewController:coachVC animated:YES];
+//        return;;
        //朋友列表
         [self performSegueWithIdentifier:@"friendListSegue" sender:nil];
     }else{

@@ -204,6 +204,8 @@
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
 		DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */; };
 		DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D9272577ED00D0C310 /* LivingGoodsCell.xib */; };
+		DDFA757D27591BE800EFD0B1 /* GroupRoomDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA757B27591BE800EFD0B1 /* GroupRoomDetailViewController.m */; };
+		DDFA757E27591BE800EFD0B1 /* GroupRoomDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFA757C27591BE800EFD0B1 /* GroupRoomDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -599,6 +601,9 @@
 		DDEE67D7272577EC00D0C310 /* LivingGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivingGoodsCell.h; sourceTree = "<group>"; };
 		DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LivingGoodsCell.m; sourceTree = "<group>"; };
 		DDEE67D9272577ED00D0C310 /* LivingGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LivingGoodsCell.xib; sourceTree = "<group>"; };
+		DDFA757A27591BE800EFD0B1 /* GroupRoomDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupRoomDetailViewController.h; sourceTree = "<group>"; };
+		DDFA757B27591BE800EFD0B1 /* GroupRoomDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupRoomDetailViewController.m; sourceTree = "<group>"; };
+		DDFA757C27591BE800EFD0B1 /* GroupRoomDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupRoomDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1183,6 +1188,7 @@
 		DD595EC82736F56B00618D1A /* RoomDetail */ = {
 			isa = PBXGroup;
 			children = (
+				DDFA757627591A4900EFD0B1 /* GroupRoom */,
 				DDB138062748E2DB009A44FD /* TrainingCell */,
 				DD595ED32736F88D00618D1A /* RoomVC.h */,
 				DD595ED22736F88D00618D1A /* RoomVC.m */,
@@ -1378,6 +1384,16 @@
 			path = TrainingCell;
 			sourceTree = "<group>";
 		};
+		DDFA757627591A4900EFD0B1 /* GroupRoom */ = {
+			isa = PBXGroup;
+			children = (
+				DDFA757A27591BE800EFD0B1 /* GroupRoomDetailViewController.h */,
+				DDFA757B27591BE800EFD0B1 /* GroupRoomDetailViewController.m */,
+				DDFA757C27591BE800EFD0B1 /* GroupRoomDetailViewController.xib */,
+			);
+			path = GroupRoom;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1440,6 +1456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */,
+				DDFA757E27591BE800EFD0B1 /* GroupRoomDetailViewController.xib in Resources */,
 				DD595EC427367FA700618D1A /* UserCenterMainViewController.xib in Resources */,
 				DD8E328E273F226B008995E9 /* code.json in Resources */,
 				DD84CB9427412A3D00EB8C61 /* RightTopSearchView.xib in Resources */,
@@ -1636,6 +1653,7 @@
 				A256300A273FE2430030D6B2 /* FriendPageInfo.m in Sources */,
 				A296D68D2754A3AB00F73259 /* BaseRefreshViewController.m in Sources */,
 				A2723F05273CF1BC00388B01 /* SelectCountryViewController.m in Sources */,
+				DDFA757D27591BE800EFD0B1 /* GroupRoomDetailViewController.m in Sources */,
 				A2723EFF273CC28C00388B01 /* ChangeIntroductionViewController.m in Sources */,
 				A2A94DC5273E610900D02C77 /* UIViewController+MTNavigation.m in Sources */,
 				DD25FEE927226B5A0092CF87 /* JYImageCache.m in Sources */,
