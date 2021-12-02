@@ -14,11 +14,11 @@
 - (void)changeDataWithModel:(NSString*)url{
     RemoveSubviews(self, @[]);
     CGSize  parentSize = self.frame.size;
-    UIView  *whiteBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, parentSize.width, parentSize.height)];
-    [self addSubview:whiteBackView];
-    whiteBackView.backgroundColor = UIColor.whiteColor;
-    whiteBackView.clipsToBounds = YES;
-    whiteBackView.layer.cornerRadius = parentSize.width/2;
+    _userBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, parentSize.width, parentSize.height)];
+    [self addSubview:_userBtn];
+    _userBtn.backgroundColor = UIColor.whiteColor;
+    _userBtn.clipsToBounds = YES;
+    _userBtn.layer.cornerRadius = parentSize.width/2;
     
     UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(2,2, parentSize.width-4, parentSize.height-4)];
     [self addSubview:userImage];
@@ -40,6 +40,12 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, roomModel.room_creator.avatar];
     [self changeDataWithModel:urlString];
 }
+
+- (void)changeCommentModelData:(CoachComment*)comment{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, comment.avatar];
+    [self changeDataWithModel:urlString];
+}
+
 
 
 

@@ -29,6 +29,14 @@
     NSString *avtarImg = [FITAPI_HTTPS_ROOT stringByAppendingString:comment.avatar];
     [self.headImg sd_setImageWithURL:[NSURL URLWithString:avtarImg]
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
+    if (!_userImageview) {
+        _userImageview = [[UserHeadPicView alloc] initWithFrame:CGRectMake(0, 0, 37, 37)];
+        [_userView addSubview:_userImageview];
+    }
+    [_userImageview changeCommentModelData:comment];
+    [_userImageview.userBtn addTarget:self action:@selector(userBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    _userView.backgroundColor = UIColor.clearColor;
+    
     self.nameLabel.text = comment.nickname;
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:comment.created_at];
@@ -46,6 +54,11 @@
     if (self.btnCallBack) {
         self.btnCallBack();
     }
+}
+
+- (void)userBtnClicked{
+    UIViewController *vc = [CommonTools findControlWithView:self];
+//    [vc.navigationController pushViewController:<#(nonnull UIViewController *)#> animated:<#(BOOL)#>]
 }
 
 

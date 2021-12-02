@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger        comment_grade;
 @property (nonatomic , copy) NSString              * gym_name;
 @property (nonatomic , copy) NSString              * gym_pic;
+@property (nonatomic , copy) NSString              * id;
 
 @end
 

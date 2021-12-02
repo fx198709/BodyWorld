@@ -12,9 +12,22 @@
 #import "RoomVC.h"
 #import "APPObjOnce.h"
 #import "UserHeadPicView.h"
+#import "CoachCommentCell.h"
+#import "GroupDetailTableViewCell.h"
+#import "CoachComment.h"
 
-@interface GroupRoomDetailViewController ()
+@interface GroupRoomDetailViewController (){
+    BOOL isLoading;
+    int _pageCount;
+    BOOL _isLoadAllData; //是否加载所有的数据，每次刷新的时候，都设置成no， 接口返回的数据小于需要的数量时，设置成yes
+    NSURLSessionDataTask *requestTask;//请求用的task
+    NSMutableArray *dataArr;
+    GroupDetailTableViewCell *heightCell;
+    CoachCommentCell *heightCommentCell;
+}
 @property(nonatomic, strong)UIButton *joinBtn;
+@property(nonatomic, strong)UITableView *cocahTableview;
+
 
 @end
 
@@ -101,304 +114,19 @@
         make.top.equalTo(courseNameLl.mas_bottom).offset(5);
         make.left.equalTo(courseNameLl);
     }];
-    
-//    滚动条
-    UIScrollView * scrollview = [[UIScrollView alloc] init];
-    [self.view addSubview:scrollview];
-    [scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.cocahTableview = [[UITableView alloc] init];
+    [self.view addSubview:self.cocahTableview];
+    [self.cocahTableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(topImgBotView.mas_bottom).offset(15);
         make.left.bottom.right.equalTo(self.view);
     }];
-    int outwith = ScreenWidth;
-    UIView *detailView = [[UIView alloc] init];
-    [scrollview addSubview:detailView];
-    [detailView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(scrollview);
-        make.left.right.equalTo(scrollview);
-        make.height.mas_equalTo(50);
-        make.width.mas_equalTo(outwith);
-    }];
-    
-    
-    UIView *userLeftView = [[UIView alloc]init];
-    userLeftView.backgroundColor = UIColor.blackColor;
-    [detailView addSubview:userLeftView];
-    [userLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(detailView);
-        make.top.equalTo(detailView);
-        make.height.mas_equalTo(50);
-        make.width.equalTo(detailView).multipliedBy(0.33);
-
-    }];
-    
-    
-    UILabel *getTimeLabel = [[UILabel alloc] init];
-    getTimeLabel.text = [NSString stringWithFormat:@"%ld", (long)_selectRoom.duration]; //@"5";
-    getTimeLabel.font = [UIFont boldSystemFontOfSize:20];
-    getTimeLabel.textColor= UIColor.whiteColor;
-    getTimeLabel.adjustsFontSizeToFitWidth = YES;
-    
-    UILabel *timeLabel = [[UILabel alloc] init];
-    timeLabel.text = ChineseStringOrENFun(@"时长(分)", @"Time(min)");
-    timeLabel.font = [UIFont systemFontOfSize:13];
-    timeLabel.textColor= UIColor.whiteColor;
-
-    timeLabel.adjustsFontSizeToFitWidth = YES;
-
-    [userLeftView addSubview:timeLabel];
-    [userLeftView addSubview:getTimeLabel];
-    
-    [getTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(userLeftView);
-        make.top.equalTo(userLeftView).offset(5);
-    }];
-    
-    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(getTimeLabel.mas_bottom).offset(8);
-        make.centerX.equalTo(userLeftView);
-    }];
-    
-    UIView *userMidView = [[UIView alloc]init];
-    userMidView.backgroundColor = UIColor.blackColor;
-    [detailView addSubview:userMidView];
-    [userMidView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(userLeftView);
-        make.left.equalTo(userLeftView.mas_right);
-        make.height.mas_equalTo(50);
-        make.width.equalTo(detailView).multipliedBy(0.33);
-        
-    }];
-    
-
-    UILabel *getHeartLabel = [[UILabel alloc] init];
-    getHeartLabel.text = _selectRoom.heart_rate.length > 0?_selectRoom.heart_rate:@"  ";
-    getHeartLabel.font = [UIFont boldSystemFontOfSize:20];;
-    getHeartLabel.textColor= UIColor.whiteColor;
-    getHeartLabel.adjustsFontSizeToFitWidth = YES;
-    
-    UILabel *heartLabel = [[UILabel alloc] init];
-    heartLabel.text = ChineseStringOrENFun(@"心率(Bpm)", @"Heart rate(Bpm)");
-    heartLabel.font = [UIFont systemFontOfSize:13];
-    heartLabel.textColor= UIColor.whiteColor;
-    heartLabel.adjustsFontSizeToFitWidth = YES;
-
-    [userMidView addSubview:heartLabel];
-    [userMidView addSubview:getHeartLabel];
-    
-    [getHeartLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(userMidView);
-        make.top.equalTo(userMidView).offset(5);
-    }];
-    [heartLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(getHeartLabel.mas_bottom).offset(8);
-        make.centerX.equalTo(userMidView);
-    }];
-    
-    
-    UIView *userRightView = [[UIView alloc]init];
-    userRightView.backgroundColor = UIColor.blackColor;
-    [detailView addSubview:userRightView];
-    [userRightView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(userLeftView);
-        make.right.equalTo(detailView);
-        make.height.equalTo(userLeftView);
-        make.left.equalTo(userMidView.mas_right);
-    }];
-    
-    UILabel *getKcalLabel = [[UILabel alloc] init];
-    getKcalLabel.text = [NSString stringWithFormat:@"%@", _selectRoom.cal];
-    getKcalLabel.font = [UIFont boldSystemFontOfSize:20];;
-    getKcalLabel.textColor= UIColor.whiteColor;
-    getKcalLabel.adjustsFontSizeToFitWidth = YES;
-    
-    UILabel *kcalLabel = [[UILabel alloc] init];
-    kcalLabel.text =ChineseStringOrENFun(@"卡路里(Kcal)", @"Consumption(Kcal)");
-    kcalLabel.textColor= UIColor.whiteColor;
-    kcalLabel.font = [UIFont systemFontOfSize:13];
-    kcalLabel.adjustsFontSizeToFitWidth = YES;
-
-    [userRightView addSubview:kcalLabel];
-    [userRightView addSubview:getKcalLabel];
-    
-    [getKcalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(userRightView);
-        make.top.equalTo(userRightView).offset(5);
-    }];
-    
-    [kcalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(getKcalLabel.mas_bottom).offset(8);
-        make.centerX.equalTo(userRightView);
-    }];
-    
-//    备注
-    
-    UILabel *vdesclabel = [[UILabel alloc]init];
-    [scrollview addSubview:vdesclabel];
-    [vdesclabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(userLeftView.mas_bottom).offset(25);
-        make.left.equalTo(scrollview).offset(10);
-        make.right.equalTo(scrollview).offset(-10);
-
-    }];
-    vdesclabel.preferredMaxLayoutWidth = ScreenWidth-20;
-    vdesclabel.numberOfLines = 0;
-    vdesclabel.font = SystemFontOfSize(15);
-    vdesclabel.textColor = UIRGBColor(225, 225, 225, 1);
-    vdesclabel.text = self.selectRoom.course.desc;
-    [vdesclabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [vdesclabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    UIView *lineview = [[UIView alloc] init];
-    lineview.backgroundColor = LineColor;
-    [scrollview addSubview:lineview];
-    [lineview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(vdesclabel.mas_bottom).offset(15);
-        make.left.equalTo(scrollview).offset(10);
-        make.right.equalTo(scrollview).offset(-10);
-        make.height.mas_equalTo(0.5);
-    }];
-    
-//    教练
-    UIView *coachView = [[UIView alloc] init];
-//    coachView.backgroundColor = UIColor.darkGrayColor;
-//    coachView.layer.cornerRadius = 5;
-//    coachView.clipsToBounds = YES;
-    [scrollview addSubview:coachView];
-    [coachView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(scrollview);
-        make.top.equalTo(lineview.mas_bottom).offset(5);
-        make.height.mas_equalTo(80);
-    }];
-    
-    UserHeadPicView * coachimageview = [[UserHeadPicView alloc] initWithFrame:CGRectMake(10, 20, 50, 50)];
-    [coachView addSubview:coachimageview];
-    [coachimageview changeCoachModelData:self.selectRoom.coach];
-
-    
-    UILabel *courseLabel = [[UILabel alloc] init];
-    courseLabel.adjustsFontSizeToFitWidth = YES;
-    courseLabel.text = self.selectRoom.coach.nickname;
-    courseLabel.textColor = UIColor.whiteColor;
-    courseLabel.font =SystemFontOfSize(16);
-    [coachView addSubview:courseLabel];
-    [courseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(coachView.mas_left).offset(75);
-        make.top.equalTo(coachView).offset(25);
-    }];
-    
-    UIImageView *countryImage = [[UIImageView alloc] init];
-    [coachView addSubview:countryImage];
-    [countryImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(courseLabel.mas_right).offset(6);
-        make.centerY.equalTo(courseLabel);
-        make.size.mas_equalTo(CGSizeMake(20, 10));
-    }];
-    NSString *url = self.selectRoom.coach.country_icon;
-    [countryImage sd_setImageWithURL:[NSURL URLWithString:url]];
-    countryImage.contentMode = UIViewContentModeScaleAspectFit;
-    
-    UILabel *courseCityLabel = [[UILabel alloc] init];
-    courseCityLabel.adjustsFontSizeToFitWidth = YES;
-    courseCityLabel.text = [NSString stringWithFormat:@"%@ - %@", self.selectRoom.coach.city, self.selectRoom.coach.country];
-    courseCityLabel.textColor = LightGaryTextColor;
-    courseCityLabel.font = SystemFontOfSize(14);
-    [coachView addSubview:courseCityLabel];
-    [courseCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(courseLabel.mas_bottom).offset(6);
-        make.left.equalTo(courseLabel);
-    }];
-    
-//    UIButton *followCoachBtn = [[UIButton alloc] init];
-//
-//    NSString *btntitle = ChineseStringOrENFun(@"关注", @"Follow");
-//    [followCoachBtn setTitle:btntitle forState:UIControlStateNormal];
-//    [followCoachBtn setTitle:btntitle forState:UIControlStateHighlighted];
-//    followCoachBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
-//    UIColor *greenColor = SelectGreenColor;
-//    [followCoachBtn setTitleColor:greenColor forState:UIControlStateNormal];
-//     [followCoachBtn setTitleColor:greenColor forState:UIControlStateHighlighted];
-//    [coachView addSubview:followCoachBtn];
-//    [followCoachBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(coachView.mas_top).offset(20);
-//        make.right.equalTo(coachView).offset(-10);
-//        make.height.mas_equalTo(40);
-//        make.width.mas_equalTo(90);
-//    }];
-//    followCoachBtn.layer.cornerRadius = 20;
-//    followCoachBtn.clipsToBounds = YES;
-//    followCoachBtn.backgroundColor = UIColorFromRGB(37, 37, 37);
-//    [followCoachBtn addTarget:self action:@selector(followBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIView *lineview1 = [[UIView alloc] init];
-    lineview1.backgroundColor = LineColor;
-    [scrollview addSubview:lineview1];
-    [lineview1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(coachView.mas_bottom).offset(15);
-        make.left.equalTo(scrollview).offset(10);
-        make.right.equalTo(scrollview).offset(-10);
-        make.height.mas_equalTo(0.5);
-    }];
-    
-    UILabel *programLabel = [[UILabel alloc] init];
-    programLabel.text = ChineseStringOrENFun(@"锻炼计划", @"Program");
-    programLabel.font = [UIFont boldSystemFontOfSize:18];
-    programLabel.textColor = UIColor.whiteColor;
-    programLabel.adjustsFontSizeToFitWidth = YES;
-    [scrollview addSubview:programLabel];
-    [programLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(lineview1.mas_bottom).offset(16);
-        make.left.equalTo(scrollview).offset(10);
-        make.height.mas_equalTo(35);
-    }];
-    
-    int planCount = (int)self.selectRoom.course.plan.count;
-    int  backViewHeight = 40+ 30*planCount+30;
-    UIView *planBackView = [[UIView alloc] init];
-    [scrollview addSubview:planBackView];
-    [planBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(programLabel.mas_bottom).offset(16);
-        make.left.equalTo(scrollview).offset(10);
-        make.right.equalTo(scrollview).offset(-10);
-        make.height.mas_equalTo(backViewHeight);
-        make.bottom.equalTo(scrollview).offset(-10);
-    }];
-    planBackView.backgroundColor = BgGrayColor;
-    planBackView.layer.cornerRadius = 15;
-    planBackView.clipsToBounds = YES;
-    int allwith = outwith-60;
-    UILabel *headleftLabel = [[UILabel alloc] init];
-    [planBackView addSubview:headleftLabel];
-    headleftLabel.textColor = UIColor.whiteColor;
-    headleftLabel.font = [UIFont boldSystemFontOfSize:17];
-    headleftLabel.frame = CGRectMake(20, 5, allwith* 0.4, 40);
-//    headleftLabel.textAlignment = NSTextAlignmentCenter;
-    headleftLabel.text = ChineseStringOrENFun(@"时长（分钟）", @"Time(min)");
-    UILabel *headrightLabel = [[UILabel alloc] init];
-    [planBackView addSubview:headrightLabel];
-    headrightLabel.textColor = UIColor.whiteColor;
-    headrightLabel.font = [UIFont boldSystemFontOfSize:20];
-    headrightLabel.frame = CGRectMake(allwith* 0.4+30, 5, allwith* 0.6, 40);
-    headrightLabel.text = ChineseStringOrENFun(@"内容", @"Content");
-    for (int index=0; index< planCount; index++) {
-        int starty = 40+10+30*index;
-        Plan * plan = [self.selectRoom.course.plan objectAtIndex:index];
-        UILabel *leftlabel = [self contentLabel];
-        [planBackView addSubview:leftlabel];
-        leftlabel.text = [NSString stringWithFormat:@"%ld",plan.duration];
-//        leftlabel.textAlignment = NSTextAlignmentCenter;
-        leftlabel.frame = CGRectMake(20, starty, allwith*0.4, 30);
-        UILabel *rightlabel = [self contentLabel];
-        [planBackView addSubview:rightlabel];
-        rightlabel.frame = CGRectMake(allwith* 0.4+30, starty, allwith*0.6, 30);
-        rightlabel.text = plan.stage;
-    }
+    self.cocahTableview.dataSource = self;
+    self.cocahTableview.delegate = self;
+    [self.cocahTableview registerNib:[UINib nibWithNibName:NSStringFromClass([CoachCommentCell class]) bundle:nil] forCellReuseIdentifier:@"CoachCommentCellString"];
+    self.cocahTableview.separatorColor = UIColor.clearColor;
+    [self setupRefresh];
 }
 
-- (UILabel*)contentLabel{
-    UILabel *vLabel = [[UILabel alloc] init];
-    vLabel.textColor = UIRGBColor(225, 225, 225, 1);
-    vLabel.font = SystemFontOfSize(17);
-    return  vLabel;
-}
 
 - (void)followBtnClick{
     
@@ -415,13 +143,18 @@
                                @"event_id": self.selectRoom.event_id,
                            };
         [manager GET:@"room/detail" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            NSDictionary *roomJson = responseObject[@"recordset"];
-            NSError *error;
-            self->_selectRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
-            self.selectRoom.event_id = eventid;
-            [self addsubviews];
-          
+            if (CheckResponseObject(responseObject)) {
+                NSDictionary *roomJson = responseObject[@"recordset"];
+                NSError *error;
+                self->_selectRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
+                self.selectRoom.event_id = eventid;
+                [self addsubviews];
+                [self reachHeadData];
+            }else{
+                [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+            }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
@@ -472,6 +205,198 @@
         [[APPObjOnce sharedAppOnce] joinRoom:self.selectRoom withInvc:self];
     }
     
+}
+
+
+#pragma mark - 刷新房间数据
+- (void) reachHeadData
+{
+    dataArr = [NSMutableArray array];
+    _isLoadAllData =NO;
+    [self loadDateIsLoadHead:YES];
+}
+
+
+ 
+
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.cocahTableview addHeaderWithTarget:self action:@selector(headerRereshing)];
+    [self.cocahTableview addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+//开始进入刷新状态
+- (void)headerRereshing
+{
+    //下拉刷新，先还原上拉“已加载全部数据”的状态
+    [self.cocahTableview.mj_footer resetNoMoreData];
+    [self reachHeadData];
+}
+
+
+//下拉刷新
+
+
+- (void)loadDateIsLoadHead:(BOOL)isLoadHead
+{
+    if (!isLoading) {
+        isLoading = YES;
+        [requestTask cancel];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+        int size = 20;
+        int page = 1;
+        if (!isLoadHead) {
+//            加载更多
+            page = _pageCount+1;
+        }
+        NSDictionary *baddyParams = @{
+                               @"page": [NSString stringWithFormat:@"%d",page],
+                               @"row": [NSString stringWithFormat:@"%d",size],
+                               @"coach_id":self.selectRoom.coach.id
+                           };
+        
+        requestTask = [manager GET:@"comment/coach/list" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (responseObject && responseObject[@"recordset"] ) {
+                NSArray *dataArray = responseObject[@"recordset"][@"rows"];
+                if (dataArray.count < size) {
+                    self->_isLoadAllData = YES;
+                }
+                if (isLoadHead) {
+                    self->_pageCount = 1;
+                }
+                else
+                {
+                    self->_pageCount =self->_pageCount+1;
+                }
+                if (isLoadHead) {
+                    self->dataArr = [[NSMutableArray alloc] init];
+                }
+                for (int i = 0; i < [dataArray count]; i++) {
+                    CoachComment *coach = [[CoachComment alloc] initWithDictionary: dataArray[i] error:nil];
+                    [self->dataArr addObject: coach];
+                }
+                
+                if (isLoadHead) {
+                    [self.cocahTableview.mj_header endRefreshing];
+                }
+                else
+                {
+                    [self loadNextPageData];
+                }
+            
+
+                [self.cocahTableview reloadData];
+            }
+            self->isLoading = NO;
+          
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    }
+    else
+    {
+    }
+ 
+}
+
+//上拉加载更多
+- (void)loadMore
+{
+    if (!_isLoadAllData) {
+        [self loadDateIsLoadHead:NO];
+    }
+    else
+    {
+        [self loadNextPageData];
+    }
+}
+
+- (void)footerRereshing
+{
+    [self loadMore];
+}
+
+-(void)loadNextPageData{
+
+    [self.cocahTableview.mj_footer endRefreshing];
+    if (_isLoadAllData) {
+        [self.cocahTableview.mj_footer endRefreshingWithNoMoreData];
+    }
+    
+}
+
+#pragma mark - table
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return dataArr.count+1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        if (!heightCell) {
+            heightCell = [[GroupDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupDetailTableViewCellHeight"];
+        }
+        [heightCell changeDatewithRoom:self.selectRoom];
+        CGSize heightSize = [heightCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        
+        return heightSize.height+1;
+    }else{
+        return 100;
+        if (!heightCommentCell) {
+            heightCommentCell = [[[NSBundle mainBundle] loadNibNamed:@"CoachCommentCell" owner:self options:nil] lastObject];
+        }
+        CoachComment *comment = [dataArr objectAtIndex:indexPath.row-1];
+        [heightCommentCell loadData:comment];
+        CGSize heightSize = [heightCommentCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        
+        return heightSize.height+1;
+    }
+     
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row ==0) {
+        GroupDetailTableViewCell *detailcell = [[GroupDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BaseTableViewCell"];
+        [detailcell changeDatewithRoom:self.selectRoom];
+        return  detailcell;
+    }else{
+        CoachCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CoachCommentCellString"];
+        CoachComment *comment = [dataArr objectAtIndex:indexPath.row-1];
+        cell.contentView.backgroundColor = UIColor.blackColor;
+        [cell loadData:comment];
+        cell.btnCallBack = ^{
+            [self favoriteCommentFromServer:comment];
+        };
+        return cell;
+    }
+    
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+//点赞
+- (void)favoriteCommentFromServer:(CoachComment *)comment {
+    NSDictionary *param = @{@"obj_id":comment.id,
+                            @"is_favorite":IntToString(!comment.is_favorite),
+                            @"type":@"comment"};
+    NSString *url = comment.is_favorite ? @"favorite/cancel" : @"favorite/add";
+    [[AFAppNetAPIClient manager] POST:url parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSLog(@"====respong:%@", responseObject);
+        NSString *result = [responseObject objectForKey:@"recordset"];
+        if ([result isEqualToString:@"success"]) {
+            comment.is_favorite = !comment.is_favorite;
+            comment.favorite_cnt += comment.is_favorite ? 1 : -1;
+            [self.cocahTableview reloadData];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD showDurationNoticeHUD:error.localizedDescription];
+    }];
 }
 
 

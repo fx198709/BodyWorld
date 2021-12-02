@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)findLocaltionCityName:(id)user;
 
+//找到视图归属的控制器，多用于tableview
++ (UIViewController*)findControlWithView:(UIView*)inView;
+
 
 @end
 

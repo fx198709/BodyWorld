@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CoachComment.h"
+#import "UserHeadPicView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (nonatomic, copy) BaseCallBack btnCallBack;
+@property (nonatomic, retain) UserHeadPicView *userImageview;
 
+@property (weak, nonatomic) IBOutlet UIView *userView;
 - (void)loadData:(CoachComment *)comment;
 
 @end

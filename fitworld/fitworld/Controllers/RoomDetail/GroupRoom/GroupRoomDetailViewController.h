@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GroupRoomDetailViewController : BaseNavViewController
+@interface GroupRoomDetailViewController : BaseNavViewController<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) Room *selectRoom;
 @end
 

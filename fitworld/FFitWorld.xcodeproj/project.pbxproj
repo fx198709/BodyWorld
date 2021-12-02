@@ -206,6 +206,7 @@
 		DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D9272577ED00D0C310 /* LivingGoodsCell.xib */; };
 		DDFA757D27591BE800EFD0B1 /* GroupRoomDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA757B27591BE800EFD0B1 /* GroupRoomDetailViewController.m */; };
 		DDFA757E27591BE800EFD0B1 /* GroupRoomDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFA757C27591BE800EFD0B1 /* GroupRoomDetailViewController.xib */; };
+		DDFA75812759278C00EFD0B1 /* GroupDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA75802759278C00EFD0B1 /* GroupDetailTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -604,6 +605,8 @@
 		DDFA757A27591BE800EFD0B1 /* GroupRoomDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupRoomDetailViewController.h; sourceTree = "<group>"; };
 		DDFA757B27591BE800EFD0B1 /* GroupRoomDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupRoomDetailViewController.m; sourceTree = "<group>"; };
 		DDFA757C27591BE800EFD0B1 /* GroupRoomDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupRoomDetailViewController.xib; sourceTree = "<group>"; };
+		DDFA757F2759278C00EFD0B1 /* GroupDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupDetailTableViewCell.h; sourceTree = "<group>"; };
+		DDFA75802759278C00EFD0B1 /* GroupDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupDetailTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1390,6 +1393,8 @@
 				DDFA757A27591BE800EFD0B1 /* GroupRoomDetailViewController.h */,
 				DDFA757B27591BE800EFD0B1 /* GroupRoomDetailViewController.m */,
 				DDFA757C27591BE800EFD0B1 /* GroupRoomDetailViewController.xib */,
+				DDFA757F2759278C00EFD0B1 /* GroupDetailTableViewCell.h */,
+				DDFA75802759278C00EFD0B1 /* GroupDetailTableViewCell.m */,
 			);
 			path = GroupRoom;
 			sourceTree = "<group>";
@@ -1627,6 +1632,7 @@
 				464387B6274A7B3700A2D9A4 /* ProtocolView.m in Sources */,
 				04552B4E2696C3FD00C78706 /* ConsoleTextView.m in Sources */,
 				A2A94DCE273E744E00D02C77 /* CountryCode.m in Sources */,
+				DDFA75812759278C00EFD0B1 /* GroupDetailTableViewCell.m in Sources */,
 				04552B552696C3FD00C78706 /* QRCodeReader.m in Sources */,
 				A2A94DC9273E718200D02C77 /* SelectCountryCodeViewController.m in Sources */,
 				A2723EEE273BBE2100388B01 /* Enum.m in Sources */,
