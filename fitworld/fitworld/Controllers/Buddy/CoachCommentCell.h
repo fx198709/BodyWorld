@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) BaseCallBack btnCallBack;
 @property (nonatomic, retain) UserHeadPicView *userImageview;
+@property (nonatomic, retain) CoachComment *currentComment;
+
 
 @property (weak, nonatomic) IBOutlet UIView *userView;
 - (void)loadData:(CoachComment *)comment;

@@ -7,6 +7,7 @@
 
 #import "GroupDetailTableViewCell.h"
 #import "UserHeadPicView.h"
+#import "CoachViewController.h"
 
 @implementation GroupDetailTableViewCell
 
@@ -23,6 +24,7 @@
 
 - (void)changeDatewithRoom:(Room*)selectRoom{
     RemoveSubviews(self.contentView, @[]);
+    _currentRoom = selectRoom;
     int outwith = ScreenWidth;
     UIView *detailView = [[UIView alloc] init];
     [self.contentView addSubview:detailView];
@@ -183,7 +185,7 @@
     UserHeadPicView * coachimageview = [[UserHeadPicView alloc] initWithFrame:CGRectMake(10, 20, 50, 50)];
     [coachView addSubview:coachimageview];
     [coachimageview changeCoachModelData:selectRoom.coach];
-
+    [coachimageview.userBtn addTarget:self action:@selector(coachBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *courseLabel = [[UILabel alloc] init];
     courseLabel.adjustsFontSizeToFitWidth = YES;
@@ -326,5 +328,15 @@
     return  vLabel;
 }
 
+
+- (void)coachBtnClicked{
+    UIViewController *control = [CommonTools findControlWithView:self];
+     CoachViewController *coachVC = VCBySBName(@"CoachViewController");
+     coachVC.coacheId = _currentRoom.coach.id;
+     [control.navigationController pushViewController:coachVC animated:YES];
+     
+}
+
+ 
 
 @end

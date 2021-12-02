@@ -6,6 +6,7 @@
 //
 
 #import "CoachCommentCell.h"
+#import "FriendInfoViewController.h"
 
 @interface CoachCommentCell ()
 
@@ -23,9 +24,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    _commentLabel.numberOfLines = 0;
+    _commentLabel.preferredMaxLayoutWidth = ScreenWidth-64-58;
 }
 
 - (void)loadData:(CoachComment *)comment {
+    self.currentComment = comment;
     NSString *avtarImg = [FITAPI_HTTPS_ROOT stringByAppendingString:comment.avatar];
     [self.headImg sd_setImageWithURL:[NSURL URLWithString:avtarImg]
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
@@ -57,8 +61,11 @@
 }
 
 - (void)userBtnClicked{
-    UIViewController *vc = [CommonTools findControlWithView:self];
-//    [vc.navigationController pushViewController:<#(nonnull UIViewController *)#> animated:<#(BOOL)#>]
+    
+    UIViewController *control = [CommonTools findControlWithView:self];
+    FriendInfoViewController *userinfovc = VCBySBName(@"FriendInfoViewController");
+    userinfovc.userId = self.currentComment.userid;
+     [control.navigationController pushViewController:userinfovc animated:YES];
 }
 
 

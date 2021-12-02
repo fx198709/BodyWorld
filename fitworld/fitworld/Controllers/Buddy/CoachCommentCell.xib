@@ -19,25 +19,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5t-2f-QGF">
-                        <rect key="frame" x="64" y="9" width="251" height="82"/>
+                        <rect key="frame" x="64" y="8" width="251" height="84"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="xx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIA-8Y-uBI">
-                                <rect key="frame" x="0.0" y="0.0" width="251" height="17"/>
+                                <rect key="frame" x="0.0" y="0.0" width="251" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="Gzm-dL-27w"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Krn-Fe-OSq">
-                                <rect key="frame" x="0.0" y="21" width="251" height="14"/>
+                                <rect key="frame" x="0.0" y="22" width="251" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="cOn-Gx-NBq"/>
+                                    <constraint firstAttribute="height" constant="15" id="cOn-Gx-NBq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="teksksjdj测试快点快点觉得亟待解决时时刻刻上课时间快快快睡觉" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyY-Pk-Iye">
-                                <rect key="frame" x="0.0" y="43" width="251" height="29"/>
+                                <rect key="frame" x="0.0" y="45" width="251" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -93,6 +96,7 @@
                 <constraints>
                     <constraint firstItem="whN-H2-iQL" firstAttribute="leading" secondItem="1hP-QD-UYt" secondAttribute="leading" constant="26" id="1j0-SV-SCl"/>
                     <constraint firstItem="0P7-fS-3IP" firstAttribute="leading" secondItem="Z5t-2f-QGF" secondAttribute="trailing" constant="6" id="30m-7Y-ibM"/>
+                    <constraint firstItem="Z5t-2f-QGF" firstAttribute="top" secondItem="1hP-QD-UYt" secondAttribute="top" constant="8" id="3uA-Q6-lVt"/>
                     <constraint firstItem="Z5t-2f-QGF" firstAttribute="leading" secondItem="tK6-dQ-CKw" secondAttribute="trailing" constant="10" id="56W-mQ-olQ"/>
                     <constraint firstAttribute="trailing" secondItem="0P7-fS-3IP" secondAttribute="trailing" constant="12" id="59A-WV-3Hs"/>
                     <constraint firstItem="tK6-dQ-CKw" firstAttribute="top" secondItem="1hP-QD-UYt" secondAttribute="top" constant="20" id="H7p-QZ-zuR"/>

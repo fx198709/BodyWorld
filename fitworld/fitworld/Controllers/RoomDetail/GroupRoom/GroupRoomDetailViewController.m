@@ -343,7 +343,6 @@
         
         return heightSize.height+1;
     }else{
-        return 100;
         if (!heightCommentCell) {
             heightCommentCell = [[[NSBundle mainBundle] loadNibNamed:@"CoachCommentCell" owner:self options:nil] lastObject];
         }

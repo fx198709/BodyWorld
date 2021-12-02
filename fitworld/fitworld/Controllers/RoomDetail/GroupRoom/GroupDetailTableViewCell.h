@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GroupDetailTableViewCell : BaseTableViewCell
-
+@property (nonatomic, strong) Room *currentRoom;
 - (void)changeDatewithRoom:(Room*)room;
 
 @end
