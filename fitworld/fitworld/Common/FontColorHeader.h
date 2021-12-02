@@ -37,6 +37,7 @@
 #define SelectGreenColor  UIRGBColor(86, 186, 111, 1)
 //浅色字色#C6C6C6
 #define LightGaryTextColor  UIRGBColor(198, 198, 198, 1)
+//线 #8A8A8A
 #define LineColor  UIRGBColor(138, 138, 138, 0.5)
 
 #define WeakSelf  __weak typeof(self)wSelf = self;

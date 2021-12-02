@@ -18,6 +18,8 @@
 #import "UserCenterViewController.h"
 #import "JYCarousel.h"
 #import "MessageListViewController.h"
+#import "CoachViewController.h"
+
 
 BOOL  hasrequest = NO;
 
@@ -228,6 +230,11 @@ BOOL  hasrequest = NO;
 
 - (void)actionBtnClick:(UIButton*)sender{
     if (sender.tag == 101) {
+        //todo:test
+        CoachViewController *coachVC = VCBySBName(@"CoachViewController");
+        coachVC.coacheId = @"44768959819483652";
+        [self.navigationController pushViewController:coachVC animated:YES];
+        return;;
        //朋友列表
         [self performSegueWithIdentifier:@"friendListSegue" sender:nil];
     }else{

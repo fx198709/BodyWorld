@@ -33,6 +33,13 @@
     return self;
 }
 
+
+- (void)dealData {
+    self.country_icon = [self.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+}
+
+
+
 @end
 /*
  @property (nonatomic , copy) NSString              * course_id;

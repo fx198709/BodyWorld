@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LabelTextModel.h"
+
 @interface UILabel(LabelTextModel)
 
 - (void)changeLabelWithModel:(LabelTextModel*)model;
