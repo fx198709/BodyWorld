@@ -21,6 +21,7 @@
     self.titleLabel.text = ChineseStringOrENFun(@"课程提醒", @"Course Reminder");
     self.contentTextView.textColor = [UIColor whiteColor];
     self.contentTextView.font = SystemFontOfSize(14);
+    _contentTextView.userInteractionEnabled = NO;
     // Do any additional setup after loading the view from its nib.
 //    http://1.117.70.210:8091/api/user_msg/detail?id=44804551223609860
     [self getMessageDetailInfo];

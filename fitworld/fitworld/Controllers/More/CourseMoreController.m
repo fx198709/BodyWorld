@@ -75,6 +75,9 @@
                 hasSelected = YES;
             }
         }
+        if (self.show_join) {
+            hasSelected = YES;
+        }
         searchView.redView.hidden = !hasSelected;
         [searchView.bottomBtn addTarget:self action:@selector(screenBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:searchView];
@@ -98,18 +101,20 @@
     aboveView.frame = CGRectMake(10, (ScreenHeight-450)/2, ScreenWidth-20, 450);
     [screenBackbutton addSubview:aboveView];
     aboveView.backgroundColor = UIColor.whiteColor;
-    [aboveView changeData:_curse_time_array andType:_curse_type_array];
+    [aboveView changeData:_curse_time_array andType:_curse_type_array isjoin:self.show_join];
     aboveView.layer.cornerRadius = 10;
     aboveView.clipsToBounds = YES;
     WeakSelf
-    aboveView.screenOKClick = ^(NSArray * _Nonnull timeArray, NSArray * _Nonnull typeArray) {
+    aboveView.screenOKClick = ^(NSArray * _Nonnull timeArray, NSArray * _Nonnull typeArray, BOOL showjoin) {
         StrongSelf(wSelf);
+        strongSelf->_show_join = showjoin;
         strongSelf.curse_time_array = timeArray;
         strongSelf.curse_type_array = typeArray;
         [strongSelf createRightBtn];
         [strongSelf getVCScreenData];
         [strongSelf->screenBackbutton removeFromSuperview];
         strongSelf->screenBackbutton= nil;
+        
     };
     UIWindow *keywindow = [CommonTools mainWindow];
     [keywindow addSubview:screenBackbutton];

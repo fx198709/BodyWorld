@@ -12,6 +12,8 @@
 @property(nonatomic,copy)NSString*VCtype;
 @property (nonatomic, strong)NSArray *curse_type_array;
 @property (nonatomic, strong)NSArray *curse_time_array;
+@property (nonatomic, assign)BOOL show_join;
+
 //获取删选项
 - (void)reachSeletedValue:(void(^)(NSString*typeSelected,NSString*timeSelected))selectedValue;
 @end

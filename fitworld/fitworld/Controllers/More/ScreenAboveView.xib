@@ -65,7 +65,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiR-bI-nS6">
-                    <rect key="frame" x="102" y="25.5" width="40" height="40"/>
+                    <rect key="frame" x="344" y="25.5" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="AsC-8G-Fed"/>
                         <constraint firstAttribute="height" constant="40" id="KSz-eo-upB"/>
@@ -80,6 +80,7 @@
                 <constraint firstItem="lDZ-FJ-mhw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="70" id="4Go-wH-5hh"/>
                 <constraint firstItem="FeX-Bl-VgK" firstAttribute="top" secondItem="dMT-Ao-Ucc" secondAttribute="bottom" constant="130" id="4UC-AJ-5x8"/>
                 <constraint firstItem="RiR-bI-nS6" firstAttribute="centerY" secondItem="Yce-WA-9zs" secondAttribute="centerY" id="6og-UE-rCQ"/>
+                <constraint firstAttribute="trailing" secondItem="RiR-bI-nS6" secondAttribute="trailing" constant="30" id="7xw-4y-57F"/>
                 <constraint firstAttribute="trailing" secondItem="9jN-Au-Etm" secondAttribute="trailing" constant="40" id="9x5-ct-rWB"/>
                 <constraint firstItem="dMT-Ao-Ucc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="LbN-ei-axg"/>
                 <constraint firstItem="lDZ-FJ-mhw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="Nxx-tH-Yvo"/>
@@ -92,7 +93,6 @@
                 <constraint firstItem="9jN-Au-Etm" firstAttribute="top" secondItem="FeX-Bl-VgK" secondAttribute="top" id="nfz-Eg-BQD"/>
                 <constraint firstItem="dMT-Ao-Ucc" firstAttribute="top" secondItem="r1X-W2-D49" secondAttribute="bottom" constant="8" id="pSw-aX-5Hy"/>
                 <constraint firstItem="r1X-W2-D49" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="31" id="qi1-e2-uhN"/>
-                <constraint firstItem="RiR-bI-nS6" firstAttribute="leading" secondItem="Yce-WA-9zs" secondAttribute="trailing" constant="30" id="tOZ-O6-wSJ"/>
                 <constraint firstItem="Yce-WA-9zs" firstAttribute="leading" secondItem="lDZ-FJ-mhw" secondAttribute="leading" id="xj5-Mt-9L2"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -104,7 +104,7 @@
                 <outlet property="durationLabel" destination="r1X-W2-D49" id="y3A-BF-e8G"/>
                 <outlet property="okBtn" destination="9jN-Au-Etm" id="xb3-vQ-WJA"/>
             </connections>
-            <point key="canvasLocation" x="132" y="96"/>
+            <point key="canvasLocation" x="131.8840579710145" y="95.758928571428569"/>
         </view>
     </objects>
     <resources>

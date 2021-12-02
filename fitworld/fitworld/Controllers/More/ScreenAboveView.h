@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^ScreenBtnBlock)(NSArray*timeArray, NSArray*typeArray);
+typedef void(^ScreenBtnBlock)(NSArray*timeArray, NSArray*typeArray, BOOL show_join);
 
 
 @interface ScreenAboveView : UIView{
@@ -20,6 +20,8 @@ typedef void(^ScreenBtnBlock)(NSArray*timeArray, NSArray*typeArray);
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (weak, nonatomic) IBOutlet UIButton *okBtn;
+@property (assign, nonatomic) BOOL showJoin;
+
 
 @property (strong, nonatomic) UIView* contentView;
 @property (strong, nonatomic) UIView* durationView;
@@ -29,7 +31,8 @@ typedef void(^ScreenBtnBlock)(NSArray*timeArray, NSArray*typeArray);
 @property (weak, nonatomic) IBOutlet UILabel *canenterLabel;
 @property (weak, nonatomic) IBOutlet UIButton *canEnterBtn;
 
-- (void)changeData:(NSArray*)timeArray andType:(NSArray*)typeArray;
+- (void)changeData:(NSArray*)timeArray andType:(NSArray*)typeArray isjoin:(BOOL)isjoin;
+ 
 
 @end
 

@@ -512,6 +512,9 @@
             [baddyParams setValue:typeSelected forKey:@"course_type"];
             [baddyParams setValue:timeSelected forKey:@"course_time"];
         }];
+        if (vc.show_join) {
+            [baddyParams setValue:@"1" forKey:@"show_join"];
+        }
         
         [baddyParams setValue:@"20" forKey:@"row"];
         [baddyParams setValue:[NSString stringWithFormat:@"%d",page] forKey:@"page"];

@@ -45,11 +45,15 @@
     [super awakeFromNib];
 //    72  225
     _canenterLabel.text = ChineseStringOrENFun(@"只显示能加入的房间", @"Only show can inten room");
+    _canenterLabel.textColor = UIColor.blackColor;
     _contentLabel.text = ChineseStringOrENFun(@"内容", @"By Content");
     _contentLabel.textColor = UIColor.blackColor;
     _durationLabel.text = ChineseStringOrENFun(@"时长", @"By Duration");
     _durationLabel.textColor = UIColor.blackColor;
-
+    
+    self.showJoin = NO;
+    [self changeShowJoinBtnWithState];
+    [_canEnterBtn addTarget:self action:@selector(changeEnterBtn) forControlEvents:UIControlEventTouchUpInside];
     NSString *resetString = ChineseStringOrENFun(@"重置", @"Reset");
     [_cancelBtn setTitle:resetString forState:UIControlStateNormal];
     [_cancelBtn setTitle:resetString forState:UIControlStateHighlighted];
@@ -71,15 +75,17 @@
     [_okBtn addTarget:self action:@selector(okBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
     int outwidth = ScreenWidth - 40*2;
-    _contentView = [[UIView alloc] initWithFrame:CGRectMake(40, 72, outwidth, 80)];
+    _contentView = [[UIView alloc] initWithFrame:CGRectMake(40, 117, outwidth, 80)];
     [self addSubview:_contentView];
     
-    _durationView = [[UIView alloc] initWithFrame:CGRectMake(40, 225, outwidth, 80)];
+    _durationView = [[UIView alloc] initWithFrame:CGRectMake(40, 270, outwidth, 80)];
     [self addSubview:_durationView];
     
 }
 - (void)resetBtnClicked{
 //    重设
+    _showJoin = NO;
+    [self changeShowJoinBtnWithState];
     for (ScreenAboveNameBtn * btn in _durationView.subviews) {
         btn.nameModel.hasSelected = NO;
         [btn changeDateWithScreenModel:btn.nameModel];
@@ -90,13 +96,29 @@
     }
 }
 
+//改变按钮状态
+- (void)changeShowJoinBtnWithState{
+    UIImage *image = [UIImage imageNamed:@"unselected-circle"];
+    UIImage *himage = [UIImage imageNamed:@"invite_friends_user_list_item_selected"];
+    if (_showJoin) {
+        image = himage;
+    }
+    [_canEnterBtn setImage:image forState:UIControlStateNormal];
+    [_canEnterBtn setImage:himage forState:UIControlStateHighlighted];
+}
+
+- (void)changeEnterBtn{
+    _showJoin = !_showJoin;
+    [self changeShowJoinBtnWithState];
+}
+
 - (void)okBtnClicked{
     if (self.screenOKClick) {
-        self.screenOKClick(_timeArray, _typeArray);
+        self.screenOKClick(_timeArray, _typeArray,_showJoin);
     }
 }
 
-- (void)changeData:(NSArray*)timeArray andType:(NSArray*)typeArray{
+- (void)changeData:(NSArray*)timeArray andType:(NSArray*)typeArray isjoin:(BOOL)isjoin{
     NSMutableArray *tempIds = [NSMutableArray array];
     _timeArray = [NSArray arrayWithArray:timeArray];
     _typeArray = [NSArray arrayWithArray:typeArray];
@@ -143,7 +165,8 @@
         [btnview changeDateWithScreenModel:model];
         [btnview addTarget:self action:@selector(btnviewClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
+    _showJoin = isjoin;
+    [self changeShowJoinBtnWithState];
 //    ScreenAboveNameBtn
 }
 
