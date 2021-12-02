@@ -109,6 +109,13 @@
 		A296D6922754A82300F73259 /* FriendRoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A296D6902754A82300F73259 /* FriendRoomCell.xib */; };
 		A296D6982754AFC500F73259 /* FriendRoomPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D6972754AFC500F73259 /* FriendRoomPageInfo.m */; };
 		A296D69B2754D00400F73259 /* RoomCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D69A2754D00400F73259 /* RoomCreator.m */; };
+		A296D6A42758B0BD00F73259 /* CoachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D6A32758B0BD00F73259 /* CoachViewController.m */; };
+		A296D6A82758B26800F73259 /* CoachCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D6A62758B26800F73259 /* CoachCommentCell.m */; };
+		A296D6A92758B26800F73259 /* CoachCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A296D6A72758B26800F73259 /* CoachCommentCell.xib */; };
+		A296D6AC2758B35C00F73259 /* CoachComment.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D6AB2758B35C00F73259 /* CoachComment.m */; };
+		A296D6AF2758B46C00F73259 /* CoachCommentPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D6AE2758B46C00F73259 /* CoachCommentPageInfo.m */; };
+		A296D6B22758C4E800F73259 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D6B12758C4E800F73259 /* StarView.m */; };
+		A296D6B52758CE7F00F73259 /* UILabel+MT.m in Sources */ = {isa = PBXBuildFile; fileRef = A296D6B42758CE7F00F73259 /* UILabel+MT.m */; };
 		A2A94DC2273E5BA000D02C77 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC1273E5BA000D02C77 /* Country.m */; };
 		A2A94DC5273E610900D02C77 /* UIViewController+MTNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */; };
 		A2A94DC9273E718200D02C77 /* SelectCountryCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DC8273E718200D02C77 /* SelectCountryCodeViewController.m */; };
@@ -414,6 +421,19 @@
 		A296D69C2755CB2000F73259 /* FontColorHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontColorHeader.h; sourceTree = "<group>"; };
 		A296D69D2755CBB600F73259 /* CommonText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonText.h; sourceTree = "<group>"; };
 		A296D69E2755CC3F00F73259 /* CommonFunc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonFunc.h; sourceTree = "<group>"; };
+		A296D6A22758B0BD00F73259 /* CoachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachViewController.h; sourceTree = "<group>"; };
+		A296D6A32758B0BD00F73259 /* CoachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachViewController.m; sourceTree = "<group>"; };
+		A296D6A52758B26800F73259 /* CoachCommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoachCommentCell.h; sourceTree = "<group>"; };
+		A296D6A62758B26800F73259 /* CoachCommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoachCommentCell.m; sourceTree = "<group>"; };
+		A296D6A72758B26800F73259 /* CoachCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachCommentCell.xib; sourceTree = "<group>"; };
+		A296D6AA2758B35C00F73259 /* CoachComment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoachComment.h; sourceTree = "<group>"; };
+		A296D6AB2758B35C00F73259 /* CoachComment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoachComment.m; sourceTree = "<group>"; };
+		A296D6AD2758B46C00F73259 /* CoachCommentPageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoachCommentPageInfo.h; sourceTree = "<group>"; };
+		A296D6AE2758B46C00F73259 /* CoachCommentPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoachCommentPageInfo.m; sourceTree = "<group>"; };
+		A296D6B02758C4E800F73259 /* StarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StarView.h; sourceTree = "<group>"; };
+		A296D6B12758C4E800F73259 /* StarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarView.m; sourceTree = "<group>"; };
+		A296D6B32758CE7F00F73259 /* UILabel+MT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+MT.h"; sourceTree = "<group>"; };
+		A296D6B42758CE7F00F73259 /* UILabel+MT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+MT.m"; sourceTree = "<group>"; };
 		A2A94DC0273E5BA000D02C77 /* Country.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
 		A2A94DC1273E5BA000D02C77 /* Country.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		A2A94DC3273E610900D02C77 /* UIViewController+MTNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MTNavigation.m"; sourceTree = "<group>"; };
@@ -623,6 +643,10 @@
 				04CD2E502698478C007814E6 /* BaseObject.m */,
 				DD595ED52736FBB800618D1A /* CoachModel.h */,
 				DD595ED62736FBB800618D1A /* CoachModel.m */,
+				A296D6AD2758B46C00F73259 /* CoachCommentPageInfo.h */,
+				A296D6AE2758B46C00F73259 /* CoachCommentPageInfo.m */,
+				A296D6AA2758B35C00F73259 /* CoachComment.h */,
+				A296D6AB2758B35C00F73259 /* CoachComment.m */,
 				A2A94DC0273E5BA000D02C77 /* Country.h */,
 				A2A94DC1273E5BA000D02C77 /* Country.m */,
 				A2A94DCC273E744E00D02C77 /* CountryCode.h */,
@@ -796,6 +820,8 @@
 				04CD2E4626982A45007814E6 /* TableCollectionViewCell.h */,
 				04CD2E4926982A45007814E6 /* TableCollectionViewCell.m */,
 				04CD2E4826982A45007814E6 /* TableCollectionViewCell.xib */,
+				A296D6B02758C4E800F73259 /* StarView.h */,
+				A296D6B12758C4E800F73259 /* StarView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1228,6 +1254,11 @@
 		DD6EDB50272EFFFB002B0A8E /* Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				A296D6A22758B0BD00F73259 /* CoachViewController.h */,
+				A296D6A32758B0BD00F73259 /* CoachViewController.m */,
+				A296D6A52758B26800F73259 /* CoachCommentCell.h */,
+				A296D6A62758B26800F73259 /* CoachCommentCell.m */,
+				A296D6A72758B26800F73259 /* CoachCommentCell.xib */,
 				DD595EDD273A68BE00618D1A /* TableSearchView.h */,
 				DD595EDF273A68BE00618D1A /* TableSearchView.m */,
 				DD595EDE273A68BE00618D1A /* TableSearchView.xib */,
@@ -1303,6 +1334,8 @@
 				DD742598272942F9005D636E /* UILabel+ChangeLineSpaceAndWordSpace.m */,
 				DD74258A272942F9005D636E /* UILabel+LabelTextModel.h */,
 				DD74259C272942F9005D636E /* UILabel+LabelTextModel.m */,
+				A296D6B32758CE7F00F73259 /* UILabel+MT.h */,
+				A296D6B42758CE7F00F73259 /* UILabel+MT.m */,
 				DD74258F272942F9005D636E /* UITableViewController+Extension.h */,
 				DD7425A0272942F9005D636E /* UITableViewController+Extension.m */,
 				DD74258D272942F9005D636E /* UITextField+YCExtension.h */,
@@ -1418,6 +1451,7 @@
 				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
 				DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */,
+				A296D6A92758B26800F73259 /* CoachCommentCell.xib in Resources */,
 				04552B3C2696C3FD00C78706 /* entypo.ttf in Resources */,
 				A2A94DD3273E76CA00D02C77 /* SelectCountryCodeCell.xib in Resources */,
 				DD595EDC2737D25800618D1A /* CreateCourseSuccessViewController.xib in Resources */,
@@ -1526,6 +1560,7 @@
 				DD51EE4F273FB9BE00153A67 /* ChoosePeopleViewController.m in Sources */,
 				DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */,
 				DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */,
+				A296D6B22758C4E800F73259 /* StarView.m in Sources */,
 				DD98BC6B273F653900D3B59F /* CourseDetailSmallview.m in Sources */,
 				DD595EE7273BAF9A00618D1A /* APPObjOnce.m in Sources */,
 				DD6EDB6B2734420C002B0A8E /* MessageListTableViewCell.m in Sources */,
@@ -1534,6 +1569,7 @@
 				04CD2E532698478C007814E6 /* BaseObject.m in Sources */,
 				DDB1380A2748E347009A44FD /* Train1TableViewCell.m in Sources */,
 				0456193026ECEC8A00C0973F /* RegisterController.m in Sources */,
+				A296D6A82758B26800F73259 /* CoachCommentCell.m in Sources */,
 				DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */,
 				DDB1380427489A2E009A44FD /* AfterTrainingViewController.m in Sources */,
 				04EC01F826BD8AC100DC0103 /* ToolFunc.m in Sources */,
@@ -1547,6 +1583,7 @@
 				A2723EF6273BD07700388B01 /* NSDate+MT.m in Sources */,
 				DDB1380E2748E36F009A44FD /* BaseTableViewCell.m in Sources */,
 				A2A94DE8273FD8DD00D02C77 /* AddFriendViewController.m in Sources */,
+				A296D6B52758CE7F00F73259 /* UILabel+MT.m in Sources */,
 				DD6EDB5C272EFFFB002B0A8E /* TrainingStartViewController.m in Sources */,
 				DD6EDB33272D2C89002B0A8E /* OurDatePickerView.m in Sources */,
 				DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */,
@@ -1561,6 +1598,7 @@
 				04552B3A2696C3FD00C78706 /* MaterialDesignColor.m in Sources */,
 				A2723F0D273D087900388B01 /* MTHUD.m in Sources */,
 				04552B512696C3FD00C78706 /* QRToggleTorchButton.m in Sources */,
+				A296D6A42758B0BD00F73259 /* CoachViewController.m in Sources */,
 				0422BDBD269C98300084000B /* Plan.m in Sources */,
 				04552B542696C3FD00C78706 /* QRCodeReaderView.m in Sources */,
 				04EC01F126BD8AC000DC0103 /* SidePanel.m in Sources */,
@@ -1651,11 +1689,13 @@
 				041510D4268F02DE0039FCD1 /* LoginController.m in Sources */,
 				DD6EDB3E272D2CE3002B0A8E /* BaseOurPickerView.m in Sources */,
 				04CD2E4D26982A45007814E6 /* TableCollectionViewCell.m in Sources */,
+				A296D6AC2758B35C00F73259 /* CoachComment.m in Sources */,
 				A2723EF9273BD16500388B01 /* UIView+MTWindow.m in Sources */,
 				04EC01F626BD8AC000DC0103 /* VSHttpClient.m in Sources */,
 				DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */,
 				04CD2E4B26982A45007814E6 /* GoodsCell.m in Sources */,
 				04747FBB2708010000B3B5B8 /* PractiseWeek.m in Sources */,
+				A296D6AF2758B46C00F73259 /* CoachCommentPageInfo.m in Sources */,
 				A2A94DD2273E76CA00D02C77 /* SelectCountryCodeCell.m in Sources */,
 				04EC01F926BD8AC100DC0103 /* VSRoomParam.mm in Sources */,
 				DD794406274FEC9D00BEEF6B /* VideoSlider.m in Sources */,

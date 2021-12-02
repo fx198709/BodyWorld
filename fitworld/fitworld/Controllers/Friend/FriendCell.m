@@ -24,11 +24,6 @@
     self.contentView.backgroundColor = BgGrayColor;
 }
 
-//- (void)setIsAdd:(BOOL)isAdd {
-//    _isAdd = isAdd;
-//    self.addBtn.hidden = !isAdd;
-//}
-
 - (void)setCellType:(FriendCellType)cellType {
     _cellType = cellType;
     switch(cellType) {
