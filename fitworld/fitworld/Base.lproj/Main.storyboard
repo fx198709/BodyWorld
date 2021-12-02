@@ -145,7 +145,6 @@
                                             <constraint firstItem="ERw-oj-Zrg" firstAttribute="centerY" secondItem="xCe-g8-lo0" secondAttribute="centerY" id="gwr-jP-d2K"/>
                                             <constraint firstItem="4cQ-Va-zPj" firstAttribute="width" secondItem="ERw-oj-Zrg" secondAttribute="width" id="jyE-c1-9DL"/>
                                             <constraint firstItem="4cQ-Va-zPj" firstAttribute="centerX" secondItem="ERw-oj-Zrg" secondAttribute="centerX" id="nMc-xz-tBx"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="poo-5H-YT5"/>
                                             <constraint firstAttribute="trailing" secondItem="aWh-XL-EyB" secondAttribute="trailing" id="rmW-jA-d34"/>
                                             <constraint firstItem="4cQ-Va-zPj" firstAttribute="leading" secondItem="xCe-g8-lo0" secondAttribute="leading" id="xag-3A-h72"/>
                                             <constraint firstItem="4cQ-Va-zPj" firstAttribute="centerY" secondItem="ERw-oj-Zrg" secondAttribute="centerY" id="yXZ-ps-Mrm"/>
@@ -243,6 +242,7 @@
                         <outlet property="enLanguageBtn" destination="m8C-Fu-J4j" id="JH0-Lm-be3"/>
                         <outlet property="getCountryBtn" destination="ERw-oj-Zrg" id="yBw-aq-M1h"/>
                         <outlet property="loginBtn" destination="ceg-92-8fO" id="RK7-DS-QnY"/>
+                        <outlet property="loginview" destination="xCe-g8-lo0" id="xoJ-UR-P6I"/>
                         <outlet property="nameField" destination="aWh-XL-EyB" id="xZY-Jz-ZXt"/>
                         <outlet property="pwdField" destination="WMP-5n-z6N" id="AwF-BT-NOV"/>
                         <outlet property="registerBtn" destination="lJe-fa-AAK" id="VKo-R8-xwh"/>
@@ -2683,7 +2683,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="87T-zw-Km3"/>
-        <segue reference="hxF-ge-sHJ"/>
+        <segue reference="hBg-mj-iXu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="activity_login_bg" width="360" height="780"/>

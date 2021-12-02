@@ -17,7 +17,7 @@
 //    self.layer.masksToBounds = YES;
     self.goodsImage.layer.cornerRadius = 6;
     self.clipsToBounds = YES;
-    self.goodsImage.contentMode = UIViewContentModeScaleToFill;
+    self.goodsImage.contentMode = UIViewContentModeScaleAspectFill;
     [_joinBtn setImage:nil forState:UIControlStateNormal];
     [_joinBtn setImage:nil forState:UIControlStateHighlighted];
 

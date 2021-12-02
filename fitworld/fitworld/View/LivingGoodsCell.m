@@ -19,7 +19,7 @@
     self.imagebackview.clipsToBounds = YES;
 
     self.clipsToBounds = YES;
-    self.goodsImage.contentMode = UIViewContentModeScaleToFill;
+    self.goodsImage.contentMode = UIViewContentModeScaleAspectFill;
     _bottomview.clipsToBounds = YES;
     
 //    NSString *titleText = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");

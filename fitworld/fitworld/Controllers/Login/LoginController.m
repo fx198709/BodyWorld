@@ -20,6 +20,7 @@
 
 
 @interface LoginController ()
+@property (weak, nonatomic) IBOutlet UIView *loginview;
 
 @property (weak, nonatomic) IBOutlet UIButton *zhLanguageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *enLanguageBtn;
@@ -46,6 +47,8 @@
     [super viewDidLoad];
     [self initView];
     [self reloadTextView];
+    _loginview.layer.cornerRadius = 24;
+    _loginview.clipsToBounds = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
