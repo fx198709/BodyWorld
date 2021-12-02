@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *addbtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *addbtnW;
 
+@property (nonatomic, strong) UserInfo *user;
+
 
 @end
 
@@ -33,7 +35,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self loadUserData];
+    [self getUserInfoFromSever];
 }
 
 - (void)initView {
@@ -49,6 +51,7 @@
 }
 
 - (void)loadUserData {
+    self.addbtn.hidden = self.user.is_friend;
     self.nameLabel.text = self.user.nickname;
     NSString *avatarUrl = [FITAPI_HTTPS_ROOT stringByAppendingString:self.user.avatar];
     [self.headImg sd_setImageWithURL:[NSURL URLWithString:avatarUrl]
@@ -61,6 +64,20 @@
 
 #pragma mark - server
 
+- (void)getUserInfoFromSever {
+    NSDictionary *param = @{@"id":self.userId};
+    [[AFAppNetAPIClient manager] GET:@"user" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSLog(@"====respong:%@", responseObject);
+        NSDictionary *result = [responseObject objectForKey:@"recordset"];
+        NSError *error;
+        self.user = [[UserInfo alloc] initWithDictionary:result error:&error];
+        [self loadUserData];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MTHUD showDurationNoticeHUD:error.localizedDescription];
+    }];
+}
+
 - (void)getDataListFromServer:(BOOL)isRefresh {
     if (self.isFinished || self.isRequesting) {
         return;
@@ -69,7 +86,7 @@
     NSInteger nextPage = self.currentPage + 1;
     int perCount = 10;
 
-    NSDictionary *param = @{@"row":IntToString(perCount), @"page":IntToString(nextPage), @"user_id":self.user.id};
+    NSDictionary *param = @{@"row":IntToString(perCount), @"page":IntToString(nextPage), @"user_id":self.userId};
     [[AFAppNetAPIClient manager] GET:@"user_room" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         self.isRequesting = NO;

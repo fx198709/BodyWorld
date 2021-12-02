@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FriendInfoViewController : BaseRefreshViewController
 
-@property (nonatomic, strong) UserInfo *user;
+@property (nonatomic, strong) NSString *userId;
 
 @end
 

@@ -6,6 +6,8 @@
 //
 
 #import "AddFriendViewController.h"
+#import "FriendInfoViewController.h"
+
 #import "FriendCell.h"
 #import "AddFriendPageInfo.h"
 
@@ -112,6 +114,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    Friend *friend = [self.dataList objectAtIndex:indexPath.row];
+    //跳转到详情页
+    [self performSegueWithIdentifier:@"requestFriendToDetail" sender:friend.friend_id];
 }
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"requestFriendToDetail"]) {
+        FriendInfoViewController *nextVC = segue.destinationViewController;
+        nextVC.userId = sender;
+    }
+}
+
+
 
 @end

@@ -2395,6 +2395,7 @@
                     <navigationItem key="navigationItem" title="新的好友" id="t8N-UP-AOG"/>
                     <connections>
                         <outlet property="tableView" destination="BIo-gD-NQV" id="yFI-6D-Ilf"/>
+                        <segue destination="ZVe-1c-YrL" kind="show" identifier="requestFriendToDetail" id="87T-zw-Km3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83X-wv-Iml" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2677,10 +2678,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMX-EC-poE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-314.49275362318843" y="1587.7232142857142"/>
+            <point key="canvasLocation" x="-284" y="1588"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="87T-zw-Km3"/>
         <segue reference="hxF-ge-sHJ"/>
     </inferredMetricsTieBreakers>
     <resources>

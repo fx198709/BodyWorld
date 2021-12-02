@@ -158,7 +158,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     UserInfo *friend = [self.dataList objectAtIndex:indexPath.row];
     //跳转到详情页
-    [self performSegueWithIdentifier:@"addFriendToDetail" sender:friend];
+    [self performSegueWithIdentifier:@"addFriendToDetail" sender:friend.id];
 }
 
 #pragma mark - Navigation
@@ -167,7 +167,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addFriendToDetail"]) {
         FriendInfoViewController *nextVC = segue.destinationViewController;
-        nextVC.user = sender;
+        nextVC.userId = sender;
     }
 }
 
