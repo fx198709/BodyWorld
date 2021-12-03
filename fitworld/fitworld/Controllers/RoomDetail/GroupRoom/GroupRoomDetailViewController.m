@@ -116,6 +116,7 @@
     }];
     self.cocahTableview = [[UITableView alloc] init];
     [self.view addSubview:self.cocahTableview];
+    self.cocahTableview.backgroundColor = UIColor.blackColor;
     [self.cocahTableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(topImgBotView.mas_bottom).offset(15);
         make.left.bottom.right.equalTo(self.view);

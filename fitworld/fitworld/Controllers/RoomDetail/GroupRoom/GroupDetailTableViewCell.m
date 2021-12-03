@@ -28,6 +28,7 @@
     int outwith = ScreenWidth;
     UIView *detailView = [[UIView alloc] init];
     [self.contentView addSubview:detailView];
+    self.contentView.backgroundColor = UIColor.blackColor;
     [detailView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
         make.left.right.equalTo(self.contentView);
@@ -263,7 +264,7 @@
         make.height.mas_equalTo(35);
     }];
     
-    int planCount = (int)selectRoom.course.plan.count;
+    int planCount = (int)selectRoom.plan.count;
     int  backViewHeight = 40+ 30*planCount+30;
     UIView *planBackView = [[UIView alloc] init];
     [self.contentView addSubview:planBackView];
@@ -292,7 +293,7 @@
     headrightLabel.text = ChineseStringOrENFun(@"内容", @"Content");
     for (int index=0; index< planCount; index++) {
         int starty = 40+10+30*index;
-        Plan * plan = [selectRoom.course.plan objectAtIndex:index];
+        Plan * plan = [selectRoom.plan objectAtIndex:index];
         UILabel *leftlabel = [self contentLabel];
         [planBackView addSubview:leftlabel];
         leftlabel.text = [NSString stringWithFormat:@"%ld",plan.duration];

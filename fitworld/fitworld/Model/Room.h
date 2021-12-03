@@ -57,8 +57,8 @@
 @property (nonatomic , assign) NSInteger              check_status;
 @property (nonatomic , assign) NSInteger              active_status;
 @property (nonatomic , strong) NSString              *feedback;
-@property (nonatomic , strong) NSArray<Plan*>          *plan;
-@property (nonatomic , strong) NSArray<DatePlan*>      *dataPlan;
+@property (nonatomic , strong) NSArray<Plan>          *plan;
+@property (nonatomic , strong) NSArray<DatePlan>      *dataPlan;
 @property (nonatomic , strong) CoachModel      *coach;
 @property (nonatomic , strong) NSString              *invite_user_count;
 @property (nonatomic , strong) NSString              *join_user_count;

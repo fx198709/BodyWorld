@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)changeRoomModelData:(Room*)roomModel;
 - (void)changeCommentModelData:(CoachComment*)roomModel;
 
+- (void)changeDataWithModel:(NSString*)urlString;
 
 @end
 
