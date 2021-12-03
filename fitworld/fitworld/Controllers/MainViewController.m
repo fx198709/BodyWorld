@@ -368,7 +368,7 @@ BOOL  hasrequest = NO;
         if (view) {
             [view removeFromSuperview];
         }
-        [cell reloadData:YES];
+        [cell reloadData:NO];
         return cell;
     }
     if (indexPath.row == 4 ){
@@ -399,7 +399,7 @@ BOOL  hasrequest = NO;
             createSessionBtn.clipsToBounds = YES;
             [createSessionBtn addTarget:self action:@selector(clickCreateSessionTraining) forControlEvents:UIControlEventTouchUpInside];
         }
-        [cell reloadData:NO];
+        [cell reloadData:YES];
         return cell;
         
     }else{
