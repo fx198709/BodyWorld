@@ -56,7 +56,7 @@
             int min = hourleft/60;
             int sec = hourleft%60;
             NSString *titleString = [NSString stringWithFormat:@"Till start %02d:%02d:%02d",hour,min,sec];
-            NSString *chineseString = [NSString stringWithFormat:@"开始 %02d:%02d:%02d",hour,min,sec];
+            NSString *chineseString = [NSString stringWithFormat:@"还差 %02d:%02d:%02d",hour,min,sec];
             _timeDuringLabel.text = ChineseStringOrENFun(chineseString, titleString);
         }else{
             _timeDuringLabel.hidden = NO;
