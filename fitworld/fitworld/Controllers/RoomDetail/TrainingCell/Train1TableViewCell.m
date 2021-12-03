@@ -48,7 +48,7 @@
     
     
     UILabel *getTimeLabel = [[UILabel alloc] init];
-    NSString *actionString = [NSString stringWithFormat:@"%ld",roominfo.course.plan.count];
+    NSString *actionString = [NSString stringWithFormat:@"%ld",roominfo.plan.count];
     getTimeLabel.text = actionString; //@"5";
     getTimeLabel.font = [UIFont boldSystemFontOfSize:22];
     getTimeLabel.textColor= UIColor.whiteColor;
@@ -97,8 +97,8 @@
 
     UILabel *getHeartLabel = [[UILabel alloc] init];
     NSString *timeString = [NSString stringWithFormat:@"%02ld:%02ld:00",
-                            (long)roominfo.course.duration/60,
-                            (long)roominfo.course.duration%60];
+                            (long)roominfo.duration/60,
+                            (long)roominfo.duration%60];
 
     getHeartLabel.text = timeString;
     getHeartLabel.font = [UIFont boldSystemFontOfSize:22];;
@@ -133,7 +133,7 @@
     }];
     
     UILabel *getKcalLabel = [[UILabel alloc] init];
-    getKcalLabel.text = [NSString stringWithFormat:@"%@", roominfo.course.cal];
+    getKcalLabel.text = [NSString stringWithFormat:@"%ld", (long)roominfo.calorie];
     getKcalLabel.font = [UIFont boldSystemFontOfSize:22];
     getKcalLabel.textColor= UIColor.whiteColor;
     

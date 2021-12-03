@@ -44,7 +44,7 @@
     if (indexPath.row == 0) {
         return 90+dif;
     }else if (indexPath.row == 1) {
-        return 60+ self.currentRoom.course.plan.count * 40+dif;
+        return 60+ self.currentRoom.plan.count * 40+dif;
     }else {
         return 60+ self.userList.count * 50+dif;
     }
