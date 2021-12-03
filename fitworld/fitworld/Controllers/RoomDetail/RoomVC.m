@@ -44,8 +44,8 @@
             circleview.clipsToBounds = YES;
             [self addSubview:circleview];
         }
-        if (difTime < roomData.course.duration*60) {
-            int realStartx = startx+ difTime*with/roomData.course.duration/60;
+        if (difTime < roomData.duration*60) {
+            int realStartx = startx+ difTime*with/roomData.duration/60;
             circleview.x = realStartx;
         }else{
             circleview.x =startx+with;
@@ -718,7 +718,7 @@
             startDuringTimeLabel.text = ChineseStringOrENFun(timeCode, timeCodeEN);
         }
         vtitleLabel.text = self.currentRoom.name;
-        if (elapsedSecs > self.currentRoom.course.duration*60) {
+        if (elapsedSecs > self.currentRoom.duration*60) {
             //            课程结束
             [self jumpToTrainingvc];
         }

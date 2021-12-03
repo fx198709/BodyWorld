@@ -54,13 +54,13 @@
         [planView addSubview:coachimageview];
         [coachimageview changeUserInfoModelData:user];
         
-        UILabel *planTitle = [[UILabel alloc] initWithFrame:CGRectMake(80, 15, 120, 20)];
+        UILabel *planTitle = [[UILabel alloc] initWithFrame:CGRectMake(80, 15, 95, 20)];
         planTitle.textColor = LightGaryTextColor;
         planTitle.font = SystemFontOfSize(14);
         [planView addSubview:planTitle];
         planTitle.text = user.nickname;
        
-        UILabel *cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 15, outwith-230, 20)];
+        UILabel *cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(185, 15, outwith-230, 20)];
         cityLabel.textColor = LightGaryTextColor;
         cityLabel.font = SystemFontOfSize(14);
         [planView addSubview:cityLabel];
@@ -74,11 +74,12 @@
 //            不是好友，增加一个好友的功能
             UIButton *vbutton = [[UIButton alloc] initWithFrame:CGRectMake(outwith-50, 3, 40, 40)];
             [planView addSubview:vbutton];
-            UIImage *peopleImage = [UIImage imageNamed:@"my_new_frend_no"];
+            UIImage *peopleImage = [UIImage imageNamed:@"add_friend"];
             [vbutton setImage:peopleImage forState:UIControlStateNormal];
             [vbutton setImage:peopleImage forState:UIControlStateHighlighted];
             vbutton.tag = 100+index;
             [vbutton addTarget:self action:@selector(addPeopleBtnClciked:) forControlEvents:UIControlEventTouchUpInside];
+//            vbutton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         }
     }
     
