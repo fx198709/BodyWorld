@@ -9,6 +9,10 @@
 #import "TUIKit.h"
 #import "VConductorClient.h"
 #import "UIImage+Extension.h"
+#import <UMCommon/UMCommon.h>
+#import <UMAnalytics/MobClick.h>
+
+
 #define NavBlackTextColor UIColorFromRGB(0x000000)//导航文字黑色
 
 @interface AppDelegate ()
@@ -20,6 +24,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [UMConfigure initWithAppkey:@"61ab1bd1e0f9bb492b7df2bc" channel:nil];
+    [MobClick setScenarioType:E_UM_NORMAL];
+    [MobClick setCrashReportEnabled:YES];//mi
+
+
+
     [[VConductorClient sharedInstance] initSDK];
 //    if (@available(iOS 13.0, *)) {
 //        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDarkContent; //黑色

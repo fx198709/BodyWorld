@@ -126,7 +126,7 @@
 		A2A94DE1273FC64900D02C77 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DDF273FC64900D02C77 /* FriendCell.m */; };
 		A2A94DE2273FC64900D02C77 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A94DE0273FC64900D02C77 /* FriendCell.xib */; };
 		A2A94DE8273FD8DD00D02C77 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DE7273FD8DD00D02C77 /* AddFriendViewController.m */; };
-		AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4B81011D05364E70937961 /* libPods-FFitWorld.a */; };
+		A53A3C350488D7ED8CE204A4 /* Pods_FFitWorld.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E158AEC0395537D75983E457 /* Pods_FFitWorld.framework */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
 		DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */; };
@@ -459,7 +459,6 @@
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
 		C8E2F72627131DBA00FEE021 /* WordPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordPrefixHeader.pch; sourceTree = "<group>"; };
-		DB4B81011D05364E70937961 /* libPods-FFitWorld.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FFitWorld.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD25FEC7272012DC0092CF87 /* UIScrollView+YCRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YCRefresh.h"; sourceTree = "<group>"; };
 		DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YCRefresh.m"; sourceTree = "<group>"; };
 		DD25FECC272157D50092CF87 /* NSObject+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YCExtension.h"; sourceTree = "<group>"; };
@@ -607,6 +606,7 @@
 		DDFA757C27591BE800EFD0B1 /* GroupRoomDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupRoomDetailViewController.xib; sourceTree = "<group>"; };
 		DDFA757F2759278C00EFD0B1 /* GroupDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupDetailTableViewCell.h; sourceTree = "<group>"; };
 		DDFA75802759278C00EFD0B1 /* GroupDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupDetailTableViewCell.m; sourceTree = "<group>"; };
+		E158AEC0395537D75983E457 /* Pods_FFitWorld.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FFitWorld.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -616,7 +616,7 @@
 			files = (
 				04EC004426BD2B8800DC0103 /* IJKMediaFrameworkWithSSL.framework in Frameworks */,
 				04EC004626BD2B8800DC0103 /* VSRTC.framework in Frameworks */,
-				AD7F048E69F3FD86DCD84336 /* libPods-FFitWorld.a in Frameworks */,
+				A53A3C350488D7ED8CE204A4 /* Pods_FFitWorld.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,7 +1020,7 @@
 			children = (
 				04EC004226BD2B8700DC0103 /* IJKMediaFrameworkWithSSL.framework */,
 				04EC004326BD2B8700DC0103 /* VSRTC.framework */,
-				DB4B81011D05364E70937961 /* libPods-FFitWorld.a */,
+				E158AEC0395537D75983E457 /* Pods_FFitWorld.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1412,7 +1412,6 @@
 				047DC1EE268CD09700A3E37E /* Resources */,
 				04EC004826BD2B8800DC0103 /* Embed Frameworks */,
 				3452C7BB6BD5C99911AE48D6 /* [CP] Embed Pods Frameworks */,
-				C1A15A9F0B8438EC9DBA5C05 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1542,23 +1541,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C1A15A9F0B8438EC9DBA5C05 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FFitWorld/Pods-FFitWorld-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FFitWorld/Pods-FFitWorld-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FFitWorld/Pods-FFitWorld-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

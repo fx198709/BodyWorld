@@ -1,4 +1,5 @@
 platform :ios, '11'
+use_frameworks!
 target 'FFitWorld' do
     pod ‘AFNetworking’, '~> 4.0'
     pod 'SDWebImage', git:'https://gitee.com/lf01/SDWebImage.git'
@@ -10,4 +11,8 @@ target 'FFitWorld' do
     pod 'MBProgressHUD'
     pod 'HMSegmentedControl'
     pod 'JSONModel'
+    pod 'UMCCommon', '~> 2.1.1'
+    pod 'UMCAnalytics', '~> 6.0.5'
+#    pod 'UMCSecurityPlugins'
+
 end
