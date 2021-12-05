@@ -69,6 +69,7 @@ BOOL  hasrequest = NO;
     _sliderView.clipsToBounds = YES;
     _sliderView.layer.cornerRadius = 5;
 //    [self headerRereshing];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
 }
 
@@ -430,9 +431,9 @@ BOOL  hasrequest = NO;
     } else if(indexPath.row == 1){
         return 173;
     }else if(indexPath.row == 2){
-        return 200;
+        return 213;
     }
-    return 250;
+    return 275;
 }
 
 - (void)moreBtnClick:(UIButton*)sender
@@ -467,6 +468,7 @@ BOOL  hasrequest = NO;
                            @"row": @"50"
                        };
     [manager GET:@"room" parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.buddyClasses = [NSMutableArray array];
         self.groupClasses = [NSMutableArray array];
         self.livingClasses = [NSMutableArray array];
