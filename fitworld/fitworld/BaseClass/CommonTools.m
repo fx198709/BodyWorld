@@ -36,9 +36,11 @@
 + (void)changeBtnState:(UIButton*)vbutn btnData:(Room*)roomData{
     NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
     UIImage *joinImage = [UIImage imageNamed:@"action_button_bg_green"];
+//    创建者的id 做一个兼容
+    NSString * roomCreaterID = roomData.room_creator.id ? roomData.room_creator.id:roomData.creator_userid;
     if ([roomData isBegin]) {
 //        已经开始直播
-        if ([roomData.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
+        if ([roomCreaterID isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
 //            房主
             joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
             joinImage = [UIImage imageNamed:@"action_button_bg_red"];
@@ -69,7 +71,7 @@
             }
         }
     }else{
-        if ([roomData.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
+        if ([roomCreaterID isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
     //        当前使用人
             joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
             joinImage = [UIImage imageNamed:@"action_button_bg_red"];
