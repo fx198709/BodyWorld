@@ -20,6 +20,7 @@
 #import "CreateCourseSuccessViewController.h"
 #import "AfterTrainingViewController.h"
 #import "GroupRoomDetailViewController.h"
+#import "GroupRoomPrepareViewController.h"
 
 @implementation TableCollectionViewCell
 
@@ -94,6 +95,9 @@
         [cell changedatawithmodel:tmpRoom];
         cell.joinBtn.tag = indexPath.row+100;
         int state = [tmpRoom reachRoomDealState];
+        if (tmpRoom.course.type_int == 0 ) {
+//            GroupRoomPrepareViewController
+        }
         if (state == 1 || state == 2) {
             [cell.joinBtn addTarget:self action:@selector(joinBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         }
@@ -153,10 +157,17 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
         if (selectRoom.course.type_int == 1) {
-            
-            GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
-            vc.selectRoom = selectRoom;
-            [[self viewController].navigationController pushViewController:vc animated:YES];
+//            团课的处理
+            if (selectRoom.is_join) {
+                GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
+                vc.event_id = selectRoom.event_id;
+                [[self viewController].navigationController pushViewController:vc animated:YES];
+            }else{
+                GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
+                vc.selectRoom = selectRoom;
+                [[self viewController].navigationController pushViewController:vc animated:YES];
+            }
+           
         }else{
             if (selectRoom.is_join) {
                 CreateCourseSuccessViewController *vc =[[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];

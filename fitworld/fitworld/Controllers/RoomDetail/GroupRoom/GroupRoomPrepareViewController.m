@@ -1,11 +1,11 @@
 //
-//  CreateCourseSuccessViewController.m
+//  GroupRoomPrepareViewController.m
 //  FFitWorld
 //
 //  Created by feixiang on 2021/11/7.
 //
 
-#import "CreateCourseSuccessViewController.h"
+#import "GroupRoomPrepareViewController.h"
 #import "UserHeadPicView.h"
 #import "TableHeadview.h"
 #import "UIImage+Extension.h"
@@ -16,7 +16,9 @@
 #import "RoomVC.h"
 #import "UserInfoView.h"
 
-@interface CreateCourseSuccessViewController (){
+
+
+@interface GroupRoomPrepareViewController (){
     UIScrollView * _bottomScrollview;
     UIScrollView *userlistView;
     Room *currentRoom;
@@ -29,7 +31,7 @@
 
 @end
 
-@implementation CreateCourseSuccessViewController
+@implementation GroupRoomPrepareViewController
 
 - (void)deleteBtnClicked:(UIButton*)sender{
 //    /api/room/kickout
@@ -89,9 +91,10 @@
         UserInfoView * userView = [[UserInfoView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
         userView.userInteractionEnabled = YES;
-        [userView changeDatawithModel:user andIsCreater:isCreate];
+//        团课 不能删除人
+        [userView changeDatawithModel:user andIsCreater:NO];
         userView.deleteBtn.tag = 1000+ index;
-        [userView.deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+//        [userView.deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         startX = startX+80;
     }
     if (currentUserList.count < 6 && isCreate) {
@@ -325,6 +328,8 @@
         
 }
 
+
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 //    不能左滑点击
@@ -339,6 +344,31 @@
     numberTimer = nil;
     
 }
+
+- (void)reachMyRoomData{
+//    GET /api/subroom/myroom?user_id=46009524363987460&event_id=
+    NSDictionary *baddyParams = @{
+                           @"event_id": self.event_id,
+                           @"user_id":[APPObjOnce sharedAppOnce].currentUser.id
+                       };
+    [[AFAppNetAPIClient manager] GET:@"room/user" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (CheckResponseObject(responseObject)) {
+            NSArray *userlist = responseObject[@"recordset"];
+            if ([userlist isKindOfClass:[NSArray class]]) {
+                NSMutableArray *list = [NSMutableArray array];
+                for (NSDictionary *dic in userlist) {
+                    UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
+                    [list addObject:user];
+                }
+                self->currentUserList = list;
+            }
+            
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }];
+}
+
+
 
 - (void)reachData{
     [self reachRoomDetailInfo];

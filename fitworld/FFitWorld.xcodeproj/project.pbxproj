@@ -207,6 +207,11 @@
 		DDFA757D27591BE800EFD0B1 /* GroupRoomDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA757B27591BE800EFD0B1 /* GroupRoomDetailViewController.m */; };
 		DDFA757E27591BE800EFD0B1 /* GroupRoomDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFA757C27591BE800EFD0B1 /* GroupRoomDetailViewController.xib */; };
 		DDFA75812759278C00EFD0B1 /* GroupDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA75802759278C00EFD0B1 /* GroupDetailTableViewCell.m */; };
+		DDFA7585275D8F4000EFD0B1 /* GroupRoomPrepareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA7582275D8F4000EFD0B1 /* GroupRoomPrepareViewController.m */; };
+		DDFA7586275D8F4000EFD0B1 /* GroupRoomPrepareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFA7584275D8F4000EFD0B1 /* GroupRoomPrepareViewController.xib */; };
+		DDFA7589275D9BD700EFD0B1 /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA7588275D9BD700EFD0B1 /* UserInfoView.m */; };
+		DDFA758C275E004400EFD0B1 /* RoomUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA758B275E004400EFD0B1 /* RoomUser.m */; };
+		DDFA758F275E050800EFD0B1 /* GroupMyRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA758E275E050800EFD0B1 /* GroupMyRoom.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -606,6 +611,15 @@
 		DDFA757C27591BE800EFD0B1 /* GroupRoomDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupRoomDetailViewController.xib; sourceTree = "<group>"; };
 		DDFA757F2759278C00EFD0B1 /* GroupDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupDetailTableViewCell.h; sourceTree = "<group>"; };
 		DDFA75802759278C00EFD0B1 /* GroupDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupDetailTableViewCell.m; sourceTree = "<group>"; };
+		DDFA7582275D8F4000EFD0B1 /* GroupRoomPrepareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupRoomPrepareViewController.m; sourceTree = "<group>"; };
+		DDFA7583275D8F4000EFD0B1 /* GroupRoomPrepareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupRoomPrepareViewController.h; sourceTree = "<group>"; };
+		DDFA7584275D8F4000EFD0B1 /* GroupRoomPrepareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupRoomPrepareViewController.xib; sourceTree = "<group>"; };
+		DDFA7587275D9BD700EFD0B1 /* UserInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoView.h; sourceTree = "<group>"; };
+		DDFA7588275D9BD700EFD0B1 /* UserInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoView.m; sourceTree = "<group>"; };
+		DDFA758A275E004400EFD0B1 /* RoomUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomUser.h; sourceTree = "<group>"; };
+		DDFA758B275E004400EFD0B1 /* RoomUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomUser.m; sourceTree = "<group>"; };
+		DDFA758D275E050800EFD0B1 /* GroupMyRoom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupMyRoom.h; sourceTree = "<group>"; };
+		DDFA758E275E050800EFD0B1 /* GroupMyRoom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupMyRoom.m; sourceTree = "<group>"; };
 		E158AEC0395537D75983E457 /* Pods_FFitWorld.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FFitWorld.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1211,6 +1225,8 @@
 				DDB1380127489A2E009A44FD /* AfterTrainingViewController.h */,
 				DDB1380227489A2E009A44FD /* AfterTrainingViewController.m */,
 				DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */,
+				DDFA7587275D9BD700EFD0B1 /* UserInfoView.h */,
+				DDFA7588275D9BD700EFD0B1 /* UserInfoView.m */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -1390,11 +1406,18 @@
 		DDFA757627591A4900EFD0B1 /* GroupRoom */ = {
 			isa = PBXGroup;
 			children = (
+				DDFA7583275D8F4000EFD0B1 /* GroupRoomPrepareViewController.h */,
+				DDFA7582275D8F4000EFD0B1 /* GroupRoomPrepareViewController.m */,
+				DDFA7584275D8F4000EFD0B1 /* GroupRoomPrepareViewController.xib */,
 				DDFA757A27591BE800EFD0B1 /* GroupRoomDetailViewController.h */,
 				DDFA757B27591BE800EFD0B1 /* GroupRoomDetailViewController.m */,
 				DDFA757C27591BE800EFD0B1 /* GroupRoomDetailViewController.xib */,
 				DDFA757F2759278C00EFD0B1 /* GroupDetailTableViewCell.h */,
 				DDFA75802759278C00EFD0B1 /* GroupDetailTableViewCell.m */,
+				DDFA758A275E004400EFD0B1 /* RoomUser.h */,
+				DDFA758B275E004400EFD0B1 /* RoomUser.m */,
+				DDFA758D275E050800EFD0B1 /* GroupMyRoom.h */,
+				DDFA758E275E050800EFD0B1 /* GroupMyRoom.m */,
 			);
 			path = GroupRoom;
 			sourceTree = "<group>";
@@ -1490,6 +1513,7 @@
 				0472011826B7BAF400C19437 /* Localizable.strings in Resources */,
 				DD98BC6D273F655300D3B59F /* CourseDetailSmallview.xib in Resources */,
 				DD6EDB1D272D1A70002B0A8E /* TableHeadview.xib in Resources */,
+				DDFA7586275D8F4000EFD0B1 /* GroupRoomPrepareViewController.xib in Resources */,
 				047DC203268CD09900A3E37E /* Assets.xcassets in Resources */,
 				DD595EE0273A68BE00618D1A /* TableSearchView.xib in Resources */,
 				DDB1380B2748E347009A44FD /* Train1TableViewCell.xib in Resources */,
@@ -1574,6 +1598,7 @@
 				DDB1380A2748E347009A44FD /* Train1TableViewCell.m in Sources */,
 				0456193026ECEC8A00C0973F /* RegisterController.m in Sources */,
 				A296D6A82758B26800F73259 /* CoachCommentCell.m in Sources */,
+				DDFA758F275E050800EFD0B1 /* GroupMyRoom.m in Sources */,
 				DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */,
 				DDB1380427489A2E009A44FD /* AfterTrainingViewController.m in Sources */,
 				04EC01F826BD8AC100DC0103 /* ToolFunc.m in Sources */,
@@ -1607,6 +1632,7 @@
 				04552B542696C3FD00C78706 /* QRCodeReaderView.m in Sources */,
 				04EC01F126BD8AC000DC0103 /* SidePanel.m in Sources */,
 				04552B522696C3FD00C78706 /* QRCameraSwitchButton.m in Sources */,
+				DDFA7589275D9BD700EFD0B1 /* UserInfoView.m in Sources */,
 				DD6EDB5F272EFFFB002B0A8E /* CourseMoreController.m in Sources */,
 				04DA746A26A86E2600257963 /* YJPageControlView.m in Sources */,
 				A2723EDA273B779300388B01 /* UIView+MT.m in Sources */,
@@ -1670,6 +1696,7 @@
 				A2A94DE1273FC64900D02C77 /* FriendCell.m in Sources */,
 				04F3E34426E9325F00CEEC7D /* CalendarView.m in Sources */,
 				A296D6982754AFC500F73259 /* FriendRoomPageInfo.m in Sources */,
+				DDFA758C275E004400EFD0B1 /* RoomUser.m in Sources */,
 				A2A94DDD273FC5B200D02C77 /* FriendViewController.m in Sources */,
 				04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */,
 				DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */,
@@ -1690,6 +1717,7 @@
 				DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */,
 				04EC01F726BD8AC100DC0103 /* GenerateTestUserSig.m in Sources */,
 				0433B9B026A7108E004AAD5B /* UserCenterViewController.m in Sources */,
+				DDFA7585275D8F4000EFD0B1 /* GroupRoomPrepareViewController.m in Sources */,
 				04552B4F2696C3FD00C78706 /* UIView+YYAdd.m in Sources */,
 				04552B3B2696C3FD00C78706 /* JTMaterialSwitch.m in Sources */,
 				041510D4268F02DE0039FCD1 /* LoginController.m in Sources */,

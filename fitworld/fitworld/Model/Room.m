@@ -3,7 +3,7 @@
 
 @implementation Room
 
-    
+
 //    _allow_record = [json[@"allow_record"] boolValue];
 //    _allow_watch = [json[@"allow_watch"] boolValue];
 //    _count_me_in = [json[@"count_me_in"] boolValue];
@@ -29,8 +29,8 @@
 //    _status = [json[@"status"] integerValue];
 //    _updated_at = [NSString stringWithFormat:@"%@",[self checkForNull: json[@"updated_at"]]];
 //    _watch_count = [json[@"watch_count"] integerValue];
-    
-    //详情多用的字段
+
+//详情多用的字段
 //    self.type = NSStringFromDic(json, @"type", @"");
 //    self.type_int = LongValueFromDic(json, @"type_int", 0);
 //    self.course_type = NSStringFromDic(json, @"course_type", @"");
@@ -74,57 +74,64 @@
 //这个课程，是否已经开始了
 - (BOOL)isBegin{
     NSTimeInterval timeNow = [[NSDate date] timeIntervalSince1970];
-//     当前时间 大于房间开始时间
+    //     当前时间 大于房间开始时间
     return (self.status != 0 || self.start_time < timeNow);
 }
 
-//commtools 里面还有一份处理
+//commtools 里面还有一份处理  以commtools里面的为准
 - (int)reachRoomDealState{
+    //    创建者的id 做一个兼容
+    NSString * roomCreaterID = self.room_creator.id ? self.room_creator.id:self.creator_userid;
     if ([self isBegin]) {
-//        已经开始直播
-        if ([self.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
-//            房主
+        //        已经开始直播
+        if ([roomCreaterID isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
+            //            房主
             self.roomDealState = 5;
-        }else{
-            if (self.is_join) {
-                self.roomDealState = 5;
-            }else{
-                if (self.allow_watch) {
-                    if (self.course.max_num > self.invite_count) {
-                        self.roomDealState = 5;
-                    }else{
-                        self.roomDealState = 4;
-                    }
+        }else if(self.is_room_user){
+            self.roomDealState = 5;
+        }
+        else{
+            if (self.allow_watch) {
+                long maxnumber = MAX(self.max_num, self.course.max_num);
+                if (maxnumber > self.invite_count) {
+                    self.roomDealState = 5;
                 }else{
-                    self.roomDealState = 3;
+                    self.roomDealState = 4;
                 }
+            }else{
+                self.roomDealState = 3;
             }
         }
     }else{
-        if ([self.room_creator.id isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
-    //        当前使用人
+        if ([roomCreaterID isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
+            //            创建人
+            
             self.roomDealState = 6;
-        }else{
+        }else if(self.is_room_user){ //被邀请人 或者加入人
             if (self.is_join) {
+                
                 self.roomDealState = 2;
             }else{
-                if (self.allow_watch) {
-                    if (self.course.max_num > self.invite_count) {
-                        self.roomDealState = 1;
-                       
-                    }else{
-                        self.roomDealState = 4;
-                    }
+                self.roomDealState = 1;
+            }
+        }else{
+            if (self.allow_watch) {
+                long maxnumber = MAX(self.max_num, self.course.max_num);
+                if (maxnumber > self.invite_count) {
+                    self.roomDealState = 1;
+                    
                 }else{
-                    self.roomDealState = 3;
+                    self.roomDealState = 4;
+                    
                 }
+            }else{
+                self.roomDealState = 3;
+                
             }
         }
     }
-    return  self.roomDealState;
+    
+    return self.roomDealState;
 }
-
-
-
 
 @end
