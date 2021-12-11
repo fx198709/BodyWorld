@@ -15,7 +15,7 @@
 #import "MainViewController.h"
 #import "RoomVC.h"
 #import "UserInfoView.h"
-
+#import "GroupMyRoom.h"
 
 
 @interface GroupRoomPrepareViewController (){
@@ -27,6 +27,8 @@
     NSTimer * numberTimer;
 
     int userListHeight;
+    
+    GroupMyRoom *myRoomModel; //我的房间信息，主要是子房间信息，
 }
 
 @end
@@ -97,7 +99,7 @@
 //        [userView.deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         startX = startX+80;
     }
-    if (currentUserList.count < 6 && isCreate) {
+    if (currentUserList.count < 4 && isCreate) {
 //        可以添加人
         UIView * userView = [[UIView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
@@ -160,8 +162,8 @@
         make.top.equalTo(_headview);
         make.left.right.bottom.equalTo(_headview);
     }];
-    self.title = ChineseStringOrENFun(@"创建完成,等待开始", @"PREPARED COURSE");
-    self.headTitle.text = ChineseStringOrENFun(@"对练课程创建完成", @"Congratulations! Finish creating!");
+    self.title = ChineseStringOrENFun(@"团课准备", @"PREPARED COURSE");
+    self.headTitle.text = @"   ";
     self.headTitle.font = SystemFontOfSize(20);
     self.timeLabel.text = ReachYearAndWeekTime(currentRoom.start_time);
     self.timeLabel.font = SystemFontOfSize(17);
@@ -204,6 +206,7 @@
     
     UILabel *titleLabel = [[UILabel alloc] init];
     [_bottomScrollview addSubview:titleLabel];
+//    随机匹配 邀请成员
     titleLabel.text = ChineseStringOrENFun(@"修改成员", @"Change teammates");
     titleLabel.textColor = UIColor.whiteColor;
     titleLabel.font = SystemFontOfSize(20);
@@ -213,19 +216,27 @@
         make.right.equalTo(_bottomScrollview).offset(-15);
         make.height.mas_equalTo(25);
     }];
-    UIView *scrollBackView = [[UIView alloc] init];
-    [_bottomScrollview addSubview:scrollBackView];
+    UIView * chooseSubRoomTypeView = [[UIView alloc] init];
+    [_bottomScrollview addSubview:chooseSubRoomTypeView];
+    [chooseSubRoomTypeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_bottomScrollview);
+        make.left.equalTo(_bottomScrollview).offset(15);
+        make.right.equalTo(_bottomScrollview).offset(-15);
+        make.height.mas_equalTo(50);
+    }];
+    
+    UIView *userListBackView = [[UIView alloc] init];
+    [_bottomScrollview addSubview:userListBackView];
     int listwidth = ScreenWidth - 30;
-    [scrollBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [userListBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(titleLabel.mas_bottom).offset(10);
         make.left.equalTo(_bottomScrollview).offset(15);
         make.right.equalTo(_bottomScrollview).offset(-15);
         make.height.mas_equalTo(userListHeight);
-        make.width.mas_equalTo(listwidth);
     }];
 
     userlistView = [[UIScrollView alloc] init];
-    [scrollBackView addSubview:userlistView];
+    [userListBackView addSubview:userlistView];
     userlistView.frame = CGRectMake(0, 0, listwidth, userListHeight);
     [self changeUserList];
     
@@ -318,6 +329,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self reachData];
+    [self reachMyRoomData];
 //    dataTimer = [NSTimer timerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
 //        [self reachData];
 //    }];
@@ -351,17 +363,10 @@
                            @"event_id": self.event_id,
                            @"user_id":[APPObjOnce sharedAppOnce].currentUser.id
                        };
-    [[AFAppNetAPIClient manager] GET:@"room/user" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] GET:@"subroom/myroom" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         if (CheckResponseObject(responseObject)) {
-            NSArray *userlist = responseObject[@"recordset"];
-            if ([userlist isKindOfClass:[NSArray class]]) {
-                NSMutableArray *list = [NSMutableArray array];
-                for (NSDictionary *dic in userlist) {
-                    UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
-                    [list addObject:user];
-                }
-                self->currentUserList = list;
-            }
+            GroupMyRoom * myRoom = [[GroupMyRoom alloc] initWithDictionary:responseObject[@"recordset"] error:nil];
+            self->myRoomModel = myRoom;
             
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -372,25 +377,25 @@
 
 - (void)reachData{
     [self reachRoomDetailInfo];
-    NSDictionary *baddyParams = @{
-                           @"event_id": self.event_id,
-                       };
-    [[AFAppNetAPIClient manager] GET:@"room/user" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
-        if (CheckResponseObject(responseObject)) {
-            NSArray *userlist = responseObject[@"recordset"];
-            if ([userlist isKindOfClass:[NSArray class]]) {
-                NSMutableArray *list = [NSMutableArray array];
-                for (NSDictionary *dic in userlist) {
-                    UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
-                    [list addObject:user];
-                }
-                self->currentUserList = list;
-                [self changeUserList];
-            }
-            
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    }];
+//    NSDictionary *baddyParams = @{
+//                           @"event_id": self.event_id,
+//                       };
+//    [[AFAppNetAPIClient manager] GET:@"room/user" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+//        if (CheckResponseObject(responseObject)) {
+//            NSArray *userlist = responseObject[@"recordset"];
+//            if ([userlist isKindOfClass:[NSArray class]]) {
+//                NSMutableArray *list = [NSMutableArray array];
+//                for (NSDictionary *dic in userlist) {
+//                    UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
+//                    [list addObject:user];
+//                }
+//                self->currentUserList = list;
+//                [self changeUserList];
+//            }
+//
+//        }
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//    }];
 }
 
 - (void)reachRoomDetailInfo

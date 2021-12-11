@@ -191,6 +191,8 @@
 		DD8E328E273F226B008995E9 /* code.json in Resources */ = {isa = PBXBuildFile; fileRef = DD8E328D273F226B008995E9 /* code.json */; };
 		DD98BC6B273F653900D3B59F /* CourseDetailSmallview.m in Sources */ = {isa = PBXBuildFile; fileRef = DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */; };
 		DD98BC6D273F655300D3B59F /* CourseDetailSmallview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */; };
+		DDACD7EB27610C3600CCAAA1 /* ChoosePeopleTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDACD7EA27610C3500CCAAA1 /* ChoosePeopleTypeView.m */; };
+		DDACD7ED27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDACD7EC27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib */; };
 		DDB1380427489A2E009A44FD /* AfterTrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB1380227489A2E009A44FD /* AfterTrainingViewController.m */; };
 		DDB1380527489A2E009A44FD /* AfterTrainingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */; };
 		DDB1380A2748E347009A44FD /* Train1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB138082748E347009A44FD /* Train1TableViewCell.m */; };
@@ -586,6 +588,9 @@
 		DD98BC69273F653900D3B59F /* CourseDetailSmallview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseDetailSmallview.h; sourceTree = "<group>"; };
 		DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseDetailSmallview.m; sourceTree = "<group>"; };
 		DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDetailSmallview.xib; sourceTree = "<group>"; };
+		DDACD7E927610C3500CCAAA1 /* ChoosePeopleTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleTypeView.h; sourceTree = "<group>"; };
+		DDACD7EA27610C3500CCAAA1 /* ChoosePeopleTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePeopleTypeView.m; sourceTree = "<group>"; };
+		DDACD7EC27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoosePeopleTypeView.xib; sourceTree = "<group>"; };
 		DDB1380127489A2E009A44FD /* AfterTrainingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AfterTrainingViewController.h; sourceTree = "<group>"; };
 		DDB1380227489A2E009A44FD /* AfterTrainingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AfterTrainingViewController.m; sourceTree = "<group>"; };
 		DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AfterTrainingViewController.xib; sourceTree = "<group>"; };
@@ -1418,6 +1423,9 @@
 				DDFA758B275E004400EFD0B1 /* RoomUser.m */,
 				DDFA758D275E050800EFD0B1 /* GroupMyRoom.h */,
 				DDFA758E275E050800EFD0B1 /* GroupMyRoom.m */,
+				DDACD7E927610C3500CCAAA1 /* ChoosePeopleTypeView.h */,
+				DDACD7EA27610C3500CCAAA1 /* ChoosePeopleTypeView.m */,
+				DDACD7EC27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib */,
 			);
 			path = GroupRoom;
 			sourceTree = "<group>";
@@ -1515,6 +1523,7 @@
 				DD6EDB1D272D1A70002B0A8E /* TableHeadview.xib in Resources */,
 				DDFA7586275D8F4000EFD0B1 /* GroupRoomPrepareViewController.xib in Resources */,
 				047DC203268CD09900A3E37E /* Assets.xcassets in Resources */,
+				DDACD7ED27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib in Resources */,
 				DD595EE0273A68BE00618D1A /* TableSearchView.xib in Resources */,
 				DDB1380B2748E347009A44FD /* Train1TableViewCell.xib in Resources */,
 				DD6EDB4C272E7AF9002B0A8E /* AddPeopleTableViewCell.xib in Resources */,
@@ -1699,6 +1708,7 @@
 				DDFA758C275E004400EFD0B1 /* RoomUser.m in Sources */,
 				A2A94DDD273FC5B200D02C77 /* FriendViewController.m in Sources */,
 				04EC020426BD8B0F00DC0103 /* LocalView.m in Sources */,
+				DDACD7EB27610C3600CCAAA1 /* ChoosePeopleTypeView.m in Sources */,
 				DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */,
 				A256301627408B500030D6B2 /* UserCenterWeekData.m in Sources */,
 				DD595EC327367FA700618D1A /* UserCenterMainViewController.m in Sources */,

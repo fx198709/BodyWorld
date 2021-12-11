@@ -5,7 +5,6 @@
 #import "DatePlan.h"
 #import "RoomCreator.h"
 
-
 //@protocol Course;
 //@protocol RoomCreator;
 @protocol Plan;
