@@ -378,6 +378,11 @@
     return nil;
 }
 
++ (UIEdgeInsets)safeAreaInsets{
+    UIWindow *mainwindow = [CommonTools mainWindow];
+    return mainwindow.safeAreaInsets;
+}
+
 
 
 @end

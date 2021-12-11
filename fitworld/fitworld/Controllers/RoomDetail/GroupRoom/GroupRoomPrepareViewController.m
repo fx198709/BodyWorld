@@ -11,7 +11,7 @@
 #import "UIImage+Extension.h"
 #import "CourseDetailSmallview.h"
 #import "GroupRoomDetailViewController.h"
-#import "ChoosePeopleViewController.h"
+#import "ChooseGroupPeopleViewController.h"
 #import "MainViewController.h"
 #import "RoomVC.h"
 #import "UserInfoView.h"
@@ -36,7 +36,7 @@
 @implementation GroupRoomPrepareViewController
 
 - (void)addPeopleBtnClick{
-    ChoosePeopleViewController * peopleVC = [[ChoosePeopleViewController alloc] initWithNibName:@"ChoosePeopleViewController" bundle:nil];
+    ChooseGroupPeopleViewController * peopleVC = [[ChooseGroupPeopleViewController alloc] initWithNibName:@"ChooseGroupPeopleViewController" bundle:nil];
     peopleVC.currentRoom = currentRoom;
     [self.navigationController pushViewController:peopleVC animated:YES];
     
@@ -57,16 +57,18 @@
             }
             [tempArray insertObject:tempuser atIndex:0];
         }else{
-            [tempArray addObject:tempuser];
+//            同意的才添加
+            if (tempuser.is_accept) {
+                [tempArray addObject:tempuser];
+            }
         }
     }
-    myRoomModel.room_user = (NSArray<RoomUser> *)tempArray;
     for (int index = 0; index < 4; index++) {
         RoomUser *user = nil;
-        if (myRoomModel.room_user.count > index) {
+        if (tempArray.count > index) {
             user = tempArray[index];
         }
-        if (myRoomModel.room_user.count < 1 && index == 0) {
+        if (tempArray.count < 1 && index == 0) {
 //            如果一个人都没有，把自己加在第一个
             user = [[RoomUser alloc] init];
             user.avatar = [APPObjOnce sharedAppOnce].currentUser.avatar;

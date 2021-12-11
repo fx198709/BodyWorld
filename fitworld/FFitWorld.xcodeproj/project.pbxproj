@@ -193,6 +193,8 @@
 		DD98BC6D273F655300D3B59F /* CourseDetailSmallview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */; };
 		DDACD7EB27610C3600CCAAA1 /* ChoosePeopleTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDACD7EA27610C3500CCAAA1 /* ChoosePeopleTypeView.m */; };
 		DDACD7ED27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDACD7EC27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib */; };
+		DDACD7F127650CEA00CCAAA1 /* ChooseGroupPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDACD7EE27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.m */; };
+		DDACD7F227650CEA00CCAAA1 /* ChooseGroupPeopleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDACD7EF27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.xib */; };
 		DDB1380427489A2E009A44FD /* AfterTrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB1380227489A2E009A44FD /* AfterTrainingViewController.m */; };
 		DDB1380527489A2E009A44FD /* AfterTrainingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */; };
 		DDB1380A2748E347009A44FD /* Train1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB138082748E347009A44FD /* Train1TableViewCell.m */; };
@@ -591,6 +593,9 @@
 		DDACD7E927610C3500CCAAA1 /* ChoosePeopleTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleTypeView.h; sourceTree = "<group>"; };
 		DDACD7EA27610C3500CCAAA1 /* ChoosePeopleTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePeopleTypeView.m; sourceTree = "<group>"; };
 		DDACD7EC27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoosePeopleTypeView.xib; sourceTree = "<group>"; };
+		DDACD7EE27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseGroupPeopleViewController.m; sourceTree = "<group>"; };
+		DDACD7EF27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseGroupPeopleViewController.xib; sourceTree = "<group>"; };
+		DDACD7F027650CEA00CCAAA1 /* ChooseGroupPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseGroupPeopleViewController.h; sourceTree = "<group>"; };
 		DDB1380127489A2E009A44FD /* AfterTrainingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AfterTrainingViewController.h; sourceTree = "<group>"; };
 		DDB1380227489A2E009A44FD /* AfterTrainingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AfterTrainingViewController.m; sourceTree = "<group>"; };
 		DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AfterTrainingViewController.xib; sourceTree = "<group>"; };
@@ -1411,6 +1416,9 @@
 		DDFA757627591A4900EFD0B1 /* GroupRoom */ = {
 			isa = PBXGroup;
 			children = (
+				DDACD7F027650CEA00CCAAA1 /* ChooseGroupPeopleViewController.h */,
+				DDACD7EE27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.m */,
+				DDACD7EF27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.xib */,
 				DDFA7583275D8F4000EFD0B1 /* GroupRoomPrepareViewController.h */,
 				DDFA7582275D8F4000EFD0B1 /* GroupRoomPrepareViewController.m */,
 				DDFA7584275D8F4000EFD0B1 /* GroupRoomPrepareViewController.xib */,
@@ -1502,6 +1510,7 @@
 				A296D6922754A82300F73259 /* FriendRoomCell.xib in Resources */,
 				DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */,
 				DDEE67DB272577ED00D0C310 /* LivingGoodsCell.xib in Resources */,
+				DDACD7F227650CEA00CCAAA1 /* ChooseGroupPeopleViewController.xib in Resources */,
 				DD6EDB6727343624002B0A8E /* MessageListViewController.xib in Resources */,
 				A296D6A92758B26800F73259 /* CoachCommentCell.xib in Resources */,
 				04552B3C2696C3FD00C78706 /* entypo.ttf in Resources */,
@@ -1585,6 +1594,7 @@
 			files = (
 				A2723F09273CF22F00388B01 /* SelectCountryCell.m in Sources */,
 				DD7425AE2729431A005D636E /* UIImage+Extension.m in Sources */,
+				DDACD7F127650CEA00CCAAA1 /* ChooseGroupPeopleViewController.m in Sources */,
 				DD595EEA273BB15800618D1A /* UserHeadPicView.m in Sources */,
 				DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */,
 				A296D6912754A82300F73259 /* FriendRoomCell.m in Sources */,

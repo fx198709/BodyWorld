@@ -282,12 +282,7 @@
                 if (isLoadHead) {
                     [self.cocahTableview.mj_header endRefreshing];
                 }
-                else
-                {
-                    [self loadNextPageData];
-                }
-            
-
+                [self loadNextPageData];
                 [self.cocahTableview reloadData];
             }
             self->isLoading = NO;

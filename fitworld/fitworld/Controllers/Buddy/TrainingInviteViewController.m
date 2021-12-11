@@ -316,12 +316,9 @@
                 if (isLoadHead) {
                     [self.tableView.mj_header endRefreshing];
                 }
-                else
-                {
-                    [self loadNextPageData];
-                }
             
-
+                
+                    [self loadNextPageData];
                 [self->_tableView reloadData];
             }
             self->isLoading = NO;

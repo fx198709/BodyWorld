@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 //找到视图归属的控制器，多用于tableview
 + (UIViewController*)findControlWithView:(UIView*)inView;
 
-
++ (UIEdgeInsets)safeAreaInsets;
 @end
 
 NS_ASSUME_NONNULL_END

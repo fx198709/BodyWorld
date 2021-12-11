@@ -12,7 +12,11 @@
 // 屏幕尺寸
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
-
+#define SafeAreaInsets \
+({UIEdgeInsets edge;\
+if (@available(iOS 11.0, *)) { edge = [UIApplication sharedApplication].delegate.window.safeAreaInsets; } else { edge = UIEdgeInsetsZero; }\
+(edge);\
+})
 
 UIKIT_STATIC_INLINE  int  RemoveSubviews(UIView* superview, NSArray * classArray){
     

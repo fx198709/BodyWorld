@@ -1,16 +1,17 @@
 //
-//  ChoosePeopleViewController.m
+//  ChooseGroupPeopleViewController.m
 //  FFitWorld
 //
 //  Created by feixiang on 2021/11/13.
 //
 
-#import "ChoosePeopleViewController.h"
+#import "ChooseGroupPeopleViewController.h"
 #import "AddPeopleTableViewCell.h"
 #import "UIImage+Extension.h"
 #import "TableHeadview.h"
+#import "GroupMyRoom.h"
 
-@interface ChoosePeopleViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>{
+@interface ChooseGroupPeopleViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>{
     BOOL isLoading;
     int _pageCount;
     BOOL _isLoadAllData; //是否加载所有的数据，每次刷新的时候，都设置成no， 接口返回的数据小于需要的数量时，设置成yes
@@ -22,6 +23,8 @@
     NSArray * lastLevelSelectUsers;
     BOOL hasUserlistReady; //已添加的人
     BOOL allPeoplelistRequestReady; //所有人
+    GroupMyRoom *myRoomModel; //我的房间信息，主要是子房间信息，
+
     
 }
 @property(nonatomic,strong)UITableView*tableView;
@@ -29,7 +32,7 @@
 
 @end
 
-@implementation ChoosePeopleViewController
+@implementation ChooseGroupPeopleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -143,9 +146,10 @@
     NSString *userIdsString = [userIds componentsJoinedByString:@","];
     NSDictionary *baddyParams = @{
                            @"event_id": _currentRoom.event_id,
-                           @"friend_ids":userIdsString
+                           @"friend_ids":userIdsString,
+                           @"sub_room_id":myRoomModel.sub_room_id
                        };
-    [[AFAppNetAPIClient manager] POST:@"room/invite" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] POST:@"subroom/invite" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (CheckResponseObject(responseObject)) {
             [CommonTools showAlertDismissWithContent:@"添加成功" showWaitTime:0 afterDelay:1 control:self];
@@ -168,23 +172,20 @@
 
 
 - (void)getuserData{
-     
     NSDictionary *baddyParams = @{
-                           @"event_id": _currentRoom.event_id,
+                           @"event_id": self.currentRoom.event_id,
+                           @"user_id":[APPObjOnce sharedAppOnce].currentUser.id
                        };
-    [[AFAppNetAPIClient manager] GET:@"room/user" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppNetAPIClient manager] GET:@"subroom/myroom" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         self->hasUserlistReady = YES;
         if (CheckResponseObject(responseObject)) {
-            NSArray *userlist = responseObject[@"recordset"];
-            if ([userlist isKindOfClass:[NSArray class]]) {
-                NSMutableArray *list = [NSMutableArray array];
-                for (NSDictionary *dic in userlist) {
-                    UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
-                    [list addObject:user.id];
-                }
-                self->lastLevelSelectUsers = list;
+            GroupMyRoom * myRoom = [[GroupMyRoom alloc] initWithDictionary:responseObject[@"recordset"] error:nil];
+            self->myRoomModel = myRoom;
+            NSMutableArray *list = [NSMutableArray array];
+            for (RoomUser *roomuser in self->myRoomModel.room_user) {
+                 [list addObject:roomuser.id];
             }
-            
+            self->lastLevelSelectUsers = list;
         }
         if (self->allPeoplelistRequestReady && self->hasUserlistReady) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -246,7 +247,7 @@
         if (clickModel.hasSelect) {
             if (clickModel.hasSelect) {
     //            最多只能选中5个
-                int maxselected = (int)(5- self->lastLevelSelectUsers.count);
+                int maxselected = (int)(4- self->lastLevelSelectUsers.count);
                 NSInteger selectCount = 0;
                 for (int index = 0; index < strongSelf->dataArr.count; index++) {
                     UserInfo *indexUser = strongSelf->dataArr[index];
@@ -345,7 +346,6 @@
                 if (isLoadHead) {
                     [self.tableView.mj_header endRefreshing];
                 }
-                
                 [self loadNextPageData];
                 if (self->allPeoplelistRequestReady && self->hasUserlistReady) {
                     [MBProgressHUD hideHUDForView:self.view animated:YES];

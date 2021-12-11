@@ -29,7 +29,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor redColor];
     self.messageTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    _messageTableview.backgroundColor = BgGrayColor;
+    _messageTableview.backgroundColor = UIColor.blackColor;
     [self.view addSubview:self.messageTableview];
     [self.messageTableview registerNib:[UINib nibWithNibName:NSStringFromClass([MessageListTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"MessageListTableViewCellString"];
 
@@ -80,11 +80,7 @@
 
     MessageListModel *user = dataArr[indexPath.row];
     [cell changeDataWithModel:user];
-//    __weak AddPeopleTableViewCell *weakcell = cell;
-//    WeakSelf
-//    cell.cellBtnClick = ^(UserInfo* clickModel) {
-//        
-//    };
+    cell.contentView.backgroundColor = BgGrayColor;
     return cell;
 }
 
@@ -116,6 +112,9 @@
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.messageTableview addHeaderWithTarget:self action:@selector(headerRereshing)];
     [self.messageTableview addFooterWithTarget:self action:@selector(footerRereshing)];
+    int bottom =[CommonTools safeAreaInsets].bottom;
+    self.messageTableview.mj_footer.ignoredScrollViewContentInsetBottom = bottom;
+//    self.messageTableview.autoHideMjFooter = YES;
 }
 //开始进入刷新状态
 - (void)headerRereshing
@@ -172,12 +171,7 @@
                 if (isLoadHead) {
                     [self.messageTableview.mj_header endRefreshing];
                 }
-                else
-                {
-                    [self loadNextPageData];
-                }
-            
-
+                [self loadNextPageData];
                 [self.messageTableview reloadData];
             }
             self->isLoading = NO;

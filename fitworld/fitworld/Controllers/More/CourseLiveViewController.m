@@ -546,9 +546,8 @@
                     [self.tableView.mj_header endRefreshing];
                 }
                 else
-                {
+            
                     [self loadNextPageData];
-                }
             
 
                 [self.tableView reloadData];

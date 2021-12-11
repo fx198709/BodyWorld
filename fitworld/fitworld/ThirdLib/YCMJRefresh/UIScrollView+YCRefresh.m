@@ -68,15 +68,16 @@ FOUNDATION_EXPORT CABasicAnimation *BodyGetPositionAnimation (id fromValue, id t
 }
 
 - (void)addFooterWithTarget:(id)target action:(SEL)action {
-    CJMJRefreshBackNormalFooter *footer = [CJMJRefreshBackNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
     [footer setTitle:@"上拉加载更多数据" forState:MJRefreshStateIdle];
     [footer setTitle:@"松开加载更多数据" forState:MJRefreshStatePulling];
     [footer setTitle:@"正在加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"松开加载更多数据" forState:MJRefreshStateWillRefresh];
     [footer setTitle:@"已经加载全部数据" forState:MJRefreshStateNoMoreData];
     footer.stateLabel.textColor = [UIColor whiteColor];
-    footer.backgroundColor = BgGrayColor;
+    footer.backgroundColor = UIColor.blackColor;
     self.mj_footer = footer;
+    
     
 //    CJMJRefreshBackNormalFooter *footer = [CJMJRefreshBackNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
 //    [footer setTitle:@"" forState:MJRefreshStateIdle];
