@@ -10,12 +10,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface ChoosePeopleTypeView : UIView
+@interface ChoosePeopleTypeView : UIView{
+    int chooseRoomState;//随机 还是邀请好友
+}
 @property (weak, nonatomic) IBOutlet UIButton *randomBtn;
 @property (weak, nonatomic) IBOutlet UIButton *addPeopleBtn;
+@property (weak, nonatomic) IBOutlet UIView *selectTypeView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *addTypeViewHeightConstraint;
 @property (strong, nonatomic) GroupMyRoom *groupRoom;
+@property (nonatomic, assign) UIViewController * parentVC;
 
 //邀请人按钮
 - (IBAction)addPeopleTypeBtn:(UIButton *)sender;

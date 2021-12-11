@@ -33,12 +33,19 @@
 //常用颜色
 //深灰色背景色 #252525
 #define BgGrayColor UIRGBColor(37, 37, 37, 1)
+//浅灰色
+#define LittleBgGrayColor UIRGBColor(79, 79, 79, 1)
+
+//深绿色
+#define BgGreenColor UIRGBColor(71, 138, 94, 1)
+
 //绿色文字或背景
 #define SelectGreenColor  UIRGBColor(86, 186, 111, 1)
 //浅色字色#C6C6C6
 #define LightGaryTextColor  UIRGBColor(198, 198, 198, 1)
 //线 #8A8A8A
 #define LineColor  UIRGBColor(138, 138, 138, 0.5)
+ 
 
 #define WeakSelf  __weak typeof(self)wSelf = self;
 #define StrongSelf(inself)  __strong typeof(self)strongSelf = inself;

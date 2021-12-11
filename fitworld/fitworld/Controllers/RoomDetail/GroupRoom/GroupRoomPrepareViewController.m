@@ -10,13 +10,13 @@
 #import "TableHeadview.h"
 #import "UIImage+Extension.h"
 #import "CourseDetailSmallview.h"
-#import "CourseDetailViewController.h"
+#import "GroupRoomDetailViewController.h"
 #import "ChoosePeopleViewController.h"
 #import "MainViewController.h"
 #import "RoomVC.h"
 #import "UserInfoView.h"
 #import "GroupMyRoom.h"
-
+#import "ChoosePeopleTypeView.h"
 
 @interface GroupRoomPrepareViewController (){
     UIScrollView * _bottomScrollview;
@@ -29,6 +29,7 @@
     int userListHeight;
     
     GroupMyRoom *myRoomModel; //我的房间信息，主要是子房间信息，
+    ChoosePeopleTypeView *choosePeopleTypeView; //选择房间的模式
 }
 
 @end
@@ -204,32 +205,41 @@
     }];
    
     
-    UILabel *titleLabel = [[UILabel alloc] init];
-    [_bottomScrollview addSubview:titleLabel];
-//    随机匹配 邀请成员
-    titleLabel.text = ChineseStringOrENFun(@"修改成员", @"Change teammates");
-    titleLabel.textColor = UIColor.whiteColor;
-    titleLabel.font = SystemFontOfSize(20);
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//    UILabel *titleLabel = [[UILabel alloc] init];
+//    [_bottomScrollview addSubview:titleLabel];
+//
+//    titleLabel.text = ChineseStringOrENFun(@"修改成员", @"Change teammates");
+//    titleLabel.textColor = UIColor.whiteColor;
+//    titleLabel.font = SystemFontOfSize(20);
+//    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(_bottomScrollview);
+//        make.left.equalTo(_bottomScrollview).offset(15);
+//        make.right.equalTo(_bottomScrollview).offset(-15);
+//        make.height.mas_equalTo(25);
+//    }];
+//    UIView * chooseSubRoomTypeView = [[UIView alloc] init];
+//    [_bottomScrollview addSubview:chooseSubRoomTypeView];
+//    [chooseSubRoomTypeView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(_bottomScrollview);
+//        make.left.equalTo(_bottomScrollview).offset(15);
+//        make.right.equalTo(_bottomScrollview).offset(-15);
+//        make.height.mas_equalTo(50);
+//    }];
+    //    随机匹配 邀请成员
+    choosePeopleTypeView = [[[NSBundle mainBundle] loadNibNamed:@"ChoosePeopleTypeView" owner:self options:nil] lastObject];
+    [_bottomScrollview addSubview:choosePeopleTypeView];
+    [choosePeopleTypeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_bottomScrollview);
         make.left.equalTo(_bottomScrollview).offset(15);
         make.right.equalTo(_bottomScrollview).offset(-15);
-        make.height.mas_equalTo(25);
     }];
-    UIView * chooseSubRoomTypeView = [[UIView alloc] init];
-    [_bottomScrollview addSubview:chooseSubRoomTypeView];
-    [chooseSubRoomTypeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_bottomScrollview);
-        make.left.equalTo(_bottomScrollview).offset(15);
-        make.right.equalTo(_bottomScrollview).offset(-15);
-        make.height.mas_equalTo(50);
-    }];
-    
+    choosePeopleTypeView.parentVC = self;
+    [choosePeopleTypeView changeDataWithModel:myRoomModel];
     UIView *userListBackView = [[UIView alloc] init];
     [_bottomScrollview addSubview:userListBackView];
     int listwidth = ScreenWidth - 30;
     [userListBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(titleLabel.mas_bottom).offset(10);
+        make.top.equalTo(choosePeopleTypeView.mas_bottom).offset(10);
         make.left.equalTo(_bottomScrollview).offset(15);
         make.right.equalTo(_bottomScrollview).offset(-15);
         make.height.mas_equalTo(userListHeight);
@@ -248,6 +258,7 @@
         make.left.equalTo(_bottomScrollview).offset(15);
         make.right.equalTo(_bottomScrollview).offset(-15);
         make.height.mas_equalTo(0.5);
+        make.width.mas_equalTo(listwidth);
     }];
     
     UILabel *titleLabel1 = [[UILabel alloc] init];
@@ -311,8 +322,7 @@
 }
 
 - (void)detailBtnClick{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
+    GroupRoomDetailViewController *vc =  [[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
     vc.selectRoom = currentRoom;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -367,7 +377,8 @@
         if (CheckResponseObject(responseObject)) {
             GroupMyRoom * myRoom = [[GroupMyRoom alloc] initWithDictionary:responseObject[@"recordset"] error:nil];
             self->myRoomModel = myRoom;
-            
+            [self->choosePeopleTypeView changeDataWithModel:myRoom];
+
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -377,25 +388,6 @@
 
 - (void)reachData{
     [self reachRoomDetailInfo];
-//    NSDictionary *baddyParams = @{
-//                           @"event_id": self.event_id,
-//                       };
-//    [[AFAppNetAPIClient manager] GET:@"room/user" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
-//        if (CheckResponseObject(responseObject)) {
-//            NSArray *userlist = responseObject[@"recordset"];
-//            if ([userlist isKindOfClass:[NSArray class]]) {
-//                NSMutableArray *list = [NSMutableArray array];
-//                for (NSDictionary *dic in userlist) {
-//                    UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
-//                    [list addObject:user];
-//                }
-//                self->currentUserList = list;
-//                [self changeUserList];
-//            }
-//
-//        }
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//    }];
 }
 
 - (void)reachRoomDetailInfo

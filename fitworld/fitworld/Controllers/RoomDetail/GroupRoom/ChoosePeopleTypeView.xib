@@ -15,14 +15,14 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYE-P9-0VN">
+                <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYE-P9-0VN">
                     <rect key="frame" x="0.0" y="0.0" width="44" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="4hR-z7-VMJ"/>
                         <constraint firstAttribute="width" constant="44" id="Bo5-fB-d2Y"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="unselected-circle"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="unselected-circle"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="随机匹配" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EoT-tr-YoO">
                     <rect key="frame" x="37" y="9" width="54" height="16"/>
@@ -30,14 +30,14 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKZ-nc-QGu">
+                <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKZ-nc-QGu">
                     <rect key="frame" x="106" y="0.0" width="44" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="4v9-70-FzP"/>
                         <constraint firstAttribute="height" constant="34" id="nua-mA-fz6"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="invite_friends_user_list_item_selected"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="invite_friends_user_list_item_selected"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀请好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzw-YF-OMt">
                     <rect key="frame" x="143" y="9" width="54" height="16"/>
@@ -93,7 +93,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="1Ez-Rt-bAh"/>
                         <constraint firstItem="unU-Mp-Edi" firstAttribute="leading" secondItem="Duc-Lb-QcY" secondAttribute="leading" id="BVg-hy-LYG"/>
@@ -126,6 +126,7 @@
                 <outlet property="addPeopleBtn" destination="dKZ-nc-QGu" id="yGF-1N-WrY"/>
                 <outlet property="addTypeViewHeightConstraint" destination="1Ez-Rt-bAh" id="iOm-kS-NKb"/>
                 <outlet property="randomBtn" destination="LYE-P9-0VN" id="6bZ-f1-moC"/>
+                <outlet property="selectTypeView" destination="Duc-Lb-QcY" id="YLb-HS-A3v"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="78.348214285714278"/>
         </view>
