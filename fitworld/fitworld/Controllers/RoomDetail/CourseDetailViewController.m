@@ -284,7 +284,7 @@
     [coachView addSubview:coachimageview];
     NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, self.selectRoom.creator_avatar];
 
-    [coachimageview changeDataWithModel:urlString];
+    [coachimageview changeDataWithUserImageUrl:urlString];
 
     
     UILabel *courseLabel = [[UILabel alloc] init];

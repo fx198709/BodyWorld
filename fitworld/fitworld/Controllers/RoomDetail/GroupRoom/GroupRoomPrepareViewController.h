@@ -22,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *startNowBtnHeightCon;
 
 @property (nonatomic, strong) NSString * event_id;
-
+//随机房间 还是自定义房间
+- (void)createSubRoomOrDelete:(int)type;
 @end
 
 NS_ASSUME_NONNULL_END

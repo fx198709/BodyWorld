@@ -6,7 +6,7 @@
 //
 
 #import "ChoosePeopleTypeView.h"
-
+#import "GroupRoomPrepareViewController.h"
 @implementation ChoosePeopleTypeView
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -61,6 +61,10 @@
     }
     if (laststate != chooseRoomState) {
         [self changeviewState];
+        if ([_parentVC respondsToSelector:@selector(createSubRoomOrDelete:)]) {
+            GroupRoomPrepareViewController * vc = _parentVC;
+            [vc createSubRoomOrDelete:chooseRoomState];
+        }
         NSLog(@"不一样");
     }
     

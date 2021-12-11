@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GroupMyRoom : BaseJSONModel
 
-@property (nonatomic , strong) NSArray<RoomUser>  *RoomUser;
+@property (nonatomic , strong) NSArray<RoomUser>  *room_user;
 @property (nonatomic , strong) NSString *sub_room_id;
 @property (nonatomic , strong) NSString *user_id;
 @property (nonatomic , strong) NSString *event_id;

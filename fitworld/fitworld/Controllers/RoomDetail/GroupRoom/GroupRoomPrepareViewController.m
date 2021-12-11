@@ -22,7 +22,6 @@
     UIScrollView * _bottomScrollview;
     UIScrollView *userlistView;
     Room *currentRoom;
-    NSArray *currentUserList;
     NSTimer * dataTimer;
     NSTimer * numberTimer;
 
@@ -36,35 +35,6 @@
 
 @implementation GroupRoomPrepareViewController
 
-- (void)deleteBtnClicked:(UIButton*)sender{
-//    /api/room/kickout
-    int tag = (int)sender.tag - 1000;
-    if (currentUserList.count > tag) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        UserInfo *user = [currentUserList objectAtIndex:tag];
-        AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
-
-        NSDictionary *baddyParams = @{
-                               @"event_id": self.event_id,
-                               @"friend_id":user.id};
-        [manager POST:@"room/kickout" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (CheckResponseObject(responseObject)) {
-//               删除成功，重新获取一次列表数据
-                [self reachData];
-            }else{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
-            }
-           
-          
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [CommonTools showNETErrorcontrol:self];
-        }];
-    }
-    
-}
-
 - (void)addPeopleBtnClick{
     ChoosePeopleViewController * peopleVC = [[ChoosePeopleViewController alloc] initWithNibName:@"ChoosePeopleViewController" bundle:nil];
     peopleVC.currentRoom = currentRoom;
@@ -74,33 +44,44 @@
 
 - (void)changeUserList{
 //
-    NSInteger x = userlistView.contentOffset.x;
     RemoveSubviews(userlistView, [NSArray array]);;
     int startX = 0;
-    BOOL isCreate = [currentRoom.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
+    BOOL isCreate = NO;
 //    房主要在第一位
     NSMutableArray *tempArray = [NSMutableArray array];
-    for (UserInfo *tempuser in currentUserList) {
+    for (RoomUser *tempuser in myRoomModel.room_user) {
         if (tempuser.is_creator) {
 //            房主要放第一个
+            if ([[APPObjOnce sharedAppOnce].currentUser.id  isEqualToString:tempuser.id]) {
+                isCreate = YES;
+            }
             [tempArray insertObject:tempuser atIndex:0];
         }else{
             [tempArray addObject:tempuser];
         }
     }
-    currentUserList = tempArray;
-    for (int index = 0; index < currentUserList.count; index++) {
-        UserInfo *user = currentUserList[index];
+    myRoomModel.room_user = (NSArray<RoomUser> *)tempArray;
+    for (int index = 0; index < 4; index++) {
+        RoomUser *user = nil;
+        if (myRoomModel.room_user.count > index) {
+            user = tempArray[index];
+        }
+        if (myRoomModel.room_user.count < 1 && index == 0) {
+//            如果一个人都没有，把自己加在第一个
+            user = [[RoomUser alloc] init];
+            user.avatar = [APPObjOnce sharedAppOnce].currentUser.avatar;
+            user.nickname = [APPObjOnce sharedAppOnce].currentUser.nickname;
+        }
         UserInfoView * userView = [[UserInfoView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
         userView.userInteractionEnabled = YES;
 //        团课 不能删除人
-        [userView changeDatawithModel:user andIsCreater:NO];
+        [userView changeDatawithRoomUser:user andIsCreater:NO];
         userView.deleteBtn.tag = 1000+ index;
-//        [userView.deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         startX = startX+80;
+        
     }
-    if (currentUserList.count < 4 && isCreate) {
+    if (tempArray.count < 4 && isCreate) {
 //        可以添加人
         UIView * userView = [[UIView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
@@ -119,7 +100,6 @@
     }
     int contentsizex = startX;
     userlistView.contentSize = CGSizeMake(contentsizex, 0);
-    userlistView.contentOffset =CGPointMake(contentsizex>x?x:contentsizex,0);
 }
 
 //修改倒计时按钮
@@ -203,28 +183,6 @@
         make.top.equalTo(_actionbackview.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
-   
-    
-//    UILabel *titleLabel = [[UILabel alloc] init];
-//    [_bottomScrollview addSubview:titleLabel];
-//
-//    titleLabel.text = ChineseStringOrENFun(@"修改成员", @"Change teammates");
-//    titleLabel.textColor = UIColor.whiteColor;
-//    titleLabel.font = SystemFontOfSize(20);
-//    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(_bottomScrollview);
-//        make.left.equalTo(_bottomScrollview).offset(15);
-//        make.right.equalTo(_bottomScrollview).offset(-15);
-//        make.height.mas_equalTo(25);
-//    }];
-//    UIView * chooseSubRoomTypeView = [[UIView alloc] init];
-//    [_bottomScrollview addSubview:chooseSubRoomTypeView];
-//    [chooseSubRoomTypeView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(_bottomScrollview);
-//        make.left.equalTo(_bottomScrollview).offset(15);
-//        make.right.equalTo(_bottomScrollview).offset(-15);
-//        make.height.mas_equalTo(50);
-//    }];
     //    随机匹配 邀请成员
     choosePeopleTypeView = [[[NSBundle mainBundle] loadNibNamed:@"ChoosePeopleTypeView" owner:self options:nil] lastObject];
     [_bottomScrollview addSubview:choosePeopleTypeView];
@@ -339,13 +297,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self reachData];
-    [self reachMyRoomData];
-//    dataTimer = [NSTimer timerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
-//        [self reachData];
-//    }];
-    
     [self changetillBtnTitle];
-    dataTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(reachData) userInfo:nil repeats:YES];
+    dataTimer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(reachData) userInfo:nil repeats:YES];
     numberTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changetillBtnTitle) userInfo:nil repeats:YES];
         
 }
@@ -378,16 +331,49 @@
             GroupMyRoom * myRoom = [[GroupMyRoom alloc] initWithDictionary:responseObject[@"recordset"] error:nil];
             self->myRoomModel = myRoom;
             [self->choosePeopleTypeView changeDataWithModel:myRoom];
+            [self changeUserList];
 
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 }
 
+//随机房间 还是自定义房间
+- (void)createSubRoomOrDelete:(int)type{
+    if (type == 0) {
+//        随机 sub_room_id
+        if (myRoomModel.sub_room_id.length > 0) {
+            NSDictionary *baddyParams = @{
+                                   @"sub_room_id":myRoomModel.sub_room_id
+                               };
+            [[AFAppNetAPIClient manager] POST:@"subroom/del" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+                if (CheckResponseObject(responseObject)) {
+//                    获取一次子房间信息
+                    [self reachMyRoomData];
+                }
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            }];
+        }
+    }else{
+        NSDictionary *baddyParams = @{
+                                @"event_id": self.event_id,
+                                @"friend_ids":@""
+                           };
+        [[AFAppNetAPIClient manager] POST:@"subroom/create" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (CheckResponseObject(responseObject)) {
+//                    获取一次子房间信息
+                [self reachMyRoomData];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        }];
+    }
+    
+}
 
 
 - (void)reachData{
     [self reachRoomDetailInfo];
+    [self reachMyRoomData];
 }
 
 - (void)reachRoomDetailInfo

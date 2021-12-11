@@ -11,7 +11,7 @@
 - (void)changeHeadData:(BaseObject*)headModel{
     
 }
-- (void)changeDataWithModel:(NSString*)url{
+- (void)changeDataWithUserImageUrl:(NSString*)url{
     RemoveSubviews(self, @[]);
     CGSize  parentSize = self.frame.size;
     _userBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, parentSize.width, parentSize.height)];
@@ -24,26 +24,30 @@
     [self addSubview:userImage];
     userImage.clipsToBounds = YES;
     userImage.layer.cornerRadius = (parentSize.width-4)/2;
-    [userImage sd_setImageWithURL:[NSURL URLWithString:url]];
+    if (url.length > 0) {
+        [userImage sd_setImageWithURL:[NSURL URLWithString:url]];
+    }else{
+        
+    }
 }
 
 - (void)changeCoachModelData:(CoachModel*)headModel{
     NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, headModel.avatar];
-    [self changeDataWithModel:urlString];
+    [self changeDataWithUserImageUrl:urlString];
 }
 
 - (void)changeUserInfoModelData:(UserInfo*)headModel{
     NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, headModel.avatar];
-    [self changeDataWithModel:urlString];
+    [self changeDataWithUserImageUrl:urlString];
 }
 - (void)changeRoomModelData:(Room*)roomModel{
     NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, roomModel.room_creator.avatar];
-    [self changeDataWithModel:urlString];
+    [self changeDataWithUserImageUrl:urlString];
 }
 
 - (void)changeCommentModelData:(CoachComment*)comment{
     NSString *urlString = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, comment.avatar];
-    [self changeDataWithModel:urlString];
+    [self changeDataWithUserImageUrl:urlString];
 }
 
 
