@@ -195,6 +195,8 @@
 		DDACD7ED27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDACD7EC27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib */; };
 		DDACD7F127650CEA00CCAAA1 /* ChooseGroupPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDACD7EE27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.m */; };
 		DDACD7F227650CEA00CCAAA1 /* ChooseGroupPeopleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDACD7EF27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.xib */; };
+		DDACD7F82765D50D00CCAAA1 /* GroupRoomViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DDACD7F72765D50D00CCAAA1 /* GroupRoomViewControl.m */; };
+		DDACD7FB2765E2DE00CCAAA1 /* SliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDACD7FA2765E2DE00CCAAA1 /* SliderView.m */; };
 		DDB1380427489A2E009A44FD /* AfterTrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB1380227489A2E009A44FD /* AfterTrainingViewController.m */; };
 		DDB1380527489A2E009A44FD /* AfterTrainingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */; };
 		DDB1380A2748E347009A44FD /* Train1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB138082748E347009A44FD /* Train1TableViewCell.m */; };
@@ -596,6 +598,10 @@
 		DDACD7EE27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseGroupPeopleViewController.m; sourceTree = "<group>"; };
 		DDACD7EF27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseGroupPeopleViewController.xib; sourceTree = "<group>"; };
 		DDACD7F027650CEA00CCAAA1 /* ChooseGroupPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseGroupPeopleViewController.h; sourceTree = "<group>"; };
+		DDACD7F62765D50D00CCAAA1 /* GroupRoomViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupRoomViewControl.h; sourceTree = "<group>"; };
+		DDACD7F72765D50D00CCAAA1 /* GroupRoomViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupRoomViewControl.m; sourceTree = "<group>"; };
+		DDACD7F92765E2DE00CCAAA1 /* SliderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SliderView.h; sourceTree = "<group>"; };
+		DDACD7FA2765E2DE00CCAAA1 /* SliderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SliderView.m; sourceTree = "<group>"; };
 		DDB1380127489A2E009A44FD /* AfterTrainingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AfterTrainingViewController.h; sourceTree = "<group>"; };
 		DDB1380227489A2E009A44FD /* AfterTrainingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AfterTrainingViewController.m; sourceTree = "<group>"; };
 		DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AfterTrainingViewController.xib; sourceTree = "<group>"; };
@@ -1237,6 +1243,8 @@
 				DDB1380327489A2E009A44FD /* AfterTrainingViewController.xib */,
 				DDFA7587275D9BD700EFD0B1 /* UserInfoView.h */,
 				DDFA7588275D9BD700EFD0B1 /* UserInfoView.m */,
+				DDACD7F92765E2DE00CCAAA1 /* SliderView.h */,
+				DDACD7FA2765E2DE00CCAAA1 /* SliderView.m */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -1416,6 +1424,8 @@
 		DDFA757627591A4900EFD0B1 /* GroupRoom */ = {
 			isa = PBXGroup;
 			children = (
+				DDACD7F62765D50D00CCAAA1 /* GroupRoomViewControl.h */,
+				DDACD7F72765D50D00CCAAA1 /* GroupRoomViewControl.m */,
 				DDACD7F027650CEA00CCAAA1 /* ChooseGroupPeopleViewController.h */,
 				DDACD7EE27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.m */,
 				DDACD7EF27650CEA00CCAAA1 /* ChooseGroupPeopleViewController.xib */,
@@ -1604,6 +1614,7 @@
 				047DC209268CD09900A3E37E /* main.m in Sources */,
 				A296D69B2754D00400F73259 /* RoomCreator.m in Sources */,
 				A2563010273FE6EA0030D6B2 /* AddFriendPageInfo.m in Sources */,
+				DDACD7F82765D50D00CCAAA1 /* GroupRoomViewControl.m in Sources */,
 				DD51EE4F273FB9BE00153A67 /* ChoosePeopleViewController.m in Sources */,
 				DD6EDB6F27344A50002B0A8E /* MessageListModel.m in Sources */,
 				DD6EDB16272CE587002B0A8E /* SelectClassHeadview.m in Sources */,
@@ -1628,6 +1639,7 @@
 				0462BD9A26920BE8005827D1 /* MainViewController.m in Sources */,
 				04EC01F426BD8AC000DC0103 /* ViewerPanel.m in Sources */,
 				04552B532696C3FD00C78706 /* QRCodeReaderViewController.m in Sources */,
+				DDACD7FB2765E2DE00CCAAA1 /* SliderView.m in Sources */,
 				A2723EF6273BD07700388B01 /* NSDate+MT.m in Sources */,
 				DDB1380E2748E36F009A44FD /* BaseTableViewCell.m in Sources */,
 				A2A94DE8273FD8DD00D02C77 /* AddFriendViewController.m in Sources */,

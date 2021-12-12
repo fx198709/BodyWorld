@@ -9,6 +9,7 @@
 #import "UIView+MT.h"
 #import "Room.h"
 #import "RoomVC.h"
+#import "GroupRoomViewControl.h"
 
 @implementation APPObjOnce
 
@@ -104,11 +105,26 @@
         [ConfigManager sharedInstance].eventId = selectRoom.event_id;
         [ConfigManager sharedInstance].nickName = nickName;
         [[ConfigManager sharedInstance] saveConfig];
-
+        
         NSDictionary *codeDict = @{@"eid":selectRoom.event_id, @"name":nickName};
-        RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
-        [invc.navigationController pushViewController:roomVC animated:YES];
-        roomVC.invc = invc;
+        BOOL isbuddy = YES;
+        if (selectRoom.course.type_int == 1) {
+            isbuddy  = NO;
+        }
+        if (selectRoom.type_int == 1) {
+            isbuddy  = NO;
+        }
+        if (!isbuddy) {
+//            团课
+            GroupRoomViewControl *roomVC = [[GroupRoomViewControl alloc] initWith:codeDict];
+            [invc.navigationController pushViewController:roomVC animated:YES];
+            roomVC.invc = invc;
+        }else{
+            RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
+            [invc.navigationController pushViewController:roomVC animated:YES];
+            roomVC.invc = invc;
+        }
+       
     }
     
 }

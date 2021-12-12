@@ -13,7 +13,7 @@
 #import "GroupRoomDetailViewController.h"
 #import "ChooseGroupPeopleViewController.h"
 #import "MainViewController.h"
-#import "RoomVC.h"
+#import "GroupRoomViewControl.h"
 #import "UserInfoView.h"
 #import "GroupMyRoom.h"
 #import "ChoosePeopleTypeView.h"
@@ -412,7 +412,7 @@
     codeDict[@"name"] =nickName;
 
 //    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
-    RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
+    GroupRoomViewControl *roomVC = [[GroupRoomViewControl alloc] initWith:codeDict];
     [self.navigationController pushViewController:roomVC animated:YES];
     roomVC.invc = self;
 }
@@ -505,7 +505,7 @@
         }else{
             [CommonTools showAlertDismissWithResponseContent:responseObject control:self];
 //            弹出错误，然后开启
-            hasDealPushData = YES;//表示已经处理过推送消息了 然后开启定时器
+            self->hasDealPushData = YES;//表示已经处理过推送消息了 然后开启定时器
             [self startDataTimer];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -601,7 +601,7 @@
             codeDict[@"name"] =nickName;
         
         //    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
-            RoomVC *roomVC = [[RoomVC alloc] initWith:codeDict];
+            GroupRoomViewControl *roomVC = [[GroupRoomViewControl alloc] initWith:codeDict];
             [self.navigationController pushViewController:roomVC animated:YES];
             roomVC.invc = self;
         }else{

@@ -12,51 +12,10 @@
 #import "TUIKit.h"
 #import "AfterTrainingViewController.h"
 #import "RoomVCSettingView.h"
+#import "SliderView.h"
+#import "GroupMyRoom.h"
 
 #define LOG_FOLDER        @"Log"
-
-@interface SliderView : UIView
-{
-    UIImageView *backview;//背景view
-    UIImageView *circleview; //圆点
-}
--(void)changeSliderWithData:(Room*)roomData;
-
-@end
-@implementation SliderView
-
--(void)changeSliderWithData:(Room*)roomData{
-    //    已经开始
-    int difTime = [[NSDate date] timeIntervalSince1970] - roomData.start_time;
-    if (difTime > 0 ) {
-        int startx = 1;
-        int with = self.frame.size.width-self.frame.size.height-startx*2;
-        if (!backview) {
-            backview = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.height/2+startx, self.frame.size.height/3, with, self.frame.size.height/3)];
-            backview.layer.cornerRadius = backview.frame.size.height/2;
-            backview.clipsToBounds = YES;
-            backview.image = [UIImage imageNamed:@"activity_p2c_live_vedio_process"];
-            backview.contentMode = UIViewContentModeScaleAspectFill;
-            [self addSubview:backview];
-            circleview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"activity_p2c_live_vedio_process_dot"]];
-            circleview.frame = CGRectMake(startx, 0, self.frame.size.height, self.frame.size.height);
-            circleview.layer.cornerRadius = circleview.frame.size.height/2;
-            circleview.clipsToBounds = YES;
-            [self addSubview:circleview];
-        }
-        if (difTime < roomData.duration*60) {
-            int realStartx = startx+ difTime*with/roomData.duration/60;
-            circleview.x = realStartx;
-        }else{
-            circleview.x =startx+with;
-        }
-    }
-    
-    
-}
-
-@end
-
 
 @interface GroupRoomViewControl () <VConductorClientDelegate> {
     BOOL canErrorToPOP;//进入房间失败，就可以pop出去
@@ -74,16 +33,16 @@
     UILabel *leftTimeLabel;
     UIView *leftTimeBackview;
     RoomVCSettingView * settingView;//设置视图
+    GroupMyRoom *myRoomModel; //我的房间信息，主要是子房间信息，
+    NSTimer * groupdataTimer;//团课定时器
 }
 
 @property (nonatomic, strong) NSDictionary* mCode;
 @property (nonatomic, strong) MBProgressHUD *mHud;
 
 @property (nonatomic, strong) UIImageView* mBkImg;
-//@property (nonatomic, strong) HeaderPanel *mHeaderPanel; //头部的信息和操作
 @property (nonatomic, strong) SidePanel *mSidePanel;
 @property (nonatomic, strong) MainPanel* mMainPanel;
-@property (nonatomic, strong) ViewerPanel* mViewerPanel;
 @property (nonatomic, strong) NSMutableArray* guestPanels;
 @property (nonatomic, assign) BOOL mFullScreen;
 
@@ -100,7 +59,6 @@
 //@synthesize mHeaderPanel;
 @synthesize mSidePanel;
 @synthesize mMainPanel;
-@synthesize mViewerPanel;
 @synthesize mFullScreen;
 
 - (id)initWith:(NSDictionary*)code {
@@ -134,10 +92,6 @@
     
     
     settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
-    
-    //    mHeaderPanel = [HeaderPanel new];
-    //    [self.view addSubview:mHeaderPanel];
-    
     _bottomPanelView = [[UIView alloc] init];
     [self.view addSubview:_bottomPanelView];
     
@@ -151,67 +105,14 @@
     mMainPanel.layer.masksToBounds = YES;
     [self.view addSubview:mMainPanel];
     
-    //  mViewerPanel = [ViewerPanel new];
-    //  mViewerPanel.layer.cornerRadius = 5;
-    //  mViewerPanel.layer.masksToBounds = YES;
-    //  [self.view addSubview:mViewerPanel];
-    
     mFullScreen = NO;
     [self layoutPanel];
-    
-    
-    
     __weak GroupRoomViewControl* weakSelf = self;
-    //    mHeaderPanel.pressBtnQuit = ^() {
-    //        GroupRoomViewControl* strongSelf = weakSelf;
-    //        if (!strongSelf ) {
-    //            return;
-    //        }
-    //        [strongSelf actQuit];
-    //    };
-    //    mHeaderPanel.pressBtnSwitchMode = ^() {
-    //        GroupRoomViewControl* strongSelf = weakSelf;
-    //        if (!strongSelf ) {
-    //            return;
-    //        }
-    //        [strongSelf actSwitchMode];
-    //    };
-    //    mHeaderPanel.pressBtnHand = ^() {
-    //        GroupRoomViewControl* strongSelf = weakSelf;
-    //        if (!strongSelf ) {
-    //            return;
-    //        }
-    //        [strongSelf actHand];
-    //    };
-    //    mHeaderPanel.pressBtnMic = ^() {
-    //        GroupRoomViewControl* strongSelf = weakSelf;
-    //        if (!strongSelf ) {
-    //            return;
-    //        }
-    //        [strongSelf actMic];
-    //    };
-    //    mHeaderPanel.pressBtnCamera = ^() {
-    //        GroupRoomViewControl* strongSelf = weakSelf;
-    //        if (!strongSelf ) {
-    //            return;
-    //        }
-    //        [strongSelf actCamera];
-    //    };
-    //    mHeaderPanel.pressBtnFullScreen = ^() {
-    //        GroupRoomViewControl* strongSelf = weakSelf;
-    //        if (!strongSelf ) {
-    //            return;
-    //        }
-    //        [strongSelf actFullScreen];
-    //    };
-    
     mMainPanel.viewDoubleTapped = ^{
         GroupRoomViewControl* strongSelf = weakSelf;
         if (!strongSelf ) {
             return;
         }
-        //        全屏
-        //        [strongSelf actFullScreen];
     };
     
     mSidePanel.pressBtnChat = ^() {
@@ -232,36 +133,7 @@
 #pragma mark 设置所有的视图的视频
 - (void)layoutPanel {
     if ([VConductorClient sharedInstance].isViewer) {
-        //        [mHeaderPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        //            make.left.and.top.equalTo(self.view);
-        //            make.width.equalTo(self.view);
-        //            if (self.mFullScreen) {
-        //                make.height.equalTo(@0);
-        //            } else {
-        //                make.height.equalTo(@90);
-        //            }
-        //        }];
-        //        [mSidePanel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        //            make.left.equalTo(self.view.mas_right);
-        //            make.top.equalTo(self.mHeaderPanel.mas_bottom);
-        //            make.width.equalTo(@200);
-        //            make.bottom.equalTo(self.view).offset(-sidePadding);
-        //        }];
-        //        [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        //            make.left.equalTo(self.view).offset(sidePadding);
-        //            make.top.equalTo(self.mHeaderPanel.mas_bottom);
-        //            make.right.equalTo(self.mSidePanel.mas_left).offset(-midPadding);
-        //            make.bottom.equalTo(self.mHeaderPanel.mas_bottom);
-        //        }];
-        //        [mViewerPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        //            make.left.equalTo(self.view).offset(sidePadding);
-        //            make.top.equalTo(self.mMainPanel.mas_bottom);
-        //            make.right.equalTo(self.mSidePanel.mas_left).offset(-midPadding);
-        //            make.bottom.equalTo(self.view).offset(-sidePadding);
-        //        }];
-        //        [UIView animateWithDuration:0.3 animations:^{
-        //            [self.view layoutIfNeeded];
-        //        }];
+    
     } else {
         [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view);
@@ -287,6 +159,8 @@
             NSDictionary * memberDic = [client getGustMemberData];
             //            拷贝一份key出来 这边的key就是userID
             NSMutableArray *keysArray = [[NSMutableArray alloc] initWithArray:memberDic.allKeys];
+//            团课 需要判断 这些成员，是不是自己直播间的
+            
             int  guestPanelscount = (int)self.guestPanels.count;
             for (int  i = guestPanelscount -1; i>= 0;i--) {
                 GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:i];
@@ -367,6 +241,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    [groupdataTimer invalidate];
+    groupdataTimer = nil;
+    groupdataTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(reachMyRoomData) userInfo:nil repeats:YES];
 };
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -381,6 +258,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [super viewWillDisappear:animated];
+    [groupdataTimer invalidate];
+    groupdataTimer = nil;
 }
 
 
@@ -486,12 +365,6 @@
     if (modeChanged) {
         [self layoutPanel];
         [mMainPanel syncRemoteView];
-        if ([VConductorClient sharedInstance].isViewer) {
-            NSString *liveUrl = [[VConductorClient sharedInstance] getViewerUrl];
-            [mViewerPanel startPlay:liveUrl];
-        } else {
-            [mViewerPanel stopPlay];
-        }
     }
 }
 
@@ -841,6 +714,24 @@
     trainingvc.invc = self.invc;
     [self.navigationController pushViewController:trainingvc animated:YES];
 }
+
+
+#pragma mark 获取子房间详情
+- (void)reachMyRoomData{
+    NSDictionary *baddyParams = @{
+                           @"event_id": mCode[@"eid"],
+                           @"user_id":[APPObjOnce sharedAppOnce].currentUser.id
+                       };
+    [[AFAppNetAPIClient manager] GET:@"subroom/myroom" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (CheckResponseObject(responseObject)) {
+            GroupMyRoom * myRoom = [[GroupMyRoom alloc] initWithDictionary:responseObject[@"recordset"] error:nil];
+            self->myRoomModel = myRoom;
+//            获取子房间详情之后，这边需要重新
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }];
+}
+
 
 
 @end

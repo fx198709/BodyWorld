@@ -182,10 +182,10 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     self.isTapBack = NO;
-//    删除roomvc
+//    删除roomvc 
     NSMutableArray *marr = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
        for (UIViewController *vc in marr) {
-           if ([vc isKindOfClass:NSClassFromString(@"RoomVC")]) {
+           if ([vc isKindOfClass:NSClassFromString(@"RoomVC")] && [vc isKindOfClass:NSClassFromString(@"GroupRoomViewControl")] ) {
                [marr removeObject:vc];
                break;
            }
