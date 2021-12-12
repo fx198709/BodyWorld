@@ -35,18 +35,17 @@
     RoomVCSettingView * settingView;//设置视图
     GroupMyRoom *myRoomModel; //我的房间信息，主要是子房间信息，
     NSTimer * groupdataTimer;//团课定时器
+    
+    CGSize panelSize;
 }
 
 @property (nonatomic, strong) NSDictionary* mCode;
 @property (nonatomic, strong) MBProgressHUD *mHud;
 
 @property (nonatomic, strong) UIImageView* mBkImg;
-@property (nonatomic, strong) SidePanel *mSidePanel;
-@property (nonatomic, strong) MainPanel* mMainPanel;
-@property (nonatomic, strong) NSMutableArray* guestPanels;
-@property (nonatomic, assign) BOOL mFullScreen;
-
-@property (nonatomic, strong) UIView *bottomPanelView;
+@property (nonatomic, strong) SidePanel *mSidePanel; //自己的view
+@property (nonatomic, strong) MainPanel* mMainPanel; //教练的view
+@property (nonatomic, strong) NSMutableArray* guestPanels;//其他人的
 
 @end
 
@@ -59,11 +58,11 @@
 //@synthesize mHeaderPanel;
 @synthesize mSidePanel;
 @synthesize mMainPanel;
-@synthesize mFullScreen;
 
 - (id)initWith:(NSDictionary*)code {
     self = [super init];
     mCode = code;
+    panelSize = CGSizeMake(ScreenWidth/3, 200);
     return self;
 }
 
@@ -92,20 +91,22 @@
     
     
     settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
-    _bottomPanelView = [[UIView alloc] init];
-    [self.view addSubview:_bottomPanelView];
-    
-    mSidePanel = [SidePanel new];
-    mSidePanel.layer.cornerRadius = 5;
-    mSidePanel.layer.masksToBounds = YES;
-    [_bottomPanelView addSubview:mSidePanel];
-    
+   
     mMainPanel = [MainPanel new];
     mMainPanel.layer.cornerRadius = 5;
     mMainPanel.layer.masksToBounds = YES;
     [self.view addSubview:mMainPanel];
     
-    mFullScreen = NO;
+    mSidePanel = [SidePanel new];
+    mSidePanel.layer.cornerRadius = 5;
+    mSidePanel.layer.masksToBounds = YES;
+    [self.view addSubview:mSidePanel];
+    mSidePanel.frame = CGRectMake(0, 100, panelSize.width , panelSize.height);
+//   给视图 添加手势
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragReplyButton:)];
+    [mSidePanel addGestureRecognizer:panGestureRecognizer];
+    
+    
     [self layoutPanel];
     __weak GroupRoomViewControl* weakSelf = self;
     mMainPanel.viewDoubleTapped = ^{
@@ -139,22 +140,14 @@
             make.left.equalTo(self.view);
             make.right.equalTo(self.view);
             make.top.equalTo(self.view);
-            make.height.equalTo(self.view).multipliedBy(0.4);
+            make.height.equalTo(self.view);
         }];
         
-        [_bottomPanelView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view);
-            make.right.equalTo(self.view);
-            make.top.equalTo(self.mMainPanel.mas_bottom).offset(5);
-            make.bottom.equalTo(self.view);
-        }];
-        [self.view setNeedsLayout];
-        [self.view layoutIfNeeded];
+       
         WeakSelf
         [UIView animateWithDuration:0.3 animations:^{
             //    获取所有的成员列表
             StrongSelf(wSelf);
-            CGRect bottomframe = self->_bottomPanelView.frame;
             VConductorClient *client = [VConductorClient sharedInstance];
             NSDictionary * memberDic = [client getGustMemberData];
             //            拷贝一份key出来 这边的key就是userID
@@ -180,57 +173,26 @@
 //            还有没有添加进入的人员
             if (keysArray.count > 0) {
                 for (NSString *userID in keysArray) {
-                    //                    ClassMember *currentMember = [memberDic objectForKey:userID];
-                    //                    if ([currentMember isonTheAir]) {
-                    if (strongSelf.guestPanels.count < 5) {
-//                        游客小于5个，这边才用
+                   
+                    if (strongSelf.guestPanels.count < 3) {
+//                        游客小于3个，这边才用
                         GuestPanel * guestpanel = [[GuestPanel alloc] init];
                         guestpanel.mUserId = userID;
                         [strongSelf.guestPanels addObject:guestpanel];
-                        [self->_bottomPanelView addSubview:guestpanel];
+                        int showguestcount = (int)strongSelf.guestPanels.count;
+                        [self.view addSubview:guestpanel];
+                        CGFloat startX = ScreenWidth/3*((showguestcount)%3);
+                        CGFloat startY = showguestcount > 2? self->panelSize.height:0+100;
+                        guestpanel.frame = CGRectMake(startX, startY, self->panelSize.width, self->panelSize.height);
+                        
+                        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragReplyButton:)];
+                        [guestpanel addGestureRecognizer:panGestureRecognizer];
                         [guestpanel attachGuestRenderView];
                         ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
                         if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
                             guestpanel.mMyLabel.text = [[[currentMember copyInfo].custom objectForKey:@"internal"] objectForKey:@"nickName"];
-                            
                         }
                         guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
-                    }
-                   
-                    //
-                }
-            }
-            int showguestcount = self.guestPanels.count;
-            if (showguestcount == 0) {
-                //        清楚所有的直播
-                self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width, bottomframe.size.height);
-                
-            }else{
-                if (showguestcount == 1){
-                    //            一行两个
-                    self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/2, bottomframe.size.height);
-                    GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:0];
-                    guestpanel.frame = CGRectMake(bottomframe.size.width/2, 0, bottomframe.size.width/2, bottomframe.size.height);
-                }else if (showguestcount == 3 || showguestcount == 2){
-                    //            一行2个
-                    self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/2, bottomframe.size.height/2);
-                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
-                        GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-                        CGFloat startX = index%2 == 0 ? bottomframe.size.width/2:0;
-                        CGFloat startY = index > 0? bottomframe.size.height/2:0;
-                        guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/2, bottomframe.size.height/2);
-                        
-                    }
-                    
-                } else{
-                    //            一行3个 2行
-                    self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/3, bottomframe.size.height/2);
-                    for (int index = 0; index < strongSelf.guestPanels.count && index < 5; index++) {
-                        GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-                        CGFloat startX = bottomframe.size.width/3*((index+1)%3);
-                        CGFloat startY = index > 1? bottomframe.size.height/2:0;
-                        guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/3, bottomframe.size.height/2);
-                        
                     }
                 }
             }
@@ -305,7 +267,7 @@
 }
 
 - (void)actFullScreen {
-    mFullScreen = !mFullScreen;
+//    mFullScreen = !mFullScreen;
     [self layoutPanel];
 }
 
@@ -372,13 +334,6 @@
     [mMainPanel syncRemoteView];
 }
 
-- (void)showGroupChatView {
-    TUIConversationCellData *data = [[TUIConversationCellData alloc] init];
-    //  data.groupID = [[VConductorClient sharedInstance] getImGroupId];  // 如果是群会话，传入对应的群 ID
-    TUIChatController *vc = [[TUIChatController alloc] initWithConversation:data];
-    
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 - (void)showHud:(NSString*)msg withDuration:(NSInteger)delay {
     mHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -394,44 +349,6 @@
 
 - (void)hideHud {
     [mHud hideAnimated:YES];
-}
-
-- (void)shareLog {
-    NSString *fileName = [[NSProcessInfo processInfo] globallyUniqueString];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* logDir = [[paths objectAtIndex:0] stringByAppendingPathComponent:LOG_FOLDER];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:logDir isDirectory:nil]){
-        [[NSFileManager defaultManager] createDirectoryAtPath:logDir withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    
-    NSString *logFilePath = [logDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt",fileName]];
-    
-    // [[VSRTC sharedInstance] startFileLog:self.logFilePath];
-    // [[VSRTC sharedInstance] stopFileLog];
-    
-    //在iOS 11不显示分享选项了
-    //定义URL数组
-    NSArray *urls=@[[ NSURL fileURLWithPath:logFilePath]];
-    //创建分享的类型,注意这里没有常见的微信,朋友圈以QQ等,但是罗列完后,实际运行是相应按钮的,所以可以运行.
-    
-    UIActivityViewController *activituVC=[[UIActivityViewController alloc]initWithActivityItems:urls applicationActivities:nil];
-    NSArray *cludeActivitys = @[UIActivityTypePostToFacebook,
-                                UIActivityTypePostToTwitter,
-                                UIActivityTypePostToWeibo,
-                                UIActivityTypePostToVimeo,
-                                UIActivityTypeMessage,
-                                UIActivityTypeMail,
-                                UIActivityTypeCopyToPasteboard,
-                                UIActivityTypePrint,
-                                UIActivityTypeAssignToContact,
-                                UIActivityTypeSaveToCameraRoll,
-                                UIActivityTypeAddToReadingList,
-                                UIActivityTypePostToFlickr,
-                                UIActivityTypePostToTencentWeibo];
-    activituVC.excludedActivityTypes = cludeActivitys;
-    
-    //显示分享窗口
-    [self presentViewController:activituVC animated:YES completion:nil];
 }
 
 //改变成员
@@ -614,7 +531,7 @@
             [self.view addSubview:settingBtn];
             [settingBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(mMainPanel).offset(-20);
-                make.top.equalTo(mMainPanel.mas_bottom).offset(50);
+                make.top.equalTo(self.view).offset(250);
                 make.size.mas_equalTo(CGSizeMake(40, 40));
             }];
             [settingBtn addTarget:self action:@selector(settingBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -732,6 +649,67 @@
     }];
 }
 
+
+#pragma mark 获取子房间详情
+- (void)dragReplyButton:(UIPanGestureRecognizer *)recognizer {
+    UIView *moveView = recognizer.view;
+    CGSize selfSize = self.view.bounds.size;
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        
+    } else if (recognizer.state == UIGestureRecognizerStateChanged) {
+        CGPoint location = [recognizer locationInView:self.view];
+        
+        if (location.y < 0 || location.y > selfSize.height) {
+            return;
+        }
+        CGPoint translation = [recognizer translationInView:self.view];
+ 
+        recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,recognizer.view.center.y + translation.y);
+        [recognizer setTranslation:CGPointZero inView:self.view];
+        
+    } else if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
+        CGRect currentFrame = moveView.frame;
+        
+        if (currentFrame.origin.x < 0) {
+            currentFrame.origin.x = 0;
+            if (currentFrame.origin.y < 0) {
+                currentFrame.origin.y = 4;
+            } else if ((currentFrame.origin.y + currentFrame.size.height) > selfSize.height) {
+                currentFrame.origin.y = selfSize.height - currentFrame.size.height;
+            }
+            [UIView animateWithDuration:0.5 animations:^{
+                moveView.frame = currentFrame;
+            }];
+            return;
+        }
+        if ((currentFrame.origin.x + currentFrame.size.width) > selfSize.width) {
+            currentFrame.origin.x = selfSize.width - currentFrame.size.width;
+            if (currentFrame.origin.y < 0) {
+                currentFrame.origin.y = 4;
+            } else if ((currentFrame.origin.y + currentFrame.size.height) > selfSize.height) {
+                currentFrame.origin.y = selfSize.height - currentFrame.size.height;
+            }
+            [UIView animateWithDuration:0.5 animations:^{
+                moveView.frame = currentFrame;
+            }];
+            return;
+        }
+        if (currentFrame.origin.y < 0) {
+            currentFrame.origin.y = 4;
+            [UIView animateWithDuration:0.5 animations:^{
+                moveView.frame = currentFrame;
+            }];
+            return;
+        }
+        if ((currentFrame.origin.y + currentFrame.size.height) > selfSize.height) {
+            currentFrame.origin.y = selfSize.height - currentFrame.size.height;
+            [UIView animateWithDuration:0.5 animations:^{
+                moveView.frame = currentFrame;
+            }];
+            return;
+        }
+    }
+}
 
 
 @end
