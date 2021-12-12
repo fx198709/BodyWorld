@@ -329,6 +329,11 @@
     [self showAlertDismissWithContent:error showWaitTime:0.2 afterDelay:2 control:control];
 }
 
++ (void)showAlertDismissWithResponseContent:(id)response control:(UIViewController*)control{
+    [self showAlertDismissWithContent:[response objectForKey:@"msg"] showWaitTime:0.2 afterDelay:2 control:control];
+}
+
+
 + (void)showAlertDismissWithContent:(NSString*)content control:(UIViewController*)control{
     [self showAlertDismissWithContent:content showWaitTime:0.2 afterDelay:2 control:control];
 }

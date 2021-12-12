@@ -114,6 +114,78 @@
     [self changeChoosePeopleTypeOutView];
 }
 
+//展示是否接受的alertControl
+- (void)showAcceptAlertControl
+{
+    //    [self.navigationController popViewControllerAnimated:YES];
+    NSString *titleString = ChineseStringOrENFun(@"提示", @"Alert");
+    NSString *contentString = ChineseStringOrENFun(@"您是否接受邀请，加入他的房间", @"");
+    UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:titleString message:contentString preferredStyle:UIAlertControllerStyleAlert];
+    __weak UIAlertController *weakalert = alertControl;
+    NSString *cancelString = ChineseStringOrENFun(@"取消", @"Cancel");
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelString style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        __strong UIAlertController* strongalert = weakalert;
+        [self refuseInvite:strongalert];
+    }];
+    [alertControl addAction:cancelAction];
+    NSString *OKString = ChineseStringOrENFun(@"确定", @"OK");
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:OKString style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
+        __strong UIAlertController* strongalert = weakalert;
+        [self agreeInvite:strongalert];
+    }];
+    [alertControl addAction:sureAction];
+    [self presentViewController:alertControl animated:YES completion:nil];
+    
+}
+
+
+- (void)agreeInvite:(UIAlertController*)alert{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    NSDictionary *baddyParams = @{
+                           @"sub_room_id": myRoomModel.sub_room_id
+                       };
+    [manager POST:@"subroom/agree" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (CheckResponseObject(responseObject)) {
+//            同意 直接返回 开启timer
+            self->hasDealPushData = YES;//表示已经处理过推送消息了 然后开启定时器
+            [self startDataTimer];
+        }else{
+            [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:self];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [CommonTools showNETErrorcontrol:self];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+}
+
+- (void)refuseInvite:(UIAlertController*)alert{
+//            [alertControl dismissViewControllerAnimated:YES completion:nil];
+//    sub_room_id
+//    user_id
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    NSDictionary *baddyParams = @{
+                           @"sub_room_id": myRoomModel.sub_room_id,
+                           @"user_id": [APPObjOnce sharedAppOnce].currentUser.id
+                       };
+    [manager POST:@"subroom/refuse" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (CheckResponseObject(responseObject)) {
+//            拒绝 直接返回
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:self];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [CommonTools showNETErrorcontrol:self];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+}
+
+
 //修改对外的view
 - (void)changeChoosePeopleTypeOutView{
     if (!_bottomScrollview) {
@@ -122,8 +194,9 @@
     BOOL needAddview = NO;//是否需要添加  随机 邀请朋友的视图
 //    查看自己是不是在别人的子房间内
     if (myRoomModel.is_accept == 0) {
-        if (myRoomModel.sub_room_id && myRoomModel.sub_room_id.length >0) {
+        if (myRoomModel.sub_room_id && myRoomModel.sub_room_id.length >0 && !myRoomModel.is_creator) {
             //        弹出选择的alertview 有子房间信息，有人邀请的
+            [self showAcceptAlertControl];
             return;
         }else{
 //            需要加上头部的信息
@@ -370,11 +443,19 @@
     [self reachData];
     [self changetillBtnTitle];
 //    处理过推送信息，或者没有推送信息，这边才开启
-    if (hasDealPushData) {
-        dataTimer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(reachData) userInfo:nil repeats:YES];
-    }
+    [self startDataTimer];
+    [numberTimer invalidate];
+    numberTimer = nil;
     numberTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changetillBtnTitle) userInfo:nil repeats:YES];
         
+}
+
+- (void)startDataTimer{
+    if (hasDealPushData) {
+        [dataTimer invalidate];
+        dataTimer = nil;
+        dataTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(reachData) userInfo:nil repeats:YES];
+    }
 }
 
 
@@ -400,20 +481,20 @@
 - (void)reachMyRoomData{
 //    GET /api/subroom/myroom?user_id=46009524363987460&event_id=
 //    extended_data
-//    您是否接受邀请，加入他的房间 http://1.117.70.210:8091/api/subroom/myroom?user_id=45169669346167300&event_id=384827458639104516&sub_room_id=2021121202_ddygra
+//     http://1.117.70.210:8091/api/subroom/myroom?user_id=45169669346167300&event_id=384827458639104516&sub_room_id=2021121202_ddygra
     
 //    2021121202_ddygra
     
 //http://1.117.70.210:8091/api/subroom/agree
 //http://1.117.70.210:8091/api/subroom/refuse
-    NSDictionary *baddyParams = @{
+    NSDictionary *baddyParams1 = @{
                            @"event_id": self.event_id,
                            @"user_id":[APPObjOnce sharedAppOnce].currentUser.id
                        };
-//     baddyParams = [NSMutableDictionary dictionaryWithDictionary:baddyParams];
-//    if (self.extended_data.allKeys.count ) {
-//        [baddyParams setObject:[self.extended_data objectForKey:@"sub_room_id"] forKey:@"sub_room_id"];
-//    }
+    NSMutableDictionary *baddyParams = [NSMutableDictionary dictionaryWithDictionary:baddyParams1];
+    if (self.extended_data.allKeys.count && !hasDealPushData) {
+        [baddyParams setObject:[self.extended_data objectForKey:@"sub_room_id"] forKey:@"sub_room_id"];
+    }
 
     [[AFAppNetAPIClient manager] GET:@"subroom/myroom" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         if (CheckResponseObject(responseObject)) {
@@ -421,9 +502,14 @@
             self->myRoomModel = myRoom;
 //            获取子房间详情之后，这边需要重新
             [self changeviewAfterRearchMyRoom];
-
+        }else{
+            [CommonTools showAlertDismissWithResponseContent:responseObject control:self];
+//            弹出错误，然后开启
+            hasDealPushData = YES;//表示已经处理过推送消息了 然后开启定时器
+            [self startDataTimer];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [CommonTools showNETErrorcontrol:self];
     }];
 }
 
@@ -487,15 +573,10 @@
                     [self changetillBtnTitle];
                 }
             }
-
-            
-          
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [CommonTools showNETErrorcontrol:self];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
-    
- 
 }
 
 //http://1.117.70.210:8091/api/room/user?event_id=380559132387707396
@@ -547,18 +628,7 @@
 
 - (void)backPopViewcontroller:(id) sender
 {
-    UIViewController * popVC = nil;
-    NSArray *vcs = self.navigationController.viewControllers;
-    for (UIViewController * vc in vcs) {
-        if ([vc isKindOfClass:[MainViewController class]]) {
-            popVC = vc;
-        }
-    }
-    if (popVC) {
-        [self.navigationController popToViewController:popVC animated:YES];
-    }else{
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 //每次进入，都调用一下 room/join接口，表示自己进入了
 - (void)joinRoom{

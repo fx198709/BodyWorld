@@ -17,7 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)showAlertDismissWithContent:(NSString*)content showWaitTime:(NSTimeInterval)time afterDelay:(NSTimeInterval)delay control:(UIViewController*)control;
 
+//弹出alert内容  然后消失
 + (void)showAlertDismissWithContent:(NSString*)content control:(UIViewController*)control;
+
+//专门问网络请求用的
++ (void)showAlertDismissWithResponseContent:(id)response control:(UIViewController*)control;
+
 
 + (void)showNETErrorcontrol:(UIViewController*)control;
 
