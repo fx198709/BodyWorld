@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) long created_at;
 @property (nonatomic, assign) long updated_at;
 @property (nonatomic, copy) NSString *updated_atString;
+@property (nonatomic, copy) NSDictionary * extended_data;
+@property (nonatomic, copy) NSString *type;
 
 @property (nonatomic, assign) float rowHeight;
 

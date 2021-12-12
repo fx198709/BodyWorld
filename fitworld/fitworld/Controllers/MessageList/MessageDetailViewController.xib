@@ -42,7 +42,7 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kje-eR-FrR">
-                    <rect key="frame" x="40" y="172" width="334" height="640"/>
+                    <rect key="frame" x="40" y="172" width="334" height="580"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <color key="textColor" systemColor="labelColor"/>
@@ -57,7 +57,7 @@
                 <constraint firstItem="iDe-oQ-yWR" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="JI7-Fm-Q3k"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="kje-eR-FrR" secondAttribute="trailing" constant="40" id="RA8-ua-XV3"/>
                 <constraint firstItem="Cf2-td-0gT" firstAttribute="top" secondItem="iDe-oQ-yWR" secondAttribute="bottom" constant="20" id="W6h-lF-KqU"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="kje-eR-FrR" secondAttribute="bottom" constant="50" id="Zhb-CA-U0X"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="kje-eR-FrR" secondAttribute="bottom" constant="110" id="Zhb-CA-U0X"/>
                 <constraint firstItem="iDe-oQ-yWR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cNX-mP-grD"/>
                 <constraint firstItem="4y3-Ka-ngT" firstAttribute="top" secondItem="Cf2-td-0gT" secondAttribute="bottom" constant="10" id="k1Y-CO-Fiv"/>
                 <constraint firstItem="kje-eR-FrR" firstAttribute="top" secondItem="4y3-Ka-ngT" secondAttribute="bottom" constant="30" id="k5P-H9-K9k"/>

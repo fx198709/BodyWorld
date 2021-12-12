@@ -29,6 +29,10 @@
     
     GroupMyRoom *myRoomModel; //我的房间信息，主要是子房间信息，
     ChoosePeopleTypeView *choosePeopleTypeView; //选择房间的模式
+    BOOL hasDealPushData;//是否处理推送信息
+    
+    UIView * choosePeopleTypeOutView;//外层的view
+    
 }
 
 @end
@@ -104,6 +108,62 @@
     userlistView.contentSize = CGSizeMake(contentsizex, 0);
 }
 
+//根据返回的子房间信息，修改详情
+- (void)changeviewAfterRearchMyRoom{
+    [self changeUserList];
+    [self changeChoosePeopleTypeOutView];
+}
+
+//修改对外的view
+- (void)changeChoosePeopleTypeOutView{
+    if (!_bottomScrollview) {
+        return;
+    }
+    BOOL needAddview = NO;//是否需要添加  随机 邀请朋友的视图
+//    查看自己是不是在别人的子房间内
+    if (myRoomModel.is_accept == 0) {
+        if (myRoomModel.sub_room_id && myRoomModel.sub_room_id.length >0) {
+            //        弹出选择的alertview 有子房间信息，有人邀请的
+            return;
+        }else{
+//            需要加上头部的信息
+            needAddview = YES;
+        }
+    }
+    if (myRoomModel.is_accept == 1) {
+//        判断自己是不是子房间的房主， 如果不是，则不需要显示上面的那部分
+        if (myRoomModel.is_creator) {
+            needAddview = YES;
+        }
+    }
+    if (needAddview) {
+        RemoveSubviews(choosePeopleTypeOutView, @[]);
+        choosePeopleTypeView = [[[NSBundle mainBundle] loadNibNamed:@"ChoosePeopleTypeView" owner:self options:nil] lastObject];
+        [choosePeopleTypeOutView addSubview:choosePeopleTypeView];
+        [choosePeopleTypeView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_bottomScrollview);
+            make.left.equalTo(_bottomScrollview);
+            make.right.equalTo(_bottomScrollview);
+        }];
+        choosePeopleTypeView.parentVC = self;
+        [choosePeopleTypeView changeDataWithModel:myRoomModel];
+        [choosePeopleTypeOutView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_bottomScrollview);
+            make.left.equalTo(_bottomScrollview).offset(15);
+            make.right.equalTo(_bottomScrollview).offset(-15);
+            make.bottom.equalTo(choosePeopleTypeView.mas_bottom);
+         }];
+    }else{
+        RemoveSubviews(choosePeopleTypeOutView, @[]);
+        [choosePeopleTypeOutView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_bottomScrollview);
+            make.left.equalTo(_bottomScrollview).offset(15);
+            make.right.equalTo(_bottomScrollview).offset(-15);
+            make.height.mas_equalTo(0);
+        }];
+    }
+}
+
 //修改倒计时按钮
 - (void)changetillBtnTitle{
     
@@ -146,7 +206,7 @@
         make.left.right.bottom.equalTo(_headview);
     }];
     self.title = ChineseStringOrENFun(@"团课准备", @"PREPARED COURSE");
-    self.headTitle.text = @"   ";
+    self.headTitle.text = currentRoom.name;
     self.headTitle.font = SystemFontOfSize(20);
     self.timeLabel.text = ReachYearAndWeekTime(currentRoom.start_time);
     self.timeLabel.font = SystemFontOfSize(17);
@@ -186,20 +246,23 @@
         make.left.right.bottom.equalTo(self.view);
     }];
     //    随机匹配 邀请成员
-    choosePeopleTypeView = [[[NSBundle mainBundle] loadNibNamed:@"ChoosePeopleTypeView" owner:self options:nil] lastObject];
-    [_bottomScrollview addSubview:choosePeopleTypeView];
-    [choosePeopleTypeView mas_makeConstraints:^(MASConstraintMaker *make) {
+    choosePeopleTypeOutView = [[UIView alloc] init];
+    [_bottomScrollview addSubview:choosePeopleTypeOutView];
+    [choosePeopleTypeOutView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_bottomScrollview);
         make.left.equalTo(_bottomScrollview).offset(15);
         make.right.equalTo(_bottomScrollview).offset(-15);
+        make.height.mas_equalTo(0);
     }];
-    choosePeopleTypeView.parentVC = self;
-    [choosePeopleTypeView changeDataWithModel:myRoomModel];
+    if (myRoomModel) {
+        [self changeChoosePeopleTypeOutView];
+    }
+
     UIView *userListBackView = [[UIView alloc] init];
     [_bottomScrollview addSubview:userListBackView];
     int listwidth = ScreenWidth - 30;
     [userListBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(choosePeopleTypeView.mas_bottom).offset(10);
+        make.top.equalTo(choosePeopleTypeOutView.mas_bottom).offset(10);
         make.left.equalTo(_bottomScrollview).offset(15);
         make.right.equalTo(_bottomScrollview).offset(-15);
         make.height.mas_equalTo(userListHeight);
@@ -293,14 +356,23 @@
     userListHeight = 110;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    进来就调用，进入房间
-    [self joinRoom];
+    if (self.extended_data.allKeys.count) {
+//        从推送进来的
+        hasDealPushData = NO;
+    }else{
+        hasDealPushData = YES;
+        [self joinRoom];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self reachData];
     [self changetillBtnTitle];
-    dataTimer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(reachData) userInfo:nil repeats:YES];
+//    处理过推送信息，或者没有推送信息，这边才开启
+    if (hasDealPushData) {
+        dataTimer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(reachData) userInfo:nil repeats:YES];
+    }
     numberTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changetillBtnTitle) userInfo:nil repeats:YES];
         
 }
@@ -322,18 +394,33 @@
     
 }
 
+//http://1.117.70.210:8091/api/subroom/myroom?user_id=45169669346167300&event_id=384827458639104516&sub_room_id=2021121202_ddygra
+
+
 - (void)reachMyRoomData{
 //    GET /api/subroom/myroom?user_id=46009524363987460&event_id=
+//    extended_data
+//    您是否接受邀请，加入他的房间 http://1.117.70.210:8091/api/subroom/myroom?user_id=45169669346167300&event_id=384827458639104516&sub_room_id=2021121202_ddygra
+    
+//    2021121202_ddygra
+    
+//http://1.117.70.210:8091/api/subroom/agree
+//http://1.117.70.210:8091/api/subroom/refuse
     NSDictionary *baddyParams = @{
                            @"event_id": self.event_id,
                            @"user_id":[APPObjOnce sharedAppOnce].currentUser.id
                        };
+//     baddyParams = [NSMutableDictionary dictionaryWithDictionary:baddyParams];
+//    if (self.extended_data.allKeys.count ) {
+//        [baddyParams setObject:[self.extended_data objectForKey:@"sub_room_id"] forKey:@"sub_room_id"];
+//    }
+
     [[AFAppNetAPIClient manager] GET:@"subroom/myroom" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         if (CheckResponseObject(responseObject)) {
             GroupMyRoom * myRoom = [[GroupMyRoom alloc] initWithDictionary:responseObject[@"recordset"] error:nil];
             self->myRoomModel = myRoom;
-            [self->choosePeopleTypeView changeDataWithModel:myRoom];
-            [self changeUserList];
+//            获取子房间详情之后，这边需要重新
+            [self changeviewAfterRearchMyRoom];
 
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

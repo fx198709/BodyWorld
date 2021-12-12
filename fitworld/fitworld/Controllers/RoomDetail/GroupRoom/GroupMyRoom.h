@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *sub_room_id;
 @property (nonatomic , strong) NSString *user_id;
 @property (nonatomic , strong) NSString *event_id;
-@property (nonatomic , assign) BOOL is_accept;
+@property (nonatomic , assign) BOOL is_accept; //0待接受  1已接受  2已拒绝
 @property (nonatomic , assign) BOOL is_creator;
 @property (nonatomic , strong) NSString *creator_nick_name;
 @property (nonatomic , strong) NSString *creator_user_name;

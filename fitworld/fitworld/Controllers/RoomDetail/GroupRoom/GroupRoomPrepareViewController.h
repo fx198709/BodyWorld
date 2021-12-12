@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *headTitle;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *startNowBtnHeightCon;
+@property (nonatomic, strong) NSDictionary *extended_data;
 
 @property (nonatomic, strong) NSString * event_id;
 //随机房间 还是自定义房间

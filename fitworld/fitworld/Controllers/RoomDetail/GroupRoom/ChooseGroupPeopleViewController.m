@@ -152,7 +152,7 @@
     [[AFAppNetAPIClient manager] POST:@"subroom/invite" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (CheckResponseObject(responseObject)) {
-            [CommonTools showAlertDismissWithContent:@"添加成功" showWaitTime:0 afterDelay:1 control:self];
+            [CommonTools showAlertDismissWithContent:@"邀请成功" showWaitTime:0 afterDelay:1 control:self];
             
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.1 * NSEC_PER_SEC));
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{

@@ -18,14 +18,29 @@
         self.created_at = LongValueFromDic(json, @"created_at", 0);;
         self.updated_at = LongValueFromDic(json, @"updated_at", 0);
         self.updated_atString = ReachYearANDTime(self.updated_at);
+        self.extended_data  = [self convert2DictionaryWithJSONString:[json objectForKey:@"extended_data"]];
+        self.type = [json objectForKey:@"type"];
     }
     return self;
     
 
 }
 
-@end
+- (NSDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString{
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"%@",err);
+        return nil;
+    }
+    return dic;
+}
 
+@end
 
 /*
  "id": "44651382707325444",
