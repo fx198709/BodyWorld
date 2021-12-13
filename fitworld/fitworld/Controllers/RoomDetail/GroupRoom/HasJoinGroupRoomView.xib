@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="HasJoinGroupRoomView">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="34"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="用户已预约" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTq-AA-Oec">
+                    <rect key="frame" x="33" y="8.5" width="72" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sbi-1l-14I">
+                    <rect key="frame" x="113" y="5" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="K8o-rw-NHa"/>
+                        <constraint firstAttribute="width" constant="24" id="zyk-dC-K1w"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UVm-5u-yge">
+                    <rect key="frame" x="125" y="5" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="5i6-j2-GQh"/>
+                        <constraint firstAttribute="height" constant="24" id="QqJ-eR-IEW"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mC-Lc-GmK">
+                    <rect key="frame" x="10" y="6.5" width="21" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.30980392156862746" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="UVm-5u-yge" firstAttribute="leading" secondItem="sbi-1l-14I" secondAttribute="leading" constant="12" id="2vl-zh-NN4"/>
+                <constraint firstItem="7mC-Lc-GmK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="3hd-tr-tht"/>
+                <constraint firstItem="sbi-1l-14I" firstAttribute="leading" secondItem="GTq-AA-Oec" secondAttribute="trailing" constant="8" id="9W4-40-cTB"/>
+                <constraint firstItem="GTq-AA-Oec" firstAttribute="leading" secondItem="7mC-Lc-GmK" secondAttribute="trailing" constant="2" id="XA9-ql-9oj"/>
+                <constraint firstItem="7mC-Lc-GmK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Yd4-67-PWM"/>
+                <constraint firstItem="UVm-5u-yge" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Z65-ax-hbG"/>
+                <constraint firstItem="sbi-1l-14I" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bEz-6C-TVz"/>
+                <constraint firstItem="GTq-AA-Oec" firstAttribute="centerY" secondItem="7mC-Lc-GmK" secondAttribute="centerY" id="c67-KV-xaX"/>
+                <constraint firstAttribute="trailing" secondItem="sbi-1l-14I" secondAttribute="trailing" constant="23" id="y2t-Pg-G1n"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="firstUserImageview" destination="sbi-1l-14I" id="h0T-1Y-AaQ"/>
+                <outlet property="rightConstarint" destination="y2t-Pg-G1n" id="Q2Q-6c-VMU"/>
+                <outlet property="secondUserImageview" destination="UVm-5u-yge" id="fNp-mq-get"/>
+                <outlet property="textLabel" destination="GTq-AA-Oec" id="AtQ-yV-4PW"/>
+                <outlet property="userNumberLabel" destination="7mC-Lc-GmK" id="ylC-2g-uaU"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="66"/>
+        </view>
+    </objects>
+</document>

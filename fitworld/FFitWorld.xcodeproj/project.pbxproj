@@ -139,6 +139,9 @@
 		DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */; };
 		DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */; };
 		DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE427226B5A0092CF87 /* JYPageControl.m */; };
+		DD40BD69276788BD007FC1B8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD40BD68276788BD007FC1B8 /* MessageUI.framework */; };
+		DD40BD6C27678B66007FC1B8 /* HasJoinGroupRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD40BD6B27678B66007FC1B8 /* HasJoinGroupRoomView.m */; };
+		DD40BD6E27678B86007FC1B8 /* HasJoinGroupRoomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD40BD6D27678B86007FC1B8 /* HasJoinGroupRoomView.xib */; };
 		DD51EE4F273FB9BE00153A67 /* ChoosePeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD51EE4D273FB9BE00153A67 /* ChoosePeopleViewController.m */; };
 		DD51EE50273FB9BE00153A67 /* ChoosePeopleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD51EE4E273FB9BE00153A67 /* ChoosePeopleViewController.xib */; };
 		DD595EB82736224600618D1A /* NoDataCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EB62736224600618D1A /* NoDataCollectionViewCell.m */; };
@@ -492,6 +495,12 @@
 		DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+JYImageViewManager.m"; sourceTree = "<group>"; };
 		DD25FEE427226B5A0092CF87 /* JYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPageControl.m; sourceTree = "<group>"; };
 		DD25FEE527226B5A0092CF87 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
+		DD40BD6627678876007FC1B8 /* SendMessageObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendMessageObj.h; sourceTree = "<group>"; };
+		DD40BD6727678877007FC1B8 /* SendMessageObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendMessageObj.m; sourceTree = "<group>"; };
+		DD40BD68276788BD007FC1B8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DD40BD6A27678B66007FC1B8 /* HasJoinGroupRoomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HasJoinGroupRoomView.h; sourceTree = "<group>"; };
+		DD40BD6B27678B66007FC1B8 /* HasJoinGroupRoomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HasJoinGroupRoomView.m; sourceTree = "<group>"; };
+		DD40BD6D27678B86007FC1B8 /* HasJoinGroupRoomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HasJoinGroupRoomView.xib; sourceTree = "<group>"; };
 		DD51EE4C273FB9BE00153A67 /* ChoosePeopleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleViewController.h; sourceTree = "<group>"; };
 		DD51EE4D273FB9BE00153A67 /* ChoosePeopleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePeopleViewController.m; sourceTree = "<group>"; };
 		DD51EE4E273FB9BE00153A67 /* ChoosePeopleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoosePeopleViewController.xib; sourceTree = "<group>"; };
@@ -646,6 +655,7 @@
 			files = (
 				04EC004426BD2B8800DC0103 /* IJKMediaFrameworkWithSSL.framework in Frameworks */,
 				04EC004626BD2B8800DC0103 /* VSRTC.framework in Frameworks */,
+				DD40BD69276788BD007FC1B8 /* MessageUI.framework in Frameworks */,
 				A53A3C350488D7ED8CE204A4 /* Pods_FFitWorld.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1048,6 +1058,7 @@
 		38945E519A7A8BF7B259E08D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD40BD68276788BD007FC1B8 /* MessageUI.framework */,
 				04EC004226BD2B8700DC0103 /* IJKMediaFrameworkWithSSL.framework */,
 				04EC004326BD2B8700DC0103 /* VSRTC.framework */,
 				E158AEC0395537D75983E457 /* Pods_FFitWorld.framework */,
@@ -1096,6 +1107,8 @@
 				A296D69C2755CB2000F73259 /* FontColorHeader.h */,
 				A296D69D2755CBB600F73259 /* CommonText.h */,
 				A296D69E2755CC3F00F73259 /* CommonFunc.h */,
+				DD40BD6627678876007FC1B8 /* SendMessageObj.h */,
+				DD40BD6727678877007FC1B8 /* SendMessageObj.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1444,6 +1457,9 @@
 				DDACD7E927610C3500CCAAA1 /* ChoosePeopleTypeView.h */,
 				DDACD7EA27610C3500CCAAA1 /* ChoosePeopleTypeView.m */,
 				DDACD7EC27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib */,
+				DD40BD6A27678B66007FC1B8 /* HasJoinGroupRoomView.h */,
+				DD40BD6B27678B66007FC1B8 /* HasJoinGroupRoomView.m */,
+				DD40BD6D27678B86007FC1B8 /* HasJoinGroupRoomView.xib */,
 			);
 			path = GroupRoom;
 			sourceTree = "<group>";
@@ -1508,6 +1524,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD40BD6E27678B86007FC1B8 /* HasJoinGroupRoomView.xib in Resources */,
 				DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */,
 				DDFA757E27591BE800EFD0B1 /* GroupRoomDetailViewController.xib in Resources */,
 				DD595EC427367FA700618D1A /* UserCenterMainViewController.xib in Resources */,
@@ -1722,6 +1739,7 @@
 				DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */,
 				A256300D273FE6850030D6B2 /* Friend.m in Sources */,
 				A2723EFC273BD3D200388B01 /* ChangeInfoViewController.m in Sources */,
+				DD40BD6C27678B66007FC1B8 /* HasJoinGroupRoomView.m in Sources */,
 				A2563039274094450030D6B2 /* MTCalendarView.m in Sources */,
 				DD6EDB6627343624002B0A8E /* MessageListViewController.m in Sources */,
 				A2A94DE1273FC64900D02C77 /* FriendCell.m in Sources */,

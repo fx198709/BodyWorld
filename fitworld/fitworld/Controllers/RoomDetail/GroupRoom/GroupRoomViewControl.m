@@ -91,7 +91,7 @@
     
     
     settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
-   
+    
     mMainPanel = [MainPanel new];
     mMainPanel.layer.cornerRadius = 5;
     mMainPanel.layer.masksToBounds = YES;
@@ -102,7 +102,7 @@
     mSidePanel.layer.masksToBounds = YES;
     [self.view addSubview:mSidePanel];
     mSidePanel.frame = CGRectMake(0, 100, panelSize.width , panelSize.height);
-//   给视图 添加手势
+    //   给视图 添加手势
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragReplyButton:)];
     [mSidePanel addGestureRecognizer:panGestureRecognizer];
     
@@ -134,7 +134,7 @@
 #pragma mark 设置所有的视图的视频
 - (void)layoutPanel {
     if ([VConductorClient sharedInstance].isViewer) {
-    
+        
     } else {
         [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view);
@@ -143,7 +143,7 @@
             make.height.equalTo(self.view);
         }];
         
-       
+        
         WeakSelf
         [UIView animateWithDuration:0.3 animations:^{
             //    获取所有的成员列表
@@ -152,7 +152,7 @@
             NSDictionary * memberDic = [client getGustMemberData];
             //            拷贝一份key出来 这边的key就是userID
             NSMutableArray *keysArray = [[NSMutableArray alloc] initWithArray:memberDic.allKeys];
-//            团课 需要判断 这些成员，是不是自己直播间的
+            //            团课 需要判断 这些成员，是不是自己直播间的
             
             int  guestPanelscount = (int)self.guestPanels.count;
             for (int  i = guestPanelscount -1; i>= 0;i--) {
@@ -170,30 +170,38 @@
                     [strongSelf.guestPanels removeObject:guestpanel];
                 }
             }
-//            还有没有添加进入的人员
+            //            还有没有添加进入的人员
+            NSMutableArray *tempArray = [NSMutableArray array];
+            
+            for (RoomUser *tempuser in self->myRoomModel.room_user) {
+                [tempArray addObject:tempuser.id];
+            }
             if (keysArray.count > 0) {
                 for (NSString *userID in keysArray) {
-                   
-                    if (strongSelf.guestPanels.count < 3) {
-//                        游客小于3个，这边才用
-                        GuestPanel * guestpanel = [[GuestPanel alloc] init];
-                        guestpanel.mUserId = userID;
-                        [strongSelf.guestPanels addObject:guestpanel];
-                        int showguestcount = (int)strongSelf.guestPanels.count;
-                        [self.view addSubview:guestpanel];
-                        CGFloat startX = ScreenWidth/3*((showguestcount)%3);
-                        CGFloat startY = showguestcount > 2? self->panelSize.height:0+100;
-                        guestpanel.frame = CGRectMake(startX, startY, self->panelSize.width, self->panelSize.height);
-                        
-                        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragReplyButton:)];
-                        [guestpanel addGestureRecognizer:panGestureRecognizer];
-                        [guestpanel attachGuestRenderView];
-                        ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
-                        if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
-                            guestpanel.mMyLabel.text = [[[currentMember copyInfo].custom objectForKey:@"internal"] objectForKey:@"nickName"];
+                    //                    用户id 存在room里面
+                    if ([tempArray containsObject:userID]) {
+                        if (strongSelf.guestPanels.count < 3) {
+                            //                        游客小于3个，这边才用
+                            GuestPanel * guestpanel = [[GuestPanel alloc] init];
+                            guestpanel.mUserId = userID;
+                            [strongSelf.guestPanels addObject:guestpanel];
+                            int showguestcount = (int)strongSelf.guestPanels.count;
+                            [self.view addSubview:guestpanel];
+                            CGFloat startX = ScreenWidth/3*((showguestcount)%3);
+                            CGFloat startY = showguestcount > 2? self->panelSize.height:0+100;
+                            guestpanel.frame = CGRectMake(startX, startY, self->panelSize.width, self->panelSize.height);
+                            
+                            UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragReplyButton:)];
+                            [guestpanel addGestureRecognizer:panGestureRecognizer];
+                            [guestpanel attachGuestRenderView];
+                            ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
+                            if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
+                                guestpanel.mMyLabel.text = [[[currentMember copyInfo].custom objectForKey:@"internal"] objectForKey:@"nickName"];
+                            }
+                            guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
                         }
-                        guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
                     }
+                    
                 }
             }
         }];
@@ -267,7 +275,7 @@
 }
 
 - (void)actFullScreen {
-//    mFullScreen = !mFullScreen;
+    //    mFullScreen = !mFullScreen;
     [self layoutPanel];
 }
 
@@ -366,7 +374,7 @@
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
     imageview.image = [UIImage imageNamed:@"back_white"];
     [backview addSubview:imageview];
-
+    
     vtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, ScreenWidth-150-20-60, 20)];
     [backview addSubview:vtitleLabel];
     vtitleLabel.textColor = UIColor.whiteColor;
@@ -438,8 +446,8 @@
 }
 
 - (void)dealwithTimer{
-//    判断开始没有
-//    还没开始，需要设置倒计时
+    //    判断开始没有
+    //    还没开始，需要设置倒计时
     long dif = self.currentRoom.start_time- [[NSDate date] timeIntervalSince1970];
     if (dif>0) {
         if (!leftTimeLabel) {
@@ -466,10 +474,10 @@
         }
         if (!createRoomLiving) {
             createRoomLiving = YES;
-//            开启直播
+            //            开启直播
             [[VConductorClient sharedInstance] joinwithEntry:VRC_URL andCode:mCode asViewer:NO withDelegate:self];
         }
-       
+        
     }
     
     if (hasStartLiving) {
@@ -564,7 +572,7 @@
         
     };
     settingView.notdisturbSwitchChanged = ^(NSNumber *clickModel) {
-//        免打扰
+        //        免打扰
         StrongSelf(wSelf);
         [strongSelf changeNotDistrub:clickModel.boolValue];
     };
@@ -575,10 +583,10 @@
     needShowOthersVideo = need;
     for (GuestPanel * panel in _guestPanels) {
         if (needShowOthersVideo) {
-//            开启免打扰
+            //            开启免打扰
             [panel detachGuestRenderView];
         }else{
-//            关闭免打扰
+            //            关闭免打扰
             [panel attachGuestRenderView];
         }
     }
@@ -616,7 +624,7 @@
             self.currentRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
             self.currentRoom.event_id = eventid;
             //                显示进度条
-//            self.title = self.currentRoom.name;
+            //            self.title = self.currentRoom.name;
             [self startTimer];
             
         }
@@ -636,14 +644,14 @@
 #pragma mark 获取子房间详情
 - (void)reachMyRoomData{
     NSDictionary *baddyParams = @{
-                           @"event_id": mCode[@"eid"],
-                           @"user_id":[APPObjOnce sharedAppOnce].currentUser.id
-                       };
+        @"event_id": mCode[@"eid"],
+        @"user_id":[APPObjOnce sharedAppOnce].currentUser.id
+    };
     [[AFAppNetAPIClient manager] GET:@"subroom/myroom" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         if (CheckResponseObject(responseObject)) {
             GroupMyRoom * myRoom = [[GroupMyRoom alloc] initWithDictionary:responseObject[@"recordset"] error:nil];
             self->myRoomModel = myRoom;
-//            获取子房间详情之后，这边需要重新
+            //            获取子房间详情之后，这边需要重新
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -663,7 +671,7 @@
             return;
         }
         CGPoint translation = [recognizer translationInView:self.view];
- 
+        
         recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,recognizer.view.center.y + translation.y);
         [recognizer setTranslation:CGPointZero inView:self.view];
         

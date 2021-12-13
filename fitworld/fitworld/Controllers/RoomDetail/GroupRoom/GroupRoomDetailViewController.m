@@ -15,7 +15,7 @@
 #import "CoachCommentCell.h"
 #import "GroupDetailTableViewCell.h"
 #import "CoachComment.h"
-
+#import "HasJoinGroupRoomView.h"
 @interface GroupRoomDetailViewController (){
     BOOL isLoading;
     int _pageCount;
@@ -24,6 +24,8 @@
     NSMutableArray *dataArr;
     GroupDetailTableViewCell *heightCell;
     CoachCommentCell *heightCommentCell;
+    NSArray * currentUserList;
+    HasJoinGroupRoomView *hasJionView;
 }
 @property(nonatomic, strong)UIButton *joinBtn;
 @property(nonatomic, strong)UITableView *cocahTableview;
@@ -41,7 +43,14 @@
     self.navigationController.navigationBar.translucent = YES;
         
     self.view.backgroundColor = UIColor.blackColor;
-    [self reachRoomDetailInfo];
+    [self reachData];
+}
+
+//改变有几人参与了
+- (void)changehasJionView{
+    if (hasJionView) {
+        [hasJionView changeviewWithUselist:currentUserList];
+    }
 }
 
 - (void)changejoinBtn{
@@ -62,19 +71,27 @@
     }];
 
     _joinBtn = [[UIButton alloc] init];
-//    joinBtn.backgroundColor = UIColor.redColor;
-    
-//    [countInBtn setTitle:@"JOIN CLASS" forState:UIControlStateNormal];
     [_joinBtn addTarget:self action:@selector(joinClass) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_joinBtn];
     _joinBtn.titleLabel.font =SystemFontOfSize(13);
     [_joinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(topImgView.mas_bottom).offset(-30);
+        make.bottom.equalTo(topImgView.mas_bottom).offset(-70);
         make.right.equalTo(topImgView.mas_right).offset(-10);
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(30);
     }];
     [self changejoinBtn];
+    
+    hasJionView = [[[NSBundle mainBundle] loadNibNamed:@"HasJoinGroupRoomView" owner:self options:nil] lastObject];
+    [self.view addSubview:hasJionView];
+    [hasJionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(topImgView.mas_right).offset(-10);
+        make.height.mas_equalTo(34);
+        make.top.equalTo(_joinBtn.mas_bottom).offset(10);
+
+    }];
+    [self changehasJionView];
+
     UIView *topImgBotView = [[UIView alloc]init];
     topImgBotView.backgroundColor = UIColor.clearColor;
     [self.view addSubview:topImgBotView];
@@ -163,19 +180,33 @@
  
 }
 
+- (void)reachData{
+    [self reachRoomDetailInfo];
+    NSDictionary *baddyParams = @{
+                           @"event_id": self.selectRoom.event_id,
+                       };
+    [[AFAppNetAPIClient manager] GET:@"room/user" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (CheckResponseObject(responseObject)) {
+            NSArray *userlist = responseObject[@"recordset"];
+            if ([userlist isKindOfClass:[NSArray class]]) {
+                NSMutableArray *list = [NSMutableArray array];
+                for (NSDictionary *dic in userlist) {
+                    UserInfo * user = [[UserInfo alloc] initWithJSON:dic];
+                    [list addObject:user];
+                }
+                self->currentUserList = list;
+                [self changehasJionView];
+            }
+            
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void) joinClass{
 //    需要判断状态
@@ -225,6 +256,7 @@
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.cocahTableview addHeaderWithTarget:self action:@selector(headerRereshing)];
     [self.cocahTableview addFooterWithTarget:self action:@selector(footerRereshing)];
+    self.cocahTableview.mj_footer.ignoredScrollViewContentInsetBottom =[CommonTools safeAreaInsets].bottom;
 }
 //开始进入刷新状态
 - (void)headerRereshing

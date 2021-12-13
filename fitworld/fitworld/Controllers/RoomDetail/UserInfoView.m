@@ -51,7 +51,7 @@
 - (void)changeDatawithRoomUser:(RoomUser*)userInfo andIsCreater:(BOOL)isCreate{
     self.roomUser = userInfo;
     if (userInfo == nil) {
-        UIImage *nouser = [UIImage imageNamed:@"info"];
+        UIImage *nouser = [UIImage imageNamed:@"randomPeople"];
         UIImageView * imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 60, 60)];
         imageview.image = nouser;
         [self addSubview:imageview];
