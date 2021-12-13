@@ -9,7 +9,7 @@
 #import "FriendCell.h"
 #import "FriendPageInfo.h"
 #import "Friend.h"
-
+#import "FriendInfoViewController.h"
 @interface FriendViewController ()
 <UITableViewDelegate, UITableViewDataSource>
 
@@ -123,7 +123,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
+    UserInfo *friend = [self.dataList objectAtIndex:indexPath.row];
+    FriendInfoViewController *userinfovc = VCBySBName(@"FriendInfoViewController");
+    userinfovc.userId = friend.id;
+    [self.navigationController pushViewController:userinfovc animated:YES];
 }
 
 /*

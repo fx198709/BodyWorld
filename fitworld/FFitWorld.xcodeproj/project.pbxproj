@@ -142,6 +142,7 @@
 		DD40BD69276788BD007FC1B8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD40BD68276788BD007FC1B8 /* MessageUI.framework */; };
 		DD40BD6C27678B66007FC1B8 /* HasJoinGroupRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD40BD6B27678B66007FC1B8 /* HasJoinGroupRoomView.m */; };
 		DD40BD6E27678B86007FC1B8 /* HasJoinGroupRoomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD40BD6D27678B86007FC1B8 /* HasJoinGroupRoomView.xib */; };
+		DD40BD712767A4E1007FC1B8 /* CourseRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD40BD702767A4E1007FC1B8 /* CourseRoomTableViewCell.m */; };
 		DD51EE4F273FB9BE00153A67 /* ChoosePeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD51EE4D273FB9BE00153A67 /* ChoosePeopleViewController.m */; };
 		DD51EE50273FB9BE00153A67 /* ChoosePeopleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD51EE4E273FB9BE00153A67 /* ChoosePeopleViewController.xib */; };
 		DD595EB82736224600618D1A /* NoDataCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD595EB62736224600618D1A /* NoDataCollectionViewCell.m */; };
@@ -501,6 +502,8 @@
 		DD40BD6A27678B66007FC1B8 /* HasJoinGroupRoomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HasJoinGroupRoomView.h; sourceTree = "<group>"; };
 		DD40BD6B27678B66007FC1B8 /* HasJoinGroupRoomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HasJoinGroupRoomView.m; sourceTree = "<group>"; };
 		DD40BD6D27678B86007FC1B8 /* HasJoinGroupRoomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HasJoinGroupRoomView.xib; sourceTree = "<group>"; };
+		DD40BD6F2767A4E1007FC1B8 /* CourseRoomTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseRoomTableViewCell.h; sourceTree = "<group>"; };
+		DD40BD702767A4E1007FC1B8 /* CourseRoomTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseRoomTableViewCell.m; sourceTree = "<group>"; };
 		DD51EE4C273FB9BE00153A67 /* ChoosePeopleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleViewController.h; sourceTree = "<group>"; };
 		DD51EE4D273FB9BE00153A67 /* ChoosePeopleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePeopleViewController.m; sourceTree = "<group>"; };
 		DD51EE4E273FB9BE00153A67 /* ChoosePeopleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoosePeopleViewController.xib; sourceTree = "<group>"; };
@@ -1343,6 +1346,8 @@
 				DD84CB98274163E900EB8C61 /* ScreenAboveView.xib */,
 				DD84CB9A27416D5D00EB8C61 /* ScreenModel.h */,
 				DD84CB9B27416D5D00EB8C61 /* ScreenModel.m */,
+				DD40BD6F2767A4E1007FC1B8 /* CourseRoomTableViewCell.h */,
+				DD40BD702767A4E1007FC1B8 /* CourseRoomTableViewCell.m */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -1630,6 +1635,7 @@
 				DD6EDB41272D2FCD002B0A8E /* CommonTools.m in Sources */,
 				047DC209268CD09900A3E37E /* main.m in Sources */,
 				A296D69B2754D00400F73259 /* RoomCreator.m in Sources */,
+				DD40BD712767A4E1007FC1B8 /* CourseRoomTableViewCell.m in Sources */,
 				A2563010273FE6EA0030D6B2 /* AddFriendPageInfo.m in Sources */,
 				DDACD7F82765D50D00CCAAA1 /* GroupRoomViewControl.m in Sources */,
 				DD51EE4F273FB9BE00153A67 /* ChoosePeopleViewController.m in Sources */,
