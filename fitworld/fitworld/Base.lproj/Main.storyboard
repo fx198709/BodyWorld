@@ -2605,10 +2605,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z6u-N2-uXo">
-                                        <rect key="frame" x="0.0" y="30" width="414" height="46.5"/>
+                                        <rect key="frame" x="10" y="30" width="394" height="46.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxdkded" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMx-ea-j8e">
-                                                <rect key="frame" x="24" y="12" width="366" height="14.5"/>
+                                                <rect key="frame" x="24" y="12" width="346" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -2625,9 +2625,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="z6u-N2-uXo" secondAttribute="trailing" id="BLA-he-L6a"/>
+                                    <constraint firstAttribute="trailing" secondItem="z6u-N2-uXo" secondAttribute="trailing" constant="10" id="BLA-he-L6a"/>
                                     <constraint firstItem="z6u-N2-uXo" firstAttribute="top" secondItem="tav-OG-3EL" secondAttribute="bottom" constant="13" id="U5i-ra-hGA"/>
-                                    <constraint firstItem="z6u-N2-uXo" firstAttribute="leading" secondItem="6gE-Ii-Kv8" secondAttribute="leading" id="VKM-kz-e6O"/>
+                                    <constraint firstItem="z6u-N2-uXo" firstAttribute="leading" secondItem="6gE-Ii-Kv8" secondAttribute="leading" constant="10" id="VKM-kz-e6O"/>
                                     <constraint firstItem="tav-OG-3EL" firstAttribute="top" secondItem="6gE-Ii-Kv8" secondAttribute="top" id="i29-wY-Rwq"/>
                                     <constraint firstAttribute="trailing" secondItem="tav-OG-3EL" secondAttribute="trailing" id="pWd-cU-uI2"/>
                                     <constraint firstAttribute="bottom" secondItem="z6u-N2-uXo" secondAttribute="bottom" id="y34-4d-egJ"/>
@@ -2676,6 +2676,7 @@
                         <outlet property="cityImg" destination="OxF-Qq-2ey" id="Nbc-zH-TRc"/>
                         <outlet property="cityLabel" destination="WOS-S5-XLO" id="8ei-ak-EC2"/>
                         <outlet property="descLabel" destination="RMx-ea-j8e" id="Z8P-Hu-ndp"/>
+                        <outlet property="descView" destination="z6u-N2-uXo" id="Baq-Vy-vjU"/>
                         <outlet property="headImg" destination="Vx1-Ca-jjV" id="Yg9-RX-dpX"/>
                         <outlet property="nameLabel" destination="jgc-js-Fbj" id="vcR-sU-Xw8"/>
                         <outlet property="tableView" destination="N45-LJ-88L" id="55i-7x-qvy"/>

@@ -30,7 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = ChineseStringOrENFun(@"添加好友", @"Add Friends");
+    self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"Person Center");
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

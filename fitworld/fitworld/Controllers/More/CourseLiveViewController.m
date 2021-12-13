@@ -182,7 +182,7 @@
         make.left.equalTo(cell.contentView).offset(20);
         make.size.mas_equalTo(CGSizeMake(56, 56));
     }];
-    
+    int type_int = room.course ? room.course.type_int:room.type_int;
     UILabel *label1 = [[UILabel alloc] init];
     label1.text = room.course.name;
     label1.font = [UIFont systemFontOfSize:17];
@@ -192,7 +192,7 @@
         make.top.equalTo(cell.contentView).offset(20);
         make.left.equalTo(leftImageView.mas_right).offset(leftdif+25);
     }];
-    UIImage *classimage = [UIImage imageNamed:[NSString stringWithFormat:@"more_type_icon%ld",room.type_int]];
+    UIImage *classimage = [UIImage imageNamed:[NSString stringWithFormat:@"more_type_icon%d",type_int]];
     UIImageView *classimageview = [[UIImageView alloc] initWithImage:classimage];
     [cell.contentView addSubview:classimageview];
     [classimageview mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -202,9 +202,9 @@
     }];
     
     UILabel *label2left = [[UILabel alloc] init];
-    if (room.type_int == 0) {
+    if (type_int == 0) {
         label2left.text = ChineseStringOrENFun(@"创建人:", @"creater:");
-    }else if (room.type_int == 1){
+    }else if (type_int == 1){
         label2left.text = ChineseStringOrENFun(@"直播教练人:", @"coach:");
     }else{
         label2left.text = @"";
@@ -218,13 +218,7 @@
     label2left.font = [UIFont systemFontOfSize:13];
     label2left.textColor = LightGaryTextColor;
     UILabel *label2 = [[UILabel alloc] init];
-    if (room.type_int == 0) {
-        label2.text = room.room_creator.nickname;
-    }else if (room.type_int == 1){
-        label2.text = room.coach.nickname;
-    }else{
-        label2.text = @"";
-    }
+    label2.text = room.room_creator.nickname;
     [cell.contentView addSubview:label2];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(label1.mas_bottom).offset(5);
@@ -232,14 +226,7 @@
     }];
     label2.font = [UIFont systemFontOfSize:13];
     label2.textColor = LightGaryTextColor;
-    NSString *countryUrl = @"";
-    if (room.type_int == 0) {
-        countryUrl = [room.room_creator.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];;
-    }else if (room.type_int == 1){
-//        教练图标
-        countryUrl = room.coach.country;
-    }
-    
+    NSString *countryUrl = room.room_creator.country_icon;
     UIImageView *countryImageView = [[UIImageView alloc] init];
     [countryImageView sd_setImageWithURL:[NSURL URLWithString:countryUrl]];
     [cell.contentView addSubview:countryImageView];
@@ -338,19 +325,12 @@
 //    [self.navigationController pushViewController:vc animated:true];
     if (dataArr.count > indexPath.row) {
         Room *selectRoom = [dataArr objectAtIndex: indexPath.row];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
-        if (selectRoom.is_join) {
-            CreateCourseSuccessViewController *vc =[[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
-            vc.event_id = selectRoom.event_id;
-            [self.navigationController pushViewController:vc animated:YES];
-        }else{
-            CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
-            vc.selectRoom = selectRoom;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+        [CommonTools jumpNextVCwith:selectRoom rootVC:self];
+       
     }
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -440,10 +420,74 @@
     int tag = (int)btn.tag - 100;
     if (dataArr.count > tag) {
         Room *selectedRoom = [dataArr objectAtIndex:tag];
-        [[APPObjOnce sharedAppOnce] joinRoom:selectedRoom withInvc:self];
+        int state = [selectedRoom reachRoomDealState];
+        if (state == 1 || state == 2) {
+            [self realjoinBtnClicked:btn];
+        }else{
+            [[APPObjOnce sharedAppOnce] joinRoom:selectedRoom withInvc:self];
+        }
+//        这边处理状态
+        
     }
     NSLog(@"Join");
 }
+
+- (void)realjoinBtnClicked:(UIButton *) recognizer{
+    //    这边需要正在进行中的，才能开始，需要判断状态
+    //    做测试用
+    
+    Room *room = [dataArr objectAtIndex: recognizer.tag-100];
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+     UIViewController *parentControl = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if (room.is_join) {
+        //        取消选中
+        
+        NSDictionary *baddyParams = @{
+            @"event_id": room.event_id,
+            @"friend_id":[APPObjOnce sharedAppOnce].currentUser.id
+        };
+        [manager POST:@"room/kickout" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (CheckResponseObject(responseObject)) {
+                [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"操作成功", @"操作成功") control:self];
+                if ([parentControl respondsToSelector:@selector(headerRereshing)]) {
+                    [parentControl performSelector:@selector(headerRereshing)];
+                }
+                
+            }else{
+                [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:self];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [CommonTools showNETErrorcontrol:self];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+        }];
+    }else{
+        NSDictionary *baddyParams = @{
+            @"event_id": room.event_id,
+            @"is_join":[NSNumber numberWithBool:!room.is_join]
+        };
+        [manager POST:@"practise/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (CheckResponseObject(responseObject)) {
+                [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"操作成功", @"操作成功") control:self];
+                if ([parentControl respondsToSelector:@selector(headerRereshing)]) {
+                    [parentControl performSelector:@selector(headerRereshing)];
+                }
+            }else{
+                [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:self];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [CommonTools showNETErrorcontrol:self];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+        }];
+    }
+    
+}
+
+
 
 #pragma mark - 刷新房间数据
 - (void) reachHeadData

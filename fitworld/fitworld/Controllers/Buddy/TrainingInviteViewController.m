@@ -153,6 +153,7 @@
 
             CreateCourseSuccessViewController * successVC = [[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
             successVC.event_id = eventId;
+            successVC.jumpToRoot = YES;
             [self.navigationController pushViewController:successVC animated:YES];
         }
 

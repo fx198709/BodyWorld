@@ -452,7 +452,7 @@
             popVC = vc;
         }
     }
-    if (popVC) {
+    if (popVC && _jumpToRoot) {
         [self.navigationController popToViewController:popVC animated:YES];
     }else{
         [self.navigationController popViewControllerAnimated:YES];

@@ -40,6 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIViewController*)findControlWithView:(UIView*)inView;
 
 + (UIEdgeInsets)safeAreaInsets;
+
+//根据room的信息，进行跳转
++ (void)jumpNextVCwith:(id)roominfo rootVC:(UIViewController*)rootVC;
 @end
 
 NS_ASSUME_NONNULL_END

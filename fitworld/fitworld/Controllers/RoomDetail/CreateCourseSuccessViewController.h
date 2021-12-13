@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *headTitle;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *startNowBtnHeightCon;
 
+@property (nonatomic, assign) BOOL jumpToRoot; //跳转到首页
+
 @property (nonatomic, strong) NSString * event_id;
 
 @end

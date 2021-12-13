@@ -8,6 +8,11 @@
 #import "CommonTools.h"
 #import "Room.h"
 #import "UserInfo.h"
+#import "GroupRoomPrepareViewController.h"
+#import "GroupRoomDetailViewController.h"
+#import "CreateCourseSuccessViewController.h"
+#import "CourseDetailViewController.h"
+
 
 @implementation CommonTools
 
@@ -386,6 +391,36 @@
 + (UIEdgeInsets)safeAreaInsets{
     UIWindow *mainwindow = [CommonTools mainWindow];
     return mainwindow.safeAreaInsets;
+}
+
+
++ (void)jumpNextVCwith:(Room*)selectRoom rootVC:(UIViewController*)rootVC{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
+    int type_int = selectRoom.course? (int)selectRoom.course.type_int: (int)selectRoom.type_int;
+    if (type_int == 1) {
+//            团课的处理
+        if (selectRoom.is_join) {
+            GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
+            vc.event_id = selectRoom.event_id;
+            [rootVC.navigationController pushViewController:vc animated:YES];
+        }else{
+            GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
+            vc.selectRoom = selectRoom;
+            [rootVC.navigationController pushViewController:vc animated:YES];
+        }
+       
+    }else{
+        if (selectRoom.is_join) {
+            CreateCourseSuccessViewController *vc =[[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
+            vc.event_id = selectRoom.event_id;
+            [rootVC.navigationController pushViewController:vc animated:YES];
+        }else{
+            CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
+            vc.selectRoom = selectRoom;
+            [rootVC.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 
