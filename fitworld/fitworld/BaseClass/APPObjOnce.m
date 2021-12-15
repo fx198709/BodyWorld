@@ -104,6 +104,7 @@
         NSString * nickName = [APPObjOnce sharedAppOnce].currentUser.nickname;
         [ConfigManager sharedInstance].eventId = selectRoom.event_id;
         [ConfigManager sharedInstance].nickName = nickName;
+        [ConfigManager sharedInstance].userId = [APPObjOnce sharedAppOnce].currentUser.id;
         [[ConfigManager sharedInstance] saveConfig];
         
         NSDictionary *codeDict = @{@"eid":selectRoom.event_id, @"name":nickName};

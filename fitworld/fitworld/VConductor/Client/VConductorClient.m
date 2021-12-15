@@ -171,7 +171,7 @@
   
   NSString *eventId = [codeDic objectForKey:@"eid"];
   mNickName = [codeDic objectForKey:@"name"];
-  mUserId = [@"ios" stringByAppendingString:[ToolFunc randomStringWithLength:6]];
+    mUserId =   [APPObjOnce sharedAppOnce].currentUser.id; // [@"ios" stringByAppendingString:[ToolFunc randomStringWithLength:6]];
   
   mInitIsViewer = isViewer;
   

@@ -285,6 +285,7 @@
     NSString * nickName = [APPObjOnce sharedAppOnce].currentUser.nickname;
     [ConfigManager sharedInstance].eventId = self.event_id;
     [ConfigManager sharedInstance].nickName = nickName;
+    [ConfigManager sharedInstance].userId = [APPObjOnce sharedAppOnce].currentUser.id;
     [[ConfigManager sharedInstance] saveConfig];
     NSMutableDictionary *codeDict = [NSMutableDictionary dictionary];
     codeDict[@"eid"] =self.event_id;
@@ -412,6 +413,7 @@
             NSString * nickName = [APPObjOnce sharedAppOnce].currentUser.nickname;
             [ConfigManager sharedInstance].eventId = self.event_id;
             [ConfigManager sharedInstance].nickName = nickName;
+            [ConfigManager sharedInstance].userId = [APPObjOnce sharedAppOnce].currentUser.id;
             [[ConfigManager sharedInstance] saveConfig];
             NSMutableDictionary *codeDict = [NSMutableDictionary dictionary];
             codeDict[@"eid"] =self.event_id;
