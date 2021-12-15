@@ -57,6 +57,10 @@ UICollectionViewDelegateFlowLayout>
     self.calenderCollectionView.showsHorizontalScrollIndicator = NO;
     self.calenderCollectionView.scrollEnabled = NO;
     
+    UIView *grayview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, CellH)];
+    [self addSubview:grayview];
+    grayview.backgroundColor = [UIColor darkGrayColor];
+    
     Class cellClass = [MTCalendarCell class];
     [self.calenderCollectionView registerClass:cellClass forCellWithReuseIdentifier:MTCalendarCellIdentifier];
     [self addSubview:self.calenderCollectionView];

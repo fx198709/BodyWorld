@@ -31,9 +31,9 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(self.mas_height).multipliedBy(0.7);
+        make.height.mas_equalTo(30);
         make.center.mas_equalTo(self);
-        make.width.mas_equalTo(self.titleLabel.mas_height).multipliedBy(1.0);
+        make.width.mas_equalTo(30);
     }];
 }
 
