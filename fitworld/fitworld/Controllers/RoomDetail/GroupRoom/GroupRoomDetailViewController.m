@@ -60,7 +60,7 @@
 - (void)addsubviews{
     UIImageView *topImgView = [[UIImageView alloc] init];
     topImgView.image = [UIImage imageNamed:@"coursedetail_top"];
-    NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, self.selectRoom.course.pic];
+    NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, self.selectRoom.pic];
     [topImgView sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
     [self.view addSubview:topImgView];
     int topimageHeight = self.view.bounds.size.height / 3;
