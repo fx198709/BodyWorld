@@ -565,12 +565,12 @@
 
 - (void)leaveToSuccessview:(UIAlertController*)alertControl{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self->canErrorToPOP = NO;
     [self joinStateRequest:NO success:^{
         [alertControl dismissViewControllerAnimated:YES completion:nil];
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             //             跳转到健身完成页面
-            self->canErrorToPOP = NO;
             [self jumpToTrainingvc];
         });
     }];
@@ -608,6 +608,7 @@
 - (void)dealwithTimer{
 //    判断开始没有
 //    还没开始，需要设置倒计时
+//    判断结束时间
     long dif = self.currentRoom.start_time- [[NSDate date] timeIntervalSince1970];
     if (dif>0) {
         if (!leftTimeLabel) {

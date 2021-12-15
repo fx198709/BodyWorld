@@ -62,7 +62,7 @@
 - (id)initWith:(NSDictionary*)code {
     self = [super init];
     mCode = code;
-    panelSize = CGSizeMake(ScreenWidth/3, 200);
+    panelSize = CGSizeMake(ScreenWidth/4, ScreenWidth/4/0.563);
     return self;
 }
 
@@ -187,8 +187,8 @@
                             [strongSelf.guestPanels addObject:guestpanel];
                             int showguestcount = (int)strongSelf.guestPanels.count;
                             [self.view addSubview:guestpanel];
-                            CGFloat startX = ScreenWidth/3*((showguestcount)%3);
-                            CGFloat startY = showguestcount > 2? self->panelSize.height:0+100;
+                            CGFloat startX = ScreenWidth/4*(showguestcount);
+                            CGFloat startY = 100;
                             guestpanel.frame = CGRectMake(startX, startY, self->panelSize.width, self->panelSize.height);
                             
                             UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragReplyButton:)];
@@ -405,12 +405,12 @@
 
 - (void)leaveToSuccessview:(UIAlertController*)alertControl{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self->canErrorToPOP = NO;
     [self joinStateRequest:NO success:^{
         [alertControl dismissViewControllerAnimated:YES completion:nil];
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
             //             跳转到健身完成页面
-            self->canErrorToPOP = NO;
             [self jumpToTrainingvc];
         });
     }];

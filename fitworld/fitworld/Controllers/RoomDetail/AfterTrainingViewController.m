@@ -179,10 +179,9 @@
      }];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    self.isTapBack = NO;
-//    删除roomvc 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    删除roomvc
     NSMutableArray *marr = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
        for (UIViewController *vc in marr) {
            if ([vc isKindOfClass:NSClassFromString(@"RoomVC")] && [vc isKindOfClass:NSClassFromString(@"GroupRoomViewControl")] ) {
@@ -191,13 +190,15 @@
            }
        }
     self.navigationController.viewControllers = marr;
-   
+       
 }
-//
-//- (void)backPopViewcontroller:(id) sender
-//{
-//    [self.navigationController popToViewController:self.invc animated:YES];
-//}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.isTapBack = NO;
+
+}
+ 
 
 - (void)backPopViewcontroller:(id) sender
 {
