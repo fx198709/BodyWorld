@@ -27,9 +27,7 @@
     
     [UMConfigure initWithAppkey:@"61ab1bd1e0f9bb492b7df2bc" channel:nil];
     [MobClick setScenarioType:E_UM_NORMAL];
-    [MobClick setCrashReportEnabled:YES];//mi
-
-
+    [MobClick setCrashReportEnabled:YES];//
 
     [[VConductorClient sharedInstance] initSDK];
 //    if (@available(iOS 13.0, *)) {

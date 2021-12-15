@@ -38,7 +38,6 @@
 
 //深绿色
 #define BgGreenColor UIRGBColor(71, 138, 94, 1)
-
 //绿色文字或背景
 #define SelectGreenColor  UIRGBColor(86, 186, 111, 1)
 //浅色字色#C6C6C6

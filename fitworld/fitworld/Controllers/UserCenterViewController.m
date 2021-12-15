@@ -50,6 +50,7 @@
 @property (nonatomic, strong) MTCalendarView *calenderView;
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
+@property (nonatomic, strong) NSArray *checkDays;
 
 @property (nonatomic, strong) UserCenterInfo *centerInfo;
 
@@ -86,7 +87,7 @@
     self.dlTitleLabel.text = Text_Training;
     
     self.calenderTitleLabel.text = ChineseStringOrENFun(@"最近30天打卡记录", @"30 Day activity");
-    self.endDate = [[NSDate date] mt_previousDate];
+    self.endDate = [NSDate date];
     self.startDate = [self.endDate mt_previousDate:29];
     NSString *chDayStr =  [NSString stringWithFormat:@"%ld月%ld日 - %ld月%ld日",
                            self.startDate.mt_month, self.startDate.mt_day,
@@ -117,11 +118,25 @@
     
     self.historyCountLabel.text = IntToString(self.centerInfo.total);
     
-    self.dlCountLabel.text = IntToString(self.centerInfo.buddy.count);
-    self.dlTimeLabel.text = IntToString(self.centerInfo.buddy.duration);
+    self.dlCountLabel.text = [NSString stringWithFormat:@"%dtimes", self.centerInfo.buddy.count];
+    self.dlTimeLabel.text = [NSString stringWithFormat:@"%.1fmin",
+                             self.centerInfo.buddy.duration / 60.0];
     
-    self.tuanCountLabel.text = IntToString(self.centerInfo.group.count);
-    self.tuanTimeLabel.text = IntToString(self.centerInfo.group.duration);
+    self.tuanCountLabel.text = [NSString stringWithFormat:@"%dmin", self.centerInfo.group.count];
+    self.tuanTimeLabel.text = [NSString stringWithFormat:@"%.1fmin",
+                               self.centerInfo.group.duration / 60.0];
+    if (self.centerInfo.day_of_month != nil && self.centerInfo.day_of_month.count > 0) {
+        NSMutableArray *days = [NSMutableArray arrayWithCapacity:self.centerInfo.day_of_month.count];
+        for (NSNumber *times in self.centerInfo.day_of_month) {
+            NSString *dayStr = ReachYearANDTime(times.longValue);
+            NSDate *day = [NSDate mt_dateFromString:dayStr format:@"yyyy-MM-dd HH:mm"];
+            [days addObject:day];
+        }
+        self.checkDays = days;
+    } else {
+        self.checkDays = nil;
+    }
+    [self reloadCalenderView];
 }
 
 
@@ -147,15 +162,21 @@
     [self.calenderContainerView clearAllSubViews];
     self.calenderView = [[MTCalendarView alloc] init];
     self.calenderView.backgroundColor = self.calenderContainerView.superview.backgroundColor;
-    self.calenderView.startDate = self.startDate;
-    self.calenderView.endDate = self.endDate;
     [self.calenderContainerView addSubview:self.calenderView];
     [self.calenderView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.calenderContainerView);
         make.height.mas_equalTo(300);
     }];
+    [self reloadCalenderView];
+}
+
+- (void)reloadCalenderView {
+    self.calenderView.startDate = self.startDate;
+    self.calenderView.endDate = self.endDate;
+    self.calenderView.markList = self.checkDays;
     [self.calenderView reloadData];
 }
+
 #pragma mark - action
 
 

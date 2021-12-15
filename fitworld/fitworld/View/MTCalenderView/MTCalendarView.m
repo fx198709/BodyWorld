@@ -25,6 +25,7 @@ UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSArray *weekTitles;
 @property (nonatomic, strong) NSMutableArray<MTCalenderModel *> *dateList;
+@property (nonatomic, strong) NSMutableArray<NSString *> *markStrList;
 
 @end
 
@@ -93,12 +94,29 @@ UICollectionViewDelegateFlowLayout>
     }
 }
 
+- (void)setMarkList:(NSArray<NSDate *> *)markList {
+    _markList = markList;
+    self.markStrList = [NSMutableArray arrayWithCapacity:markList.count];
+    for (NSDate *date in markList) {
+        NSString *dateStr = [date mt_formatString:DateFormatter_Day];
+        [self.markStrList addObject:dateStr];
+    }
+}
+
 
 - (void)reloadData {
     [self loadDataList];
     [self.calenderCollectionView reloadData];
 }
 
+
+- (BOOL)isMark:(NSDate *)date {
+    if (self.markList == nil || self.markList.count == 0 || date == nil) {
+        return false;
+    }
+    NSString *dateStr = [date mt_formatString:DateFormatter_Day];
+    return [self.markStrList containsObject:dateStr];
+}
 
 #pragma mark - delegate
 
@@ -118,12 +136,16 @@ UICollectionViewDelegateFlowLayout>
         cell.titleLabel.text = self.weekTitles[indexPath.row];
         cell.backgroundColor = [UIColor darkGrayColor];
     } else {
+        cell.backgroundColor = self.backgroundColor;
         //日期时间
         NSInteger index = indexPath.row - self.weekTitles.count;
         if (index < self.dateList.count) {
-            cell.date = self.dateList[index];
+            MTCalenderModel *date = self.dateList[index];
+            if([self isMark:date.date]) {
+                cell.backgroundColor = BgGreenColor;
+            }
+            cell.date = date;
         }
-        cell.backgroundColor = self.backgroundColor;
     }
     return cell;
 }

@@ -10,6 +10,7 @@
 #import "UserCenterWeekData.h"
 #import "UserCenterGroup.h"
 
+@protocol NSNumber;
 
 @interface UserCenterInfo : BaseJSONModel
 
@@ -17,7 +18,7 @@
 @property (nonatomic, strong) UserInfo *user_info;
 @property (nonatomic, strong) UserCenterGroup *buddy;
 @property (nonatomic, strong) UserCenterGroup *group;
-@property (nonatomic, strong) NSArray*day_of_month;
+@property (nonatomic, strong) NSArray<NSNumber> *day_of_month;
 @property (nonatomic, assign) int total;
 
 @end
