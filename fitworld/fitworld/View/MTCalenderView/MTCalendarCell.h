@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong, nullable) MTCalenderModel *date;
 
+- (void)setIsMark:(BOOL)isMark;
 
 @end
 

@@ -131,20 +131,19 @@ UICollectionViewDelegateFlowLayout>
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MTCalendarCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MTCalendarCellIdentifier forIndexPath:indexPath];
+    cell.isMark = NO;
     //标题栏
     if (indexPath.row < self.weekTitles.count) {
-        cell.titleLabel.text = self.weekTitles[indexPath.row];
         cell.backgroundColor = [UIColor darkGrayColor];
+        cell.titleLabel.text = self.weekTitles[indexPath.row];
     } else {
         cell.backgroundColor = self.backgroundColor;
         //日期时间
         NSInteger index = indexPath.row - self.weekTitles.count;
         if (index < self.dateList.count) {
             MTCalenderModel *date = self.dateList[index];
-            if([self isMark:date.date]) {
-                cell.backgroundColor = BgGreenColor;
-            }
             cell.date = date;
+            cell.isMark = [self isMark:date.date];
         }
     }
     return cell;

@@ -31,7 +31,9 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self);
+        make.height.mas_equalTo(self.mas_height).multipliedBy(0.8);
+        make.center.mas_equalTo(self);
+        make.width.mas_equalTo(self.titleLabel.mas_height).multipliedBy(1.0);
     }];
 }
 
@@ -44,6 +46,10 @@
     }
 }
 
+- (void)setIsMark:(BOOL)isMark {
+    self.titleLabel.backgroundColor = isMark ? BgGreenColor : [UIColor clearColor];
+    [self.titleLabel cornerHalf];
+}
 
 
 @end
