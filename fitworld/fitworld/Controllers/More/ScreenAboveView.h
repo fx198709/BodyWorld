@@ -23,13 +23,16 @@ typedef void(^ScreenBtnBlock)(NSArray*timeArray, NSArray*typeArray, BOOL show_jo
 @property (assign, nonatomic) BOOL showJoin;
 
 
-@property (strong, nonatomic) UIView* contentView;
-@property (strong, nonatomic) UIView* durationView;
+@property (strong, nonatomic) IBOutlet UIView* contentView;
+@property (strong, nonatomic) IBOutlet UIView* durationView;
 @property (strong, nonatomic) NSArray *lastSelectedIds;
 
 @property (nonatomic, copy)ScreenBtnBlock screenOKClick;
 @property (weak, nonatomic) IBOutlet UILabel *canenterLabel;
 @property (weak, nonatomic) IBOutlet UIButton *canEnterBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *top1constraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *top2constraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *widthconstraint;
 
 - (void)changeData:(NSArray*)timeArray andType:(NSArray*)typeArray isjoin:(BOOL)isjoin;
  

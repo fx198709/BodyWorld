@@ -73,13 +73,14 @@
     _okBtn.layer.cornerRadius = 7;
     _okBtn.clipsToBounds = YES;
     [_okBtn addTarget:self action:@selector(okBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-    int outwidth = ScreenWidth - 40*2;
-    _contentView = [[UIView alloc] initWithFrame:CGRectMake(40, 117, outwidth, 80)];
-    [self addSubview:_contentView];
-    
-    _durationView = [[UIView alloc] initWithFrame:CGRectMake(40, 270, outwidth, 80)];
-    [self addSubview:_durationView];
+    _contentView.backgroundColor = UIColor.clearColor;
+    _durationView.backgroundColor = UIColor.clearColor;
+//    int outwidth = ScreenWidth - 40*2;
+//    _contentView = [[UIView alloc] initWithFrame:CGRectMake(40, 117, outwidth, 80)];
+//    [self addSubview:_contentView];
+//    
+//    _durationView = [[UIView alloc] initWithFrame:CGRectMake(40, 270, outwidth, 80)];
+//    [self addSubview:_durationView];
     
 }
 - (void)resetBtnClicked{
@@ -152,7 +153,9 @@
         [btnview changeDateWithScreenModel:model];
         [btnview addTarget:self action:@selector(btnviewClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
+
+    NSUInteger lineCount1 = _typeArray.count%3 == 0?_typeArray.count/3:_typeArray.count/3+1;
+    _top1constraint.constant = lineCount1* (startHeight+btnHeight);
     for (int index = 0; index < _timeArray.count; index++) {
         ScreenModel *model = [_timeArray objectAtIndex:index];
         int y = index/3 * (btnHeight+startHeight)+startHeight;
@@ -165,6 +168,8 @@
         [btnview changeDateWithScreenModel:model];
         [btnview addTarget:self action:@selector(btnviewClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
+    NSUInteger lineCount2 = _timeArray.count%3 == 0?_timeArray.count/3:_timeArray.count/3+1;
+    _top2constraint.constant = lineCount2* (startHeight+btnHeight);
     _showJoin = isjoin;
     [self changeShowJoinBtnWithState];
 //    ScreenAboveNameBtn
