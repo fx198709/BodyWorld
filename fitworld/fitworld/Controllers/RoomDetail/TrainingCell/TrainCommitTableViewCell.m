@@ -68,6 +68,9 @@
     [manager POST:@"comment/coach/add" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:parentVC.view animated:YES];
         if (CheckResponseObject(responseObject)) {
+            if ([parentVC respondsToSelector:@selector(reloadtable)]) {
+                [parentVC performSelector:@selector(reloadtable)];
+            }
 //            self.selectRoom.is_join = postBool;
 //            [self changejoinBtn];
         }else{

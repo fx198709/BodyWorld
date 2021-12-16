@@ -13,6 +13,7 @@ target 'FFitWorld' do
     pod 'JSONModel'
     pod 'UMCCommon', '~> 2.1.1'
     pod 'UMCAnalytics', '~> 6.0.5'
+    pod 'IQKeyboardManager'
 #    pod 'UMCSecurityPlugins'
 
 end

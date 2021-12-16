@@ -87,7 +87,7 @@
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khs-Hs-RhV">
-                                        <rect key="frame" x="33" y="1" width="202" height="34"/>
+                                        <rect key="frame" x="38" y="1" width="197" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="eBC-gm-iNo"/>
@@ -111,7 +111,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.20784313725490194" green="0.20784313725490194" blue="0.20784313725490194" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstItem="khs-Hs-RhV" firstAttribute="leading" secondItem="qeI-bW-2z4" secondAttribute="trailing" id="04r-du-HqM"/>
+                                    <constraint firstItem="khs-Hs-RhV" firstAttribute="leading" secondItem="qeI-bW-2z4" secondAttribute="trailing" constant="5" id="04r-du-HqM"/>
                                     <constraint firstItem="X7g-pU-pAs" firstAttribute="centerY" secondItem="ugS-bh-o0U" secondAttribute="centerY" id="5hZ-lP-eq0"/>
                                     <constraint firstItem="khs-Hs-RhV" firstAttribute="centerY" secondItem="ugS-bh-o0U" secondAttribute="centerY" id="BMb-Qe-iss"/>
                                     <constraint firstAttribute="height" constant="36" id="KrG-QG-J2f"/>

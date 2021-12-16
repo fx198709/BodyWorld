@@ -11,7 +11,7 @@
 #import "UIImage+Extension.h"
 #import <UMCommon/UMCommon.h>
 #import <UMAnalytics/MobClick.h>
-
+#import <IQKeyboardManager/IQKeyboardManager.h>
 
 #define NavBlackTextColor UIColorFromRGB(0x000000)//导航文字黑色
 
@@ -30,6 +30,9 @@
     [MobClick setCrashReportEnabled:YES];//
 
     [[VConductorClient sharedInstance] initSDK];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 //    if (@available(iOS 13.0, *)) {
 //        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDarkContent; //黑色
 //    }else{
