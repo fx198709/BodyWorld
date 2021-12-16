@@ -210,6 +210,8 @@
 		DDB138132748EAF6009A44FD /* Train2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB138112748EAF6009A44FD /* Train2TableViewCell.xib */; };
 		DDB138172748EB07009A44FD /* Train3TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB138152748EB07009A44FD /* Train3TableViewCell.m */; };
 		DDB138182748EB07009A44FD /* Train3TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB138162748EB07009A44FD /* Train3TableViewCell.xib */; };
+		DDBAB340276B926A003C6DA5 /* TrainCommitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBAB33E276B9269003C6DA5 /* TrainCommitTableViewCell.m */; };
+		DDBAB341276B926A003C6DA5 /* TrainCommitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBAB33F276B926A003C6DA5 /* TrainCommitTableViewCell.xib */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
 		DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */; };
@@ -628,6 +630,9 @@
 		DDB138142748EB07009A44FD /* Train3TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Train3TableViewCell.h; sourceTree = "<group>"; };
 		DDB138152748EB07009A44FD /* Train3TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Train3TableViewCell.m; sourceTree = "<group>"; };
 		DDB138162748EB07009A44FD /* Train3TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Train3TableViewCell.xib; sourceTree = "<group>"; };
+		DDBAB33D276B9269003C6DA5 /* TrainCommitTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrainCommitTableViewCell.h; sourceTree = "<group>"; };
+		DDBAB33E276B9269003C6DA5 /* TrainCommitTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrainCommitTableViewCell.m; sourceTree = "<group>"; };
+		DDBAB33F276B926A003C6DA5 /* TrainCommitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainCommitTableViewCell.xib; sourceTree = "<group>"; };
 		DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCollectionLivingViewCell.xib; sourceTree = "<group>"; };
 		DDEE67D32725744900D0C310 /* TableCollectionLivingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionLivingViewCell.h; sourceTree = "<group>"; };
 		DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionLivingViewCell.m; sourceTree = "<group>"; };
@@ -1435,6 +1440,9 @@
 				DDB138142748EB07009A44FD /* Train3TableViewCell.h */,
 				DDB138152748EB07009A44FD /* Train3TableViewCell.m */,
 				DDB138162748EB07009A44FD /* Train3TableViewCell.xib */,
+				DDBAB33D276B9269003C6DA5 /* TrainCommitTableViewCell.h */,
+				DDBAB33E276B9269003C6DA5 /* TrainCommitTableViewCell.m */,
+				DDBAB33F276B926A003C6DA5 /* TrainCommitTableViewCell.xib */,
 			);
 			path = TrainingCell;
 			sourceTree = "<group>";
@@ -1556,6 +1564,7 @@
 				DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */,
 				047DC206268CD09900A3E37E /* LaunchScreen.storyboard in Resources */,
 				DD595EB92736224600618D1A /* NoDataCollectionViewCell.xib in Resources */,
+				DDBAB341276B926A003C6DA5 /* TrainCommitTableViewCell.xib in Resources */,
 				DDB138132748EAF6009A44FD /* Train2TableViewCell.xib in Resources */,
 				04CD2E4C26982A45007814E6 /* TableCollectionViewCell.xib in Resources */,
 				04552B3F2696C3FD00C78706 /* material-design-icons.ttf in Resources */,
@@ -1788,6 +1797,7 @@
 				A296D6AF2758B46C00F73259 /* CoachCommentPageInfo.m in Sources */,
 				A2A94DD2273E76CA00D02C77 /* SelectCountryCodeCell.m in Sources */,
 				04EC01F926BD8AC100DC0103 /* VSRoomParam.mm in Sources */,
+				DDBAB340276B926A003C6DA5 /* TrainCommitTableViewCell.m in Sources */,
 				DD794406274FEC9D00BEEF6B /* VideoSlider.m in Sources */,
 				04EC01FA26BD8AC100DC0103 /* VSRoomLoader.m in Sources */,
 			);

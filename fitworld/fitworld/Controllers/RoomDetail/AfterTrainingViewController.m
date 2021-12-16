@@ -9,6 +9,7 @@
 #import "Train1TableViewCell.h"
 #import "Train2TableViewCell.h"
 #import "Train3TableViewCell.h"
+#import "TrainCommitTableViewCell.h"
 #import "MainViewController.h"
  
 @interface AfterTrainingViewController (){
@@ -40,20 +41,44 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    int dif = 15;
-    if (indexPath.row == 0) {
-        return 90+dif;
-    }else if (indexPath.row == 1) {
-        return 60+ self.currentRoom.plan.count * 40+dif;
-    }else {
-        return 60+ self.userList.count * 50+dif;
+    if (_currentRoom.type_int == 1) {
+//         团课 多一个评论
+        int dif = 15;
+        if (indexPath.row == 0) {
+            return 90+dif;
+        }else if (indexPath.row == 1) {
+            return 200+dif;
+        }else if (indexPath.row == 2) {
+            return 60+ self.currentRoom.plan.count * 40+dif;
+        }else {
+            return 60+ self.userList.count * 50+dif;
+        }
+        return 100;
+
+    }else{
+        int dif = 15;
+        if (indexPath.row == 0) {
+            return 90+dif;
+        }else if (indexPath.row == 1) {
+            return 60+ self.currentRoom.plan.count * 40+dif;
+        }else {
+            return 60+ self.userList.count * 50+dif;
+        }
+        return 100;
+
     }
-    return 100;
+   
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return 3;
+    if (_currentRoom.type_int == 1) {
+//         团课 多一个评论
+        return 4;
+
+    }else{
+        return 3;
+
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -61,21 +86,47 @@
         Train1TableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Train1TableViewCell" owner:self options:nil] lastObject];
         [cell changeDateWithRoomInfo:self.currentRoom];
         return cell;
-    }else if (indexPath.row == 1) {
-        Train2TableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Train2TableViewCell" owner:self options:nil] lastObject];
-        [cell changeDateWithRoomInfo:self.currentRoom];
-        return cell;
-    }else if (indexPath.row == 2) {
-        Train3TableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Train3TableViewCell" owner:self options:nil] lastObject];
-        [cell changeDataWithUserList:self.userList];
-        WeakSelf
-        cell.peopleBtnClick = ^(UserInfo* user) {
-            StrongSelf(wSelf);
-            [strongSelf addPeopleWithPeopleId:user];
-        };
-//        [cell changeDateWithRoomInfo:self.currentRoom];
-        return cell;
     }
+    if (_currentRoom.type_int == 1){
+        if (indexPath.row == 1) {
+            TrainCommitTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"TrainCommitTableViewCell" owner:self options:nil] lastObject];
+            cell.coach_id = _currentRoom.coach_id;
+            return cell;
+        }else if (indexPath.row == 2) {
+            Train2TableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Train2TableViewCell" owner:self options:nil] lastObject];
+            [cell changeDateWithRoomInfo:self.currentRoom];
+            return cell;
+        }else if (indexPath.row == 3) {
+            Train3TableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Train3TableViewCell" owner:self options:nil] lastObject];
+            [cell changeDataWithUserList:self.userList];
+            WeakSelf
+            cell.peopleBtnClick = ^(UserInfo* user) {
+                StrongSelf(wSelf);
+                [strongSelf addPeopleWithPeopleId:user];
+            };
+    //        [cell changeDateWithRoomInfo:self.currentRoom];
+            return cell;
+        }
+        
+    }else{
+        if (indexPath.row == 1) {
+            Train2TableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Train2TableViewCell" owner:self options:nil] lastObject];
+            [cell changeDateWithRoomInfo:self.currentRoom];
+            return cell;
+        }else if (indexPath.row == 2) {
+            Train3TableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Train3TableViewCell" owner:self options:nil] lastObject];
+            [cell changeDataWithUserList:self.userList];
+            WeakSelf
+            cell.peopleBtnClick = ^(UserInfo* user) {
+                StrongSelf(wSelf);
+                [strongSelf addPeopleWithPeopleId:user];
+            };
+    //        [cell changeDateWithRoomInfo:self.currentRoom];
+            return cell;
+        }
+    }
+    
+    
     
     UITableViewCell* cell = nil;
     return cell;

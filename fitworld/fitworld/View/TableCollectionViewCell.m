@@ -204,6 +204,12 @@
 - (void)joinBtnClicked:(UIButton *) recognizer{
     //    这边需要正在进行中的，才能开始，需要判断状态
     //    做测试用
+    Room *room1 = [_dataArr objectAtIndex: recognizer.tag-100];
+    AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
+    trainingvc.event_id =room1.event_id;
+    [[self viewController].navigationController pushViewController:trainingvc animated:YES];
+    
+    return;
     
     Room *room = [_dataArr objectAtIndex: recognizer.tag-100];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
