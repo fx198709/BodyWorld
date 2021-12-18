@@ -77,6 +77,7 @@
 		04F8AA5C270DE975009B125A /* ResetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8AA5A270DE974009B125A /* ResetPwdController.m */; };
 		464387B6274A7B3700A2D9A4 /* ProtocolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 464387B3274A7B3700A2D9A4 /* ProtocolView.m */; };
 		464387B7274A7B3700A2D9A4 /* ProtocolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 464387B5274A7B3700A2D9A4 /* ProtocolView.xib */; };
+		46A3FB21276E13520013B14A /* StarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A3FB20276E13520013B14A /* StarView.xib */; };
 		A256300A273FE2430030D6B2 /* FriendPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A2563009273FE2430030D6B2 /* FriendPageInfo.m */; };
 		A256300D273FE6850030D6B2 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A256300C273FE6850030D6B2 /* Friend.m */; };
 		A2563010273FE6EA0030D6B2 /* AddFriendPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */; };
@@ -373,6 +374,7 @@
 		464387B3274A7B3700A2D9A4 /* ProtocolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolView.m; sourceTree = "<group>"; };
 		464387B4274A7B3700A2D9A4 /* ProtocolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolView.h; sourceTree = "<group>"; };
 		464387B5274A7B3700A2D9A4 /* ProtocolView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProtocolView.xib; sourceTree = "<group>"; };
+		46A3FB20276E13520013B14A /* StarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarView.xib; sourceTree = "<group>"; };
 		5A752F19D1ECDDD6A8BC1286 /* Pods-fitworld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitworld.release.xcconfig"; path = "Target Support Files/Pods-fitworld/Pods-fitworld.release.xcconfig"; sourceTree = "<group>"; };
 		A2563008273FE2430030D6B2 /* FriendPageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendPageInfo.h; sourceTree = "<group>"; };
 		A2563009273FE2430030D6B2 /* FriendPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendPageInfo.m; sourceTree = "<group>"; };
@@ -873,6 +875,7 @@
 				04CD2E4826982A45007814E6 /* TableCollectionViewCell.xib */,
 				A296D6B02758C4E800F73259 /* StarView.h */,
 				A296D6B12758C4E800F73259 /* StarView.m */,
+				46A3FB20276E13520013B14A /* StarView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1551,6 +1554,7 @@
 				464387B7274A7B3700A2D9A4 /* ProtocolView.xib in Resources */,
 				04CD2E4A26982A45007814E6 /* GoodsCell.xib in Resources */,
 				DDB1380527489A2E009A44FD /* AfterTrainingViewController.xib in Resources */,
+				46A3FB21276E13520013B14A /* StarView.xib in Resources */,
 				DD79440B274FED4900BEEF6B /* RoomVCSettingView.xib in Resources */,
 				DD595EBE27364D0300618D1A /* MessageDetailViewController.xib in Resources */,
 				DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */,
