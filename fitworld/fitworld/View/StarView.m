@@ -13,6 +13,10 @@
 
 @implementation StarView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
 - (void)setScore:(NSInteger)score {
     NSArray *subView = self.subviews;
     if (subView.count == 0) {
@@ -25,12 +29,12 @@
     int hNum = score % subView.count;
     for (int i=0; i<subView.count; i++) {
         UIView *aView = [subView objectAtIndex:i];
-        if ([aView isKindOfClass:[UIButton class]]) {
-            UIButton *btn = (UIButton *)aView;
-            UIImage *img = i < hNum ? hImage : normalImage;
-            [btn setImage:img forState:UIControlStateNormal];
+        if ([aView isKindOfClass:[UIImageView class]]) {
+            UIImageView *imgView = (UIImageView *)aView;
+            imgView.image = i < hNum ? hImage : normalImage;
         }
     }
 }
+
 
 @end

@@ -23,7 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *cityImg;
 
-@property (weak, nonatomic) IBOutlet StarView *starView;
+@property (weak, nonatomic) IBOutlet UIView *starContainerView;
+@property (strong, nonatomic) StarView *starView;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *descView;
@@ -50,6 +51,12 @@
     [super initView];
     [self.headImg cornerHalf];
     [self.descView cornerWithRadius:6.0];
+    [self.starContainerView clearAllSubViews];
+    self.starView = LoadXib(@"StarView");
+    [self.starContainerView addSubview:self.starView];
+    [self.starView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.starContainerView);
+    }];
 }
 
 
