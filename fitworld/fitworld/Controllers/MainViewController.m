@@ -341,7 +341,7 @@ BOOL  hasrequest = NO;
 
     if (indexPath.row == 2){
         // 复用队列中没有时再创建
-        TableCollectionLivingViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveTableviewCell" forIndexPath:indexPath];
+        TableCollectionLivingViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"TableCollectionLivingViewCell" owner:self options:nil] lastObject];
         [cell.logoImage setImage:[UIImage imageNamed:@"index_live"]];
 
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
@@ -354,7 +354,9 @@ BOOL  hasrequest = NO;
     }
     if (indexPath.row == 3 ){
         // 创建新的 cell，默认为主标题模式
-        TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
+//        TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
+        
+        TableCollectionViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"TableCollectionViewCell" owner:self options:nil] lastObject];
         groupCell = cell;
         cell.dataArr = _groupClasses;
         
@@ -368,7 +370,7 @@ BOOL  hasrequest = NO;
         return cell;
     }
     if (indexPath.row == 4 ){
-        TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell"];
+        TableCollectionViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"TableCollectionViewCell" owner:self options:nil] lastObject];
         // 创建新的 cell，默认为主标题模式
         buddyCell = cell;
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
@@ -435,7 +437,7 @@ BOOL  hasrequest = NO;
 {
     NSLog(@"more btn click");
     CourseMoreController *courseMoreVC = [[CourseMoreController alloc]init];
-    courseMoreVC.VCtype = [NSString stringWithFormat:@"%zd",sender.tag-200];
+    courseMoreVC.VCtype = (int)sender.tag-200;
 //    courseMoreVC.navigationItem.title = @"Course";
     [self.navigationController pushViewController:courseMoreVC animated:YES];
 }

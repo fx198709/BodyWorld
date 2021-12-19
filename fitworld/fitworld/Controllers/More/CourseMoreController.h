@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 //更多
 @interface CourseMoreController : BaseNavViewController
-@property(nonatomic,copy)NSString*VCtype;
+@property(nonatomic,assign)int VCtype;
 @property (nonatomic, strong)NSArray *curse_type_array;
 @property (nonatomic, strong)NSArray *curse_time_array;
 @property (nonatomic, assign)BOOL show_join;

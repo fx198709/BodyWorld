@@ -53,7 +53,7 @@
         [self.viewControllers addObject:vc];
     }
     
-    pageControlView = [[YJPageControlView alloc] initWithFrame:frame Titles:titles viewControllers:self.viewControllers Selectindex:0];
+    pageControlView = [[YJPageControlView alloc] initWithFrame:frame Titles:titles viewControllers:self.viewControllers Selectindex:_VCtype];
     [pageControlView showInViewController:self];
     [self reachSearchOption];
     
