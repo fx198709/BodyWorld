@@ -16,6 +16,8 @@
 #import "GroupDetailTableViewCell.h"
 #import "CoachComment.h"
 #import "HasJoinGroupRoomView.h"
+#import "UIImage+Extension.h"
+
 @interface GroupRoomDetailViewController (){
     BOOL isLoading;
     int _pageCount;
@@ -204,8 +206,17 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"share" renderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(shareBtnClicked:)];
+    self.navigationItem.rightBarButtonItem =rightItem;
 }
+
+//分享
+- (void)shareBtnClicked:(id)sender{
+//
+}
+
 
 
 - (void) joinClass{
