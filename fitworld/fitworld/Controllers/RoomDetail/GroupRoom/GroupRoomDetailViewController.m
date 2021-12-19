@@ -76,6 +76,7 @@
         make.top.equalTo(self.view);
         make.height.mas_equalTo(topimageHeight);
     }];
+    topImgView.contentMode = UIViewContentModeScaleAspectFill;
 
     _joinBtn = [[UIButton alloc] init];
     [_joinBtn addTarget:self action:@selector(joinClass) forControlEvents:UIControlEventTouchUpInside];
