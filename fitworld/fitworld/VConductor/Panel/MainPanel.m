@@ -45,7 +45,7 @@
   mDoubleTapGesture.cancelsTouchesInView = YES;
   [self addGestureRecognizer:mDoubleTapGesture];
   mLayout = PLAYOUT_LAYOUT_GRID;
-  
+   
   return self;
 }
 
@@ -65,6 +65,13 @@
   [self syncRemoteView];
   [self relayoutVideoView];
   NSLog(@"needLayout M");
+}
+
+- (void)createPlaceImageView{
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    [self addSubview:imageview];
+    imageview.image = [UIImage imageNamed:@"pg_room_waitting_bg"];
+    imageview.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 - (void)detachLocalView {

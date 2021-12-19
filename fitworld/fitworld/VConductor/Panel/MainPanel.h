@@ -11,6 +11,9 @@
 
 - (id)init;
 
+//创建一个占位图
+- (void)createPlaceImageView;
+
 - (void)attachLocalView;
 - (void)detachLocalView;
 

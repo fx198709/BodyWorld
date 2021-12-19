@@ -529,14 +529,14 @@
 //设置导航栏左边按钮
 - (UIBarButtonItem *)leftMenuBarButtonItem {
     UIView *backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-150, 40)];
-    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(-10, 0, 40, 40)];
     [backview addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backPopViewcontroller:) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 20, 20)];
     imageview.image = [UIImage imageNamed:@"back_white"];
     [backview addSubview:imageview];
 
-    vtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, ScreenWidth-150-20-60, 20)];
+    vtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, ScreenWidth-150-20-60, 20)];
     [backview addSubview:vtitleLabel];
     vtitleLabel.textColor = UIColor.whiteColor;
     

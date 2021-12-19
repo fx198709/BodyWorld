@@ -25,7 +25,9 @@
     BOOL hasStartLiving;// 开始直播了
     UILabel *startDuringTimeLabel;//开始了多久 //long diff = currentTime- room.start_time;
     UIButton *voiceBtn;// 头上视频的声音
-    UILabel *vtitleLabel;//title 文件
+    UILabel *vtitleLabel;//title 直播间名称
+    UILabel *vnumberLabel;//title 直播间人数
+
     BOOL headHasVoice;//头部的有声音
     UIButton *settingBtn;//设置按钮
     
@@ -91,11 +93,11 @@
     
     
     settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
-    
     mMainPanel = [MainPanel new];
     mMainPanel.layer.cornerRadius = 5;
     mMainPanel.layer.masksToBounds = YES;
     [self.view addSubview:mMainPanel];
+    [mMainPanel createPlaceImageView];
     
     mSidePanel = [SidePanel new];
     mSidePanel.layer.cornerRadius = 5;
@@ -201,9 +203,10 @@
                             guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
                         }
                     }
-                    
                 }
             }
+            
+            self->vnumberLabel.text = [NSString stringWithFormat:@"%lu online",strongSelf.guestPanels.count+1];
         }];
     }
 }
@@ -368,17 +371,20 @@
 //设置导航栏左边按钮
 - (UIBarButtonItem *)leftMenuBarButtonItem {
     UIView *backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-150, 40)];
-    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(-10, 0, 40, 40)];
     [backview addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backPopViewcontroller:) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 20, 20)];
     imageview.image = [UIImage imageNamed:@"back_white"];
     [backview addSubview:imageview];
-    
-    vtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, ScreenWidth-150-20-60, 20)];
+    vtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 3, ScreenWidth-150-20-60, 20)];
     [backview addSubview:vtitleLabel];
     vtitleLabel.textColor = UIColor.whiteColor;
     
+    vnumberLabel =[[UILabel alloc] initWithFrame:CGRectMake(25, 23, ScreenWidth-150-20-60, 15)];
+    [backview addSubview:vnumberLabel];
+    vnumberLabel.font =SystemFontOfSize(14);
+    vnumberLabel.textColor = UIRGBColor(167, 167, 167, 1);
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:backview];
     return leftBtnItem;
 }
@@ -516,6 +522,7 @@
             startDuringTimeLabel.text = ChineseStringOrENFun(timeCode, timeCodeEN);
         }
         vtitleLabel.text = self.currentRoom.name;
+        vnumberLabel.text = [NSString stringWithFormat:@"%lu online",self.guestPanels.count+1];
         if (elapsedSecs > self.currentRoom.duration*60) {
             //            课程结束
             [self jumpToTrainingvc];
