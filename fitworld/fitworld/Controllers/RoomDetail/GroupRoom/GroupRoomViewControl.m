@@ -584,10 +584,10 @@
     for (GuestPanel * panel in _guestPanels) {
         if (needShowOthersVideo) {
             //            开启免打扰
-            [panel detachGuestRenderView];
+            [panel onlyShowUserImage];
         }else{
             //            关闭免打扰
-            [panel attachGuestRenderView];
+            [panel showUservideo];
         }
     }
 }

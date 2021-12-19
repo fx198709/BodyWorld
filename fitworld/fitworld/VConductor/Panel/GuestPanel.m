@@ -1,11 +1,12 @@
 #import "GuestPanel.h"
 #import "UIDeps.h"
 #import "GuestRenderView.h"
-
+#import "UserHeadPicView.h"
 @interface GuestPanel ()
 {
 }
-
+//@property (nonatomic, weak)ClassMember* guestMember; //弱引用，方便释放
+@property (nonatomic, strong)UserHeadPicView* guestImageView;
 
 @property (nonatomic, strong) GuestRenderView* mGuestRenderView;
 @end
@@ -52,15 +53,36 @@
     return self;
 }
 
+//创建头像
+- (void)createImageSubview{
+    if (!_guestImageView) {
+        _guestImageView = [[UserHeadPicView alloc] init];
+        [self addSubview:_guestImageView];
+        [_guestImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            //    make.centerX.and.centerY.equalTo(self.mMyView);
+            make.center.equalTo(self);
+            make.size.mas_equalTo(CGSizeMake(100, 100));
+            
+        }];
+        _guestImageView.clipsToBounds = YES;
+        _guestImageView.layer.cornerRadius = 50;
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
+        [_guestImageView changeDataWithUserImageUrl:_userImageString];
+    }
+   
+}
+
+- (void)deleteImageSubview{
+    [_guestImageView removeFromSuperview];
+    _guestImageView = nil;
+}
+
+
 - (void)syncSession:(ClassMember*)session {
     mMyLabel.text = session.nickName;
-//    NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-//    style.alignment = NSTextAlignmentJustified;
-//    style.firstLineHeadIndent = 10.0f;
-//    style.headIndent = 10.0f;
-//    style.tailIndent = -10.0f;
-//    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:session.nickName attributes:@{ NSParagraphStyleAttributeName : style}];
-//    mNameLabel.attributedText = attrText;
+//    保存member信息  后续免打扰 显示头像
+//    _guestMember = session;
 }
 
 - (void)oChatClicked {
@@ -89,9 +111,20 @@
         return;
     }
     [mGuestRenderView unbindMedia];
-    //[mGuestRenderView closeGuestMedia];
     [mGuestRenderView removeFromSuperview];
     mGuestRenderView = nil;
+}
+
+//屏蔽其他人 只显示头像
+- (void)onlyShowUserImage{
+    [self createImageSubview];
+    [self detachGuestRenderView];
+}
+//显示其他人的流
+- (void)showUservideo{
+    [self deleteImageSubview];
+    [self attachGuestRenderView];
+
 }
 
 @end
