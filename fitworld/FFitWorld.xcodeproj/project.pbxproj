@@ -213,6 +213,8 @@
 		DDB138182748EB07009A44FD /* Train3TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB138162748EB07009A44FD /* Train3TableViewCell.xib */; };
 		DDBAB340276B926A003C6DA5 /* TrainCommitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBAB33E276B9269003C6DA5 /* TrainCommitTableViewCell.m */; };
 		DDBAB341276B926A003C6DA5 /* TrainCommitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBAB33F276B926A003C6DA5 /* TrainCommitTableViewCell.xib */; };
+		DDD3CBBF276F21C3007A83BB /* ShareAboveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD3CBBE276F21C2007A83BB /* ShareAboveView.m */; };
+		DDD3CBC1276F21D4007A83BB /* ShareAboveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDD3CBC0276F21D4007A83BB /* ShareAboveView.xib */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
 		DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */; };
@@ -635,6 +637,9 @@
 		DDBAB33D276B9269003C6DA5 /* TrainCommitTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrainCommitTableViewCell.h; sourceTree = "<group>"; };
 		DDBAB33E276B9269003C6DA5 /* TrainCommitTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrainCommitTableViewCell.m; sourceTree = "<group>"; };
 		DDBAB33F276B926A003C6DA5 /* TrainCommitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainCommitTableViewCell.xib; sourceTree = "<group>"; };
+		DDD3CBBD276F21C2007A83BB /* ShareAboveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareAboveView.h; sourceTree = "<group>"; };
+		DDD3CBBE276F21C2007A83BB /* ShareAboveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareAboveView.m; sourceTree = "<group>"; };
+		DDD3CBC0276F21D4007A83BB /* ShareAboveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareAboveView.xib; sourceTree = "<group>"; };
 		DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCollectionLivingViewCell.xib; sourceTree = "<group>"; };
 		DDEE67D32725744900D0C310 /* TableCollectionLivingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionLivingViewCell.h; sourceTree = "<group>"; };
 		DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionLivingViewCell.m; sourceTree = "<group>"; };
@@ -1476,6 +1481,9 @@
 				DD40BD6A27678B66007FC1B8 /* HasJoinGroupRoomView.h */,
 				DD40BD6B27678B66007FC1B8 /* HasJoinGroupRoomView.m */,
 				DD40BD6D27678B86007FC1B8 /* HasJoinGroupRoomView.xib */,
+				DDD3CBBD276F21C2007A83BB /* ShareAboveView.h */,
+				DDD3CBBE276F21C2007A83BB /* ShareAboveView.m */,
+				DDD3CBC0276F21D4007A83BB /* ShareAboveView.xib */,
 			);
 			path = GroupRoom;
 			sourceTree = "<group>";
@@ -1544,6 +1552,7 @@
 				DD6EDB18272CE5A7002B0A8E /* SelectClassHeadview.xib in Resources */,
 				DDFA757E27591BE800EFD0B1 /* GroupRoomDetailViewController.xib in Resources */,
 				DD595EC427367FA700618D1A /* UserCenterMainViewController.xib in Resources */,
+				DDD3CBC1276F21D4007A83BB /* ShareAboveView.xib in Resources */,
 				DD8E328E273F226B008995E9 /* code.json in Resources */,
 				DD84CB9427412A3D00EB8C61 /* RightTopSearchView.xib in Resources */,
 				A2723F0A273CF22F00388B01 /* SelectCountryCell.xib in Resources */,
@@ -1715,6 +1724,7 @@
 				DD84CB9C27416D5D00EB8C61 /* ScreenModel.m in Sources */,
 				C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */,
 				047DC201268CD09700A3E37E /* fitworld.xcdatamodeld in Sources */,
+				DDD3CBBF276F21C3007A83BB /* ShareAboveView.m in Sources */,
 				DD595ED42736F88D00618D1A /* RoomVC.m in Sources */,
 				A256301C27408BD90030D6B2 /* UserCenterGroup.m in Sources */,
 				04EC01FD26BD8AC100DC0103 /* ChatManager.m in Sources */,

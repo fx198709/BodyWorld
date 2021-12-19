@@ -17,8 +17,10 @@
 #import "CoachComment.h"
 #import "HasJoinGroupRoomView.h"
 #import "UIImage+Extension.h"
+#import "ShareAboveView.h"
+#import <messageUI/messageUI.h>
 
-@interface GroupRoomDetailViewController (){
+@interface GroupRoomDetailViewController ()<MFMessageComposeViewControllerDelegate>{
     BOOL isLoading;
     int _pageCount;
     BOOL _isLoadAllData; //是否加载所有的数据，每次刷新的时候，都设置成no， 接口返回的数据小于需要的数量时，设置成yes
@@ -28,6 +30,9 @@
     CoachCommentCell *heightCommentCell;
     NSArray * currentUserList;
     HasJoinGroupRoomView *hasJionView;
+    
+    ShareAboveView *aboveView;//分享的弹层
+    UIButton *shareBackbutton;//分享的背景按钮
 }
 @property(nonatomic, strong)UIButton *joinBtn;
 @property(nonatomic, strong)UITableView *cocahTableview;
@@ -215,6 +220,35 @@
 //分享
 - (void)shareBtnClicked:(id)sender{
 //
+    shareBackbutton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    aboveView = [[[NSBundle mainBundle] loadNibNamed:@"ShareAboveView" owner:self options:nil] lastObject];
+    aboveView.frame = CGRectMake(10, ScreenHeight-160, ScreenWidth-20, 160);
+    [shareBackbutton addSubview:aboveView];
+//    aboveView.backgroundColor = UIColor.whiteColor;
+    aboveView.layer.cornerRadius = 10;
+    aboveView.clipsToBounds = YES;
+    [aboveView.cancelBtn addTarget:self action:@selector(shareBackbuttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    WeakSelf
+    aboveView.shareBtnClick = ^(NSNumber *clickModel) {
+        StrongSelf(wSelf);
+        [strongSelf shareBtnWithTag:clickModel.intValue];
+    };
+    [aboveView createSubview];
+    UIWindow *keywindow = [CommonTools mainWindow];
+    [keywindow addSubview:shareBackbutton];
+    [shareBackbutton addTarget:self action:@selector(shareBackbuttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)shareBtnWithTag:(int)btnTag{
+    if (btnTag == 2) {
+        [self sharedByMessage];
+    }
+}
+
+- (void)shareBackbuttonClicked:(UIButton*)sender{
+//    恢复默认值
+    [shareBackbutton removeFromSuperview];
+    shareBackbutton= nil;
 }
 
 
@@ -437,6 +471,49 @@
     }];
 }
 
+#pragma mark --MFMessageComposeViewControllerDelegate
+
+- (void)sharedByMessage
+{
+    Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
+    if (messageClass != nil) {
+       /**MFMessageComposeViewController提供了操作界面
+        使用前必须检查canSendText方法,若返回NO则不应将这个controller展现出来,而应该提示用户不支持发送短信功能.
+         */
+        if ([messageClass canSendText]) {
+            [self displaySMSComposerSheet];
+        }else{
+            [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"您设备没有短信功能", @"您设备没有短信功能") control:self];
+        }
+    }
+
+}
+ 
+
+-(void)displaySMSComposerSheet
+{
+   MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc]init];
+    picker.messageComposeDelegate =self;
+    picker.body =@"Hihi! 跟我一起来上健身课，品牌健身房的大牌教练，哪国人都有。";
+    [self presentViewController:picker animated:YES completion:^{
+//        [self shareBackbuttonClicked:nil];
+    }];
+}
+
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if (result == MessageComposeResultCancelled){
+    }else if (result == MessageComposeResultSent){
+        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"短信发送成功", @"短信发送成功") control:self];
+    }else if(result == MessageComposeResultFailed){
+        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"短信发送失败，是否重新发送？", @"短信发送失败，是否重新发送？") control:self];
+
+    }
+
+}
 
 @end
 
