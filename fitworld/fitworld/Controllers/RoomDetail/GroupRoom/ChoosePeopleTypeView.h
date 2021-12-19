@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *addTypeViewHeightConstraint;
 @property (strong, nonatomic) GroupMyRoom *groupRoom;
 @property (nonatomic, assign) UIViewController * parentVC;
+@property (nonatomic, copy) AnyBtnBlock shareTypeBtnClick;
 
 //邀请人按钮
 - (IBAction)addPeopleTypeBtn:(UIButton *)sender;

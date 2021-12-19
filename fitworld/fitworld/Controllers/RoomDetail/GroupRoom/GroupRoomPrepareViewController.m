@@ -17,8 +17,9 @@
 #import "UserInfoView.h"
 #import "GroupMyRoom.h"
 #import "ChoosePeopleTypeView.h"
+#import <messageUI/messageUI.h>
 
-@interface GroupRoomPrepareViewController (){
+@interface GroupRoomPrepareViewController ()<MFMessageComposeViewControllerDelegate>{
     UIScrollView * _bottomScrollview;
     UIScrollView *userlistView;
     Room *currentRoom;
@@ -226,6 +227,10 @@
             make.right.equalTo(_bottomScrollview).offset(-15);
             make.bottom.equalTo(choosePeopleTypeView.mas_bottom);
          }];
+        WeakSelf
+        choosePeopleTypeView.shareTypeBtnClick = ^(NSNumber* clickModel) {
+            [wSelf sharedType:clickModel.intValue];
+        };
     }else{
         RemoveSubviews(choosePeopleTypeOutView, @[]);
         [choosePeopleTypeOutView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -642,5 +647,59 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 }
+
+- (void)sharedType:(int)type{
+    if (type == 2) {
+        [self sharedByMessage];
+    }
+}
+
+#pragma mark --MFMessageComposeViewControllerDelegate
+
+- (void)sharedByMessage
+{
+    Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
+    if (messageClass != nil) {
+       /**MFMessageComposeViewController提供了操作界面
+        使用前必须检查canSendText方法,若返回NO则不应将这个controller展现出来,而应该提示用户不支持发送短信功能.
+         */
+        if ([messageClass canSendText]) {
+            [self displaySMSComposerSheet];
+        }else{
+            [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"您设备没有短信功能", @"您设备没有短信功能") control:self];
+        }
+    }
+
+}
+ 
+
+-(void)displaySMSComposerSheet
+{
+   MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc]init];
+    picker.messageComposeDelegate =self;
+    NSString *body = @"Hihi! 跟我一起来上健身课，品牌健身房的大牌教练，哪国人都有。";
+    NSString *urlString = [NSString stringWithFormat:@"http://m.fitworld.live/assets/share?type=group&event_id=%@&room_sub_id=%@",_event_id,myRoomModel.sub_room_id];
+    picker.body = [NSString stringWithFormat:@"%@%@",body,urlString];
+   
+    [self presentViewController:picker animated:YES completion:^{
+//        [self shareBackbuttonClicked:nil];
+    }];
+}
+
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if (result == MessageComposeResultCancelled){
+    }else if (result == MessageComposeResultSent){
+        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"短信发送成功", @"短信发送成功") control:self];
+    }else if(result == MessageComposeResultFailed){
+        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"短信发送失败，是否重新发送？", @"短信发送失败，是否重新发送？") control:self];
+
+    }
+
+}
+
 
 @end

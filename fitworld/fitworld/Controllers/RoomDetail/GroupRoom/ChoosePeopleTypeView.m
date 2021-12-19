@@ -71,6 +71,9 @@
 }
 
 - (IBAction)addPeopleTypeBtn:(UIButton *)sender {
+    if (_shareTypeBtnClick) {
+        _shareTypeBtnClick([NSNumber numberWithInteger:sender.tag-300]);
+    }
     
 }
 - (void)changeDataWithModel:(GroupMyRoom*)groupRoom{
