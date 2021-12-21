@@ -11,6 +11,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.contentView.backgroundColor = [UIColor blackColor];
     _titleLabel.font = SystemFontOfSize(17);
     _titleLabel.text = ChineseStringOrENFun(@"评分", @"Score");
     _titleLabel.textColor = UIColor.whiteColor;
@@ -40,6 +41,7 @@
     
     _contentTextView.delegate = viewTextDelegate;
     _contentTextView.font = SystemFontOfSize(14);
+    _contentTextView.textColor = UIColor.whiteColor;
     _contentTextView.backgroundColor = UIRGBColor(53, 53, 53, 1);
     _contentTextView.placeHoldLabel.font = SystemFontOfSize(14);
     [_contentTextView setPlaceHoldString:ChineseStringOrENFun(@"说点什么", @"Say some")] ;
