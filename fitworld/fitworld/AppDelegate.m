@@ -12,7 +12,7 @@
 #import <UMCommon/UMCommon.h>
 #import <UMAnalytics/MobClick.h>
 #import <IQKeyboardManager/IQKeyboardManager.h>
-
+#import "WXApi.h"
 #define NavBlackTextColor UIColorFromRGB(0x000000)//导航文字黑色
 
 @interface AppDelegate ()
@@ -33,6 +33,8 @@
     [[IQKeyboardManager sharedManager] setEnable:YES];
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+//    [WXApi registerApp:@"wx5b4b8223157933f6" universalLink:@""];
+ 
 //    if (@available(iOS 13.0, *)) {
 //        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDarkContent; //黑色
 //    }else{

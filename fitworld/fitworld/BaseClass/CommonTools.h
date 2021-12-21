@@ -43,6 +43,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //根据room的信息，进行跳转
 + (void)jumpNextVCwith:(id)roominfo rootVC:(UIViewController*)rootVC;
+
++ (NSUInteger)convertToInt:(NSString*)strtemp;
+
 @end
 
 NS_ASSUME_NONNULL_END

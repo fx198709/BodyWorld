@@ -17,6 +17,7 @@
 #import "ConfigManager.h"
 #import "RoomVC.h"
 #import "NoDataCollectionViewCell.h"
+#import "GroupRoomDetailViewController.h"
 
 @implementation TableCollectionLivingViewCell
 
@@ -125,11 +126,19 @@
     
     if (_dataArr.count > indexPath.row) {
         Room *selectRoom = [_dataArr objectAtIndex: indexPath.row];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
-        CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
-        vc.selectRoom = selectRoom;
-        [[self viewController].navigationController pushViewController:vc animated:YES];
+//        [CommonTools jumpNextVCwith:selectRoom rootVC:[self viewController]];
+        int type_int = selectRoom.course? (int)selectRoom.course.type_int: (int)selectRoom.type_int;
+        if (type_int == 1) {
+            GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
+            vc.selectRoom = selectRoom;
+            [[self viewController].navigationController pushViewController:vc animated:YES];
+        }else{
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
+            CourseDetailViewController *vc = (CourseDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"courseDetailVC"];
+            vc.selectRoom = selectRoom;
+            [[self viewController].navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 

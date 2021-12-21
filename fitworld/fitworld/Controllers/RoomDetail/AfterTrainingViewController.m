@@ -15,6 +15,8 @@
 @interface AfterTrainingViewController (){
     BOOL reachRoomInfo;
     BOOL reachUserListInfo;
+    int textviewdifHeight;//textview 变化的高度
+    TrainCommitTableViewCell *commentcell;
 }
 
 @end
@@ -47,7 +49,7 @@
         if (indexPath.row == 0) {
             return 90+dif;
         }else if (indexPath.row == 1) {
-            return 200+dif;
+            return 200+dif+textviewdifHeight;
         }else if (indexPath.row == 2) {
             return 60+ self.currentRoom.plan.count * 40+dif;
         }else {
@@ -89,9 +91,15 @@
     }
     if (_currentRoom.type_int == 1){
         if (indexPath.row == 1) {
-            TrainCommitTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"TrainCommitTableViewCell" owner:self options:nil] lastObject];
-            cell.coach_id = _currentRoom.coach_id;
-            return cell;
+            if (commentcell == nil) {
+                commentcell = [[[NSBundle mainBundle] loadNibNamed:@"TrainCommitTableViewCell" owner:self options:nil] lastObject];
+            }
+            commentcell.coach_id = _currentRoom.coach_id;
+            WeakSelf
+            commentcell.heightChange = ^(NSNumber* height) {
+                [wSelf updateTableHeight:height.integerValue];
+            };
+            return commentcell;
         }else if (indexPath.row == 2) {
             Train2TableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Train2TableViewCell" owner:self options:nil] lastObject];
             [cell changeDateWithRoomInfo:self.currentRoom];
@@ -265,6 +273,13 @@
     }else{
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+//更新tableview的高度
+- (void)updateTableHeight:(NSInteger)height{
+    textviewdifHeight = height;
+    [_successTabelview beginUpdates];
+    [_successTabelview endUpdates];
 }
 
 

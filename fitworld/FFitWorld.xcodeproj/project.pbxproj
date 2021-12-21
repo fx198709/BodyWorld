@@ -140,6 +140,8 @@
 		DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */; };
 		DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */; };
 		DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE427226B5A0092CF87 /* JYPageControl.m */; };
+		DD33415827720422001E0831 /* PBTextWithPlaceHoldViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD33415427720422001E0831 /* PBTextWithPlaceHoldViewDelegate.m */; };
+		DD33415927720422001E0831 /* PBTextWithPlaceHoldView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD33415727720422001E0831 /* PBTextWithPlaceHoldView.m */; };
 		DD40BD69276788BD007FC1B8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD40BD68276788BD007FC1B8 /* MessageUI.framework */; };
 		DD40BD6C27678B66007FC1B8 /* HasJoinGroupRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD40BD6B27678B66007FC1B8 /* HasJoinGroupRoomView.m */; };
 		DD40BD6E27678B86007FC1B8 /* HasJoinGroupRoomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD40BD6D27678B86007FC1B8 /* HasJoinGroupRoomView.xib */; };
@@ -502,6 +504,10 @@
 		DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+JYImageViewManager.m"; sourceTree = "<group>"; };
 		DD25FEE427226B5A0092CF87 /* JYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPageControl.m; sourceTree = "<group>"; };
 		DD25FEE527226B5A0092CF87 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
+		DD33415427720422001E0831 /* PBTextWithPlaceHoldViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTextWithPlaceHoldViewDelegate.m; sourceTree = "<group>"; };
+		DD33415527720422001E0831 /* PBTextWithPlaceHoldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTextWithPlaceHoldView.h; sourceTree = "<group>"; };
+		DD33415627720422001E0831 /* PBTextWithPlaceHoldViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTextWithPlaceHoldViewDelegate.h; sourceTree = "<group>"; };
+		DD33415727720422001E0831 /* PBTextWithPlaceHoldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTextWithPlaceHoldView.m; sourceTree = "<group>"; };
 		DD40BD6627678876007FC1B8 /* SendMessageObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendMessageObj.h; sourceTree = "<group>"; };
 		DD40BD6727678877007FC1B8 /* SendMessageObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendMessageObj.m; sourceTree = "<group>"; };
 		DD40BD68276788BD007FC1B8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -1235,6 +1241,17 @@
 			path = JYCarousel;
 			sourceTree = "<group>";
 		};
+		DD33415327720422001E0831 /* TextWithPlaceHoldView */ = {
+			isa = PBXGroup;
+			children = (
+				DD33415427720422001E0831 /* PBTextWithPlaceHoldViewDelegate.m */,
+				DD33415527720422001E0831 /* PBTextWithPlaceHoldView.h */,
+				DD33415627720422001E0831 /* PBTextWithPlaceHoldViewDelegate.h */,
+				DD33415727720422001E0831 /* PBTextWithPlaceHoldView.m */,
+			);
+			path = TextWithPlaceHoldView;
+			sourceTree = "<group>";
+		};
 		DD595EBF27367F5500618D1A /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1427,6 +1444,7 @@
 		DD794403274FEC7D00BEEF6B /* CustomerView */ = {
 			isa = PBXGroup;
 			children = (
+				DD33415327720422001E0831 /* TextWithPlaceHoldView */,
 				DD794404274FEC9D00BEEF6B /* VideoSlider.h */,
 				DD794405274FEC9D00BEEF6B /* VideoSlider.m */,
 				DD794407274FECEC00BEEF6B /* RoomVCSettingView.h */,
@@ -1680,6 +1698,7 @@
 				DDB138122748EAF6009A44FD /* Train2TableViewCell.m in Sources */,
 				0422BDBA269C96A90084000B /* DatePlan.m in Sources */,
 				04EC01F326BD8AC000DC0103 /* MainPanel.m in Sources */,
+				DD33415927720422001E0831 /* PBTextWithPlaceHoldView.m in Sources */,
 				DD25FED427215D580092CF87 /* AFAppNetAPIClient.m in Sources */,
 				0462BD9A26920BE8005827D1 /* MainViewController.m in Sources */,
 				04EC01F426BD8AC000DC0103 /* ViewerPanel.m in Sources */,
@@ -1690,6 +1709,7 @@
 				A2A94DE8273FD8DD00D02C77 /* AddFriendViewController.m in Sources */,
 				A296D6B52758CE7F00F73259 /* UILabel+MT.m in Sources */,
 				DD6EDB5C272EFFFB002B0A8E /* TrainingStartViewController.m in Sources */,
+				DD33415827720422001E0831 /* PBTextWithPlaceHoldViewDelegate.m in Sources */,
 				DD6EDB33272D2C89002B0A8E /* OurDatePickerView.m in Sources */,
 				DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */,
 				A2723F02273CC9FE00388B01 /* BaseJSONModel.m in Sources */,

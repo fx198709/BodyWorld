@@ -424,5 +424,30 @@
 }
 
 
+//得到中英文混合字符串长度 方法1
++ (NSUInteger)convertToInt:(NSString*)strtemp
+{
+    long strLength = 0;
+    NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    char *p = (char *)[strtemp cStringUsingEncoding:encoding];
+//    [strtemp canBeConvertedToEncoding:encoding];
+    if (!p) {
+        NSData *data = [strtemp dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+        return data.length;
+    }
+  
+    NSUInteger lengthOfBytes = [strtemp lengthOfBytesUsingEncoding:encoding];
+    for (int i = 0; i < lengthOfBytes; i++) {
+        if (*p) {
+            p++;
+            strLength++;
+        }
+        else {
+            p++;
+        }
+    }
+    return strLength;
+}
 
 @end
+
