@@ -2697,10 +2697,12 @@
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABy-y7-Pji">
                                 <rect key="frame" x="0.0" y="88" width="414" height="88"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o7j-vd-wP3">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o7j-vd-wP3">
                                         <rect key="frame" x="28" y="10" width="68" height="68"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="o7j-vd-wP3" secondAttribute="height" multiplier="1:1" id="HcT-bf-Do3"/>
+                                            <constraint firstAttribute="width" constant="68" id="0KI-2N-AW4"/>
+                                            <constraint firstAttribute="height" constant="68" id="CBx-GX-Spd"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgb-Ar-MCB">
@@ -2782,7 +2784,6 @@
                                 <constraints>
                                     <constraint firstItem="o7j-vd-wP3" firstAttribute="leading" secondItem="ABy-y7-Pji" secondAttribute="leading" constant="28" id="1oU-Vi-q1l"/>
                                     <constraint firstAttribute="trailing" secondItem="FGL-Dl-iar" secondAttribute="trailing" id="4uv-L8-goZ"/>
-                                    <constraint firstItem="o7j-vd-wP3" firstAttribute="top" secondItem="ABy-y7-Pji" secondAttribute="top" constant="10" id="8EL-I0-tcW"/>
                                     <constraint firstAttribute="trailing" secondItem="xgb-Ar-MCB" secondAttribute="trailing" id="MyZ-6W-R4y"/>
                                     <constraint firstItem="o7j-vd-wP3" firstAttribute="centerY" secondItem="ABy-y7-Pji" secondAttribute="centerY" id="RuQ-JP-Rbf"/>
                                     <constraint firstItem="xgb-Ar-MCB" firstAttribute="top" secondItem="o7j-vd-wP3" secondAttribute="top" id="WWw-aN-qpV"/>
