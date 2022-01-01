@@ -47,10 +47,6 @@
     self.myCollectionView.showsHorizontalScrollIndicator = NO;
     [self.myCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([GoodsCell class]) bundle:nil] forCellWithReuseIdentifier:@"goodsCell"];
     [self.myCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([NoDataCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"NoDataCollectionViewCellString"];
-    
-    
-    
-    
     self.myCollectionView.backgroundColor = UIColor.clearColor;
 }
 
@@ -170,7 +166,18 @@
                 [[self viewController].navigationController pushViewController:vc animated:YES];
             }
             
-        }else{
+        }else if(selectRoom.course.type_int == 2){
+            //            私教的处理
+            if (selectRoom.is_join) {
+                GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
+                vc.event_id = selectRoom.event_id;
+                [[self viewController].navigationController pushViewController:vc animated:YES];
+            }else{
+                GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
+                vc.selectRoom = selectRoom;
+                [[self viewController].navigationController pushViewController:vc animated:YES];
+            }
+        } else{
             if (selectRoom.is_join) {
                 CreateCourseSuccessViewController *vc =[[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
                 vc.event_id = selectRoom.event_id;

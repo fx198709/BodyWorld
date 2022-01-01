@@ -109,14 +109,14 @@
         
         NSDictionary *codeDict = @{@"eid":selectRoom.event_id, @"name":nickName};
         BOOL isbuddy = YES;
-        if (selectRoom.course.type_int == 1) {
+        if (selectRoom.course.type_int == 1 || selectRoom.course.type_int == 2) {
             isbuddy  = NO;
         }
-        if (selectRoom.type_int == 1) {
+        if (selectRoom.type_int == 1 || selectRoom.type_int == 2) {
             isbuddy  = NO;
         }
         if (!isbuddy) {
-//            团课
+//            团课 和私教用的同一个类型
             GroupRoomViewControl *roomVC = [[GroupRoomViewControl alloc] initWith:codeDict];
             [invc.navigationController pushViewController:roomVC animated:YES];
             roomVC.invc = invc;

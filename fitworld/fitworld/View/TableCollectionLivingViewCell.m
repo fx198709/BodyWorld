@@ -128,7 +128,7 @@
         Room *selectRoom = [_dataArr objectAtIndex: indexPath.row];
 //        [CommonTools jumpNextVCwith:selectRoom rootVC:[self viewController]];
         int type_int = selectRoom.course? (int)selectRoom.course.type_int: (int)selectRoom.type_int;
-        if (type_int == 1) {
+        if (type_int == 1 || type_int == 2) {
             GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
             vc.selectRoom = selectRoom;
             [[self viewController].navigationController pushViewController:vc animated:YES];

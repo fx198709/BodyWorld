@@ -37,6 +37,9 @@
 @property (nonatomic , copy) NSString              * updated_at;
 @property (nonatomic , assign) NSInteger              watch_count;
 @property (nonatomic , strong) NSString              *course_type;
+@property (nonatomic , strong) NSString              *course_language; //语言
+
+
 
 //详情多用的字段
 @property (nonatomic , strong) NSString              *type;
@@ -74,7 +77,7 @@
 
  
 #pragma mark - 自定义字段
-@property (nonatomic , assign) NSInteger              roomDealState; //自己添加的一个状态
+@property (nonatomic , assign) int              roomDealState; //自己添加的一个状态
 
 
 - (BOOL)isEqualToRoom:(Room *)room;
@@ -83,6 +86,8 @@
 
 //获取房间的真正状态
 - (int)reachRoomDealState;
+
+- (NSString*)getCourse_language_string;
 
 /*
  public static int ROOM_ITEM_APPOINTMENT = 1;    //1  显示预约    -> 预约 1  显示预约    -> 预约        绿色背景

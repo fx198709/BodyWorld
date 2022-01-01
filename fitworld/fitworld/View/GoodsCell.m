@@ -23,7 +23,9 @@
     _grayBottomView.backgroundColor = UIRGBColor(33, 33, 33, 0.3);
     _grayBottomView.layer.cornerRadius = 3;
     _grayBottomView.clipsToBounds = YES;
-
+    _languageLabel.textColor= UIColor.whiteColor;
+    _languageLabel.font = SystemFontOfSize(14);
+    
 }
 
 - (void)changedatawithmodel:(Room*)room{
@@ -31,11 +33,11 @@
     NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, room.course.pic];
     [self.goodsImage sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
     self.roomname.text = room.name;
-    NSString *perString = ChineseStringOrENFun(@"房主", @"Creator");
+    NSString *perString = ChineseStringOrENFun(@"房主", @"Rooms");
     if (room.course.type_int == 1 || room.course.type_int == 2) {
         perString = ChineseStringOrENFun(@"教练", @"Coach");
     }
-    
+    _languageLabel.text = [room getCourse_language_string];
     NSString *nickname = [NSString stringWithFormat:@"%@:%@",perString,room.room_creator.nickname];
     self.roomuser.text = nickname;
     NSString *countryUrl = room.room_creator.country_icon;
@@ -45,7 +47,6 @@
     _peopleLabel.text = [NSString stringWithFormat:ChineseStringOrENFun(@"已有%ld人", @"%ld p in"),
                          (long)room.invite_count];
 //    3小时以上的 这个label不显示
-    
     long currentTime = [[NSDate date] timeIntervalSince1970];
     long diff = room.start_time - currentTime;
     _timeDuringLabel.text = @"";
@@ -57,13 +58,15 @@
         int hourleft = diff%3600;
         int min = hourleft/60;
         int sec = hourleft%60;
-        NSString *titleString = [NSString stringWithFormat:@"Till start %02d:%02d:%02d",hour,min,sec];
+        NSString *titleString = [NSString stringWithFormat:@"Live %02d:%02d:%02d",hour,min,sec];
         NSString *chineseString = [NSString stringWithFormat:@"还差 %02d:%02d:%02d",hour,min,sec];
         _timeDuringLabel.text = ChineseStringOrENFun(chineseString, titleString);
         _bottomConstraint.constant = 2;
     }
-    
     _joinBtn.titleLabel.font =SystemFontOfSize(13);
+    if (!ISChinese()) {
+        _joinBtn.titleLabel.font =SystemFontOfSize(12);
+    }
     [CommonTools changeBtnState:_joinBtn btnData:room];
 }
 

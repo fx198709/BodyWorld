@@ -66,7 +66,7 @@
                 }else{
                     roomData.roomDealState = 4;
 //                    已约满
-                    joinTitle = ChineseStringOrENFun(@"已约满", @"Count me in");
+                    joinTitle = ChineseStringOrENFun(@"已约满", @"COUNT ME IN");
                     joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
                 }
             }else{
@@ -90,7 +90,7 @@
                
             }else{
                 roomData.roomDealState = 1;
-                joinTitle = ChineseStringOrENFun(@"预约", @"Count me in");
+                joinTitle = ChineseStringOrENFun(@"预约", @"COUNT ME IN");
                 joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
             }
         }else{
@@ -98,11 +98,11 @@
                 long maxnumber = MAX(roomData.max_num, roomData.course.max_num);
                 if (maxnumber > roomData.invite_count) {
                     roomData.roomDealState = 1;
-                    joinTitle = ChineseStringOrENFun(@"预约", @"Count me in");
+                    joinTitle = ChineseStringOrENFun(@"预约", @"COUNT ME IN");
                     joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
                 }else{
                     roomData.roomDealState = 4;
-                    joinTitle = ChineseStringOrENFun(@"已约满", @"Count me in");
+                    joinTitle = ChineseStringOrENFun(@"已约满", @"COUNT ME IN");
                     joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
                 }
             }else{

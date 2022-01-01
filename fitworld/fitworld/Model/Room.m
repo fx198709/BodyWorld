@@ -64,7 +64,20 @@
 //
 //    self.calorie = LongValueFromDic(json, @"calorie", 0);
 
-
+//获取语言的string
+- (NSString*)getCourse_language_string{
+//    先查看本地的中英文
+    if (ISChinese()) {
+//        中文
+        if ([_course_language isEqual:@"English"]) {
+            return @"英文";
+        }
+        if ([_course_language isEqual:@"Chinese"]) {
+            return @"中文";
+        }
+    }
+    return _course_language;
+}
 
 - (BOOL)isEqualToRoom:(Room *)room
 {

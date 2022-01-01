@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *grayBottomView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
+@property (weak, nonatomic) IBOutlet UILabel *languageLabel;
 - (void)changedatawithmodel:(Room*)room;
 
 @end
