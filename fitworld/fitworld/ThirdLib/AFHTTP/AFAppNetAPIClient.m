@@ -86,6 +86,8 @@
     NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
     
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
+    [self.requestSerializer setValue:@"zh" forHTTPHeaderField:@"Accept-language"];
+
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
     return [self PUT:strUrl parameters:parameters headers:nil success:success failure:failure];

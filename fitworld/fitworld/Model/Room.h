@@ -40,7 +40,7 @@
 
 //详情多用的字段
 @property (nonatomic , strong) NSString              *type;
-@property (nonatomic , assign) int              type_int;//0 对练课  1团课 只有详情有这个返回
+@property (nonatomic , assign) int              type_int;//0 对练课  1团课 只有详情有这个返回 2私教
 @property (nonatomic , strong) NSString              *course_type_name;
 @property (nonatomic , strong) NSString              *pic;
 @property (nonatomic , strong) NSString              *desc;

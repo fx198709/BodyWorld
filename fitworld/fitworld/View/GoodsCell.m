@@ -28,16 +28,15 @@
     NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, room.course.pic];
     [self.goodsImage sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
     self.roomname.text = room.name;
-    NSString *perString = ChineseStringOrENFun(@"创建人", @"Creator");
-    if (room.course.type_int == 1) {
-        perString = ChineseStringOrENFun(@"直播教练", @"Coach");
+    NSString *perString = ChineseStringOrENFun(@"房主", @"Creator");
+    if (room.course.type_int == 1 || room.course.type_int == 2) {
+        perString = ChineseStringOrENFun(@"教练", @"Coach");
     }
+    
     NSString *nickname = [NSString stringWithFormat:@"%@:%@",perString,room.room_creator.nickname];
     self.roomuser.text = nickname;
-    NSString *countryUrl = [room.room_creator.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-
+    NSString *countryUrl = room.room_creator.country_icon;
     [self.countryimage sd_setImageWithURL: [NSURL URLWithString:countryUrl] placeholderImage:nil];
-
     NSString *roomidhead = ChineseStringOrENFun(@"房间ID", @"Room ID");
     self.roomidLabel.text = [NSString stringWithFormat:@"%@:%@",roomidhead,room.event_id];
     _peopleLabel.text = [NSString stringWithFormat:ChineseStringOrENFun(@"已有%ld人", @"%ld p in"),

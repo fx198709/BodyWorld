@@ -29,12 +29,14 @@ BOOL  hasrequest = NO;
     NSTimer *mainTimer;
     TableCollectionViewCell * groupCell;
     TableCollectionViewCell * buddyCell;
-
+    TableCollectionViewCell * privateEducationCell;
+    
 }
 @property (nonatomic, strong)UIView *sliderView; //轮播图的父视图
 @property (nonatomic, strong)NSMutableArray *livingClasses;//正在进行中
 @property (nonatomic, strong)NSMutableArray *groupClasses;//团课
 @property (nonatomic, strong)NSMutableArray *buddyClasses;//对练课
+@property (nonatomic, strong)NSMutableArray *privateEducationClasses;//对练课
 
 
 @end
@@ -52,14 +54,14 @@ BOOL  hasrequest = NO;
     [self.view addSubview:self.mainTableview];
     [self.mainTableview registerNib:[UINib nibWithNibName:NSStringFromClass([TableCollectionViewCell class]) bundle:nil] forCellReuseIdentifier:@"liveCell"];
     [self.mainTableview registerNib:[UINib nibWithNibName:NSStringFromClass([TableCollectionLivingViewCell class]) bundle:nil] forCellReuseIdentifier:@"liveTableviewCell"];
-
+    
     self.mainTableview.delegate = self;
     self.mainTableview.dataSource = self;
     _mainTableview.separatorStyle= UITableViewCellSeparatorStyleNone;
     _mainTableview.backgroundColor = UIColor.blackColor;
     [self.mainTableview mas_makeConstraints:^(MASConstraintMaker *make) {
-      make.left.with.top.equalTo(self.view);
-      make.size.equalTo(self.view);
+        make.left.with.top.equalTo(self.view);
+        make.size.equalTo(self.view);
     }];
     
     [self setupRefresh];
@@ -68,9 +70,9 @@ BOOL  hasrequest = NO;
     _sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 173)];
     _sliderView.clipsToBounds = YES;
     _sliderView.layer.cornerRadius = 5;
-//    [self headerRereshing];
+    //    [self headerRereshing];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -106,6 +108,9 @@ BOOL  hasrequest = NO;
     if ( buddyCell && [buddyCell respondsToSelector:@selector(timerToReloadCollectionView)]) {
         [buddyCell timerToReloadCollectionView];
     }
+    if ( privateEducationCell && [privateEducationCell respondsToSelector:@selector(timerToReloadCollectionView)]) {
+        [privateEducationCell timerToReloadCollectionView];
+    }
     if ( groupCell && [groupCell respondsToSelector:@selector(timerToReloadCollectionView)]) {
         [groupCell timerToReloadCollectionView];
     }
@@ -119,22 +124,22 @@ BOOL  hasrequest = NO;
 }
 
 - (void)reloadData {
-        [[APPObjOnce sharedAppOnce] getUserinfo:^(NSError * _Nonnull error) {
-//            [_mainTableview.mj_header beginRefreshing];
-            [self headerRereshing];
-            mainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(mainTimerAction) userInfo:nil repeats:YES];
-        }];
+    [[APPObjOnce sharedAppOnce] getUserinfo:^(NSError * _Nonnull error) {
+        //            [_mainTableview.mj_header beginRefreshing];
+        [self headerRereshing];
+        mainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(mainTimerAction) userInfo:nil repeats:YES];
+    }];
 }
 
 - (void)reachNoReadMessageList{
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSDictionary *baddyParams = @{
-                           @"is_read": @"0",
-                           @"page": @"1",
-                           @"row": @"10"
-                       };
+        @"is_read": @"0",
+        @"page": @"1",
+        @"row": @"10"
+    };
     [manager GET:@"user_msg" parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        有数据就显示红点，没数据就不显示
+        //        有数据就显示红点，没数据就不显示
         if ([responseObject objectForKey:@"recordset"]) {
             UIView *redview = [self.view viewWithTag:2000];
             NSArray *array = [[responseObject objectForKey:@"recordset"] objectForKey:@"rows"];
@@ -146,7 +151,7 @@ BOOL  hasrequest = NO;
                 redview.hidden = YES;
             }
         }
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
 }
 
@@ -154,12 +159,12 @@ BOOL  hasrequest = NO;
 - (void)reachNoReadFrendList{
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSDictionary *baddyParams = @{
-                           @"status": @"1",
-                           @"page": @"1",
-                           @"row": @"10"
-                       };
+        @"status": @"1",
+        @"page": @"1",
+        @"row": @"10"
+    };
     [manager GET:@"friend/apply_list" parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        有数据就显示红点，没数据就不显示
+        //        有数据就显示红点，没数据就不显示
         if ([responseObject objectForKey:@"recordset"]) {
             UIView *redview = [self.view viewWithTag:2001];
             NSArray *array = [[responseObject objectForKey:@"recordset"] objectForKey:@"rows"];
@@ -171,7 +176,7 @@ BOOL  hasrequest = NO;
                 redview.hidden = YES;
             }
         }
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
 }
 
@@ -203,19 +208,19 @@ BOOL  hasrequest = NO;
         [imageArray addObject:[obj valueForKey:@"pic"]];
     }
     WeakSelf
-   JYCarousel *carouselView = [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, _sliderView.frame.size.width, _sliderView.frame.size.height) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
-         //配置指示器类型
+    JYCarousel *carouselView = [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, _sliderView.frame.size.width, _sliderView.frame.size.height) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
+        //配置指示器类型
         carouselConfig.pageContollType = MiddlePageControl;
         //配置轮播时间间隔
         carouselConfig.interValTime = 3;
-       carouselConfig.contentMode = UIViewContentModeScaleAspectFill;
-//        //配置轮播翻页动画
-//        carouselConfig.pushAnimationType = PushCube;
-//        //配置动画方向
-//        carouselConfig.animationSubtype = kCATransitionFromRight;
+        carouselConfig.contentMode = UIViewContentModeScaleAspectFill;
+        //        //配置轮播翻页动画
+        //        carouselConfig.pushAnimationType = PushCube;
+        //        //配置动画方向
+        //        carouselConfig.animationSubtype = kCATransitionFromRight;
         return carouselConfig;
     } clickBlock:^(NSInteger index) {
-          //点击imageView回调方法
+        //点击imageView回调方法
         [wSelf clickIndex:index];
     }];
     //开始轮播
@@ -231,7 +236,7 @@ BOOL  hasrequest = NO;
 
 - (void)actionBtnClick:(UIButton*)sender{
     if (sender.tag == 101) {
-       //朋友列表
+        //朋友列表
         [self performSegueWithIdentifier:@"friendListSegue" sender:nil];
     }else{
         MessageListViewController *vc = [[MessageListViewController alloc] initWithNibName:@"MessageListViewController" bundle:nil];
@@ -276,7 +281,7 @@ BOOL  hasrequest = NO;
     if (!hasrequest) {
         return 1;
     }
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -338,15 +343,15 @@ BOOL  hasrequest = NO;
         slidercell.selectionStyle = UITableViewCellSelectionStyleNone;
         return slidercell;
     }
-
+    
     if (indexPath.row == 2){
         // 复用队列中没有时再创建
         TableCollectionLivingViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"TableCollectionLivingViewCell" owner:self options:nil] lastObject];
         [cell.logoImage setImage:[UIImage imageNamed:@"index_live"]];
-
+        
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
         [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:(UIControlEventTouchDown)];
-//            [self refreshData:cell :@""];
+        //            [self refreshData:cell :@""];
         cell.attentionBtn.tag = 200;
         cell.dataArr = _livingClasses;
         [cell reloadData];
@@ -354,7 +359,7 @@ BOOL  hasrequest = NO;
     }
     if (indexPath.row == 3 ){
         // 创建新的 cell，默认为主标题模式
-//        TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
+        //        TableCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveCell" forIndexPath:indexPath];
         
         TableCollectionViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"TableCollectionViewCell" owner:self options:nil] lastObject];
         groupCell = cell;
@@ -366,7 +371,7 @@ BOOL  hasrequest = NO;
         if (view) {
             [view removeFromSuperview];
         }
-        [cell reloadData:NO];
+        [cell reloadData:1];
         return cell;
     }
     if (indexPath.row == 4 ){
@@ -397,10 +402,19 @@ BOOL  hasrequest = NO;
             createSessionBtn.clipsToBounds = YES;
             [createSessionBtn addTarget:self action:@selector(clickCreateSessionTraining) forControlEvents:UIControlEventTouchUpInside];
         }
-        [cell reloadData:YES];
+        [cell reloadData:0];
         return cell;
         
-    }else{
+    }else if (indexPath.row == 5 ){
+        TableCollectionViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"TableCollectionViewCell" owner:self options:nil] lastObject];
+        cell.dataArr = _privateEducationClasses;
+        privateEducationCell = cell;
+        [cell.attentionBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:UIControlEventTouchDown];
+        cell.attentionBtn.tag = 203;
+        [cell reloadData:2];
+        return cell;
+    }
+    else{
         if (cell == nil) {
             // 创建新的 cell，默认为主标题模式
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indentifier];
@@ -438,7 +452,7 @@ BOOL  hasrequest = NO;
     NSLog(@"more btn click");
     CourseMoreController *courseMoreVC = [[CourseMoreController alloc]init];
     courseMoreVC.VCtype = (int)sender.tag-200;
-//    courseMoreVC.navigationItem.title = @"Course";
+    //    courseMoreVC.navigationItem.title = @"Course";
     [self.navigationController pushViewController:courseMoreVC animated:YES];
 }
 
@@ -452,26 +466,27 @@ BOOL  hasrequest = NO;
         NSArray *dataArray = [[responseObject objectForKey:@"recordset"] objectForKey:@"rows"];
         [self addCarouselView:dataArray];
         
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
 }
 
 - (void)reachHeadData {
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSDictionary *baddyParams = @{
-                           @"type": @"",
-                           @"page": @"1",
-                           @"row": @"50"
-                       };
+        @"type": @"",
+        @"page": @"1",
+        @"row": @"50"
+    };
     [manager GET:@"room" parameters:baddyParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.buddyClasses = [NSMutableArray array];
         self.groupClasses = [NSMutableArray array];
         self.livingClasses = [NSMutableArray array];
+        self.privateEducationClasses = [NSMutableArray array];
         BOOL canAddFirstBuddy = NO;//第一次能添加buddy
         BOOL canAddFirstGroup = NO;//第一次能添加buddy
-
+        
         NSDictionary * recordsetDic = [responseObject objectForKey:@"recordset"];
         if ([recordsetDic isKindOfClass:[NSDictionary class]]) {
             NSArray *rows = [recordsetDic objectForKey:@"rows"];
@@ -481,7 +496,7 @@ BOOL  hasrequest = NO;
                     Room *room = [[Room alloc] initWithDictionary:dic error:&error];
                     if (room.course.type_int == 0) {
                         if (room.status != 0) {
-//                            直播状态，第一个不能添加到这边
+                            //                            直播状态，第一个不能添加到这边
                             if(canAddFirstBuddy){
                                 [self.buddyClasses addObject:room];
                             }
@@ -492,7 +507,7 @@ BOOL  hasrequest = NO;
                     }
                     if (room.course.type_int == 1) {
                         if (room.status != 0) {
-//                            直播状态，第一个不能添加到这边
+                            //                            直播状态，第一个不能添加到这边
                             if(canAddFirstGroup){
                                 [self.groupClasses addObject:room];
                             }
@@ -501,21 +516,33 @@ BOOL  hasrequest = NO;
                         }
                         canAddFirstGroup = YES;
                     }
+                    if (room.course.type_int == 2) {
+                        //                        私教
+                        if (room.status != 0) {
+                            //                            直播状态，第一个不能添加到这边
+                            if(canAddFirstGroup){
+                                [self.privateEducationClasses addObject:room];
+                            }
+                        }else{
+                            [self.privateEducationClasses addObject:room];
+                        }
+                        canAddFirstGroup = YES;
+                    }
                     if (room.status != 0 && self.livingClasses.count < 10) {
-//                        正在进行中
+                        //                        正在进行中
                         [self.livingClasses addObject:room];
                     }
                 }
             }
         }
-
+        
         hasrequest = YES;
         [self.mainTableview reloadData];
-    
+        
         [self.mainTableview.mj_header endRefreshing];
-       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-           [MBProgressHUD hideHUDForView:self.view animated:YES];
-           [self.mainTableview.mj_header endRefreshing];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.mainTableview.mj_header endRefreshing];
     }];
 }
 

@@ -55,19 +55,21 @@
 }
 
 // Data Source
-- (void)reloadData:(BOOL)isTraining {
+- (void)reloadData:(int)roomType {
     self.backgroundColor = UIColor.blackColor;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.subTitleLabel.text = @"";
     [self.attentionBtn setTitle:Text_More forState:UIControlStateNormal];
     [self.attentionBtn setTitle:Text_More forState:UIControlStateHighlighted];
-    
-    if (isTraining) {
+    if (roomType==0) {
         [self.logoImage setImage:[UIImage imageNamed:@"index_buddy"]];
         self.subTitleLabel.text = Text_Training;
-    } else {
+    }else if (roomType==1) {
         [self.logoImage setImage:[UIImage imageNamed:@"index_group"]];
         self.subTitleLabel.text = Text_Group;
+    } else {
+        [self.logoImage setImage:[UIImage imageNamed:@"index_group"]];
+        self.subTitleLabel.text = Text_Private;
     }
     [self.myCollectionView reloadData];
 }
@@ -96,7 +98,7 @@
         cell.joinBtn.tag = indexPath.row+100;
         int state = [tmpRoom reachRoomDealState];
         if (tmpRoom.course.type_int == 0 ) {
-//            GroupRoomPrepareViewController
+            //            GroupRoomPrepareViewController
         }
         if (state == 1 || state == 2) {
             [cell.joinBtn addTarget:self action:@selector(joinBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -157,7 +159,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
         if (selectRoom.course.type_int == 1) {
-//            团课的处理
+            //            团课的处理
             if (selectRoom.is_join) {
                 GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
                 vc.event_id = selectRoom.event_id;
@@ -167,7 +169,7 @@
                 vc.selectRoom = selectRoom;
                 [[self viewController].navigationController pushViewController:vc animated:YES];
             }
-           
+            
         }else{
             if (selectRoom.is_join) {
                 CreateCourseSuccessViewController *vc =[[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
@@ -204,12 +206,12 @@
 - (void)joinBtnClicked:(UIButton *) recognizer{
     //    这边需要正在进行中的，才能开始，需要判断状态
     //    做测试用
-//    Room *room1 = [_dataArr objectAtIndex: recognizer.tag-100];
-//    AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
-//    trainingvc.event_id =room1.event_id;
-//    [[self viewController].navigationController pushViewController:trainingvc animated:YES];
-//    
-//    return;
+    //    Room *room1 = [_dataArr objectAtIndex: recognizer.tag-100];
+    //    AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
+    //    trainingvc.event_id =room1.event_id;
+    //    [[self viewController].navigationController pushViewController:trainingvc animated:YES];
+    //
+    //    return;
     
     Room *room = [_dataArr objectAtIndex: recognizer.tag-100];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];

@@ -40,13 +40,17 @@
     NSString *perString = ChineseStringOrENFun(@"创建人", @"Created by");
     _classTypeLabel.text = ChineseStringOrENFun(@"对练课", @"Buddy");
     _classTypeLabel.textColor = BgGrayColor;
-    if (room.course.type_int == 1) {
-        perString = ChineseStringOrENFun(@"直播教练", @"Coach");
+    if (room.course.type_int == 1 ) {
+        perString = ChineseStringOrENFun(@"教练", @"Coach");
         _classTypeLabel.text = ChineseStringOrENFun(@"团课", @"Group");
+    }
+    if (room.course.type_int == 2 ) {
+        perString = ChineseStringOrENFun(@"教练", @"Coach");
+        _classTypeLabel.text = ChineseStringOrENFun(@"私教", @"Group");
     }
     NSString *nickname = [NSString stringWithFormat:@"%@:%@",perString,room.room_creator.nickname];
     self.roomuser.text = nickname;
-    NSString *countryUrl = [room.room_creator.country_icon stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSString *countryUrl = room.room_creator.country_icon;
     [self.countryimage sd_setImageWithURL: [NSURL URLWithString:countryUrl] placeholderImage:nil];
     NSString *roomidhead = ChineseStringOrENFun(@"房间ID",@"Room ID");
     self.roomidLabel.text = [NSString stringWithFormat:@"%@:%@",roomidhead,room.course.course_id];
