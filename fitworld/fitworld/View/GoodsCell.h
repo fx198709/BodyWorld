@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *peopleLabel;
 
 @property (nonatomic, strong) Room * cellRoom;
+@property (weak, nonatomic) IBOutlet UIView *grayBottomView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
 - (void)changedatawithmodel:(Room*)room;
 

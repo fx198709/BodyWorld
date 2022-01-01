@@ -20,6 +20,9 @@
     self.goodsImage.contentMode = UIViewContentModeScaleAspectFill;
     [_joinBtn setImage:nil forState:UIControlStateNormal];
     [_joinBtn setImage:nil forState:UIControlStateHighlighted];
+    _grayBottomView.backgroundColor = UIRGBColor(33, 33, 33, 0.3);
+    _grayBottomView.layer.cornerRadius = 3;
+    _grayBottomView.clipsToBounds = YES;
 
 }
 
@@ -45,21 +48,19 @@
     
     long currentTime = [[NSDate date] timeIntervalSince1970];
     long diff = room.start_time - currentTime;
-    if (diff > 3600*3) {
-        _timeDuringLabel.hidden = YES;
-    }else{
-        if (diff > 0) {
-            _timeDuringLabel.hidden = NO;
-            int hour = (int)diff/3600;
-            int hourleft = diff%3600;
-            int min = hourleft/60;
-            int sec = hourleft%60;
-            NSString *titleString = [NSString stringWithFormat:@"Till start %02d:%02d:%02d",hour,min,sec];
-            NSString *chineseString = [NSString stringWithFormat:@"还差 %02d:%02d:%02d",hour,min,sec];
-            _timeDuringLabel.text = ChineseStringOrENFun(chineseString, titleString);
-        }else{
-            _timeDuringLabel.hidden = NO;
-        }
+    _timeDuringLabel.text = @"";
+    _timeDuringLabel.hidden = YES;
+    _bottomConstraint.constant = 0;
+    if (diff > 0 && diff < 3600*3) {
+        _timeDuringLabel.hidden = NO;
+        int hour = (int)diff/3600;
+        int hourleft = diff%3600;
+        int min = hourleft/60;
+        int sec = hourleft%60;
+        NSString *titleString = [NSString stringWithFormat:@"Till start %02d:%02d:%02d",hour,min,sec];
+        NSString *chineseString = [NSString stringWithFormat:@"还差 %02d:%02d:%02d",hour,min,sec];
+        _timeDuringLabel.text = ChineseStringOrENFun(chineseString, titleString);
+        _bottomConstraint.constant = 2;
     }
     
     _joinBtn.titleLabel.font =SystemFontOfSize(13);
