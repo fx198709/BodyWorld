@@ -60,7 +60,7 @@
     
 }
 - (void)createRightBtn{
-    if (_curse_type_array.count || _curse_time_array.count) {
+    if (_curse_type_array.count || _curse_time_array.count || _course_language_array.count) {
 //        UINavigationBar
         searchView = (RightTopSearchView *)[[[NSBundle mainBundle] loadNibNamed:@"RightTopSearchView" owner:self options:nil] lastObject];
         searchView.frame = CGRectMake(0, 0, 100, 44);
@@ -71,7 +71,12 @@
                 hasSelected = YES;
             }
         }
-        for (ScreenModel *vmodel in _curse_time_array) {
+        for (ScreenModel *vmodel in _curse_type_array) {
+            if (vmodel.hasSelected) {
+                hasSelected = YES;
+            }
+        }
+        for (ScreenModel *vmodel in _course_language_array) {
             if (vmodel.hasSelected) {
                 hasSelected = YES;
             }
@@ -102,15 +107,17 @@
     aboveView.frame = CGRectMake(10, (ScreenHeight-450)/2, ScreenWidth-20, 450);
     [screenBackbutton addSubview:aboveView];
     aboveView.backgroundColor = UIColor.whiteColor;
-    [aboveView changeData:_curse_time_array andType:_curse_type_array isjoin:self.show_join];
+    [aboveView changeData:_curse_time_array andType:_curse_type_array andLanguage:_course_language_array isjoin:self.show_join];
     aboveView.layer.cornerRadius = 10;
     aboveView.clipsToBounds = YES;
     WeakSelf
-    aboveView.screenOKClick = ^(NSArray * _Nonnull timeArray, NSArray * _Nonnull typeArray, BOOL showjoin) {
+    aboveView.screenOKClick = ^(NSArray * _Nonnull timeArray, NSArray * _Nonnull typeArray, NSArray * _Nonnull languageArray, BOOL showjoin) {
         StrongSelf(wSelf);
         strongSelf->_show_join = showjoin;
         strongSelf.curse_time_array = timeArray;
         strongSelf.curse_type_array = typeArray;
+        strongSelf.course_language_array = languageArray;
+
         [strongSelf createRightBtn];
         [strongSelf getVCScreenData];
         [strongSelf->screenBackbutton removeFromSuperview];
@@ -158,6 +165,13 @@
             vmodel.hasSelected = NO;
         }
     }
+    for (ScreenModel *vmodel in _course_language_array) {
+        if ([defaultIds containsObject:vmodel.id]) {
+            vmodel.hasSelected = YES;
+        }else{
+            vmodel.hasSelected = NO;
+        }
+    }
     [self createRightBtn];
     [screenBackbutton removeFromSuperview];
     screenBackbutton= nil;
@@ -177,6 +191,13 @@
                 [tempArray addObject:vmodel];
             }
             self->_curse_type_array = tempArray;
+            tempArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataDic objectForKey:@"course_language"]) {
+                ScreenModel *vmodel = [[ScreenModel alloc] initWithJSON:dic];
+                [tempArray addObject:vmodel];
+            }
+            self->_course_language_array = tempArray;
+            
             tempArray = [NSMutableArray array];
             for (NSDictionary *dic in [dataDic objectForKey:@"curse_time"]) {
                 ScreenModel *vmodel = [[ScreenModel alloc] initWithJSON:dic];
@@ -234,9 +255,11 @@
 }
 */
 
-- (void)reachSeletedValue:(void(^)(NSString*typeSelected,NSString*timeSelected))selectedValue{
+- (void)reachSeletedValue:(void(^)(NSString*typeSelected,NSString*timeSelected,NSString*languageString))selectedValue{
     NSString *timeString = @"";
     NSString *typeString = @"";
+    NSString *languageString = @"";
+
     if (_curse_time_array) {
         NSMutableArray *tempArray = [NSMutableArray array];
         for (ScreenModel *vmodel in _curse_time_array) {
@@ -255,7 +278,16 @@
         }
         typeString = [tempArray componentsJoinedByString:@","];
     }
-    selectedValue(typeString,timeString);
+    if (_course_language_array) {
+        NSMutableArray *tempArray = [NSMutableArray array];
+        for (ScreenModel *vmodel in _course_language_array) {
+            if (vmodel.hasSelected) {
+                [tempArray addObject:vmodel.id];
+            }
+        }
+        languageString = [tempArray componentsJoinedByString:@","];
+    }
+    selectedValue(typeString,timeString,languageString);
 }
 
 

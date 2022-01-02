@@ -560,9 +560,11 @@
         [baddyParams setValue:[NSString stringWithFormat:@"%ld",s_date] forKey:@"s_time"];
         [baddyParams setValue:[NSString stringWithFormat:@"%ld",e_date] forKey:@"e_time"];
         CourseMoreController *vc = (CourseMoreController*)self.parentVC;
-        [vc reachSeletedValue:^(NSString *typeSelected, NSString *timeSelected) {
+        [vc reachSeletedValue:^(NSString *typeSelected, NSString *timeSelected,NSString*languageString) {
             [baddyParams setValue:typeSelected forKey:@"course_type"];
             [baddyParams setValue:timeSelected forKey:@"course_time"];
+            [baddyParams setValue:languageString forKey:@"course_language"];
+
         }];
         if (vc.show_join) {
             [baddyParams setValue:@"1" forKey:@"show_join"];
