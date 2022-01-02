@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FriendViewController : BaseRefreshViewController
+@property (weak, nonatomic) IBOutlet UILabel *addFriendLabel;
 
 @end
 

@@ -440,6 +440,12 @@
             successBlock();
         }
     }];
+//    团课进入，多调用一次进入
+    [manager POST:@"subroom/enter" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+         
+    }];
 }
 #pragma mark  获取详情，开启定时器
 

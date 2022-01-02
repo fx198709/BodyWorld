@@ -23,12 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = ChineseStringOrENFun(@"好友", @"Friends");
+    self.navigationItem.title = ChineseStringOrENFun(@"好友", @"My Friend");
 }
 
 - (void)initView {
     [super initView];
-    self.addTitleLabel.text = ChineseStringOrENFun(@"新的朋友", @"New friend");
+    self.addTitleLabel.text = ChineseStringOrENFun(@"新的朋友", @"Reviews");
+    _addFriendLabel.text = ChineseStringOrENFun(@"添加好友", @"Add Friends");
 }
 
 - (Class)cellClass {
