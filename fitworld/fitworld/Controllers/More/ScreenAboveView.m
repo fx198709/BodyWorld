@@ -50,7 +50,7 @@
         make.top.equalTo(self).offset(70);
         make.left.equalTo(self).offset(30);
         make.right.equalTo(self).offset(30);
-        make.height.mas_equalTo(293);
+        make.bottom.mas_equalTo(self.cancelBtn.mas_top).offset(-20);
     }];
     int outwidth = ScreenWidth - 40*2;
     _contentLabel = [[UILabel alloc] init];

@@ -104,7 +104,7 @@
 - (void)screenBtnClicked{
     screenBackbutton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     aboveView = [[[NSBundle mainBundle] loadNibNamed:@"ScreenAboveView" owner:self options:nil] lastObject];
-    aboveView.frame = CGRectMake(10, (ScreenHeight-450)/2, ScreenWidth-20, 450);
+    aboveView.frame = CGRectMake(10, (ScreenHeight-520)/2, ScreenWidth-20, 520);
     [screenBackbutton addSubview:aboveView];
     aboveView.backgroundColor = UIColor.whiteColor;
     [aboveView changeData:_curse_time_array andType:_curse_type_array andLanguage:_course_language_array isjoin:self.show_join];
