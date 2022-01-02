@@ -549,8 +549,16 @@
             [baddyParams setValue:@"团课" forKey:@"type"];
         }else if (_pageVCindex == 2) {
             [baddyParams setValue:@"对练课" forKey:@"type"];
+        }else if (_pageVCindex == 3) {
+            [baddyParams setValue:@"私教课" forKey:@"type"];
         }
-        [baddyParams setValue:selectDay forKey:@"day"];
+//        [baddyParams setValue:selectDay forKey:@"day"];
+//        selectDay 转成开始时间和结束时间
+        NSDate *date = [CommonTools dateFromInDate:selectDay];
+        long s_date = [date timeIntervalSince1970];
+        long e_date  = s_date+ 24*3600;
+        [baddyParams setValue:[NSString stringWithFormat:@"%ld",s_date] forKey:@"s_time"];
+        [baddyParams setValue:[NSString stringWithFormat:@"%ld",e_date] forKey:@"e_time"];
         CourseMoreController *vc = (CourseMoreController*)self.parentVC;
         [vc reachSeletedValue:^(NSString *typeSelected, NSString *timeSelected) {
             [baddyParams setValue:typeSelected forKey:@"course_type"];

@@ -59,7 +59,7 @@ UIKIT_STATIC_INLINE  NSString*  ReachCutomerWeekTime(NSInteger longtime,NSString
     NSInteger week = [comps weekday];
     NSArray * arrWeek=[NSArray arrayWithObjects:@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六", nil];
     if (!ISChinese()) {
-        arrWeek=[NSArray arrayWithObjects:@"Sun",@"Mon",@"Tues",@"Wed",@"Thur",@"Fri",@"Sat", nil];
+        arrWeek=[NSArray arrayWithObjects:@"Sun",@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat", nil];
     }
     NSString *weekString =  [arrWeek objectAtIndex:week-1];
     NSString *timeString = [NSString stringWithFormat:@"%@  %@",weekString,dateStr];

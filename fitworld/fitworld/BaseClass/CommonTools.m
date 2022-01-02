@@ -127,6 +127,9 @@
     }
     [vbutn setBackgroundImage:joinImage forState:UIControlStateNormal];
     [vbutn setBackgroundImage:joinImage forState:UIControlStateHighlighted];
+    if(!ISChinese()){
+        vbutn.titleLabel.font = SystemFontOfSize(11);
+    }
 
 }
 
