@@ -136,6 +136,7 @@
                            @"friend_ids": friendIds,
                            @"course_id": _selectCourse.course_id,
                            @"name": _selectCourse.name,
+                           @"course_language":_languageType,
                            @"allow_watch": allowWatch
                        };
     

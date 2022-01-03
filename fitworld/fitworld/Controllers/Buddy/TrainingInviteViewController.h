@@ -15,6 +15,7 @@
 @property(nonatomic,strong) Course *selectCourse;
 @property(nonatomic, strong) NSDate * inselectDate;
 @property(nonatomic, assign) NSInteger afterminute; //0是自定义时间
+@property(nonatomic,copy)NSString* languageType;
 
 
 @property(nonatomic,copy)NSString* searchString;
