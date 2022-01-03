@@ -20,10 +20,8 @@
 
 
 @interface LoginController ()
-@property (weak, nonatomic) IBOutlet UIView *loginview;
 
-@property (weak, nonatomic) IBOutlet UIButton *zhLanguageBtn;
-@property (weak, nonatomic) IBOutlet UIButton *enLanguageBtn;
+@property (weak, nonatomic) IBOutlet UIView *loginview;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 
 @property (weak, nonatomic) IBOutlet UILabel *countryCodeLabel;
@@ -51,20 +49,10 @@
     _loginview.clipsToBounds = YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.leftBarButtonItem = nil;
-    [APPObjOnce sharedAppOnce].isLogining = YES;
-}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self showProtocolView];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [APPObjOnce sharedAppOnce].isLogining = NO;
 }
 
 - (void)initView {
@@ -109,20 +97,6 @@
 
 #pragma mark - action
 
-//修改语言
-- (IBAction)ChangeLanguage:(UIButton *)sender {
-    LanguageEnum language;
-    if (sender == self.enLanguageBtn) {
-        language = LanguageEnum_English;
-    } else {
-        language = LanguageEnum_Chinese;
-    }
-    
-    //保存当前语言
-    [ConfigManager sharedInstance].language = language;
-    [[ConfigManager sharedInstance] saveConfig];
-    [self reloadTextView];
-}
 
 
 - (IBAction)goToRegister:(id)sender {
@@ -132,13 +106,15 @@
     [self.navigationController setViewControllers:@[nextVC] animated:YES];
 }
 
-
 //点击显示密码
 - (IBAction)clickShowPwd:(id)sender {
     [self.showPwdBtn setSelected:!self.showPwdBtn.isSelected];
     [self.pwdField setSecureTextEntry:!self.showPwdBtn.isSelected];
 }
 
+
+
+#pragma mark - server
 
 - (IBAction)clickLogin {
     [self.view endEditing:YES];
@@ -158,16 +134,13 @@
     }
     
     NSString *mobile = [NSString stringWithFormat:@"%@:%@", code, name];
-    NSDictionary *param = @{@"username":mobile, @"password":pwd};
-    [self loginToServer:param];
-}
-
-#pragma mark - server
-
-- (void)loginToServer:(NSDictionary *)param {
+    NSString *accountType = [self getAccountType];
+    NSDictionary *param = @{@"username":mobile, @"password":pwd,
+                            @"account_type" : accountType};
     [MTHUD showLoadingHUD];
     [[AFAppNetAPIClient manager] POST:@"login" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
+        [APPObjOnce saveAccountType:accountType];
         [[APPObjOnce sharedAppOnce] loginSuccess:responseObject];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MTHUD showDurationNoticeHUD:error.localizedDescription];

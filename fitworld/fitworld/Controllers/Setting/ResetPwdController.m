@@ -73,8 +73,9 @@
     } else {
         account = userInfo.username;
     }
-    
-    NSDictionary *param = @{@"account":account};
+    NSString *accountType = [APPObjOnce getAccountType];
+    NSDictionary *param = @{@"account":account,
+                            @"account_type" : accountType};
     [[AFAppNetAPIClient manager] POST:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"====respong:%@", responseObject);
         //显示倒计时

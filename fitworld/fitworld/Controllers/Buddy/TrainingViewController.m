@@ -61,7 +61,7 @@
     self.tableView.separatorColor = UIColor.clearColor;
     [self refreshData];
     
-    self.title = ChineseStringOrENFun(@"选择课程", @"CHOOSE COURSE");
+    self.title = ChineseStringOrENFun(@"选择课程", @"Select a workout video");
     
 }
 
@@ -165,7 +165,7 @@
     UIImage *btnImage = [UIImage imageNamed:@"greenbtn"];
     [selectBtn setBackgroundImage:btnImage forState:UIControlStateNormal];
     [selectBtn setBackgroundImage:btnImage forState:UIControlStateHighlighted];
-    NSString *btnTitle = ChineseStringOrENFun(@"选择", @"Choose");
+    NSString *btnTitle = ChineseStringOrENFun(@"选择", @"Select");
     [selectBtn setTitle:btnTitle forState:UIControlStateNormal];
     [selectBtn setTitle:btnTitle forState:UIControlStateHighlighted];
 

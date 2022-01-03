@@ -16,12 +16,7 @@
 
 @interface RegisterController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *zhLanguageBtn;
-@property (weak, nonatomic) IBOutlet UIButton *enLanguageBtn;
-
 @property (weak, nonatomic) IBOutlet UIButton *accountBtn;
-
-
 @property (weak, nonatomic) IBOutlet UIView *nameView;
 
 @property (weak, nonatomic) IBOutlet UILabel *countryCodeLabel;
@@ -47,17 +42,6 @@
     [self reloadTextView];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.leftBarButtonItem = nil;
-    
-    [APPObjOnce sharedAppOnce].isLogining = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [APPObjOnce sharedAppOnce].isLogining = NO;
-}
 
 - (void)initView {
     [self.nameView cornerHalfWithBorderColor:[self.nameField backgroundColor]];
@@ -79,21 +63,6 @@
 #pragma mark - data
 
 #pragma mark - action
-
-//修改语言
-- (IBAction)ChangeLanguage:(UIButton *)sender {
-    LanguageEnum language;
-    if (sender == self.enLanguageBtn) {
-        language = LanguageEnum_English;
-    } else {
-        language = LanguageEnum_Chinese;
-    }
-    
-    //保存当前语言
-    [ConfigManager sharedInstance].language = language;
-    [[ConfigManager sharedInstance] saveConfig];
-    [self reloadTextView];
-}
 
 
 - (IBAction)goToAccountLogin:(id)sender {
@@ -120,7 +89,8 @@
     }
     
     NSString *mobile = [NSString stringWithFormat:@"%@:%@", code, number];
-    NSDictionary *param = @{@"account":mobile};
+    NSDictionary *param = @{@"account":mobile,
+                            @"account_type" : [self getAccountType]};
     [[AFAppNetAPIClient manager] POST:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"====respong:%@", responseObject);
         //显示倒计时
@@ -153,14 +123,16 @@
     NSLog(@"uuid>>>>%@", [UIDevice currentDevice].identifierForVendor.UUIDString);
     [MTHUD showLoadingHUD];
     NSString *account = [NSString stringWithFormat:@"%@:%@",self.countryCodeLabel.text,name];
-    
-    NSDictionary *dict = @{ @"account":account,  @"captcha":pwd};
+    NSString *accountType = [self getAccountType];
+    NSDictionary *dict = @{ @"account":account,  @"captcha":pwd,
+                            @"account_type" : accountType};
     [[AFHTTPSessionManager manager] POST:strUrl
                               parameters:dict
                                  headers:nil
                                 progress:nil
                                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MTHUD hideHUD];
+        [APPObjOnce saveAccountType:accountType];
         [[APPObjOnce sharedAppOnce] loginSuccess:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MTHUD hideHUD:YES completedBlock:^{

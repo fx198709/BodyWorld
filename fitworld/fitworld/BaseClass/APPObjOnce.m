@@ -11,6 +11,9 @@
 #import "RoomVC.h"
 #import "GroupRoomViewControl.h"
 
+#define UserTokenKey @"userToken"
+#define UserAccountTypeKey @"UserAccountType"
+
 @implementation APPObjOnce
 
 + (instancetype)sharedAppOnce {
@@ -24,20 +27,29 @@
 }
 
 + (NSString *)getUserToken {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:UserTokenKey];
 }
 
 + (void)saveUserToken:(NSString *)token {
-    //test
-//    token = @"123";
-    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"userToken"];
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:UserTokenKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (void)clearUserToken {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
++ (void)clearUserLoginInfo {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserTokenKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserAccountTypeKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
++ (NSString *)getAccountType {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:UserAccountTypeKey];
+}
+
++ (void)saveAccountType:(NSString *)accountType {
+    [[NSUserDefaults standardUserDefaults] setObject:accountType forKey:UserAccountTypeKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 - (NSString*)getUserId{
     return _currentUser.id;
