@@ -289,7 +289,7 @@ OurDatePickerViewDelegate>
     
     UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"确定退出？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [APPObjOnce clearUserToken];
+        [APPObjOnce clearUserLoginInfo];
         [[APPObjOnce sharedAppOnce] showLoginView];
     }];
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];

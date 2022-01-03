@@ -5,9 +5,11 @@
 //  Created by mac on 2021/7/1.
 //
 
+#import "BaseLoginViewController.h"
+
 #import <UIKit/UIKit.h>
 
-@interface RegisterController : BaseNavViewController
+@interface RegisterController : BaseLoginViewController
 
 @end
 

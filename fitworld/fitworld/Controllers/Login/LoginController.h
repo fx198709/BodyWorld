@@ -6,8 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseLoginViewController.h"
 
-@interface LoginController : BaseNavViewController
+
+@interface LoginController : BaseLoginViewController
 
 
 @end

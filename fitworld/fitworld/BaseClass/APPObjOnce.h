@@ -29,8 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
 //保存usertoken
 + (void)saveUserToken:(NSString *)token;
 
-//清除用户token
-+ (void)clearUserToken;
+//清除用户账户信息
++ (void)clearUserLoginInfo;
+
+//获取登录方式
++ (NSString *)getAccountType;
+
+//保存登录方式
++ (void)saveAccountType:(NSString *)accountType;
 
 //登录成功后保存信息
 - (void)loginSuccess:(id _Nullable) responseObject;
