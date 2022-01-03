@@ -81,13 +81,34 @@ UICollectionViewDelegateFlowLayout>
     }
     
     NSDate *currentDate = self.startDate;
+    NSInteger endYear = self.endDate.mt_year;
     NSInteger endMonth = self.endDate.mt_month;
     NSInteger endDay = self.endDate.mt_day;
-    while (currentDate.mt_month < endMonth ||
-           (currentDate.mt_month == endMonth &&currentDate.mt_day <= endDay)) {
+    while (true) {
         MTCalenderModel *model = [[MTCalenderModel alloc] initWithData:currentDate];
         [self.dateList addObject:model];
         currentDate = [currentDate mt_nextDate];
+        if (currentDate.mt_year > endYear) {
+            break;
+        }
+        if (currentDate.mt_year < endYear) {
+            continue;
+        }
+        
+        if (currentDate.mt_month > endMonth) {
+            break;
+        }
+        
+        if (currentDate.mt_month < endMonth) {
+            continue;
+        }
+        if (currentDate.mt_day > endDay) {
+            break;
+        }
+        
+        if (currentDate.mt_day < endDay) {
+            continue;
+        }
     }
     
     //开头添加空白日期
