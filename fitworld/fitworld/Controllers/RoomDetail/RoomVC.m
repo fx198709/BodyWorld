@@ -32,6 +32,8 @@
     UILabel *leftTimeLabel;
     UIView *leftTimeBackview;
     RoomVCSettingView * settingView;//设置视图
+    UIScrollView *settingBackScroll;//设置的背景图
+    UIInterfaceOrientation currentOrientationType;//默认是竖屏
 }
 
 @property (nonatomic, strong) NSDictionary* mCode;
@@ -75,6 +77,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    currentOrientationType = UIInterfaceOrientationPortrait;
     canErrorToPOP = YES;
     // Do any additional setup after loading the view.
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -115,6 +118,7 @@
     //  [self.view addSubview:mViewerPanel];
     
     mFullScreen = NO;
+    
     [self layoutPanel];
     
     
@@ -738,6 +742,10 @@
         StrongSelf(wSelf);
         [strongSelf changeNotDistrub:clickModel.boolValue];
     };
+//    强制横竖屏
+    settingView.orientationClickedBlock = ^(id clickModel) {
+        [wSelf changeOrientation];
+    };
 }
 
 //免打扰
@@ -793,6 +801,19 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 }
+
+- (void)changeOrientation{
+    if (currentOrientationType == UIInterfaceOrientationPortrait) {
+        currentOrientationType = UIInterfaceOrientationLandscapeRight;
+        [self forceOrientationLandscape];
+    }else{
+        currentOrientationType = UIInterfaceOrientationPortrait;
+        [self forceOrientationPortrait];
+    }
+}
+
+ 
+
 
 #pragma mark 跳转到完成页面
 - (void)jumpToTrainingvc{

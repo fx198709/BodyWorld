@@ -137,22 +137,14 @@
     }
 }
 
-- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
-{
-    if (self.allowRotation == 1) {
-        return UIInterfaceOrientationMaskAll;
-    }else{
-        return (UIInterfaceOrientationMaskPortrait);
+
+-(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    if (self.isForceLandscape) {
+        //这里设置允许的横屏类型
+        return UIInterfaceOrientationMaskLandscapeRight;
     }
+    return UIInterfaceOrientationMaskPortrait;
 }
 
-// 支持设备自动旋转
-- (BOOL)shouldAutorotate
-{
-    if (self.allowRotation == 1) {
-        return YES;
-    }
-    return NO;
-}
 
 @end

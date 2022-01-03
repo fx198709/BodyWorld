@@ -8,6 +8,7 @@
 #import "BaseNavViewController.h"
 #import "SDImageCache.h"
 #import "UIImage+Extension.h"
+#import "AppDelegate.h"
 
 @interface BaseNavViewController ()<UIGestureRecognizerDelegate>
 @end
@@ -52,8 +53,8 @@
 //    清除右侧的导航
     self.navigationItem.rightBarButtonItem = nil;
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-
-
+//    默认每个屏 都是竖屏的
+    [self forceOrientationPortrait];
 }
 
 
@@ -100,5 +101,29 @@
 - (void)backPopViewcontroller:(id) sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//强制横屏
+- (void)forceOrientationLandscape {
+
+    AppDelegate *appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    appdelegate.isForceLandscape=YES;
+    [appdelegate application:[UIApplication sharedApplication] supportedInterfaceOrientationsForWindow:self.view.window];
+    //强制翻转屏幕，Home键在右边。
+    [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
+    //刷新
+    [UIViewController attemptRotationToDeviceOrientation];
+}
+
+//强制竖屏
+- (void)forceOrientationPortrait {
+
+    AppDelegate *appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    appdelegate.isForceLandscape=NO;
+     [appdelegate application:[UIApplication sharedApplication] supportedInterfaceOrientationsForWindow:self.view.window];
+    //设置屏幕的转向为竖屏
+    [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
+    //刷新
+    [UIViewController attemptRotationToDeviceOrientation];
 }
 @end

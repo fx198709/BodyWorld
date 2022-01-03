@@ -20,6 +20,11 @@
     [_cancelBtn setTitle:btnTitle forState:UIControlStateNormal];
     [_cancelBtn setTitle:btnTitle forState:UIControlStateHighlighted];
     [_cancelBtn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSString *orientationTitle = ChineseStringOrENFun(@"强制横竖屏", @"强制横竖屏");
+    [_changeOrientationBtn setTitle:orientationTitle forState:UIControlStateNormal];
+    [_changeOrientationBtn setTitle:orientationTitle forState:UIControlStateHighlighted];
+    [_changeOrientationBtn addTarget:self action:@selector(orientationBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     _cancelBtn.layer.cornerRadius = 20;
     _cancelBtn.clipsToBounds = YES;
     _mainVoiceSlider.backgroundColor = UIColor.clearColor;
@@ -60,6 +65,12 @@
 - (void)cancelBtnClicked{
     if (self.cancelBtnClickedBlock) {
         self.cancelBtnClickedBlock(NULL);
+    }
+}
+
+- (void)orientationBtnClicked{
+    if (self.orientationClickedBlock) {
+        self.orientationClickedBlock(NULL);
     }
 }
 /*

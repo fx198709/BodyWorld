@@ -27,7 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) AnyBtnBlock myMicSwicthChanged;
 @property (nonatomic, copy) AnyBtnBlock notdisturbSwitchChanged;
 @property (nonatomic, copy) AnyBtnBlock cancelBtnClickedBlock;
+@property (nonatomic, copy) AnyBtnBlock orientationClickedBlock; //强制横竖屏
 
+
+@property (weak, nonatomic) IBOutlet UIButton *changeOrientationBtn;//强制横竖屏
 
 @end
 
