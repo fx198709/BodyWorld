@@ -861,12 +861,12 @@
 				04552B312696C3FD00C78706 /* QRCodeReaderDelegate.h */,
 				04552B322696C3FD00C78706 /* QRCameraSwitchButton.m */,
 				04552B332696C3FD00C78706 /* QRCodeReader.h */,
+				04552B392696C3FD00C78706 /* QRCodeReader.m */,
 				04552B342696C3FD00C78706 /* QRCodeReaderViewController.m */,
 				04552B352696C3FD00C78706 /* QRCodeReaderView.m */,
 				04552B362696C3FD00C78706 /* QRToggleTorchButton.h */,
 				04552B372696C3FD00C78706 /* QRCameraSwitchButton.h */,
 				04552B382696C3FD00C78706 /* QRCodeReaderViewController.h */,
-				04552B392696C3FD00C78706 /* QRCodeReader.m */,
 			);
 			path = QRCodeReaderViewController;
 			sourceTree = "<group>";
@@ -1272,17 +1272,17 @@
 		DD595EC82736F56B00618D1A /* RoomDetail */ = {
 			isa = PBXGroup;
 			children = (
-				DDFA757627591A4900EFD0B1 /* GroupRoom */,
 				DDB138062748E2DB009A44FD /* TrainingCell */,
 				DD595ED32736F88D00618D1A /* RoomVC.h */,
 				DD595ED22736F88D00618D1A /* RoomVC.m */,
-				DD595EC92736F5A000618D1A /* CourseDetailViewController.h */,
 				DD595ED82737D25800618D1A /* CreateCourseSuccessViewController.h */,
 				DD595ED92737D25800618D1A /* CreateCourseSuccessViewController.m */,
 				DD595EDA2737D25800618D1A /* CreateCourseSuccessViewController.xib */,
+				DD595EC92736F5A000618D1A /* CourseDetailViewController.h */,
 				DD595ECB2736F5A000618D1A /* CourseDetailViewController.m */,
 				DD595EE8273BB15800618D1A /* UserHeadPicView.h */,
 				DD595EE9273BB15800618D1A /* UserHeadPicView.m */,
+				DDFA757627591A4900EFD0B1 /* GroupRoom */,
 				DD98BC69273F653900D3B59F /* CourseDetailSmallview.h */,
 				DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */,
 				DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */,

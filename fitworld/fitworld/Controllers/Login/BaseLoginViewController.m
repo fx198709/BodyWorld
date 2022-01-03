@@ -15,11 +15,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString *mobileStr = ChineseStringOrENFun(@"手机号", @"mobile");
+    NSString *emailStr = ChineseStringOrENFun(@"邮箱", @"email");
     
     UIImage *selectedImg = [UIImage imageNamed:@"invite_friends_user_list_item_selected"];
     UIImage *unselectedImg = [UIImage imageNamed:@"invite_friends_user_list_item_unselected"];
+    [self.isMobileBtn setTitle:mobileStr forState:UIControlStateNormal];
     [self.isMobileBtn setImage:unselectedImg forState:UIControlStateNormal];
     [self.isMobileBtn setImage:selectedImg forState:UIControlStateSelected];
+    [self.isEmailBtn setTitle:emailStr forState:UIControlStateNormal];
     [self.isEmailBtn setImage:unselectedImg forState:UIControlStateNormal];
     [self.isEmailBtn setImage:selectedImg forState:UIControlStateSelected];
     

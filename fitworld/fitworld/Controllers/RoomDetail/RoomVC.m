@@ -33,6 +33,7 @@
     UIView *leftTimeBackview;
     RoomVCSettingView * settingView;//设置视图
     UIScrollView *settingBackScroll;//设置的背景图
+    UIButton *cancelAboveBtn; //取消弹层按钮
     UIInterfaceOrientation currentOrientationType;//默认是竖屏
 }
 
@@ -93,8 +94,6 @@
         make.size.equalTo(self.view);
     }];
     
-    
-    settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
     
     //    mHeaderPanel = [HeaderPanel new];
     //    [self.view addSubview:mHeaderPanel];
@@ -265,13 +264,13 @@
                     [strongSelf.guestPanels removeObject:guestpanel];
                 }
             }
-//            还有没有添加进入的人员
+            //            还有没有添加进入的人员
             if (keysArray.count > 0) {
                 for (NSString *userID in keysArray) {
                     //                    ClassMember *currentMember = [memberDic objectForKey:userID];
                     //                    if ([currentMember isonTheAir]) {
                     if (strongSelf.guestPanels.count < 5) {
-//                        游客小于5个，这边才用
+                        //                        游客小于5个，这边才用
                         GuestPanel * guestpanel = [[GuestPanel alloc] init];
                         guestpanel.mUserId = userID;
                         [strongSelf.guestPanels addObject:guestpanel];
@@ -281,11 +280,11 @@
                         if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
                             guestpanel.mMyLabel.text = [[[currentMember copyInfo].custom objectForKey:@"internal"] objectForKey:@"nickName"];
                             guestpanel.userImageString = [[[currentMember copyInfo].custom objectForKey:@"extend"] objectForKey:@"avatar"];
-
+                            
                         }
                         guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
                     }
-                   
+                    
                     //
                 }
             }
@@ -539,7 +538,7 @@
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 20, 20)];
     imageview.image = [UIImage imageNamed:@"back_white"];
     [backview addSubview:imageview];
-
+    
     vtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, ScreenWidth-150-20-60, 20)];
     [backview addSubview:vtitleLabel];
     vtitleLabel.textColor = UIColor.whiteColor;
@@ -611,9 +610,9 @@
 }
 
 - (void)dealwithTimer{
-//    判断开始没有
-//    还没开始，需要设置倒计时
-//    判断结束时间
+    //    判断开始没有
+    //    还没开始，需要设置倒计时
+    //    判断结束时间
     long dif = self.currentRoom.start_time- [[NSDate date] timeIntervalSince1970];
     if (dif>0) {
         if (!leftTimeLabel) {
@@ -640,10 +639,10 @@
         }
         if (!createRoomLiving) {
             createRoomLiving = YES;
-//            开启直播
+            //            开启直播
             [[VConductorClient sharedInstance] joinwithEntry:VRC_URL andCode:mCode asViewer:NO withDelegate:self];
         }
-       
+        
     }
     
     if (hasStartLiving) {
@@ -719,33 +718,52 @@
 }
 
 //设置按钮点击
+#pragma  mark 弹层
+- (void)removeAboveView{
+    [settingBackScroll removeFromSuperview];
+}
 - (void)settingBtnClicked{
     UIWindow *mainwindow = [CommonTools mainWindow];
-    [mainwindow addSubview:settingView];
+    
+    if (!settingBackScroll) {
+        //    设置弹出层
+        settingBackScroll = [[UIScrollView alloc] init];
+        cancelAboveBtn = [[UIButton alloc] init];
+        [settingBackScroll addSubview:cancelAboveBtn];
+        [cancelAboveBtn addTarget:self action:@selector(removeAboveView) forControlEvents:UIControlEventTouchUpInside];
+        settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
+        [settingBackScroll addSubview:settingView];
+        
+        WeakSelf
+        settingView.cancelBtnClickedBlock = ^(id clickModel) {
+            StrongSelf(wSelf);
+            [strongSelf->settingBackScroll removeFromSuperview];
+        };
+        settingView.myCameraSwitchChanged = ^(id clickModel) {
+            
+        };
+        settingView.myMicSwicthChanged = ^(id clickModel) {
+            
+        };
+        settingView.notdisturbSwitchChanged = ^(NSNumber *clickModel) {
+            //        免打扰
+            StrongSelf(wSelf);
+            [strongSelf changeNotDistrub:clickModel.boolValue];
+        };
+        //    强制横竖屏
+        settingView.orientationClickedBlock = ^(id clickModel) {
+            [wSelf changeOrientation];
+        };
+    }
     [settingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.equalTo(mainwindow);
         make.left.top.equalTo(mainwindow);
     }];
-    WeakSelf
-    settingView.cancelBtnClickedBlock = ^(id clickModel) {
-        StrongSelf(wSelf);
-        [strongSelf->settingView removeFromSuperview];
-    };
-    settingView.myCameraSwitchChanged = ^(id clickModel) {
-        
-    };
-    settingView.myMicSwicthChanged = ^(id clickModel) {
-        
-    };
-    settingView.notdisturbSwitchChanged = ^(NSNumber *clickModel) {
-//        免打扰
-        StrongSelf(wSelf);
-        [strongSelf changeNotDistrub:clickModel.boolValue];
-    };
-//    强制横竖屏
-    settingView.orientationClickedBlock = ^(id clickModel) {
-        [wSelf changeOrientation];
-    };
+    [cancelAboveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(settingView);
+        make.left.top.equalTo(settingView);
+    }];
+    
 }
 
 //免打扰
@@ -753,10 +771,10 @@
     needShowOthersVideo = need;
     for (GuestPanel * panel in _guestPanels) {
         if (needShowOthersVideo) {
-//            开启免打扰
+            //            开启免打扰
             [panel onlyShowUserImage];
         }else{
-//            关闭免打扰
+            //            关闭免打扰
             [panel showUservideo];
         }
     }
@@ -794,7 +812,7 @@
             self.currentRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
             self.currentRoom.event_id = eventid;
             //                显示进度条
-//            self.title = self.currentRoom.name;
+            //            self.title = self.currentRoom.name;
             [self startTimer];
             
         }
@@ -812,7 +830,7 @@
     }
 }
 
- 
+
 
 
 #pragma mark 跳转到完成页面
