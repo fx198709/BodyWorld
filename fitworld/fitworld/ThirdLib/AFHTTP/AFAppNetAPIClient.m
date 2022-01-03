@@ -216,7 +216,7 @@
     if (error.localizedDescription != nil
         && [error.localizedDescription containsString:@"(401)"]
         && ![APPObjOnce sharedAppOnce].isLogining) {
-//        [APPObjOnce clearUserToken];
+        [APPObjOnce clearUserLoginInfo];
         [[APPObjOnce sharedAppOnce] showLoginView];
     }
 }
