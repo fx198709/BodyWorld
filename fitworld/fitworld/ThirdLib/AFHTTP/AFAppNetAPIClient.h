@@ -91,10 +91,10 @@ typedef NS_ENUM(NSInteger, SelecteMediaType){
  
  @see -dataTaskWithRequest:completionHandler:
  */
-- (NSURLSessionDataTask *)GETFILE:(NSString *)URLString
-                       parameters:(id)parameters
-                          success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+//- (NSURLSessionDataTask *)GETFILE:(NSString *)URLString
+//                       parameters:(id)parameters
+//                          success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+//                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 
 /**
@@ -115,12 +115,8 @@ typedef NS_ENUM(NSInteger, SelecteMediaType){
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 
-- (NSMutableDictionary *)addDefaultObjectTodic:(NSDictionary *)inDic;
-//获得设备型号
-- (NSString *)getCurrentDeviceInfoString;
 //系统版本号
 - (NSString*)systemVersionString;
 //获取一个uuid
 - (NSString*)uuid;
-- (NSString *)RequestCode:(NSString *)uuid;
 @end

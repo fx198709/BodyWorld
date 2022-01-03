@@ -69,6 +69,7 @@
     if (![noapis containsObject:URLString]) {
         [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
     }
+    [self changeLanguage];
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
     return [self POST:strUrl parameters:parameters headers:nil progress:nil success:success failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -76,6 +77,13 @@
     }];
 }
 
+- (void)changeLanguage{
+    if (ISChinese()) {
+        [self.requestSerializer setValue:@"zh" forHTTPHeaderField:@"Accept-language"];
+    }else{
+        [self.requestSerializer setValue:@"en" forHTTPHeaderField:@"Accept-language"];
+    }
+}
 
 - (NSURLSessionDataTask *)PUT:(NSString *)URLString
                    parameters:(id)parameters
@@ -86,8 +94,7 @@
     NSString *strUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_PREFIX,URLString];
     
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [self.requestSerializer setValue:@"zh" forHTTPHeaderField:@"Accept-language"];
-
+    [self changeLanguage];
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     
     return [self PUT:strUrl parameters:parameters headers:nil success:success failure:failure];
@@ -169,7 +176,8 @@
     
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    
+    [self changeLanguage];
+
     return [self GET:strUrl parameters:parameters headers:nil progress:nil success:success failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self dealError:error task:task failure:failure];
     }];
@@ -189,7 +197,8 @@
     
     [self.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
     [self.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    
+    [self changeLanguage];
+
     return [self POST:strUrl parameters:parameters headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         //给定数据流的数据名，文件名，文件类型（以图片为例）
         [formData appendPartWithFileData:fileData name:@"file" fileName:@"img1" mimeType:@"image/jpeg"];
