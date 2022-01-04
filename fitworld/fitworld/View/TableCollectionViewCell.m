@@ -93,15 +93,16 @@
         [cell changedatawithmodel:tmpRoom];
         cell.joinBtn.tag = indexPath.row+100;
         int state = [tmpRoom reachRoomDealState];
-        if (tmpRoom.course.type_int == 0 ) {
-            //            GroupRoomPrepareViewController
-        }
+        cell.joinBtn.userInteractionEnabled = NO;
         if (state == 1 || state == 2) {
             [cell.joinBtn addTarget:self action:@selector(joinBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+            cell.joinBtn.userInteractionEnabled = YES;
+
         }
         //        开始直播
         if (state == 5) {
             [cell.joinBtn addTarget:self action:@selector(startLivingBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+            cell.joinBtn.userInteractionEnabled = YES;
         }
         return cell;
     }else{

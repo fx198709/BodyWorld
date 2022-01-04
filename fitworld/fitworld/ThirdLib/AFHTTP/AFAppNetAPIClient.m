@@ -79,9 +79,9 @@
 
 - (void)changeLanguage{
     if (ISChinese()) {
-        [self.requestSerializer setValue:@"zh" forHTTPHeaderField:@"Accept-language"];
+        [self.requestSerializer setValue:@"zh" forHTTPHeaderField:@"Accept-languages"];
     }else{
-        [self.requestSerializer setValue:@"en" forHTTPHeaderField:@"Accept-language"];
+        [self.requestSerializer setValue:@"en" forHTTPHeaderField:@"Accept-languages"];
     }
 }
 

@@ -224,19 +224,37 @@
         //            [self.view layoutIfNeeded];
         //        }];
     } else {
-        [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view);
-            make.right.equalTo(self.view);
-            make.top.equalTo(self.view);
-            make.height.equalTo(self.view).multipliedBy(0.4);
-        }];
+//        横屏展示
+        if (currentOrientationType == UIInterfaceOrientationLandscapeRight) {
+            [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view);
+                make.right.equalTo(self.view);
+                make.top.equalTo(self.view);
+                make.height.equalTo(self.view);
+            }];
+            
+            [_bottomPanelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view);
+                make.right.equalTo(self.view);
+                make.top.equalTo(self.mMainPanel.mas_bottom).offset(5);
+                make.bottom.equalTo(self.view);
+            }];
+        }else{
+            [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view);
+                make.right.equalTo(self.view);
+                make.top.equalTo(self.view);
+                make.height.equalTo(self.view).multipliedBy(0.4);
+            }];
+            
+            [_bottomPanelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view);
+                make.right.equalTo(self.view);
+                make.top.equalTo(self.mMainPanel.mas_bottom).offset(5);
+                make.bottom.equalTo(self.view);
+            }];
+        }
         
-        [_bottomPanelView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view);
-            make.right.equalTo(self.view);
-            make.top.equalTo(self.mMainPanel.mas_bottom).offset(5);
-            make.bottom.equalTo(self.view);
-        }];
         [self.view setNeedsLayout];
         [self.view layoutIfNeeded];
         WeakSelf
@@ -721,6 +739,7 @@
 #pragma  mark 弹层
 - (void)removeAboveView{
     [settingBackScroll removeFromSuperview];
+    [cancelAboveBtn removeFromSuperview];
 }
 - (void)settingBtnClicked{
     UIWindow *mainwindow = [CommonTools mainWindow];
@@ -729,7 +748,7 @@
         //    设置弹出层
         settingBackScroll = [[UIScrollView alloc] init];
         cancelAboveBtn = [[UIButton alloc] init];
-        [settingBackScroll addSubview:cancelAboveBtn];
+//        [settingBackScroll addSubview:cancelAboveBtn];
         [cancelAboveBtn addTarget:self action:@selector(removeAboveView) forControlEvents:UIControlEventTouchUpInside];
         settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
         [settingBackScroll addSubview:settingView];
@@ -737,7 +756,7 @@
         WeakSelf
         settingView.cancelBtnClickedBlock = ^(id clickModel) {
             StrongSelf(wSelf);
-            [strongSelf->settingBackScroll removeFromSuperview];
+            [strongSelf removeAboveView];
         };
         settingView.myCameraSwitchChanged = ^(id clickModel) {
             
@@ -755,15 +774,44 @@
             [wSelf changeOrientation];
         };
     }
-    [settingView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [mainwindow addSubview:cancelAboveBtn];
+    [mainwindow addSubview:settingBackScroll];
+
+    [cancelAboveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.equalTo(mainwindow);
         make.left.top.equalTo(mainwindow);
     }];
-    [cancelAboveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.equalTo(settingView);
-        make.left.top.equalTo(settingView);
+//    if (@available(iOS 11.0, *)) {
+//        settingBackScroll.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//    }
+    [settingBackScroll mas_makeConstraints:^(MASConstraintMaker *make) {
+         
+        make.left.equalTo(mainwindow).priorityLow();
+        make.width.mas_lessThanOrEqualTo(375).priorityHigh();
+        make.centerX.equalTo(mainwindow).priorityHigh();
+        make.top.equalTo(mainwindow).offset(30);
+        make.bottom.equalTo(mainwindow).offset(-30);
     }];
-    
+    int width = ScreenWidth;
+    if (ScreenWidth>375) {
+        width = 375;
+    }
+    BOOL needTop = NO;
+    if (mainwindow.frame.size.height < 520) {
+        needTop = YES;
+    }
+    [settingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(settingBackScroll);
+        make.width.mas_equalTo(width);
+        make.bottom.equalTo(settingBackScroll);
+        if (needTop) {
+            make.top.equalTo(settingBackScroll);
+        }else{
+            make.centerY.equalTo(settingBackScroll).priorityHigh();
+        }
+        make.height.mas_equalTo(460);
+
+    }];
 }
 
 //免打扰
@@ -828,6 +876,8 @@
         currentOrientationType = UIInterfaceOrientationPortrait;
         [self forceOrientationPortrait];
     }
+    [self removeAboveView];
+    [self layoutPanel];
 }
 
 
@@ -835,6 +885,8 @@
 
 #pragma mark 跳转到完成页面
 - (void)jumpToTrainingvc{
+//    删除弹层
+    [self removeAboveView];
     AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
     trainingvc.event_id = self->mCode[@"eid"];
     trainingvc.invc = self.invc;

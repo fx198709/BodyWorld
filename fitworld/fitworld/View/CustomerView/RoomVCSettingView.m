@@ -25,6 +25,8 @@
     [_changeOrientationBtn setTitle:orientationTitle forState:UIControlStateNormal];
     [_changeOrientationBtn setTitle:orientationTitle forState:UIControlStateHighlighted];
     [_changeOrientationBtn addTarget:self action:@selector(orientationBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    _changeOrientationBtn.layer.cornerRadius = 20;
+    _changeOrientationBtn.clipsToBounds = YES;
     _cancelBtn.layer.cornerRadius = 20;
     _cancelBtn.clipsToBounds = YES;
     _mainVoiceSlider.backgroundColor = UIColor.clearColor;

@@ -40,6 +40,13 @@
         make.height.mas_equalTo(80);
     }];
     
+    
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(160);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view);
+    }];
     TableHeadview *tableheadview = (TableHeadview *)[[[NSBundle mainBundle] loadNibNamed:@"TableHeadview" owner:self options:nil] lastObject];
     [self.view addSubview:tableheadview];
     [tableheadview mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -82,6 +89,7 @@
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }
+    
     return _tableView;
 }
 #pragma mark TableViewDelegate&DataSource
@@ -212,17 +220,12 @@
     [dataArr removeAllObjects];
     NSString *userToken = [APPObjOnce getUserToken ];
     NSLog(@"initroom userToken ---- %@", userToken);
-
-    NSString *strUrl = [NSString stringWithFormat:@"%@course", FITAPI_HTTPS_PREFIX];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"Authorization"];
-    [manager.requestSerializer setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     NSDictionary *baddyParams = @{
                            @"type": @"对练课",
                            @"page": @"1",
-                           @"row": @"5"                       };
+                           @"row": @"50"                       };
   
-    [manager GET:strUrl parameters:baddyParams headers:nil progress:nil
+    [[AFAppNetAPIClient sharedClient] GET:@"course" parameters:baddyParams headers:nil progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObject ---- %@", responseObject);
         long total =  [responseObject[@"recordset"][@"total"] longValue];

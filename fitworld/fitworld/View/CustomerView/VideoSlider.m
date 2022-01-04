@@ -10,7 +10,8 @@
 @implementation VideoSlider
 
 - (void)createSubview{
-    int with = ScreenWidth - 60;//self.frame.size.width;
+    int outwidth = ScreenWidth>375?375:ScreenWidth;
+    int with = outwidth - 60;//self.frame.size.width;
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0,10, with,10)];
     imageview.image = [UIImage imageNamed:@"activity_p2c_live_vedio_process"];
     [self addSubview:imageview];

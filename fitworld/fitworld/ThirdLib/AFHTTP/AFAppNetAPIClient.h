@@ -22,28 +22,17 @@ typedef NS_ENUM(NSInteger, SelecteMediaType){
 /**
  *  获取 BaseURLString
  *  这里等于AFAppDotNetAPIBaseURLString
- *
- *  @return
+
  */
 + (NSString *)URLString;
 
 /**
  *  获取完整的请求链接
- *
- *  @param URLStr  需要拼接的URL
- *
- *  @return
  */
 + (NSString *)requestURLString:(NSString *)URLStr;
 
 /**
  覆盖AFHTTPSessionManager方法  添加了安全访问的内容
- 
- @param 请求的url
- @param 请求的参数
- @param 请求成功的block
- @param 请求失败的block
- 
  @see -dataTaskWithRequest:completionHandler:
  */
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
@@ -70,10 +59,6 @@ typedef NS_ENUM(NSInteger, SelecteMediaType){
 /**
  覆盖AFHTTPSessionManager方法  添加了安全访问的内容
  
- @param 请求的url
- @param 请求的参数
- @param 请求成功的block
- @param 请求失败的block
  
  @see -dataTaskWithRequest:completionHandler:
  */
@@ -99,13 +84,6 @@ typedef NS_ENUM(NSInteger, SelecteMediaType){
 
 /**
  post带有附件的请求
- 
- @param 请求的url
- @param 请求的参数
- @param 上传的文件
- @param 请求成功的block
- @param 请求失败的block
- 
  @see -dataTaskWithRequest:completionHandler:
  */
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
