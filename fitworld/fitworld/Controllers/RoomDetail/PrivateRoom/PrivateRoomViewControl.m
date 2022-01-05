@@ -27,7 +27,7 @@
     UIButton *voiceBtn;// 头上视频的声音
     UILabel *vtitleLabel;//title 直播间名称
     UILabel *vnumberLabel;//title 直播间人数
-
+    
     BOOL headHasVoice;//头部的有声音
     UIButton *settingBtn;//设置按钮
     
@@ -43,8 +43,10 @@
     UIScrollView *settingBackScroll;//设置的背景图
     UIButton *cancelAboveBtn; //取消弹层按钮
     UIButton *cancelAboveBtn2; //scrollview里面的
-
+    
     UIInterfaceOrientation currentOrientationType;//默认是竖屏
+    
+    int itemheight;//横屏每个小方块的高度
 }
 
 @property (nonatomic, strong) NSDictionary* mCode;
@@ -96,7 +98,7 @@
         make.centerX.and.centerY.equalTo(self.view);
         make.size.equalTo(self.view);
     }];
-        
+    
     mMainPanel = [MainPanel new];
     mMainPanel.layer.cornerRadius = 5;
     mMainPanel.layer.masksToBounds = YES;
@@ -149,7 +151,7 @@
             make.height.equalTo(self.view);
         }];
         
-
+        
         WeakSelf
         [UIView animateWithDuration:0.3 animations:^{
             //    获取所有的成员列表
@@ -186,9 +188,13 @@
                         [strongSelf.guestPanels addObject:guestpanel];
                         int showguestcount = (int)strongSelf.guestPanels.count;
                         [self.view addSubview:guestpanel];
-                        CGFloat startX = ScreenWidth/4*(showguestcount);
-                        CGFloat startY = 100;
-                        guestpanel.frame = CGRectMake(startX, startY, self->panelSize.width, self->panelSize.height);
+                        if (self->currentOrientationType == UIInterfaceOrientationPortrait) {
+                            CGFloat startX = ScreenWidth/4*(showguestcount);
+                            CGFloat startY = 100;
+                            guestpanel.frame = CGRectMake(startX, startY, self->panelSize.width, self->panelSize.height);
+                        }else{
+                            guestpanel.frame = [self reachRectwithindex:showguestcount-1];
+                        }
                         
                         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragReplyButton:)];
                         [guestpanel addGestureRecognizer:panGestureRecognizer];
@@ -199,13 +205,12 @@
                         }
                         guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
                     }
-                
+                    
                 }
             }
             
             if (self->currentOrientationType == UIInterfaceOrientationLandscapeRight) {
-                self->panelSize = CGSizeMake(ScreenHeight/4*16/9,ScreenHeight/4);
-
+                self->panelSize = CGSizeMake(itemheight*16/9,itemheight);
             }else{
                 self->panelSize = CGSizeMake(ScreenWidth/4, ScreenWidth/4/0.563);
             }
@@ -572,7 +577,7 @@
         }
         [self.view bringSubviewToFront:currentSlider];
     }
-
+    
     
 }
 
@@ -807,6 +812,21 @@
     }];
 }
 
+//获取横屏的位置
+- (CGRect)reachRectwithindex:(int)index{
+    self->panelSize = CGSizeMake(itemheight*16/9,itemheight);
+    int itemwidth = itemheight*16/9;//横屏的高度
+    int starty = (ScreenHeight- 2*(itemheight+20))/2;
+    CGRect panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+itemheight+20, itemwidth, itemheight);
+    if (index == 1) {
+        panelRect = CGRectMake(60, starty+20, itemwidth, itemheight);;
+    }
+    if (index == 2) {
+        panelRect = CGRectMake(60, starty+20+itemheight+20, itemwidth, itemheight);;
+    }
+    return panelRect;
+}
+
 - (void)changeOrientation{
     if (currentOrientationType == UIInterfaceOrientationPortrait) {
         currentOrientationType = UIInterfaceOrientationLandscapeRight;
@@ -816,7 +836,30 @@
         [self forceOrientationPortrait];
     }
     [self removeAboveView];
-    [self layoutPanel];
+    //    横竖屏切换，恢复到初始状态
+    if (self->currentOrientationType == UIInterfaceOrientationLandscapeRight) {
+        itemheight = (ScreenHeight-40)/3 - 20; //横屏每个小方块的高度
+        self->panelSize = CGSizeMake(itemheight*16/9,itemheight);
+        int itemwidth = itemheight*16/9;//横屏的高度
+        int starty = (ScreenHeight- 2*(itemheight+20))/2;
+        //                    第一个在右边
+        mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
+        for (int index = 0; index < _guestPanels.count; index++) {
+            GuestPanel * guestpanel = [_guestPanels objectAtIndex:index];
+            guestpanel.frame =[self reachRectwithindex:index];
+        }
+        
+    }else{
+        self->panelSize = CGSizeMake(ScreenWidth/4, ScreenWidth/4/0.563);
+        mSidePanel.frame = CGRectMake(0, 100, panelSize.width , panelSize.height);
+        for (NSInteger  i = _guestPanels.count -1; i>= 0;i--) {
+            GuestPanel * guestpanel = [_guestPanels objectAtIndex:i];
+            CGFloat startX = ScreenWidth/4*(i+1);
+            CGFloat startY = 100;
+            guestpanel.frame = CGRectMake(startX, startY, self->panelSize.width, self->panelSize.height);
+        }
+        
+    }
     [self dealwithTimer];
 }
 

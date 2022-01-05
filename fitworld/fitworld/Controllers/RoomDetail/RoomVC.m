@@ -227,7 +227,7 @@
         //        横屏展示
         //
         int itemheight = (ScreenHeight-40)/4 - 20; //横屏每个小方块的高度
-        int itemwidth = itemheight*2;//横屏的高度
+        int itemwidth = itemheight*16/9;//横屏的高度
         if (currentOrientationType == UIInterfaceOrientationLandscapeRight) {
             [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.view);
