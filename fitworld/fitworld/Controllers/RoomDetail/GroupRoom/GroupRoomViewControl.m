@@ -39,6 +39,10 @@
     NSTimer * groupdataTimer;//团课定时器
     
     CGSize panelSize;
+    
+    UIScrollView *settingBackScroll;//设置的背景图
+    UIButton *cancelAboveBtn; //取消弹层按钮
+    UIInterfaceOrientation currentOrientationType;//默认是竖屏
 }
 
 @property (nonatomic, strong) NSDictionary* mCode;
@@ -64,7 +68,6 @@
 - (id)initWith:(NSDictionary*)code {
     self = [super init];
     mCode = code;
-    panelSize = CGSizeMake(ScreenWidth/4, ScreenWidth/4/0.563);
     return self;
 }
 
@@ -76,6 +79,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    currentOrientationType = UIInterfaceOrientationPortrait;
     canErrorToPOP = YES;
     // Do any additional setup after loading the view.
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -90,9 +94,7 @@
         make.centerX.and.centerY.equalTo(self.view);
         make.size.equalTo(self.view);
     }];
-    
-    
-    settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
+        
     mMainPanel = [MainPanel new];
     mMainPanel.layer.cornerRadius = 5;
     mMainPanel.layer.masksToBounds = YES;
@@ -145,7 +147,7 @@
             make.height.equalTo(self.view);
         }];
         
-        
+
         WeakSelf
         [UIView animateWithDuration:0.3 animations:^{
             //    获取所有的成员列表
@@ -206,6 +208,16 @@
                 }
             }
             
+            if (self->currentOrientationType == UIInterfaceOrientationLandscapeRight) {
+                self->panelSize = CGSizeMake(ScreenWidth/4, ScreenWidth/4/0.563);
+            }else{
+                self->panelSize = CGSizeMake(ScreenHeight/4*2,ScreenHeight/4);
+            }
+            self->mSidePanel.size = CGSizeMake(self->panelSize.width , self->panelSize.height);
+            for (int  i = guestPanelscount -1; i>= 0;i--) {
+                GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:i];
+                guestpanel.size = CGSizeMake(self->panelSize.width , self->panelSize.height);
+            }
             self->vnumberLabel.text = [NSString stringWithFormat:@"%lu online",strongSelf.guestPanels.count+1];
         }];
     }
@@ -565,31 +577,6 @@
     
 }
 
-//设置按钮点击
-- (void)settingBtnClicked{
-    UIWindow *mainwindow = [CommonTools mainWindow];
-    [mainwindow addSubview:settingView];
-    [settingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.equalTo(mainwindow);
-        make.left.top.equalTo(mainwindow);
-    }];
-    WeakSelf
-    settingView.cancelBtnClickedBlock = ^(id clickModel) {
-        StrongSelf(wSelf);
-        [strongSelf->settingView removeFromSuperview];
-    };
-    settingView.myCameraSwitchChanged = ^(id clickModel) {
-        
-    };
-    settingView.myMicSwicthChanged = ^(id clickModel) {
-        
-    };
-    settingView.notdisturbSwitchChanged = ^(NSNumber *clickModel) {
-        //        免打扰
-        StrongSelf(wSelf);
-        [strongSelf changeNotDistrub:clickModel.boolValue];
-    };
-}
 
 //免打扰
 - (void)changeNotDistrub:(BOOL)need{
@@ -732,5 +719,96 @@
     }
 }
 
+
+//设置按钮点击
+#pragma  mark 弹层
+- (void)removeAboveView{
+    [settingBackScroll removeFromSuperview];
+    [cancelAboveBtn removeFromSuperview];
+}
+- (void)settingBtnClicked{
+    UIWindow *mainwindow = [CommonTools mainWindow];
+    
+    if (!settingBackScroll) {
+        //    设置弹出层
+        settingBackScroll = [[UIScrollView alloc] init];
+        cancelAboveBtn = [[UIButton alloc] init];
+        //        [settingBackScroll addSubview:cancelAboveBtn];
+        [cancelAboveBtn addTarget:self action:@selector(removeAboveView) forControlEvents:UIControlEventTouchUpInside];
+        settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
+        [settingBackScroll addSubview:settingView];
+        
+        WeakSelf
+        settingView.cancelBtnClickedBlock = ^(id clickModel) {
+            StrongSelf(wSelf);
+            [strongSelf removeAboveView];
+        };
+        settingView.myCameraSwitchChanged = ^(id clickModel) {
+            
+        };
+        settingView.myMicSwicthChanged = ^(id clickModel) {
+            
+        };
+        settingView.notdisturbSwitchChanged = ^(NSNumber *clickModel) {
+            //        免打扰
+            StrongSelf(wSelf);
+            [strongSelf changeNotDistrub:clickModel.boolValue];
+        };
+        //    强制横竖屏
+        settingView.orientationClickedBlock = ^(id clickModel) {
+            [wSelf changeOrientation];
+        };
+    }
+    [mainwindow addSubview:cancelAboveBtn];
+    [mainwindow addSubview:settingBackScroll];
+    
+    [cancelAboveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(mainwindow);
+        make.left.top.equalTo(mainwindow);
+    }];
+    //    if (@available(iOS 11.0, *)) {
+    //        settingBackScroll.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    //    }
+    [settingBackScroll mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(mainwindow).priorityLow();
+        make.width.mas_lessThanOrEqualTo(375).priorityHigh();
+        make.centerX.equalTo(mainwindow).priorityHigh();
+        make.top.equalTo(mainwindow).offset(30);
+        make.bottom.equalTo(mainwindow).offset(-30);
+    }];
+    int width = ScreenWidth;
+    if (ScreenWidth>375) {
+        width = 375;
+    }
+    BOOL needTop = NO;
+    if (mainwindow.frame.size.height < 520) {
+        needTop = YES;
+    }
+    [settingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(settingBackScroll);
+        make.width.mas_equalTo(width);
+        make.bottom.equalTo(settingBackScroll);
+        if (needTop) {
+            make.top.equalTo(settingBackScroll);
+        }else{
+            make.centerY.equalTo(settingBackScroll).priorityHigh();
+        }
+        make.height.mas_equalTo(460);
+        
+    }];
+}
+
+- (void)changeOrientation{
+    if (currentOrientationType == UIInterfaceOrientationPortrait) {
+        currentOrientationType = UIInterfaceOrientationLandscapeRight;
+        [self forceOrientationLandscape];
+    }else{
+        currentOrientationType = UIInterfaceOrientationPortrait;
+        [self forceOrientationPortrait];
+    }
+    [self removeAboveView];
+    [self layoutPanel];
+}
 
 @end

@@ -224,7 +224,10 @@
         //            [self.view layoutIfNeeded];
         //        }];
     } else {
-//        横屏展示
+        //        横屏展示
+        //
+        int itemheight = (ScreenHeight-40)/4 - 20; //横屏每个小方块的高度
+        int itemwidth = itemheight*2;//横屏的高度
         if (currentOrientationType == UIInterfaceOrientationLandscapeRight) {
             [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.view);
@@ -233,10 +236,11 @@
                 make.height.equalTo(self.view);
             }];
             
+            //            视图也是全屏的了  这边
             [_bottomPanelView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.view);
                 make.right.equalTo(self.view);
-                make.top.equalTo(self.mMainPanel.mas_bottom).offset(5);
+                make.top.equalTo(self.view);
                 make.bottom.equalTo(self.view);
             }];
         }else{
@@ -293,6 +297,9 @@
                         guestpanel.mUserId = userID;
                         [strongSelf.guestPanels addObject:guestpanel];
                         [self->_bottomPanelView addSubview:guestpanel];
+                        guestpanel.layer.cornerRadius = 5;
+                        guestpanel.layer.masksToBounds = YES;
+                        guestpanel.clipsToBounds = YES;
                         [guestpanel attachGuestRenderView];
                         ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
                         if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
@@ -306,40 +313,79 @@
                     //
                 }
             }
-            int showguestcount = self.guestPanels.count;
-            if (showguestcount == 0) {
-                //        清楚所有的直播
-                self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width, bottomframe.size.height);
-                
-            }else{
-                if (showguestcount == 1){
-                    //            一行两个
-                    self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/2, bottomframe.size.height);
-                    GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:0];
-                    guestpanel.frame = CGRectMake(bottomframe.size.width/2, 0, bottomframe.size.width/2, bottomframe.size.height);
-                }else if (showguestcount == 3 || showguestcount == 2){
-                    //            一行2个
-                    self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/2, bottomframe.size.height/2);
+            NSInteger showguestcount = self.guestPanels.count;
+            if (self->currentOrientationType == UIInterfaceOrientationLandscapeRight){
+                //                横屏  就3个的时候，需要两边等分，其他时候 都不需要
+                if (showguestcount == 3) {
+//
+                    int starty = (ScreenHeight- 2*(itemheight+20))/2;
+//                    第一个在右边
+                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-20), starty+20, itemwidth, itemheight);
+
                     for (int index = 0; index < strongSelf.guestPanels.count; index++) {
                         GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-                        CGFloat startX = index%2 == 0 ? bottomframe.size.width/2:0;
-                        CGFloat startY = index > 0? bottomframe.size.height/2:0;
-                        guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/2, bottomframe.size.height/2);
-                        
+                        CGRect panelRect = CGRectMake((ScreenWidth-itemwidth-20), starty+20+itemheight+20, itemwidth, itemheight);
+                        if (index == 1) {
+                            panelRect = CGRectMake(20, starty+20, itemwidth, itemheight);;
+                        }
+                        if (index == 2) {
+                            panelRect = CGRectMake(20, starty+20+itemheight+20, itemwidth, itemheight);;
+                        }
+                        guestpanel.frame = panelRect;
                     }
-                    
-                } else{
-                    //            一行3个 2行
-                    self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/3, bottomframe.size.height/2);
-                    for (int index = 0; index < strongSelf.guestPanels.count && index < 5; index++) {
+                }else{
+                    int starty = (ScreenHeight- 3*(itemheight+20))/2;
+//                    第一个在右边
+                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-20), starty+20, itemwidth, itemheight);
+
+                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
                         GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-                        CGFloat startX = bottomframe.size.width/3*((index+1)%3);
-                        CGFloat startY = index > 1? bottomframe.size.height/2:0;
-                        guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/3, bottomframe.size.height/2);
+                        CGRect panelRect =  CGRectZero;
+                        if (index < 2) {
+//                            右边
+                            panelRect = CGRectMake((ScreenWidth-itemwidth-20), starty+20+(itemheight+20)*(index+1), itemwidth, itemheight);
+                        }else{
+                            panelRect = CGRectMake(20, starty+20+(itemheight+20)*(index-3), itemwidth, itemheight);
+                        }
+                        guestpanel.frame = panelRect;
+                    }
+                }
+            }else{
+                if (showguestcount == 0) {
+                    //        清楚所有的直播
+                    self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width, bottomframe.size.height);
+                    
+                }else{
+                    if (showguestcount == 1){
+                        //            一行两个
+                        self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/2, bottomframe.size.height);
+                        GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:0];
+                        guestpanel.frame = CGRectMake(bottomframe.size.width/2, 0, bottomframe.size.width/2, bottomframe.size.height);
+                    }else if (showguestcount == 3 || showguestcount == 2){
+                        //            一行2个
+                        self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/2, bottomframe.size.height/2);
+                        for (int index = 0; index < strongSelf.guestPanels.count; index++) {
+                            GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
+                            CGFloat startX = index%2 == 0 ? bottomframe.size.width/2:0;
+                            CGFloat startY = index > 0? bottomframe.size.height/2:0;
+                            guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/2, bottomframe.size.height/2);
+                            
+                        }
                         
+                    } else{
+                        //            一行3个 2行
+                        self->mSidePanel.frame = CGRectMake(0, 0, bottomframe.size.width/3, bottomframe.size.height/2);
+                        for (int index = 0; index < strongSelf.guestPanels.count && index < 5; index++) {
+                            GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
+                            CGFloat startX = bottomframe.size.width/3*((index+1)%3);
+                            CGFloat startY = index > 1? bottomframe.size.height/2:0;
+                            guestpanel.frame = CGRectMake(startX, startY, bottomframe.size.width/3, bottomframe.size.height/2);
+                            
+                        }
                     }
                 }
             }
+            
         }];
     }
 }
@@ -748,7 +794,7 @@
         //    设置弹出层
         settingBackScroll = [[UIScrollView alloc] init];
         cancelAboveBtn = [[UIButton alloc] init];
-//        [settingBackScroll addSubview:cancelAboveBtn];
+        //        [settingBackScroll addSubview:cancelAboveBtn];
         [cancelAboveBtn addTarget:self action:@selector(removeAboveView) forControlEvents:UIControlEventTouchUpInside];
         settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
         [settingBackScroll addSubview:settingView];
@@ -776,16 +822,16 @@
     }
     [mainwindow addSubview:cancelAboveBtn];
     [mainwindow addSubview:settingBackScroll];
-
+    
     [cancelAboveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.equalTo(mainwindow);
         make.left.top.equalTo(mainwindow);
     }];
-//    if (@available(iOS 11.0, *)) {
-//        settingBackScroll.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//    }
+    //    if (@available(iOS 11.0, *)) {
+    //        settingBackScroll.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    //    }
     [settingBackScroll mas_makeConstraints:^(MASConstraintMaker *make) {
-         
+        
         make.left.equalTo(mainwindow).priorityLow();
         make.width.mas_lessThanOrEqualTo(375).priorityHigh();
         make.centerX.equalTo(mainwindow).priorityHigh();
@@ -810,7 +856,7 @@
             make.centerY.equalTo(settingBackScroll).priorityHigh();
         }
         make.height.mas_equalTo(460);
-
+        
     }];
 }
 
@@ -885,7 +931,7 @@
 
 #pragma mark 跳转到完成页面
 - (void)jumpToTrainingvc{
-//    删除弹层
+    //    删除弹层
     [self removeAboveView];
     AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
     trainingvc.event_id = self->mCode[@"eid"];
