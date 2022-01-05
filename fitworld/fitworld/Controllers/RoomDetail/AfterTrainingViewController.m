@@ -43,7 +43,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (_currentRoom.type_int == 1) {
+    if (_currentRoom.type_int == 1 || _currentRoom.type_int == 2) {
 //         团课 多一个评论
         int dif = 15;
         if (indexPath.row == 0) {
@@ -73,7 +73,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_currentRoom.type_int == 1) {
+    if (_currentRoom.type_int == 1 || _currentRoom.type_int == 2) {
 //         团课 多一个评论
         return 4;
 
@@ -89,7 +89,7 @@
         [cell changeDateWithRoomInfo:self.currentRoom];
         return cell;
     }
-    if (_currentRoom.type_int == 1){
+    if (_currentRoom.type_int == 1 || _currentRoom.type_int == 2){
         if (indexPath.row == 1) {
             if (commentcell == nil) {
                 commentcell = [[[NSBundle mainBundle] loadNibNamed:@"TrainCommitTableViewCell" owner:self options:nil] lastObject];

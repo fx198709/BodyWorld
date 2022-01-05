@@ -34,6 +34,7 @@
     RoomVCSettingView * settingView;//设置视图
     UIScrollView *settingBackScroll;//设置的背景图
     UIButton *cancelAboveBtn; //取消弹层按钮
+    UIButton *cancelAboveBtn2; //取消弹层按钮
     UIInterfaceOrientation currentOrientationType;//默认是竖屏
 }
 
@@ -226,7 +227,7 @@
     } else {
         //        横屏展示
         //
-        int itemheight = (ScreenHeight-40)/4 - 20; //横屏每个小方块的高度
+        int itemheight = (ScreenHeight-40)/3.5 - 20; //横屏每个小方块的高度
         int itemwidth = itemheight*16/9;//横屏的高度
         if (currentOrientationType == UIInterfaceOrientationLandscapeRight) {
             [mMainPanel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -258,7 +259,7 @@
                 make.bottom.equalTo(self.view);
             }];
         }
-        
+        [self.view bringSubviewToFront:_bottomPanelView];
         [self.view setNeedsLayout];
         [self.view layoutIfNeeded];
         WeakSelf
@@ -320,32 +321,32 @@
 //
                     int starty = (ScreenHeight- 2*(itemheight+20))/2;
 //                    第一个在右边
-                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-20), starty+20, itemwidth, itemheight);
+                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
 
                     for (int index = 0; index < strongSelf.guestPanels.count; index++) {
                         GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-                        CGRect panelRect = CGRectMake((ScreenWidth-itemwidth-20), starty+20+itemheight+20, itemwidth, itemheight);
+                        CGRect panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+itemheight+20, itemwidth, itemheight);
                         if (index == 1) {
-                            panelRect = CGRectMake(20, starty+20, itemwidth, itemheight);;
+                            panelRect = CGRectMake(60, starty+20, itemwidth, itemheight);;
                         }
                         if (index == 2) {
-                            panelRect = CGRectMake(20, starty+20+itemheight+20, itemwidth, itemheight);;
+                            panelRect = CGRectMake(60, starty+20+itemheight+20, itemwidth, itemheight);;
                         }
                         guestpanel.frame = panelRect;
                     }
                 }else{
                     int starty = (ScreenHeight- 3*(itemheight+20))/2;
 //                    第一个在右边
-                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-20), starty+20, itemwidth, itemheight);
+                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
 
                     for (int index = 0; index < strongSelf.guestPanels.count; index++) {
                         GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
                         CGRect panelRect =  CGRectZero;
                         if (index < 2) {
 //                            右边
-                            panelRect = CGRectMake((ScreenWidth-itemwidth-20), starty+20+(itemheight+20)*(index+1), itemwidth, itemheight);
+                            panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+(itemheight+20)*(index+1), itemwidth, itemheight);
                         }else{
-                            panelRect = CGRectMake(20, starty+20+(itemheight+20)*(index-3), itemwidth, itemheight);
+                            panelRect = CGRectMake(60, starty+20+(itemheight+20)*(index-3), itemwidth, itemheight);
                         }
                         guestpanel.frame = panelRect;
                     }
@@ -682,14 +683,14 @@
         if (!leftTimeLabel) {
             leftTimeBackview = [[UIView alloc] init];
             [mMainPanel addSubview:leftTimeBackview];
-            [leftTimeBackview mas_makeConstraints:^(MASConstraintMaker *make) {
+            [leftTimeBackview mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.size.equalTo(mMainPanel);
                 make.left.top.equalTo(mMainPanel);
             }];
             leftTimeBackview.backgroundColor = UIColor.blackColor;
             leftTimeLabel = [[UILabel alloc] init];
             [leftTimeBackview addSubview:leftTimeLabel];
-            [leftTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            [leftTimeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.centerY.equalTo(leftTimeBackview);
             }];
             leftTimeLabel.font = [UIFont boldSystemFontOfSize:80];
@@ -766,16 +767,26 @@
         if (!settingBtn) {
             settingBtn = [[UIButton alloc] init];
             [self.view addSubview:settingBtn];
-            [settingBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(mMainPanel).offset(-20);
-                make.top.equalTo(mMainPanel.mas_bottom).offset(50);
-                make.size.mas_equalTo(CGSizeMake(40, 40));
-            }];
+            
             [settingBtn addTarget:self action:@selector(settingBtnClicked) forControlEvents:UIControlEventTouchUpInside];
             UIImage *image = [UIImage imageNamed:@"video_set_back"];
             [settingBtn setImage:image forState:UIControlStateNormal];
             [settingBtn setImage:image forState:UIControlStateHighlighted];
         }
+        if (currentOrientationType == UIInterfaceOrientationPortrait) {
+            [settingBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(mMainPanel).offset(-20);
+                make.top.equalTo(mMainPanel.mas_bottom).offset(50);
+                make.size.mas_equalTo(CGSizeMake(40, 40));
+            }];
+        }else{
+            [settingBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(mMainPanel).offset(-20);
+                make.top.equalTo(self.view).offset(250);
+                make.size.mas_equalTo(CGSizeMake(40, 40));
+            }];
+        }
+        
         
     }
     
@@ -796,6 +807,9 @@
         cancelAboveBtn = [[UIButton alloc] init];
         //        [settingBackScroll addSubview:cancelAboveBtn];
         [cancelAboveBtn addTarget:self action:@selector(removeAboveView) forControlEvents:UIControlEventTouchUpInside];
+        cancelAboveBtn2 = [[UIButton alloc] init];
+        [cancelAboveBtn2 addTarget:self action:@selector(removeAboveView) forControlEvents:UIControlEventTouchUpInside];
+        [settingBackScroll addSubview:cancelAboveBtn2];
         settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
         [settingBackScroll addSubview:settingView];
         
@@ -823,20 +837,25 @@
     [mainwindow addSubview:cancelAboveBtn];
     [mainwindow addSubview:settingBackScroll];
     
-    [cancelAboveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [cancelAboveBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.size.equalTo(mainwindow);
         make.left.top.equalTo(mainwindow);
     }];
     //    if (@available(iOS 11.0, *)) {
     //        settingBackScroll.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     //    }
-    [settingBackScroll mas_makeConstraints:^(MASConstraintMaker *make) {
+    [settingBackScroll mas_remakeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(mainwindow).priorityLow();
         make.width.mas_lessThanOrEqualTo(375).priorityHigh();
         make.centerX.equalTo(mainwindow).priorityHigh();
         make.top.equalTo(mainwindow).offset(30);
         make.bottom.equalTo(mainwindow).offset(-30);
+    }];
+    [cancelAboveBtn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.size.equalTo(mainwindow);
+        make.left.top.equalTo(settingBackScroll);
     }];
     int width = ScreenWidth;
     if (ScreenWidth>375) {
@@ -924,6 +943,7 @@
     }
     [self removeAboveView];
     [self layoutPanel];
+    [self dealwithTimer];
 }
 
 
