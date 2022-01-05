@@ -42,6 +42,8 @@
     
     UIScrollView *settingBackScroll;//设置的背景图
     UIButton *cancelAboveBtn; //取消弹层按钮
+    UIButton *cancelAboveBtn2; //scrollview里面的
+
     UIInterfaceOrientation currentOrientationType;//默认是竖屏
 }
 
@@ -202,7 +204,7 @@
             }
             
             if (self->currentOrientationType == UIInterfaceOrientationLandscapeRight) {
-                self->panelSize = CGSizeMake(ScreenHeight/4*2,ScreenHeight/4);
+                self->panelSize = CGSizeMake(ScreenHeight/4*16/9,ScreenHeight/4);
 
             }else{
                 self->panelSize = CGSizeMake(ScreenWidth/4, ScreenWidth/4/0.563);
@@ -482,11 +484,11 @@
             leftTimeLabel.textColor = UIRGBColor(48, 180, 90, 1);
         }
         leftTimeLabel.text = [NSString stringWithFormat:@"%ld",dif];
-        [leftTimeBackview mas_makeConstraints:^(MASConstraintMaker *make) {
+        [leftTimeBackview mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.equalTo(mMainPanel);
             make.left.top.equalTo(mMainPanel);
         }];
-        [leftTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [leftTimeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerX.centerY.equalTo(leftTimeBackview);
         }];
         return;
@@ -507,15 +509,15 @@
             currentSlider = [[SliderView alloc] init];
             [self.view addSubview:currentSlider];
         }
-        [self.view bringSubviewToFront:currentSlider];
-        [currentSlider changeSliderWithData:self.currentRoom];
         [currentSlider mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(mMainPanel).offset(20);
             make.right.equalTo(mMainPanel).offset(-20);
             make.bottom.equalTo(mMainPanel).offset(-15);
             make.height.mas_equalTo(18);
         }];
-        
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+        [currentSlider changeSliderWithData:self.currentRoom];
         if (!startDuringTimeLabel) {
             startDuringTimeLabel = [[UILabel alloc] init];
             [startDuringTimeLabel setFrame:CGRectMake(0, 0, 120, 40)];
@@ -568,8 +570,9 @@
             [settingBtn setImage:image forState:UIControlStateNormal];
             [settingBtn setImage:image forState:UIControlStateHighlighted];
         }
-        
+        [self.view bringSubviewToFront:currentSlider];
     }
+
     
 }
 
@@ -731,6 +734,10 @@
         cancelAboveBtn = [[UIButton alloc] init];
         //        [settingBackScroll addSubview:cancelAboveBtn];
         [cancelAboveBtn addTarget:self action:@selector(removeAboveView) forControlEvents:UIControlEventTouchUpInside];
+        cancelAboveBtn2 = [[UIButton alloc] init];
+        //        [settingBackScroll addSubview:cancelAboveBtn];
+        [cancelAboveBtn2 addTarget:self action:@selector(removeAboveView) forControlEvents:UIControlEventTouchUpInside];
+        [settingBackScroll addSubview:cancelAboveBtn2];
         settingView = [[[NSBundle mainBundle] loadNibNamed:@"RoomVCSettingView" owner:self options:nil] lastObject];
         [settingBackScroll addSubview:settingView];
         
@@ -757,21 +764,26 @@
     }
     [mainwindow addSubview:cancelAboveBtn];
     [mainwindow addSubview:settingBackScroll];
-    
-    [cancelAboveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [cancelAboveBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.size.equalTo(mainwindow);
         make.left.top.equalTo(mainwindow);
     }];
     //    if (@available(iOS 11.0, *)) {
     //        settingBackScroll.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     //    }
-    [settingBackScroll mas_makeConstraints:^(MASConstraintMaker *make) {
+    [settingBackScroll mas_remakeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(mainwindow).priorityLow();
         make.width.mas_lessThanOrEqualTo(375).priorityHigh();
         make.centerX.equalTo(mainwindow).priorityHigh();
         make.top.equalTo(mainwindow).offset(30);
         make.bottom.equalTo(mainwindow).offset(-30);
+    }];
+    
+    [cancelAboveBtn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.size.equalTo(mainwindow);
+        make.left.top.equalTo(settingBackScroll);
     }];
     int width = ScreenWidth;
     if (ScreenWidth>375) {
@@ -781,7 +793,7 @@
     if (mainwindow.frame.size.height < 520) {
         needTop = YES;
     }
-    [settingView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [settingView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(settingBackScroll);
         make.width.mas_equalTo(width);
         make.bottom.equalTo(settingBackScroll);
@@ -805,6 +817,7 @@
     }
     [self removeAboveView];
     [self layoutPanel];
+    [self dealwithTimer];
 }
 
 @end

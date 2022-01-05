@@ -29,6 +29,8 @@
             circleview.clipsToBounds = YES;
             [self addSubview:circleview];
         }
+        backview.frame = CGRectMake(self.frame.size.height/2+startx, self.frame.size.height/3, with, self.frame.size.height/3);
+        circleview.frame = CGRectMake(startx, 0, self.frame.size.height, self.frame.size.height);
         if (difTime < roomData.duration*60) {
             int realStartx = startx+ difTime*with/roomData.duration/60;
             circleview.x = realStartx;
