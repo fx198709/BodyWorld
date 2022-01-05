@@ -218,6 +218,7 @@
 		DDBAB341276B926A003C6DA5 /* TrainCommitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBAB33F276B926A003C6DA5 /* TrainCommitTableViewCell.xib */; };
 		DDD3CBBF276F21C3007A83BB /* ShareAboveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD3CBBE276F21C2007A83BB /* ShareAboveView.m */; };
 		DDD3CBC1276F21D4007A83BB /* ShareAboveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDD3CBC0276F21D4007A83BB /* ShareAboveView.xib */; };
+		DDD4AFCB2785858B00B7C4D8 /* PrivateRoomViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD4AFCA2785858B00B7C4D8 /* PrivateRoomViewControl.m */; };
 		DDEE67D52725744900D0C310 /* TableCollectionLivingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */; };
 		DDEE67D62725744900D0C310 /* TableCollectionLivingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */; };
 		DDEE67DA272577ED00D0C310 /* LivingGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEE67D8272577EC00D0C310 /* LivingGoodsCell.m */; };
@@ -649,6 +650,8 @@
 		DDD3CBBD276F21C2007A83BB /* ShareAboveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareAboveView.h; sourceTree = "<group>"; };
 		DDD3CBBE276F21C2007A83BB /* ShareAboveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareAboveView.m; sourceTree = "<group>"; };
 		DDD3CBC0276F21D4007A83BB /* ShareAboveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareAboveView.xib; sourceTree = "<group>"; };
+		DDD4AFC92785858B00B7C4D8 /* PrivateRoomViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateRoomViewControl.h; sourceTree = "<group>"; };
+		DDD4AFCA2785858B00B7C4D8 /* PrivateRoomViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateRoomViewControl.m; sourceTree = "<group>"; };
 		DDEE67D22725744900D0C310 /* TableCollectionLivingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCollectionLivingViewCell.xib; sourceTree = "<group>"; };
 		DDEE67D32725744900D0C310 /* TableCollectionLivingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionLivingViewCell.h; sourceTree = "<group>"; };
 		DDEE67D42725744900D0C310 /* TableCollectionLivingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionLivingViewCell.m; sourceTree = "<group>"; };
@@ -1272,6 +1275,7 @@
 		DD595EC82736F56B00618D1A /* RoomDetail */ = {
 			isa = PBXGroup;
 			children = (
+				DDD4AFC82785858B00B7C4D8 /* PrivateRoom */,
 				DDB138062748E2DB009A44FD /* TrainingCell */,
 				DD595ED32736F88D00618D1A /* RoomVC.h */,
 				DD595ED22736F88D00618D1A /* RoomVC.m */,
@@ -1476,6 +1480,15 @@
 				DDBAB33F276B926A003C6DA5 /* TrainCommitTableViewCell.xib */,
 			);
 			path = TrainingCell;
+			sourceTree = "<group>";
+		};
+		DDD4AFC82785858B00B7C4D8 /* PrivateRoom */ = {
+			isa = PBXGroup;
+			children = (
+				DDD4AFC92785858B00B7C4D8 /* PrivateRoomViewControl.h */,
+				DDD4AFCA2785858B00B7C4D8 /* PrivateRoomViewControl.m */,
+			);
+			path = PrivateRoom;
 			sourceTree = "<group>";
 		};
 		DDFA757627591A4900EFD0B1 /* GroupRoom */ = {
@@ -1696,6 +1709,7 @@
 				DDB1380A2748E347009A44FD /* Train1TableViewCell.m in Sources */,
 				0456193026ECEC8A00C0973F /* RegisterController.m in Sources */,
 				A296D6A82758B26800F73259 /* CoachCommentCell.m in Sources */,
+				DDD4AFCB2785858B00B7C4D8 /* PrivateRoomViewControl.m in Sources */,
 				DDFA758F275E050800EFD0B1 /* GroupMyRoom.m in Sources */,
 				DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */,
 				DDB1380427489A2E009A44FD /* AfterTrainingViewController.m in Sources */,

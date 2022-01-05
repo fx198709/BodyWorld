@@ -169,15 +169,9 @@
             
         }else if(selectRoom.course.type_int == 2){
             //            私教的处理
-            if (selectRoom.is_join) {
-                GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
-                vc.event_id = selectRoom.event_id;
-                [[self viewController].navigationController pushViewController:vc animated:YES];
-            }else{
-                GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
-                vc.selectRoom = selectRoom;
-                [[self viewController].navigationController pushViewController:vc animated:YES];
-            }
+            GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
+            vc.selectRoom = selectRoom;
+            [[self viewController].navigationController pushViewController:vc animated:YES];
         } else{
             if (selectRoom.is_join) {
                 CreateCourseSuccessViewController *vc =[[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];

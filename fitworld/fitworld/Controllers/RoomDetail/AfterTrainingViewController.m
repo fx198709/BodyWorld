@@ -243,7 +243,7 @@
     //    删除roomvc
     NSMutableArray *marr = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
        for (UIViewController *vc in marr) {
-           if ([vc isKindOfClass:NSClassFromString(@"RoomVC")] && [vc isKindOfClass:NSClassFromString(@"GroupRoomViewControl")] ) {
+           if ([vc isKindOfClass:NSClassFromString(@"RoomVC")] || [vc isKindOfClass:NSClassFromString(@"GroupRoomViewControl")] || [vc isKindOfClass:NSClassFromString(@"PrivateRoomViewControl")] ) {
                [marr removeObject:vc];
                break;
            }

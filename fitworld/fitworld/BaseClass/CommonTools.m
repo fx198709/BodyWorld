@@ -18,35 +18,35 @@
 
 /*
  0 课程未开始  房主                                       显示立即进入     6   房东立即进入
-     1 课程未开始  受邀好友   未预约                            显示预约     1
-     2 课程未开始  受邀好友   已预约                            显示已预约    2
-     3 课程未开始  陌生人              不允许陌生人              显示上锁      3
-     4 课程未开始  陌生人    未预约     允许陌生人      未满6人    显示预约     1
-     5 课程未开始  陌生人    未预约     允许陌生人      满6人     显示已约满     4
-     6 课程未开始  陌生人    已预约                             显示已预约   2  (这种情况不存在）
-    10 课程已开始  房主                                        显示立即进入     5
-    11 课程已开始  受邀好友                                    显示立即进入     5
-    12 课程已开始  陌生人              不允许陌生人              显示上锁      3
-    13 课程已开始  陌生人              允许陌生人      未满6人    显示立即进入     5
-    14 课程已开始  陌生人              允许陌生人      满6人     显示满员       4
-
-1  显示预约    -> 预约        绿色背景
-2  显示已预约  --> 取消预约    绿色背景
-3  显示上锁   -- >无操作       灰色
-4  已约满    --> 无操作       灰色
-5  立即进入   -->进入房间       红
-6  房东立即进入  -->进入准备页面   红
-  */
+ 1 课程未开始  受邀好友   未预约                            显示预约     1
+ 2 课程未开始  受邀好友   已预约                            显示已预约    2
+ 3 课程未开始  陌生人              不允许陌生人              显示上锁      3
+ 4 课程未开始  陌生人    未预约     允许陌生人      未满6人    显示预约     1
+ 5 课程未开始  陌生人    未预约     允许陌生人      满6人     显示已约满     4
+ 6 课程未开始  陌生人    已预约                             显示已预约   2  (这种情况不存在）
+ 10 课程已开始  房主                                        显示立即进入     5
+ 11 课程已开始  受邀好友                                    显示立即进入     5
+ 12 课程已开始  陌生人              不允许陌生人              显示上锁      3
+ 13 课程已开始  陌生人              允许陌生人      未满6人    显示立即进入     5
+ 14 课程已开始  陌生人              允许陌生人      满6人     显示满员       4
+ 
+ 1  显示预约    -> 预约        绿色背景
+ 2  显示已预约  --> 取消预约    绿色背景
+ 3  显示上锁   -- >无操作       灰色
+ 4  已约满    --> 无操作       灰色
+ 5  立即进入   -->进入房间       红
+ 6  房东立即进入  -->进入准备页面   红
+ */
 
 + (void)changeBtnState:(UIButton*)vbutn btnData:(Room*)roomData{
     NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
     UIImage *joinImage = [UIImage imageNamed:@"action_button_bg_green"];
-//    创建者的id 做一个兼容
+    //    创建者的id 做一个兼容
     NSString * roomCreaterID = roomData.room_creator.id ? roomData.room_creator.id:roomData.creator_userid;
     if ([roomData isBegin]) {
-//        已经开始直播
+        //        已经开始直播
         if ([roomCreaterID isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
-//            房主
+            //            房主
             joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
             joinImage = [UIImage imageNamed:@"action_button_bg_red"];
             roomData.roomDealState = 5;
@@ -60,25 +60,25 @@
                 long maxnumber = MAX(roomData.max_num, roomData.course.max_num);
                 if (maxnumber > roomData.invite_count) {
                     roomData.roomDealState = 5;
-//                    立即进入
+                    //                    立即进入
                     joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
                     joinImage = [UIImage imageNamed:@"action_button_bg_red"];
                 }else{
                     roomData.roomDealState = 4;
-//                    已约满
+                    //                    已约满
                     joinTitle = ChineseStringOrENFun(@"已约满", @"COUNT ME IN");
                     joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
                 }
             }else{
                 roomData.roomDealState = 3;
-//                上锁
+                //                上锁
                 joinTitle = ChineseStringOrENFun(@"上锁", @"Lock");
                 joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
             }
         }
     }else{
         if ([roomCreaterID isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
-//            创建人
+            //            创建人
             joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
             joinImage = [UIImage imageNamed:@"action_button_bg_red"];
             roomData.roomDealState = 6;
@@ -87,7 +87,7 @@
                 roomData.roomDealState = 2;
                 joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
                 joinImage = [UIImage imageNamed:@"action_button_bg_green"];
-               
+                
             }else{
                 roomData.roomDealState = 1;
                 joinTitle = ChineseStringOrENFun(@"预约", @"COUNT ME IN");
@@ -123,14 +123,14 @@
         [vbutn setImage:nil forState:UIControlStateNormal];
         [vbutn setImage:nil forState:UIControlStateHighlighted];
         vbutn.imageEdgeInsets = UIEdgeInsetsZero;
-
+        
     }
     [vbutn setBackgroundImage:joinImage forState:UIControlStateNormal];
     [vbutn setBackgroundImage:joinImage forState:UIControlStateHighlighted];
     if(!ISChinese()){
         vbutn.titleLabel.font = SystemFontOfSize(11);
     }
-
+    
 }
 
 + (NSString *)reachDateFromInDate:(id)inDate{
@@ -402,7 +402,7 @@
     //这里的id填刚刚设置的值,vc设置属性就可以给下个页面传参数了
     int type_int = selectRoom.course? (int)selectRoom.course.type_int: (int)selectRoom.type_int;
     if (type_int == 1) {
-//            团课的处理
+        //            团课的处理
         if (selectRoom.is_join) {
             GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
             vc.event_id = selectRoom.event_id;
@@ -412,7 +412,16 @@
             vc.selectRoom = selectRoom;
             [rootVC.navigationController pushViewController:vc animated:YES];
         }
-       
+        
+    }else if (type_int == 2) {
+        //            团课的处理
+        if (selectRoom.is_join) {
+        }else{
+            GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
+            vc.selectRoom = selectRoom;
+            [rootVC.navigationController pushViewController:vc animated:YES];
+        }
+        
     }else{
         if (selectRoom.is_join) {
             CreateCourseSuccessViewController *vc =[[CreateCourseSuccessViewController alloc] initWithNibName:@"CreateCourseSuccessViewController" bundle:nil];
@@ -433,12 +442,12 @@
     long strLength = 0;
     NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     char *p = (char *)[strtemp cStringUsingEncoding:encoding];
-//    [strtemp canBeConvertedToEncoding:encoding];
+    //    [strtemp canBeConvertedToEncoding:encoding];
     if (!p) {
         NSData *data = [strtemp dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
         return data.length;
     }
-  
+    
     NSUInteger lengthOfBytes = [strtemp lengthOfBytesUsingEncoding:encoding];
     for (int i = 0; i < lengthOfBytes; i++) {
         if (*p) {

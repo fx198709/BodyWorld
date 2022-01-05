@@ -10,6 +10,7 @@
 #import "Room.h"
 #import "RoomVC.h"
 #import "GroupRoomViewControl.h"
+#import "PrivateRoomViewControl.h"
 
 #define UserTokenKey @"userToken"
 #define UserAccountTypeKey @"UserAccountType"
@@ -120,16 +121,16 @@
         [[ConfigManager sharedInstance] saveConfig];
         
         NSDictionary *codeDict = @{@"eid":selectRoom.event_id, @"name":nickName};
-        BOOL isbuddy = YES;
-        if (selectRoom.course.type_int == 1 || selectRoom.course.type_int == 2) {
-            isbuddy  = NO;
-        }
-        if (selectRoom.type_int == 1 || selectRoom.type_int == 2) {
-            isbuddy  = NO;
-        }
-        if (!isbuddy) {
-//            团课 和私教用的同一个类型
+        int type_int = [selectRoom reachRoomRealTypeInt];
+         
+        if (type_int == 1) {
+//            团课 
             GroupRoomViewControl *roomVC = [[GroupRoomViewControl alloc] initWith:codeDict];
+            [invc.navigationController pushViewController:roomVC animated:YES];
+            roomVC.invc = invc;
+        }else if (type_int == 2) {
+//            私教
+            PrivateRoomViewControl *roomVC = [[PrivateRoomViewControl alloc] initWith:codeDict];
             [invc.navigationController pushViewController:roomVC animated:YES];
             roomVC.invc = invc;
         }else{

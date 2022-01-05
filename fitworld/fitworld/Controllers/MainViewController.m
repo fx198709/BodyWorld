@@ -19,7 +19,7 @@
 #import "JYCarousel.h"
 #import "MessageListViewController.h"
 #import "CoachViewController.h"
-
+#import "AppDelegate.h"
 
 BOOL  hasrequest = NO;
 
@@ -78,6 +78,7 @@ BOOL  hasrequest = NO;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [self forceOrientationPortrait];
 }
 
 
@@ -556,6 +557,17 @@ BOOL  hasrequest = NO;
     NSLog(@"createSessionTraining ----  ");
     TrainingViewController *vc = [[TrainingViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+//强制竖屏
+- (void)forceOrientationPortrait {
+
+    AppDelegate *appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    appdelegate.isForceLandscape=NO;
+     [appdelegate application:[UIApplication sharedApplication] supportedInterfaceOrientationsForWindow:self.view.window];
+    //设置屏幕的转向为竖屏
+    [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
+    //刷新
+    [UIViewController attemptRotationToDeviceOrientation];
 }
 
 @end

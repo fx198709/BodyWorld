@@ -147,4 +147,9 @@
     return self.roomDealState;
 }
 
+- (int)reachRoomRealTypeInt{
+    return  self.course? (int)self.course.type_int: (int)self.type_int;
+}
+
+
 @end
