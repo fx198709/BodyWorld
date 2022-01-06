@@ -2,7 +2,7 @@
 //  CourseRoomTableViewCell.m
 //  FFitWorld
 //
-//  Created by feixiang on 2021/12/13.
+//  Created by feixiang on 2022/1/6.
 //
 
 #import "CourseRoomTableViewCell.h"
@@ -19,10 +19,5 @@
 
     // Configure the view for the selected state
 }
-
-- (void)createSubviewWithRoomInfo:(Room*)roomInfo{
-    
-}
-
 
 @end

@@ -2,16 +2,14 @@
 //  CourseRoomTableViewCell.h
 //  FFitWorld
 //
-//  Created by feixiang on 2021/12/13.
+//  Created by feixiang on 2022/1/6.
 //
 
-#import <UIKit/UIKit.h>
-#import "Room.h"
+#import "BaseTableViewCell.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CourseRoomTableViewCell : UITableViewCell
-
-- (void)createSubviewWithRoomInfo:(Room*)roomInfo;
+@interface CourseRoomTableViewCell : BaseTableViewCell
 
 @end
 
