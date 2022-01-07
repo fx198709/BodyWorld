@@ -152,6 +152,17 @@
     NSString *returnString = [dateFormate stringFromDate:date];
     return returnString;
 }
++ (NSString*)ReachTimeWithFormate:(NSTimeInterval) longtime andFormate:(NSString*)formate{
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:longtime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
+    [formatter setDateFormat:formate];
+   // 使用formatter转换后的date字符串变成了当前时区的时间
+    NSString *dateStr = [formatter stringFromDate:date];
+    return dateStr;
+}
+
 
 + (NSDate*)dateFromInDate:(id)inDate
 {

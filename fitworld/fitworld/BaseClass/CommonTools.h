@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDate*)dateFromInDate:(id)inDate;
 
+//获取固定格式的时间
++ (NSString*)ReachTimeWithFormate:(NSTimeInterval) longtime andFormate:(NSString*)formate;
+
 + (UIWindow *)mainWindow;
 
 + (void)showAlertDismissWithContent:(NSString*)content showWaitTime:(NSTimeInterval)time afterDelay:(NSTimeInterval)delay control:(UIViewController*)control;

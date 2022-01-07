@@ -32,7 +32,7 @@
 @property (nonatomic , strong) RoomCreator              * room_creator;
 @property (nonatomic , copy) NSString              * sdk_status;
 @property (nonatomic , copy) NSString              * service_type;
-@property (nonatomic , assign) NSInteger              start_time;
+@property (nonatomic , assign) NSTimeInterval              start_time;
 @property (nonatomic , assign) NSInteger              status; //不为0  表示正在直播
 @property (nonatomic , copy) NSString              * updated_at;
 @property (nonatomic , assign) NSInteger              watch_count;
