@@ -229,12 +229,13 @@
     BOOL curViewerMode = (mMySession != nil) ? mMySession.isViewer : mInitIsViewer;
     
     NSMutableDictionary *newExtendInfo = [NSMutableDictionary new];
+    UserInfo *currentUser = [[APPObjOnce sharedAppOnce] currentUser];
     NSString *avatarurl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, [[APPObjOnce sharedAppOnce] currentUser].avatar];
 //    给传输的内容加上 extend的信息
     newExtendInfo[@"avatar"] = avatarurl;
-    newExtendInfo[@"country"] = [[APPObjOnce sharedAppOnce] currentUser].country;
-    newExtendInfo[@"city"] = [[APPObjOnce sharedAppOnce] currentUser].city;
-    newExtendInfo[@"country_pic"] = [[APPObjOnce sharedAppOnce] currentUser].country_icon;
+    newExtendInfo[@"country"] = currentUser.country.length?currentUser.country : @"unknow";
+    newExtendInfo[@"city"] = currentUser.city.length?currentUser.city : @"unknow";;
+    newExtendInfo[@"country_pic"] = currentUser.country_icon.length?currentUser.country_icon : @"unknowpic";
 
     if (curViewerMode) {
         newExtendInfo[@"room_active_role"] = @"guest";
