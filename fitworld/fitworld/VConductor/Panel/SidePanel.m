@@ -9,6 +9,7 @@
 @property (nonatomic, strong) UILabel* mMyLabel;
 @property (nonatomic, strong) UILabel* mNameLabel;
 @property (nonatomic, strong) UIButton* mChatBtn;
+@property (nonatomic, strong)UIImageView* countryImageView;
 
 @property (nonatomic, strong) LocalView* mLocalView;
 @end
@@ -50,31 +51,16 @@
         make.top.equalTo(mMyView).offset(5);
     }];
     
-    //  mNameLabel = [[UILabel alloc] init];
-    //  [mNameLabel setText:@""];
-    //  [mNameLabel setTextColor:[UIColor whiteColor]];
-    //  [mNameLabel setBackgroundColor:[UIColor colorWithWhite:0.1 alpha:0.8]];
-    //  [mNameLabel setTextAlignment:NSTextAlignmentLeft];
-    //  [mNameLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
-    //  [self addSubview:mNameLabel];
-    //  [mNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-    //    make.left.equalTo(self);
-    //    make.top.equalTo(self.mMyView.mas_bottom);
-    //    make.width.equalTo(self);
-    //    make.height.equalTo(@40);
-    //  }];
-    
-    //  mChatBtn = [UIButton new];
-    //    mChatBtn.backgroundColor = UIColor.redColor;
-    //  [self addSubview:mChatBtn];
-    //  [mChatBtn addTarget:self action:@selector(oChatClicked) forControlEvents:UIControlEventTouchUpInside ];
-    //  [mChatBtn setImage:[UIImage imageNamed:@"header_im"] forState:UIControlStateNormal];
-    //  [mChatBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-    //   make.right.equalTo(self.mas_safeAreaLayoutGuideRight).offset(-10);
-    //    make.bottom.equalTo(self.mas_safeAreaLayoutGuideBottom).offset(-10);
-    //    make.width.equalTo(self).multipliedBy(0.4);
-    //    make.height.equalTo(self.mChatBtn.mas_width);
-    //  }];
+    _countryImageView = [[UIImageView alloc] init];
+    [self addSubview:_countryImageView];
+    [_countryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        //    make.centerX.and.centerY.equalTo(self.mMyView);
+        make.left.equalTo(mMyLabel.mas_right).offset(2);
+        make.centerY.equalTo(mMyLabel).offset(5);
+        make.size.mas_equalTo(CGSizeMake(18, 18));
+    }];
+    NSString *countryUrl = [APPObjOnce sharedAppOnce].currentUser.country_icon;
+    [_countryImageView sd_setImageWithURL: [NSURL URLWithString:countryUrl] placeholderImage:nil];
     return self;
 }
 

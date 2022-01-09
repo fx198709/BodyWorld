@@ -88,7 +88,7 @@
 //获取房间的真正状态
 - (int)reachRoomDealState;
 
-//获取课程的状态
+//获取课程的状态 //0 对练课  1团课 只有详情有这个返回 2私教
 - (int)reachRoomRealTypeInt;
 
 - (NSString*)getCourse_language_string;

@@ -43,6 +43,8 @@
     UIImage *joinImage = [UIImage imageNamed:@"action_button_bg_green"];
     //    创建者的id 做一个兼容
     NSString * roomCreaterID = roomData.room_creator.id ? roomData.room_creator.id:roomData.creator_userid;
+    long maxnumber = MAX(roomData.max_num, roomData.course.max_num);
+    long joincount = MAX(roomData.invite_count, roomData.join_user_count.intValue);
     if ([roomData isBegin]) {
         //        已经开始直播
         if ([roomCreaterID isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
@@ -57,8 +59,8 @@
         }
         else{
             if (roomData.allow_watch) {
-                long maxnumber = MAX(roomData.max_num, roomData.course.max_num);
-                if (maxnumber > roomData.invite_count) {
+                
+                if (maxnumber > joincount) {
                     roomData.roomDealState = 5;
                     //                    立即进入
                     joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN NOW");
@@ -66,7 +68,7 @@
                 }else{
                     roomData.roomDealState = 4;
                     //                    已约满
-                    joinTitle = ChineseStringOrENFun(@"已约满", @"COUNT ME IN");
+                    joinTitle = ChineseStringOrENFun(@"已约满", @"FULL");
                     joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
                 }
             }else{
@@ -95,14 +97,13 @@
             }
         }else{
             if (roomData.allow_watch) {
-                long maxnumber = MAX(roomData.max_num, roomData.course.max_num);
-                if (maxnumber > roomData.invite_count) {
+                if (maxnumber > joincount) {
                     roomData.roomDealState = 1;
                     joinTitle = ChineseStringOrENFun(@"预约", @"COUNT ME IN");
                     joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
                 }else{
                     roomData.roomDealState = 4;
-                    joinTitle = ChineseStringOrENFun(@"已约满", @"COUNT ME IN");
+                    joinTitle = ChineseStringOrENFun(@"已约满", @"FULL");
                     joinImage = [UIImage imageNamed:@"action_button_bg_gray"];
                 }
             }else{
@@ -114,7 +115,7 @@
     }
     [vbutn setTitle:joinTitle forState:UIControlStateNormal];
     [vbutn setTitle:joinTitle forState:UIControlStateHighlighted];
-    if (roomData.roomDealState == 3) {
+    if (roomData.roomDealState == 3 || roomData.roomDealState == 4) {
         UIImage *lockImage = [UIImage imageNamed:@"activity_login_paasswd_img"];
         [vbutn setImage:lockImage forState:UIControlStateNormal];
         [vbutn setImage:lockImage forState:UIControlStateHighlighted];

@@ -7,6 +7,7 @@
 }
 //@property (nonatomic, weak)ClassMember* guestMember; //弱引用，方便释放
 @property (nonatomic, strong)UserHeadPicView* guestImageView;
+@property (nonatomic, strong)UIImageView* countryImageView;
 
 @property (nonatomic, strong) GuestRenderView* mGuestRenderView;
 @end
@@ -27,7 +28,7 @@
 - (id) init {
     self = [super init];
     self.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.4];
-    
+    self.clipsToBounds = YES;
     mMyView = [UIView new];
     [self addSubview:mMyView];
     [mMyView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -50,7 +51,19 @@
         
     }];
     
+    _countryImageView = [[UIImageView alloc] init];
+    [mMyView addSubview:_countryImageView];
+    [_countryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        //    make.centerX.and.centerY.equalTo(self.mMyView);
+        make.left.equalTo(mMyLabel.mas_right).offset(2);
+        make.centerY.equalTo(mMyLabel).offset(5);
+        make.size.mas_equalTo(CGSizeMake(18, 18));
+    }];
     return self;
+}
+
+- (void)changeCountryIcon:(NSString*)imageurl{
+    [_countryImageView sd_setImageWithURL: [NSURL URLWithString:imageurl] placeholderImage:nil];
 }
 
 //创建头像

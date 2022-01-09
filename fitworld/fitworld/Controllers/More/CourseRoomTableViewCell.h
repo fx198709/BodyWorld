@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *joinBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *countryImageView;
 @property (strong, nonatomic)  UIView *lineview;
+@property (weak, nonatomic) IBOutlet UILabel *storeLabel;
 
 
 

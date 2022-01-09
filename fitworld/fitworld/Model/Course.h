@@ -38,6 +38,7 @@
 
 @property (nonatomic , copy) NSString              * video_id;
 @property (nonatomic , strong) NSString              * language;
+@property (nonatomic , strong) NSString              * gym_name;
 
 
 

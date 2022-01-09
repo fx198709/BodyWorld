@@ -17,6 +17,8 @@
     _typeleftLabel.textColor = LightGaryTextColor;
     _peopleLabel.font = [UIFont systemFontOfSize:13];
     _peopleLabel.textColor = LightGaryTextColor;
+    _storeLabel.font = [UIFont systemFontOfSize:13];
+    _storeLabel.textColor = LightGaryTextColor;
     _leftLanguageLabel.font = [UIFont systemFontOfSize:13];
     _leftLanguageLabel.textColor = LightGaryTextColor;
     _languageLabel.font = [UIFont systemFontOfSize:13];
@@ -63,7 +65,12 @@
     [_countryImageView sd_setImageWithURL:[NSURL URLWithString:countryUrl]];
     
     _timeLabel.text = [CommonTools ReachTimeWithFormate:room.start_time andFormate:@"HH:mm"];
-    
+//    gym_name
+    _storeLabel.text = @"";
+    if (room.course.gym_name && room.course.gym_name.length >0) {
+        _storeLabel.text = [NSString stringWithFormat:@"，%@",room.course.gym_name];
+
+    }
     _leftTimeLabel.text = @"";
     if ([room isBegin]) {
 //        处在直播状态
@@ -87,7 +94,7 @@
     }
     
     [CommonTools changeBtnState:_joinBtn btnData:room];
-    _leftLanguageLabel.text = ChineseStringOrENFun(@"交流语言:", @"交流语言:");
+    _leftLanguageLabel.text = ChineseStringOrENFun(@"交流语言:", @"Speek lan:");
     _languageLabel.text = [room getCourse_language_string];
 }
 

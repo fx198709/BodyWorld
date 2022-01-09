@@ -216,6 +216,7 @@
     //    return;
     
     Room *room = [_dataArr objectAtIndex: recognizer.tag-100];
+    int type_int = [room reachRoomRealTypeInt];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     UIView *parentView =[[self viewController] view];
     UIViewController *parentControl = [self viewController];
@@ -254,6 +255,12 @@
                 [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"操作成功", @"操作成功") control:[self viewController]];
                 if ([parentControl respondsToSelector:@selector(headerRereshing)]) {
                     [parentControl performSelector:@selector(headerRereshing)];
+                }
+                if (type_int == 1 ) {
+//                    团课
+                    GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
+                    vc.event_id = room.event_id;
+                    [[self viewController].navigationController pushViewController:vc animated:YES];
                 }
             }else{
                 [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:[self viewController]];

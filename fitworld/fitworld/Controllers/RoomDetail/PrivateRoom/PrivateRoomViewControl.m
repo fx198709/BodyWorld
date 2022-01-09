@@ -201,7 +201,10 @@
                         [guestpanel attachGuestRenderView];
                         ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
                         if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
-                            guestpanel.mMyLabel.text = [[[currentMember copyInfo].custom objectForKey:@"internal"] objectForKey:@"nickName"];
+                            VSRoomUser *copyInfo =[currentMember copyInfo];
+                            guestpanel.mMyLabel.text = [[copyInfo.custom objectForKey:@"internal"] objectForKey:@"nickName"];
+                            guestpanel.userImageString = [[copyInfo.custom objectForKey:@"extend"] objectForKey:@"avatar"];
+                            [guestpanel changeCountryIcon:[[copyInfo.custom objectForKey:@"extend"] objectForKey:@"country_pic"]];
                         }
                         guestpanel.translatesAutoresizingMaskIntoConstraints =  YES;
                     }

@@ -21,9 +21,9 @@
 @property (nonatomic, strong) NSString * mUserId;
 
 - (id)init;
+- (void)changeCountryIcon:(NSString*)imageurl;
 
-
-- (void)syncSession:(ClassMember*)session;
+//- (void)syncSession:(ClassMember*)session;
 
 - (void)attachGuestRenderView;
 - (void)detachGuestRenderView;
