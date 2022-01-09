@@ -193,7 +193,7 @@
                 [self selectLanguage:vmodel];
             }]];
         }
-        [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"取消", @"Cancel") style:UIAlertActionStyleCancel handler:nil]];
+        [ac addAction:[UIAlertAction actionWithTitle:CancelString style:UIAlertActionStyleCancel handler:nil]];
         
         [self presentViewController:ac animated:YES completion:nil];
     }else{

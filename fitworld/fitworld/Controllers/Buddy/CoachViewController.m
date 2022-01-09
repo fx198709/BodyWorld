@@ -39,7 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = ChineseStringOrENFun(@"教练详情", @"Coach detail");
+    self.navigationItem.title = ChineseStringOrENFun(@"教练详情", @"Detail");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -72,7 +72,8 @@
     [self.cityImg sd_setImageWithURL:[NSURL URLWithString:self.coach.country_icon]];
     self.cityLabel.text = [NSString stringWithFormat:@"%@,%@", self.coach.city, self.coach.country];
 //    self.descLabel.text = self.coach.introduction;
-    self.commentLabel.text = [NSString stringWithFormat:@"(%ld条评论)", (long)self.coach.comment_total];
+    NSString *countString = ChineseStringOrENFun(@"条评论", @"count command");
+    self.commentLabel.text = [NSString stringWithFormat:@"(%ld%@)", (long)self.coach.comment_total,countString];
     [self.starView setScore:self.coach.comment_grade];
     [self addCourseTypeView];
 }

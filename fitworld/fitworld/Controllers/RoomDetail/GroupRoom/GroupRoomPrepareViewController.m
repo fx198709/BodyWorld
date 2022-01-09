@@ -34,6 +34,7 @@
     
     UIView * choosePeopleTypeOutView;//外层的view
     
+    int  enterRoomType;//加入房间类型
 }
 
 @end
@@ -67,6 +68,18 @@
                 [tempArray addObject:tempuser];
             }
         }
+    }
+    if (enterRoomType == 2) {
+        RoomUser *user =  [[RoomUser alloc] init];
+        user.avatar = [APPObjOnce sharedAppOnce].currentUser.avatar;
+        user.nickname = [APPObjOnce sharedAppOnce].currentUser.nickname;
+        UserInfoView * userView = [[UserInfoView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
+        [userlistView addSubview:userView];
+        userView.userInteractionEnabled = YES;
+//        团课 不能删除人
+        [userView changeDatawithRoomUser:user andIsCreater:NO];
+        userlistView.contentSize = CGSizeMake(0, 0);
+        return;
     }
     for (int index = 0; index < 4; index++) {
         RoomUser *user = nil;
@@ -123,13 +136,11 @@
     NSString *contentString = ChineseStringOrENFun(@"您是否接受邀请，加入他的房间", @"");
     UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:titleString message:contentString preferredStyle:UIAlertControllerStyleAlert];
     __weak UIAlertController *weakalert = alertControl;
-    NSString *cancelString = ChineseStringOrENFun(@"取消", @"Cancel");
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelString style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:CancelString style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         __strong UIAlertController* strongalert = weakalert;
         [self refuseInvite:strongalert];
     }];
     [alertControl addAction:cancelAction];
-    NSString *OKString = ChineseStringOrENFun(@"确定", @"OK");
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:OKString style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         
         __strong UIAlertController* strongalert = weakalert;
@@ -522,6 +533,7 @@
 
 //随机房间 还是自定义房间
 - (void)createSubRoomOrDelete:(int)type{
+    enterRoomType = type;
     if (type == 0) {
 //        随机 sub_room_id
         if (myRoomModel.sub_room_id.length > 0) {
@@ -536,11 +548,23 @@
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
             }];
         }
+    }else if(type == 2){
+        NSDictionary *baddyParams = @{
+                                @"event_id": self.event_id,
+                           };
+        [[AFAppNetAPIClient manager] POST:@"subroom/create_private" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (CheckResponseObject(responseObject)) {
+//                    获取一次子房间信息
+                [self reachMyRoomData];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        }];
     }else{
         NSDictionary *baddyParams = @{
                                 @"event_id": self.event_id,
                                 @"friend_ids":@""
                            };
+//    http://m.fitworld.live/api/subroom/create_private
         [[AFAppNetAPIClient manager] POST:@"subroom/create" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             if (CheckResponseObject(responseObject)) {
 //                    获取一次子房间信息

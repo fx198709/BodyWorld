@@ -45,6 +45,21 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMk-yw-Qft">
+                    <rect key="frame" x="212" y="0.0" width="44" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="AHu-mT-cIa"/>
+                        <constraint firstAttribute="width" constant="44" id="nZs-rB-IyS"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="invite_friends_user_list_item_selected"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀请好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQ9-k8-d51">
+                    <rect key="frame" x="249" y="9" width="54" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Duc-Lb-QcY">
                     <rect key="frame" x="15" y="42" width="384" height="40"/>
                     <subviews>
@@ -111,6 +126,7 @@
                 <constraint firstItem="LYE-P9-0VN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="33q-Se-b74"/>
                 <constraint firstItem="dKZ-nc-QGu" firstAttribute="centerY" secondItem="EoT-tr-YoO" secondAttribute="centerY" id="7mm-nZ-O97"/>
                 <constraint firstItem="LYE-P9-0VN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Pf2-Vm-kJ4"/>
+                <constraint firstItem="GQ9-k8-d51" firstAttribute="centerY" secondItem="VMk-yw-Qft" secondAttribute="centerY" id="Y0H-a6-etq"/>
                 <constraint firstAttribute="bottom" secondItem="Duc-Lb-QcY" secondAttribute="bottom" id="aNa-AV-fid"/>
                 <constraint firstItem="Duc-Lb-QcY" firstAttribute="top" secondItem="LYE-P9-0VN" secondAttribute="bottom" constant="8" id="arZ-WZ-Yu0"/>
                 <constraint firstItem="EoT-tr-YoO" firstAttribute="centerY" secondItem="LYE-P9-0VN" secondAttribute="centerY" id="bKE-NO-52o"/>
@@ -118,14 +134,21 @@
                 <constraint firstItem="EoT-tr-YoO" firstAttribute="leading" secondItem="LYE-P9-0VN" secondAttribute="trailing" constant="-7" id="cDY-MY-gUS"/>
                 <constraint firstItem="dKZ-nc-QGu" firstAttribute="leading" secondItem="EoT-tr-YoO" secondAttribute="trailing" constant="15" id="e4u-0g-8sg"/>
                 <constraint firstAttribute="trailing" secondItem="Duc-Lb-QcY" secondAttribute="trailing" constant="15" id="f2c-lR-gxg"/>
+                <constraint firstItem="VMk-yw-Qft" firstAttribute="centerY" secondItem="qzw-YF-OMt" secondAttribute="centerY" id="jIP-vT-7kw"/>
                 <constraint firstItem="qzw-YF-OMt" firstAttribute="leading" secondItem="dKZ-nc-QGu" secondAttribute="trailing" constant="-7" id="nav-0I-dQO"/>
                 <constraint firstItem="qzw-YF-OMt" firstAttribute="centerY" secondItem="dKZ-nc-QGu" secondAttribute="centerY" id="qXN-YM-IoS"/>
+                <constraint firstItem="VMk-yw-Qft" firstAttribute="leading" secondItem="qzw-YF-OMt" secondAttribute="trailing" constant="15" id="qrw-sU-HwW"/>
+                <constraint firstItem="GQ9-k8-d51" firstAttribute="leading" secondItem="VMk-yw-Qft" secondAttribute="trailing" constant="-7" id="sQH-qo-wbt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="addPeopleBtn" destination="dKZ-nc-QGu" id="yGF-1N-WrY"/>
                 <outlet property="addTypeViewHeightConstraint" destination="1Ez-Rt-bAh" id="iOm-kS-NKb"/>
+                <outlet property="invientPeopleLabel" destination="qzw-YF-OMt" id="JqB-dx-NsJ"/>
+                <outlet property="myselfBtn" destination="VMk-yw-Qft" id="m3v-sh-Xed"/>
+                <outlet property="myselfLabel" destination="GQ9-k8-d51" id="88B-G6-lma"/>
                 <outlet property="randomBtn" destination="LYE-P9-0VN" id="6bZ-f1-moC"/>
+                <outlet property="randomLabel" destination="EoT-tr-YoO" id="zaI-cY-m2V"/>
                 <outlet property="selectTypeView" destination="Duc-Lb-QcY" id="YLb-HS-A3v"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="78.348214285714278"/>

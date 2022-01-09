@@ -156,7 +156,7 @@
     }];
     
     UILabel *label3 = [[UILabel alloc] init];
-    NSString *title = ChineseStringOrENFun(@"交流语言：", @"交流语言：");
+    NSString *title = ChineseStringOrENFun(@"交流语言：", @"Speek lan：");
     title = [NSString stringWithFormat:@"%@%@",title,course.language];
     label3.text = title;
     label3.font = [UIFont systemFontOfSize:12];

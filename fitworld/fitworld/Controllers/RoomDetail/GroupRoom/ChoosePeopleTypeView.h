@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) GroupMyRoom *groupRoom;
 @property (nonatomic, assign) UIViewController * parentVC;
 @property (nonatomic, copy) AnyBtnBlock shareTypeBtnClick;
+@property (weak, nonatomic) IBOutlet UILabel *randomLabel;
+@property (weak, nonatomic) IBOutlet UILabel *invientPeopleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *myselfLabel;
+@property (weak, nonatomic) IBOutlet UIButton *myselfBtn;
 
 //邀请人按钮
 - (IBAction)addPeopleTypeBtn:(UIButton *)sender;

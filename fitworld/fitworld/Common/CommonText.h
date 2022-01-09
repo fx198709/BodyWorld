@@ -46,5 +46,7 @@ return [obj objectForKey:key];\
 #define Text_Training ChineseStringOrENFun(@"对练课", @"Buddy tranining")
 #define Text_Group ChineseStringOrENFun(@"团课", @"Group Classes")
 #define Text_Private ChineseStringOrENFun(@"私教", @"LIVE PERSON")
+#define CancelString ChineseStringOrENFun(@"取消", @"Cancel")
+#define OKString ChineseStringOrENFun(@"确认", @"OK")
 
 #endif /* CommonText_h */

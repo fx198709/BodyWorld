@@ -137,7 +137,7 @@
     }else{
         startString = ReachWeekTime(self.selectRoom.start_time);
     }
-    startString = [NSString stringWithFormat:@"%@ %@",startString,ChineseStringOrENFun(@"交流语言：", @"交流语言：")];
+    startString = [NSString stringWithFormat:@"%@ %@",startString,ChineseStringOrENFun(@"交流语言：", @"Speek lan：")];
     startString = [NSString stringWithFormat:@"%@%@",startString,[self.selectRoom getCourse_language_string]];
     startTimelabel.text = startString;
     

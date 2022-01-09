@@ -35,10 +35,9 @@
         vbutton.tag = 200+i;
         [vbutton addTarget:self action:@selector(shareBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
-    NSString *cancelString = ChineseStringOrENFun(@"取消", @"Cancel");
     _cancelBtn.titleLabel.textColor = [UIColor darkGrayColor];
-    [_cancelBtn setTitle:cancelString forState:UIControlStateNormal];
-    [_cancelBtn setTitle:cancelString forState:UIControlStateHighlighted];
+    [_cancelBtn setTitle:CancelString forState:UIControlStateNormal];
+    [_cancelBtn setTitle:CancelString forState:UIControlStateHighlighted];
     [_cancelBtn setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
     [_cancelBtn setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateHighlighted];
 

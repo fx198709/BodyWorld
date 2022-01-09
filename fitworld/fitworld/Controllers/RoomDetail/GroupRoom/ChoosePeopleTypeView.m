@@ -21,9 +21,13 @@
             vbutton.backgroundColor = BgGreenColor;
         }
     }
+    _randomLabel.text = ChineseStringOrENFun(@"随机匹配", @"Random");
+    _invientPeopleLabel.text = ChineseStringOrENFun(@"邀请好友", @"Friend");
+    _myselfLabel.text = ChineseStringOrENFun(@"自己", @"Myself");
+    
     [_randomBtn addTarget:self action:@selector(typeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_addPeopleBtn addTarget:self action:@selector(typeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-
+    [_myselfBtn addTarget:self action:@selector(typeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -40,15 +44,20 @@
     UIImage *heighImage = [UIImage imageNamed:@"invite_friends_user_list_item_selected"];
     [_randomBtn setImage:heighImage forState:UIControlStateNormal];
     [_addPeopleBtn setImage:normalImage forState:UIControlStateNormal];
+    [_myselfBtn setImage:normalImage forState:UIControlStateNormal];
+
     if (chooseRoomState == 1) {
         _addTypeViewHeightConstraint.constant = 40;
         [_addPeopleBtn setImage:heighImage forState:UIControlStateNormal];
         [_randomBtn setImage:normalImage forState:UIControlStateNormal];
         _selectTypeView.hidden = NO;
     }
+    if (chooseRoomState == 2) {
+        [_myselfBtn setImage:heighImage forState:UIControlStateNormal];
+    }
     [_randomBtn setImage:heighImage forState:UIControlStateHighlighted];
     [_addPeopleBtn setImage:heighImage forState:UIControlStateHighlighted];
-
+    [_myselfBtn setImage:heighImage forState:UIControlStateHighlighted];
     [_parentVC.view setNeedsLayout];
 }
 
@@ -56,6 +65,8 @@
     int laststate = chooseRoomState;
     if (vbutton == _randomBtn) {
         chooseRoomState = 0;
+    }if (vbutton == _myselfBtn) {
+        chooseRoomState = 2;
     }else{
         chooseRoomState = 1;
     }

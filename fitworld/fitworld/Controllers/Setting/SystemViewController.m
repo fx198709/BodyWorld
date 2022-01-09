@@ -153,7 +153,7 @@ OurDatePickerViewDelegate>
     [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"相册", @"Photo") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self showImgPicker:UIImagePickerControllerSourceTypePhotoLibrary];
     }]];
-    [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"取消", @"Cancel") style:UIAlertActionStyleCancel handler:nil]];
+    [ac addAction:[UIAlertAction actionWithTitle:CancelString style:UIAlertActionStyleCancel handler:nil]];
     
     [self presentViewController:ac animated:YES completion:nil];
 }
@@ -287,12 +287,12 @@ OurDatePickerViewDelegate>
 - (IBAction)loginOut:(id)sender {
     [self.view endEditing:YES];
     
-    UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"确定退出？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"确定退出？" message:@"Are you sure to exit" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:OKString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [APPObjOnce clearUserLoginInfo];
         [[APPObjOnce sharedAppOnce] showLoginView];
     }];
-    UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancle = [UIAlertAction actionWithTitle:CancelString style:UIAlertActionStyleCancel handler:nil];
     [alter addAction:sure];
     [alter addAction:cancle];
     
