@@ -52,15 +52,16 @@
     }];
     
     _countryImageView = [[UIImageView alloc] init];
-    [self addSubview:_countryImageView];
+    [mMyView addSubview:_countryImageView];
     [_countryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         //    make.centerX.and.centerY.equalTo(self.mMyView);
         make.left.equalTo(mMyLabel.mas_right).offset(2);
-        make.centerY.equalTo(mMyLabel).offset(5);
+        make.centerY.equalTo(mMyLabel);
         make.size.mas_equalTo(CGSizeMake(18, 18));
     }];
     NSString *countryUrl = [APPObjOnce sharedAppOnce].currentUser.country_icon;
     [_countryImageView sd_setImageWithURL: [NSURL URLWithString:countryUrl] placeholderImage:nil];
+    _countryImageView.contentMode = UIViewContentModeScaleAspectFit;
     return self;
 }
 
@@ -91,6 +92,8 @@
     }
     [mLocalView bindMedia];
     [mMyView bringSubviewToFront:mMyLabel];
+    [mMyView bringSubviewToFront:_countryImageView];
+
 }
 
 - (void)detachLocalView {

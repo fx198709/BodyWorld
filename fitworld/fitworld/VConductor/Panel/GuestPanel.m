@@ -56,9 +56,10 @@
     [_countryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         //    make.centerX.and.centerY.equalTo(self.mMyView);
         make.left.equalTo(mMyLabel.mas_right).offset(2);
-        make.centerY.equalTo(mMyLabel).offset(5);
+        make.centerY.equalTo(mMyLabel);
         make.size.mas_equalTo(CGSizeMake(18, 18));
     }];
+    _countryImageView.contentMode = UIViewContentModeScaleAspectFit;
     return self;
 }
 
