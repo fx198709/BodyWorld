@@ -90,7 +90,7 @@
     mBkImg = [UIImageView new];
     [mBkImg setImage:[UIImage imageNamed:@"bg_jscn.jpg"]];
     [self.view addSubview:mBkImg];
-    [mBkImg mas_makeConstraints:^(MASConstraintMaker *make) {
+    [mBkImg mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.and.centerY.equalTo(self.view);
         make.size.equalTo(self.view);
     }];
@@ -786,8 +786,9 @@
                 make.size.mas_equalTo(CGSizeMake(40, 40));
             }];
         }
-        
-        
+        [self.view bringSubviewToFront:voiceBtn];
+        [self.view bringSubviewToFront:settingBtn];
+
     }
     
 }
@@ -865,7 +866,7 @@
     if (mainwindow.frame.size.height < 520) {
         needTop = YES;
     }
-    [settingView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [settingView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(settingBackScroll);
         make.width.mas_equalTo(width);
         make.bottom.equalTo(settingBackScroll);

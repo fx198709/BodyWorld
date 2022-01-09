@@ -361,7 +361,7 @@
     }];
     
     UILabel *programLabel = [[UILabel alloc] init];
-    programLabel.text = ChineseStringOrENFun(@"内容计划", @"Program");
+    programLabel.text = ChineseStringOrENFun(@"内容计划", @"Lesson plans");
     programLabel.font = [UIFont boldSystemFontOfSize:18];
     programLabel.textColor = UIColor.whiteColor;
     programLabel.adjustsFontSizeToFitWidth = YES;
@@ -449,6 +449,7 @@
             self->_selectRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
             self.selectRoom.event_id = eventid;
             [self addsubviews];
+//            用获取到的
           
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];

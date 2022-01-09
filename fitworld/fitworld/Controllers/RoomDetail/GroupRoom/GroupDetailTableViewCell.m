@@ -9,6 +9,7 @@
 #import "UserHeadPicView.h"
 #import "CoachViewController.h"
 
+
 @implementation GroupDetailTableViewCell
 
 - (void)awakeFromNib {
@@ -253,7 +254,7 @@
     }];
     
     UILabel *programLabel = [[UILabel alloc] init];
-    programLabel.text = ChineseStringOrENFun(@"内容计划", @"Program");
+    programLabel.text = ChineseStringOrENFun(@"内容计划", @"Lesson plans");
     programLabel.font = [UIFont boldSystemFontOfSize:18];
     programLabel.textColor = UIColor.whiteColor;
     programLabel.adjustsFontSizeToFitWidth = YES;
@@ -312,7 +313,7 @@
     
     
     UILabel *commentLabel = [[UILabel alloc] init];
-    commentLabel.text = ChineseStringOrENFun(@"课程评价", @"Program");
+    commentLabel.text = ChineseStringOrENFun(@"教练评价", @"Curriculum evaluation");
     commentLabel.font = [UIFont boldSystemFontOfSize:18];
     commentLabel.textColor = UIColor.whiteColor;
     commentLabel.adjustsFontSizeToFitWidth = YES;
@@ -323,7 +324,20 @@
         make.height.mas_equalTo(35);
         make.bottom.equalTo(self.contentView).offset(-10);
     }];
-    
+//    跟一个星级评价
+    self.starView = LoadXib(@"StarView");
+    [self.contentView addSubview:self.starView];
+    [self.starView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(commentLabel.mas_right).offset(5);
+        make.centerY.equalTo(commentLabel);
+        make.size.mas_equalTo(CGSizeMake(100, 20));
+    }];
+    self.starView.hidden = YES;
+    if (self.coachModel && self.coachModel.comment_grade) {
+        self.starView.hidden = NO;
+        [self.starView setScore:self.coachModel.comment_grade];
+
+    }
 }
 
 
@@ -343,6 +357,12 @@
      
 }
 
- 
+- (void)changeCoachinfo:(CoachModel*)coachModel{
+    self.coachModel = coachModel;
+    self.starView.hidden = NO;
+    [self.starView setScore:coachModel.comment_grade];
+
+}
+
 
 @end

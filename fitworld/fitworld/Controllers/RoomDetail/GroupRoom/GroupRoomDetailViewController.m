@@ -33,6 +33,8 @@
     
     ShareAboveView *aboveView;//分享的弹层
     UIButton *shareBackbutton;//分享的背景按钮
+    GroupDetailTableViewCell *detailcell;
+    CoachModel *currentCoachModel;//当前教练信息
 }
 @property(nonatomic, strong)UIButton *joinBtn;
 @property(nonatomic, strong)UITableView *cocahTableview;
@@ -167,8 +169,21 @@
     
 }
 
+//获取教练的信息
+- (void)getCocaheInfoFromSever:(NSString*)coacheId {
+    NSDictionary *param = @{@"coach_id":coacheId};
+    [[AFAppNetAPIClient manager] GET:@"coach/detail" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"====respong:%@", responseObject);
+        NSDictionary *result = [responseObject objectForKey:@"recordset"];
+        NSError *error;
+        CoachModel *coach = [[CoachModel alloc] initWithDictionary:result error:&error];
+        self->currentCoachModel = coach;
+        [self->detailcell changeCoachinfo:coach];
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }];
+}
 
-
+//获取房间的信息
 - (void)reachRoomDetailInfo
 {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -185,6 +200,8 @@
                 self.selectRoom.event_id = eventid;
                 [self addsubviews];
                 [self reachHeadData];
+//                获取教练的信息
+                [self getCocaheInfoFromSever: self.selectRoom.coach_id];
             }else{
                 [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -440,8 +457,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row ==0) {
-        GroupDetailTableViewCell *detailcell = [[GroupDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BaseTableViewCell"];
+        detailcell = [[GroupDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BaseTableViewCell"];
         [detailcell changeDatewithRoom:self.selectRoom];
+        if (currentCoachModel) {
+            [detailcell changeCoachinfo:currentCoachModel];
+        }
         return  detailcell;
     }else{
         CoachCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CoachCommentCellString"];
