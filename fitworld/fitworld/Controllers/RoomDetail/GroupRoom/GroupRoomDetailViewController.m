@@ -131,7 +131,16 @@
     }];
     
     UILabel *startTimelabel = [[UILabel alloc] init];
-    startTimelabel.text = ReachWeekTime(self.selectRoom.start_time);
+    NSString *startString = @"";
+    if (ISChinese()) {
+        startString = [CommonTools ReachCutomerChineseWeekTime:self.selectRoom.start_time];
+    }else{
+        startString = ReachWeekTime(self.selectRoom.start_time);
+    }
+    startString = [NSString stringWithFormat:@"%@ %@",startString,ChineseStringOrENFun(@"交流语言：", @"交流语言：")];
+    startString = [NSString stringWithFormat:@"%@%@",startString,[self.selectRoom getCourse_language_string]];
+    startTimelabel.text = startString;
+    
     startTimelabel.textColor = UIColorFromRGB(225, 225, 225);
     startTimelabel.font = SystemFontOfSize(13);
     [topImgBotView addSubview:startTimelabel];

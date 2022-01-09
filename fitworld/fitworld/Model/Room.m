@@ -67,16 +67,21 @@
 //获取语言的string
 - (NSString*)getCourse_language_string{
 //    先查看本地的中英文
+
+    NSString *languageString = _course_language?_course_language:@"";
+    if (languageString.length < 1) {
+        languageString = _language?_language:@"";
+    }
     if (ISChinese()) {
 //        中文
-        if ([_course_language isEqual:@"English"]) {
+        if ([languageString isEqual:@"English"]) {
             return @"英文";
         }
-        if ([_course_language isEqual:@"Chinese"]) {
+        if ([languageString isEqual:@"Chinese"]) {
             return @"中文";
         }
     }
-    return _course_language;
+    return languageString;
 }
 
 - (BOOL)isEqualToRoom:(Room *)room

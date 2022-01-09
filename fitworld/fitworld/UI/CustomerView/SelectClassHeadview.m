@@ -12,7 +12,7 @@
     [super awakeFromNib];
     NSString * step1String = ChineseStringOrENFun(@"选择课程", @"Select your training");
     NSString * step2String = ChineseStringOrENFun(@"设置时间", @"Set time");
-    NSString * step3String = ChineseStringOrENFun(@"邀请好友", @"invite buddy");
+    NSString * step3String = ChineseStringOrENFun(@"邀请好友", @"invite friends");
     _steplabel1.text = step1String;
     _steplabel2.text = step2String;
     _steplabel3.text = step3String;

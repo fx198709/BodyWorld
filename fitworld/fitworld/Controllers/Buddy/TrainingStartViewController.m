@@ -33,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = ChineseStringOrENFun(@"设置开始时间", @"SET THE START TIME OF SPARRING");
+    self.title = ChineseStringOrENFun(@"设置开始时间", @"Set your start time");
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor blackColor];
 
@@ -101,7 +101,7 @@
     NSString * string1 = ChineseStringOrENFun(@"5分钟后", @"In 5 min");
     NSString * string2 = ChineseStringOrENFun(@"15分钟后", @"In 15 min");
     NSString * string3 = ChineseStringOrENFun(@"30分钟后", @"In 30 min");
-    NSString * string4 = ChineseStringOrENFun(@"自定义时间", @"Customer Time");
+    NSString * string4 = ChineseStringOrENFun(@"自定义时间", @"Custom");
     NSArray *stringArray = @[string1,string2,string3,string4];
     startx = startx+40;
 

@@ -49,6 +49,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSUInteger)convertToInt:(NSString*)strtemp;
 
+//获取中文的时间
++(NSString*)ReachCutomerChineseWeekTime:(NSInteger)longtime;
+
 @end
 
 NS_ASSUME_NONNULL_END

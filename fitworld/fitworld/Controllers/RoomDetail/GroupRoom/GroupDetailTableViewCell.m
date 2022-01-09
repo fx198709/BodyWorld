@@ -253,7 +253,7 @@
     }];
     
     UILabel *programLabel = [[UILabel alloc] init];
-    programLabel.text = ChineseStringOrENFun(@"锻炼计划", @"Program");
+    programLabel.text = ChineseStringOrENFun(@"内容计划", @"Program");
     programLabel.font = [UIFont boldSystemFontOfSize:18];
     programLabel.textColor = UIColor.whiteColor;
     programLabel.adjustsFontSizeToFitWidth = YES;
@@ -291,6 +291,11 @@
     headrightLabel.font = [UIFont boldSystemFontOfSize:20];
     headrightLabel.frame = CGRectMake(allwith* 0.4+30, 5, allwith* 0.6, 40);
     headrightLabel.text = ChineseStringOrENFun(@"内容", @"Content");
+    UIView *lineview12 = [[UIView alloc] init];
+    lineview12.backgroundColor = LineColor;
+    [planBackView addSubview:lineview12];
+    lineview12.frame =CGRectMake(20, 45, allwith, 0.5);
+    
     for (int index=0; index< planCount; index++) {
         int starty = 40+10+30*index;
         Plan * plan = [selectRoom.plan objectAtIndex:index];

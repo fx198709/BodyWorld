@@ -47,12 +47,12 @@
         //        已经开始直播
         if ([roomCreaterID isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
             //            房主
-            joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+            joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN NOW");
             joinImage = [UIImage imageNamed:@"action_button_bg_red"];
             roomData.roomDealState = 5;
         }else if(roomData.is_room_user){
             roomData.roomDealState = 5;
-            joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+            joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN NOW");
             joinImage = [UIImage imageNamed:@"action_button_bg_red"];
         }
         else{
@@ -61,7 +61,7 @@
                 if (maxnumber > roomData.invite_count) {
                     roomData.roomDealState = 5;
                     //                    立即进入
-                    joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+                    joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN NOW");
                     joinImage = [UIImage imageNamed:@"action_button_bg_red"];
                 }else{
                     roomData.roomDealState = 4;
@@ -79,7 +79,7 @@
     }else{
         if ([roomCreaterID isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id]) {
             //            创建人
-            joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
+            joinTitle = ChineseStringOrENFun(@"立即进入", @"JOIN NOW");
             joinImage = [UIImage imageNamed:@"action_button_bg_red"];
             roomData.roomDealState = 6;
         }else if(roomData.is_room_user){ //被邀请人 或者加入人
@@ -473,6 +473,34 @@
         }
     }
     return strLength;
+}
+
++ (NSString*)ReachCutomerChineseWeekTime:(NSInteger)longtime{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:longtime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
+//    [formatter setDateFormat:@"MM/dd HH:mm"];
+    [formatter setDateFormat:@"HH:mm"];
+   // 使用formatter转换后的date字符串变成了当前时区的时间
+    NSString *dateStr = [formatter stringFromDate:date];
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    
+    //ios 8.0 之后 不想看见警告用下面这个
+    NSInteger unitFlags = NSCalendarUnitYear |NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitWeekday | NSCalendarUnitHour |NSCalendarUnitMinute |NSCalendarUnitSecond;
+    comps = [calendar components:unitFlags fromDate:date];
+    NSInteger week = [comps weekday];
+    NSInteger month = [comps month];
+    NSInteger day = [comps day];
+
+    NSArray * arrWeek=[NSArray arrayWithObjects:@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六", nil];
+    if (!ISChinese()) {
+        arrWeek=[NSArray arrayWithObjects:@"Sun",@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat", nil];
+    }
+    NSString *weekString =  [arrWeek objectAtIndex:week-1];
+    NSString *timeString = [NSString stringWithFormat:@"%@， %ld月%ld日  %@",dateStr,month,day,weekString];
+    return timeString;
 }
 
 @end

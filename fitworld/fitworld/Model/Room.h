@@ -38,6 +38,7 @@
 @property (nonatomic , assign) NSInteger              watch_count;
 @property (nonatomic , strong) NSString              *course_type;
 @property (nonatomic , strong) NSString              *course_language; //语言
+@property (nonatomic , strong) NSString              *language; //语言
 
 
 

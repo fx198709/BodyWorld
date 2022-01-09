@@ -309,6 +309,7 @@
     [super viewDidLoad];
     self.view.hidden = YES;
     userListHeight = 110;
+    _timeLabel.textColor = UIColor.whiteColor;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    进来就调用，进入房间
     [self joinRoom];
