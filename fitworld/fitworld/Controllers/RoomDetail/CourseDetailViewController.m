@@ -59,7 +59,7 @@
         make.height.mas_equalTo(topimageHeight);
     }];
     topImgView.contentMode = UIViewContentModeScaleAspectFill;
-
+    topImgView.clipsToBounds = YES;
     _joinBtn = [[UIButton alloc] init];
 //    joinBtn.backgroundColor = UIColor.redColor;
     
@@ -191,7 +191,7 @@
     
 
     UILabel *getHeartLabel = [[UILabel alloc] init];
-    getHeartLabel.text = _selectRoom.heart_rate;
+    getHeartLabel.text = _selectRoom.heart_rate.length >0?_selectRoom.heart_rate:@"   ";
     getHeartLabel.font = [UIFont boldSystemFontOfSize:20];;
     getHeartLabel.textColor= UIColor.whiteColor;
     getHeartLabel.adjustsFontSizeToFitWidth = YES;

@@ -406,6 +406,8 @@
         make.left.right.equalTo(courseDetailView);
         make.height.mas_equalTo(210);
     }];
+    mainImageview.clipsToBounds = YES;
+    mainImageview.contentMode = UIViewContentModeScaleAspectFill;
     NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, currentRoom.pic];
     [mainImageview sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
     CourseDetailSmallview *detailsmall = (CourseDetailSmallview *)[[[NSBundle mainBundle] loadNibNamed:@"CourseDetailSmallview" owner:self options:nil] lastObject];
