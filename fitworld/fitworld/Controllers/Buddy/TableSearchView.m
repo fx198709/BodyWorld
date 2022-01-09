@@ -20,8 +20,8 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     _canAllowOther = 1;
-    _titleLabel1.text = ChineseStringOrENFun(@"本次对练是否允许随机陌生人加入", @"本次对练是否允许随机陌生人加入");
-    _titlelabel2.text = ChineseStringOrENFun(@"您可邀请好友参加对练（最多5个，在列表勾选或搜索）", @"您可邀请好友参加对练（最多5个，在列表勾选或搜索）");
+    _titleLabel1.text = ChineseStringOrENFun(@"本次对练是否允许随机陌生人加入", @"Allow random matching");
+    _titlelabel2.text = ChineseStringOrENFun(@"您可邀请好友参加对练（最多5个，在列表勾选或搜索）", @"select friends(up to 5)");
     self.searchbarBtn.delegate = self;
     _searchbarBtn.backgroundColor = [UIColor clearColor];
     _searchbarBtn.showsCancelButton = NO;

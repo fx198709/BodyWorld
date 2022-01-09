@@ -61,7 +61,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"User Center");
+    self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"Personal Dashboard");
     [self initView];
 }
 
@@ -86,13 +86,13 @@
     self.tuanTitleLabel.text = Text_Group;
     self.dlTitleLabel.text = Text_Training;
     
-    self.calenderTitleLabel.text = ChineseStringOrENFun(@"最近30天打卡记录", @"30 Day activity");
+    self.calenderTitleLabel.text = @"";//ChineseStringOrENFun(@"最近30天打卡记录", @"30 Day activity");
     self.endDate = [NSDate date];
     self.startDate = [self.endDate mt_previousDate:29];
     NSString *chDayStr =  [NSString stringWithFormat:@"%ld月%ld日 - %ld月%ld日",
                            self.startDate.mt_month, self.startDate.mt_day,
                            self.endDate.mt_month, self.endDate.mt_day];
-    NSString *enDayStr = [NSString stringWithFormat:@"%@ %ldday - %@ %ldday",
+    NSString *enDayStr = [NSString stringWithFormat:@"%@ %ld - %@ %ld",
                           self.startDate.mt_englishtMonth, self.startDate.mt_day,
                           self.endDate.mt_englishtMonth, self.endDate.mt_day];
     self.calenderTimeLabel.text = ChineseStringOrENFun(chDayStr, enDayStr);

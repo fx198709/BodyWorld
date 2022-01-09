@@ -83,16 +83,16 @@ OurDatePickerViewDelegate>
 
 - (void)initUI {
     self.pwdTitleLabel.text = ChineseStringOrENFun(@"修改密码", @"Change the password");
-    self.headTitleLabel.text = ChineseStringOrENFun(@"头像", @"Head portrait");
-    self.nickTitleLabel.text = ChineseStringOrENFun(@"昵称", @"Nickname");
-    self.languageTitleLabel.text = ChineseStringOrENFun(@"语言", @"Language");
+    self.headTitleLabel.text = ChineseStringOrENFun(@"头像", @"Profile picture");
+    self.nickTitleLabel.text = ChineseStringOrENFun(@"昵称", @"Name");
+    self.languageTitleLabel.text = ChineseStringOrENFun(@"语言", @"System language");
     self.genderTitleLabel.text = ChineseStringOrENFun(@"性别", @"Gender");
     self.mobileTitleLabel.text = ChineseStringOrENFun(@"手机号", @"Telephone");
     self.birthdayTitleLabel.text = ChineseStringOrENFun(@"生日", @"Date of birth");
     self.heightTitleLabel.text = ChineseStringOrENFun(@"身高", @"Height");
     self.weightTitleLabel.text = ChineseStringOrENFun(@"体重", @"Weight");
     self.cityTitleLabel.text = ChineseStringOrENFun(@"所在城市", @"Location");
-    self.introductionTitleLabel.text = ChineseStringOrENFun(@"介绍", @"Introduction");
+    self.introductionTitleLabel.text = ChineseStringOrENFun(@"介绍", @"Bio");
     
     [self.logoutBtn setTitle:ChineseStringOrENFun(@"退出登录", @"Logout") forState:UIControlStateNormal];
     

@@ -138,7 +138,7 @@
         make.bottom.equalTo(_screenScrollview).offset(2);
     }];
 //    72  225
-    _canenterLabel.text = ChineseStringOrENFun(@"只显示能加入的房间", @"Only show can inten room");
+    _canenterLabel.text = ChineseStringOrENFun(@"只显示能加入的房间", @"Only show available spots");
     _canenterLabel.textColor = UIColor.blackColor;
     _contentLabel.text = ChineseStringOrENFun(@"内容", @"By Content");
     _contentLabel.textColor = UIColor.blackColor;

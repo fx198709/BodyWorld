@@ -28,8 +28,8 @@
 
 - (void)initView {
     [super initView];
-    self.addTitleLabel.text = ChineseStringOrENFun(@"新的朋友", @"Reviews");
-    _addFriendLabel.text = ChineseStringOrENFun(@"添加好友", @"Add Friends");
+    self.addTitleLabel.text = ChineseStringOrENFun(@"新的朋友", @"Recently added");
+    _addFriendLabel.text = ChineseStringOrENFun(@"添加好友", @"Add friends");
 }
 
 - (Class)cellClass {

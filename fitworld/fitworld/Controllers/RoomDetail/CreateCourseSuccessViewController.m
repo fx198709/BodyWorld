@@ -128,7 +128,7 @@
         if (diff > 0) {
         
             NSString *leftString = [CommonTools reachLeftString:diff];
-            NSString *string = ChineseStringOrENFun(@"距开始", @"Till start");
+            NSString *string = ChineseStringOrENFun(@"距开始", @"Time until start");
             NSString *titleString = [NSString stringWithFormat:@"%@ %@",string,leftString];
             [self.tillBtn setTitle:titleString forState:UIControlStateNormal];
             [self.tillBtn setTitle:titleString forState:UIControlStateHighlighted];
@@ -158,8 +158,8 @@
         make.top.equalTo(_headview);
         make.left.right.bottom.equalTo(_headview);
     }];
-    self.title = ChineseStringOrENFun(@"创建完成,等待开始", @"PREPARED COURSE");
-    self.headTitle.text = ChineseStringOrENFun(@"对练课程创建完成", @"Congratulations! Finish creating!");
+    self.title = ChineseStringOrENFun(@"创建完成,等待开始", @"Your Buddy Training");
+    self.headTitle.text = ChineseStringOrENFun(@"对练课程创建完成", @"Congratulations, you‘re ready to go!");
     self.headTitle.font = SystemFontOfSize(20);
     self.timeLabel.text = ReachYearAndWeekTime(currentRoom.start_time);
     self.timeLabel.font = SystemFontOfSize(17);
@@ -202,7 +202,7 @@
     
     UILabel *titleLabel = [[UILabel alloc] init];
     [_bottomScrollview addSubview:titleLabel];
-    titleLabel.text = ChineseStringOrENFun(@"修改成员", @"Change teammates");
+    titleLabel.text = ChineseStringOrENFun(@"修改成员", @"Change or add friends");
     titleLabel.textColor = UIColor.whiteColor;
     titleLabel.font = SystemFontOfSize(20);
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -239,7 +239,7 @@
     
     UILabel *titleLabel1 = [[UILabel alloc] init];
     [_bottomScrollview addSubview:titleLabel1];
-    titleLabel1.text = ChineseStringOrENFun(@"课程介绍", @"Course introduction");
+    titleLabel1.text = ChineseStringOrENFun(@"课程介绍", @"Course description");
     titleLabel1.textColor = UIColor.whiteColor;
     titleLabel1.font = SystemFontOfSize(20);
     [titleLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -39,7 +39,7 @@
  */
 
 + (void)changeBtnState:(UIButton*)vbutn btnData:(Room*)roomData{
-    NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
+    NSString *joinTitle = ChineseStringOrENFun(@"已预约", @"YOU‘RE IN");
     UIImage *joinImage = [UIImage imageNamed:@"action_button_bg_green"];
     //    创建者的id 做一个兼容
     NSString * roomCreaterID = roomData.room_creator.id ? roomData.room_creator.id:roomData.creator_userid;
@@ -85,7 +85,7 @@
         }else if(roomData.is_room_user){ //被邀请人 或者加入人
             if (roomData.is_join) {
                 roomData.roomDealState = 2;
-                joinTitle = ChineseStringOrENFun(@"已预约", @"You‘RE IN");
+                joinTitle = ChineseStringOrENFun(@"已预约", @"YOU‘RE IN");
                 joinImage = [UIImage imageNamed:@"action_button_bg_green"];
                 
             }else{
