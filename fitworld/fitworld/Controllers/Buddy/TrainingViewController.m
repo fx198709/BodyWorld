@@ -68,7 +68,7 @@
     self.tableView.separatorColor = UIColor.clearColor;
     [self refreshData];
     
-    self.title = ChineseStringOrENFun(@"选择课程", @"Select a workout video");
+    self.title = ChineseStringOrENFun(@"选择健身视频", @"Select a workout video");
     
 }
 
@@ -137,35 +137,37 @@
     label1.textColor = UIColor.whiteColor;
     [cellBgView addSubview:label1];
     [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(cellBgView).offset(17);
+        make.top.equalTo(cellBgView).offset(10);
         make.left.equalTo(leftImageView.mas_right).offset(10);
         make.height.mas_equalTo(20);
         make.right.equalTo(cellBgView).offset(-90);
     }];
     
     UILabel *label2 = [[UILabel alloc] init];
-    label2.text = [NSString stringWithFormat:@"%@•%@",course.coach_name,course.course_type_name];
+    label2.text = course.course_type_name;//[NSString stringWithFormat:@"%@•%@",course.coach_name,course.course_type_name];
     label2.font = [UIFont systemFontOfSize:13];
     label2.textColor = UIColorFromRGB(207, 207, 207);
     [cellBgView addSubview:label2];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label1.mas_bottom).offset(5);
+        make.top.equalTo(label1.mas_bottom).offset(2);
         make.left.equalTo(leftImageView.mas_right).offset(10);
         make.height.mas_equalTo(20);
         make.right.equalTo(cellBgView).offset(-90);
     }];
     
-//    UILabel *label3 = [[UILabel alloc] init];
-//    label3.text = course.updated_at_weekDay;
-//    label3.font = [UIFont systemFontOfSize:11];
-//    label3.textColor = UIColorFromRGB(227, 227, 227);
-//    [cellBgView addSubview:label3];
-//    [label3 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(label2).offset(15);
-//        make.left.equalTo(leftImageView.mas_right).offset(10);
-//        make.height.mas_equalTo(20);
-//        make.right.equalTo(cellBgView).offset(-90);
-//    }];
+    UILabel *label3 = [[UILabel alloc] init];
+    NSString *title = ChineseStringOrENFun(@"交流语言：", @"交流语言：");
+    title = [NSString stringWithFormat:@"%@%@",title,course.language];
+    label3.text = title;
+    label3.font = [UIFont systemFontOfSize:12];
+    label3.textColor = UIColorFromRGB(227, 227, 227);
+    [cellBgView addSubview:label3];
+    [label3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(label2.mas_bottom).offset(2);
+        make.left.equalTo(leftImageView.mas_right).offset(10);
+        make.height.mas_equalTo(20);
+        make.right.equalTo(cellBgView).offset(-90);
+    }];
     
     UIButton *selectBtn = [[UIButton alloc] init];
     selectBtn.titleLabel.font = [UIFont systemFontOfSize:14];

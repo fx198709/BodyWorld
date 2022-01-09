@@ -128,7 +128,8 @@
         if (diff > 0) {
         
             NSString *leftString = [CommonTools reachLeftString:diff];
-            NSString *titleString = [NSString stringWithFormat:@"Till start %@",leftString];
+            NSString *string = ChineseStringOrENFun(@"距开始", @"Till start");
+            NSString *titleString = [NSString stringWithFormat:@"%@ %@",string,leftString];
             [self.tillBtn setTitle:titleString forState:UIControlStateNormal];
             [self.tillBtn setTitle:titleString forState:UIControlStateHighlighted];
         }else{

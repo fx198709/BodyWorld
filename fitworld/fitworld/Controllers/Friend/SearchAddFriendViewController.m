@@ -61,6 +61,13 @@
 #pragma mark - server
 
 - (void)getDataListFromServer:(BOOL)isRefresh {
+//    把所有的状态都复原
+    
+    NSString *searchString = self.searchBar.text;
+    if (searchString.length < 1) {
+        [self finishMJRefresh:self.tableView isFinished:YES];
+        return;
+    }
     if (self.isFinished || self.isRequesting) {
         return;
     }
@@ -68,7 +75,7 @@
     NSInteger nextPage = self.currentPage + 1;
     int perCount = 20;
     
-    NSString *searchString = self.searchBar.text;
+    
     NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:@{@"row":IntToString(perCount), @"page":IntToString(nextPage)}];
     if (![NSString isNullString:searchString]) {
         [param setObject:searchString forKey:@"kw"];
@@ -123,6 +130,7 @@
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
     [self resetData];
     [self getDataListFromServer:YES];
 }

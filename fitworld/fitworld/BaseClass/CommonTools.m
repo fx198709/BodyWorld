@@ -383,6 +383,9 @@
     int min = hourleft/60;
     int sec = hourleft%60;
     NSString *leftString = [NSString stringWithFormat:@"%02d:%02d:%02d",hour,min,sec];
+    if (hour<1) {
+        leftString = [NSString stringWithFormat:@"%02d:%02d",min,sec];
+    }
     return leftString;
 }
 

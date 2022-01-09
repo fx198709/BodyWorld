@@ -37,6 +37,10 @@
 @property (nonatomic , strong) NSString              * updated_at_weekDay;
 
 @property (nonatomic , copy) NSString              * video_id;
+@property (nonatomic , strong) NSString              * language;
+
+
+
 
 - (BOOL)isEqualToCourse:(Course *)course;
 
