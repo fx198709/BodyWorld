@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 //邀请人按钮
 - (IBAction)addPeopleTypeBtn:(UIButton *)sender;
 
-- (void)changeDataWithModel:(GroupMyRoom*)groupRoom;
+- (void)changeDataWithModel:(GroupMyRoom*)groupRoom enterType:(int)enterType;
 
 @end
 

@@ -141,7 +141,7 @@
     startString = [NSString stringWithFormat:@"%@%@",startString,[self.selectRoom getCourse_language_string]];
     startTimelabel.text = startString;
     
-    startTimelabel.textColor = UIColorFromRGB(225, 225, 225);
+    startTimelabel.textColor = UIColorFromRGBA(225, 225, 225,1);
     startTimelabel.font = SystemFontOfSize(13);
     [topImgBotView addSubview:startTimelabel];
     [startTimelabel mas_makeConstraints:^(MASConstraintMaker *make) {

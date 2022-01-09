@@ -231,7 +231,7 @@
             make.right.equalTo(_bottomScrollview);
         }];
         choosePeopleTypeView.parentVC = self;
-        [choosePeopleTypeView changeDataWithModel:myRoomModel];
+        [choosePeopleTypeView changeDataWithModel:myRoomModel enterType:enterRoomType];
         [choosePeopleTypeOutView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_bottomScrollview);
             make.left.equalTo(_bottomScrollview).offset(15);
@@ -445,6 +445,7 @@
     [super viewDidLoad];
     self.view.hidden = YES;
     userListHeight = 110;
+    enterRoomType = 0;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    进来就调用，进入房间
     if (self.extended_data.allKeys.count) {

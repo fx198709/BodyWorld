@@ -42,7 +42,7 @@
     _selectTypeView.hidden = YES;
     UIImage *normalImage = [UIImage imageNamed:@"unselected-circle"];
     UIImage *heighImage = [UIImage imageNamed:@"invite_friends_user_list_item_selected"];
-    [_randomBtn setImage:heighImage forState:UIControlStateNormal];
+    [_randomBtn setImage:normalImage forState:UIControlStateNormal];
     [_addPeopleBtn setImage:normalImage forState:UIControlStateNormal];
     [_myselfBtn setImage:normalImage forState:UIControlStateNormal];
 
@@ -51,6 +51,9 @@
         [_addPeopleBtn setImage:heighImage forState:UIControlStateNormal];
         [_randomBtn setImage:normalImage forState:UIControlStateNormal];
         _selectTypeView.hidden = NO;
+    }
+    if (chooseRoomState == 0) {
+        [_randomBtn setImage:heighImage forState:UIControlStateNormal];
     }
     if (chooseRoomState == 2) {
         [_myselfBtn setImage:heighImage forState:UIControlStateNormal];
@@ -65,7 +68,7 @@
     int laststate = chooseRoomState;
     if (vbutton == _randomBtn) {
         chooseRoomState = 0;
-    }if (vbutton == _myselfBtn) {
+    }else if (vbutton == _myselfBtn) {
         chooseRoomState = 2;
     }else{
         chooseRoomState = 1;
@@ -87,16 +90,10 @@
     }
     
 }
-- (void)changeDataWithModel:(GroupMyRoom*)groupRoom{
+- (void)changeDataWithModel:(GroupMyRoom*)groupRoom enterType:(int)enterType;
+{
     self.groupRoom = groupRoom;
-    chooseRoomState = 0;
-
-    if (groupRoom == nil) {
-    }else{
-        if (groupRoom.sub_room_id && groupRoom.sub_room_id.length > 1) {
-            chooseRoomState = 1;
-        }
-    }
+    chooseRoomState = enterType;
     [self changeviewState];
 }
 

@@ -146,7 +146,7 @@
     UILabel *label2 = [[UILabel alloc] init];
     label2.text = course.course_type_name;//[NSString stringWithFormat:@"%@•%@",course.coach_name,course.course_type_name];
     label2.font = [UIFont systemFontOfSize:13];
-    label2.textColor = UIColorFromRGB(207, 207, 207);
+    label2.textColor = UIColorFromRGBA(207, 207, 207,1);
     [cellBgView addSubview:label2];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(label1.mas_bottom).offset(2);
@@ -160,7 +160,7 @@
     title = [NSString stringWithFormat:@"%@%@",title,course.language];
     label3.text = title;
     label3.font = [UIFont systemFontOfSize:12];
-    label3.textColor = UIColorFromRGB(227, 227, 227);
+    label3.textColor = UIColorFromRGBA(227, 227, 227,1);
     [cellBgView addSubview:label3];
     [label3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(label2.mas_bottom).offset(2);
