@@ -230,7 +230,12 @@
     
     NSMutableDictionary *newExtendInfo = [NSMutableDictionary new];
     NSString *avatarurl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, [[APPObjOnce sharedAppOnce] currentUser].avatar];
+//    给传输的内容加上 extend的信息
     newExtendInfo[@"avatar"] = avatarurl;
+    newExtendInfo[@"country"] = [[APPObjOnce sharedAppOnce] currentUser].country;
+    newExtendInfo[@"city"] = [[APPObjOnce sharedAppOnce] currentUser].city;
+    newExtendInfo[@"country_pic"] = [[APPObjOnce sharedAppOnce] currentUser].country_icon;
+
     if (curViewerMode) {
         newExtendInfo[@"room_active_role"] = @"guest";
         newExtendInfo[@"video2peer"] = [NSNumber numberWithBool:NO];
