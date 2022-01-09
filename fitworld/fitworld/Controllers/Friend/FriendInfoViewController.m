@@ -11,7 +11,9 @@
 #import "CourseRoomTableViewCell.h"
 
 @interface FriendInfoViewController ()
-<UITableViewDelegate, UITableViewDataSource>
+<UITableViewDelegate, UITableViewDataSource>{
+    NSTimer *cellTimer;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *headImg;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
@@ -22,7 +24,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *addbtnW;
 
 @property (nonatomic, strong) UserInfo *user;
+@property (weak, nonatomic) IBOutlet UILabel *title2Label;
 
+@property (weak, nonatomic) IBOutlet UILabel *title1Label;
 
 @end
 
@@ -30,14 +34,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"Person Center");
+    self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"Person Dashboard");
     _descView.layer.cornerRadius = 5;
     _descView.clipsToBounds = YES;
+    _title1Label.text = ChineseStringOrENFun(@"个人简介", @"Person introduce");
+    _title2Label.text = ChineseStringOrENFun(@"已预约课程", @"Person course");
+    _title1Label.textColor = UIColor.whiteColor;
+    _title2Label.textColor = UIColor.whiteColor;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self getUserInfoFromSever];
+    [cellTimer invalidate];
+    cellTimer = nil;
+    cellTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reloadControlsCellAction) userInfo:nil repeats:YES];
+}
+
+ 
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [cellTimer invalidate];
+    cellTimer = nil;
+    
+}
+
+- (void)reloadControlsCellAction{
+    [self.tableView reloadData];
 }
 
 - (void)initView {
@@ -243,5 +268,9 @@
     }
     
 }
+
+
+ 
+
 
 @end

@@ -172,6 +172,14 @@
     return [mLocalMedia isAudioEnable];
 }
 
+- (BOOL)isvisible{
+    if (mMainMedia == nil) {
+        return NO;
+    }
+    return  YES;
+}
+
+
 #pragma mark 主视频的操作
 - (void)enableHostVideo:(BOOL)enable{
     if (mMainMedia) {

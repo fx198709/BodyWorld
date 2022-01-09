@@ -189,6 +189,13 @@
     mInitExtendInfo[@"video2peer"] = [NSNumber numberWithBool:NO];
     mInitExtendInfo[@"handsUp"] = [NSNumber numberWithBool:NO];
     mInitExtendInfo[@"ioDeviceEnable"] = [NSNumber numberWithInt:1];
+    UserInfo *currentUser = [[APPObjOnce sharedAppOnce] currentUser];
+    NSString *avatarurl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, [[APPObjOnce sharedAppOnce] currentUser].avatar];
+//    给传输的内容加上 extend的信息
+    mInitExtendInfo[@"avatar"] = avatarurl;
+    mInitExtendInfo[@"country"] = currentUser.country.length?currentUser.country : @"unknow";
+    mInitExtendInfo[@"city"] = currentUser.city.length?currentUser.city : @"unknow";;
+    mInitExtendInfo[@"country_pic"] = currentUser.country_icon.length?currentUser.country_icon : @"unknowpic";
     
     mInitRoomInfo = [NSMutableDictionary new];
     mInitRoomInfo[@"remixScreen"] = @"main";

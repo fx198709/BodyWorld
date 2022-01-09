@@ -2773,6 +2773,8 @@
                         <outlet property="headImg" destination="Vx1-Ca-jjV" id="Yg9-RX-dpX"/>
                         <outlet property="nameLabel" destination="jgc-js-Fbj" id="vcR-sU-Xw8"/>
                         <outlet property="tableView" destination="N45-LJ-88L" id="55i-7x-qvy"/>
+                        <outlet property="title1Label" destination="tav-OG-3EL" id="53d-Hg-w8l"/>
+                        <outlet property="title2Label" destination="EbA-tH-652" id="CHu-yP-LCh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMX-EC-poE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

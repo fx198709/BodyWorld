@@ -15,6 +15,9 @@
 @property (nonatomic, strong) LocalView* mLocalView;
 @property (nonatomic, strong) NSMutableDictionary *mMainViews;
 @property (nonatomic, strong) NSMutableDictionary *mShareViews;
+@property (nonatomic, strong) UIImageView *waitImageview;
+
+
 
 @property (nonatomic, strong) UITapGestureRecognizer *mDoubleTapGesture;
 @property (nonatomic, assign) PlayoutLayoutMode mLayout;
@@ -68,16 +71,13 @@
 }
 
 - (void)createPlaceImageView{
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    [self addSubview:imageview];
-    imageview.image = [UIImage imageNamed:@"pg_room_waitting_bg"];
-    imageview.contentMode = UIViewContentModeScaleAspectFill;
-    [imageview mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
-        make.centerY.equalTo(self);
-        make.width.equalTo(self);
-        make.height.equalTo(self);
-    }];
+    if (!_waitImageview) {
+        _waitImageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+        [self addSubview:_waitImageview];
+        _waitImageview.image = [UIImage imageNamed:@"pg_room_waitting_bg"];
+        _waitImageview.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    _waitImageview.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
 }
 
 - (void)detachLocalView {

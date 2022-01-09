@@ -878,6 +878,7 @@
     }
 //    [self layoutPanel];
     [self dealwithTimer];
+    [mMainPanel createPlaceImageView];
 }
 
 @end

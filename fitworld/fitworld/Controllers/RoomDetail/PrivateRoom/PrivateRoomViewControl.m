@@ -167,6 +167,7 @@
                 GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:i];
                 //                    假如这个view 存在于原来的视图里面
                 ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
+
                 //                id存在数组中，并且正在直播
                 if ([keysArray containsObject:guestpanel.mUserId] && [currentMember isonTheAir]) {
                     //                        存在，视图不需要处理，还保存着  userID数组里面，需要删除
@@ -177,10 +178,16 @@
                     [guestpanel removeFromSuperview];
                     [strongSelf.guestPanels removeObject:guestpanel];
                 }
+                
             }
             if (keysArray.count > 0) {
                 for (NSString *userID in keysArray) {
                     //                    用户id 存在room里面
+                    ClassMember *currentMember = [memberDic objectForKey:userID];
+                    if (![currentMember isvisible]) {
+    //                    没有流 就不需要执行这边的了
+                        continue;
+                    }
                     if (strongSelf.guestPanels.count < 2) {
                         //                        游客小于3个，这边才用
                         GuestPanel * guestpanel = [[GuestPanel alloc] init];
@@ -199,7 +206,6 @@
                         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragReplyButton:)];
                         [guestpanel addGestureRecognizer:panGestureRecognizer];
                         [guestpanel attachGuestRenderView];
-                        ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
                         if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
                             VSRoomUser *copyInfo =[currentMember copyInfo];
                             guestpanel.mMyLabel.text = [[copyInfo.custom objectForKey:@"internal"] objectForKey:@"nickName"];
@@ -213,7 +219,7 @@
             }
             
             if (self->currentOrientationType == UIInterfaceOrientationLandscapeRight) {
-                self->panelSize = CGSizeMake(itemheight*16/9,itemheight);
+                self->panelSize = CGSizeMake(self->itemheight*16/9,self->itemheight);
             }else{
                 self->panelSize = CGSizeMake(ScreenWidth/4, ScreenWidth/4/0.563);
             }
@@ -864,6 +870,7 @@
         
     }
     [self dealwithTimer];
+    [mMainPanel createPlaceImageView];
 }
 
 @end

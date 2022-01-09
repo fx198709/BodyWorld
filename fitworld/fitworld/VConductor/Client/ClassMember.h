@@ -46,6 +46,8 @@ typedef NS_ENUM(NSInteger, ClassGroup) {
 - (void)enableLocalAudio:(BOOL)enable;
 - (BOOL)isLocalAudioEnable;
 
+- (BOOL)isvisible;
+
 //教练视频的操作
 - (void)enableHostVideo:(BOOL)enable;
 - (BOOL)isHostVideoEnable;
