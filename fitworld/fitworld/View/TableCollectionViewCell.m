@@ -64,7 +64,7 @@
         [self.logoImage setImage:[UIImage imageNamed:@"index_group"]];
         self.subTitleLabel.text = Text_Group;
     } else {
-        [self.logoImage setImage:[UIImage imageNamed:@"index_group"]];
+        [self.logoImage setImage:[UIImage imageNamed:@"index_person"]];
         self.subTitleLabel.text = Text_Private;
     }
     [self.myCollectionView reloadData];

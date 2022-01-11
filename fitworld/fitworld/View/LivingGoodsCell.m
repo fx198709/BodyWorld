@@ -21,33 +21,37 @@
     self.clipsToBounds = YES;
     self.goodsImage.contentMode = UIViewContentModeScaleAspectFill;
     _bottomview.clipsToBounds = YES;
-    
-//    NSString *titleText = ChineseStringOrENFun(@"立即进入", @"JOIN CLASS");
-//    [_joinBtn setTitle:titleText forState:UIControlStateNormal];
-//    [_joinBtn setTitle:titleText forState:UIControlStateHighlighted];
-
     _joinBtn.titleLabel.font = SystemFontOfSize(14);
-//    [_joinBtn setBackgroundImage:[UIImage imageNamed:@"action_button_bg_red"] forState:UIControlStateNormal];
-//    [_joinBtn setBackgroundImage:[UIImage imageNamed:@"action_button_bg_red"] forState:UIControlStateHighlighted];
-
+//
+//    UIImage *img=[UIImage imageNamed:@"type-calssBack"];
+//    img=[img stretchableImageWithLeftCapWidth:30 topCapHeight:0];
+//    _typebackImageview.image = img;
 }
 
 - (void)changedatawithmodel:(Room*)room{
     self.startTime.text = ReachWeekTime(room.start_time);
     NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, room.course.pic];
     [self.goodsImage sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
+    self.goodsImage.contentMode = UIViewContentModeScaleAspectFill;
     self.roomname.text = room.name;
-    NSString *perString = ChineseStringOrENFun(@"创建人", @"Created by");
-    _classTypeLabel.text = ChineseStringOrENFun(@"对练课", @"Buddy");
+    NSString *perString = ChineseStringOrENFun(@"房主", @"Rooms");
+    NSString *classType= ChineseStringOrENFun(@"对练课", @"Buddy");
     _classTypeLabel.textColor = BgGrayColor;
+
     if (room.course.type_int == 1 ) {
         perString = ChineseStringOrENFun(@"教练", @"Coach");
-        _classTypeLabel.text = ChineseStringOrENFun(@"团课", @"Group");
+        classType = ChineseStringOrENFun(@"团课", @"Group");
     }
     if (room.course.type_int == 2 ) {
         perString = ChineseStringOrENFun(@"教练", @"Coach");
-        _classTypeLabel.text = ChineseStringOrENFun(@"私教", @"Group");
+        classType = ChineseStringOrENFun(@"私教", @"PERSON");
     }
+    NSString *language = [room getCourse_language_string];
+    if (language.length > 0) {
+        classType = [NSString stringWithFormat:@"%@|%@",classType,language
+        ];
+    }
+    _classTypeLabel.text = classType;
     NSString *nickname = [NSString stringWithFormat:@"%@:%@",perString,room.room_creator.nickname];
     self.roomuser.text = nickname;
     NSString *countryUrl = room.room_creator.country_icon;
