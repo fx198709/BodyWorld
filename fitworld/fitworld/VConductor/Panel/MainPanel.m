@@ -80,6 +80,17 @@
     _waitImageview.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
 }
 
+- (void)changePlaceImage:(UIInterfaceOrientation)orientation{
+    if (orientation == UIInterfaceOrientationPortrait) {
+        _waitImageview.image = [UIImage imageNamed:@"pg_room_waitting_bg"];
+    }else{
+        _waitImageview.image = [UIImage imageNamed:@"landpage-video"];
+    }
+    _waitImageview.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+
+}
+
+
 - (void)detachLocalView {
     if (mLocalView == nil) {
         return;

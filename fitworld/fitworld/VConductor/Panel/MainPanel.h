@@ -14,6 +14,10 @@
 //创建一个占位图
 - (void)createPlaceImageView;
 
+//修改背景图
+- (void)changePlaceImage:(UIInterfaceOrientation)orientation;
+
+
 - (void)attachLocalView;
 - (void)detachLocalView;
 

@@ -870,7 +870,7 @@
         
     }
     [self dealwithTimer];
-    [mMainPanel createPlaceImageView];
+    [mMainPanel changePlaceImage:currentOrientationType];
 }
 
 @end

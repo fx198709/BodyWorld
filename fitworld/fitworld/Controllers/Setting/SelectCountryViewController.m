@@ -173,8 +173,8 @@
     Country *country = self.countryList.firstObject;
 
     NSDictionary *param = @{
-        @"country":ChineseStringOrENFun(country.name, country.name_en),
-        @"city":ChineseStringOrENFun(city.name, city.name_en)
+        @"country": country.name_en,
+        @"city":city.name_en
     };
     [MTHUD showLoadingHUD];
     [[AFAppNetAPIClient manager] POST:@"user" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
