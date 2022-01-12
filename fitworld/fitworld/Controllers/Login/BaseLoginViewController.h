@@ -17,6 +17,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *isEmailBtn;
 @property (weak, nonatomic) IBOutlet UIButton *isMobileBtn;
 
+@property (weak, nonatomic) IBOutlet UIView *leftView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftCodeWidth;
+
+@property (weak, nonatomic) IBOutlet UILabel *countryCodeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *getCountryBtn;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+
 //修改语言
 - (IBAction)ChangeLanguage:(UIButton *)sender;
 

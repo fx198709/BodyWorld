@@ -12,6 +12,7 @@
 #import "UIDeps.h"
 #import "UserInfo.h"
 #import "MBProgressHUD.h"
+#import "BaseResponseModel.h"
 
 @interface ResetPwdController ()
 
@@ -78,6 +79,12 @@
                             @"account_type" : accountType};
     [[AFAppNetAPIClient manager] POST:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"====respong:%@", responseObject);
+        BaseResponseModel *resp = [[BaseResponseModel alloc] initWithDictionary:responseObject error:nil];
+        if (resp.status != 0) {
+            //错误
+            [MTHUD showDurationNoticeHUD:resp.msg];
+            return;
+        }
         //显示倒计时
         [self.validCodeBtn countdownWithStartTime:60
                                             title:GetValidCodeBtnTitle

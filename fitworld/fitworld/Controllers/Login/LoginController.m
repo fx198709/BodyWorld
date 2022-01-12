@@ -24,14 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIView *loginview;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 
-@property (weak, nonatomic) IBOutlet UILabel *countryCodeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *getCountryBtn;
-
-@property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
 @property (weak, nonatomic) IBOutlet UIButton *showPwdBtn;
-
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 @property (nonatomic, strong) ProtocolView *protocolView;
 
@@ -118,12 +112,13 @@
 
 - (IBAction)clickLogin {
     [self.view endEditing:YES];
+    BOOL isEmail = self.isEmailBtn.isSelected;
     
     NSString *name = self.nameField.text;
     NSString *pwd = self.pwdField.text;
     NSString *code = self.countryCodeLabel.text;
     
-    if ([NSString isNullString:code]) {
+    if (!isEmail && [NSString isNullString:code]) {
         [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请选择地区编码", @"Please select country code")];
         return;
     }
@@ -133,9 +128,14 @@
         return;
     }
     
-    NSString *mobile = [NSString stringWithFormat:@"%@:%@", code, name];
+    NSString *account;
+    if (isEmail) {
+        account = name;
+    } else {
+        account = [NSString stringWithFormat:@"%@:%@", code, name];
+    }
     NSString *accountType = [self getAccountType];
-    NSDictionary *param = @{@"username":mobile, @"password":pwd,
+    NSDictionary *param = @{@"username":account, @"password":pwd,
                             @"account_type" : accountType};
     [MTHUD showLoadingHUD];
     [[AFAppNetAPIClient manager] POST:@"login" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {

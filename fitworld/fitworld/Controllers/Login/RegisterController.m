@@ -13,22 +13,16 @@
 #import "FITAPI.h"
 #import "UIDeps.h"
 #import "UserInfo.h"
+#import "BaseResponseModel.h"
 
 @interface RegisterController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *accountBtn;
 @property (weak, nonatomic) IBOutlet UIView *nameView;
 
-@property (weak, nonatomic) IBOutlet UILabel *countryCodeLabel;
-@property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UIButton *getCountryBtn;
-
-
 @property (weak, nonatomic) IBOutlet UIView *codeView;
 @property (weak, nonatomic) IBOutlet UITextField *codeField;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
-
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 
 
@@ -75,9 +69,10 @@
 //获取验证码
 - (IBAction)getValidCode:(id)sender {
     [self.view endEditing:YES];
+    BOOL isEmail = self.isEmailBtn.isSelected;
     
     NSString *code = self.countryCodeLabel.text;
-    if ([NSString isNullString:code]) {
+    if (!isEmail && [NSString isNullString:code]) {
         [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请选择地区编码", @"Please select country code")];
         return;
     }
@@ -87,12 +82,24 @@
         [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请输入手机号", @"Please enter the account number")];
         return;
     }
+    NSString *account;
+    if (isEmail) {
+        account = number;
+    } else {
+        account = [NSString stringWithFormat:@"%@:%@",code, number];
+    }
     
-    NSString *mobile = [NSString stringWithFormat:@"%@:%@", code, number];
-    NSDictionary *param = @{@"account":mobile,
+    NSDictionary *param = @{@"account":account,
                             @"account_type" : [self getAccountType]};
     [[AFAppNetAPIClient manager] POST:@"captcha" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"====respong:%@", responseObject);
+        
+        BaseResponseModel *resp = [[BaseResponseModel alloc] initWithDictionary:responseObject error:nil];
+        if (resp.status != 0) {
+            //错误
+            [MTHUD showDurationNoticeHUD:resp.msg];
+            return;
+        }
         //显示倒计时
         [self.codeBtn countdownWithStartTime:60
                                        title:GetValidCodeBtnTitle
@@ -110,8 +117,16 @@
 - (IBAction)clickLogin {
     [self resignFirstResponder];
     
+    BOOL isEmail = self.isEmailBtn.isSelected;
+    
     NSString *name = self.nameField.text;
     NSString *pwd = self.codeField.text;
+    NSString *code = self.countryCodeLabel.text;
+    
+    if (!isEmail && [NSString isNullString:code]) {
+        [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"请选择地区编码", @"Please select country code")];
+        return;
+    }
     
     if ([NSString isNullString:name] || [NSString isNullString:pwd]) {
         [MTHUD showDurationNoticeHUD:ChineseStringOrENFun(@"账号和验证码不能为空",
@@ -122,8 +137,13 @@
     NSString *strUrl = [NSString stringWithFormat:@"%@captcha/validate", FITAPI_HTTPS_PREFIX];
     NSLog(@"uuid>>>>%@", [UIDevice currentDevice].identifierForVendor.UUIDString);
     [MTHUD showLoadingHUD];
-    NSString *account = [NSString stringWithFormat:@"%@:%@",self.countryCodeLabel.text,name];
     NSString *accountType = [self getAccountType];
+    NSString *account;
+    if (isEmail) {
+        account = name;
+    } else {
+        account = [NSString stringWithFormat:@"%@:%@",code, name];
+    }
     NSDictionary *dict = @{ @"account":account,  @"captcha":pwd,
                             @"account_type" : accountType};
     [[AFHTTPSessionManager manager] POST:strUrl

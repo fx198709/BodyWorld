@@ -79,6 +79,7 @@
 		464387B7274A7B3700A2D9A4 /* ProtocolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 464387B5274A7B3700A2D9A4 /* ProtocolView.xib */; };
 		46934B6E2782AC06003CCEA8 /* BaseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46934B6D2782AC06003CCEA8 /* BaseLoginViewController.m */; };
 		46A3FB21276E13520013B14A /* StarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A3FB20276E13520013B14A /* StarView.xib */; };
+		46A9A8C3278F030900461DB6 /* BaseResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A9A8C2278F030900461DB6 /* BaseResponseModel.m */; };
 		A256300A273FE2430030D6B2 /* FriendPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A2563009273FE2430030D6B2 /* FriendPageInfo.m */; };
 		A256300D273FE6850030D6B2 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A256300C273FE6850030D6B2 /* Friend.m */; };
 		A2563010273FE6EA0030D6B2 /* AddFriendPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A256300F273FE6EA0030D6B2 /* AddFriendPageInfo.m */; };
@@ -386,6 +387,8 @@
 		46934B6C2782AC06003CCEA8 /* BaseLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseLoginViewController.h; sourceTree = "<group>"; };
 		46934B6D2782AC06003CCEA8 /* BaseLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseLoginViewController.m; sourceTree = "<group>"; };
 		46A3FB20276E13520013B14A /* StarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarView.xib; sourceTree = "<group>"; };
+		46A9A8C1278F030900461DB6 /* BaseResponseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseResponseModel.h; sourceTree = "<group>"; };
+		46A9A8C2278F030900461DB6 /* BaseResponseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseResponseModel.m; sourceTree = "<group>"; };
 		5A752F19D1ECDDD6A8BC1286 /* Pods-fitworld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitworld.release.xcconfig"; path = "Target Support Files/Pods-fitworld/Pods-fitworld.release.xcconfig"; sourceTree = "<group>"; };
 		A2563008273FE2430030D6B2 /* FriendPageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendPageInfo.h; sourceTree = "<group>"; };
 		A2563009273FE2430030D6B2 /* FriendPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendPageInfo.m; sourceTree = "<group>"; };
@@ -756,6 +759,8 @@
 				A256301527408B500030D6B2 /* UserCenterWeekData.m */,
 				04CD2E512698478C007814E6 /* UserInfo.h */,
 				04CD2E4F2698478B007814E6 /* UserInfo.m */,
+				46A9A8C1278F030900461DB6 /* BaseResponseModel.h */,
+				46A9A8C2278F030900461DB6 /* BaseResponseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1775,6 +1780,7 @@
 				04EC01F526BD8AC000DC0103 /* ClassMember.mm in Sources */,
 				DD25FEE727226B5A0092CF87 /* JYWeakTimer.m in Sources */,
 				04CD2E522698478C007814E6 /* UserInfo.m in Sources */,
+				46A9A8C3278F030900461DB6 /* BaseResponseModel.m in Sources */,
 				04EC01F226BD8AC000DC0103 /* HeaderPanel.m in Sources */,
 				A296D68A2754A37400F73259 /* FriendInfoViewController.m in Sources */,
 				A296D68727547C1B00F73259 /* SearchAddFriendViewController.m in Sources */,

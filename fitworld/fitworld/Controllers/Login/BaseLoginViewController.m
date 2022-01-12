@@ -63,16 +63,22 @@
 
 //切换登录方式
 - (IBAction)selectLoginType:(id)sender {
-    UIButton *selectedBtn, *unSelectedBtn;
+    [self.nameField resignFirstResponder];
     if (sender == self.isEmailBtn) {
-        selectedBtn = self.isEmailBtn;
-        unSelectedBtn = self.isMobileBtn;
+        [self.isEmailBtn setSelected:YES];
+        [self.isMobileBtn setSelected:NO];
+        self.leftView.hidden = YES;
+        self.nameField.textAlignment = NSTextAlignmentCenter;
+        self.nameField.keyboardType = UIKeyboardTypeDefault;
     } else {
-        selectedBtn = self.isMobileBtn;
-        unSelectedBtn = self.isEmailBtn;
+        [self.isEmailBtn setSelected:NO];
+        [self.isMobileBtn setSelected:YES];
+        self.leftView.hidden = NO;
+        self.nameField.textAlignment = NSTextAlignmentLeft;
+        self.nameField.keyboardType = UIKeyboardTypeNumberPad;
     }
-    [selectedBtn setSelected:YES];
-    [unSelectedBtn setSelected:NO];
+    self.leftCodeWidth.constant = self.leftView.hidden ? 0 : 72.0;
+    [self.view updateConstraintsIfNeeded];
 }
 
 - (NSString *)getAccountType {

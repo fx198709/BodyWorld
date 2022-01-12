@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mbk-qS-1SX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mbk-qS-1SX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -287,6 +287,8 @@
                         <outlet property="getCountryBtn" destination="ERw-oj-Zrg" id="yBw-aq-M1h"/>
                         <outlet property="isEmailBtn" destination="t4D-JE-Gzh" id="qO7-9l-ty9"/>
                         <outlet property="isMobileBtn" destination="WfN-Gk-X0k" id="YUN-3y-J14"/>
+                        <outlet property="leftCodeWidth" destination="lck-Al-FwM" id="NGt-yA-KQY"/>
+                        <outlet property="leftView" destination="ERw-oj-Zrg" id="Cd2-ZS-Mbv"/>
                         <outlet property="loginBtn" destination="ceg-92-8fO" id="RK7-DS-QnY"/>
                         <outlet property="loginview" destination="xCe-g8-lo0" id="xoJ-UR-P6I"/>
                         <outlet property="nameField" destination="aWh-XL-EyB" id="xZY-Jz-ZXt"/>
@@ -2262,6 +2264,8 @@
                         <outlet property="getCountryBtn" destination="9PJ-4c-D7v" id="be4-6r-LDG"/>
                         <outlet property="isEmailBtn" destination="Wlh-HE-ODq" id="kXX-oU-e3Q"/>
                         <outlet property="isMobileBtn" destination="7bg-jm-j9q" id="IqP-Ks-nln"/>
+                        <outlet property="leftCodeWidth" destination="aFk-8J-laO" id="0GD-vA-nxM"/>
+                        <outlet property="leftView" destination="9PJ-4c-D7v" id="WVZ-1b-jsa"/>
                         <outlet property="loginBtn" destination="9gB-oH-3eW" id="eAj-4D-ck0"/>
                         <outlet property="nameField" destination="ouE-WA-xyA" id="RX2-tm-K5E"/>
                         <outlet property="nameView" destination="Niw-vq-JXG" id="JqE-N8-BcN"/>
@@ -3004,7 +3008,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6HZ-hH-JiE"/>
-        <segue reference="hBg-mj-iXu"/>
+        <segue reference="hxF-ge-sHJ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="activity_login_bg" width="360" height="780"/>
