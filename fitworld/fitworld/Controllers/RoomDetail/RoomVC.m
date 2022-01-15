@@ -317,41 +317,53 @@
             }
             NSInteger showguestcount = self.guestPanels.count;
             if (self->currentOrientationType == UIInterfaceOrientationLandscapeRight){
-                //                横屏  就3个的时候，需要两边等分，其他时候 都不需要
-                if (showguestcount == 3) {
+//                横屏，改成一行6个，高度是宽度的0.563
+                int smallwidth = (ScreenWidth)/7;
+                int realItemWith = smallwidth -10;
+                int startitemX = (ScreenWidth- smallwidth*6)/2; //起点用整个item的宽度去搞
+                int startitemY = ScreenHeight- realItemWith*0.563-50; //高度用真实高度去减
+                self->mSidePanel.frame = CGRectMake(startitemX, startitemY, realItemWith, realItemWith*0.563);
+                for (int index = 0; index < strongSelf.guestPanels.count; index++) {
+                    GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
+                    CGRect panelRect =  CGRectMake(startitemX+smallwidth*(index+1), startitemY, realItemWith, realItemWith*0.563);
+                    guestpanel.frame = panelRect;
+                                    
+                };
+//                //                横屏  就3个的时候，需要两边等分，其他时候 都不需要
+//                if (showguestcount == 3) {
+////
+//                    int starty = (ScreenHeight- 2*(itemheight+20))/2;
+////                    第一个在右边
+//                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
 //
-                    int starty = (ScreenHeight- 2*(itemheight+20))/2;
-//                    第一个在右边
-                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
-
-                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
-                        GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-                        CGRect panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+itemheight+20, itemwidth, itemheight);
-                        if (index == 1) {
-                            panelRect = CGRectMake(60, starty+20, itemwidth, itemheight);;
-                        }
-                        if (index == 2) {
-                            panelRect = CGRectMake(60, starty+20+itemheight+20, itemwidth, itemheight);;
-                        }
-                        guestpanel.frame = panelRect;
-                    }
-                }else{
-                    int starty = (ScreenHeight- 3*(itemheight+20))/2;
-//                    第一个在右边
-                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
-
-                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
-                        GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-                        CGRect panelRect =  CGRectZero;
-                        if (index < 2) {
-//                            右边
-                            panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+(itemheight+20)*(index+1), itemwidth, itemheight);
-                        }else{
-                            panelRect = CGRectMake(60, starty+20+(itemheight+20)*(index-3), itemwidth, itemheight);
-                        }
-                        guestpanel.frame = panelRect;
-                    }
-                }
+//                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
+//                        GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
+//                        CGRect panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+itemheight+20, itemwidth, itemheight);
+//                        if (index == 1) {
+//                            panelRect = CGRectMake(60, starty+20, itemwidth, itemheight);;
+//                        }
+//                        if (index == 2) {
+//                            panelRect = CGRectMake(60, starty+20+itemheight+20, itemwidth, itemheight);;
+//                        }
+//                        guestpanel.frame = panelRect;
+//                    }
+//                }else{
+//                    int starty = (ScreenHeight- 3*(itemheight+20))/2;
+////                    第一个在右边
+//                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
+//
+//                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
+//                        GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
+//                        CGRect panelRect =  CGRectZero;
+//                        if (index < 2) {
+////                            右边
+//                            panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+(itemheight+20)*(index+1), itemwidth, itemheight);
+//                        }else{
+//                            panelRect = CGRectMake(60, starty+20+(itemheight+20)*(index-3), itemwidth, itemheight);
+//                        }
+//                        guestpanel.frame = panelRect;
+//                    }
+//                }
             }else{
                 if (showguestcount == 0) {
                     //        清楚所有的直播
