@@ -128,7 +128,7 @@ BOOL  hasrequest = NO;
     [[APPObjOnce sharedAppOnce] getUserinfo:^(NSError * _Nonnull error) {
         //            [_mainTableview.mj_header beginRefreshing];
         [self headerRereshing];
-        mainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(mainTimerAction) userInfo:nil repeats:YES];
+        self->mainTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(mainTimerAction) userInfo:nil repeats:YES];
     }];
 }
 
@@ -209,7 +209,7 @@ BOOL  hasrequest = NO;
         [imageArray addObject:[obj valueForKey:@"pic"]];
     }
     WeakSelf
-    JYCarousel *carouselView = [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, _sliderView.frame.size.width, _sliderView.frame.size.height) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
+    JYCarousel *carouselView = [[JYCarousel alloc] initWithFrame:CGRectMake(-5, 0, ScreenWidth+10, _sliderView.frame.size.height) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
         //配置指示器类型
         carouselConfig.pageContollType = MiddlePageControl;
         //配置轮播时间间隔
@@ -227,8 +227,10 @@ BOOL  hasrequest = NO;
     //开始轮播
     [carouselView startCarouselWithArray:imageArray];
     carouselView.backgroundColor = [UIColor clearColor];
+    carouselView.clipsToBounds = YES;
     RemoveSubviews(_sliderView,@[]);
     [_sliderView addSubview:carouselView];
+    _sliderView.clipsToBounds = YES;
 }
 
 - (void)clickIndex:(NSInteger)index{
@@ -293,22 +295,22 @@ BOOL  hasrequest = NO;
         // 复用队列中没有时再创建
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier: indentifier];
         [cell.contentView addSubview: ({
-            UILabel *titleLable =  [[UILabel alloc] initWithFrame:CGRectMake(80, 20, ScreenWidth-180, 50)];
-            titleLable.font = [UIFont systemFontOfSize: 16];
+            UILabel *titleLable =  [[UILabel alloc] initWithFrame:CGRectMake(70, 30, ScreenWidth-180, 50)];
+            titleLable.font = [UIFont systemFontOfSize: 17];
             titleLable.text = self.userInfo.nickname;
             titleLable.textColor = [UIColor whiteColor];
             [titleLable sizeToFit];
             titleLable;
         })];
         
-        [cell.contentView addSubview: ({
-            UILabel *sourceLable = [[UILabel alloc] initWithFrame:CGRectMake(80, 50, ScreenWidth-180, 20)];
-            sourceLable.font = [UIFont systemFontOfSize: 12];
-            sourceLable.text = ChineseOrENFun(self.userInfo, @"msg");
-            sourceLable.textColor = [UIColor whiteColor];
-            [sourceLable sizeToFit];
-            sourceLable;
-        })];
+//        [cell.contentView addSubview: ({
+//            UILabel *sourceLable = [[UILabel alloc] initWithFrame:CGRectMake(80, 50, ScreenWidth-180, 20)];
+//            sourceLable.font = [UIFont systemFontOfSize: 12];
+//            sourceLable.text = ChineseOrENFun(self.userInfo, @"msg");
+//            sourceLable.textColor = [UIColor whiteColor];
+//            [sourceLable sizeToFit];
+//            sourceLable;
+//        })];
         
         [cell.contentView addSubview: ({
             UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 40, 40)];

@@ -51,14 +51,14 @@
     [attrStr setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]}
                      range:NSMakeRange(0, content.length)];
     NSDictionary *userDic = @{
-        NSLinkAttributeName : [NSURL URLWithString:@"http://1.117.70.210:8091/assets/h5/user_guide.html"],
+        NSLinkAttributeName : [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/user_guide.html",FITAPI_HTTPS_ROOT]],
         NSForegroundColorAttributeName:blueColor
     };
     NSString *userStr = @"《用户协议》";
     [attrStr setAttributes:userDic range:[content rangeOfString:userStr]];
     
     NSDictionary *privateDic = @{
-        NSLinkAttributeName : [NSURL URLWithString:@"http://1.117.70.210:8091/assets/h5/private_policy.html"],
+        NSLinkAttributeName : [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/private_policy.html",FITAPI_HTTPS_ROOT]],
         NSForegroundColorAttributeName:blueColor
     };
     NSString *privateStr = @"《隐私协议》";
