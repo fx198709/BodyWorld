@@ -321,11 +321,11 @@
                 int smallwidth = (ScreenWidth)/7;
                 int realItemWith = smallwidth -10;
                 int startitemX = (ScreenWidth- smallwidth*6)/2; //起点用整个item的宽度去搞
-                int startitemY = ScreenHeight- realItemWith*0.563-50; //高度用真实高度去减
+                int startitemY = ScreenHeight- realItemWith*9/16-50; //高度用真实高度去减
                 self->mSidePanel.frame = CGRectMake(startitemX, startitemY, realItemWith, realItemWith*0.563);
                 for (int index = 0; index < strongSelf.guestPanels.count; index++) {
                     GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-                    CGRect panelRect =  CGRectMake(startitemX+smallwidth*(index+1), startitemY, realItemWith, realItemWith*0.563);
+                    CGRect panelRect =  CGRectMake(startitemX+smallwidth*(index+1), startitemY, realItemWith, realItemWith*9/16);
                     guestpanel.frame = panelRect;
                                     
                 };
