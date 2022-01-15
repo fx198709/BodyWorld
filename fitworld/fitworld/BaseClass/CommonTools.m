@@ -153,7 +153,7 @@
     NSString *returnString = [dateFormate stringFromDate:date];
     return returnString;
 }
-+ (NSString*)ReachTimeWithFormate:(NSTimeInterval) longtime andFormate:(NSString*)formate{
++ (NSString*)reachTimeWithDate:(NSTimeInterval) longtime andFormate:(NSString*)formate{
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:longtime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -303,7 +303,7 @@
     NSDateFormatter *dateFormate = [[NSDateFormatter alloc] init];
     dateFormate.dateFormat = formatString;//@"yyyy.MM.dd";
     //    设置时区
-    [dateFormate setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
+//    [dateFormate setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
     NSString *dateString = [dateFormate stringFromDate:dealDate];
     return dateString;
 }

@@ -13,8 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDate*)dateFromInDate:(id)inDate;
 
+//传入时间和格式
++ (NSString*)reachFormateDateStringFromInDate:(id)inDate withFormat:(NSString*)formatString;
+
 //获取固定格式的时间
-+ (NSString*)ReachTimeWithFormate:(NSTimeInterval) longtime andFormate:(NSString*)formate;
++ (NSString*)reachTimeWithDate:(NSTimeInterval) longtime andFormate:(NSString*)formate;
 
 + (UIWindow *)mainWindow;
 

@@ -15,6 +15,7 @@ target 'FFitWorld' do
     pod 'UMCAnalytics', '~> 6.0.5'
     pod 'IQKeyboardManager'
     pod 'WechatOpenSDK'
+    pod 'BRPickerView'
 #    pod 'UMCSecurityPlugins'
 
 end

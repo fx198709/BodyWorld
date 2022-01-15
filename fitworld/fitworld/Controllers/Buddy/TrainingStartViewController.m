@@ -17,6 +17,7 @@
 #import "TableHeadview.h"
 #import "UIImage+Extension.h"
 #import "ScreenModel.h"
+#import "BRDatePickerView.h"
 
 
 #define LitterGrayColor UIRGBColor(69, 69, 69, 1)
@@ -162,20 +163,66 @@
     [languageBtn setTitle:model.name forState:UIControlStateHighlighted];
 }
 
+//选中时间之后，跳转下一个页面
+- (void)pushViewControllerwithDate:(NSDate*)selectedDate{
+    TrainingInviteViewController *vc = [[TrainingInviteViewController alloc] init];
+    vc.selectCourse = self.selectCourse;
+    vc.inselectDate = selectedDate;
+    vc.afterminute = 0;
+    vc.languageType = _languageID;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)startNow:(UIButton*)sender{
     if (sender.tag == 103) {
 //        先选择语言
         if (![self checkHasSelectLanguage]) {
             return;
         }
-        OurDatePickerView *datepickerView = [[OurDatePickerView alloc] init];
-        datepickerView.pickerDelegate = self;
-        datepickerView.pickerType = YearMonDayAndHourMinute;
-        datepickerView.minuteInterval = 1;
+        NSDate *startData = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
+        NSDate *endData = [NSDate dateWithTimeInterval:24*7*3600 sinceDate:[NSDate date]];
+        NSString *startyear = [CommonTools reachFormateDateStringFromInDate:startData withFormat:@"yyyy"]; //[CommonTools ];
+        NSString *endyear = [CommonTools reachFormateDateStringFromInDate:endData withFormat:@"yyyy"]; //[CommonTools ];
         
-        datepickerView.miniDate = [NSDate dateWithTimeIntervalSinceNow:0];
-        datepickerView.leftmaxDate = [NSDate dateWithTimeIntervalSinceNow:7*24*60*60];
-        [datepickerView pickerViewWithView:self.view];
+        // 1.创建日期选择器
+        BRDatePickerView *datePickerView = [[BRDatePickerView alloc]init];
+        // 2.设置属性
+        if ([startyear isEqualToString:endyear]) {
+            datePickerView.pickerMode = BRDatePickerModeMDHM;
+        }else{
+            datePickerView.pickerMode = BRDatePickerModeYMDHM;
+
+        }
+
+        datePickerView.title = ChineseStringOrENFun(@"选择时间", @"Choose Date");
+        // datePickerView.selectValue = @"2019-10-30";
+    //    datePickerView.selectDate = [NSDate br_setYear:2019 month:10 day:30];
+        datePickerView.minDate = startData;
+        datePickerView.maxDate = endData;
+        datePickerView.isAutoSelect = NO;
+        datePickerView.keyView = self.view;
+        datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
+            NSLog(@"选择的值：%@", selectValue);
+            [self pushViewControllerwithDate:selectDate];
+        };
+        // 设置自定义样式
+        BRPickerStyle *customStyle = [[BRPickerStyle alloc]init];
+        customStyle.pickerColor = UIColor.whiteColor;//BR_RGB_HEX(0xd9dbdf, 1.0f);
+        customStyle.pickerTextColor = [UIColor blackColor];
+        customStyle.separatorColor = LineColor;
+        datePickerView.pickerStyle = customStyle;
+
+        // 3.显示
+        [datePickerView show];
+//        换一个时间的控件
+//        OurDatePickerView *datepickerView = [[OurDatePickerView alloc] init];
+//        datepickerView.pickerDelegate = self;
+//        datepickerView.pickerType = YearMonDayAndHourMinute;
+//        datepickerView.minuteInterval = 1;
+//
+//        datepickerView.miniDate = [NSDate dateWithTimeIntervalSinceNow:0];
+//        datepickerView.leftmaxDate = [NSDate dateWithTimeIntervalSinceNow:7*24*60*60];
+//        [datepickerView pickerViewWithView:self.view];
     }else if (sender.tag == 200) {
 //        选择语言
         [self.view endEditing:YES];

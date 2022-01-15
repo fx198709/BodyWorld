@@ -63,7 +63,7 @@
     _peopleLabel.text = room.room_creator.nickname;
     NSString *countryUrl = room.room_creator.country_icon;
     [_countryImageView sd_setImageWithURL:[NSURL URLWithString:countryUrl]];
-    NSString *hourtext = [CommonTools ReachTimeWithFormate:room.start_time andFormate:@"HH:mm"];
+    NSString *hourtext = [CommonTools reachTimeWithDate:room.start_time andFormate:@"HH:mm"];
     _timeLabel.text = [NSString stringWithFormat:@" %@  ",hourtext];
     _timeLabel.backgroundColor =UIRGBColor(33, 33, 33, 0.3);
     _timeLabel.clipsToBounds = YES;
