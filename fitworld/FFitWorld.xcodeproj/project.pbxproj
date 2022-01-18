@@ -490,6 +490,7 @@
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
 		C8E2F72627131DBA00FEE021 /* WordPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordPrefixHeader.pch; sourceTree = "<group>"; };
+		DD25610F2792D3C600CB70F4 /* FFitWorldDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FFitWorldDebug.entitlements; sourceTree = "<group>"; };
 		DD25FEC7272012DC0092CF87 /* UIScrollView+YCRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YCRefresh.h"; sourceTree = "<group>"; };
 		DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YCRefresh.m"; sourceTree = "<group>"; };
 		DD25FECC272157D50092CF87 /* NSObject+YCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YCExtension.h"; sourceTree = "<group>"; };
@@ -912,6 +913,7 @@
 		047DC1E7268CD09700A3E37E = {
 			isa = PBXGroup;
 			children = (
+				DD25610F2792D3C600CB70F4 /* FFitWorldDebug.entitlements */,
 				0433C0EE268D63DC00EB47B1 /* Podfile */,
 				047DC1F2268CD09700A3E37E /* fitworld */,
 				047DC1F1268CD09700A3E37E /* Products */,
@@ -2031,6 +2033,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FFitWorldDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;

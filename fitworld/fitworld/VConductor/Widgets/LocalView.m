@@ -32,7 +32,7 @@
     make.left.with.top.equalTo(self);
     make.size.equalTo(self);
   }];
-  [mVideoRender set_content_mode:UIViewContentModeScaleAspectFill];
+  [mVideoRender set_content_mode:UIViewContentModeScaleAspectFit];
 
   
   mLabel = [[UILabel alloc] init];

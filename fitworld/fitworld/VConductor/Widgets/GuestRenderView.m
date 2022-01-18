@@ -41,7 +41,7 @@
 //    mVideoRender.render_view.backgroundColor = [UIColor blueColor];
 //    展示形式
 //  if (!mIsMain) {
-    [mVideoRender set_content_mode:UIViewContentModeScaleAspectFill];
+    [mVideoRender set_content_mode:UIViewContentModeScaleAspectFit];
 //  }
 
 //  mLabel = [[UILabel alloc] init];
