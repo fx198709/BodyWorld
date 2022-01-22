@@ -21,7 +21,7 @@
     [_cancelBtn setTitle:btnTitle forState:UIControlStateHighlighted];
     [_cancelBtn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
-    NSString *orientationTitle = ChineseStringOrENFun(@"强制横竖屏", @"强制横竖屏");
+    NSString *orientationTitle = ChineseStringOrENFun(@"强制横竖屏", @"Screen change");
     [_changeOrientationBtn setTitle:orientationTitle forState:UIControlStateNormal];
     [_changeOrientationBtn setTitle:orientationTitle forState:UIControlStateHighlighted];
     [_changeOrientationBtn addTarget:self action:@selector(orientationBtnClicked) forControlEvents:UIControlEventTouchUpInside];

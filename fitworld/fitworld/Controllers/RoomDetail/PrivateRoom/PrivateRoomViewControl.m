@@ -534,7 +534,7 @@
         [currentSlider changeSliderWithData:self.currentRoom];
         if (!startDuringTimeLabel) {
             startDuringTimeLabel = [[UILabel alloc] init];
-            [startDuringTimeLabel setFrame:CGRectMake(0, 0, 120, 40)];
+            [startDuringTimeLabel setFrame:CGRectMake(0, 0, 125, 40)];
             startDuringTimeLabel.font = SystemFontOfSize(14);
             startDuringTimeLabel.textColor = UIRGBColor(225, 225, 225, 1);
             startDuringTimeLabel.textAlignment = NSTextAlignmentRight;
@@ -548,7 +548,10 @@
             NSInteger hourNumber = ((elapsedSecs - secondsNumber) / 60 - minuteNumber) / 60 % 24;
             NSString *timeCode = [NSString stringWithFormat:@"时长: %.2ld:%.2ld:%.2ld", (long)hourNumber, (long)minuteNumber, (long)secondsNumber];
             NSString *timeCodeEN = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld Elapsed", (long)hourNumber, (long)minuteNumber, (long)secondsNumber];
-            
+            if (hourNumber<1) {
+                timeCode = [NSString stringWithFormat:@"时长:%.2ld:%.2ld",  (long)minuteNumber, (long)secondsNumber];
+                timeCodeEN = [NSString stringWithFormat:@"%.2ld:%.2ld Elapsed", (long)minuteNumber, (long)secondsNumber];
+            }
             startDuringTimeLabel.text = ChineseStringOrENFun(timeCode, timeCodeEN);
         }
         vtitleLabel.text = self.currentRoom.name;

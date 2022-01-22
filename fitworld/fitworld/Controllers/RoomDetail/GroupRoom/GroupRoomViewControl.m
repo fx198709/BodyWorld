@@ -225,13 +225,13 @@
                 self->panelSize = CGSizeMake(ScreenWidth/4, ScreenWidth/4/0.563);
             }
             self->mSidePanel.size = CGSizeMake(self->panelSize.width , self->panelSize.height);
-//            for (NSInteger  i = strongSelf.guestPanels.count -1; i>= 0;i--) {
-//                GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:i];
-//                guestpanel.size = CGSizeMake(self->panelSize.width , self->panelSize.height);
-//                guestpanel.layer.cornerRadius = 5;
-//                guestpanel.layer.masksToBounds = YES;
-//                guestpanel.clipsToBounds = YES;
-//            }
+            for (NSInteger  i = strongSelf.guestPanels.count -1; i>= 0;i--) {
+                GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:i];
+                guestpanel.size = CGSizeMake(self->panelSize.width , self->panelSize.height);
+                guestpanel.layer.cornerRadius = 5;
+                guestpanel.layer.masksToBounds = YES;
+                guestpanel.clipsToBounds = YES;
+            }
             self->vnumberLabel.text = [NSString stringWithFormat:@"%lu online",strongSelf.guestPanels.count+1];
         }];
     }
@@ -530,8 +530,12 @@
             currentSlider = [[SliderView alloc] init];
             [self.view addSubview:currentSlider];
         }
+        int leftvalue = 20;
+//        if (currentOrientationType == UIInterfaceOrientationLandscapeRight) {
+//            leftvalue = 20+60+itemheight*16/9;
+//        }
         [currentSlider mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(mMainPanel).offset(20);
+            make.left.equalTo(mMainPanel).offset(leftvalue);
             make.right.equalTo(mMainPanel).offset(-20);
             make.bottom.equalTo(mMainPanel).offset(-15);
             make.height.mas_equalTo(18);
@@ -543,7 +547,7 @@
         
         if (!startDuringTimeLabel) {
             startDuringTimeLabel = [[UILabel alloc] init];
-            [startDuringTimeLabel setFrame:CGRectMake(0, 0, 120, 40)];
+            [startDuringTimeLabel setFrame:CGRectMake(0, 0, 135, 40)];
             startDuringTimeLabel.font = SystemFontOfSize(14);
             startDuringTimeLabel.textColor = UIRGBColor(225, 225, 225, 1);
             startDuringTimeLabel.textAlignment = NSTextAlignmentRight;
@@ -557,6 +561,10 @@
             NSInteger hourNumber = ((elapsedSecs - secondsNumber) / 60 - minuteNumber) / 60 % 24;
             NSString *timeCode = [NSString stringWithFormat:@"时长: %.2ld:%.2ld:%.2ld", (long)hourNumber, (long)minuteNumber, (long)secondsNumber];
             NSString *timeCodeEN = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld Elapsed", (long)hourNumber, (long)minuteNumber, (long)secondsNumber];
+            if (hourNumber<1) {
+                timeCode = [NSString stringWithFormat:@"时长:%.2ld:%.2ld",  (long)minuteNumber, (long)secondsNumber];
+                timeCodeEN = [NSString stringWithFormat:@"%.2ld:%.2ld Elapsed", (long)minuteNumber, (long)secondsNumber];
+            }
             
             startDuringTimeLabel.text = ChineseStringOrENFun(timeCode, timeCodeEN);
         }
