@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mbk-qS-1SX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mbk-qS-1SX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -492,7 +492,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyJ-eF-5jP">
-                                                        <rect key="frame" x="347.5" y="21.5" width="10" height="17"/>
+                                                        <rect key="frame" x="355.5" y="21.5" width="10" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="17" id="Ns3-6r-PbF"/>
                                                         </constraints>
@@ -501,7 +501,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="次" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLN-jY-T59">
-                                                        <rect key="frame" x="361.5" y="21.5" width="16.5" height="17"/>
+                                                        <rect key="frame" x="369.5" y="21.5" width="16.5" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="17" id="oe8-YO-iVt"/>
                                                         </constraints>
@@ -509,8 +509,8 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="btn_next" translatesAutoresizingMaskIntoConstraints="NO" id="gYi-tE-nv9">
-                                                        <rect key="frame" x="390" y="23.5" width="8" height="13"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="gYi-tE-nv9">
+                                                        <rect key="frame" x="398" y="23.5" width="0.0" height="13"/>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0D3-9N-KL8" userLabel="line">
                                                         <rect key="frame" x="0.0" y="59" width="414" height="1"/>
@@ -520,7 +520,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyD-4x-2PK">
-                                                        <rect key="frame" x="347.5" y="0.0" width="66.5" height="60"/>
+                                                        <rect key="frame" x="355.5" y="0.0" width="58.5" height="60"/>
                                                         <connections>
                                                             <action selector="goToHistoryList:" destination="mdC-bR-6Hn" eventType="touchUpInside" id="gmO-ck-qpP"/>
                                                         </connections>
@@ -529,6 +529,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="gYi-tE-nv9" secondAttribute="trailing" constant="16" id="0Fj-eK-Ww0"/>
+                                                    <constraint firstItem="gYi-tE-nv9" firstAttribute="top" secondItem="KuR-m3-0LC" secondAttribute="top" constant="23.5" id="5Bd-02-Fgy"/>
                                                     <constraint firstAttribute="trailing" secondItem="EyD-4x-2PK" secondAttribute="trailing" id="Exu-0R-YK0"/>
                                                     <constraint firstItem="YUe-Jx-Lcb" firstAttribute="centerY" secondItem="KuR-m3-0LC" secondAttribute="centerY" id="FjX-8h-hvb"/>
                                                     <constraint firstItem="gYi-tE-nv9" firstAttribute="leading" secondItem="jLN-jY-T59" secondAttribute="trailing" constant="12" id="H3Q-Il-wju"/>

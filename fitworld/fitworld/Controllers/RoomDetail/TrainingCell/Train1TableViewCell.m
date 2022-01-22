@@ -98,9 +98,9 @@
     UILabel *getHeartLabel = [[UILabel alloc] init];
     long timeDurlong = timeDur;
     long left60 = timeDurlong %3600;
-    NSString *timeString = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",
+    NSString *timeString = [NSString stringWithFormat:@"%02ld:%02ld",
                             timeDurlong/3600,
-                            left60/60,(left60)%60];
+                            left60/60];
 
     getHeartLabel.text = timeString;
     getHeartLabel.font = [UIFont boldSystemFontOfSize:22];;

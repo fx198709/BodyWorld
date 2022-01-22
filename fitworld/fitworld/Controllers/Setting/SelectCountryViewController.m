@@ -152,7 +152,7 @@
         [MTHUD hideHUD];
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             NSLog(@"====respong:%@", responseObject);
-            NSArray *result = [responseObject objectForKey:@"recordset"];
+            NSArray *result = [[responseObject objectForKey:@"recordset"] objectForKey:@"rows"];
             NSError *error;
             NSArray<Country *> *countryList = [Country arrayOfModelsFromDictionaries:result error:&error];
             if (error == nil) {

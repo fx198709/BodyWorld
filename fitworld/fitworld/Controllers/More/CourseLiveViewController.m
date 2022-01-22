@@ -166,6 +166,7 @@
     Room *room = dataArr[indexPath.row];
 
     [cell changeDataWithRoom:room];
+    cell.joinBtn.tag = indexPath.row+100;
     [cell.joinBtn addTarget:self action:@selector(joinBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     if (indexPath.row != dataArr.count -1) {
         cell.lineview.hidden = NO;
