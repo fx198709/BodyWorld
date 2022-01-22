@@ -126,7 +126,7 @@
 
     Course *course = dataArr[indexPath.row];
     UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 19, 56, 56)];
-    [leftImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, course.pic]] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
+    [leftImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, course.pic]] placeholderImage:[UIImage imageNamed:@"activity_login_logo_white"]];
     [cellView addSubview:leftImageView];
     leftImageView.layer.cornerRadius = 28;
     leftImageView.clipsToBounds = YES;

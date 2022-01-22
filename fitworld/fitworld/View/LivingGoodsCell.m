@@ -31,7 +31,7 @@
 - (void)changedatawithmodel:(Room*)room{
     self.startTime.text = ReachWeekTime(room.start_time);
     NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, room.course.pic];
-    [self.goodsImage sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
+    [self.goodsImage sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:nil];
     self.goodsImage.contentMode = UIViewContentModeScaleAspectFill;
     self.roomname.text = room.name;
     NSString *perString = ChineseStringOrENFun(@"房主", @"Rooms");

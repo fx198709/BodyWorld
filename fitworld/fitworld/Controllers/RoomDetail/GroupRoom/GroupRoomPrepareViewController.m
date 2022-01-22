@@ -409,7 +409,7 @@
     mainImageview.clipsToBounds = YES;
     mainImageview.contentMode = UIViewContentModeScaleAspectFill;
     NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, currentRoom.pic];
-    [mainImageview sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"coursedetail_top"]];
+    [mainImageview sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"activity_login_logo_white"]];
     CourseDetailSmallview *detailsmall = (CourseDetailSmallview *)[[[NSBundle mainBundle] loadNibNamed:@"CourseDetailSmallview" owner:self options:nil] lastObject];
     [courseDetailView addSubview:detailsmall];
     [detailsmall mas_makeConstraints:^(MASConstraintMaker *make) {
