@@ -513,7 +513,7 @@
         if ([messageClass canSendText]) {
             [self displaySMSComposerSheet];
         }else{
-            [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"您设备没有短信功能", @"您设备没有短信功能") control:self];
+            [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"您设备没有短信功能", @"Your device has no SMS") control:self];
         }
     }
 
@@ -537,9 +537,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     if (result == MessageComposeResultCancelled){
     }else if (result == MessageComposeResultSent){
-        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"短信发送成功", @"短信发送成功") control:self];
+        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"短信发送成功", @"SMS sent successfully") control:self];
     }else if(result == MessageComposeResultFailed){
-        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"短信发送失败，是否重新发送？", @"短信发送失败，是否重新发送？") control:self];
+        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"短信发送失败，是否重新发送？", @"Failed to send SMS messages. Whether to resend SMS messages？") control:self];
 
     }
 

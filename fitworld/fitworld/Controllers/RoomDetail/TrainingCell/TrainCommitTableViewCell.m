@@ -89,7 +89,7 @@
 - (IBAction)commitBtnClicked:(UIButton *)sender {
     UIViewController *parentVC = [CommonTools findControlWithView:self];
     if (_grade < 1) {
-        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"请选择星级", @"请选择星级") control:parentVC];
+        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"请选择星级", @"Choose Star") control:parentVC];
         return;
     }
     if (_contentTextView.text.length < 1) {
