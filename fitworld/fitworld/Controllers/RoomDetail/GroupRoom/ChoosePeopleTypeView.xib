@@ -142,8 +142,11 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="addAPPFriendBtn" destination="unU-Mp-Edi" id="yDN-fP-Ml8"/>
                 <outlet property="addPeopleBtn" destination="dKZ-nc-QGu" id="yGF-1N-WrY"/>
                 <outlet property="addTypeViewHeightConstraint" destination="1Ez-Rt-bAh" id="iOm-kS-NKb"/>
+                <outlet property="addsmsFriendBtn" destination="tE4-BR-ZUQ" id="qsE-DK-EW2"/>
+                <outlet property="addwxfriendBtn" destination="06q-da-Re2" id="ewq-L0-Qzn"/>
                 <outlet property="invientPeopleLabel" destination="qzw-YF-OMt" id="JqB-dx-NsJ"/>
                 <outlet property="myselfBtn" destination="VMk-yw-Qft" id="m3v-sh-Xed"/>
                 <outlet property="myselfLabel" destination="GQ9-k8-d51" id="88B-G6-lma"/>

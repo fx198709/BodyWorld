@@ -25,6 +25,18 @@
     _invientPeopleLabel.text = ChineseStringOrENFun(@"邀请好友", @"Friend");
     _myselfLabel.text = ChineseStringOrENFun(@"自己", @"Myself");
     
+    NSString *addAPPFriendString = ChineseStringOrENFun(@"App内好友", @"App Friend");
+    [_addAPPFriendBtn setTitle:addAPPFriendString forState:UIControlStateNormal];
+    [_addAPPFriendBtn setTitle:addAPPFriendString forState:UIControlStateHighlighted];
+    
+    NSString *addwxFriendString = ChineseStringOrENFun(@"微信邀请", @"From wx");
+    [_addwxfriendBtn setTitle:addwxFriendString forState:UIControlStateNormal];
+    [_addwxfriendBtn setTitle:addwxFriendString forState:UIControlStateHighlighted];
+    
+    NSString *addSMSFriendString = ChineseStringOrENFun(@"短信邀请", @"From SMS");
+    [_addsmsFriendBtn setTitle:addSMSFriendString forState:UIControlStateNormal];
+    [_addsmsFriendBtn setTitle:addSMSFriendString forState:UIControlStateHighlighted];
+
     [_randomBtn addTarget:self action:@selector(typeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_addPeopleBtn addTarget:self action:@selector(typeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_myselfBtn addTarget:self action:@selector(typeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];

@@ -346,7 +346,7 @@ OurDatePickerViewDelegate>
     UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     UIImage *editImg = [info objectForKey:UIImagePickerControllerEditedImage];
     UIImage *img = editImg == nil ? originImage : editImg;
-    img = [img scaleImageToSize:CGSizeMake(60, 60)];
+    img = [img scaleImageToSize:CGSizeMake(300, 300)];
     
     NSData *imgData = UIImageJPEGRepresentation(img, 0.5);
     [picker dismissViewControllerAnimated:YES completion:^{

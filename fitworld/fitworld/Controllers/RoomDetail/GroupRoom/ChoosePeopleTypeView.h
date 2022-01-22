@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)addPeopleTypeBtn:(UIButton *)sender;
 
 - (void)changeDataWithModel:(GroupMyRoom*)groupRoom enterType:(int)enterType;
+@property (weak, nonatomic) IBOutlet UIButton *addAPPFriendBtn;
+@property (weak, nonatomic) IBOutlet UIButton *addwxfriendBtn;
+@property (weak, nonatomic) IBOutlet UIButton *addsmsFriendBtn;
 
 @end
 

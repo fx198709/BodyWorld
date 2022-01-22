@@ -25,7 +25,7 @@
     Room *currentRoom;
     NSTimer * dataTimer;
     NSTimer * numberTimer;
-
+    
     int userListHeight;
     
     GroupMyRoom *myRoomModel; //我的房间信息，主要是子房间信息，
@@ -49,21 +49,21 @@
 }
 
 - (void)changeUserList{
-//
+    //
     RemoveSubviews(userlistView, [NSArray array]);;
     int startX = 0;
     BOOL isCreate = NO;
-//    房主要在第一位
+    //    房主要在第一位
     NSMutableArray *tempArray = [NSMutableArray array];
     for (RoomUser *tempuser in myRoomModel.room_user) {
         if (tempuser.is_creator) {
-//            房主要放第一个
+            //            房主要放第一个
             if ([[APPObjOnce sharedAppOnce].currentUser.id  isEqualToString:tempuser.id]) {
                 isCreate = YES;
             }
             [tempArray insertObject:tempuser atIndex:0];
         }else{
-//            同意的才添加
+            //            同意的才添加
             if (tempuser.is_accept) {
                 [tempArray addObject:tempuser];
             }
@@ -76,7 +76,7 @@
         UserInfoView * userView = [[UserInfoView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
         userView.userInteractionEnabled = YES;
-//        团课 不能删除人
+        //        团课 不能删除人
         [userView changeDatawithRoomUser:user andIsCreater:NO];
         userlistView.contentSize = CGSizeMake(0, 0);
         return;
@@ -87,7 +87,7 @@
             user = tempArray[index];
         }
         if (tempArray.count < 1 && index == 0) {
-//            如果一个人都没有，把自己加在第一个
+            //            如果一个人都没有，把自己加在第一个
             user = [[RoomUser alloc] init];
             user.avatar = [APPObjOnce sharedAppOnce].currentUser.avatar;
             user.nickname = [APPObjOnce sharedAppOnce].currentUser.nickname;
@@ -95,14 +95,14 @@
         UserInfoView * userView = [[UserInfoView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
         userView.userInteractionEnabled = YES;
-//        团课 不能删除人
+        //        团课 不能删除人
         [userView changeDatawithRoomUser:user andIsCreater:NO];
         userView.deleteBtn.tag = 1000+ index;
         startX = startX+80;
         
     }
     if (tempArray.count < 4 && isCreate) {
-//        可以添加人
+        //        可以添加人
         UIView * userView = [[UIView alloc] initWithFrame:CGRectMake(startX, 0, 70, userListHeight)];
         [userlistView addSubview:userView];
         CGSize  parentSize = CGSizeMake(60, 60);
@@ -156,12 +156,12 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSDictionary *baddyParams = @{
-                           @"sub_room_id": myRoomModel.sub_room_id
-                       };
+        @"sub_room_id": myRoomModel.sub_room_id
+    };
     [manager POST:@"subroom/agree" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (CheckResponseObject(responseObject)) {
-//            同意 直接返回 开启timer
+            //            同意 直接返回 开启timer
             self->hasDealPushData = YES;//表示已经处理过推送消息了 然后开启定时器
             [self startDataTimer];
         }else{
@@ -174,19 +174,19 @@
 }
 
 - (void)refuseInvite:(UIAlertController*)alert{
-//            [alertControl dismissViewControllerAnimated:YES completion:nil];
-//    sub_room_id
-//    user_id
+    //            [alertControl dismissViewControllerAnimated:YES completion:nil];
+    //    sub_room_id
+    //    user_id
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSDictionary *baddyParams = @{
-                           @"sub_room_id": myRoomModel.sub_room_id,
-                           @"user_id": [APPObjOnce sharedAppOnce].currentUser.id
-                       };
+        @"sub_room_id": myRoomModel.sub_room_id,
+        @"user_id": [APPObjOnce sharedAppOnce].currentUser.id
+    };
     [manager POST:@"subroom/refuse" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (CheckResponseObject(responseObject)) {
-//            拒绝 直接返回
+            //            拒绝 直接返回
             [self.navigationController popViewControllerAnimated:YES];
         }else{
             [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:self];
@@ -204,19 +204,19 @@
         return;
     }
     BOOL needAddview = NO;//是否需要添加  随机 邀请朋友的视图
-//    查看自己是不是在别人的子房间内
+    //    查看自己是不是在别人的子房间内
     if (myRoomModel.is_accept == 0) {
         if (myRoomModel.sub_room_id && myRoomModel.sub_room_id.length >0 && !myRoomModel.is_creator) {
             //        弹出选择的alertview 有子房间信息，有人邀请的
             [self showAcceptAlertControl];
             return;
         }else{
-//            需要加上头部的信息
+            //            需要加上头部的信息
             needAddview = YES;
         }
     }
     if (myRoomModel.is_accept == 1) {
-//        判断自己是不是子房间的房主， 如果不是，则不需要显示上面的那部分
+        //        判断自己是不是子房间的房主， 如果不是，则不需要显示上面的那部分
         if (myRoomModel.is_creator) {
             needAddview = YES;
         }
@@ -237,7 +237,7 @@
             make.left.equalTo(_bottomScrollview).offset(15);
             make.right.equalTo(_bottomScrollview).offset(-15);
             make.bottom.equalTo(choosePeopleTypeView.mas_bottom);
-         }];
+        }];
         WeakSelf
         choosePeopleTypeView.shareTypeBtnClick = ^(NSNumber* clickModel) {
             [wSelf sharedType:clickModel.intValue];
@@ -257,13 +257,13 @@
 - (void)changetillBtnTitle{
     
     if (currentRoom.status !=0) {
-//    表示已经开始
+        //    表示已经开始
     }
     if (currentRoom.start_time) {
         long currentTime = [[NSDate date] timeIntervalSince1970];
         long diff = currentRoom.start_time - currentTime;
         if (diff > 0) {
-        
+            
             NSString *leftString = [CommonTools reachLeftString:diff];
             NSString *string = ChineseStringOrENFun(@"距开始", @"Till start");
             NSString *titleString = [NSString stringWithFormat:@"%@ %@",string,leftString];
@@ -280,7 +280,7 @@
             [self.tillBtn addTarget:self action:@selector(joinInRoomClicked) forControlEvents:UIControlEventTouchUpInside];
             _startNowBtnHeightCon.constant = 0;
             _actionBtnTopConstraint.constant = 0;
-
+            
         }
     }
 }
@@ -305,12 +305,12 @@
     self.startNowBtn.layer.cornerRadius =5;
     self.startNowBtn.clipsToBounds =YES;
     BOOL isCreate = [currentRoom.creator_userid isEqualToString:[APPObjOnce sharedAppOnce].currentUser.id];
-//    是自己创建的，才有提前开始按钮
+    //    是自己创建的，才有提前开始按钮
     if (!isCreate) {
         _startNowBtnHeightCon.constant = 0;
         _actionBtnTopConstraint.constant = 0;
     }
-
+    
     [self.startNowBtn setTitle:startNowString forState:UIControlStateNormal];
     [self.startNowBtn setTitle:startNowString forState:UIControlStateHighlighted];
     UIImage * image1 = [UIImage imageWithColor:SelectGreenColor];
@@ -347,7 +347,7 @@
     if (myRoomModel) {
         [self changeChoosePeopleTypeOutView];
     }
-
+    
     UIView *userListBackView = [[UIView alloc] init];
     [_bottomScrollview addSubview:userListBackView];
     int listwidth = ScreenWidth - 30;
@@ -357,7 +357,7 @@
         make.right.equalTo(_bottomScrollview).offset(-15);
         make.height.mas_equalTo(userListHeight);
     }];
-
+    
     userlistView = [[UIScrollView alloc] init];
     [userListBackView addSubview:userlistView];
     userlistView.frame = CGRectMake(0, 0, listwidth, userListHeight);
@@ -430,8 +430,8 @@
     NSMutableDictionary *codeDict = [NSMutableDictionary dictionary];
     codeDict[@"eid"] =self.event_id;
     codeDict[@"name"] =nickName;
-
-//    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
+    
+    //    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
     GroupRoomViewControl *roomVC = [[GroupRoomViewControl alloc] initWith:codeDict];
     [self.navigationController pushViewController:roomVC animated:YES];
     roomVC.invc = self;
@@ -449,9 +449,9 @@
     userListHeight = 110;
     enterRoomType = 0;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    进来就调用，进入房间
+    //    进来就调用，进入房间
     if (self.extended_data.allKeys.count) {
-//        从推送进来的
+        //        从推送进来的
         hasDealPushData = NO;
     }else{
         hasDealPushData = YES;
@@ -463,12 +463,12 @@
     [super viewWillAppear:animated];
     [self reachData];
     [self changetillBtnTitle];
-//    处理过推送信息，或者没有推送信息，这边才开启
+    //    处理过推送信息，或者没有推送信息，这边才开启
     [self startDataTimer];
     [numberTimer invalidate];
     numberTimer = nil;
     numberTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changetillBtnTitle) userInfo:nil repeats:YES];
-        
+    
 }
 
 - (void)startDataTimer{
@@ -483,7 +483,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-//    不能左滑点击
+    //    不能左滑点击
     self.isTapBack = NO;
 }
 
@@ -500,32 +500,32 @@
 
 
 - (void)reachMyRoomData{
-//    GET /api/subroom/myroom?user_id=46009524363987460&event_id=
-//    extended_data
-//     http://1.117.70.210:8091/api/subroom/myroom?user_id=45169669346167300&event_id=384827458639104516&sub_room_id=2021121202_ddygra
+    //    GET /api/subroom/myroom?user_id=46009524363987460&event_id=
+    //    extended_data
+    //     http://1.117.70.210:8091/api/subroom/myroom?user_id=45169669346167300&event_id=384827458639104516&sub_room_id=2021121202_ddygra
     
-//    2021121202_ddygra
+    //    2021121202_ddygra
     
-//http://1.117.70.210:8091/api/subroom/agree
-//http://1.117.70.210:8091/api/subroom/refuse
+    //http://1.117.70.210:8091/api/subroom/agree
+    //http://1.117.70.210:8091/api/subroom/refuse
     NSDictionary *baddyParams1 = @{
-                           @"event_id": self.event_id,
-                           @"user_id":[APPObjOnce sharedAppOnce].currentUser.id
-                       };
+        @"event_id": self.event_id,
+        @"user_id":[APPObjOnce sharedAppOnce].currentUser.id
+    };
     NSMutableDictionary *baddyParams = [NSMutableDictionary dictionaryWithDictionary:baddyParams1];
     if (self.extended_data.allKeys.count && !hasDealPushData) {
         [baddyParams setObject:[self.extended_data objectForKey:@"sub_room_id"] forKey:@"sub_room_id"];
     }
-
+    
     [[AFAppNetAPIClient manager] GET:@"subroom/myroom" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         if (CheckResponseObject(responseObject)) {
             GroupMyRoom * myRoom = [[GroupMyRoom alloc] initWithDictionary:responseObject[@"recordset"] error:nil];
             self->myRoomModel = myRoom;
-//            获取子房间详情之后，这边需要重新
+            //            获取子房间详情之后，这边需要重新
             [self changeviewAfterRearchMyRoom];
         }else{
             [CommonTools showAlertDismissWithResponseContent:responseObject control:self];
-//            弹出错误，然后开启
+            //            弹出错误，然后开启
             self->hasDealPushData = YES;//表示已经处理过推送消息了 然后开启定时器
             [self startDataTimer];
         }
@@ -538,14 +538,14 @@
 - (void)createSubRoomOrDelete:(int)type{
     enterRoomType = type;
     if (type == 0) {
-//        随机 sub_room_id
+        //        随机 sub_room_id
         if (myRoomModel.sub_room_id.length > 0) {
             NSDictionary *baddyParams = @{
-                                   @"sub_room_id":myRoomModel.sub_room_id
-                               };
+                @"sub_room_id":myRoomModel.sub_room_id
+            };
             [[AFAppNetAPIClient manager] POST:@"subroom/del" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
                 if (CheckResponseObject(responseObject)) {
-//                    获取一次子房间信息
+                    //                    获取一次子房间信息
                     [self reachMyRoomData];
                 }
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -553,24 +553,24 @@
         }
     }else if(type == 2){
         NSDictionary *baddyParams = @{
-                                @"event_id": self.event_id,
-                           };
+            @"event_id": self.event_id,
+        };
         [[AFAppNetAPIClient manager] POST:@"subroom/create_private" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             if (CheckResponseObject(responseObject)) {
-//                    获取一次子房间信息
+                //                    获取一次子房间信息
                 [self reachMyRoomData];
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
         }];
     }else{
         NSDictionary *baddyParams = @{
-                                @"event_id": self.event_id,
-                                @"friend_ids":@""
-                           };
-//    http://m.fitworld.live/api/subroom/create_private
+            @"event_id": self.event_id,
+            @"friend_ids":@""
+        };
+        //    http://m.fitworld.live/api/subroom/create_private
         [[AFAppNetAPIClient manager] POST:@"subroom/create" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             if (CheckResponseObject(responseObject)) {
-//                    获取一次子房间信息
+                //                    获取一次子房间信息
                 [self reachMyRoomData];
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -587,30 +587,30 @@
 
 - (void)reachRoomDetailInfo
 {
-        AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
-        NSString *eventid = self.event_id;
-        NSDictionary *baddyParams = @{
-                               @"event_id": eventid,
-                           };
-        [manager GET:@"room/detail" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if (CheckResponseObject(responseObject)) {
-                NSDictionary *roomJson = responseObject[@"recordset"];
-                NSError *error;
-                self->currentRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
-                self->currentRoom.event_id = eventid;
-    //            没有创建过视图，处理一下
-                if (!self->_bottomScrollview) {
-                    [self addsubviews];
-                }else{
-    //                只改变状态
-                    [self changetillBtnTitle];
-                }
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    NSString *eventid = self.event_id;
+    NSDictionary *baddyParams = @{
+        @"event_id": eventid,
+    };
+    [manager GET:@"room/detail" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (CheckResponseObject(responseObject)) {
+            NSDictionary *roomJson = responseObject[@"recordset"];
+            NSError *error;
+            self->currentRoom = [[Room alloc] initWithDictionary:roomJson error:&error];
+            self->currentRoom.event_id = eventid;
+            //            没有创建过视图，处理一下
+            if (!self->_bottomScrollview) {
+                [self addsubviews];
+            }else{
+                //                只改变状态
+                [self changetillBtnTitle];
             }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [CommonTools showNETErrorcontrol:self];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        }];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [CommonTools showNETErrorcontrol:self];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 
 //http://1.117.70.210:8091/api/room/user?event_id=380559132387707396
@@ -618,14 +618,14 @@
 
 - (void)startNowBtnClicked:(UIButton *)startNowBtn{
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
-
+    
     NSDictionary *baddyParams = @{
-                           @"event_id": self.event_id,
-                       };
+        @"event_id": self.event_id,
+    };
     [manager POST:@"room/start_in_advance" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (CheckResponseObject(responseObject)) {
-//            NSDictionary *roomJson = responseObject[@"recordset"];
+            //            NSDictionary *roomJson = responseObject[@"recordset"];
             NSString * nickName = [APPObjOnce sharedAppOnce].currentUser.nickname;
             [ConfigManager sharedInstance].eventId = self.event_id;
             [ConfigManager sharedInstance].nickName = nickName;
@@ -634,32 +634,32 @@
             NSMutableDictionary *codeDict = [NSMutableDictionary dictionary];
             codeDict[@"eid"] =self.event_id;
             codeDict[@"name"] =nickName;
-        
-        //    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
+            
+            //    NSDictionary *codeDict = @{@"eid":_selectRoom.event_id, @"name":nickName};
             GroupRoomViewControl *roomVC = [[GroupRoomViewControl alloc] initWith:codeDict];
             [self.navigationController pushViewController:roomVC animated:YES];
             roomVC.invc = self;
         }else{
             [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
         }
-       
-      
+        
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [CommonTools showNETErrorcontrol:self];
-
+        
     }];
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (void)backPopViewcontroller:(id) sender
 {
@@ -677,6 +677,29 @@
 }
 
 - (void)sharedType:(int)type{
+    if (type == 0) {
+        //        app内邀请 判断数量 还有是不是自己创建的
+        
+        BOOL isCreate = NO;
+        //    房主要在第一位
+        NSMutableArray *tempArray = [NSMutableArray array];
+        for (RoomUser *tempuser in myRoomModel.room_user) {
+            if (tempuser.is_creator) {
+                if ([[APPObjOnce sharedAppOnce].currentUser.id  isEqualToString:tempuser.id]) {
+                    isCreate = YES;
+                }
+                [tempArray insertObject:tempuser atIndex:0];
+            }else{
+                //            同意的才添加
+                if (tempuser.is_accept) {
+                    [tempArray addObject:tempuser];
+                }
+            }
+        }
+        if (tempArray.count < 4 && isCreate){
+            [self addPeopleBtnClick];
+        }
+    }
     if (type == 2) {
         [self sharedByMessage];
     }
@@ -688,8 +711,8 @@
 {
     Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
     if (messageClass != nil) {
-       /**MFMessageComposeViewController提供了操作界面
-        使用前必须检查canSendText方法,若返回NO则不应将这个controller展现出来,而应该提示用户不支持发送短信功能.
+        /**MFMessageComposeViewController提供了操作界面
+         使用前必须检查canSendText方法,若返回NO则不应将这个controller展现出来,而应该提示用户不支持发送短信功能.
          */
         if ([messageClass canSendText]) {
             [self displaySMSComposerSheet];
@@ -697,20 +720,20 @@
             [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"您设备没有短信功能", @"您设备没有短信功能") control:self];
         }
     }
-
+    
 }
- 
+
 
 -(void)displaySMSComposerSheet
 {
-   MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc]init];
+    MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc]init];
     picker.messageComposeDelegate =self;
     NSString *body = @"Hihi! 跟我一起来上健身课，品牌健身房的大牌教练，哪国人都有。";
     NSString *urlString = [NSString stringWithFormat:@"http://m.fitworld.live/assets/share?type=group&event_id=%@&room_sub_id=%@",_event_id,myRoomModel.sub_room_id];
     picker.body = [NSString stringWithFormat:@"%@%@",body,urlString];
-   
+    
     [self presentViewController:picker animated:YES completion:^{
-//        [self shareBackbuttonClicked:nil];
+        //        [self shareBackbuttonClicked:nil];
     }];
 }
 
@@ -724,9 +747,9 @@
         [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"短信发送成功", @"短信发送成功") control:self];
     }else if(result == MessageComposeResultFailed){
         [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"短信发送失败，是否重新发送？", @"短信发送失败，是否重新发送？") control:self];
-
+        
     }
-
+    
 }
 
 
