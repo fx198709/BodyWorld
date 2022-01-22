@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Train1TableViewCell : BaseTableViewCell
 
-- (void)changeDateWithRoomInfo:(Room*)roominfo;
+- (void)changeDateWithRoomInfo:(Room*)roominfo andTimeDur:(NSTimeInterval)timeDur;
 
 @end
 

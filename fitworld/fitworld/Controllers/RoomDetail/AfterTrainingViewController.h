@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSMutableArray *userList;
 @property (nonatomic, weak)UIViewController *invc;
 
+@property (nonatomic, assign)NSTimeInterval during;//锻炼持续时间
 
 
 

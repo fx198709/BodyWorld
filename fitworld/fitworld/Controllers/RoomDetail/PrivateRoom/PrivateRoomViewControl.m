@@ -47,6 +47,7 @@
     UIInterfaceOrientation currentOrientationType;//默认是竖屏
     
     int itemheight;//横屏每个小方块的高度
+    NSDate *startliveingTime;//第一次获取到流的时间
 }
 
 @property (nonatomic, strong) NSDictionary* mCode;
@@ -344,6 +345,10 @@
 - (void)onSessionUpdate:(ClassMember*)session withViewerModeChanged:(BOOL)modeChanged {
     //    [mHeaderPanel syncSession:session];
     //    有流过来了，表示开始直播了
+    if (!hasStartLiving) {
+//        第一次获取到流信息
+        startliveingTime = [NSDate date];
+    }
     hasStartLiving = YES;
     [mSidePanel syncSession:session];
     
@@ -650,9 +655,15 @@
 
 #pragma mark 跳转到完成页面
 - (void)jumpToTrainingvc{
+    [self removeAboveView];
+    NSTimeInterval duringTime = 0;
+    if (startliveingTime) {
+        duringTime = [[NSDate date] timeIntervalSinceDate:startliveingTime];
+    }
     AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
     trainingvc.event_id = self->mCode[@"eid"];
     trainingvc.invc = self.invc;
+    trainingvc.during = duringTime;
     [self.navigationController pushViewController:trainingvc animated:YES];
 }
 

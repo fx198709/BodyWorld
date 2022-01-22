@@ -15,7 +15,7 @@
     // Initialization code
 }
 
-- (void)changeDateWithRoomInfo:(Room*)roominfo{
+- (void)changeDateWithRoomInfo:(Room*)roominfo andTimeDur:(NSTimeInterval)timeDur{
     RemoveSubviews(self.contentView, @[]);
     int outwith = ScreenWidth-20;
     UIView *detailView = [[UIView alloc] init];
@@ -96,9 +96,11 @@
     
 
     UILabel *getHeartLabel = [[UILabel alloc] init];
-    NSString *timeString = [NSString stringWithFormat:@"%02ld:%02ld:00",
-                            (long)roominfo.duration/60,
-                            (long)roominfo.duration%60];
+    long timeDurlong = timeDur;
+    long left60 = timeDurlong %3600;
+    NSString *timeString = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",
+                            timeDurlong/3600,
+                            left60/60,(left60)%60];
 
     getHeartLabel.text = timeString;
     getHeartLabel.font = [UIFont boldSystemFontOfSize:22];;

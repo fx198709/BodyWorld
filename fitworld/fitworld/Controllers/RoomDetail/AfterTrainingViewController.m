@@ -86,7 +86,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         Train1TableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Train1TableViewCell" owner:self options:nil] lastObject];
-        [cell changeDateWithRoomInfo:self.currentRoom];
+        [cell changeDateWithRoomInfo:self.currentRoom andTimeDur:_during];
         return cell;
     }
     if (_currentRoom.type_int == 1 || _currentRoom.type_int == 2){
