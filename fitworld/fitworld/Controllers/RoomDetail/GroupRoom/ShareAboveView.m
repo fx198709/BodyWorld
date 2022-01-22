@@ -24,10 +24,12 @@
         CGRect btnframe = CGRectMake((parentSize-52)/2+i*parentSize, 17, 52, 67);
         UIButton *vbutton = [[UIButton alloc] initWithFrame:btnframe];
         NSString *imagename = @"icon_share_wx";
+        vbutton.hidden = YES;
         if (i == 1) {
             imagename = @"icon_share_wxq";
         }else if (i == 2) {
             imagename = @"icon_share_sms";
+            vbutton.hidden = NO;
         }
         [_shareview addSubview:vbutton];
         [vbutton setImage:[UIImage imageNamed:imagename] forState:UIControlStateNormal];

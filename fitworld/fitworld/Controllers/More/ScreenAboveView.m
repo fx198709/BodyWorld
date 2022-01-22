@@ -174,6 +174,8 @@
     _languageView.backgroundColor = UIColor.clearColor;
     
 }
+
+
 - (void)resetBtnClicked{
 //    重设
     _showJoin = NO;
@@ -215,6 +217,18 @@
     }
 }
 
+//计算按钮的宽度 有一个最小宽度
+- (int)reachTextSizemaxwith:(NSString*)intext{
+    int outwidth = ScreenWidth - 40*2;
+    int itemwidth = (outwidth-20)/3; //最小宽度
+    NSDictionary *dict = @{NSFontAttributeName :SystemFontOfSize(15)};
+    CGSize size =  [intext boundingRectWithSize:CGSizeMake(INT_MAX, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
+    if (size.width+25 < itemwidth) {
+        return itemwidth;
+    }
+    return size.width+25;
+}
+
 - (void)changeData:(NSArray*)timeArray andType:(NSArray*)typeArray andLanguage:(NSArray*)languageArray isjoin:(BOOL)isjoin{
     NSMutableArray *tempIds = [NSMutableArray array];
     _timeArray = [NSArray arrayWithArray:timeArray];
@@ -246,61 +260,79 @@
     int itemwidth = (outwidth-20)/3;
     int startHeight = 10;
     int btnHeight = 30;
-    
+    int differentx = 10; //宽度之间的间隔
 
-    
-    
+    int x = 0;
+    int y = startHeight;
     for (int index = 0; index < _typeArray.count; index++) {
         ScreenModel *model = [_typeArray objectAtIndex:index];
-        int y = index/3 *(btnHeight+startHeight) +startHeight;
-        int x = (itemwidth+10)*(index%3);
-        CGRect btnRect = CGRectMake(x, y, itemwidth, btnHeight);
+        int itemrealwith = [self reachTextSizemaxwith:model.name];
+        if (x+itemrealwith > outwidth) {
+            x = 0;
+            y = y+btnHeight+startHeight;
+        }
+        CGRect btnRect = CGRectMake(x, y, itemrealwith, btnHeight);
         ScreenAboveNameBtn *btnview = [ScreenAboveNameBtn buttonWithType:UIButtonTypeCustom];
         btnview.frame = btnRect;
         [_contentView addSubview:btnview];
         [btnview createSubview];
         [btnview changeDateWithScreenModel:model];
         [btnview addTarget:self action:@selector(btnviewClicked:) forControlEvents:UIControlEventTouchUpInside];
+        x = x+ itemrealwith + differentx;
     }
 
-    NSUInteger lineCount1 = _typeArray.count%3 == 0?_typeArray.count/3:_typeArray.count/3+1;
-    _top1constraint.constant = lineCount1* (startHeight+btnHeight);
+    int top1constraintvalue = y+btnHeight+startHeight;
+    _top1constraint.constant = top1constraintvalue;
     [_contentView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(lineCount1* (startHeight+btnHeight));
+        make.height.mas_equalTo(top1constraintvalue);
     }];
     
+    x = 0;
+    y = startHeight;
     for (int index = 0; index < _languageArray.count; index++) {
         ScreenModel *model = [_languageArray objectAtIndex:index];
-        int y = index/3 *(btnHeight+startHeight) +startHeight;
-        int x = (itemwidth+10)*(index%3);
-        CGRect btnRect = CGRectMake(x, y, itemwidth, btnHeight);
+        int itemrealwith = [self reachTextSizemaxwith:model.name];
+        if (x+itemrealwith > outwidth) {
+            x = 0;
+            y = y+btnHeight+startHeight;
+        }
+        CGRect btnRect = CGRectMake(x, y, itemrealwith, btnHeight);
         ScreenAboveNameBtn *btnview = [ScreenAboveNameBtn buttonWithType:UIButtonTypeCustom];
         btnview.frame = btnRect;
         [_languageView addSubview:btnview];
         [btnview createSubview];
         [btnview changeDateWithScreenModel:model];
         [btnview addTarget:self action:@selector(btnviewClicked:) forControlEvents:UIControlEventTouchUpInside];
+        x = x+ itemrealwith + differentx;
+
     }
-    NSUInteger lineCount0 = _languageArray.count%3 == 0?_languageArray.count/3:_languageArray.count/3+1;
+    int top2constraintvalue = y+btnHeight+startHeight;
     [_languageView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(lineCount0* (startHeight+btnHeight));
+        make.height.mas_equalTo(top2constraintvalue);
     }];
 
+    x = 0;
+    y = startHeight;
     for (int index = 0; index < _timeArray.count; index++) {
         ScreenModel *model = [_timeArray objectAtIndex:index];
-        int y = index/3 * (btnHeight+startHeight)+startHeight;
-        int x = (itemwidth+10)*(index%3);
-        CGRect btnRect = CGRectMake(x, y, itemwidth, btnHeight);
+        int itemrealwith = [self reachTextSizemaxwith:model.name];
+        if (x+itemrealwith > outwidth) {
+            x = 0;
+            y = y+btnHeight+startHeight;
+        }
+        CGRect btnRect = CGRectMake(x, y, itemrealwith, btnHeight);
         ScreenAboveNameBtn *btnview = [ScreenAboveNameBtn buttonWithType:UIButtonTypeCustom];
         btnview.frame = btnRect;
         [_durationView addSubview:btnview];
         [btnview createSubview];
         [btnview changeDateWithScreenModel:model];
         [btnview addTarget:self action:@selector(btnviewClicked:) forControlEvents:UIControlEventTouchUpInside];
+        x = x+ itemrealwith + differentx;
+
     }
-    NSUInteger lineCount2 = _timeArray.count%3 == 0?_timeArray.count/3:_timeArray.count/3+1;
+    int top3constraintvalue = y+btnHeight+startHeight;
     [_durationView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(lineCount2* (startHeight+btnHeight));
+        make.height.mas_equalTo(top3constraintvalue);
     }];
     _showJoin = isjoin;
     [self changeShowJoinBtnWithState];
