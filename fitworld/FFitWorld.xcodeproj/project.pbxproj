@@ -321,7 +321,6 @@
 		047DC200268CD09700A3E37E /* fitworld.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fitworld.xcdatamodel; sourceTree = "<group>"; };
 		047DC202268CD09900A3E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		047DC205268CD09900A3E37E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		047DC207268CD09900A3E37E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		047DC208268CD09900A3E37E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		048A1768268EA98400A52EBF /* FITAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FITAPI.h; sourceTree = "<group>"; };
 		04CD2E4426982A45007814E6 /* GoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsCell.h; sourceTree = "<group>"; };
@@ -623,6 +622,9 @@
 		DD98BC69273F653900D3B59F /* CourseDetailSmallview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseDetailSmallview.h; sourceTree = "<group>"; };
 		DD98BC6A273F653900D3B59F /* CourseDetailSmallview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseDetailSmallview.m; sourceTree = "<group>"; };
 		DD98BC6C273F655300D3B59F /* CourseDetailSmallview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDetailSmallview.xib; sourceTree = "<group>"; };
+		DDAA2BBB2798429A00A8FF96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
+		DDAA2BBD279842A300A8FF96 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/Info.plist"; sourceTree = "<group>"; };
+		DDAA2BBE2798F52700A8FF96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		DDACD7E927610C3500CCAAA1 /* ChoosePeopleTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleTypeView.h; sourceTree = "<group>"; };
 		DDACD7EA27610C3500CCAAA1 /* ChoosePeopleTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePeopleTypeView.m; sourceTree = "<group>"; };
 		DDACD7EC27610C4A00CCAAA1 /* ChoosePeopleTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoosePeopleTypeView.xib; sourceTree = "<group>"; };
@@ -951,7 +953,7 @@
 				047DC1FC268CD09700A3E37E /* Main.storyboard */,
 				047DC202268CD09900A3E37E /* Assets.xcassets */,
 				047DC204268CD09900A3E37E /* LaunchScreen.storyboard */,
-				047DC207268CD09900A3E37E /* Info.plist */,
+				DDAA2BBC2798429A00A8FF96 /* Info.plist */,
 				0472011A26B7BAF400C19437 /* Localizable.strings */,
 				0472011426B7934300C19437 /* InfoPlist.strings */,
 				047DC208268CD09900A3E37E /* main.m */,
@@ -1908,6 +1910,16 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		DDAA2BBC2798429A00A8FF96 /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDAA2BBB2798429A00A8FF96 /* en */,
+				DDAA2BBD279842A300A8FF96 /* zh-Hans */,
+				DDAA2BBE2798F52700A8FF96 /* Base */,
+			);
+			name = Info.plist;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -2034,10 +2046,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FFitWorldDebug.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = GP5S8P6NYU;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SCCS5WMD82;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2050,10 +2062,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bodybuild.bodybuild;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fitworld.world;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = SCCS5WMD82.com.fitworld.world;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2065,10 +2077,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = GP5S8P6NYU;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SCCS5WMD82;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2081,10 +2093,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bodybuild.bodybuild;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fitworld.world;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = com.fitworld.world.appstore;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

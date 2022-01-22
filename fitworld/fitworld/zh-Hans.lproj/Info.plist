@@ -22,12 +22,17 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Capture video for sharing</string>
+	<string>用来参与健身直播课程获取用户视频信息</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Capture audio for sharing</string>
+	<string>麦克风为了直播过程中用户进行语音交流</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Photo for sharing</string>
+	<string>用于用户拍照上传头像</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -68,10 +73,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 </dict>
 </plist>
