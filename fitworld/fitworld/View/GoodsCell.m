@@ -35,7 +35,7 @@
     self.roomname.text = room.name;
     NSString *perString = ChineseStringOrENFun(@"房主", @"Rooms");
     if (room.course.type_int == 1 || room.course.type_int == 2) {
-        perString = ChineseStringOrENFun(@"教练", @"Coach");
+        perString = TrainerString;
     }
     _languageLabel.text = [room getCourse_language_string];
     NSString *nickname = [NSString stringWithFormat:@"%@:%@",perString,room.room_creator.nickname];

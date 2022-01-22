@@ -57,7 +57,7 @@
     _typeimageview.image=[UIImage imageNamed:[NSString stringWithFormat:@"more_type_icon%d",type_int]];
     NSString *perString = ChineseStringOrENFun(@"房主:", @"Rooms:");
     if (type_int == 1 || type_int == 2) {
-        perString = ChineseStringOrENFun(@"教练:", @"Coach:");
+        perString = [NSString stringWithFormat:@"%@:",TrainerString];
     }
     _typeleftLabel.text = perString;
     _peopleLabel.text = room.room_creator.nickname;

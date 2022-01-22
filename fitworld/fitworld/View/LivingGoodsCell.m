@@ -39,11 +39,11 @@
     _classTypeLabel.textColor = BgGrayColor;
 
     if (room.course.type_int == 1 ) {
-        perString = ChineseStringOrENFun(@"教练", @"Coach");
+        perString = TrainerString;
         classType = ChineseStringOrENFun(@"团课", @"Group");
     }
     if (room.course.type_int == 2 ) {
-        perString = ChineseStringOrENFun(@"教练", @"Coach");
+        perString = TrainerString;
         classType = ChineseStringOrENFun(@"私教", @"PERSON");
     }
     NSString *language = [room getCourse_language_string];

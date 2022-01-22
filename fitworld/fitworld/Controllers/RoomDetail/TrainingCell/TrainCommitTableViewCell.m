@@ -88,11 +88,7 @@
 }
 - (IBAction)commitBtnClicked:(UIButton *)sender {
     UIViewController *parentVC = [CommonTools findControlWithView:self];
-    if (_grade < 1) {
-        [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"请选择星级", @"Choose Star") control:parentVC];
-        return;
-    }
-    if (_contentTextView.text.length < 1) {
+    if (_contentTextView.text.length < 1 && _grade < 1) {
         [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"说点什么", @"Say some") control:parentVC];
         return;
     }
@@ -100,9 +96,13 @@
     [MBProgressHUD showHUDAddedTo:parentVC.view animated:YES];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     NSMutableDictionary *baddyParams = [NSMutableDictionary dictionary];
-    [baddyParams setObject:[NSNumber numberWithInteger:_grade] forKey:@"grade"];
+    if (_grade > 0) {
+        [baddyParams setObject:[NSNumber numberWithInteger:_grade] forKey:@"grade"];
+    }
+    if (_contentTextView.text.length > 0) {
+        [baddyParams setObject:_contentTextView.text forKey:@"content"];
+    }
     [baddyParams setObject:_coach_id forKey:@"coach_id"];
-    [baddyParams setObject:_contentTextView.text forKey:@"content"];
     [manager POST:@"comment/coach/add" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:parentVC.view animated:YES];
         if (CheckResponseObject(responseObject)) {

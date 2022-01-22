@@ -43,12 +43,13 @@ return [obj objectForKey:key];\
 
 #define Text_More ChineseStringOrENFun(@"更多", @"More")
 
-#define Text_Training ChineseStringOrENFun(@"对练课", @"Buddy tranining")
+#define Text_Training ChineseStringOrENFun(@"对练课", @"Buddy Tranining")
 #define Text_Group ChineseStringOrENFun(@"团课", @"Group Classes")
-#define Text_Private ChineseStringOrENFun(@"私教", @"LIVE PERSON")
+#define Text_Private ChineseStringOrENFun(@"私教", @"Personal Tranining")
 #define CancelString ChineseStringOrENFun(@"取消", @"Cancel")
 #define OKString ChineseStringOrENFun(@"确认", @"OK")
 #define ActionSuccssString ChineseStringOrENFun(@"操作成功", @"Operate Successfully")
+#define TrainerString ChineseStringOrENFun(@"教练", @"Trainer")
 
 
 

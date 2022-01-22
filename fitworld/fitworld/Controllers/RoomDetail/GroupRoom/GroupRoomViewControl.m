@@ -225,13 +225,13 @@
                 self->panelSize = CGSizeMake(ScreenWidth/4, ScreenWidth/4/0.563);
             }
             self->mSidePanel.size = CGSizeMake(self->panelSize.width , self->panelSize.height);
-            for (NSInteger  i = strongSelf.guestPanels.count -1; i>= 0;i--) {
-                GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:i];
-                guestpanel.size = CGSizeMake(self->panelSize.width , self->panelSize.height);
-                guestpanel.layer.cornerRadius = 5;
-                guestpanel.layer.masksToBounds = YES;
-                guestpanel.clipsToBounds = YES;
-            }
+//            for (NSInteger  i = strongSelf.guestPanels.count -1; i>= 0;i--) {
+//                GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:i];
+//                guestpanel.size = CGSizeMake(self->panelSize.width , self->panelSize.height);
+//                guestpanel.layer.cornerRadius = 5;
+//                guestpanel.layer.masksToBounds = YES;
+//                guestpanel.clipsToBounds = YES;
+//            }
             self->vnumberLabel.text = [NSString stringWithFormat:@"%lu online",strongSelf.guestPanels.count+1];
         }];
     }
@@ -830,16 +830,9 @@
 
 //获取横屏的位置
 - (CGRect)reachRectwithindex:(int)index{
-    self->panelSize = CGSizeMake(itemheight*16/9,itemheight);
-    int itemwidth = itemheight*16/9;//横屏的高度
-    int starty = (ScreenHeight- 2*(itemheight+20))/2;
-    CGRect panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+itemheight+20, itemwidth, itemheight);
-    if (index == 1) {
-        panelRect = CGRectMake(60, starty+20, itemwidth, itemheight);;
-    }
-    if (index == 2) {
-        panelRect = CGRectMake(60, starty+20+itemheight+20, itemwidth, itemheight);;
-    }
+    //    改需求了，变成竖向的4个了 居左  x为60
+    int y = (index+1)*(itemheight+10);
+    CGRect panelRect = CGRectMake(60, y+40, itemheight*16/9, itemheight);
     return panelRect;
 }
 
@@ -854,12 +847,11 @@
     [self removeAboveView];
 //    横竖屏切换，恢复到初始状态
     if (self->currentOrientationType == UIInterfaceOrientationLandscapeRight) {
-        itemheight = (ScreenHeight-40)/3 - 20; //横屏每个小方块的高度
+        itemheight = (ScreenHeight-40)/4 - 10; //横屏每个小方块的高度
         self->panelSize = CGSizeMake(itemheight*16/9,itemheight);
         int itemwidth = itemheight*16/9;//横屏的高度
-        int starty = (ScreenHeight- 2*(itemheight+20))/2;
 //                    第一个在右边
-        mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
+        mSidePanel.frame = CGRectMake(60, 40, itemwidth, itemheight);
         for (int index = 0; index < _guestPanels.count; index++) {
             GuestPanel * guestpanel = [_guestPanels objectAtIndex:index];
             guestpanel.frame =[self reachRectwithindex:index];
