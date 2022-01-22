@@ -38,7 +38,6 @@
     make.left.with.top.equalTo(self);
     make.size.equalTo(self);
   }];
-//    mVideoRender.render_view.backgroundColor = [UIColor blueColor];
 //    展示形式
 //  if (!mIsMain) {
     [mVideoRender set_content_mode:UIViewContentModeScaleAspectFit];

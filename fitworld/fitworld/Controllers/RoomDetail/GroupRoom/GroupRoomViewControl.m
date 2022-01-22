@@ -875,6 +875,7 @@
         for (int index = 0; index < _guestPanels.count; index++) {
             GuestPanel * guestpanel = [_guestPanels objectAtIndex:index];
             guestpanel.frame =[self reachRectwithindex:index];
+            [guestpanel changeUserImageLayout];
         }
         
     }else{
@@ -885,6 +886,7 @@
             CGFloat startX = ScreenWidth/4*(i+1);
             CGFloat startY = 100;
             guestpanel.frame = CGRectMake(startX, startY, self->panelSize.width, self->panelSize.height);
+            [guestpanel changeUserImageLayout];
         }
        
     }

@@ -30,6 +30,10 @@
 
 //屏蔽其他人 只显示头像
 - (void)onlyShowUserImage;
+
+//改变屏蔽他人的位置
+- (void)changeUserImageLayout;
+
 //显示其他人的流
 - (void)showUservideo;
 

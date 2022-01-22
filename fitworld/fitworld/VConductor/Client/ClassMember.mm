@@ -172,7 +172,7 @@
     return [mLocalMedia isAudioEnable];
 }
 
-- (BOOL)isvisible{
+- (BOOL)iscanvisible{
     if (mMainMedia == nil) {
         return NO;
     }

@@ -330,7 +330,7 @@
                     GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
                     CGRect panelRect =  CGRectMake(startitemX+smallwidth*(index+1), startitemY, realItemWith, realItemWith*9/16);
                     guestpanel.frame = panelRect;
-                                    
+                    [guestpanel changeUserImageLayout];
                 };
 //                //                横屏  就3个的时候，需要两边等分，其他时候 都不需要
 //                if (showguestcount == 3) {
@@ -400,6 +400,11 @@
                             
                         }
                     }
+//                    改变屏蔽图片的大小
+                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
+                        GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
+                        [guestpanel changeUserImageLayout];
+                    };
                 }
             }
             
