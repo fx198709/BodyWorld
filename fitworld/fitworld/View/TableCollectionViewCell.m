@@ -231,7 +231,7 @@
         [manager POST:@"room/kickout" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             [MBProgressHUD hideHUDForView:parentView animated:YES];
             if (CheckResponseObject(responseObject)) {
-                [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"操作成功", @"操作成功") control:[self viewController]];
+                [CommonTools showAlertDismissWithContent:ActionSuccssString control:[self viewController]];
                 if ([parentControl respondsToSelector:@selector(headerRereshing)]) {
                     [parentControl performSelector:@selector(headerRereshing)];
                 }
@@ -252,7 +252,7 @@
         [manager POST:@"practise/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             [MBProgressHUD hideHUDForView:parentView animated:YES];
             if (CheckResponseObject(responseObject)) {
-                [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"操作成功", @"操作成功") control:[self viewController]];
+                [CommonTools showAlertDismissWithContent:ActionSuccssString control:[self viewController]];
                 if ([parentControl respondsToSelector:@selector(headerRereshing)]) {
                     [parentControl performSelector:@selector(headerRereshing)];
                 }

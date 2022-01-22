@@ -232,7 +232,7 @@
         [manager POST:@"room/kickout" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (CheckResponseObject(responseObject)) {
-                [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"操作成功", @"操作成功") control:self];
+                [CommonTools showAlertDismissWithContent:ActionSuccssString control:self];
                 if ([parentControl respondsToSelector:@selector(MJRefreshData)]) {
                     [parentControl performSelector:@selector(MJRefreshData)];
                 }
@@ -253,7 +253,7 @@
         [manager POST:@"practise/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (CheckResponseObject(responseObject)) {
-                [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"操作成功", @"操作成功") control:self];
+                [CommonTools showAlertDismissWithContent:ActionSuccssString control:self];
                 if ([parentControl respondsToSelector:@selector(MJRefreshData)]) {
                     [parentControl performSelector:@selector(MJRefreshData)];
                 }

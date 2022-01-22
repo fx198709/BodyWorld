@@ -35,8 +35,6 @@ typedef void(^ScreenBtnBlock)(NSArray*timeArray, NSArray*typeArray,NSArray * lan
 @property (nonatomic, copy)ScreenBtnBlock screenOKClick;
 @property (weak, nonatomic) IBOutlet UILabel *canenterLabel;
 @property (weak, nonatomic) IBOutlet UIButton *canEnterBtn;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *top1constraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *top2constraint;
 
 - (void)changeData:(NSArray*)timeArray andType:(NSArray*)typeArray andLanguage:(NSArray*)languageArray isjoin:(BOOL)isjoin;
  

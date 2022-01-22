@@ -257,7 +257,7 @@
     RemoveSubviews(_languageView, @[]);
 
     int outwidth = ScreenWidth - 40*2;
-    int itemwidth = (outwidth-20)/3;
+//    int itemwidth = (outwidth-20)/3;
     int startHeight = 10;
     int btnHeight = 30;
     int differentx = 10; //宽度之间的间隔
@@ -282,7 +282,6 @@
     }
 
     int top1constraintvalue = y+btnHeight+startHeight;
-    _top1constraint.constant = top1constraintvalue;
     [_contentView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(top1constraintvalue);
     }];

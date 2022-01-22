@@ -70,7 +70,7 @@
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 if (CheckResponseObject(responseObject)) {
                     
-                    [CommonTools showAlertDismissWithContent:ChineseStringOrENFun(@"操作成功", @"Success") control:self];
+                    [CommonTools showAlertDismissWithContent:ActionSuccssString control:self];
                     [self.navigationController popViewControllerAnimated:YES];
                 }else{
                     [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:self];
