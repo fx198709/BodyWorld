@@ -298,9 +298,14 @@
                 self.selectRoom.is_join = postBool;
                 if (postBool) {
                     self.selectRoom.is_room_user = YES;
-                    GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
-                    vc.event_id = self.selectRoom.event_id;
-                    [self.navigationController pushViewController:vc animated:YES];
+                    int type_int = [self.selectRoom reachRoomRealTypeInt];
+                    if (type_int == 1 ) {
+    //                    团课
+                        GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
+                        vc.event_id = self.selectRoom.event_id;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                   
                 }
                 [self changejoinBtn];
             }else{
