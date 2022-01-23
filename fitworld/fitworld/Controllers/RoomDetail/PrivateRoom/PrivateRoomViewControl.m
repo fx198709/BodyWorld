@@ -48,6 +48,7 @@
     
     int itemheight;//横屏每个小方块的高度
     NSDate *startliveingTime;//第一次获取到流的时间
+    UIAlertController *alertControl;//弹窗
 }
 
 @property (nonatomic, strong) NSDictionary* mCode;
@@ -320,21 +321,33 @@
 - (void)onJoinRoomFailed:(NSString *)error {
     [self hideHud];
     [self showHud:error withDuration:3];
-    if (canErrorToPOP) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    [self excitvc];
 }
 
 - (void)onLostRoomWithCode:(NSInteger)code andError:(NSString*)err {
     [self showHud:@"您已离开房间" withDuration:3];
 }
 
+- (void)excitvc{
+    if (alertControl) {
+        [alertControl dismissViewControllerAnimated:NO completion:^{
+            
+        }];
+    }
+    if (canErrorToPOP) {
+        //        已经开启了流，就到完成页面了
+        if (hasStartLiving) {
+            [self jumpToTrainingvc];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+}
+
 - (void)onLeaveRom {
     [mSidePanel detachLocalView];
     [mMainPanel detachLocalView];
-    if (canErrorToPOP) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    [self excitvc];
 }
 
 - (void)onRoomUpdate:(ClassRoom*)room {
@@ -425,7 +438,7 @@
     //    [self.navigationController popViewControllerAnimated:YES];
     NSString *titleString = ChineseStringOrENFun(@"提示", @"Alert");
     NSString *contentString = ChineseStringOrENFun(@"你将退出此次课程，确认退出吗？", @"Are you sure to stop training");
-    UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:titleString message:contentString preferredStyle:UIAlertControllerStyleAlert];
+    alertControl = [UIAlertController alertControllerWithTitle:titleString message:contentString preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:CancelString style:UIAlertActionStyleCancel handler:nil];
     [alertControl addAction:cancelAction];
     __weak UIAlertController *weakalert = alertControl;
