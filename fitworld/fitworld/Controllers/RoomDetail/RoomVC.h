@@ -14,5 +14,6 @@
 
 - (id)initWith:(NSDictionary*)code;
 
-
+//改变屏幕方向
+- (void)changeOrientation;
 @end

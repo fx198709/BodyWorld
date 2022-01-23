@@ -39,8 +39,7 @@
 @property (nonatomic , copy) NSString              * video_id;
 @property (nonatomic , strong) NSString              * language;
 @property (nonatomic , strong) NSString              * gym_name;
-
-
+@property (nonatomic , strong) NSString              * screen; //屏幕方向
 
 
 - (BOOL)isEqualToCourse:(Course *)course;
