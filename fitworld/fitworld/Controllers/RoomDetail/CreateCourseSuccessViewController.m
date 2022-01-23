@@ -136,9 +136,10 @@
             NSString *titleString = ChineseStringOrENFun(@"开始", @"JOIN");
             [self.tillBtn setTitle:titleString forState:UIControlStateNormal];
             [self.tillBtn setTitle:titleString forState:UIControlStateHighlighted];
-            UIImage * image1 = [UIImage imageWithColor:SelectGreenColor];
+            UIImage * image1 = [UIImage imageWithColor:UIRGBColor(73,146,94,1)];
             [self.tillBtn setBackgroundImage:image1 forState:UIControlStateNormal];
             [self.tillBtn setBackgroundImage:image1 forState:UIControlStateHighlighted];
+            self.tillBtn.backgroundColor = UIRGBColor(106,159,117,1);
             //                已经开始直播了
             [self.tillBtn addTarget:self action:@selector(joinInRoomClicked) forControlEvents:UIControlEventTouchUpInside];
             _startNowBtnHeightCon.constant = 0;
@@ -176,7 +177,7 @@
 
     [self.startNowBtn setTitle:startNowString forState:UIControlStateNormal];
     [self.startNowBtn setTitle:startNowString forState:UIControlStateHighlighted];
-    UIImage * image1 = [UIImage imageWithColor:SelectGreenColor];
+    UIImage * image1 = [UIImage imageWithColor:UIRGBColor(73,146,94,1)];
     [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateNormal];
     [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateHighlighted];
     [self.startNowBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];

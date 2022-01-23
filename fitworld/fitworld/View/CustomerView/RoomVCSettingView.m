@@ -16,12 +16,12 @@
     _mycamare.text = ChineseStringOrENFun(@"我的摄像头", @"My Camera");
     _myMicLabel.text  = ChineseStringOrENFun(@"我的麦克", @"My Mic");
     _notDisturbLabel.text = ChineseStringOrENFun(@"免打扰", @"Do Not Disturb");
-    NSString *btnTitle = ChineseStringOrENFun(@"退出", @"OK");
+    NSString *btnTitle = ChineseStringOrENFun(@"确认", @"OK");
     [_cancelBtn setTitle:btnTitle forState:UIControlStateNormal];
     [_cancelBtn setTitle:btnTitle forState:UIControlStateHighlighted];
     [_cancelBtn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
-    NSString *orientationTitle = ChineseStringOrENFun(@"强制横竖屏", @"Screen change");
+    NSString *orientationTitle = ChineseStringOrENFun(@"横竖屏切换", @"Screen change");
     [_changeOrientationBtn setTitle:orientationTitle forState:UIControlStateNormal];
     [_changeOrientationBtn setTitle:orientationTitle forState:UIControlStateHighlighted];
     [_changeOrientationBtn addTarget:self action:@selector(orientationBtnClicked) forControlEvents:UIControlEventTouchUpInside];
