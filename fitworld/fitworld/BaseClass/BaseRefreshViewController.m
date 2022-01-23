@@ -66,15 +66,15 @@
 - (void)addMJRefreshToTable:(UITableView *)tableView {
     MJRefreshNormalHeader *mjHeader = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(MJRefreshData)];
     mjHeader.lastUpdatedTimeLabel.hidden = YES;
-    [mjHeader setTitle:@"下拉可以刷新" forState:MJRefreshStateIdle];
-    [mjHeader setTitle:@"松开立即刷新" forState:MJRefreshStatePulling];
-    [mjHeader setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
+    [mjHeader setTitle:PullDownToRefresh forState:MJRefreshStateIdle];
+    [mjHeader setTitle:ReleaseToRefresh forState:MJRefreshStatePulling];
+    [mjHeader setTitle:Loading forState:MJRefreshStateRefreshing];
     
     MJRefreshAutoNormalFooter *mjFooter = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(MJRequestMoreData)];
-    [mjFooter setTitle:@"点击或上拉加载更多" forState:MJRefreshStateIdle];
-    [mjFooter setTitle:@"松开立即刷新" forState:MJRefreshStatePulling];
-    [mjFooter setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
-    [mjFooter setTitle:@"" forState:MJRefreshStateNoMoreData];
+    [mjFooter setTitle:PullUpToLoadMoreData forState:MJRefreshStateIdle];
+    [mjFooter setTitle:ReleaseToLoadMoreData forState:MJRefreshStatePulling];
+    [mjFooter setTitle:Loading forState:MJRefreshStateRefreshing];
+    [mjFooter setTitle:AllDataLoaded forState:MJRefreshStateNoMoreData];
     tableView.mj_header = mjHeader;
     tableView.mj_footer = mjFooter;
 }

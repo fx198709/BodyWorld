@@ -38,9 +38,9 @@ FOUNDATION_EXPORT CABasicAnimation *BodyGetPositionAnimation (id fromValue, id t
 
 - (void)addHeaderWithTarget:(id)target action:(SEL)action {
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:target refreshingAction:action];
-    [header setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
-    [header setTitle:@"松开刷新" forState:MJRefreshStatePulling];
-    [header setTitle:@"正在刷新中..." forState:MJRefreshStateRefreshing];
+    [header setTitle:PullDownToRefresh forState:MJRefreshStateIdle];
+    [header setTitle:ReleaseToRefresh forState:MJRefreshStatePulling];
+    [header setTitle:Loading forState:MJRefreshStateRefreshing];
     header.stateLabel.textColor = [UIColor whiteColor];
     header.lastUpdatedTimeLabel.textColor = [UIColor lightGrayColor];
     header.backgroundColor = BgGrayColor;
@@ -69,11 +69,11 @@ FOUNDATION_EXPORT CABasicAnimation *BodyGetPositionAnimation (id fromValue, id t
 
 - (void)addFooterWithTarget:(id)target action:(SEL)action {
     MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
-    [footer setTitle:@"上拉加载更多数据" forState:MJRefreshStateIdle];
-    [footer setTitle:@"松开加载更多数据" forState:MJRefreshStatePulling];
-    [footer setTitle:@"正在加载中..." forState:MJRefreshStateRefreshing];
-    [footer setTitle:@"松开加载更多数据" forState:MJRefreshStateWillRefresh];
-    [footer setTitle:@"已经加载全部数据" forState:MJRefreshStateNoMoreData];
+    [footer setTitle:PullUpToLoadMoreData forState:MJRefreshStateIdle];
+    [footer setTitle:ReleaseToLoadMoreData forState:MJRefreshStatePulling];
+    [footer setTitle:Loading forState:MJRefreshStateRefreshing];
+    [footer setTitle:ReleaseToLoadMoreData forState:MJRefreshStateWillRefresh];
+    [footer setTitle:AllDataLoaded forState:MJRefreshStateNoMoreData];
     footer.stateLabel.textColor = [UIColor whiteColor];
     footer.backgroundColor = UIColor.blackColor;
     self.mj_footer = footer;

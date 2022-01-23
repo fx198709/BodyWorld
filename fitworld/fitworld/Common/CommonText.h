@@ -52,8 +52,14 @@ return [obj objectForKey:key];\
 #define TrainerString ChineseStringOrENFun(@"教练", @"Trainer")
 #define CommitSuccessString ChineseStringOrENFun(@"提交成功", @"Operate Successfully")
 #define ChoosePeopleString ChineseStringOrENFun(@"请选择用户", @"Please Choose People")
-#define MaxSelectedString ChineseStringOrENFun(@"最多选5项", @"MAX 5 Choose")
+#define MaxSelectedString ChineseStringOrENFun(@"最多选5项", @"MAX 5 Options")
 
+#define PullDownToRefresh ChineseStringOrENFun(@"下拉刷新", @"Pull down to refresh")
+#define ReleaseToRefresh ChineseStringOrENFun(@"松开刷新", @"Release to refresh")
+#define Loading ChineseStringOrENFun(@"正在刷新中...", @"Loading...")
+#define PullUpToLoadMoreData ChineseStringOrENFun(@"上拉加载更多数据", @"Pull up to load more data")
+#define ReleaseToLoadMoreData ChineseStringOrENFun(@"松开加载更多数据", @"Release to load more data")
+#define AllDataLoaded ChineseStringOrENFun(@"已经加载全部数据", @"All data loaded")
 
 
 #endif /* CommonText_h */
