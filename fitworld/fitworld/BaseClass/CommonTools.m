@@ -429,13 +429,10 @@
         }
         
     }else if (type_int == 2) {
-        //            团课的处理
-        if (selectRoom.is_join) {
-        }else{
-            GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
-            vc.selectRoom = selectRoom;
-            [rootVC.navigationController pushViewController:vc animated:YES];
-        }
+        //            私教的的处理
+        GroupRoomDetailViewController *vc =[[GroupRoomDetailViewController alloc] initWithNibName:@"GroupRoomDetailViewController" bundle:nil];
+        vc.selectRoom = selectRoom;
+        [rootVC.navigationController pushViewController:vc animated:YES];
         
     }else{
         if (selectRoom.is_join) {

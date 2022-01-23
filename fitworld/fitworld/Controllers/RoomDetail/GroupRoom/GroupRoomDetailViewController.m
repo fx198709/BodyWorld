@@ -286,35 +286,61 @@
     
     if (realState == 1 || realState == 2) {
 //        预约
+        
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
-        BOOL postBool =!self.selectRoom.is_join;
-        NSMutableDictionary *baddyParams = [NSMutableDictionary dictionary];
-        [baddyParams setObject:self.selectRoom.event_id forKey:@"event_id"];
-        [baddyParams setObject:[NSNumber numberWithBool:postBool] forKey:@"is_join"];
-        [manager POST:@"room/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if (CheckResponseObject(responseObject)) {
-                self.selectRoom.is_join = postBool;
-                if (postBool) {
-                    self.selectRoom.is_room_user = YES;
-                    int type_int = [self.selectRoom reachRoomRealTypeInt];
-                    if (type_int == 1 ) {
-    //                    团课
-                        GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
-                        vc.event_id = self.selectRoom.event_id;
-                        [self.navigationController pushViewController:vc animated:YES];
-                    }
-                   
+        if (self.selectRoom.is_join) {
+            //        取消选中
+            
+            NSDictionary *baddyParams = @{
+                @"event_id": self.selectRoom.event_id,
+                @"friend_id":[APPObjOnce sharedAppOnce].currentUser.id
+            };
+            [manager POST:@"room/kickout" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (CheckResponseObject(responseObject)) {
+                    [CommonTools showAlertDismissWithContent:ActionSuccssString control:self];
+                    self.selectRoom.is_join = NO;
+                    [self changejoinBtn];
+                }else{
+                    [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:self];
                 }
-                [self changejoinBtn];
-            }else{
-                [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
-            }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [CommonTools showNETErrorcontrol:self];
-        }];
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                [CommonTools showNETErrorcontrol:self];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+            }];
+        }else{
+            BOOL postBool =!self.selectRoom.is_join;
+            NSMutableDictionary *baddyParams = [NSMutableDictionary dictionary];
+            [baddyParams setObject:self.selectRoom.event_id forKey:@"event_id"];
+            [baddyParams setObject:[NSNumber numberWithBool:postBool] forKey:@"is_join"];
+            [manager POST:@"room/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (CheckResponseObject(responseObject)) {
+                    self.selectRoom.is_join = postBool;
+                    if (postBool) {
+                        self.selectRoom.is_room_user = YES;
+                        int type_int = [self.selectRoom reachRoomRealTypeInt];
+                        if (type_int == 1 ) {
+        //                    团课
+                            GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
+                            vc.event_id = self.selectRoom.event_id;
+                            [self.navigationController pushViewController:vc animated:YES];
+                        }
+                       
+                    }
+                    [self changejoinBtn];
+                }else{
+                    [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];
+                }
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [CommonTools showNETErrorcontrol:self];
+            }];
+            
+        }
+
     }else if(realState == 5){
 //        直接开始
         [[APPObjOnce sharedAppOnce] joinRoom:self.selectRoom withInvc:self];

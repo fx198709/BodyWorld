@@ -32,7 +32,7 @@
 @property (nonatomic , copy) NSString              * name;
 @property (nonatomic , copy) NSString              * pic;
 @property (nonatomic , copy) NSString              * type;
-@property (nonatomic , assign) int              type_int; //0 对练课  1团课
+@property (nonatomic , assign) int              type_int; //0 对练课  1团课 2私教
 @property (nonatomic , copy) NSString              * updated_at;
 @property (nonatomic , strong) NSString              * updated_at_weekDay;
 
