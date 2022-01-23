@@ -46,6 +46,7 @@ typedef NS_ENUM(NSInteger, ClassGroup) {
 - (void)enableLocalAudio:(BOOL)enable;
 - (BOOL)isLocalAudioEnable;
 
+//有数据流 就认为是一个合法的用户
 - (BOOL)iscanvisible;
 
 //教练视频的操作

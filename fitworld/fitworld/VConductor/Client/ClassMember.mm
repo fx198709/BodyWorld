@@ -173,10 +173,17 @@
 }
 
 - (BOOL)iscanvisible{
-    if (mMainMedia == nil) {
-        return NO;
+    if (mBaseInfo  && mBaseInfo.streamId && mBaseInfo.streamId.length>0) {
+        return YES;
     }
-    return  YES;
+    NSDictionary *exten = [mBaseInfo.custom objectForKey:@"extend"];
+    if(exten.allKeys.count >0){
+        NSString *country = [exten objectForKey:@"country"];
+        if (country.length > 0) {
+            return  YES;
+        }
+    }
+    return  NO;
 }
 
 

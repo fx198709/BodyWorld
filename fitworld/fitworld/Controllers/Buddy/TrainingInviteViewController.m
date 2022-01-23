@@ -199,7 +199,7 @@
                 }
             }
             if (selectCount > 5) {
-                [CommonTools showAlertDismissWithContent:@"最多选5项" showWaitTime:0 afterDelay:0.5 control:wSelf];
+                [CommonTools showAlertDismissWithContent:MaxSelectedString showWaitTime:0 afterDelay:0.5 control:wSelf];
                 __strong AddPeopleTableViewCell *strongcell = weakcell;
                 clickModel.hasSelect =NO;
                 [strongcell changeViewWithModel:clickModel];

@@ -186,11 +186,12 @@
                 for (NSString *userID in keysArray) {
                     //                    用户id 存在room里面
                     ClassMember *currentMember = [memberDic objectForKey:userID];
-                    if (![currentMember iscanvisible]) {
+                    BOOL canvisible = [currentMember iscanvisible];
+                    if (!canvisible) {
     //                    没有流 就不需要执行这边的了
                         continue;
                     }
-                    if (strongSelf.guestPanels.count < 2) {
+                    if (strongSelf.guestPanels.count < 3) {
                         //                        游客小于3个，这边才用
                         GuestPanel * guestpanel = [[GuestPanel alloc] init];
                         guestpanel.mUserId = userID;
@@ -308,9 +309,9 @@
     //    mFullScreen = !mFullScreen;
     [self layoutPanel];
 }
-
+#pragma mark 第一次进入
 - (void)onJoinRoomLoading {
-    [self showHud:@"正在加入..." withDuration:0];
+//    [self showHud:@"正在加入..." withDuration:0];
 }
 
 - (void)onJoinRoomSuccess {
@@ -324,8 +325,9 @@
     [self excitvc];
 }
 
+#pragma mark  离开房间的回调
 - (void)onLostRoomWithCode:(NSInteger)code andError:(NSString*)err {
-    [self showHud:@"您已离开房间" withDuration:3];
+//    [self showHud:@"您已离开房间" withDuration:3];
 }
 
 - (void)excitvc{
@@ -872,6 +874,9 @@
         [self forceOrientationPortrait];
     }
     [self removeAboveView];
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
+
     //    横竖屏切换，恢复到初始状态
     if (self->currentOrientationType == UIInterfaceOrientationLandscapeRight) {
         itemheight = (ScreenHeight-40)/3 - 20; //横屏每个小方块的高度

@@ -50,6 +50,9 @@ return [obj objectForKey:key];\
 #define OKString ChineseStringOrENFun(@"确认", @"OK")
 #define ActionSuccssString ChineseStringOrENFun(@"操作成功", @"Operate Successfully")
 #define TrainerString ChineseStringOrENFun(@"教练", @"Trainer")
+#define CommitSuccessString ChineseStringOrENFun(@"提交成功", @"Operate Successfully")
+#define ChoosePeopleString ChineseStringOrENFun(@"请选择用户", @"Please Choose People")
+#define MaxSelectedString ChineseStringOrENFun(@"最多选5项", @"MAX 5 Choose")
 
 
 

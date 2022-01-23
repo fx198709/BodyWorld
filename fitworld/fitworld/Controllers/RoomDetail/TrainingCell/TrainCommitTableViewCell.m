@@ -118,7 +118,7 @@
     [manager POST:@"comment/coach/add" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUDForView:parentVC.view animated:YES];
         if (CheckResponseObject(responseObject)) {
-            [CommonTools showAlertDismissWithContent:@"提交成功" control:parentVC];
+            [CommonTools showAlertDismissWithContent:CommitSuccessString control:parentVC];
             self->_contentTextView.text = @"";
             [self changeDefaultGrade];
             if ([parentVC respondsToSelector:@selector(reloadtable)]) {

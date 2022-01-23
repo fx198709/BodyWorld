@@ -310,8 +310,9 @@
     [self layoutPanel];
 }
 
+#pragma mark 第一次进入
 - (void)onJoinRoomLoading {
-    [self showHud:@"正在加入..." withDuration:0];
+//    [self showHud:@"正在加入..." withDuration:0];
 }
 
 - (void)onJoinRoomSuccess {
@@ -325,8 +326,9 @@
     [self excitvc];
 }
 
+#pragma mark  离开房间的回调
 - (void)onLostRoomWithCode:(NSInteger)code andError:(NSString*)err {
-    [self showHud:@"您已离开房间" withDuration:3];
+//    [self showHud:@"您已离开房间" withDuration:3];
 }
 
 - (void)excitvc{

@@ -131,6 +131,7 @@
 		A2A94DE8273FD8DD00D02C77 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A94DE7273FD8DD00D02C77 /* AddFriendViewController.m */; };
 		A53A3C350488D7ED8CE204A4 /* Pods_FFitWorld.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E158AEC0395537D75983E457 /* Pods_FFitWorld.framework */; };
 		C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */; };
+		DD0967CD279D9DAC007DA2FD /* BaseRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0967CC279D9DAC007DA2FD /* BaseRoomViewController.m */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
 		DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */; };
 		DD25FED427215D580092CF87 /* AFAppNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FED327215D580092CF87 /* AFAppNetAPIClient.m */; };
@@ -489,6 +490,8 @@
 		C8E2F72327131BFA00FEE021 /* BaseNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavViewController.h; sourceTree = "<group>"; };
 		C8E2F72427131BFA00FEE021 /* BaseNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavViewController.m; sourceTree = "<group>"; };
 		C8E2F72627131DBA00FEE021 /* WordPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordPrefixHeader.pch; sourceTree = "<group>"; };
+		DD0967CB279D9DAC007DA2FD /* BaseRoomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseRoomViewController.h; sourceTree = "<group>"; };
+		DD0967CC279D9DAC007DA2FD /* BaseRoomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseRoomViewController.m; sourceTree = "<group>"; };
 		DD25610F2792D3C600CB70F4 /* FFitWorldDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FFitWorldDebug.entitlements; sourceTree = "<group>"; };
 		DD25FEC7272012DC0092CF87 /* UIScrollView+YCRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YCRefresh.h"; sourceTree = "<group>"; };
 		DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YCRefresh.m"; sourceTree = "<group>"; };
@@ -1311,6 +1314,8 @@
 				DDFA7588275D9BD700EFD0B1 /* UserInfoView.m */,
 				DDACD7F92765E2DE00CCAAA1 /* SliderView.h */,
 				DDACD7FA2765E2DE00CCAAA1 /* SliderView.m */,
+				DD0967CB279D9DAC007DA2FD /* BaseRoomViewController.h */,
+				DD0967CC279D9DAC007DA2FD /* BaseRoomViewController.m */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -1777,6 +1782,7 @@
 				C8E2F72527131BFA00FEE021 /* BaseNavViewController.m in Sources */,
 				047DC201268CD09700A3E37E /* fitworld.xcdatamodeld in Sources */,
 				DDD3CBBF276F21C3007A83BB /* ShareAboveView.m in Sources */,
+				DD0967CD279D9DAC007DA2FD /* BaseRoomViewController.m in Sources */,
 				DD595ED42736F88D00618D1A /* RoomVC.m in Sources */,
 				46934B6E2782AC06003CCEA8 /* BaseLoginViewController.m in Sources */,
 				A256301C27408BD90030D6B2 /* UserCenterGroup.m in Sources */,

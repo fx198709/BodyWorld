@@ -6,14 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseRoomViewController.h"
 #import "Room.h"
-@interface GroupRoomViewControl : BaseNavViewController
+@interface GroupRoomViewControl : BaseRoomViewController
 //进入直播间的前一个vc
 @property(nonatomic, weak)UIViewController * invc;
 @property(nonatomic, strong)Room * currentRoom;
 
 - (id)initWith:(NSDictionary*)code;
-//改变屏幕方向
-- (void)changeOrientation;
-
 @end

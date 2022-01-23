@@ -122,7 +122,7 @@
         
         NSDictionary *codeDict = @{@"eid":selectRoom.event_id, @"name":nickName};
         int type_int = [selectRoom reachRoomRealTypeInt];
-        UIViewController *roomviewControl = nil;
+        BaseRoomViewController *roomviewControl = nil;
         if (type_int == 1) {
 //            团课 
             GroupRoomViewControl *roomVC = [[GroupRoomViewControl alloc] initWith:codeDict];
@@ -142,7 +142,8 @@
             roomviewControl = roomVC;
         }
         if ([selectRoom.course.screen isEqualToString:@"landscape"]) {
-            [roomviewControl performSelector:@selector(changeOrientation) withObject:nil afterDelay:0.5];
+            roomviewControl.needChangeOrientation = YES;
+//            [roomviewControl performSelector:@selector(changeOrientation) withObject:nil afterDelay:2];
         }
     }
     
