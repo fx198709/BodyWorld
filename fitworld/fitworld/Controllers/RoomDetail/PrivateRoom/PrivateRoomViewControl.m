@@ -840,12 +840,12 @@
     self->panelSize = CGSizeMake(itemheight*16/9,itemheight);
     int itemwidth = itemheight*16/9;//横屏的高度
     int starty = (ScreenHeight- 2*(itemheight+20))/2;
-    CGRect panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+itemheight+20, itemwidth, itemheight);
+    CGRect panelRect = CGRectMake(60, starty+20+itemheight+20, itemwidth, itemheight);
     if (index == 1) {
-        panelRect = CGRectMake(60, starty+20, itemwidth, itemheight);;
+        panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);;
     }
     if (index == 2) {
-        panelRect = CGRectMake(60, starty+20+itemheight+20, itemwidth, itemheight);;
+        panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+itemheight+20, itemwidth, itemheight);;
     }
     return panelRect;
 }
@@ -866,7 +866,7 @@
         int itemwidth = itemheight*16/9;//横屏的高度
         int starty = (ScreenHeight- 2*(itemheight+20))/2;
         //                    第一个在右边
-        mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
+        mSidePanel.frame = CGRectMake(60, starty+20, itemwidth, itemheight);
         for (int index = 0; index < _guestPanels.count; index++) {
             GuestPanel * guestpanel = [_guestPanels objectAtIndex:index];
             guestpanel.frame =[self reachRectwithindex:index];

@@ -86,6 +86,18 @@
         [vbutton setImage:grayStar forState:UIControlStateHighlighted];
     }
 }
+
+//把所有的选中设置成0
+- (void)changeDefaultGrade{
+    _grade = 0;
+    for (NSInteger index = 101; index<= 105;index++) {
+        UIButton *vbutton = [self viewWithTag:index];
+        UIImage *grayStar = [UIImage imageNamed:@"grayStar"];
+        [vbutton setImage:grayStar forState:UIControlStateNormal];
+        [vbutton setImage:grayStar forState:UIControlStateHighlighted];
+    }
+}
+
 - (IBAction)commitBtnClicked:(UIButton *)sender {
     UIViewController *parentVC = [CommonTools findControlWithView:self];
     if (_contentTextView.text.length < 1 && _grade < 1) {
@@ -108,6 +120,7 @@
         if (CheckResponseObject(responseObject)) {
             [CommonTools showAlertDismissWithContent:@"提交成功" control:parentVC];
             self->_contentTextView.text = @"";
+            [self changeDefaultGrade];
             if ([parentVC respondsToSelector:@selector(reloadtable)]) {
                 [parentVC performSelector:@selector(reloadtable)];
             }
