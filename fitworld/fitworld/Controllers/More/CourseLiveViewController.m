@@ -18,6 +18,7 @@
 #import "CourseDetailViewController.h"
 #import "CreateCourseSuccessViewController.h"
 #import "CourseRoomTableViewCell.h"
+#import "GroupRoomPrepareViewController.h"
 
 @interface CourseLiveViewController ()<UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate>
 @property(nonatomic,strong)UITableView*tableView;
@@ -452,6 +453,7 @@
     //    做测试用
     
     Room *room = [dataArr objectAtIndex: recognizer.tag-100];
+    int type_int = [room reachRoomRealTypeInt];
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
      UIViewController *parentControl = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -483,12 +485,18 @@
             @"event_id": room.event_id,
             @"is_join":[NSNumber numberWithBool:!room.is_join]
         };
-        [manager POST:@"practise/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [manager POST:@"room/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (CheckResponseObject(responseObject)) {
                 [CommonTools showAlertDismissWithContent:ActionSuccssString control:self];
                 if ([parentControl respondsToSelector:@selector(headerRereshing)]) {
                     [parentControl performSelector:@selector(headerRereshing)];
+                }
+                if (type_int == 1 ) {
+//                    团课
+                    GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
+                    vc.event_id = room.event_id;
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
             }else{
                 [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"] control:self];

@@ -488,6 +488,9 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (CheckResponseObject(responseObject)) {
                 self.selectRoom.is_join = postBool;
+                if (postBool) {
+                    self.selectRoom.is_room_user = YES;
+                }
                 [self changejoinBtn];
             }else{
                 [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];

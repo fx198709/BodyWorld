@@ -24,7 +24,7 @@
 - (void)changeCountryIcon:(NSString*)imageurl;
 
 //- (void)syncSession:(ClassMember*)session;
-
+//第一次绑定没有效果，取消，再绑定一次
 - (void)attachGuestRenderView;
 - (void)detachGuestRenderView;
 

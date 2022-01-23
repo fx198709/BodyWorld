@@ -18,6 +18,7 @@
 #import "HasJoinGroupRoomView.h"
 #import "UIImage+Extension.h"
 #import "ShareAboveView.h"
+#import "GroupRoomPrepareViewController.h"
 #import <messageUI/messageUI.h>
 
 @interface GroupRoomDetailViewController ()<MFMessageComposeViewControllerDelegate>{
@@ -295,6 +296,12 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (CheckResponseObject(responseObject)) {
                 self.selectRoom.is_join = postBool;
+                if (postBool) {
+                    self.selectRoom.is_room_user = YES;
+                    GroupRoomPrepareViewController *vc =[[GroupRoomPrepareViewController alloc] initWithNibName:@"GroupRoomPrepareViewController" bundle:nil];
+                    vc.event_id = self.selectRoom.event_id;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
                 [self changejoinBtn];
             }else{
                 [CommonTools showAlertDismissWithContent:[responseObject objectForKey:@"msg"]  control:self];

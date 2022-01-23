@@ -249,7 +249,7 @@
             @"event_id": room.event_id,
             @"is_join":[NSNumber numberWithBool:!room.is_join]
         };
-        [manager POST:@"practise/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        [manager POST:@"room/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
             [MBProgressHUD hideHUDForView:parentView animated:YES];
             if (CheckResponseObject(responseObject)) {
                 [CommonTools showAlertDismissWithContent:ActionSuccssString control:[self viewController]];
