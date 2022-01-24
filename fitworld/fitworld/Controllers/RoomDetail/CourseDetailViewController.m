@@ -49,7 +49,7 @@
 - (void)addsubviews{
     UIImageView *topImgView = [[UIImageView alloc] init];
     NSString *picUrl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, self.selectRoom.pic];
-    [topImgView sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"activity_login_logo_white"]];
+    [topImgView sd_setImageWithURL: [NSURL URLWithString:picUrl] placeholderImage:nil];
     [self.view addSubview:topImgView];
     int topimageHeight = self.view.bounds.size.height / 3;
     [topImgView mas_makeConstraints:^(MASConstraintMaker *make) {
