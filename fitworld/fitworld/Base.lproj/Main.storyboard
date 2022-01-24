@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mbk-qS-1SX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mbk-qS-1SX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -294,6 +294,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Wkl-b2-ySY"/>
                     <connections>
+                        <outlet property="accountBtn" destination="2VC-M3-HK5" id="5im-cp-4oa"/>
                         <outlet property="countryCodeLabel" destination="sDW-7h-C3O" id="ZXj-jM-8J6"/>
                         <outlet property="enLanguageBtn" destination="m8C-Fu-J4j" id="JH0-Lm-be3"/>
                         <outlet property="getCountryBtn" destination="ERw-oj-Zrg" id="yBw-aq-M1h"/>
@@ -2294,6 +2295,7 @@
                         <outlet property="loginBtn" destination="9gB-oH-3eW" id="eAj-4D-ck0"/>
                         <outlet property="nameField" destination="ouE-WA-xyA" id="RX2-tm-K5E"/>
                         <outlet property="nameView" destination="Niw-vq-JXG" id="JqE-N8-BcN"/>
+                        <outlet property="noaccountBtn" destination="XiE-o4-PPh" id="v9O-RO-HSD"/>
                         <outlet property="zhLanguageBtn" destination="KcL-wO-ErC" id="vrZ-OM-qzO"/>
                     </connections>
                 </viewController>

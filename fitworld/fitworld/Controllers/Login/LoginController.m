@@ -23,6 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *loginview;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) IBOutlet UIButton *accountBtn;
 
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
 @property (weak, nonatomic) IBOutlet UIButton *showPwdBtn;
@@ -75,6 +76,7 @@
 - (void)reloadTextView {
     [super reloadTextView];
     [self.loginBtn setTitle:ChineseStringOrENFun(@"登录", @"Login") forState:UIControlStateNormal];
+    [self.accountBtn setTitle:ChineseStringOrENFun(@"密码登录", @"Account Login") forState:UIControlStateNormal];
     [self.registerBtn setTitle:ChineseStringOrENFun(@"免密登录", @"SMS Code Login") forState:UIControlStateNormal];
     
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};

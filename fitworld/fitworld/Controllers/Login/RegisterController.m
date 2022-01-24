@@ -18,6 +18,7 @@
 @interface RegisterController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *accountBtn;
+@property (weak, nonatomic) IBOutlet UIButton *noaccountBtn;
 @property (weak, nonatomic) IBOutlet UIView *nameView;
 
 @property (weak, nonatomic) IBOutlet UIView *codeView;
@@ -48,6 +49,8 @@
     [super reloadTextView];
     [self.loginBtn setTitle:ChineseStringOrENFun(@"登录", @"Login") forState:UIControlStateNormal];
     [self.accountBtn setTitle:ChineseStringOrENFun(@"密码登录", @"Account Login") forState:UIControlStateNormal];
+    [self.noaccountBtn setTitle:ChineseStringOrENFun(@"免密登录", @"SMS Code Login") forState:UIControlStateNormal];
+
     [self.codeBtn setTitle:ChineseStringOrENFun(@"获取验证码", @"Request Code") forState:UIControlStateNormal];
     
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
