@@ -47,7 +47,7 @@ BOOL  hasrequest = NO;
 {
     [super viewDidLoad];
     //保存全局唯一单例
-    [APPObjOnce sharedAppOnce].mainVC = self;
+    [APPObjOnce sharedAppOnce].mainRootVC = self.navigationController;
     
     self.view.backgroundColor = [UIColor blackColor];
     self.mainTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
@@ -121,7 +121,8 @@ BOOL  hasrequest = NO;
     if ([APPObjOnce sharedAppOnce].isLogining) {
         return;
     }
-    [self performSegueWithIdentifier:@"goToLoginSegue" sender:nil];
+//    [self performSegueWithIdentifier:@"goToLoginSegue" sender:nil];
+    [[APPObjOnce sharedAppOnce] showLoginView];
 }
 
 - (void)reloadData {

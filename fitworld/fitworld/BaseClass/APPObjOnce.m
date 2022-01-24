@@ -11,6 +11,7 @@
 #import "RoomVC.h"
 #import "GroupRoomViewControl.h"
 #import "PrivateRoomViewControl.h"
+#import "AppDelegate.h"
 
 #define UserTokenKey @"userToken"
 #define UserAccountTypeKey @"UserAccountType"
@@ -80,11 +81,13 @@
     if (_isLogining) {
         return;
     }
-    [self.mainVC.navigationController popToRootViewControllerAnimated:NO];
+    UIViewController *loginVC = VCBySBName(@"LoginController");
+    [self.mainRootVC setViewControllers:@[loginVC]];
 }
 
 - (void)showMainView {
-    [self.mainVC.navigationController popToRootViewControllerAnimated:YES];
+    UIViewController *mainVC = VCBySBName(@"mainVC");
+    [self.mainRootVC setViewControllers:@[mainVC]];
 }
 
 - (void)loginSuccess:(id _Nullable) responseObject {
@@ -99,10 +102,7 @@
         if(userToken != nil){
             [APPObjOnce saveUserToken:userToken];
         }
-        UIViewController *presentedVC = self.mainVC.presentedViewController;
-        [presentedVC dismissViewControllerAnimated:YES completion:^{
-            [self.mainVC reloadData];
-        }];
+        [self showMainView];
     } else {
         NSString *msg = [responseObject objectForKey:@"msg"];
         [MTHUD showDurationNoticeHUD:msg];

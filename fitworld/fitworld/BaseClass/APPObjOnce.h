@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UserInfo *currentUser;
 @property (nonatomic, strong) NSString *userId;
 
-@property (nonatomic, weak) MainViewController *mainVC;
+@property (nonatomic, weak) UINavigationController *mainRootVC;
 @property (nonatomic, assign) BOOL isLogining;
 
 + (instancetype)sharedAppOnce;
