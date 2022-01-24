@@ -2215,7 +2215,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zpw-BN-VwT">
-                                <rect key="frame" x="128" y="156" width="158" height="72"/>
+                                <rect key="frame" x="42" y="156" width="330" height="72"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bg-jm-j9q">
                                         <rect key="frame" x="0.0" y="16" width="120" height="40"/>
@@ -2267,11 +2267,11 @@
                             <constraint firstItem="H1v-De-154" firstAttribute="top" secondItem="Zpw-BN-VwT" secondAttribute="bottom" id="JLp-mG-Mhm"/>
                             <constraint firstItem="JTB-fH-u74" firstAttribute="top" secondItem="BTO-wF-npx" secondAttribute="bottom" constant="24" id="K9q-tK-q9J"/>
                             <constraint firstItem="XiE-o4-PPh" firstAttribute="leading" secondItem="lTE-UJ-n14" secondAttribute="leading" constant="42" id="MiU-h9-epk"/>
+                            <constraint firstItem="Zpw-BN-VwT" firstAttribute="leading" secondItem="XiE-o4-PPh" secondAttribute="leading" id="Q0h-LB-zPL"/>
                             <constraint firstItem="Zpw-BN-VwT" firstAttribute="top" secondItem="JTB-fH-u74" secondAttribute="bottom" id="WAq-D7-1VR"/>
                             <constraint firstItem="XiE-o4-PPh" firstAttribute="centerY" secondItem="JTB-fH-u74" secondAttribute="centerY" id="Y1M-AR-Au1"/>
                             <constraint firstItem="Zpw-BN-VwT" firstAttribute="centerX" secondItem="2QX-nq-PVN" secondAttribute="centerX" id="dvM-D8-YbD"/>
                             <constraint firstItem="o2p-XM-IMt" firstAttribute="leading" secondItem="lTE-UJ-n14" secondAttribute="leading" id="hjN-Iz-YDt"/>
-                            <constraint firstItem="Zpw-BN-VwT" firstAttribute="leading" secondItem="JTB-fH-u74" secondAttribute="leading" id="lQD-dk-FAb"/>
                             <constraint firstItem="lTE-UJ-n14" firstAttribute="trailing" secondItem="BTO-wF-npx" secondAttribute="trailing" constant="40" id="oVg-4I-fQY"/>
                             <constraint firstItem="JTB-fH-u74" firstAttribute="leading" secondItem="XiE-o4-PPh" secondAttribute="trailing" constant="12" id="uII-ze-UMH"/>
                             <constraint firstItem="BTO-wF-npx" firstAttribute="top" secondItem="lTE-UJ-n14" secondAttribute="top" id="yin-8Z-CLY"/>
@@ -3035,7 +3035,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6HZ-hH-JiE"/>
-        <segue reference="hBg-mj-iXu"/>
+        <segue reference="hxF-ge-sHJ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="activity_login_bg" width="360" height="780"/>
