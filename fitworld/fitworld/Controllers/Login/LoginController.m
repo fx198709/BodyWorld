@@ -73,6 +73,7 @@
 
 
 - (void)reloadTextView {
+    [super reloadTextView];
     [self.loginBtn setTitle:ChineseStringOrENFun(@"登录", @"Login") forState:UIControlStateNormal];
     [self.registerBtn setTitle:ChineseStringOrENFun(@"免密登录", @"SMS Code Login") forState:UIControlStateNormal];
     

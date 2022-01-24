@@ -46,8 +46,16 @@
     LanguageEnum language;
     if (sender == self.enLanguageBtn) {
         language = LanguageEnum_English;
+        [self.enLanguageBtn setTitleColor:SelectGreenColor
+                                 forState:UIControlStateNormal];
+        [self.zhLanguageBtn setTitleColor:[UIColor whiteColor]
+                                 forState:UIControlStateNormal];
     } else {
         language = LanguageEnum_Chinese;
+        [self.zhLanguageBtn setTitleColor:SelectGreenColor
+                                 forState:UIControlStateNormal];
+        [self.enLanguageBtn setTitleColor:[UIColor whiteColor]
+                                 forState:UIControlStateNormal];
     }
     
     //保存当前语言
@@ -56,9 +64,18 @@
     [self reloadTextView];
 }
 
-
 - (void)reloadTextView {
-    
+    if (ISChinese()) {
+        [self.zhLanguageBtn setTitleColor:SelectGreenColor
+                                 forState:UIControlStateNormal];
+        [self.enLanguageBtn setTitleColor:[UIColor whiteColor]
+                                 forState:UIControlStateNormal];
+    } else {
+        [self.enLanguageBtn setTitleColor:SelectGreenColor
+                                 forState:UIControlStateNormal];
+        [self.zhLanguageBtn setTitleColor:[UIColor whiteColor]
+                                 forState:UIControlStateNormal];
+    }
 }
 
 //切换登录方式

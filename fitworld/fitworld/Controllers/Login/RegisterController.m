@@ -45,6 +45,7 @@
 }
 
 - (void)reloadTextView {
+    [super reloadTextView];
     [self.loginBtn setTitle:ChineseStringOrENFun(@"登录", @"Login") forState:UIControlStateNormal];
     [self.accountBtn setTitle:ChineseStringOrENFun(@"密码登录", @"Account Login") forState:UIControlStateNormal];
     [self.codeBtn setTitle:ChineseStringOrENFun(@"获取验证码", @"Request Code") forState:UIControlStateNormal];
