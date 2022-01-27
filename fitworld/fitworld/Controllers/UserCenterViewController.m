@@ -112,17 +112,18 @@
 
 //加载数据
 - (void)loadUserData {
-    self.totalTimeLabel.text = IntToString(self.centerInfo.week_data.duration);
+    
+    self.totalTimeLabel.text = [NSString stringWithFormat:@"%.0ld",self.centerInfo.user_info.duration/60];
     self.kcatLabel.text = IntToString(self.centerInfo.week_data.cal);
     self.killoLabel.text = IntToString(self.centerInfo.week_data.total);
     
     self.historyCountLabel.text = IntToString(self.centerInfo.total);
     
-    self.dlCountLabel.text = [NSString stringWithFormat:@"%dtimes", self.centerInfo.buddy.count];
+    self.dlCountLabel.text = [NSString stringWithFormat:@"%d%@", self.centerInfo.buddy.count,ChineseStringOrENFun(@"次", @"times")];
     self.dlTimeLabel.text = [NSString stringWithFormat:@"%.1fmin",
                              self.centerInfo.buddy.duration / 60.0];
     
-    self.tuanCountLabel.text = [NSString stringWithFormat:@"%dmin", self.centerInfo.group.count];
+    self.tuanCountLabel.text = [NSString stringWithFormat:@"%d%@", self.centerInfo.group.count,ChineseStringOrENFun(@"次", @"times")];
     self.tuanTimeLabel.text = [NSString stringWithFormat:@"%.1fmin",
                                self.centerInfo.group.duration / 60.0];
     if (self.centerInfo.day_of_month != nil && self.centerInfo.day_of_month.count > 0) {
