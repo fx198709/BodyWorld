@@ -59,7 +59,7 @@
 
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.tintColor = [UIColor whiteColor];
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..." attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:Loading attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
     self.tableView.refreshControl = refreshControl;
     self.tableView.tableFooterView = [UIView new];

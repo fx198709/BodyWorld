@@ -60,6 +60,9 @@ return [obj objectForKey:key];\
 #define PullUpToLoadMoreData ChineseStringOrENFun(@"上拉加载更多数据", @"Pull up to load more data")
 #define ReleaseToLoadMoreData ChineseStringOrENFun(@"松开加载更多数据", @"Release to load more data")
 #define AllDataLoaded ChineseStringOrENFun(@"已经加载全部数据", @"All data loaded")
+#define MJCustomerRefreshHeaderLastTimeText ChineseStringOrENFun(@"最后更新：", @"Last update: ")
+#define MJNoRecordLastTimeText ChineseStringOrENFun(@"无记录：", @"No record")
+#define MJTodayLastTimeText ChineseStringOrENFun(@"今天：", @"Today")
 
 
 #endif /* CommonText_h */

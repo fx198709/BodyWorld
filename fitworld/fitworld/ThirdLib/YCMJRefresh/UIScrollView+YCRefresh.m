@@ -9,7 +9,7 @@
 #import "UIScrollView+YCRefresh.h"
 #import <objc/runtime.h>
 #import "NSObject+YCExtension.h"
-
+#import "MJCustomerRefreshNormalHeader.h"
 FOUNDATION_EXPORT CABasicAnimation *BodyGetPositionAnimation (id fromValue, id toValue, CFTimeInterval duration, NSString *keyPath, BOOL autoreverses) {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:keyPath];
     animation.fromValue = fromValue;
@@ -37,7 +37,7 @@ FOUNDATION_EXPORT CABasicAnimation *BodyGetPositionAnimation (id fromValue, id t
 @implementation UIScrollView (YCRefresh)
 
 - (void)addHeaderWithTarget:(id)target action:(SEL)action {
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:target refreshingAction:action];
+    MJCustomerRefreshNormalHeader *header = [MJCustomerRefreshNormalHeader headerWithRefreshingTarget:target refreshingAction:action];
     [header setTitle:PullDownToRefresh forState:MJRefreshStateIdle];
     [header setTitle:ReleaseToRefresh forState:MJRefreshStatePulling];
     [header setTitle:Loading forState:MJRefreshStateRefreshing];
@@ -199,15 +199,15 @@ static const CGFloat kBackGifTimeInterval =  12;
     }
     
     if (state == MJRefreshStateIdle) {
-        _ycStateLabel.text = @"下拉刷新";
+        _ycStateLabel.text = PullDownToRefresh;
     }
     
     if (state == MJRefreshStatePulling) {
-        _ycStateLabel.text = @"该放手了，我要刷新了...";
+        _ycStateLabel.text = ReleaseToRefresh;
     }
     
     if (state == MJRefreshStateRefreshing) {
-        _ycStateLabel.text = @"正在刷新...";
+        _ycStateLabel.text = Loading;
     }
     
     /*

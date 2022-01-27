@@ -143,6 +143,7 @@
 		DD25FEEB27226B5A0092CF87 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEDF27226B5A0092CF87 /* JYConfiguration.m */; };
 		DD25FEEC27226B5A0092CF87 /* UIImageView+JYImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */; };
 		DD25FEED27226B5A0092CF87 /* JYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEE427226B5A0092CF87 /* JYPageControl.m */; };
+		DD2A95DE27A2F82E00FADFE6 /* MJCustomerRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2A95DD27A2F82E00FADFE6 /* MJCustomerRefreshNormalHeader.m */; };
 		DD33415827720422001E0831 /* PBTextWithPlaceHoldViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD33415427720422001E0831 /* PBTextWithPlaceHoldViewDelegate.m */; };
 		DD33415927720422001E0831 /* PBTextWithPlaceHoldView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD33415727720422001E0831 /* PBTextWithPlaceHoldView.m */; };
 		DD40BD69276788BD007FC1B8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD40BD68276788BD007FC1B8 /* MessageUI.framework */; };
@@ -515,6 +516,8 @@
 		DD25FEE327226B5A0092CF87 /* UIImageView+JYImageViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+JYImageViewManager.m"; sourceTree = "<group>"; };
 		DD25FEE427226B5A0092CF87 /* JYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPageControl.m; sourceTree = "<group>"; };
 		DD25FEE527226B5A0092CF87 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
+		DD2A95DC27A2F82E00FADFE6 /* MJCustomerRefreshNormalHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJCustomerRefreshNormalHeader.h; sourceTree = "<group>"; };
+		DD2A95DD27A2F82E00FADFE6 /* MJCustomerRefreshNormalHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJCustomerRefreshNormalHeader.m; sourceTree = "<group>"; };
 		DD33415427720422001E0831 /* PBTextWithPlaceHoldViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTextWithPlaceHoldViewDelegate.m; sourceTree = "<group>"; };
 		DD33415527720422001E0831 /* PBTextWithPlaceHoldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTextWithPlaceHoldView.h; sourceTree = "<group>"; };
 		DD33415627720422001E0831 /* PBTextWithPlaceHoldViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTextWithPlaceHoldViewDelegate.h; sourceTree = "<group>"; };
@@ -1227,6 +1230,8 @@
 				DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */,
 				DD25FEC7272012DC0092CF87 /* UIScrollView+YCRefresh.h */,
 				DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */,
+				DD2A95DC27A2F82E00FADFE6 /* MJCustomerRefreshNormalHeader.h */,
+				DD2A95DD27A2F82E00FADFE6 /* MJCustomerRefreshNormalHeader.m */,
 			);
 			path = YCMJRefresh;
 			sourceTree = "<group>";
@@ -1853,6 +1858,7 @@
 				04EC01FC26BD8AC100DC0103 /* VConductorClient.m in Sources */,
 				040CED0B269F294900818D76 /* Room.m in Sources */,
 				04CD2E56269847F2007814E6 /* Course.m in Sources */,
+				DD2A95DE27A2F82E00FADFE6 /* MJCustomerRefreshNormalHeader.m in Sources */,
 				DD6EDB1B272D1A45002B0A8E /* TableHeadview.m in Sources */,
 				04EC01F726BD8AC100DC0103 /* GenerateTestUserSig.m in Sources */,
 				0433B9B026A7108E004AAD5B /* UserCenterViewController.m in Sources */,
