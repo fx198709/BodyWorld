@@ -28,6 +28,11 @@
     
 }
 
+- (void)leaveRoomwithCutsomer{
+    
+}
+
+
 
 /*
 #pragma mark - Navigation
