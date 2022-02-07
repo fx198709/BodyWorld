@@ -9,9 +9,6 @@
 #import "BaseRoomViewController.h"
 #import "Room.h"
 @interface PrivateRoomViewControl : BaseRoomViewController
-//进入直播间的前一个vc
-@property(nonatomic, weak)UIViewController * invc;
-@property(nonatomic, strong)Room * currentRoom;
 
 - (id)initWith:(NSDictionary*)code;
 

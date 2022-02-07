@@ -37,11 +37,9 @@
     UIButton *cancelAboveBtn2; //取消弹层按钮
     UIInterfaceOrientation currentOrientationType;//默认是竖屏
     
-    NSDate *startliveingTime;//第一次获取到流的时间
     UIAlertController *alertControl;//弹层
 }
 
-@property (nonatomic, strong) NSDictionary* mCode;
 @property (nonatomic, strong) MBProgressHUD *mHud;
 
 @property (nonatomic, strong) UIImageView* mBkImg;
@@ -58,7 +56,6 @@
 
 @implementation RoomVC
 
-@synthesize mCode;
 @synthesize mHud;
 
 @synthesize mBkImg;
@@ -70,7 +67,7 @@
 
 - (id)initWith:(NSDictionary*)code {
     self = [super init];
-    mCode = code;
+    self.mCode = code;
     return self;
 }
 
@@ -532,7 +529,7 @@
     //    有流过来了，表示开始直播了
     if (!hasStartLiving) {
 //        第一次获取到流信息
-        startliveingTime = [NSDate date];
+        self.startliveingTime = [NSDate date];
     }
     hasStartLiving = YES;
     [mSidePanel syncSession:session];
@@ -689,7 +686,7 @@
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
     
     NSDictionary *baddyParams = @{
-        @"event_id": mCode[@"eid"],
+        @"event_id": self.mCode[@"eid"],
         @"is_join":[NSNumber numberWithBool:isJoin]
     };
     [manager POST:@"practise/join" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -745,7 +742,7 @@
         if (!createRoomLiving) {
             createRoomLiving = YES;
             //            开启直播
-            [[VConductorClient sharedInstance] joinwithEntry:VRC_URL andCode:mCode asViewer:NO withDelegate:self];
+            [[VConductorClient sharedInstance] joinwithEntry:VRC_URL andCode:self.mCode asViewer:NO withDelegate:self];
         }
         
     }
@@ -957,7 +954,7 @@
 - (void)reachRoomDetailInfo
 {
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
-    NSString *eventid = mCode[@"eid"];
+    NSString *eventid = self.mCode[@"eid"];
     NSDictionary *baddyParams = @{
         @"event_id": eventid,
     };
@@ -989,24 +986,5 @@
     [self layoutPanel];
     [self dealwithTimer];
 }
-
-
-
-
-#pragma mark 跳转到完成页面
-- (void)jumpToTrainingvc{
-    //    删除弹层
-    [self removeAboveView];
-    NSTimeInterval duringTime = 0;
-    if (startliveingTime) {
-        duringTime = [[NSDate date] timeIntervalSinceDate:startliveingTime];
-    }
-    AfterTrainingViewController *trainingvc = [[AfterTrainingViewController alloc] initWithNibName:@"AfterTrainingViewController" bundle:nil];
-    trainingvc.event_id = self->mCode[@"eid"];
-    trainingvc.invc = self.invc;
-    trainingvc.during = duringTime;
-    [self.navigationController pushViewController:trainingvc animated:YES];
-}
-
 
 @end
