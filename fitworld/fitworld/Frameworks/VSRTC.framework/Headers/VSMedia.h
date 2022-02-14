@@ -67,6 +67,8 @@ typedef NS_ENUM(NSInteger, VSMediaStreamState) {
 - (BOOL)has_audio;
 - (BOOL)stereo_opus;
 
+- (float)audioLevel;
+- (NSString *)statsString;
 - (NSUInteger)recvBitrate;
 - (NSUInteger)sendBitrate;
 - (NSUInteger)connRtt;
@@ -79,6 +81,8 @@ typedef NS_ENUM(NSInteger, VSMediaStreamState) {
 - (NSInteger)renderHandle;
 
 - (void)EnableStereoOpus:(BOOL)enable;
+- (void)SetVolume:(float)volume;
+- (float)GetVolume;
 
 - (BOOL)OpenWithVideo:(BOOL)has_video andAudio:(BOOL)has_audio;
 - (BOOL)Close;
@@ -96,6 +100,8 @@ typedef NS_ENUM(NSInteger, VSMediaStreamState) {
 - (BOOL)Subscribe;
 - (BOOL)Unsubscribe;
 - (void)Restart;
+- (void)SwitchStream:(NSString *)streamId;
+- (void)SwitchSubStream:(int)subStreamIndex;
 
 @end
 

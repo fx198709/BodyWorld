@@ -39,7 +39,6 @@ typedef NS_ENUM(NSInteger, VSAudioMode) {
 - (void)onMediaServiceReady;
 - (void)onMediaServiceDisconnect;
 - (void)onMediaServiceLost;
-
 @end
 
 #define VSV_EXPORT __attribute__((visibility("default")))
@@ -57,7 +56,7 @@ VSV_EXPORT
 - (NSString*)eventId;
 - (NSInteger)entryMemberCount;
 
-- (void)joinStreaming:(NSString*)vrfUrl completion:(void (^)(NSError *error))block;
+- (void)joinStreaming:(NSString*)vrfUrl withVrfHost:(NSString*)vrfUrl completion:(void (^)(NSError *error))block;
 - (void)leaveStreaming;
 
 - (void)joinRoomWithApiKey:(NSString*)apiKey
