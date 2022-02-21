@@ -7,6 +7,11 @@
 
 #import "BaseNavViewController.h"
 #import "Room.h"
+//#import <AVFoundation/AVFoundation.h>
+#import "MainPanel.h"
+#import "SidePanel.h"
+#import "VConductorClient.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseRoomViewController : BaseNavViewController
@@ -17,7 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)BOOL needChangeOrientation;
 @property (nonatomic, strong) NSDictionary* mCode;
 @property (nonatomic, strong) NSDate *startliveingTime;//第一次获取到流的时间;
-
+@property (nonatomic, strong) SidePanel *mSidePanel; //自己的view
+@property (nonatomic, strong) MainPanel* mMainPanel; //教练的view
+@property (nonatomic, strong) NSMutableArray* guestPanels;//其他人的
 
 
 
@@ -31,6 +38,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)jumpToTrainingvc;
 
 - (void)removeAboveView;
+
+- (int)reachCurrentMainMediaVoice;
+
+- (int)reachGuestMediaVoice;
+
+- (void)changeMainVoice:(int)value;
+- (void)changeGuestVoice:(int)value;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

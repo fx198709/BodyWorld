@@ -6,7 +6,7 @@
 //
 
 #import "RoomVCSettingView.h"
-
+#import "BaseRoomViewController.h"
 @implementation RoomVCSettingView
 
 -(void)awakeFromNib{
@@ -31,10 +31,20 @@
     _cancelBtn.clipsToBounds = YES;
     _mainVoiceSlider.backgroundColor = UIColor.clearColor;
     [_mainVoiceSlider createSubview];
+    BaseRoomViewController *baseRoom = (BaseRoomViewController *)self.parentDelegate;
+    _mainVoiceSlider.sliderValueChanged = ^(id clickModel) {
+        if (baseRoom) {
+            [baseRoom changeMainVoice:[clickModel intValue]];
+        };
+    };
     
     _othervoiceSlider.backgroundColor = UIColor.clearColor;
     [_othervoiceSlider createSubview];
-    
+    _othervoiceSlider.sliderValueChanged = ^(id clickModel) {
+        if (baseRoom) {
+            [baseRoom changeGuestVoice:[clickModel intValue]];
+        };
+    };
     _myCameraSwitch.on = YES;
     [_myCameraSwitch addTarget:self action:@selector(myCameraSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
     _myMicSwicth.on = YES;
@@ -82,5 +92,18 @@
     // Drawing code
 }
 */
+
+//每次进入的时候，设置一下基础信息
+- (void)changeDeleagte:(id)deleagte{
+    self.parentDelegate = deleagte;
+    BaseRoomViewController *baseRoom = (BaseRoomViewController *)deleagte;
+    int mainVoiceSlidervalue = [baseRoom reachCurrentMainMediaVoice];//mainVoiceSlider
+    int gustVoiceSlidervalue = [baseRoom reachGuestMediaVoice];//mainVoiceSlider
+//    [self.mainVoiceSlider chan ]
+    self.mainVoiceSlider.slider.value =mainVoiceSlidervalue;
+    self.othervoiceSlider.slider.value =gustVoiceSlidervalue;
+
+}
+
 
 @end

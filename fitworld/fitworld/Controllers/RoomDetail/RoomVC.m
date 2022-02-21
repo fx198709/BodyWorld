@@ -6,7 +6,6 @@
 #import "ViewerPanel.h"
 #import "GuestPanel.h"
 #import "UIDeps.h"
-#import "VConductorClient.h"
 #import "ToolFunc.h"
 
 #import "TUIKit.h"
@@ -44,10 +43,10 @@
 
 @property (nonatomic, strong) UIImageView* mBkImg;
 //@property (nonatomic, strong) HeaderPanel *mHeaderPanel; //头部的信息和操作
-@property (nonatomic, strong) SidePanel *mSidePanel;
-@property (nonatomic, strong) MainPanel* mMainPanel;
+//@property (nonatomic, strong) SidePanel *mSidePanel;
+//@property (nonatomic, strong) MainPanel* mMainPanel;
 @property (nonatomic, strong) ViewerPanel* mViewerPanel;
-@property (nonatomic, strong) NSMutableArray* guestPanels;
+//@property (nonatomic, strong) NSMutableArray* guestPanels;
 @property (nonatomic, assign) BOOL mFullScreen;
 
 @property (nonatomic, strong) UIView *bottomPanelView;
@@ -86,7 +85,7 @@
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(guestMemberChangetoView) name:@"GuestMemberChange" object:nil];
-    _guestPanels = [NSMutableArray array];
+    self.guestPanels = [NSMutableArray array];
     mBkImg = [UIImageView new];
     [mBkImg setImage:[UIImage imageNamed:@"bg_jscn.jpg"]];
     [self.view addSubview:mBkImg];
@@ -918,12 +917,13 @@
         make.height.mas_equalTo(460);
         
     }];
+    [settingView changeDeleagte:self];
 }
 
 //免打扰
 - (void)changeNotDistrub:(BOOL)need{
     needShowOthersVideo = need;
-    for (GuestPanel * panel in _guestPanels) {
+    for (GuestPanel * panel in self.guestPanels) {
         if (needShowOthersVideo) {
             //            开启免打扰
             [panel onlyShowUserImage];

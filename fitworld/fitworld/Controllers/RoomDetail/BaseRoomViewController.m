@@ -94,4 +94,64 @@
 }
 */
 
+//获取主视频的音量
+- (int)reachCurrentMainMediaVoice{
+    VConductorClient *client = [VConductorClient sharedInstance];
+    ClassMember *host = [client getHostMember];
+    if (host) {
+        return  [host GetMainVolume];
+    }
+//    没有的话，默认就是10
+    return  10;
+}
+
+//获取其他成员的音量
+- (int)reachGuestMediaVoice{
+    VConductorClient *client = [VConductorClient sharedInstance];
+    NSDictionary *dic = [client getGustMemberData];
+    if (dic && dic.allKeys.count >0) {
+        NSString *key =[dic.allKeys firstObject];
+        ClassMember *guest = [dic objectForKey:key];
+        if (guest) {
+            return  [guest GetMainVolume];
+        }
+    }
+    
+//    没有的话，默认就是10
+    return  10;
+}
+
+//+ (void)configAvSessionCategoryWithError:(NSError **)error {
+//    AVAudioSession *session = [AVAudioSession sharedInstance];
+////    int currentVoice = [session outputVolume];
+////    //AVAudioSessionCategorySoloAmbient是系统默认的category
+////    [session setCategory:AVAudioSessionCategorySoloAmbient error:nil];
+////
+////    //激活AVAudioSession
+////    [session setActive:YES error:nil];
+//}
+
+- (void)changeMainVoice:(int)value{
+    VConductorClient *client = [VConductorClient sharedInstance];
+    ClassMember *host = [client getHostMember];
+    if (host) {
+        [host SetMainVolume:value];
+    }
+    
+}
+- (void)changeGuestVoice:(int)value{
+    VConductorClient *client = [VConductorClient sharedInstance];
+    NSDictionary *dic = [client getGustMemberData];
+    if (dic && dic.allKeys.count >0) {
+        for (NSString *key in dic.allKeys) {
+            ClassMember *guest = [dic objectForKey:key];
+            if (guest) {
+                [guest SetMainVolume:value];
+            }
+        }
+        
+    }
+}
+
+
 @end

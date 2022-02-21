@@ -52,9 +52,6 @@
 @property (nonatomic, strong) MBProgressHUD *mHud;
 
 @property (nonatomic, strong) UIImageView* mBkImg;
-@property (nonatomic, strong) SidePanel *mSidePanel; //自己的view
-@property (nonatomic, strong) MainPanel* mMainPanel; //教练的view
-@property (nonatomic, strong) NSMutableArray* guestPanels;//其他人的
 
 @end
 
@@ -88,7 +85,7 @@
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(guestMemberChangetoView) name:@"GuestMemberChange" object:nil];
-    _guestPanels = [NSMutableArray array];
+    self.guestPanels = [NSMutableArray array];
     mBkImg = [UIImageView new];
     [mBkImg setImage:[UIImage imageNamed:@"bg_jscn.jpg"]];
     [self.view addSubview:mBkImg];
@@ -627,7 +624,7 @@
 //免打扰
 - (void)changeNotDistrub:(BOOL)need{
     needShowOthersVideo = need;
-    for (GuestPanel * panel in _guestPanels) {
+    for (GuestPanel * panel in self.guestPanels) {
         if (needShowOthersVideo) {
             //            开启免打扰
             [panel onlyShowUserImage];
@@ -844,6 +841,7 @@
         make.height.mas_equalTo(460);
         
     }];
+    [settingView changeDeleagte:self];
 }
 
 //获取横屏的位置
@@ -870,8 +868,8 @@
         int itemwidth = itemheight*16/9;//横屏的高度
 //                    第一个在右边
         mSidePanel.frame = CGRectMake(60, 40, itemwidth, itemheight);
-        for (int index = 0; index < _guestPanels.count; index++) {
-            GuestPanel * guestpanel = [_guestPanels objectAtIndex:index];
+        for (int index = 0; index < self.guestPanels.count; index++) {
+            GuestPanel * guestpanel = [self.guestPanels objectAtIndex:index];
             guestpanel.frame =[self reachRectwithindex:index];
             [guestpanel changeUserImageLayout];
         }
@@ -879,8 +877,8 @@
     }else{
         self->panelSize = CGSizeMake(ScreenWidth/4, ScreenWidth/4/0.563);
         mSidePanel.frame = CGRectMake(0, 100, panelSize.width , panelSize.height);
-        for (NSInteger  i = _guestPanels.count -1; i>= 0;i--) {
-            GuestPanel * guestpanel = [_guestPanels objectAtIndex:i];
+        for (NSInteger  i = self.guestPanels.count -1; i>= 0;i--) {
+            GuestPanel * guestpanel = [self.guestPanels objectAtIndex:i];
             CGFloat startX = ScreenWidth/4*(i+1);
             CGFloat startY = 100;
             guestpanel.frame = CGRectMake(startX, startY, self->panelSize.width, self->panelSize.height);
