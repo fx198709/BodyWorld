@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 #import "ClassMember.h"
-
+//用户自己的视图
 @interface SidePanel : UIView
 
 @property (copy) void(^pressBtnChat)(void);

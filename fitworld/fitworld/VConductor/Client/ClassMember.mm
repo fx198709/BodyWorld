@@ -417,4 +417,24 @@
 }
 
 
+#pragma mark 设置声音
+- (void)SetMainVolume:(float)volume{
+    if (mMainMedia) {
+        [mMainMedia SetVolume:volume];
+    }
+}
+- (float)GetMainVolume{
+    if (mMainMedia) {
+        [mMainMedia GetVolume];
+    }
+    return 0;
+}
+
+
+//- (void)SetGuestVolume:(float)volume{
+//    
+//}
+//- (float)GetGuestVolume;
+
+
 @end

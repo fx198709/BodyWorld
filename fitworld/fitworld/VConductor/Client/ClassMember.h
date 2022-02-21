@@ -73,5 +73,10 @@ typedef NS_ENUM(NSInteger, ClassGroup) {
 - (BOOL)isonTheAir;
 
 
+//获取教练端的声音大小和设置
+- (void)SetMainVolume:(float)volume;
+- (float)GetMainVolume;
+
+ 
 @end
 

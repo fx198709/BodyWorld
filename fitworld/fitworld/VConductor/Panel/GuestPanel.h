@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 #import "ClassMember.h"
-
+//访客的view
 @interface GuestPanel : UIView
 @property (nonatomic, strong) UIView* mMyView;
 @property (nonatomic, strong) UILabel* mMyLabel;
