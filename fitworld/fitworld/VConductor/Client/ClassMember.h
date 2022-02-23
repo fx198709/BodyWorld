@@ -20,6 +20,11 @@ typedef NS_ENUM(NSInteger, ClassGroup) {
 };
 
 @interface ClassMember : NSObject
+@property (nonatomic, strong) VSRoomUser* mBaseInfo;
+
+@property (nonatomic, strong) VSMedia* mLocalMedia;
+@property (nonatomic, strong) VSMedia* mMainMedia;
+@property (nonatomic, strong) VSMedia* mShareMedia;
 
 - (void)syncInfo:(ClassMember*)member;
 - (VSRoomUser*)copyInfo;

@@ -149,9 +149,40 @@
                 [guest SetMainVolume:value];
             }
         }
-        
     }
 }
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [_reportView imagePickerController:picker didFinishPickingMediaWithInfo:info];
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [_reportView imagePickerControllerDidCancel:picker];
+}
+
+- (void)showReportView{
+    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-40);
+    _reportView = [[ReportView alloc] initWithFrame:frame];
+    _reportView.rootControl = self;
+    [self.view addSubview:_reportView];
+    [self.view bringSubviewToFront:_reportView];
+    [_reportView createSubview];
+}
+
+- (void)myCameraSwitchChanged{
+    ClassMember *mymember = [[VConductorClient sharedInstance] getMySession];
+    BOOL video =  [mymember isLocalVideoEnable]; //isVideoEnable
+    [mymember enableLocalVideo:!video];
+}
+- (void)myMicSwicthChanged{
+    ClassMember *mymember = [[VConductorClient sharedInstance] getMySession];
+    BOOL audio =  [mymember isLocalAudioEnable]; //isVideoEnable
+    [mymember enableLocalAudio:!audio];
+
+}
+
 
 
 @end

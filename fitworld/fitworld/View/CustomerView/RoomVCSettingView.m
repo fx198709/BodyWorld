@@ -27,6 +27,15 @@
     [_changeOrientationBtn addTarget:self action:@selector(orientationBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     _changeOrientationBtn.layer.cornerRadius = 20;
     _changeOrientationBtn.clipsToBounds = YES;
+    
+    NSString *reportTitle = ChineseStringOrENFun(@"举报", @"Report");
+    [_reportBtn setTitle:reportTitle forState:UIControlStateNormal];
+    [_reportBtn setTitle:reportTitle forState:UIControlStateHighlighted];
+    [_reportBtn addTarget:self action:@selector(reportBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    _reportBtn.layer.cornerRadius = 20;
+    _reportBtn.clipsToBounds = YES;
+    
+    
     _cancelBtn.layer.cornerRadius = 20;
     _cancelBtn.clipsToBounds = YES;
     _mainVoiceSlider.backgroundColor = UIColor.clearColor;
@@ -83,6 +92,12 @@
 - (void)orientationBtnClicked{
     if (self.orientationClickedBlock) {
         self.orientationClickedBlock(NULL);
+    }
+}
+
+- (void)reportBtnClicked{
+    if (self.reportBtnClickedBlock) {
+        self.reportBtnClickedBlock(NULL);
     }
 }
 /*

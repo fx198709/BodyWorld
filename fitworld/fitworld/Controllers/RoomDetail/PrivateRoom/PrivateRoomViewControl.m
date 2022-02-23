@@ -773,10 +773,11 @@
             [strongSelf removeAboveView];
         };
         settingView.myCameraSwitchChanged = ^(id clickModel) {
-            
+            [wSelf myCameraSwitchChanged];
+
         };
         settingView.myMicSwicthChanged = ^(id clickModel) {
-            
+            [wSelf myMicSwicthChanged];
         };
         settingView.notdisturbSwitchChanged = ^(NSNumber *clickModel) {
             //        免打扰
@@ -787,6 +788,12 @@
         settingView.orientationClickedBlock = ^(id clickModel) {
             [wSelf changeOrientation];
         };
+        settingView.reportBtnClickedBlock = ^(id clickModel) {
+//            先删除，再展示
+            [wSelf removeAboveView];
+            [wSelf showReportView];
+        };
+        
     }
     [mainwindow addSubview:cancelAboveBtn];
     [mainwindow addSubview:settingBackScroll];

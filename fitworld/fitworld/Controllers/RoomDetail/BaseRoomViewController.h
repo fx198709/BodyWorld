@@ -11,6 +11,7 @@
 #import "MainPanel.h"
 #import "SidePanel.h"
 #import "VConductorClient.h"
+#import "ReportView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) MainPanel* mMainPanel; //教练的view
 @property (nonatomic, strong) NSMutableArray* guestPanels;//其他人的
 
+@property (nonatomic, strong) ReportView* reportView;//举报页面，弹出的时候，需要把其他的都关闭，放到视图的最上层
 
 
 //改变屏幕方向
@@ -46,6 +48,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)changeMainVoice:(int)value;
 - (void)changeGuestVoice:(int)value;
 
+- (void)showReportView;
+
+//我的摄像头设置
+- (void)myCameraSwitchChanged;
+- (void)myMicSwicthChanged;
 
 @end
 

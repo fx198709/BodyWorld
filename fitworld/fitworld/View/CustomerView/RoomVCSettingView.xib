@@ -86,6 +86,16 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Button"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUl-l7-q4a">
+                    <rect key="frame" x="188" y="331" width="100" height="40"/>
+                    <color key="backgroundColor" red="0.3803921569" green="0.72941176470000002" blue="0.50588235290000005" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="bP2-cK-MpW"/>
+                        <constraint firstAttribute="height" constant="40" id="v0J-hh-9x4"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Button"/>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
             <constraints>
@@ -99,6 +109,7 @@
                 <constraint firstItem="20T-J2-WOc" firstAttribute="leading" secondItem="RuE-AY-AcO" secondAttribute="leading" id="CkT-H3-aBc"/>
                 <constraint firstAttribute="trailing" secondItem="36E-Eb-of8" secondAttribute="trailing" constant="30" id="DG2-Bt-wZL"/>
                 <constraint firstItem="HIJ-Aq-68g" firstAttribute="centerY" secondItem="zid-Ba-ErC" secondAttribute="centerY" id="I5y-vE-QIr"/>
+                <constraint firstItem="bUl-l7-q4a" firstAttribute="leading" secondItem="m88-c0-KBf" secondAttribute="trailing" constant="8" id="Kwk-5w-zAg"/>
                 <constraint firstAttribute="trailing" secondItem="Eag-nN-rEa" secondAttribute="trailing" constant="30" id="L7T-X6-Lmb"/>
                 <constraint firstItem="TKA-m8-y6K" firstAttribute="top" secondItem="36E-Eb-of8" secondAttribute="bottom" constant="30" id="MbZ-uf-fQt"/>
                 <constraint firstItem="RuE-AY-AcO" firstAttribute="top" secondItem="9X0-JH-jjW" secondAttribute="bottom" constant="5" id="Nsx-rZ-kKq"/>
@@ -110,6 +121,7 @@
                 <constraint firstItem="TKA-m8-y6K" firstAttribute="leading" secondItem="36E-Eb-of8" secondAttribute="leading" id="Uad-g9-OKS"/>
                 <constraint firstItem="Eag-nN-rEa" firstAttribute="centerY" secondItem="TKA-m8-y6K" secondAttribute="centerY" id="afe-fn-mIM"/>
                 <constraint firstItem="tjE-c2-75v" firstAttribute="top" secondItem="m88-c0-KBf" secondAttribute="bottom" constant="23" id="euC-qa-ILy"/>
+                <constraint firstItem="bUl-l7-q4a" firstAttribute="centerY" secondItem="m88-c0-KBf" secondAttribute="centerY" id="h2Q-J0-aJX"/>
                 <constraint firstItem="zid-Ba-ErC" firstAttribute="leading" secondItem="TKA-m8-y6K" secondAttribute="leading" id="iNh-DH-xj3"/>
                 <constraint firstItem="zid-Ba-ErC" firstAttribute="top" secondItem="TKA-m8-y6K" secondAttribute="bottom" constant="35" id="s00-ef-s4C"/>
                 <constraint firstItem="9X0-JH-jjW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="sSU-a6-TPt"/>
@@ -131,8 +143,9 @@
                 <outlet property="notdisturbSwitch" destination="PEy-cT-4Ff" id="gCG-Qq-JiZ"/>
                 <outlet property="otherVoiceLabel" destination="20T-J2-WOc" id="VYb-TR-aAS"/>
                 <outlet property="othervoiceSlider" destination="36E-Eb-of8" id="xne-UC-O5p"/>
+                <outlet property="reportBtn" destination="bUl-l7-q4a" id="klq-mB-9Hv"/>
             </connections>
-            <point key="canvasLocation" x="132" y="96"/>
+            <point key="canvasLocation" x="131.8840579710145" y="95.758928571428569"/>
         </view>
     </objects>
     <resources>

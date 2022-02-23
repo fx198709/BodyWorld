@@ -28,11 +28,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) AnyBtnBlock notdisturbSwitchChanged;
 @property (nonatomic, copy) AnyBtnBlock cancelBtnClickedBlock;
 @property (nonatomic, copy) AnyBtnBlock orientationClickedBlock; //强制横竖屏
+@property (nonatomic, copy) AnyBtnBlock reportBtnClickedBlock; //举报按钮
+
+
 
 @property (nonatomic, assign)id parentDelegate;//父vc，获取视频音量的
 
 
 @property (weak, nonatomic) IBOutlet UIButton *changeOrientationBtn;//强制横竖屏
+
+@property (weak, nonatomic) IBOutlet UIButton *reportBtn;//强制横竖屏
+
 
 //设置父视图的代理
 - (void)changeDeleagte:(id)deleagte;
