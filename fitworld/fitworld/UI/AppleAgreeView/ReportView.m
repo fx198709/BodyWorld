@@ -50,7 +50,7 @@
     titleLabel1.font = SystemFontOfSize(17);
     titleLabel1.textColor = UIColor.whiteColor;//
     titleLabel1.textAlignment = NSTextAlignmentLeft;
-    [self addSubview:titleLabel1];
+    [scrollview addSubview:titleLabel1];
     
     UIColor *contentColor = UIRGBColor(230, 230, 230, 1);
     outStartY = outStartY+30 +10;
@@ -63,14 +63,14 @@
         int startX = index%2?30: psize.width/2;
         CircleBtn *vbtn = [[CircleBtn alloc] initWithFrame:CGRectMake(startX, outStartY, 40, 30)];
         [vbtn changemodel:screenModel];
-        [self addSubview:vbtn];
+        [scrollview addSubview:vbtn];
         
         UILabel *vlabel = [[UILabel alloc] initWithFrame:CGRectMake(startX+45, outStartY+5, reaseonItemSize.width-45, 20)];
         vlabel.text = screenModel.name;
         vlabel.font = SystemFontOfSize(14);
         vlabel.textColor = contentColor;//
         vlabel.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:vlabel];
+        [scrollview addSubview:vlabel];
     }
     outStartY = outStartY+30+20;
     UILabel *titleLabel2 = [[UILabel alloc] init];
@@ -79,12 +79,12 @@
     titleLabel2.font = SystemFontOfSize(17);
     titleLabel2.textColor = UIColor.whiteColor;//
     titleLabel2.textAlignment = NSTextAlignmentLeft;
-    [self addSubview:titleLabel2];
+    [scrollview addSubview:titleLabel2];
     
     outStartY = outStartY+30+20;
     _textview = [[PBTextWithPlaceHoldView alloc] initWithFrame:CGRectMake(30, outStartY, psize.width-60, 100)];
     _textview.placeHoldString =ChineseStringOrENFun(@"请描述你遇到的问题", @"");
-    [self addSubview:_textview];
+    [scrollview addSubview:_textview];
     
     outStartY = outStartY+100+20;
     
@@ -94,15 +94,49 @@
     titleLabel3.font = SystemFontOfSize(17);
     titleLabel3.textColor = UIColor.whiteColor;//
     titleLabel3.textAlignment = NSTextAlignmentLeft;
-    [self addSubview:titleLabel3];
+    [scrollview addSubview:titleLabel3];
+    
+    outStartY = outStartY+30+20;
+    _uploadBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, outStartY, 100, 100)];
+    [scrollview addSubview:_uploadBtn];
+    [_uploadBtn addTarget:self action:@selector(changeHeadImg:) forControlEvents:UIControlEventTouchUpInside];
+    outStartY = outStartY+100+20;
 
+    UILabel *titleLabel4 = [[UILabel alloc] init];
+    titleLabel4.frame = CGRectMake(30, outStartY, psize.width-60, 50);
+    titleLabel4.text = ChineseStringOrENFun(@"证明材料", @"Report");
+    titleLabel4.font = SystemFontOfSize(14);
+    titleLabel4.textColor = UIRGBColor(100, 100, 100, 1);//
+    titleLabel4.textAlignment = NSTextAlignmentLeft;
+    titleLabel4.numberOfLines = 0;
+    titleLabel4.lineBreakMode = NSLineBreakByCharWrapping;
+    [scrollview addSubview:titleLabel3];
+    scrollview.contentSize =CGSizeMake(0, outStartY+80);
+    
+    UIButton *reportBtn =[[UIButton alloc] initWithFrame:CGRectMake(30, outStartY, 100, 50)];
+    reportBtn.backgroundColor = SelectGreenColor;
+    reportBtn.layer.cornerRadius = 25;
+    reportBtn.clipsToBounds = YES;
+    NSString *reportBtnTitle = ChineseStringOrENFun(@"提交", @"OK");
+    [reportBtn setTitle:reportBtnTitle forState:UIControlStateNormal];
+    [reportBtn setTitle:reportBtnTitle forState:UIControlStateNormal];
 
+    [self addSubview:reportBtn];
+    [reportBtn addTarget:self action:@selector(submittedBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
 
 - (void)closeBtnClick{
+    [self removeFromSuperview];
+}
+
+
+- (IBAction)submittedBtnClicked:(UIButton*)sender {
+//   只点击一次
+    sender.enabled = NO;
     
+    sender.enabled = YES;
 }
 
 //修改头像

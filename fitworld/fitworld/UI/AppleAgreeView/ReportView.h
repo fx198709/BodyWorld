@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain)NSMutableArray *dataArray;
 @property (nonatomic, retain)PBTextWithPlaceHoldView *textview;
 @property (nonatomic, assign) BaseNavViewController *rootControl;
+@property (nonatomic, retain) UIButton *uploadBtn;
 
 - (void)createSubview;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;

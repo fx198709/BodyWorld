@@ -6,3 +6,6 @@
   
 */
 CFBundleDisplayName = "FitWorld";
+NSCameraUsageDescription = "用来参与健身直播课程获取用户视频信息";
+NSMicrophoneUsageDescription = "麦克风为了直播过程中用户进行语音交流";
+NSPhotoLibraryUsageDescription = "用于用户拍照上传头像和图片";

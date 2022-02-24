@@ -135,6 +135,8 @@
 		DD199F9127C4CD3700FFC7B1 /* ReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD199F9027C4CD3700FFC7B1 /* ReportView.m */; };
 		DD199F9427C4E7CB00FFC7B1 /* ReportReaseonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD199F9327C4E7CB00FFC7B1 /* ReportReaseonModel.m */; };
 		DD199F9727C50E3A00FFC7B1 /* CircleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = DD199F9627C50E3A00FFC7B1 /* CircleBtn.m */; };
+		DD199F9B27C6915D00FFC7B1 /* RemoveAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD199F9927C6915D00FFC7B1 /* RemoveAccountViewController.m */; };
+		DD199F9C27C6915D00FFC7B1 /* RemoveAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD199F9A27C6915D00FFC7B1 /* RemoveAccountViewController.xib */; };
 		DD25FECF272159D10092CF87 /* NSObject+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FECD272157D50092CF87 /* NSObject+YCExtension.m */; };
 		DD25FED0272159D10092CF87 /* UIScrollView+YCRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */; };
 		DD25FED427215D580092CF87 /* AFAppNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DD25FED327215D580092CF87 /* AFAppNetAPIClient.m */; };
@@ -502,6 +504,9 @@
 		DD199F9327C4E7CB00FFC7B1 /* ReportReaseonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportReaseonModel.m; sourceTree = "<group>"; };
 		DD199F9527C50E3A00FFC7B1 /* CircleBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleBtn.h; sourceTree = "<group>"; };
 		DD199F9627C50E3A00FFC7B1 /* CircleBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleBtn.m; sourceTree = "<group>"; };
+		DD199F9827C6915D00FFC7B1 /* RemoveAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoveAccountViewController.h; sourceTree = "<group>"; };
+		DD199F9927C6915D00FFC7B1 /* RemoveAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoveAccountViewController.m; sourceTree = "<group>"; };
+		DD199F9A27C6915D00FFC7B1 /* RemoveAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RemoveAccountViewController.xib; sourceTree = "<group>"; };
 		DD25610F2792D3C600CB70F4 /* FFitWorldDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FFitWorldDebug.entitlements; sourceTree = "<group>"; };
 		DD25FEC7272012DC0092CF87 /* UIScrollView+YCRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YCRefresh.h"; sourceTree = "<group>"; };
 		DD25FEC8272012DC0092CF87 /* UIScrollView+YCRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YCRefresh.m"; sourceTree = "<group>"; };
@@ -1149,6 +1154,9 @@
 				A2723EFE273CC28C00388B01 /* ChangeIntroductionViewController.m */,
 				A2723F03273CF1BC00388B01 /* SelectCountryViewController.h */,
 				A2723F04273CF1BC00388B01 /* SelectCountryViewController.m */,
+				DD199F9827C6915D00FFC7B1 /* RemoveAccountViewController.h */,
+				DD199F9927C6915D00FFC7B1 /* RemoveAccountViewController.m */,
+				DD199F9A27C6915D00FFC7B1 /* RemoveAccountViewController.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1655,6 +1663,7 @@
 				46A3FB21276E13520013B14A /* StarView.xib in Resources */,
 				DDD4AFD02786029600B7C4D8 /* CourseRoomTableViewCell.xib in Resources */,
 				DD79440B274FED4900BEEF6B /* RoomVCSettingView.xib in Resources */,
+				DD199F9C27C6915D00FFC7B1 /* RemoveAccountViewController.xib in Resources */,
 				DD595EBE27364D0300618D1A /* MessageDetailViewController.xib in Resources */,
 				DD6EDB6C2734420C002B0A8E /* MessageListTableViewCell.xib in Resources */,
 				047DC206268CD09900A3E37E /* LaunchScreen.storyboard in Resources */,
@@ -1902,6 +1911,7 @@
 				04747FBB2708010000B3B5B8 /* PractiseWeek.m in Sources */,
 				A296D6AF2758B46C00F73259 /* CoachCommentPageInfo.m in Sources */,
 				A2A94DD2273E76CA00D02C77 /* SelectCountryCodeCell.m in Sources */,
+				DD199F9B27C6915D00FFC7B1 /* RemoveAccountViewController.m in Sources */,
 				04EC01F926BD8AC100DC0103 /* VSRoomParam.mm in Sources */,
 				DDBAB340276B926A003C6DA5 /* TrainCommitTableViewCell.m in Sources */,
 				DD794406274FEC9D00BEEF6B /* VideoSlider.m in Sources */,

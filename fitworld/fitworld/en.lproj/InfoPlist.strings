@@ -5,4 +5,7 @@
   Created by 王巍 on 2021/8/2.
   
 */
-CFBundleDisplayName = "Fit World";
+CFBundleDisplayName = "FitWorld";
+NSCameraUsageDescription = "Access to camera is to get the user video transmission during live fitness classes to be mutually visible between the trainer and users.";
+NSMicrophoneUsageDescription = "Micphone is to allow voice communication during the live fitness classes";
+NSPhotoLibraryUsageDescription = "Photo taking access is for users to take selfies to upload profile pictures.";
