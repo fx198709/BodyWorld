@@ -91,6 +91,14 @@
     [_jumpUrlBtn setTitleColor:UIRGBColor(70, 104, 213, 1) forState:UIControlStateNormal];
     [_jumpUrlBtn setTitleColor:UIRGBColor(70, 104, 213, 1) forState:UIControlStateHighlighted];
     // Do any additional setup after loading the view from its nib.
+    [_jumpUrlBtn addTarget:self action:@selector(jumpUrlClicked) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)jumpUrlClicked{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/user_guide.html",FITAPI_HTTPS_ROOT]];
+    [[UIApplication sharedApplication] openURL:url options:nil completionHandler:^(BOOL success) {
+        
+    }];
 }
 
 - (void)changeState{
