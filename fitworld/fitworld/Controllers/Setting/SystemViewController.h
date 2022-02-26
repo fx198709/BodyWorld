@@ -10,6 +10,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SystemViewController : BaseViewController
+@property (weak, nonatomic) IBOutlet UIButton *logoffBtn;
+
+- (IBAction)logoffbtnClicked:(id)sender;
 
 @end
 

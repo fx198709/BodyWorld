@@ -14,6 +14,7 @@
 #import "OurDatePickerView.h"
 #import "NSDate+MT.h"
 #import "UIImage+Extension.h"
+#import "LogOffViewController.h"
 
 @interface SystemViewController ()
 <UINavigationControllerDelegate, UIImagePickerControllerDelegate,
@@ -95,9 +96,12 @@ OurDatePickerViewDelegate>
     self.introductionTitleLabel.text = ChineseStringOrENFun(@"介绍", @"Bio");
     
     [self.logoutBtn setTitle:ChineseStringOrENFun(@"退出登录", @"Logout") forState:UIControlStateNormal];
-    
+    [self.logoffBtn setTitle:ChineseStringOrENFun(@"注销账号", @"Remove Account") forState:UIControlStateNormal];
     [self.headImg cornerHalf];
     [self.logoutBtn cornerWithRadius:6.0];
+    
+    _logoffBtn.layer.cornerRadius = 6;
+    _logoffBtn.clipsToBounds = YES;
     
 }
 
@@ -368,4 +372,9 @@ OurDatePickerViewDelegate>
     [self changeUserInfoFromServer:param];
 }
 
+- (IBAction)logoffbtnClicked:(id)sender {
+    LogOffViewController *vc = [[LogOffViewController alloc] initWithNibName:@"LogOffViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 @end

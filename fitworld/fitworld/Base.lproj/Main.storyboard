@@ -1414,12 +1414,24 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0s-HG-Pzd">
-                                        <rect key="frame" x="24" y="724" width="366" height="54"/>
+                                        <rect key="frame" x="24" y="782" width="366" height="54"/>
                                         <color key="backgroundColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="退出登录"/>
                                         <connections>
                                             <action selector="loginOut:" destination="tNA-x5-hao" eventType="touchUpInside" id="eFZ-po-SzO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9k-Kj-Yqu">
+                                        <rect key="frame" x="24" y="721" width="366" height="54"/>
+                                        <color key="backgroundColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="Ejg-Tw-z9b"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="退出登录"/>
+                                        <connections>
+                                            <action selector="logoffbtnClicked:" destination="tNA-x5-hao" eventType="touchUpInside" id="BHW-7s-poo"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1429,6 +1441,7 @@
                                     <constraint firstItem="N0s-HG-Pzd" firstAttribute="height" secondItem="TRe-ed-QYq" secondAttribute="height" id="0tc-B3-rRl"/>
                                     <constraint firstItem="ZRp-MD-wfl" firstAttribute="leading" secondItem="Bxl-te-Bct" secondAttribute="leading" id="16O-FH-Nt4"/>
                                     <constraint firstItem="TRe-ed-QYq" firstAttribute="top" secondItem="cJN-Cd-Prl" secondAttribute="bottom" id="1X0-nr-XA2"/>
+                                    <constraint firstItem="J9k-Kj-Yqu" firstAttribute="top" secondItem="zgs-Pu-2ef" secondAttribute="bottom" constant="29" id="1uh-3g-OJk"/>
                                     <constraint firstItem="h67-wq-elf" firstAttribute="height" secondItem="Eti-EZ-2dR" secondAttribute="height" id="2Ap-zR-WvV"/>
                                     <constraint firstItem="kZV-qL-dJq" firstAttribute="top" secondItem="7MW-Qz-iaA" secondAttribute="bottom" id="2hb-Qm-h7f"/>
                                     <constraint firstItem="cJN-Cd-Prl" firstAttribute="trailing" secondItem="n1q-tU-Nk4" secondAttribute="trailing" id="3eE-YY-xb7"/>
@@ -1447,7 +1460,6 @@
                                     <constraint firstItem="F5d-OX-jfy" firstAttribute="leading" secondItem="GA0-qH-4iy" secondAttribute="leading" id="9AJ-zF-PJ3"/>
                                     <constraint firstItem="Eaf-cZ-PqV" firstAttribute="leading" secondItem="I10-wg-gC5" secondAttribute="leading" id="A2j-2s-12u"/>
                                     <constraint firstItem="M66-4L-9z7" firstAttribute="top" secondItem="TRe-ed-QYq" secondAttribute="bottom" id="AHe-lO-Dby"/>
-                                    <constraint firstItem="N0s-HG-Pzd" firstAttribute="top" secondItem="zgs-Pu-2ef" secondAttribute="bottom" constant="32" id="Adb-0p-GAX"/>
                                     <constraint firstItem="hxh-OU-ZVD" firstAttribute="trailing" secondItem="yI1-zf-0dO" secondAttribute="trailing" id="C9M-k0-JXC"/>
                                     <constraint firstItem="zgs-Pu-2ef" firstAttribute="top" secondItem="kZV-qL-dJq" secondAttribute="bottom" id="CX9-Lr-Frp"/>
                                     <constraint firstItem="JD0-L1-idC" firstAttribute="height" secondItem="0fh-0Z-sHf" secondAttribute="height" id="CmV-MZ-Yzk"/>
@@ -1464,6 +1476,7 @@
                                     <constraint firstItem="haT-sJ-QAF" firstAttribute="trailing" secondItem="n1q-tU-Nk4" secondAttribute="trailing" id="Kph-o5-QuH"/>
                                     <constraint firstItem="N0s-HG-Pzd" firstAttribute="centerX" secondItem="Tt6-9N-T3H" secondAttribute="centerX" id="LnK-Mk-BTW"/>
                                     <constraint firstItem="lVn-Pj-ce9" firstAttribute="width" secondItem="BDI-F0-c7a" secondAttribute="width" id="NWw-gk-V5C"/>
+                                    <constraint firstItem="n1q-tU-Nk4" firstAttribute="trailing" secondItem="J9k-Kj-Yqu" secondAttribute="trailing" constant="24" id="P64-Qs-H6x"/>
                                     <constraint firstItem="Vhu-HT-KM4" firstAttribute="trailing" secondItem="h67-wq-elf" secondAttribute="trailing" id="P6R-du-Sgj"/>
                                     <constraint firstItem="7MW-Qz-iaA" firstAttribute="top" secondItem="QYY-qb-cfb" secondAttribute="bottom" id="Q0d-cF-3jH"/>
                                     <constraint firstItem="04K-2B-aHe" firstAttribute="leading" secondItem="1Lm-d2-Ahq" secondAttribute="leading" id="QUc-LB-HQ4"/>
@@ -1484,6 +1497,7 @@
                                     <constraint firstItem="GA0-qH-4iy" firstAttribute="leading" secondItem="STR-ZB-O8G" secondAttribute="leading" id="Z6A-JJ-YkZ"/>
                                     <constraint firstItem="bw6-bt-y5k" firstAttribute="height" secondItem="zXf-FW-jd8" secondAttribute="height" id="ZEe-2o-lto"/>
                                     <constraint firstItem="P7s-1j-dnA" firstAttribute="leading" secondItem="y4w-9N-7UV" secondAttribute="leading" id="ZHz-4D-MRx"/>
+                                    <constraint firstItem="N0s-HG-Pzd" firstAttribute="top" secondItem="J9k-Kj-Yqu" secondAttribute="bottom" constant="7" id="ZaN-aG-20r"/>
                                     <constraint firstItem="QYY-qb-cfb" firstAttribute="top" secondItem="haT-sJ-QAF" secondAttribute="bottom" id="Zm6-mL-QaN"/>
                                     <constraint firstItem="7MW-Qz-iaA" firstAttribute="top" secondItem="QYY-qb-cfb" secondAttribute="bottom" id="aKO-qL-gZU"/>
                                     <constraint firstItem="BDI-F0-c7a" firstAttribute="width" secondItem="zXf-FW-jd8" secondAttribute="width" id="aRk-y1-r0V"/>
@@ -1519,6 +1533,7 @@
                                     <constraint firstItem="BDI-F0-c7a" firstAttribute="trailing" secondItem="zXf-FW-jd8" secondAttribute="trailing" id="rTa-4x-h55"/>
                                     <constraint firstItem="haT-sJ-QAF" firstAttribute="leading" secondItem="n1q-tU-Nk4" secondAttribute="leading" id="rlK-NN-nnV"/>
                                     <constraint firstItem="d9l-OH-1zM" firstAttribute="trailing" secondItem="PMZ-I1-XWa" secondAttribute="trailing" id="sY1-qi-0ZM"/>
+                                    <constraint firstItem="J9k-Kj-Yqu" firstAttribute="leading" secondItem="n1q-tU-Nk4" secondAttribute="leading" constant="24" id="t0s-hk-vve"/>
                                     <constraint firstItem="Vhu-HT-KM4" firstAttribute="height" secondItem="h67-wq-elf" secondAttribute="height" id="tPw-5K-hXG"/>
                                     <constraint firstItem="Eti-EZ-2dR" firstAttribute="trailing" secondItem="WEs-ZA-L7m" secondAttribute="trailing" id="vOC-8h-lBM"/>
                                     <constraint firstItem="haT-sJ-QAF" firstAttribute="top" secondItem="F2G-NJ-b7f" secondAttribute="bottom" id="wDd-Vc-K5H"/>
@@ -1563,6 +1578,7 @@
                         <outlet property="introductionTitleLabel" destination="DXh-zl-27C" id="mSY-kj-p2j"/>
                         <outlet property="languageLabel" destination="PMZ-I1-XWa" id="mg6-4N-e7f"/>
                         <outlet property="languageTitleLabel" destination="vhP-1a-3ok" id="qCd-Iv-D3g"/>
+                        <outlet property="logoffBtn" destination="J9k-Kj-Yqu" id="8wX-Ev-UCp"/>
                         <outlet property="logoutBtn" destination="N0s-HG-Pzd" id="30m-Vh-g5j"/>
                         <outlet property="mobileLabel" destination="yI1-zf-0dO" id="kWL-A0-pnD"/>
                         <outlet property="mobileTitleLabel" destination="STR-ZB-O8G" id="uiD-5I-X2f"/>
