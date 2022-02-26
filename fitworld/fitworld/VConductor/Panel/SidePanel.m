@@ -105,4 +105,51 @@
     mLocalView = nil;
 }
 
+
+//创建头像
+- (void)createImageSubview{
+    if (!_guestImageView) {
+        _guestImageView = [[UserHeadPicView alloc] init];
+        [self addSubview:_guestImageView];
+    }
+    [self changeUserImageLayout];
+
+   
+}
+
+- (void)changeUserImageLayout{
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    int parentHeight = self.frame.size.height;
+    if (parentHeight <150) {
+        [_guestImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            //    make.centerX.and.centerY.equalTo(self.mMyView);
+            make.center.equalTo(self);
+            make.size.mas_equalTo(CGSizeMake(parentHeight/2, parentHeight/2));
+            
+        }];
+        _guestImageView.clipsToBounds = YES;
+        _guestImageView.layer.cornerRadius = parentHeight/4;
+    }else{
+        [_guestImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            //    make.centerX.and.centerY.equalTo(self.mMyView);
+            make.center.equalTo(self);
+            make.size.mas_equalTo(CGSizeMake(100, 100));
+            
+        }];
+        _guestImageView.clipsToBounds = YES;
+        _guestImageView.layer.cornerRadius = 50;
+    }
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    [_guestImageView changeDataWithUserImageUrl:_userImageString];
+}
+
+
+- (void)deleteImageSubview{
+    [_guestImageView removeFromSuperview];
+    _guestImageView = nil;
+}
+
+
 @end

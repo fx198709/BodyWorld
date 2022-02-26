@@ -101,6 +101,7 @@
     [mMainPanel createPlaceImageView];
     
     mSidePanel = [SidePanel new];
+    mSidePanel.userImageString =[NSString stringWithFormat:@"%@%@",FITAPI_HTTPS_ROOT,[APPObjOnce sharedAppOnce].currentUser.avatar];
     mSidePanel.layer.cornerRadius = 5;
     mSidePanel.layer.masksToBounds = YES;
     [self.view addSubview:mSidePanel];
@@ -891,6 +892,7 @@
         }
        
     }
+    [mSidePanel changeUserImageLayout];
 //    [self layoutPanel];
     [self dealwithTimer];
     [mMainPanel changePlaceImage:currentOrientationType];

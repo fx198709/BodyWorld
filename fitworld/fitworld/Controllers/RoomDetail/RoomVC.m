@@ -102,6 +102,7 @@
     [self.view addSubview:_bottomPanelView];
     
     mSidePanel = [SidePanel new];
+    mSidePanel.userImageString =[NSString stringWithFormat:@"%@%@",FITAPI_HTTPS_ROOT,[APPObjOnce sharedAppOnce].currentUser.avatar];
     mSidePanel.layer.cornerRadius = 5;
     mSidePanel.layer.masksToBounds = YES;
     [_bottomPanelView addSubview:mSidePanel];
@@ -401,6 +402,7 @@
                         GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
                         [guestpanel changeUserImageLayout];
                     };
+                    [self->mSidePanel changeUserImageLayout];
                 }
             }
             

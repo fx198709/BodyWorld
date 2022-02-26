@@ -176,6 +176,15 @@
     ClassMember *mymember = [[VConductorClient sharedInstance] getMySession];
     BOOL video =  [mymember isLocalVideoEnable]; //isVideoEnable
     [mymember enableLocalVideo:!video];
+    
+//    展示头像
+//    mSidePanel
+    if (!video) {
+        [self.mSidePanel deleteImageSubview];
+    }else{
+        [self.mSidePanel createImageSubview];
+
+    }
 }
 - (void)myMicSwicthChanged{
     ClassMember *mymember = [[VConductorClient sharedInstance] getMySession];
