@@ -39,7 +39,17 @@
         _backBtn = [[UIButton alloc] initWithFrame:self.bounds];
         [self addSubview:_backBtn];
     }
-    [_backBtn addTarget:self action:@selector(changebtnType) forControlEvents:UIControlEventTouchUpInside];
+    [_backBtn addTarget:self action:@selector(backBtnClickednow) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void )backBtnClickednow{
+    if (self.backBtnClicked) {
+//        _screenModel.hasSelected = YES;
+//        [self changeviewState];
+        self.backBtnClicked(_screenModel);
+    }else{
+        [self changebtnType];
+    }
 }
 
 - (void)changebtnType{

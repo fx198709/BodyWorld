@@ -15,9 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, retain) UIImageView *showImageView;
 @property(nonatomic, retain) ScreenModel *screenModel;
 @property(nonatomic, retain) UIButton *backBtn;
+@property (nonatomic, copy) AnyBtnBlock backBtnClicked;
 
 - (void)changemodel:(ScreenModel*)model;
 - (void)changebtnType;
+
+
 
 @end
 

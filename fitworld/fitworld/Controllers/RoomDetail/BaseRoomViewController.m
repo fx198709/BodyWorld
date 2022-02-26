@@ -163,11 +163,12 @@
 }
 
 - (void)showReportView{
-    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-40);
+    UIWindow *mainwindow = [CommonTools mainWindow];
+    CGRect frame = CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height-40);
     _reportView = [[ReportView alloc] initWithFrame:frame];
     _reportView.rootControl = self;
-    [self.view addSubview:_reportView];
-    [self.view bringSubviewToFront:_reportView];
+    [mainwindow addSubview:_reportView];
+    [mainwindow bringSubviewToFront:_reportView];
     [_reportView createSubview];
 }
 

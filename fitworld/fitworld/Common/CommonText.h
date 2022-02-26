@@ -36,6 +36,9 @@ return [obj objectForKey:key];\
 
 #define ChangeSuccessMsg ChineseStringOrENFun(@"修改成功", @"Success changed")
 #define ChangeErrorMsg ChineseStringOrENFun(@"修改失败", @"Change failed")
+#define UploadSuccessMsg ChineseStringOrENFun(@"上传成功", @"Success upload")
+#define ReportSuccessMsg ChineseStringOrENFun(@"举报成功", @"Success report")
+#define ReportErrorMsg ChineseStringOrENFun(@"举报失败", @"Report failed")
 
 
 #define GetValidCodeBtnTitle ChineseStringOrENFun(@"获取验证码", @"Request Code")
