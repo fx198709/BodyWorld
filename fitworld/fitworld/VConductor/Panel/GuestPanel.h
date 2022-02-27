@@ -37,4 +37,7 @@
 //显示其他人的流
 - (void)showUservideo;
 
+- (void)syncRemoteView;
+
+
 @end

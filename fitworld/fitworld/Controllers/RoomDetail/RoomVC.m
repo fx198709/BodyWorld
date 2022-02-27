@@ -527,6 +527,7 @@
 
 - (void)onTick {
     [mMainPanel syncRemoteView];
+    [self syncGuestpanelView];
 }
 
 - (void)showGroupChatView {

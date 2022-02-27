@@ -54,6 +54,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)myCameraSwitchChanged;
 - (void)myMicSwicthChanged;
 
+//baseRoom
+//绑定数据
+- (void)syncGuestpanelView;
+
 @end
 
 NS_ASSUME_NONNULL_END

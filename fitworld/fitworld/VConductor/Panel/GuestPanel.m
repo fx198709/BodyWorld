@@ -185,4 +185,12 @@
 
 }
 
+//刷新流用的
+- (void)syncRemoteView{
+    if (mGuestRenderView) {
+        [mGuestRenderView bindMedia];
+    }
+}
+
+
 @end

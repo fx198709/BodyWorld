@@ -7,6 +7,7 @@
 
 #import "BaseRoomViewController.h"
 #import "AfterTrainingViewController.h"
+#import "GuestPanel.h"
 @interface BaseRoomViewController ()
 
 @end
@@ -193,6 +194,12 @@
 
 }
 
+- (void)syncGuestpanelView{
+    for (GuestPanel * guestpanel in self.guestPanels) {
+        [guestpanel syncRemoteView];
+    }
+    
 
+}
 
 @end

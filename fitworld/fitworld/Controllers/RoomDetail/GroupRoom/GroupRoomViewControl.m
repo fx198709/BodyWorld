@@ -384,6 +384,7 @@
 
 - (void)onTick {
     [mMainPanel syncRemoteView];
+    [self syncGuestpanelView];
 }
 
 
