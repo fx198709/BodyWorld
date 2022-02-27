@@ -301,7 +301,7 @@
                         guestpanel.layer.cornerRadius = 5;
                         guestpanel.layer.masksToBounds = YES;
                         guestpanel.clipsToBounds = YES;
-                        [guestpanel attachGuestRenderView];
+                        [guestpanel attachGuestRenderView:1];
                         ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
                         if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
                             VSRoomUser *copyInfo =[currentMember copyInfo];

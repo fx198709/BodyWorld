@@ -45,7 +45,6 @@
     [mMyLabel sizeToFit];
     [mMyView addSubview:mMyLabel];
     [mMyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        //    make.centerX.and.centerY.equalTo(self.mMyView);
         make.left.equalTo(mMyView).offset(5);
         make.top.equalTo(mMyView).offset(5);
         
@@ -54,7 +53,6 @@
     _countryImageView = [[UIImageView alloc] init];
     [mMyView addSubview:_countryImageView];
     [_countryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        //    make.centerX.and.centerY.equalTo(self.mMyView);
         make.left.equalTo(mMyLabel.mas_right).offset(2);
         make.centerY.equalTo(mMyLabel);
         make.size.mas_equalTo(CGSizeMake(18, 18));
@@ -135,22 +133,35 @@
             make.width.and.height.equalTo(self);
         }];
     }
+    NSLog(@"aaabbb bindview %@",NSStringFromCGRect(mGuestRenderView.bounds));
+
 //    [mGuestRenderView unbindMedia];
     [mGuestRenderView bindMedia];
     [self bringSubviewToFront:mMyView];
 }
 
-- (void)attachGuestRenderView {
+- (void)attachGuestRenderView:(int)type {
 //
     [self bindview];
-//    第一次绑定没有效果，取消，再绑定一次
-    [self performSelector:@selector(rebindview) withObject:nil afterDelay:1];
+    if (type == 1) {
+//        ClassMember *guest = [mGuestRenderView reachGuestMember];
+////        [guest.mMainMedia EnableVideo:NO];
+//        //    第一次绑定没有效果，取消，再绑定一次
+//        [self performSelector:@selector(rebindview) withObject:nil afterDelay:1];
+    }
+
 }
 
 - (void)rebindview{
+    NSLog(@"aaabbb rebindview %@",mGuestRenderView);
     [self detachGuestRenderView];
-    [self performSelector:@selector(bindview) withObject:nil afterDelay:1];
+    [self performSelector:@selector(startBindview) withObject:nil afterDelay:1];
 
+}
+
+- (void)startBindview{
+    NSLog(@"aaabbb startBindview %@",mGuestRenderView);
+    [self bindview];
 }
 
 - (void)detachGuestRenderView {
@@ -170,7 +181,7 @@
 //显示其他人的流
 - (void)showUservideo{
     [self deleteImageSubview];
-    [self attachGuestRenderView];
+    [self attachGuestRenderView:0];
 
 }
 

@@ -201,7 +201,7 @@
                            
                             UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragReplyButton:)];
                             [guestpanel addGestureRecognizer:panGestureRecognizer];
-                            [guestpanel attachGuestRenderView];
+                            [guestpanel attachGuestRenderView:1];
                             ClassMember *currentMember = [memberDic objectForKey:guestpanel.mUserId];
                             if ([[currentMember copyInfo].custom objectForKey:@"internal"]) {
                                 VSRoomUser *copyInfo =[currentMember copyInfo];

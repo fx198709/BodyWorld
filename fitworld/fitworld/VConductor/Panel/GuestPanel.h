@@ -25,7 +25,7 @@
 
 //- (void)syncSession:(ClassMember*)session;
 //第一次绑定没有效果，取消，再绑定一次
-- (void)attachGuestRenderView;
+- (void)attachGuestRenderView:(int)Type; // 0 立刻绑定  1稍后绑定
 - (void)detachGuestRenderView;
 
 //屏蔽其他人 只显示头像
