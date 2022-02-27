@@ -164,7 +164,10 @@
 }
 
 - (void)closeBtnClick{
-    [self removeFromSuperview];
+//    [self removeFromSuperview];
+    if ([_rootControl respondsToSelector:@selector(closeReportView)]) {
+        [_rootControl performSelector:@selector(closeReportView)];
+    }
 }
 
 

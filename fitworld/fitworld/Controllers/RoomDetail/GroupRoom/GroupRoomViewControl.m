@@ -619,7 +619,9 @@
         }
         [self.view bringSubviewToFront:currentSlider];
     }
-    
+    if (self.reportView) {
+        [self.view bringSubviewToFront:self.reportView];
+    }
 }
 
 

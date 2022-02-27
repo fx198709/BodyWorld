@@ -797,6 +797,9 @@
         [self.view bringSubviewToFront:settingBtn];
 
     }
+    if (self.reportView) {
+        [self.view bringSubviewToFront:self.reportView];
+    }
     
 }
 

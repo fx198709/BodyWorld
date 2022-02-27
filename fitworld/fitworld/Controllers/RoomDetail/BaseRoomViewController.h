@@ -58,6 +58,9 @@ NS_ASSUME_NONNULL_BEGIN
 //绑定数据
 - (void)syncGuestpanelView;
 
+//关闭举报view
+- (void)closeReportView;
+
 @end
 
 NS_ASSUME_NONNULL_END

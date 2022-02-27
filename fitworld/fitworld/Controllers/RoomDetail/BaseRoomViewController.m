@@ -164,12 +164,11 @@
 }
 
 - (void)showReportView{
-    UIWindow *mainwindow = [CommonTools mainWindow];
-    CGRect frame = CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height-40);
+    CGRect frame = CGRectMake(0, 100, self.view.bounds.size.width, self.view.bounds.size.height-100);
     _reportView = [[ReportView alloc] initWithFrame:frame];
     _reportView.rootControl = self;
-    [mainwindow addSubview:_reportView];
-    [mainwindow bringSubviewToFront:_reportView];
+    [self.view addSubview:_reportView];
+    [self.view bringSubviewToFront:_reportView];
     [_reportView createSubview];
 }
 
@@ -201,5 +200,11 @@
     
 
 }
+
+- (void)closeReportView{
+    [self.reportView  removeFromSuperview];
+    self.reportView = nil;
+}
+
 
 @end
