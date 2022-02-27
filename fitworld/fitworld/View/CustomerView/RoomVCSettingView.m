@@ -12,7 +12,7 @@
 -(void)awakeFromNib{
     [super awakeFromNib];
     _mainVoiceLabel.text = ChineseStringOrENFun(@"视频音量", @"Video volume");
-    _otherVoiceLabel.text = ChineseStringOrENFun(@"他人语音音量", @"Video volume");
+    _otherVoiceLabel.text = ChineseStringOrENFun(@"他人语音音量", @"Other People volume");
     _mycamare.text = ChineseStringOrENFun(@"我的摄像头", @"My Camera");
     _myMicLabel.text  = ChineseStringOrENFun(@"我的麦克", @"My Mic");
     _notDisturbLabel.text = ChineseStringOrENFun(@"免打扰", @"Do Not Disturb");
