@@ -329,41 +329,6 @@
                     guestpanel.frame = panelRect;
                     [guestpanel changeUserImageLayout];
                 };
-//                //                横屏  就3个的时候，需要两边等分，其他时候 都不需要
-//                if (showguestcount == 3) {
-////
-//                    int starty = (ScreenHeight- 2*(itemheight+20))/2;
-////                    第一个在右边
-//                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
-//
-//                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
-//                        GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-//                        CGRect panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+itemheight+20, itemwidth, itemheight);
-//                        if (index == 1) {
-//                            panelRect = CGRectMake(60, starty+20, itemwidth, itemheight);;
-//                        }
-//                        if (index == 2) {
-//                            panelRect = CGRectMake(60, starty+20+itemheight+20, itemwidth, itemheight);;
-//                        }
-//                        guestpanel.frame = panelRect;
-//                    }
-//                }else{
-//                    int starty = (ScreenHeight- 3*(itemheight+20))/2;
-////                    第一个在右边
-//                    self->mSidePanel.frame = CGRectMake((ScreenWidth-itemwidth-60), starty+20, itemwidth, itemheight);
-//
-//                    for (int index = 0; index < strongSelf.guestPanels.count; index++) {
-//                        GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
-//                        CGRect panelRect =  CGRectZero;
-//                        if (index < 2) {
-////                            右边
-//                            panelRect = CGRectMake((ScreenWidth-itemwidth-60), starty+20+(itemheight+20)*(index+1), itemwidth, itemheight);
-//                        }else{
-//                            panelRect = CGRectMake(60, starty+20+(itemheight+20)*(index-3), itemwidth, itemheight);
-//                        }
-//                        guestpanel.frame = panelRect;
-//                    }
-//                }
             }else{
                 if (showguestcount == 0) {
                     //        清楚所有的直播
@@ -402,10 +367,10 @@
                         GuestPanel * guestpanel = [strongSelf.guestPanels objectAtIndex:index];
                         [guestpanel changeUserImageLayout];
                     };
-                    [self->mSidePanel changeUserImageLayout];
                 }
             }
-            
+            [self->mSidePanel changeUserImageLayout];
+
         }];
     }
 }
