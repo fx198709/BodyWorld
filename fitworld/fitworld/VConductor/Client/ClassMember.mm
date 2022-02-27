@@ -420,10 +420,11 @@
     }
 }
 - (float)GetMainVolume{
+    float voice = 0;
     if (mMainMedia) {
-        [mMainMedia GetVolume];
+        voice = [mMainMedia GetVolume];;
     }
-    return 0;
+    return voice;
 }
 
 

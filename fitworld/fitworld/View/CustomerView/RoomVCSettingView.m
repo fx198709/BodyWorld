@@ -40,19 +40,15 @@
     _cancelBtn.clipsToBounds = YES;
     _mainVoiceSlider.backgroundColor = UIColor.clearColor;
     [_mainVoiceSlider createSubview];
-    BaseRoomViewController *baseRoom = (BaseRoomViewController *)self.parentDelegate;
     _mainVoiceSlider.sliderValueChanged = ^(id clickModel) {
-        if (baseRoom) {
-            [baseRoom changeMainVoice:[clickModel intValue]];
-        };
+        [self mainSliderValueChanged:[clickModel intValue]];
     };
     
     _othervoiceSlider.backgroundColor = UIColor.clearColor;
     [_othervoiceSlider createSubview];
     _othervoiceSlider.sliderValueChanged = ^(id clickModel) {
-        if (baseRoom) {
-            [baseRoom changeGuestVoice:[clickModel intValue]];
-        };
+        [self guestSliderValueChanged:[clickModel intValue]];
+
     };
     _myCameraSwitch.on = YES;
     [_myCameraSwitch addTarget:self action:@selector(myCameraSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -64,6 +60,19 @@
     
     self.backgroundColor = UIRGBColor(52, 52, 52, 0.7);
 
+}
+- (void)mainSliderValueChanged:(int)voiceValue{
+    BaseRoomViewController *baseRoom = (BaseRoomViewController *)self.parentDelegate;
+    if (baseRoom) {
+        [baseRoom changeMainVoice:voiceValue];
+    };
+}
+
+- (void)guestSliderValueChanged:(int)voiceValue{
+    BaseRoomViewController *baseRoom = (BaseRoomViewController *)self.parentDelegate;
+    if (baseRoom) {
+        [baseRoom changeGuestVoice:voiceValue];
+    };
 }
 
 - (void)myCameraSwitchValueChanged:(UISwitch*)switchControl{

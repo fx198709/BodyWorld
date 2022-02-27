@@ -102,7 +102,7 @@
         return  [host GetMainVolume];
     }
 //    没有的话，默认就是10
-    return  10;
+    return  0;
 }
 
 //获取其他成员的音量
@@ -118,7 +118,7 @@
     }
     
 //    没有的话，默认就是10
-    return  10;
+    return  0;
 }
 
 //+ (void)configAvSessionCategoryWithError:(NSError **)error {
