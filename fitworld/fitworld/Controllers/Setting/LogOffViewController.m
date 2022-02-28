@@ -95,7 +95,7 @@
 }
 
 - (void)jumpUrlClicked{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/user_guide.html",FITAPI_HTTPS_ROOT]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/cancel.html",FITAPI_HTTPS_ROOT]];
     [[UIApplication sharedApplication] openURL:url options:nil completionHandler:^(BOOL success) {
         
     }];
