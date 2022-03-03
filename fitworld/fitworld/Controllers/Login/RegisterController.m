@@ -47,8 +47,8 @@
 
 - (void)reloadTextView {
     [super reloadTextView];
-    NSString *mobileStr = ChineseStringOrENFun(@"  手机号", @"  mobile");
-    NSString *emailStr = ChineseStringOrENFun(@"  邮箱", @"  email");
+    NSString *mobileStr = ChineseStringOrENFun(@"  手机号", @"  Mobile");
+    NSString *emailStr = ChineseStringOrENFun(@"  邮箱", @"  Email");
     [self.isMobileBtn setTitle:mobileStr forState:UIControlStateNormal];
     [self.isEmailBtn setTitle:emailStr forState:UIControlStateNormal];
     [self.loginBtn setTitle:ChineseStringOrENFun(@"登录", @"Login") forState:UIControlStateNormal];

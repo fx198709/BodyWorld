@@ -81,7 +81,7 @@
     if (_isLogining) {
         return;
     }
-    UIViewController *loginVC = VCBySBName(@"LoginController");
+    UIViewController *loginVC = VCBySBName(@"RegisterController");
     [self.mainRootVC setViewControllers:@[loginVC]];
 }
 
