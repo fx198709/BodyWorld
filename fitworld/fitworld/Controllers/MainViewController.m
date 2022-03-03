@@ -79,6 +79,7 @@ BOOL  hasrequest = NO;
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     [self forceOrientationPortrait];
+    [self checkAPPversion];
 }
 
 
@@ -571,6 +572,53 @@ BOOL  hasrequest = NO;
     [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
     //刷新
     [UIViewController attemptRotationToDeviceOrientation];
+}
+
+//检测版本
+- (void)checkAPPversion{
+//    /api/version/check?platform=android&type=1&version=
+    BOOL needRequest = NO;
+    NSTimeInterval currentInterval =  [[NSDate date] timeIntervalSince1970];
+    NSString *checkAPPversionTimeString = [[NSUserDefaults standardUserDefaults] objectForKey:@"checkAPPversionTime"];
+    if (currentInterval-checkAPPversionTimeString.floatValue < 20*60*60) {
+        return;
+    }
+    AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
+    NSDictionary *baddyParams = @{
+        @"platform": @"ios",
+        @"type": @"1",
+        @"version": @"1"
+    };
+    [manager GET:@"version/check" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject objectForKey:@"recordset"]) {
+            NSDictionary *dic = [responseObject objectForKey:@"recordset"];
+            if ([[dic objectForKey:@"number"] intValue] < [[baddyParams objectForKey:@"version"] intValue]) {
+//                有更新
+                NSString *titleString = ChineseStringOrENFun(@"提示", @"Alert");
+                NSString *contentString = ChineseStringOrENFun(@"有新的版本，请更新", @"There is a new version, please update");
+                self->updateAlert = [UIAlertController alertControllerWithTitle:titleString message:contentString preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:CancelString style:UIAlertActionStyleCancel handler:nil];
+                [self->updateAlert addAction:cancelAction];
+                __weak UIAlertController *weakalert = self->updateAlert;
+                UIAlertAction *sureAction = [UIAlertAction actionWithTitle:OKString style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                    NSString *urlString = @"itms-apps://itunes.apple.com/cn/app/1585507987?mt=8";
+                    __strong UIAlertController* strongalert = weakalert;
+//                    [self leaveToSuccessview:strongalert];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:nil completionHandler:^(BOOL success) {
+                        [strongalert dismissViewControllerAnimated:YES completion:^{
+                            
+                        }];
+                    }];
+                }];
+                [self->updateAlert addAction:sureAction];
+                [self presentViewController:self->updateAlert animated:YES completion:nil];
+            }
+        }
+//        成功了，记录一个时间，
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f",currentInterval] forKey:@"checkAPPversionTime"];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
 }
 
 @end

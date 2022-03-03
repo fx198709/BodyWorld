@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MainViewController : UIViewController
-<UITableViewDelegate,UITableViewDataSource>
+<UITableViewDelegate,UITableViewDataSource>{
+    UIAlertController *updateAlert;
+}
 
 @property (weak, nonatomic) NSIndexPath *liveIndexPath;
 @property (weak, nonatomic) NSIndexPath *groupIndexPath;
