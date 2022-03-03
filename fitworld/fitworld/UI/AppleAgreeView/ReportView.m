@@ -213,18 +213,20 @@
 - (IBAction)changeHeadImg:(id)sender {
     [self endEditing:YES];
     [_rootControl.view endEditing:YES];
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"拍照", @"Camera") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showImgPicker:UIImagePickerControllerSourceTypeCamera];
-    }]];
-    
-    [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"相册", @"Photo") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showImgPicker:UIImagePickerControllerSourceTypePhotoLibrary];
-    }]];
-    [ac addAction:[UIAlertAction actionWithTitle:CancelString style:UIAlertActionStyleCancel handler:nil]];
-    
-    [_rootControl presentViewController:ac animated:YES completion:nil];
+//    只能弹出照片
+    [self showImgPicker:UIImagePickerControllerSourceTypePhotoLibrary];
+//    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+//
+//    [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"拍照", @"Camera") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [self showImgPicker:UIImagePickerControllerSourceTypeCamera];
+//    }]];
+//
+//    [ac addAction:[UIAlertAction actionWithTitle:ChineseStringOrENFun(@"相册", @"Photo") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [self showImgPicker:UIImagePickerControllerSourceTypePhotoLibrary];
+//    }]];
+//    [ac addAction:[UIAlertAction actionWithTitle:CancelString style:UIAlertActionStyleCancel handler:nil]];
+//
+//    [_rootControl presentViewController:ac animated:YES completion:nil];
 }
 
 //显示拍摄/照片

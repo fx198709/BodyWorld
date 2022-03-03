@@ -13,6 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProtocolView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *alertTitle;
 
 @end
 
