@@ -83,13 +83,13 @@ OurDatePickerViewDelegate>
 
 
 - (void)initUI {
-    self.pwdTitleLabel.text = ChineseStringOrENFun(@"修改密码", @"Change the password");
-    self.headTitleLabel.text = ChineseStringOrENFun(@"头像", @"Profile picture");
-    self.nickTitleLabel.text = ChineseStringOrENFun(@"昵称", @"Name");
-    self.languageTitleLabel.text = ChineseStringOrENFun(@"语言", @"System language");
+    self.pwdTitleLabel.text = ChineseStringOrENFun(@"修改密码", @"Change Password");
+    self.headTitleLabel.text = ChineseStringOrENFun(@"头像", @"Profile Picture");
+    self.nickTitleLabel.text = ChineseStringOrENFun(@"昵称", @"Display Name");
+    self.languageTitleLabel.text = ChineseStringOrENFun(@"语言", @"System Language");
     self.genderTitleLabel.text = ChineseStringOrENFun(@"性别", @"Gender");
-    self.mobileTitleLabel.text = ChineseStringOrENFun(@"手机号", @"Telephone");
-    self.birthdayTitleLabel.text = ChineseStringOrENFun(@"生日", @"Date of birth");
+    self.mobileTitleLabel.text = ChineseStringOrENFun(@"手机号", @"Mobile Number");
+    self.birthdayTitleLabel.text = ChineseStringOrENFun(@"生日", @"Date of Birth");
     self.heightTitleLabel.text = ChineseStringOrENFun(@"身高(cm)", @"Height(cm)");
     self.weightTitleLabel.text = ChineseStringOrENFun(@"体重(kg)", @"Weight(kg)");
     self.cityTitleLabel.text = ChineseStringOrENFun(@"所在城市", @"Location");
@@ -120,7 +120,7 @@ OurDatePickerViewDelegate>
     self.birthdayLabel.text = user.birthday;
     self.weightLabel.text = IntToString(user.weight);
     self.heightLabel.text = IntToString(user.height);
-    self.cityLabel.text = [NSString stringWithFormat:@"%@,%@",user.city, user.country];
+    self.cityLabel.text = [NSString stringWithFormat:@"%@, %@",user.city, user.country];
     self.introductionLabel.text = user.introduction;
 }
 

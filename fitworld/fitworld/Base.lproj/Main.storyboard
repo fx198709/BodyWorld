@@ -1715,12 +1715,9 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ewu-Fy-Fir">
-                                                <rect key="frame" x="120" y="0.0" width="200" height="56"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ewu-Fy-Fir">
+                                                <rect key="frame" x="130" y="0.0" width="200" height="56"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="xvg-ZU-a69"/>
-                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -1750,9 +1747,10 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="QC7-Nm-t76" secondAttribute="trailing" id="4GG-3a-lH2"/>
+                                            <constraint firstAttribute="trailing" secondItem="ewu-Fy-Fir" secondAttribute="trailing" constant="40" id="AGG-Vr-Fuj"/>
                                             <constraint firstItem="ewu-Fy-Fir" firstAttribute="top" secondItem="Xua-KV-EaE" secondAttribute="top" id="CFg-tj-MRF"/>
                                             <constraint firstItem="gwo-MG-TpY" firstAttribute="centerY" secondItem="Xua-KV-EaE" secondAttribute="centerY" id="OKK-ld-yVQ"/>
-                                            <constraint firstItem="ewu-Fy-Fir" firstAttribute="leading" secondItem="Xua-KV-EaE" secondAttribute="leading" constant="120" id="OeV-U3-xyu"/>
+                                            <constraint firstItem="ewu-Fy-Fir" firstAttribute="leading" secondItem="Xua-KV-EaE" secondAttribute="leading" constant="130" id="OeV-U3-xyu"/>
                                             <constraint firstItem="QC7-Nm-t76" firstAttribute="leading" secondItem="Xua-KV-EaE" secondAttribute="leading" id="WaF-Ii-sRX"/>
                                             <constraint firstItem="iMh-dH-9Nj" firstAttribute="centerY" secondItem="Xua-KV-EaE" secondAttribute="centerY" id="agz-ZV-RLU"/>
                                             <constraint firstAttribute="bottom" secondItem="QC7-Nm-t76" secondAttribute="bottom" id="edV-I7-4wV"/>
@@ -1770,12 +1768,9 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8vV-B9-Q1v">
-                                                <rect key="frame" x="120" y="0.0" width="200" height="56"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8vV-B9-Q1v">
+                                                <rect key="frame" x="130" y="0.0" width="200" height="56"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="37m-nc-pJJ"/>
-                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -1795,6 +1790,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="2WL-MA-UaJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="8vV-B9-Q1v" secondAttribute="trailing" constant="40" id="9ck-zD-UQI"/>
                                             <constraint firstItem="cJT-rM-XZk" firstAttribute="centerY" secondItem="wiV-E3-keV" secondAttribute="centerY" id="DvK-8B-ByZ"/>
                                             <constraint firstItem="8vV-B9-Q1v" firstAttribute="centerY" secondItem="wiV-E3-keV" secondAttribute="centerY" id="Jc6-w3-AGx"/>
                                             <constraint firstItem="Iuw-RF-Kab" firstAttribute="centerY" secondItem="wiV-E3-keV" secondAttribute="centerY" id="OfO-dO-lHR"/>

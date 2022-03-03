@@ -61,7 +61,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"Personal Dashboard");
+    self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"Dashboard");
     [self initView];
 }
 
@@ -81,7 +81,7 @@
     self.killoTitleLabel.text = ChineseStringOrENFun(@"里程", @"Ranking");
     
     self.historyTitleLabel.text = ChineseStringOrENFun(@"历史统计", @"Historical Data");
-    self.historyCountTitleLabel.text = ChineseStringOrENFun(@"次", @"times");
+    self.historyCountTitleLabel.text = ChineseStringOrENFun(@" 次", @" times");
     
     self.tuanTitleLabel.text = Text_Group;
     self.dlTitleLabel.text = Text_Training;
@@ -107,7 +107,7 @@
     [self.headImg sd_setImageWithURL:[NSURL URLWithString:url]
                     placeholderImage:[UIImage imageNamed:@"choose_course_foot_logo3_unselected"]];
     self.nameLabel.text = user.nickname;
-    self.cityLabel.text = [NSString stringWithFormat:@"%@,%@", user.city, user.country];
+    self.cityLabel.text = [NSString stringWithFormat:@"%@, %@", user.city, user.country];
 }
 
 //加载数据
@@ -119,12 +119,12 @@
     
     self.historyCountLabel.text = IntToString(self.centerInfo.total);
     
-    self.dlCountLabel.text = [NSString stringWithFormat:@"%d%@", self.centerInfo.buddy.count,ChineseStringOrENFun(@"次", @"times")];
-    self.dlTimeLabel.text = [NSString stringWithFormat:@"%.1fmin",
+    self.dlCountLabel.text = [NSString stringWithFormat:@"%d%@", self.centerInfo.buddy.count,ChineseStringOrENFun(@" 次", @" times")];
+    self.dlTimeLabel.text = [NSString stringWithFormat:@"%.1f min",
                              self.centerInfo.buddy.duration / 60.0];
     
-    self.tuanCountLabel.text = [NSString stringWithFormat:@"%d%@", self.centerInfo.group.count,ChineseStringOrENFun(@"次", @"times")];
-    self.tuanTimeLabel.text = [NSString stringWithFormat:@"%.1fmin",
+    self.tuanCountLabel.text = [NSString stringWithFormat:@"%d%@", self.centerInfo.group.count,ChineseStringOrENFun(@" 次", @" times")];
+    self.tuanTimeLabel.text = [NSString stringWithFormat:@"%.1f min",
                                self.centerInfo.group.duration / 60.0];
     if (self.centerInfo.day_of_month != nil && self.centerInfo.day_of_month.count > 0) {
         NSMutableArray *days = [NSMutableArray arrayWithCapacity:self.centerInfo.day_of_month.count];

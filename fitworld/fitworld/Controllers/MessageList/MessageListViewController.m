@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = ChineseStringOrENFun(@"消息", @"MESSAGE");
+    self.title = ChineseStringOrENFun(@"消息", @"Notification");
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor redColor];
     self.messageTableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];

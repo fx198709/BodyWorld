@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = ChineseStringOrENFun(@"消息", @"MESSAGE");
+    self.title = ChineseStringOrENFun(@"消息", @"Notification");
     _contentTextView.text = @"";
     _contentTextView.backgroundColor = UIColor.clearColor;
     self.titleLabel.text = ChineseStringOrENFun(@"课程提醒", @"Course Reminder");

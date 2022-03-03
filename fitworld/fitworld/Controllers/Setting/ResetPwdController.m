@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = ChineseStringOrENFun(@"修改密码", @"Change password");
+    self.navigationItem.title = ChineseStringOrENFun(@"修改密码", @"Change Password");
     [self initUI];
 }
 
@@ -54,10 +54,10 @@
     
     self.pwdTitleLabel.text = ChineseStringOrENFun(@"新密码", @"New Password");
     
-    self.pwdLabel.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入新密码", @"enter a new password") attributes:attr];
+//    self.pwdLabel.attributedPlaceholder =[[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入新密码", @"enter a new password") attributes:attr];
     
-    self.repeatTitleLabel.text = ChineseStringOrENFun(@"重复确认密码", @"New Password Again");
-    self.repeatLabel.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请重复输入一次新密码", @"Repeat the new password again") attributes:attr];
+    self.repeatTitleLabel.text = ChineseStringOrENFun(@"重复确认密码", @"Confirm Password");
+//    self.repeatLabel.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请重复输入一次新密码", @"Repeat the new password again") attributes:attr];
      
     [self.submitBtn setTitle:ChineseStringOrENFun(@"确认修改", @"SAVE") forState:UIControlStateNormal];
 }

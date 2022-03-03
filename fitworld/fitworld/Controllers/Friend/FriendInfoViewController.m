@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"Person Dashboard");
+    self.navigationItem.title = ChineseStringOrENFun(@"个人中心", @"Dashboard");
     _descView.layer.cornerRadius = 5;
     _descView.clipsToBounds = YES;
     _title1Label.text = ChineseStringOrENFun(@"个人简介", @"Person introduce");
