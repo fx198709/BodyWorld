@@ -24,19 +24,23 @@
     UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
 
     NSString *changeTitle = @"";
+    NSString *showTitle = @"";
     switch (self.changeType) {
         case ChangeTypeEnum_Height:
             self.inputField.keyboardType = UIKeyboardTypeNumberPad;
             self.inputField.text = IntToString(user.height);
-            changeTitle = ChineseStringOrENFun(@"身高", @"Height");
+            changeTitle = ChineseStringOrENFun(@"身高(cm)", @"Height(cm)");
+            showTitle = ChineseStringOrENFun(@"身高", @"Height");
             break;
         case ChangeTypeEnum_Weight:
             self.inputField.keyboardType = UIKeyboardTypeNumberPad;
             self.inputField.text = IntToString(user.weight);
-            changeTitle = ChineseStringOrENFun(@"体重", @"Weight");
+            changeTitle = ChineseStringOrENFun(@"体重(kg)", @"Weight(kg)");
+            showTitle = ChineseStringOrENFun(@"体重", @"Weight");
             break;
         case ChangeTypeEnum_NickName:
-            changeTitle = ChineseStringOrENFun(@"昵称", @"Nickname");
+            changeTitle = ChineseStringOrENFun(@"昵称", @"Display Name");
+            showTitle = ChineseStringOrENFun(@"昵称", @"DisplayName");
             self.inputField.text = user.nickname;
             self.inputField.keyboardType = UIKeyboardTypeDefault;
             break;
@@ -45,7 +49,7 @@
     }
     
     NSString *navTitle = ChineseStringOrENFun(@"修改", @"Change");
-    self.navigationItem.title = [[navTitle stringByAppendingString:changeTitle] capitalizedString];
+    self.navigationItem.title = [navTitle stringByAppendingString:showTitle];
     self.titleLabel.text = changeTitle;
 }
 
