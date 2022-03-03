@@ -90,8 +90,8 @@ OurDatePickerViewDelegate>
     self.genderTitleLabel.text = ChineseStringOrENFun(@"性别", @"Gender");
     self.mobileTitleLabel.text = ChineseStringOrENFun(@"手机号", @"Telephone");
     self.birthdayTitleLabel.text = ChineseStringOrENFun(@"生日", @"Date of birth");
-    self.heightTitleLabel.text = ChineseStringOrENFun(@"身高", @"Height");
-    self.weightTitleLabel.text = ChineseStringOrENFun(@"体重", @"Weight");
+    self.heightTitleLabel.text = ChineseStringOrENFun(@"身高(cm)", @"Height(cm)");
+    self.weightTitleLabel.text = ChineseStringOrENFun(@"体重(kg)", @"Weight(kg)");
     self.cityTitleLabel.text = ChineseStringOrENFun(@"所在城市", @"Location");
     self.introductionTitleLabel.text = ChineseStringOrENFun(@"介绍", @"Bio");
     
@@ -291,7 +291,7 @@ OurDatePickerViewDelegate>
 - (IBAction)loginOut:(id)sender {
     [self.view endEditing:YES];
     
-    UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"确定退出？" message:@"Are you sure to exit" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alter = [UIAlertController alertControllerWithTitle:ChineseOrENFun(@"提示", @"Alert") message:ChineseStringOrENFun(@"确定退出？", @"Are you sure to exit") preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:OKString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [APPObjOnce clearUserLoginInfo];
         [[APPObjOnce sharedAppOnce] showLoginView];

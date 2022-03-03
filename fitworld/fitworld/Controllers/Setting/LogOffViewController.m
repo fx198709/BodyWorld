@@ -25,20 +25,20 @@
     
     _titlelabel1.numberOfLines = 0;
     _titlelabel1.lineBreakMode = NSLineBreakByWordWrapping;
-    _titlelabel1.text = ChineseStringOrENFun(@"1、账号财产已结清：", @"1、The account assets are well settled.");
+    _titlelabel1.text = ChineseStringOrENFun(@"1、账号财产已结清：", @"1. The account assets are well settled.");
     _titlelabel1.font = SystemFontOfSize(16);
     _titlelabel1.textColor = UIColor.whiteColor;
     
     _subTitleLabel1.numberOfLines = 0;
     _subTitleLabel1.lineBreakMode = NSLineBreakByWordWrapping;
-    _subTitleLabel1.text = ChineseStringOrENFun(@"没有资产、欠款、未结清的资金和虚拟权益。本账号及通过本账号接入的第三方中，没有未完成活存在争议的服务。", @"No assets, debts, open payables or virtual interest.No open or disputable issues in the account or any third parties connected through the account.");
+    _subTitleLabel1.text = ChineseStringOrENFun(@"没有资产、欠款、未结清的资金和虚拟权益。本账号及通过本账号接入的第三方中，没有未完成活存在争议的服务。", @"No assets, debts, open payables or virtual interest.  No open or disputable issues in the account or any third parties connected through the account.");
     _subTitleLabel1.font = SystemFontOfSize(14);
     _subTitleLabel1.textColor = LightGaryTextColor;
     _lineview1.backgroundColor = LineColor;
     
     _titlelabel2.numberOfLines = 0;
     _titlelabel2.lineBreakMode = NSLineBreakByWordWrapping;
-    _titlelabel2.text = ChineseStringOrENFun(@"2、账号处于安全状态：", @"2、The account is safe");
+    _titlelabel2.text = ChineseStringOrENFun(@"2、账号处于安全状态：", @"2. The account is safe");
     _titlelabel2.font = SystemFontOfSize(16);
     _titlelabel2.textColor = UIColor.whiteColor;
     
@@ -51,7 +51,7 @@
     
     _titlelabel3.numberOfLines = 0;
     _titlelabel3.lineBreakMode = NSLineBreakByWordWrapping;
-    _titlelabel3.text = ChineseStringOrENFun(@"3、账号权限解除：", @"3、The account access and permission are canceled");
+    _titlelabel3.text = ChineseStringOrENFun(@"3、账号权限解除：", @"3. The account access and permission are canceled");
     _titlelabel3.font = SystemFontOfSize(16);
     _titlelabel3.textColor = UIColor.whiteColor;
     
@@ -64,7 +64,7 @@
     
     _titlelabel4.numberOfLines = 0;
     _titlelabel4.lineBreakMode = NSLineBreakByWordWrapping;
-    _titlelabel4.text = ChineseStringOrENFun(@"4、账号无任何纠纷，包括投诉举报", @"4、The account has not disputes, nor complaints or reports");
+    _titlelabel4.text = ChineseStringOrENFun(@"4、账号无任何纠纷，包括投诉举报", @"4. The account has not disputes, nor complaints or reports");
     _titlelabel4.font = SystemFontOfSize(16);
     _titlelabel4.textColor = UIColor.whiteColor;
     

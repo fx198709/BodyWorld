@@ -41,7 +41,7 @@
     NSString *livingString = ChineseStringOrENFun(@"正在进行", @"LIVE");
     NSString *GroupString = ChineseStringOrENFun(@"团课", @"GROUP");
     NSString *BuddyString = ChineseStringOrENFun(@"对练课", @"BUDDY");
-    NSString *personString = ChineseStringOrENFun(@"私教", @"PERSON");
+    NSString *personString = ChineseStringOrENFun(@"私教", @"PERSONAL");
 
     NSArray *titles = @[livingString, GroupString, BuddyString,personString];
     CGRect frame =CGRectMake(0, 0, kScreenWidth, self.view.bounds.size.height-KNavhight-KStatushight);

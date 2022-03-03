@@ -103,11 +103,11 @@ UIKIT_STATIC_INLINE  NSString* SexNameFormGender(long gender){
     NSString *genderString = ChineseStringOrENFun(@"未知", @"unknow");
     if (gender == 1) {
 //            男
-        genderString = ChineseStringOrENFun(@"男", @"male");
+        genderString = ChineseStringOrENFun(@"男", @"Male");
     }
     if (gender == 2) {
 //           女
-        genderString = ChineseStringOrENFun(@"女", @"female");
+        genderString = ChineseStringOrENFun(@"女", @"Female");
     }
     return  genderString;
 }

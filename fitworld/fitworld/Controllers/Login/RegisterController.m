@@ -52,14 +52,14 @@
     [self.isMobileBtn setTitle:mobileStr forState:UIControlStateNormal];
     [self.isEmailBtn setTitle:emailStr forState:UIControlStateNormal];
     [self.loginBtn setTitle:ChineseStringOrENFun(@"登录", @"Login") forState:UIControlStateNormal];
-    [self.accountBtn setTitle:ChineseStringOrENFun(@"密码登录", @"Account Login") forState:UIControlStateNormal];
-    [self.noaccountBtn setTitle:ChineseStringOrENFun(@"免密登录", @"SMS Code Login") forState:UIControlStateNormal];
+    [self.accountBtn setTitle:ChineseStringOrENFun(@"密码登录", @"Password Login") forState:UIControlStateNormal];
+    [self.noaccountBtn setTitle:ChineseStringOrENFun(@"免密登录", @"Code Login") forState:UIControlStateNormal];
 
     [self.codeBtn setTitle:ChineseStringOrENFun(@"获取验证码", @"Request Code") forState:UIControlStateNormal];
     
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
-    self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入账号", @"Please enter the account number") attributes:attr];
-    self.codeField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"短信验证码", @"SMS Code") attributes:attr];
+    self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入手机号", @"Mobile number") attributes:attr];
+    self.codeField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入验证码", @"Code received") attributes:attr];
 }
 
 #pragma mark - data

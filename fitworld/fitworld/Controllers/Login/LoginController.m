@@ -80,11 +80,11 @@
     [self.isMobileBtn setTitle:mobileStr forState:UIControlStateNormal];
     [self.isEmailBtn setTitle:emailStr forState:UIControlStateNormal];
     [self.loginBtn setTitle:ChineseStringOrENFun(@"登录", @"Login") forState:UIControlStateNormal];
-    [self.accountBtn setTitle:ChineseStringOrENFun(@"密码登录", @"Account Login") forState:UIControlStateNormal];
-    [self.registerBtn setTitle:ChineseStringOrENFun(@"免密登录", @"SMS Code Login") forState:UIControlStateNormal];
+    [self.accountBtn setTitle:ChineseStringOrENFun(@"密码登录", @"Password Login") forState:UIControlStateNormal];
+    [self.registerBtn setTitle:ChineseStringOrENFun(@"免密登录", @"Code Login") forState:UIControlStateNormal];
     
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
-    self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入账号", @"Please enter the account number") attributes:attr];
+    self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入手机号", @"Please enter the account number") attributes:attr];
     self.pwdField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入密码", @"Please input a password") attributes:attr];
     
     // TODO 默认账号

@@ -49,7 +49,7 @@
     
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
     
-    self.validCodeLabel.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"短信验证码", @"SMS Code") attributes:attr];
+    self.validCodeLabel.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入验证码", @"Code received") attributes:attr];
     [self.validCodeBtn setTitle:ChineseStringOrENFun(@"获取验证码", @"Request Code") forState:UIControlStateNormal];
     
     self.pwdTitleLabel.text = ChineseStringOrENFun(@"新密码", @"New Password");
