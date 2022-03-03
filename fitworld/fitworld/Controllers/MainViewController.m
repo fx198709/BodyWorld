@@ -577,10 +577,9 @@ BOOL  hasrequest = NO;
 //检测版本
 - (void)checkAPPversion{
 //    /api/version/check?platform=android&type=1&version=
-    BOOL needRequest = NO;
     NSTimeInterval currentInterval =  [[NSDate date] timeIntervalSince1970];
     NSString *checkAPPversionTimeString = [[NSUserDefaults standardUserDefaults] objectForKey:@"checkAPPversionTime"];
-    if (currentInterval-checkAPPversionTimeString.floatValue < 20*60*60) {
+    if (checkAPPversionTimeString && currentInterval-checkAPPversionTimeString.floatValue < 20*60*60) {
         return;
     }
     AFAppNetAPIClient *manager =[AFAppNetAPIClient manager];
@@ -592,7 +591,7 @@ BOOL  hasrequest = NO;
     [manager GET:@"version/check" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject objectForKey:@"recordset"]) {
             NSDictionary *dic = [responseObject objectForKey:@"recordset"];
-            if ([[dic objectForKey:@"number"] intValue] < [[baddyParams objectForKey:@"version"] intValue]) {
+            if ([[dic objectForKey:@"number"] intValue] > [[baddyParams objectForKey:@"version"] intValue]) {
 //                有更新
                 NSString *titleString = ChineseStringOrENFun(@"提示", @"Alert");
                 NSString *contentString = ChineseStringOrENFun(@"有新的版本，请更新", @"There is a new version, please update");
