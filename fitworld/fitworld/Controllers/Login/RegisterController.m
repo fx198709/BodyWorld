@@ -14,7 +14,7 @@
 #import "UIDeps.h"
 #import "UserInfo.h"
 #import "BaseResponseModel.h"
-
+#import "ProtocolView.h"
 @interface RegisterController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *accountBtn;
@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *codeField;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 
+@property (nonatomic, strong) ProtocolView *protocolView;
 
 
 @end
@@ -66,6 +67,10 @@
 
 #pragma mark - action
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self showProtocolView];
+}
 
 - (IBAction)goToAccountLogin:(id)sender {
     [self resignFirstResponder];
@@ -181,6 +186,22 @@
             self.countryCodeLabel.text = [NSString stringWithFormat:@"+%d", code.code];
         };
     }
+}
+
+- (void)showProtocolView {
+    NSString *hasShow = [[NSUserDefaults standardUserDefaults] objectForKey:ProtocolShowKey];
+    if (hasShow != nil) {
+        return;
+    }
+    
+    //显示协议
+    if (self.protocolView == nil) {
+        self.protocolView = LoadXib(NSStringFromClass([ProtocolView class]));
+    }
+    [self.view addSubview:self.protocolView];
+    [self.protocolView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+    }];
 }
 
 @end
