@@ -59,14 +59,14 @@
     [attrStr setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]}
                      range:NSMakeRange(0, content.length)];
     NSDictionary *userDic = @{
-        NSLinkAttributeName : [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/user_guide.html",FITAPI_HTTPS_ROOT]],
+        NSLinkAttributeName : [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/%@",FITAPI_HTTPS_ROOT,ChineseStringOrENFun(@"user_guide.html", @"user_guide_cn.html")]],
         NSForegroundColorAttributeName:blueColor
     };
     NSString *userStr =ChineseStringOrENFun(@"《用户协议》", @"Terms of Services");
     [attrStr setAttributes:userDic range:[content rangeOfString:userStr]];
     
     NSDictionary *privateDic = @{
-        NSLinkAttributeName : [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/private_policy.html",FITAPI_HTTPS_ROOT]],
+        NSLinkAttributeName : [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/%@",FITAPI_HTTPS_ROOT,ChineseStringOrENFun(@"private_policy.html", @"private_policy_en.html")]],
         NSForegroundColorAttributeName:blueColor
     };
     NSString *privateStr =ChineseStringOrENFun(@"《隐私协议》", @"Privacy Policy") ;
