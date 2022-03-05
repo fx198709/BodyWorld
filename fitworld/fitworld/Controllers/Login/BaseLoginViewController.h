@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (assign, nonatomic)  int loginType;
+
 
 //修改语言
 - (IBAction)ChangeLanguage:(UIButton *)sender;
@@ -38,6 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //获取登录类型
 - (NSString *)getAccountType;
+
+//改变登录方式，这个方法需要覆盖
+- (void)changeLoginType:(int)type;
 
 @end
 

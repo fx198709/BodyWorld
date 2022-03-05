@@ -84,8 +84,8 @@
     [self.registerBtn setTitle:ChineseStringOrENFun(@"免密登录", @"Code Login") forState:UIControlStateNormal];
     
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
-    self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入手机号", @"Please enter the account number") attributes:attr];
-    self.pwdField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入密码", @"Please input a password") attributes:attr];
+//    self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入手机号", @"Please enter the account number") attributes:attr];
+    self.pwdField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入密码", @"Password") attributes:attr];
     
     // TODO 默认账号
 //    self.nameField.text = @"13501173505";
@@ -95,6 +95,12 @@
 //    self.pwdField.text = @"1122";
 
 }
+
+//- (void)changeLoginType:(int)type{
+//    [super changeLoginType:type];
+//    
+//}
+
 
 #pragma mark - action
 

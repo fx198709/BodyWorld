@@ -59,7 +59,7 @@
     [self.codeBtn setTitle:ChineseStringOrENFun(@"获取验证码", @"Request Code") forState:UIControlStateNormal];
     
     NSDictionary *attr = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
-    self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入手机号", @"Mobile number") attributes:attr];
+//    self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入手机号", @"Mobile number") attributes:attr];
     self.codeField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入验证码", @"Code received") attributes:attr];
 }
 
