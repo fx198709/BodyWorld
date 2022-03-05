@@ -59,7 +59,7 @@
     [attrStr setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]}
                      range:NSMakeRange(0, content.length)];
     NSDictionary *userDic = @{
-        NSLinkAttributeName : [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/%@",FITAPI_HTTPS_ROOT,ChineseStringOrENFun(@"user_guide.html", @"user_guide_cn.html")]],
+        NSLinkAttributeName : [NSURL URLWithString:[NSString stringWithFormat:@"%@/assets/h5/%@",FITAPI_HTTPS_ROOT,ChineseStringOrENFun(@"user_guide.html", @"user_guide_en.html")]],
         NSForegroundColorAttributeName:blueColor
     };
     NSString *userStr =ChineseStringOrENFun(@"《用户协议》", @"Terms of Services");
