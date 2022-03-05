@@ -291,7 +291,7 @@ OurDatePickerViewDelegate>
 - (IBAction)loginOut:(id)sender {
     [self.view endEditing:YES];
     
-    UIAlertController *alter = [UIAlertController alertControllerWithTitle:ChineseOrENFun(@"提示", @"Alert") message:ChineseStringOrENFun(@"确定退出？", @"Are you sure to exit") preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alter = [UIAlertController alertControllerWithTitle:ChineseStringOrENFun(@"提示", @"Alert") message:ChineseStringOrENFun(@"确定退出？", @"Are you sure to exit") preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:OKString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [APPObjOnce clearUserLoginInfo];
         [[APPObjOnce sharedAppOnce] showLoginView];
