@@ -28,33 +28,27 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xoW-Zj-XE8" userLabel="languageView">
-                                <rect key="frame" x="269" y="56" width="105" height="32"/>
+                                <rect key="frame" x="270" y="56" width="104" height="32"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJm-pO-Jt3">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="6we-uQ-t8P"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="41" height="32"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                        <state key="normal" title="中文"/>
+                                        <state key="normal" title=" 中文 "/>
                                         <connections>
                                             <action selector="ChangeLanguage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ijm-ow-8Bp"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wba-lv-KFg" userLabel="line">
-                                        <rect key="frame" x="44" y="6" width="1" height="20"/>
-                                        <color key="backgroundColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="41" y="6" width="1" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="0Hh-ij-gJu"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8C-Fu-J4j">
-                                        <rect key="frame" x="45" y="0.0" width="60" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="r7m-6m-FhC"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8C-Fu-J4j">
+                                        <rect key="frame" x="42" y="0.0" width="62" height="32"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                        <state key="normal" title="English"/>
+                                        <state key="normal" title=" English "/>
                                         <connections>
                                             <action selector="ChangeLanguage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QXN-jB-uAk"/>
                                         </connections>
@@ -83,7 +77,7 @@
                                 <state key="normal" title="密码登录"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJe-fa-AAK">
-                                <rect key="frame" x="128" y="112" width="58" height="44"/>
+                                <rect key="frame" x="131" y="112" width="58" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="YGk-5g-hHI"/>
                                 </constraints>
@@ -288,7 +282,7 @@
                             <constraint firstItem="HkP-oJ-oqV" firstAttribute="leading" secondItem="8Jv-i9-4e3" secondAttribute="leading" id="gun-gH-K3C"/>
                             <constraint firstAttribute="bottom" secondItem="HkP-oJ-oqV" secondAttribute="bottom" id="kdb-7n-3Zz"/>
                             <constraint firstItem="SqV-7S-Fu4" firstAttribute="centerX" secondItem="D1v-0c-S11" secondAttribute="centerX" id="ndZ-Rb-y8q"/>
-                            <constraint firstItem="lJe-fa-AAK" firstAttribute="leading" secondItem="2VC-M3-HK5" secondAttribute="trailing" constant="12" id="sBz-1E-Hv7"/>
+                            <constraint firstItem="lJe-fa-AAK" firstAttribute="leading" secondItem="2VC-M3-HK5" secondAttribute="trailing" constant="15" id="sBz-1E-Hv7"/>
                             <constraint firstItem="SqV-7S-Fu4" firstAttribute="leading" secondItem="2VC-M3-HK5" secondAttribute="leading" id="sq4-dR-ExC"/>
                         </constraints>
                     </view>
@@ -2035,7 +2029,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTB-fH-u74">
-                                <rect key="frame" x="128" y="112" width="58" height="44"/>
+                                <rect key="frame" x="131" y="112" width="58" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="e8U-Tw-Dgs"/>
                                 </constraints>
@@ -2178,34 +2172,28 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTO-wF-npx" userLabel="languageView">
-                                <rect key="frame" x="269" y="56" width="105" height="32"/>
+                                <rect key="frame" x="270" y="56" width="104" height="32"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcL-wO-ErC">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="sYJ-sQ-M0X"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="41" height="32"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                        <state key="normal" title="中文"/>
+                                        <state key="normal" title=" 中文 "/>
                                         <connections>
                                             <action selector="ChangeLanguage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="66o-2s-SdH"/>
                                             <action selector="ChangeLanguage:" destination="qEd-U6-7La" eventType="touchUpInside" id="9CE-4G-W1g"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCb-sP-dYk" userLabel="line">
-                                        <rect key="frame" x="44" y="6" width="1" height="20"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <rect key="frame" x="41" y="6" width="1" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="3bk-gK-N9V"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyo-Ef-1iC">
-                                        <rect key="frame" x="45" y="0.0" width="60" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="OtD-x7-9hF"/>
-                                        </constraints>
+                                        <rect key="frame" x="42" y="0.0" width="62" height="32"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                        <state key="normal" title="English"/>
+                                        <state key="normal" title=" English "/>
                                         <connections>
                                             <action selector="ChangeLanguage:" destination="qEd-U6-7La" eventType="touchUpInside" id="F2P-zH-C3b"/>
                                             <action selector="ChangeLanguage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rZr-iH-mzv"/>
@@ -2285,7 +2273,7 @@
                             <constraint firstItem="Zpw-BN-VwT" firstAttribute="centerX" secondItem="2QX-nq-PVN" secondAttribute="centerX" id="dvM-D8-YbD"/>
                             <constraint firstItem="o2p-XM-IMt" firstAttribute="leading" secondItem="lTE-UJ-n14" secondAttribute="leading" id="hjN-Iz-YDt"/>
                             <constraint firstItem="lTE-UJ-n14" firstAttribute="trailing" secondItem="BTO-wF-npx" secondAttribute="trailing" constant="40" id="oVg-4I-fQY"/>
-                            <constraint firstItem="JTB-fH-u74" firstAttribute="leading" secondItem="XiE-o4-PPh" secondAttribute="trailing" constant="12" id="uII-ze-UMH"/>
+                            <constraint firstItem="JTB-fH-u74" firstAttribute="leading" secondItem="XiE-o4-PPh" secondAttribute="trailing" constant="15" id="uII-ze-UMH"/>
                             <constraint firstItem="BTO-wF-npx" firstAttribute="top" secondItem="lTE-UJ-n14" secondAttribute="top" id="yin-8Z-CLY"/>
                             <constraint firstItem="H1v-De-154" firstAttribute="centerX" secondItem="2QX-nq-PVN" secondAttribute="centerX" id="zVg-b6-kHG"/>
                             <constraint firstAttribute="bottom" secondItem="o2p-XM-IMt" secondAttribute="bottom" id="zsr-hh-cEW"/>

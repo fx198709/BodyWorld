@@ -46,16 +46,21 @@
     LanguageEnum language;
     if (sender == self.enLanguageBtn) {
         language = LanguageEnum_English;
-        [self.enLanguageBtn setTitleColor:SelectGreenColor
-                                 forState:UIControlStateNormal];
-        [self.zhLanguageBtn setTitleColor:[UIColor whiteColor]
-                                 forState:UIControlStateNormal];
-    } else {
-        language = LanguageEnum_Chinese;
-        [self.zhLanguageBtn setTitleColor:SelectGreenColor
-                                 forState:UIControlStateNormal];
         [self.enLanguageBtn setTitleColor:[UIColor whiteColor]
                                  forState:UIControlStateNormal];
+        [self.zhLanguageBtn setTitleColor:UIColor.lightGrayColor
+                                 forState:UIControlStateNormal];
+        self.zhLanguageBtn.titleLabel.font = SystemFontOfSize(16);
+        self.enLanguageBtn.titleLabel.font = SystemFontOfSize(20);
+        
+    } else {
+        language = LanguageEnum_Chinese;
+        [self.zhLanguageBtn setTitleColor:[UIColor whiteColor]
+                                 forState:UIControlStateNormal];
+        [self.enLanguageBtn setTitleColor:UIColor.lightGrayColor
+                                 forState:UIControlStateNormal];
+        self.enLanguageBtn.titleLabel.font = SystemFontOfSize(16);
+        self.zhLanguageBtn.titleLabel.font = SystemFontOfSize(18);
     }
     
     //保存当前语言
@@ -66,15 +71,21 @@
 
 - (void)reloadTextView {
     if (ISChinese()) {
-        [self.zhLanguageBtn setTitleColor:SelectGreenColor
-                                 forState:UIControlStateNormal];
-        [self.enLanguageBtn setTitleColor:[UIColor whiteColor]
-                                 forState:UIControlStateNormal];
-    } else {
-        [self.enLanguageBtn setTitleColor:SelectGreenColor
-                                 forState:UIControlStateNormal];
         [self.zhLanguageBtn setTitleColor:[UIColor whiteColor]
                                  forState:UIControlStateNormal];
+        [self.enLanguageBtn setTitleColor:UIColor.lightGrayColor
+                                 forState:UIControlStateNormal];
+        
+        self.enLanguageBtn.titleLabel.font = SystemFontOfSize(16);
+        self.zhLanguageBtn.titleLabel.font = SystemFontOfSize(18);
+    } else {
+        [self.enLanguageBtn setTitleColor:[UIColor whiteColor]
+                                 forState:UIControlStateNormal];
+        [self.zhLanguageBtn setTitleColor:UIColor.lightGrayColor
+                                 forState:UIControlStateNormal];
+        self.zhLanguageBtn.titleLabel.font = SystemFontOfSize(16);
+        self.enLanguageBtn.titleLabel.font = SystemFontOfSize(20);
+       
     }
 }
 
