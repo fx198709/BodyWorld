@@ -27,14 +27,19 @@
         case SelectCountryType_Country:
         {
             
-                title = ChineseStringOrENFun(@"选择国家", @"Select country");
+                title = ChineseStringOrENFun(@"选择国家", @"Country / Region");
                 [self getCountryListFromServer];
         }
             break;
         case SelectCountryType_City:
+        {
+            title = ChineseStringOrENFun(@"选择省份", @"Province / Region");
+            [self getCityListFromServer];
+        }
+            break;
         case SelectCountryType_SubCity:
         {
-            title = ChineseStringOrENFun(@"选择城市", @"Select city");
+            title = ChineseStringOrENFun(@"选择城市", @"City / Region");
             [self getCityListFromServer];
         }
             break;
