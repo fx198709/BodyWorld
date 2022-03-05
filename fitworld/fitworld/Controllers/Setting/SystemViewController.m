@@ -69,7 +69,7 @@ OurDatePickerViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = ChineseStringOrENFun(@"系统设置",@"PERSONAL SETTING");
+    self.navigationItem.title = ChineseStringOrENFun(@"系统设置",@"Setting");
     
     [self initUI];
 }
