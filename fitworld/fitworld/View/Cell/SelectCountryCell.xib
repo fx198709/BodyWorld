@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,14 +36,25 @@
                                     <constraint firstAttribute="height" constant="0.5" id="rRJ-Rq-82q"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaP-xa-CDW">
+                                <rect key="frame" x="0.0" y="0.0" width="290" height="55.5"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="backSelectedBtnClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ssk-6k-8Fw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="aBo-OD-vch" secondAttribute="bottom" id="2I6-Ma-QQO"/>
+                            <constraint firstAttribute="trailing" secondItem="aaP-xa-CDW" secondAttribute="trailing" constant="30" id="Bbc-Re-g7t"/>
+                            <constraint firstItem="aaP-xa-CDW" firstAttribute="top" secondItem="dMK-yE-pBI" secondAttribute="top" id="CIl-JF-DMj"/>
                             <constraint firstAttribute="bottom" secondItem="3bx-5a-8ge" secondAttribute="bottom" id="HKP-aB-v4O"/>
+                            <constraint firstItem="aaP-xa-CDW" firstAttribute="leading" secondItem="dMK-yE-pBI" secondAttribute="leading" id="LWl-zI-BbE"/>
                             <constraint firstItem="3bx-5a-8ge" firstAttribute="leading" secondItem="aBo-OD-vch" secondAttribute="leading" id="S0a-Qf-E2t"/>
                             <constraint firstAttribute="trailing" secondItem="gHg-UQ-6bh" secondAttribute="trailing" constant="24" id="TOF-XD-ovD"/>
                             <constraint firstItem="aBo-OD-vch" firstAttribute="top" secondItem="dMK-yE-pBI" secondAttribute="top" id="aL7-1t-9i2"/>
+                            <constraint firstItem="3bx-5a-8ge" firstAttribute="top" secondItem="aaP-xa-CDW" secondAttribute="bottom" id="aQu-os-qg9"/>
                             <constraint firstItem="gHg-UQ-6bh" firstAttribute="centerY" secondItem="dMK-yE-pBI" secondAttribute="centerY" id="cUm-HF-x9Q"/>
                             <constraint firstItem="aBo-OD-vch" firstAttribute="leading" secondItem="dMK-yE-pBI" secondAttribute="leading" constant="24" id="dTb-gy-U0s"/>
                             <constraint firstAttribute="trailing" secondItem="3bx-5a-8ge" secondAttribute="trailing" id="noQ-FN-DWx"/>
@@ -62,6 +73,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="backSelectbtn" destination="aaP-xa-CDW" id="iEn-gs-jX6"/>
                 <outlet property="titleLabel" destination="aBo-OD-vch" id="cxf-eP-iQa"/>
             </connections>
             <point key="canvasLocation" x="111.59420289855073" y="73.660714285714278"/>

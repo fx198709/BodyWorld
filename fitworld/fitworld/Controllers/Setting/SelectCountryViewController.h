@@ -23,6 +23,10 @@ typedef enum {
 
 @property (nonatomic, strong) NSMutableArray<Country *> *countryList;
 
+@property (nonatomic, strong) NSMutableArray<NSString *> *firstStringArray;
+@property (nonatomic, strong) NSMutableDictionary *allLocationDic;//所有的位置信息
+
+
 @end
 
 NS_ASSUME_NONNULL_END

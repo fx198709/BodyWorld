@@ -66,9 +66,66 @@
 
 #pragma mark - table
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataList.count;
+//返回Section总数
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return _firstStringArray.count;
 }
+
+//返回每个Section的行数
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+
+{
+    NSString *firstWord = [_firstStringArray objectAtIndex:section];
+    NSArray *tempArray =[self.allLocationDic objectForKey:firstWord];
+    return [tempArray count];
+
+}
+
+//返回每个Section的title
+
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//
+//{
+//    NSString *firstWord = [_firstStringArray objectAtIndex:section];
+//    return firstWord;
+//
+//}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 30)];
+    UILabel *vlabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 5, 200, 20)];
+    [view addSubview:vlabel];
+    NSString *firstWord = [_firstStringArray objectAtIndex:section];
+
+    vlabel.text = firstWord;
+    vlabel.font = SystemFontOfSize(20);
+    vlabel.textColor = UIColor.whiteColor;
+    view.backgroundColor = LittleBgGrayColor;//UIColor.grayColor;
+    return view;
+}
+
+
+- (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    return _firstStringArray;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (self.selectType == SelectCountryType_City || self.selectType == SelectCountryType_SubCity) {
+        return 0;
+    }
+    return 30;;
+}
+
+
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+    
+    return index;
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60;
@@ -77,14 +134,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SelectCountryCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SelectCountryCell class])];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    Country *country = [self.dataList objectAtIndex:indexPath.row];
+    NSString *firstWord = [_firstStringArray objectAtIndex:indexPath.section];
+    NSArray *tempArray =[self.allLocationDic objectForKey:firstWord];
+    Country *country = [tempArray objectAtIndex:indexPath.row];
     cell.titleLabel.text = ChineseStringOrENFun(country.name, country.name_en);
+    WeakSelf
+    cell.selectedCourntyBlock = ^(id clickModel) {
+        [wSelf clickedCountry:country];
+    };
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    Country *country = [self.dataList objectAtIndex:indexPath.row];
+- (void)clickedCountry:(Country*)country{
     switch (self.selectType) {
         case SelectCountryType_Country:
         {
@@ -105,10 +166,41 @@
             [self sendChangeToServer:country];
         }
             break;
-            
+
         default:
             break;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//    NSString *firstWord = [_firstStringArray objectAtIndex:indexPath.section];
+//    NSArray *tempArray =[self.allLocationDic objectForKey:firstWord];
+//    Country *country = [tempArray objectAtIndex:indexPath.row];
+//    switch (self.selectType) {
+//        case SelectCountryType_Country:
+//        {
+//            [self goToNextView:country type:SelectCountryType_City];
+//        }
+//            break;
+//        case SelectCountryType_City:
+//        {
+//            if (country.level == 4) {
+//                [self sendChangeToServer:country];
+//            } else {
+//                [self goToNextView:country type:SelectCountryType_SubCity];
+//            }
+//        }
+//            break;
+//        case SelectCountryType_SubCity:
+//        {
+//            [self sendChangeToServer:country];
+//        }
+//            break;
+//
+//        default:
+//            break;
+//    }
 }
 
 - (void)goToNextView:(Country *)country type:(SelectCountryType)type {
@@ -124,27 +216,68 @@
 }
 
 #pragma mark - server
-
+- (void)changeResultArray:(NSArray*)resultArray{
+    //                开始组装数据
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (NSDictionary *dic in  resultArray) {
+        Country * country = [[Country alloc] initWithDictionary:dic error:nil];
+        [country changeOrderString]; //获取排序字母
+        [tempArray addObject:country];
+    }
+//                对temparray进行排序
+    NSArray *sortedArray = [tempArray sortedArrayUsingComparator:^(Country *obj1,Country *obj2){
+        return [obj1.orderString compare:obj2.orderString];
+    }];
+    _firstStringArray = [NSMutableArray array];
+    _allLocationDic = [NSMutableDictionary dictionary];
+    for (Country *orderCountry in sortedArray) {
+//
+        if (![_firstStringArray containsObject:orderCountry.firstWord]) {
+//                        没有找到对应的值，加入进去
+            [_firstStringArray addObject:orderCountry.firstWord];
+        }
+        NSMutableArray *dicarray = [_allLocationDic objectForKey:orderCountry.firstWord];
+        if (dicarray ==nil) {
+            dicarray = [NSMutableArray array];
+        }
+        [dicarray addObject:orderCountry];
+        [_allLocationDic setObject:dicarray forKey:orderCountry.firstWord];
+    }
+    [self loadData];
+}
 //请求国家列表
 - (void)getCountryListFromServer {
     [MTHUD showLoadingHUD];
     [[AFAppNetAPIClient manager] GET:@"country" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            NSLog(@"====respong:%@", responseObject);
             NSArray *result = [responseObject objectForKey:@"recordset"];
-            NSError *error;
-            NSArray<Country *> *countryList = [Country arrayOfModelsFromDictionaries:result error:&error];
-            if (error == nil) {
-                self.dataList = countryList;
-                [self loadData];
-            } else {
-                [MTHUD showDurationNoticeHUD:error.localizedDescription];
+            if ([result isKindOfClass:[NSArray class]]) {
+                [self changeResultArray:result];
+               
+            }else{
+                [MTHUD showDurationNoticeHUD:[responseObject objectForKey:@"msg"]];
             }
+//            NSArray<Country *> *countryList = [Country arrayOfModelsFromDictionaries:result error:&error];
+//            if (error == nil) {
+//                self.dataList = countryList;
+//                [self loadData];
+//            } else {
+//                [MTHUD showDurationNoticeHUD:error.localizedDescription];
+//            }
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MTHUD showDurationNoticeHUD:error.localizedDescription];
     }];
+}
+
++ (NSString *)transform:(NSString *)chinese
+{
+    NSMutableString *pinyin = [chinese mutableCopy];
+    CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformMandarinLatin, NO);
+    CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformStripCombiningMarks, NO);
+    NSLog(@"%@", pinyin);
+    return [pinyin uppercaseString];
 }
 
 
@@ -156,15 +289,22 @@
     [[AFAppNetAPIClient manager] GET:@"city" parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            NSLog(@"====respong:%@", responseObject);
+//            NSArray *result = [[responseObject objectForKey:@"recordset"] objectForKey:@"rows"];
+//            NSError *error;
+//            NSArray<Country *> *countryList = [Country arrayOfModelsFromDictionaries:result error:&error];
+//            if (error == nil) {
+//                self.dataList = countryList;
+//                [self loadData];
+//            } else {
+//                [MTHUD showDurationNoticeHUD:error.localizedDescription];
+//            }
+            
             NSArray *result = [[responseObject objectForKey:@"recordset"] objectForKey:@"rows"];
-            NSError *error;
-            NSArray<Country *> *countryList = [Country arrayOfModelsFromDictionaries:result error:&error];
-            if (error == nil) {
-                self.dataList = countryList;
-                [self loadData];
-            } else {
-                [MTHUD showDurationNoticeHUD:error.localizedDescription];
+            if ([result isKindOfClass:[NSArray class]]) {
+                [self changeResultArray:result];
+               
+            }else{
+                [MTHUD showDurationNoticeHUD:[responseObject objectForKey:@"msg"]];
             }
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

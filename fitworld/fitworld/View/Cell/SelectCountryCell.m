@@ -22,4 +22,9 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)backSelectedBtnClicked:(id)sender {
+    if (_selectedCourntyBlock) {
+        _selectedCourntyBlock(NULL);
+    }
+}
 @end
