@@ -586,7 +586,7 @@ BOOL  hasrequest = NO;
     NSDictionary *baddyParams = @{
         @"platform": @"ios",
         @"type": @"1",
-        @"version": @"1"
+        @"version": Vsrsion
     };
     [manager GET:@"version/check" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject objectForKey:@"recordset"]) {

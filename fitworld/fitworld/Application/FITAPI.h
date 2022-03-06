@@ -7,5 +7,5 @@
 
 //https://m-aws.fitworld.live/h5/cancel.html
 //http://m.fitworld.live/api/
-
+#define Vsrsion  @"2"
 #endif /* GITAPI_h */
