@@ -40,7 +40,7 @@
             break;
         case ChangeTypeEnum_NickName:
             changeTitle = ChineseStringOrENFun(@"昵称", @"Display Name");
-            showTitle = ChineseStringOrENFun(@"昵称", @"DisplayName");
+            showTitle = ChineseStringOrENFun(@"昵称", @"Display Name");
             self.inputField.text = user.nickname;
             self.inputField.keyboardType = UIKeyboardTypeDefault;
             break;
@@ -48,7 +48,7 @@
             break;
     }
     
-    NSString *navTitle = ChineseStringOrENFun(@"修改", @"Change");
+    NSString *navTitle = @"";//ChineseStringOrENFun(@"修改", @"Change");
     self.navigationItem.title = [navTitle stringByAppendingString:showTitle];
     self.titleLabel.text = changeTitle;
 }

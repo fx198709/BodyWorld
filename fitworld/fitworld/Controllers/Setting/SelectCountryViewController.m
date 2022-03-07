@@ -327,7 +327,7 @@
         if ([responseObject objectForKey:@"recordset"]) {
             UserInfo *userInfo = [[UserInfo alloc] initWithJSON:responseObject[@"recordset"]];
             [APPObjOnce sharedAppOnce].currentUser = userInfo;
-            [MTHUD showDurationNoticeHUD:ChangeSuccessMsg animated:YES completedBlock:^{
+            [MTHUD showDurationNoticeHUD:SaveSuccessMsg animated:YES completedBlock:^{
                 int count = self.selectType == SelectCountryType_City ? 2 : 3;
                 [self popToViewControllerWithPreCount:count animated:YES];
             }];

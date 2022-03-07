@@ -56,7 +56,7 @@
     
 //    self.pwdLabel.attributedPlaceholder =[[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请输入新密码", @"enter a new password") attributes:attr];
     
-    self.repeatTitleLabel.text = ChineseStringOrENFun(@"重复确认密码", @"Confirm Password");
+    self.repeatTitleLabel.text = ChineseStringOrENFun(@"重复确认密码", @"Confirm");
 //    self.repeatLabel.attributedPlaceholder = [[NSAttributedString alloc] initWithString:ChineseStringOrENFun(@"请重复输入一次新密码", @"Repeat the new password again") attributes:attr];
      
     [self.submitBtn setTitle:ChineseStringOrENFun(@"确认修改", @"SAVE") forState:UIControlStateNormal];

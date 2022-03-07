@@ -34,6 +34,7 @@ return [obj objectForKey:key];\
 
 
 
+#define SaveSuccessMsg ChineseStringOrENFun(@"保存成功", @"Saved")
 #define ChangeSuccessMsg ChineseStringOrENFun(@"修改成功", @"Success changed")
 #define ChangeErrorMsg ChineseStringOrENFun(@"修改失败", @"Change failed")
 #define UploadSuccessMsg ChineseStringOrENFun(@"上传成功", @"Success upload")
