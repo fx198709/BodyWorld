@@ -730,7 +730,7 @@
 {
     MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc]init];
     picker.messageComposeDelegate =self;
-    NSString *body = @"Hihi! 跟我一起来上健身课，品牌健身房的大牌教练，哪国人都有。";
+    NSString *body = ChineseStringOrENFun(@"Hihi! 跟我一起来上健身课，品牌健身房的大牌教练，哪国人都有。", @"Hello! Come and join with me a live fitness session from premium trainers and gyms located in different countries.");
     NSString *urlString = [NSString stringWithFormat:@"http://m.fitworld.live/assets/share?type=group&event_id=%@&room_sub_id=%@",_event_id,myRoomModel.sub_room_id];
     picker.body = [NSString stringWithFormat:@"%@%@",body,urlString];
     

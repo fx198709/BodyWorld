@@ -38,7 +38,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor blackColor];
     
-    self.title = ChineseStringOrENFun(@"邀请朋友", @"INVITE FRIENDS");
+    self.title = ChineseStringOrENFun(@"邀请朋友", @"Invite friends");
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor blackColor];
 

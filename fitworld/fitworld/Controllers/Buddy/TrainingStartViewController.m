@@ -72,7 +72,7 @@
     [grayBackview addSubview:titelLabel1];
     titelLabel1.frame = CGRectMake(50, startx, 200, 24);
     titelLabel1.textColor = UIColor.whiteColor;
-    titelLabel1.text = ChineseStringOrENFun(@"语言选择", @"Language Select");
+    titelLabel1.text = ChineseStringOrENFun(@"语言选择", @"Your Speaking Language");
     startx = startx+40;
     CGRect frame = CGRectMake(50, startx, ScreenWidth-100, 50);
     languageBtn = [[UIButton alloc] initWithFrame:frame];

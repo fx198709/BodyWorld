@@ -561,7 +561,8 @@
 {
    MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc]init];
     picker.messageComposeDelegate =self;
-    picker.body =@"Hihi! 跟我一起来上健身课，品牌健身房的大牌教练，哪国人都有。";
+    picker.body =ChineseStringOrENFun(@"Hihi! 跟我一起来上健身课，品牌健身房的大牌教练，哪国人都有。", @"Hello! Come and join with me a live fitness session from premium trainers and gyms located in different countries.");
+    
     [self presentViewController:picker animated:YES completion:^{
 //        [self shareBackbuttonClicked:nil];
     }];

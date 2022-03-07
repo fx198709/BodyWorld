@@ -33,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = ChineseStringOrENFun(@"添加健身伙伴", @"添加健身伙伴");
+    self.title = ChineseStringOrENFun(@"添加健身伙伴", @"Add training buddies");
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-70, 40)];
     searchBar.delegate = self;
     [self.view addSubview:searchBar];
