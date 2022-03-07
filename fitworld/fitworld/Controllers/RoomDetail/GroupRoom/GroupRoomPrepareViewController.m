@@ -295,7 +295,7 @@
         make.top.equalTo(_headview);
         make.left.right.bottom.equalTo(_headview);
     }];
-    self.title = ChineseStringOrENFun(@"团课准备", @"PREPARED COURSE");
+    self.title = ChineseStringOrENFun(@"团课准备", @"Share & Invite");
     self.headTitle.text = currentRoom.name;
     self.headTitle.font = SystemFontOfSize(20);
     self.timeLabel.text = ReachYearAndWeekTime(currentRoom.start_time);
@@ -313,11 +313,13 @@
     
     [self.startNowBtn setTitle:startNowString forState:UIControlStateNormal];
     [self.startNowBtn setTitle:startNowString forState:UIControlStateHighlighted];
-    UIImage * image1 = [UIImage imageWithColor:UIRGBColor(73,146,94,1)];
-    [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateNormal];
-    [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateHighlighted];
+//    UIImage * image1 = [UIImage imageWithColor:UIRGBColor(73,146,94,1)];
+//    [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateNormal];
+//    [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateHighlighted];
     [self.startNowBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [self.startNowBtn setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
+    _startNowBtn.backgroundColor =UIRGBColor(73,146,94,1);
+
     [self.startNowBtn addTarget:self action:@selector(startNowBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     self.tillBtn.backgroundColor = UIRGBColor(79, 79, 79, 1);

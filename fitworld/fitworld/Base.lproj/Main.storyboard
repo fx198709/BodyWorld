@@ -805,22 +805,30 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aGJ-Qh-Dco">
-                                        <rect key="frame" x="18" y="0.0" width="326" height="48"/>
+                                        <rect key="frame" x="18" y="0.0" width="296" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="cm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Sh-mG-rwJ">
+                                        <rect key="frame" x="324" y="15.5" width="20" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="tht-Xx-9C8" firstAttribute="leading" secondItem="SrK-29-1zU" secondAttribute="leading" constant="12" id="Ay3-fF-bnx"/>
                                     <constraint firstItem="tht-Xx-9C8" firstAttribute="centerY" secondItem="SrK-29-1zU" secondAttribute="centerY" id="COp-8s-qSM"/>
-                                    <constraint firstAttribute="trailing" secondItem="aGJ-Qh-Dco" secondAttribute="trailing" constant="10" id="GYS-yT-w06"/>
                                     <constraint firstItem="aGJ-Qh-Dco" firstAttribute="top" secondItem="SrK-29-1zU" secondAttribute="top" id="HY7-Zz-AP0"/>
                                     <constraint firstAttribute="height" constant="48" id="I5q-3M-acK"/>
                                     <constraint firstItem="aGJ-Qh-Dco" firstAttribute="leading" secondItem="tht-Xx-9C8" secondAttribute="trailing" constant="6" id="ZW9-YE-pEb"/>
                                     <constraint firstItem="aGJ-Qh-Dco" firstAttribute="centerY" secondItem="SrK-29-1zU" secondAttribute="centerY" id="eWk-Bd-ciS"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Sh-mG-rwJ" secondAttribute="trailing" constant="10" id="hvk-nS-SIm"/>
+                                    <constraint firstItem="3Sh-mG-rwJ" firstAttribute="leading" secondItem="aGJ-Qh-Dco" secondAttribute="trailing" constant="10" id="j5v-gb-B8s"/>
+                                    <constraint firstItem="3Sh-mG-rwJ" firstAttribute="centerY" secondItem="tht-Xx-9C8" secondAttribute="centerY" id="y8e-vn-SuP"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -837,6 +845,7 @@
                         <outlet property="containerView" destination="SrK-29-1zU" id="0HX-ZV-ZfH"/>
                         <outlet property="inputField" destination="aGJ-Qh-Dco" id="oDb-pR-XVc"/>
                         <outlet property="titleLabel" destination="tht-Xx-9C8" id="tbp-kV-QTv"/>
+                        <outlet property="unitLabel" destination="3Sh-mG-rwJ" id="Xnq-ua-wIy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7A1-er-rTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

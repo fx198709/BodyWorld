@@ -25,7 +25,7 @@
     _firstUserImageview.clipsToBounds = YES;
     _secondUserImageview.layer.cornerRadius = 12;
     _secondUserImageview.clipsToBounds = YES;
-    _textLabel.text =ChineseStringOrENFun(@"用户已预约", @"People has preview");
+    _textLabel.text =ChineseStringOrENFun(@"用户已预约", @"booked");
     _secondUserImageview.hidden = NO;
     UIImage *normalimage = [UIImage imageNamed:@"choose_course_foot_logo3_unselected"];
     if (userList == nil || userList.count == 0) {

@@ -177,9 +177,10 @@
 
     [self.startNowBtn setTitle:startNowString forState:UIControlStateNormal];
     [self.startNowBtn setTitle:startNowString forState:UIControlStateHighlighted];
-    UIImage * image1 = [UIImage imageWithColor:UIRGBColor(73,146,94,1)];
-    [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateNormal];
-    [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateHighlighted];
+//    UIImage * image1 = [UIImage imageWithColor:UIRGBColor(73,146,94,1)];
+//    [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateNormal];
+//    [self.startNowBtn setBackgroundImage:image1 forState:UIControlStateHighlighted];
+    _startNowBtn.backgroundColor =UIRGBColor(73,146,94,1);
     [self.startNowBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [self.startNowBtn setTitleColor:UIColor.whiteColor forState:UIControlStateHighlighted];
     [self.startNowBtn addTarget:self action:@selector(startNowBtnClicked:) forControlEvents:UIControlEventTouchUpInside];

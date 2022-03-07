@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChangeInfoViewController : BaseViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *unitLabel;
 @property (nonatomic, assign) ChangeTypeEnum changeType;
 @end
 

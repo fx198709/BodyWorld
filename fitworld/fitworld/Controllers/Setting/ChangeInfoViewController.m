@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.inputField becomeFirstResponder];
-
+    _unitLabel.text = @"";
     UserInfo *user = [APPObjOnce sharedAppOnce].currentUser;
 
     NSString *changeTitle = @"";
@@ -29,14 +29,16 @@
         case ChangeTypeEnum_Height:
             self.inputField.keyboardType = UIKeyboardTypeNumberPad;
             self.inputField.text = IntToString(user.height);
-            changeTitle = ChineseStringOrENFun(@"身高(cm)", @"Height(cm)");
+            changeTitle = ChineseStringOrENFun(@"身高", @"Height");
             showTitle = ChineseStringOrENFun(@"身高", @"Height");
+            _unitLabel.text = @"cm";
             break;
         case ChangeTypeEnum_Weight:
             self.inputField.keyboardType = UIKeyboardTypeNumberPad;
             self.inputField.text = IntToString(user.weight);
-            changeTitle = ChineseStringOrENFun(@"体重(kg)", @"Weight(kg)");
+            changeTitle = ChineseStringOrENFun(@"体重", @"Weight");
             showTitle = ChineseStringOrENFun(@"体重", @"Weight");
+            _unitLabel.text = @"kg";
             break;
         case ChangeTypeEnum_NickName:
             changeTitle = ChineseStringOrENFun(@"昵称", @"Display Name");

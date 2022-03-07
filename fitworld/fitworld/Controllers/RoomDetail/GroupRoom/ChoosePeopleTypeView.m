@@ -32,7 +32,7 @@
     NSString *addwxFriendString = ChineseStringOrENFun(@"微信邀请", @"From wx");
     [_addwxfriendBtn setTitle:addwxFriendString forState:UIControlStateNormal];
     [_addwxfriendBtn setTitle:addwxFriendString forState:UIControlStateHighlighted];
-    
+    _addwxfriendBtn.hidden = YES;
     NSString *addSMSFriendString = ChineseStringOrENFun(@"短信邀请", @"From SMS");
     [_addsmsFriendBtn setTitle:addSMSFriendString forState:UIControlStateNormal];
     [_addsmsFriendBtn setTitle:addSMSFriendString forState:UIControlStateHighlighted];

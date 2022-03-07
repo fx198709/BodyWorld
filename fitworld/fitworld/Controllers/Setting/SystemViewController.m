@@ -90,8 +90,8 @@ OurDatePickerViewDelegate>
     self.genderTitleLabel.text = ChineseStringOrENFun(@"性别", @"Gender");
     self.mobileTitleLabel.text = ChineseStringOrENFun(@"手机号", @"Mobile Number");
     self.birthdayTitleLabel.text = ChineseStringOrENFun(@"生日", @"Date of Birth");
-    self.heightTitleLabel.text = ChineseStringOrENFun(@"身高(cm)", @"Height(cm)");
-    self.weightTitleLabel.text = ChineseStringOrENFun(@"体重(kg)", @"Weight(kg)");
+    self.heightTitleLabel.text = ChineseStringOrENFun(@"身高", @"Height");
+    self.weightTitleLabel.text = ChineseStringOrENFun(@"体重", @"Weight");
     self.cityTitleLabel.text = ChineseStringOrENFun(@"所在城市", @"Location");
     self.introductionTitleLabel.text = ChineseStringOrENFun(@"介绍", @"Bio");
     
@@ -118,8 +118,8 @@ OurDatePickerViewDelegate>
     self.genderLabel.text = SexNameFormGender(user.gender);
     self.mobileLabel.text = user.mobile;
     self.birthdayLabel.text = user.birthday;
-    self.weightLabel.text = IntToString(user.weight);
-    self.heightLabel.text = IntToString(user.height);
+    self.weightLabel.text = [NSString stringWithFormat:@"%@ kg",IntToString(user.weight)];
+    self.heightLabel.text = [NSString stringWithFormat:@"%@ cm",IntToString(user.height)];
     self.cityLabel.text = [NSString stringWithFormat:@"%@, %@",user.city, user.country];
     self.introductionLabel.text = user.introduction;
 }
@@ -291,7 +291,7 @@ OurDatePickerViewDelegate>
 - (IBAction)loginOut:(id)sender {
     [self.view endEditing:YES];
     
-    UIAlertController *alter = [UIAlertController alertControllerWithTitle:ChineseStringOrENFun(@"提示", @"Alert") message:ChineseStringOrENFun(@"确定退出？", @"Are you sure to exit") preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alter = [UIAlertController alertControllerWithTitle:ChineseStringOrENFun(@"提示", @"Alert") message:ChineseStringOrENFun(@"确定退出？", @"Are you sure to log out？") preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sure = [UIAlertAction actionWithTitle:OKString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [APPObjOnce clearUserLoginInfo];
         [[APPObjOnce sharedAppOnce] showLoginView];
