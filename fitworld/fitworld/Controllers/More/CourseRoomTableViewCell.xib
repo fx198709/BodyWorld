@@ -49,7 +49,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQm-mB-Sin">
-                        <rect key="frame" x="101" y="66.5" width="33" height="16"/>
+                        <rect key="frame" x="101" y="80" width="33" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qod-Tx-5dE">
-                        <rect key="frame" x="142" y="66.5" width="33" height="16"/>
+                        <rect key="frame" x="142" y="80" width="33" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -89,7 +89,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uaf-Tk-ra6">
-                        <rect key="frame" x="198" y="44" width="33" height="16"/>
+                        <rect key="frame" x="101" y="63" width="183" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -100,20 +100,21 @@
                     <constraint firstItem="AuE-Kd-qAT" firstAttribute="leading" secondItem="wHX-3m-rkU" secondAttribute="trailing" constant="8" id="2mx-Rq-egD"/>
                     <constraint firstItem="1au-yj-EVZ" firstAttribute="leading" secondItem="wHX-3m-rkU" secondAttribute="trailing" constant="30" id="A0e-Ql-RfE"/>
                     <constraint firstItem="wHX-3m-rkU" firstAttribute="centerY" secondItem="mzO-up-Km0" secondAttribute="centerY" constant="2" id="AqO-al-ixb"/>
+                    <constraint firstItem="hQm-mB-Sin" firstAttribute="top" secondItem="Uaf-Tk-ra6" secondAttribute="bottom" constant="1" id="Eub-GV-AYl"/>
                     <constraint firstItem="RzZ-FF-61d" firstAttribute="top" secondItem="mzO-up-Km0" secondAttribute="top" id="JZ2-eb-Nz6"/>
                     <constraint firstItem="M9J-Vf-GEP" firstAttribute="leading" secondItem="FJF-sq-uhw" secondAttribute="trailing" constant="3" id="K2t-ju-yKI"/>
                     <constraint firstItem="AuE-Kd-qAT" firstAttribute="centerY" secondItem="1au-yj-EVZ" secondAttribute="centerY" id="OGY-34-BcU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Uaf-Tk-ra6" secondAttribute="trailing" constant="20" id="Z2i-UC-8DW"/>
                     <constraint firstAttribute="trailing" secondItem="oyw-ls-Gqz" secondAttribute="trailing" constant="3" id="aHJ-n3-XPe"/>
                     <constraint firstItem="FJF-sq-uhw" firstAttribute="leading" secondItem="mzO-up-Km0" secondAttribute="trailing" constant="8" id="aPC-F9-LZo"/>
                     <constraint firstItem="wHX-3m-rkU" firstAttribute="leading" secondItem="FJF-sq-uhw" secondAttribute="leading" id="fKe-nR-cDM"/>
+                    <constraint firstItem="Uaf-Tk-ra6" firstAttribute="top" secondItem="wHX-3m-rkU" secondAttribute="bottom" constant="3" id="gQj-3V-v5B"/>
                     <constraint firstItem="oyw-ls-Gqz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="8" id="j7Z-f8-idf"/>
-                    <constraint firstItem="hQm-mB-Sin" firstAttribute="bottom" secondItem="mzO-up-Km0" secondAttribute="bottom" id="jJn-4B-UKv"/>
                     <constraint firstItem="f9B-wH-N4B" firstAttribute="centerX" secondItem="oyw-ls-Gqz" secondAttribute="centerX" id="jfN-eN-Dij"/>
                     <constraint firstItem="1au-yj-EVZ" firstAttribute="centerY" secondItem="wHX-3m-rkU" secondAttribute="centerY" id="krN-SN-mcu"/>
-                    <constraint firstItem="Uaf-Tk-ra6" firstAttribute="centerY" secondItem="1au-yj-EVZ" secondAttribute="centerY" id="ky1-XE-M2T"/>
+                    <constraint firstItem="Uaf-Tk-ra6" firstAttribute="leading" secondItem="wHX-3m-rkU" secondAttribute="leading" id="l2d-ag-ogx"/>
                     <constraint firstItem="hQm-mB-Sin" firstAttribute="leading" secondItem="wHX-3m-rkU" secondAttribute="leading" id="lFT-7a-ez8"/>
                     <constraint firstItem="mzO-up-Km0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="mZA-iT-91d"/>
-                    <constraint firstItem="Uaf-Tk-ra6" firstAttribute="leading" secondItem="1au-yj-EVZ" secondAttribute="trailing" constant="1" id="n4X-8T-xPz"/>
                     <constraint firstItem="qod-Tx-5dE" firstAttribute="leading" secondItem="hQm-mB-Sin" secondAttribute="trailing" constant="8" id="oFz-T3-406"/>
                     <constraint firstItem="mzO-up-Km0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uUE-yk-Rgn"/>
                     <constraint firstItem="oyw-ls-Gqz" firstAttribute="top" secondItem="f9B-wH-N4B" secondAttribute="bottom" constant="3" id="veG-HF-4lZ"/>

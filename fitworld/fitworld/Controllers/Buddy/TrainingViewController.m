@@ -147,6 +147,7 @@
     label2.text = course.course_type_name;//[NSString stringWithFormat:@"%@•%@",course.coach_name,course.course_type_name];
     label2.font = [UIFont systemFontOfSize:13];
     label2.textColor = UIColorFromRGBA(207, 207, 207,1);
+    label2.lineBreakMode = NSLineBreakByTruncatingTail;
     [cellBgView addSubview:label2];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(label1.mas_bottom).offset(2);
@@ -156,7 +157,7 @@
     }];
     
     UILabel *label3 = [[UILabel alloc] init];
-    NSString *title = ChineseStringOrENFun(@"交流语言：", @"Speek lan：");
+    NSString *title = ChineseStringOrENFun(@"视频语言：", @"Video Language：");
     title = [NSString stringWithFormat:@"%@%@",title,course.language];
     label3.text = title;
     label3.font = [UIFont systemFontOfSize:12];

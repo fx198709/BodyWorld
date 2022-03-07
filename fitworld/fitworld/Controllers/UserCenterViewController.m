@@ -118,14 +118,23 @@
     self.killoLabel.text = IntToString(self.centerInfo.week_data.total);
     
     self.historyCountLabel.text = IntToString(self.centerInfo.total);
-    
     self.dlCountLabel.text = [NSString stringWithFormat:@"%d%@", self.centerInfo.buddy.count,ChineseStringOrENFun(@" 次", @" times")];
-    self.dlTimeLabel.text = [NSString stringWithFormat:@"%.1f min",
-                             self.centerInfo.buddy.duration / 60.0];
+    self.dlTimeLabel.text = [NSString stringWithFormat:@"%d min",
+                             (int)(self.centerInfo.buddy.duration / 60.0)];
+    if (self.centerInfo.buddy.duration / 60.0/60 > 1) {
+//        超过一个小时
+        self.dlTimeLabel.text = [NSString stringWithFormat:@"%d h %d min",(int)(self.centerInfo.buddy.duration / 3600),
+                                 (int)((self.centerInfo.buddy.duration % 3600)/60)];
+    }
     
     self.tuanCountLabel.text = [NSString stringWithFormat:@"%d%@", self.centerInfo.group.count,ChineseStringOrENFun(@" 次", @" times")];
-    self.tuanTimeLabel.text = [NSString stringWithFormat:@"%.1f min",
-                               self.centerInfo.group.duration / 60.0];
+    self.tuanTimeLabel.text = [NSString stringWithFormat:@"%d min",
+                               (int)(self.centerInfo.group.duration / 60.0)];
+    if (self.centerInfo.group.duration / 60.0/60 > 1) {
+//        超过一个小时
+        self.tuanTimeLabel.text = [NSString stringWithFormat:@"%d h %d min",(int)(self.centerInfo.group.duration / 3600),
+                                 (int)((self.centerInfo.group.duration % 3600)/60)];
+    }
     if (self.centerInfo.day_of_month != nil && self.centerInfo.day_of_month.count > 0) {
         NSMutableArray *days = [NSMutableArray arrayWithCapacity:self.centerInfo.day_of_month.count];
         for (NSNumber *times in self.centerInfo.day_of_month) {

@@ -97,7 +97,7 @@
     }
     
     [CommonTools changeBtnState:_joinBtn btnData:room];
-    _leftLanguageLabel.text = ChineseStringOrENFun(@"交流语言:", @"Speek lan:");
+    _leftLanguageLabel.text = ChineseStringOrENFun(@"交流语言:", @"Speek");
     _languageLabel.text = [room getCourse_language_string];
 }
 
