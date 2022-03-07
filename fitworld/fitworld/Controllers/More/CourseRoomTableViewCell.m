@@ -71,7 +71,7 @@
 //    gym_name
     _storeLabel.text = @"";
     if (room.course.gym_name && room.course.gym_name.length >0) {
-        _storeLabel.text = [NSString stringWithFormat:@"，%@",room.course.gym_name];
+        _storeLabel.text = [NSString stringWithFormat:@"%@",room.course.gym_name];
 
     }
     _leftTimeLabel.text = @"";
@@ -97,7 +97,7 @@
     }
     
     [CommonTools changeBtnState:_joinBtn btnData:room];
-    _leftLanguageLabel.text = ChineseStringOrENFun(@"交流语言:", @"Speek");
+    _leftLanguageLabel.text = ChineseStringOrENFun(@"交流语言:", @"Speak");
     _languageLabel.text = [room getCourse_language_string];
 }
 

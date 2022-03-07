@@ -621,7 +621,7 @@
 {
     //    [self.navigationController popViewControllerAnimated:YES];
     NSString *titleString = ChineseStringOrENFun(@"提示", @"Alert");
-    NSString *contentString = ChineseStringOrENFun(@"你将退出此次课程，确认退出吗？", @"Are you sure to stop training");
+    NSString *contentString = ChineseStringOrENFun(@"你将退出此次课程，确认退出吗？", @"Are you sure to stop training?");
     alertControl = [UIAlertController alertControllerWithTitle:titleString message:contentString preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:CancelString style:UIAlertActionStyleCancel handler:nil];
     [alertControl addAction:cancelAction];
