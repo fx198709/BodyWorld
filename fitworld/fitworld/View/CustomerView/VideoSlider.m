@@ -17,7 +17,7 @@
     [self addSubview:imageview];
     
     _slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, with, 30)];
-    _slider.maximumValue = 10 ;
+    _slider.maximumValue = 7;
     _slider.value  = 0 ;
     _slider.continuous = YES;// 设置可连续变化
     //设置已经滑过一端滑动条颜色

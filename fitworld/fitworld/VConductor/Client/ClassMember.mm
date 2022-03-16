@@ -396,6 +396,7 @@
     if (handle.stream_state == VS_MEDIA_STREAM_IDLE) {
         [[VSRTC sharedInstance] updateStream:@"0" andCourseStream:@"0"];
     } else if (handle.stream_state == VS_MEDIA_STREAM_STARTED) {
+//        流可用
         [[VSRTC sharedInstance] updateStream:handle.stream_id andCourseStream:@"0"];
     } else {
         
@@ -422,7 +423,10 @@
 - (float)GetMainVolume{
     float voice = 0;
     if (mMainMedia) {
-        voice = [mMainMedia GetVolume];;
+        voice = [mMainMedia GetVolume];
+        NSLog(@"++++++device voice %f",voice);
+    }else{
+        NSLog(@"++++++ no voice %f",voice);
     }
     return voice;
 }
