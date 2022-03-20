@@ -189,6 +189,7 @@
         
     }];
     [self reachRoomDetailInfo];
+
 }
 
 #pragma mark 设置所有的视图的视频
@@ -385,6 +386,10 @@
     [super viewDidAppear:animated];
     //   创建右侧的按钮
     //    appear  startDuringTimeLabel
+    
+#pragma mark 进来默认横屏
+//    进来默认横屏
+    [self changeOrientation];
     
 }
 
