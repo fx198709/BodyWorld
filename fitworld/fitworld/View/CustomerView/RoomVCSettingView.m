@@ -41,13 +41,13 @@
     _mainVoiceSlider.backgroundColor = UIColor.clearColor;
     [_mainVoiceSlider createSubview];
     _mainVoiceSlider.sliderValueChanged = ^(id clickModel) {
-        [self mainSliderValueChanged:[clickModel intValue]];
+        [self mainSliderValueChanged:[clickModel floatValue]];
     };
     
     _othervoiceSlider.backgroundColor = UIColor.clearColor;
     [_othervoiceSlider createSubview];
     _othervoiceSlider.sliderValueChanged = ^(id clickModel) {
-        [self guestSliderValueChanged:[clickModel intValue]];
+        [self guestSliderValueChanged:[clickModel floatValue]];
 
     };
     _myCameraSwitch.on = YES;

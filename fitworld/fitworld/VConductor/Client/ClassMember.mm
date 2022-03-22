@@ -416,13 +416,13 @@
 
 #pragma mark 设置声音
 - (void)SetMainVolume:(float)volume{
-    if (mMainMedia) {
+    if (mMainMedia && mMainMedia.stream_state == VS_MEDIA_STREAM_STARTED) {
         [mMainMedia SetVolume:volume];
     }
 }
 - (float)GetMainVolume{
-    float voice = 0;
-    if (mMainMedia) {
+    float voice = 5;
+    if (mMainMedia && mMainMedia.stream_state == VS_MEDIA_STREAM_STARTED) {
         voice = [mMainMedia GetVolume];
         NSLog(@"++++++device voice %f",voice);
     }else{
