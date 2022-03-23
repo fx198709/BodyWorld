@@ -67,7 +67,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSLog(@"viewDidAppear %@",NSStringFromClass(self.class));
+    NSLog(@"++++++viewDidAppear %@",NSStringFromClass(self.class));
     self.isTapBack = YES;
     
         
@@ -125,5 +125,9 @@
     [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
     //刷新
     [UIViewController attemptRotationToDeviceOrientation];
+}
+
+- (void)dealloc{
+    NSLog(@"++++++dealloc %@",NSStringFromClass(self.class));
 }
 @end

@@ -73,7 +73,7 @@
 - (void)dealloc{
     // [[VSRTC sharedInstance] setObserver:nil];
     //    [mHeaderPanel stopTimer];
-    NSLog(@"RoomVC dealloc");
+    NSLog(@"++++RoomVC dealloc");
 }
 
 - (void)viewDidLoad {
@@ -939,6 +939,7 @@
     NSDictionary *baddyParams = @{
         @"event_id": eventid,
     };
+    NSLog(@"+++++start");
     [manager GET:@"room/detail" parameters:baddyParams success:^(NSURLSessionDataTask *task, id responseObject) {
         if (CheckResponseObject(responseObject)) {
             NSDictionary *roomJson = responseObject[@"recordset"];
@@ -949,7 +950,8 @@
             //                显示进度条
             //            self.title = self.currentRoom.name;
             [self startTimer];
-            
+            NSLog(@"+++++startTimer");
+
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];

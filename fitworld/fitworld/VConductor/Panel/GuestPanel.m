@@ -2,6 +2,8 @@
 #import "UIDeps.h"
 #import "GuestRenderView.h"
 #import "UserHeadPicView.h"
+#import <VSRTC/VSMedia.h>
+
 @interface GuestPanel ()
 {
 }
@@ -176,12 +178,25 @@
 //屏蔽其他人 只显示头像
 - (void)onlyShowUserImage{
     [self createImageSubview];
-    [self detachGuestRenderView];
+    ClassMember *guestMember = [mGuestRenderView reachGuestMember];
+    if (guestMember.mMainMedia) {
+        [guestMember.mMainMedia EnableVideo:NO];
+        [guestMember.mMainMedia EnableAudio:NO];
+//        [guestMember.mMainMedia EnableVideo:NO];
+    }
+//    [self detachGuestRenderView];
 }
 //显示其他人的流
 - (void)showUservideo{
     [self deleteImageSubview];
-    [self attachGuestRenderView:0];
+    ClassMember *guestMember = [mGuestRenderView reachGuestMember];
+    if (guestMember.mMainMedia) {
+        [guestMember.mMainMedia EnableVideo:YES];
+        [guestMember.mMainMedia EnableAudio:YES];
+
+//        [guestMember.mMainMedia EnableVideo:NO];
+    }
+//    [self attachGuestRenderView:0];
 
 }
 
