@@ -47,7 +47,7 @@
 #import "BaseNavViewController.h"
 #import "BaseViewController.h"
 
-
+#import "LogHelper.h"
 #endif /* WordPrefixHeader_pch */
 
 

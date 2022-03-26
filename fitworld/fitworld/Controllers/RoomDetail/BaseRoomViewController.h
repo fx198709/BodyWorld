@@ -12,6 +12,7 @@
 #import "SidePanel.h"
 #import "VConductorClient.h"
 #import "ReportView.h"
+#import "LogHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

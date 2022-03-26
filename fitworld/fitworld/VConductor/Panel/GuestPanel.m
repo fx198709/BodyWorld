@@ -31,6 +31,7 @@
     self = [super init];
     self.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.4];
     self.clipsToBounds = YES;
+    self.needShowVideo = YES;
     mMyView = [UIView new];
     [self addSubview:mMyView];
     [mMyView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -178,32 +179,40 @@
 //屏蔽其他人 只显示头像
 - (void)onlyShowUserImage{
     [self createImageSubview];
+    self.needShowVideo = NO;
     ClassMember *guestMember = [mGuestRenderView reachGuestMember];
     if (guestMember.mMainMedia) {
         [guestMember.mMainMedia EnableVideo:NO];
         [guestMember.mMainMedia EnableAudio:NO];
 //        [guestMember.mMainMedia EnableVideo:NO];
     }
-//    [self detachGuestRenderView];
+    [self detachGuestRenderView];
 }
 //显示其他人的流
 - (void)showUservideo{
+    self.needShowVideo = YES;
     [self deleteImageSubview];
-    ClassMember *guestMember = [mGuestRenderView reachGuestMember];
-    if (guestMember.mMainMedia) {
-        [guestMember.mMainMedia EnableVideo:YES];
-        [guestMember.mMainMedia EnableAudio:YES];
-
-//        [guestMember.mMainMedia EnableVideo:NO];
-    }
-//    [self attachGuestRenderView:0];
+//    ClassMember *guestMember = [mGuestRenderView reachGuestMember];
+//    if (guestMember.mMainMedia) {
+//        [guestMember.mMainMedia EnableVideo:YES];
+//        [guestMember.mMainMedia EnableAudio:YES];
+//
+////        [guestMember.mMainMedia EnableVideo:NO];
+//    }
+    [self attachGuestRenderView:0];
 
 }
 
 //刷新流用的
 - (void)syncRemoteView{
-    if (mGuestRenderView) {
-        [mGuestRenderView bindMedia];
+//    没有流的时候，重新绑定
+    if (self.needShowVideo) {
+        if (mGuestRenderView) {
+            ClassMember *guestMember = [mGuestRenderView guestMember];
+            if (guestMember.mMainMedia && guestMember.mMainMedia.stream_state != VS_MEDIA_STREAM_STARTED) {
+                [mGuestRenderView bindMedia];
+            }
+        }
     }
 }
 

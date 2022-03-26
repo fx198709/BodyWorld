@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UILabel* mNameLabel;
 @property (nonatomic, strong) UIButton* mChatBtn;
 @property (nonatomic, strong) NSString* userImageString;
+@property (nonatomic, assign) BOOL needShowVideo; //是否需要展示，屏蔽的时候就不需要展示这个了
 
 @property (copy) void(^pressBtnChat)(void);
 

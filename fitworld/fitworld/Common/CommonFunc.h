@@ -198,3 +198,17 @@ UIKIT_STATIC_INLINE  BOOL CheckResponseObject(id responseObject){
 //}
 
 #endif /* CommonFunc_h */
+
+
+#define YCisNull(a) ((a)==nil || (a)==NULL || (NSNull *)(a)==[NSNull null])
+
+#define isEmptyString(a) ((a)==nil || (a)==NULL || (NSNull *)(a)==[NSNull null] || [(NSString *)(a) length]==0)
+
+
+
+#define FORUM_DETAIL_READ_HISTORY       @"ForumDetailReadHistory"
+#define CREAT_FORUM_READ_HISTORY_TIME   @"creatReadHistoryTime"
+
+#define FORUM_DETAIL_ANONYMOUS_HISTORY       @"ForumDetailAnonymousHistory"
+#define CREAT_FORUM_ANONYMOUS_HISTORY_TIME   @"creatAnonymousHistoryTime"
+#define ReachCurrentUserID ([[NSUserDefaults standardUserDefaults] valueForKey:@"CurrentUserID"]?[[NSUserDefaults standardUserDefaults] valueForKey:@"CurrentUserID"] :@"-1")

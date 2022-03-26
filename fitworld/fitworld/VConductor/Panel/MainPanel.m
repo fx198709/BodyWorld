@@ -7,7 +7,7 @@
 #import "../Widgets/RemoteView.h"
 
 #import "VConductorClient.h"
-
+#import "LogHelper.h"
 
 @interface MainPanel () {
 }
@@ -31,6 +31,7 @@
 @synthesize mDoubleTapGesture;
 @synthesize mLayout;
 
+
 - (void)dealloc{
     NSLog(@"MainPanel dealloc");
 }
@@ -48,7 +49,7 @@
     mDoubleTapGesture.cancelsTouchesInView = YES;
     [self addGestureRecognizer:mDoubleTapGesture];
     mLayout = PLAYOUT_LAYOUT_GRID;
-    
+    [LogHelper writeErrorLog:[NSString stringWithFormat:@"------%@",@"教练视频初始化"]];
     return self;
 }
 
@@ -64,7 +65,8 @@
         [self addSubview:mLocalView];
     }
     [mLocalView bindMedia];
-    
+    [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@------%@",@"教练视频绑定流",@"[mLocalView bindMedia]"]];
+
     [self syncRemoteView];
     [self relayoutVideoView];
     NSLog(@"needLayout M");
@@ -105,8 +107,8 @@
 }
 
 - (void)setLectureLayout:(BOOL)isLecture {
-    NSLog(@"setLectureLayout %d", isLecture);
     mLayout = isLecture ? PLAYOUT_LAYOUT_LECTURE : PLAYOUT_LAYOUT_GRID;
+    NSLog(@"setLectureLayout----- %ld", (long)mLayout);
     [self relayoutVideoView];
 }
 

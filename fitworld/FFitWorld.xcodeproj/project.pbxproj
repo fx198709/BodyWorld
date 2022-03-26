@@ -223,6 +223,10 @@
 		DDB138132748EAF6009A44FD /* Train2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB138112748EAF6009A44FD /* Train2TableViewCell.xib */; };
 		DDB138172748EB07009A44FD /* Train3TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB138152748EB07009A44FD /* Train3TableViewCell.m */; };
 		DDB138182748EB07009A44FD /* Train3TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB138162748EB07009A44FD /* Train3TableViewCell.xib */; };
+		DDB892B027EE9522000CFEA6 /* LogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB892AE27EE9521000CFEA6 /* LogHelper.m */; };
+		DDB892B327EE9536000CFEA6 /* NSMutableDictionary+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB892B127EE9536000CFEA6 /* NSMutableDictionary+YCExtension.m */; };
+		DDB892B927EE9583000CFEA6 /* KeychainDeviceID.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB892B527EE9582000CFEA6 /* KeychainDeviceID.m */; };
+		DDB892BA27EE9583000CFEA6 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB892B627EE9582000CFEA6 /* OpenUDID.m */; };
 		DDBAB340276B926A003C6DA5 /* TrainCommitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBAB33E276B9269003C6DA5 /* TrainCommitTableViewCell.m */; };
 		DDBAB341276B926A003C6DA5 /* TrainCommitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBAB33F276B926A003C6DA5 /* TrainCommitTableViewCell.xib */; };
 		DDD3CBBF276F21C3007A83BB /* ShareAboveView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD3CBBE276F21C2007A83BB /* ShareAboveView.m */; };
@@ -674,6 +678,14 @@
 		DDB138142748EB07009A44FD /* Train3TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Train3TableViewCell.h; sourceTree = "<group>"; };
 		DDB138152748EB07009A44FD /* Train3TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Train3TableViewCell.m; sourceTree = "<group>"; };
 		DDB138162748EB07009A44FD /* Train3TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Train3TableViewCell.xib; sourceTree = "<group>"; };
+		DDB892AE27EE9521000CFEA6 /* LogHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogHelper.m; sourceTree = "<group>"; };
+		DDB892AF27EE9521000CFEA6 /* LogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogHelper.h; sourceTree = "<group>"; };
+		DDB892B127EE9536000CFEA6 /* NSMutableDictionary+YCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+YCExtension.m"; sourceTree = "<group>"; };
+		DDB892B227EE9536000CFEA6 /* NSMutableDictionary+YCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+YCExtension.h"; sourceTree = "<group>"; };
+		DDB892B527EE9582000CFEA6 /* KeychainDeviceID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainDeviceID.m; sourceTree = "<group>"; };
+		DDB892B627EE9582000CFEA6 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
+		DDB892B727EE9583000CFEA6 /* KeychainDeviceID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainDeviceID.h; sourceTree = "<group>"; };
+		DDB892B827EE9583000CFEA6 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
 		DDBAB33D276B9269003C6DA5 /* TrainCommitTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrainCommitTableViewCell.h; sourceTree = "<group>"; };
 		DDBAB33E276B9269003C6DA5 /* TrainCommitTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrainCommitTableViewCell.m; sourceTree = "<group>"; };
 		DDBAB33F276B926A003C6DA5 /* TrainCommitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainCommitTableViewCell.xib; sourceTree = "<group>"; };
@@ -1255,6 +1267,8 @@
 		DD25FEC5272012DC0092CF87 /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				DDB892B427EE9582000CFEA6 /* KeychainDeviceID */,
+				DDB892AD27EE9521000CFEA6 /* LogHelper */,
 				DD25FED527226B5A0092CF87 /* JYCarousel */,
 				DD25FED127215D2A0092CF87 /* AFHTTP */,
 				DD25FEC6272012DC0092CF87 /* YCMJRefresh */,
@@ -1543,6 +1557,28 @@
 			path = TrainingCell;
 			sourceTree = "<group>";
 		};
+		DDB892AD27EE9521000CFEA6 /* LogHelper */ = {
+			isa = PBXGroup;
+			children = (
+				DDB892B227EE9536000CFEA6 /* NSMutableDictionary+YCExtension.h */,
+				DDB892B127EE9536000CFEA6 /* NSMutableDictionary+YCExtension.m */,
+				DDB892AF27EE9521000CFEA6 /* LogHelper.h */,
+				DDB892AE27EE9521000CFEA6 /* LogHelper.m */,
+			);
+			path = LogHelper;
+			sourceTree = "<group>";
+		};
+		DDB892B427EE9582000CFEA6 /* KeychainDeviceID */ = {
+			isa = PBXGroup;
+			children = (
+				DDB892B727EE9583000CFEA6 /* KeychainDeviceID.h */,
+				DDB892B527EE9582000CFEA6 /* KeychainDeviceID.m */,
+				DDB892B827EE9583000CFEA6 /* OpenUDID.h */,
+				DDB892B627EE9582000CFEA6 /* OpenUDID.m */,
+			);
+			path = KeychainDeviceID;
+			sourceTree = "<group>";
+		};
 		DDD4AFC82785858B00B7C4D8 /* PrivateRoom */ = {
 			isa = PBXGroup;
 			children = (
@@ -1773,7 +1809,9 @@
 				0456193026ECEC8A00C0973F /* RegisterController.m in Sources */,
 				A296D6A82758B26800F73259 /* CoachCommentCell.m in Sources */,
 				DDD4AFCB2785858B00B7C4D8 /* PrivateRoomViewControl.m in Sources */,
+				DDB892B327EE9536000CFEA6 /* NSMutableDictionary+YCExtension.m in Sources */,
 				DDFA758F275E050800EFD0B1 /* GroupMyRoom.m in Sources */,
+				DDB892BA27EE9583000CFEA6 /* OpenUDID.m in Sources */,
 				DD6EDB60272EFFFB002B0A8E /* CourseLiveViewController.m in Sources */,
 				DDB1380427489A2E009A44FD /* AfterTrainingViewController.m in Sources */,
 				04EC01F826BD8AC100DC0103 /* ToolFunc.m in Sources */,
@@ -1841,6 +1879,7 @@
 				46A9A8C3278F030900461DB6 /* BaseResponseModel.m in Sources */,
 				04EC01F226BD8AC000DC0103 /* HeaderPanel.m in Sources */,
 				A296D68A2754A37400F73259 /* FriendInfoViewController.m in Sources */,
+				DDB892B927EE9583000CFEA6 /* KeychainDeviceID.m in Sources */,
 				A296D68727547C1B00F73259 /* SearchAddFriendViewController.m in Sources */,
 				A2A94DC2273E5BA000D02C77 /* Country.m in Sources */,
 				04747FBE27082BC700B3B5B8 /* PractiseStatic.m in Sources */,
@@ -1850,6 +1889,7 @@
 				DD595EBD27364D0300618D1A /* MessageDetailViewController.m in Sources */,
 				DD6EDB4F272EF15F002B0A8E /* HeadTimeCollectionViewCell.m in Sources */,
 				A256300A273FE2430030D6B2 /* FriendPageInfo.m in Sources */,
+				DDB892B027EE9522000CFEA6 /* LogHelper.m in Sources */,
 				A296D68D2754A3AB00F73259 /* BaseRefreshViewController.m in Sources */,
 				A2723F05273CF1BC00388B01 /* SelectCountryViewController.m in Sources */,
 				DDFA757D27591BE800EFD0B1 /* GroupRoomDetailViewController.m in Sources */,

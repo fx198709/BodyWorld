@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@----%@",self.class,@"enterVC"]];
     // Do any additional setup after loading the view.
 }
 - (void)viewDidAppear:(BOOL)animated{
