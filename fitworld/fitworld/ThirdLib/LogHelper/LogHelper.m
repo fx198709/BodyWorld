@@ -99,25 +99,44 @@
 //上传到文件服务器的
 + (void)uploadLogFileName:(NSString *)fileName filePath:(NSString *)filePath completionHandler:(void (^)(void))completionHandler {
     
-    NSString *contentType = AFContentTypeForPathExtension([filePath pathExtension]);
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%@UploadBugAttach.ashx",@""] parameters:@{@"FileName":fileName} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:@"file" fileName:fileName mimeType:contentType error:nil];
-    } error:nil];
-
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
-        if (error) {
-            NSLog(@"上传日志Error: %@", error);
-        } else {
-            NSLog(@"上传日志Success");
-//            NSLog(@"上传日志Success: %@ %@", response, responseObject);
-            completionHandler();
+    NSString *url = @"upload";
+    [MTHUD showLoadingHUD];
+    NSData *filedata  = [NSData dataWithContentsOfFile:filePath];
+    [[AFAppNetAPIClient manager] POST:url parameters:nil file:filedata success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MTHUD hideHUD];
+        NSString *avatarUrl = [responseObject objectForKey:@"recordset"];
+        if (avatarUrl) {
+//            Printing description of avatarUrl:
+//            [self->_uploadBtn setImage:currentImage forState:UIControlStateNormal];
+//            [self->_uploadBtn setImage:currentImage forState:UIControlStateHighlighted];
+//            self->uploadImageurl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, avatarUrl];
+            [MTHUD showDurationNoticeHUD:UploadSuccessMsg];
+//            [self loadData];
         }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        [self showChangeFailedError:error];
+        [MTHUD hideHUD];
     }];
-    [uploadTask resume];
+    
+//    NSString *contentType = AFContentTypeForPathExtension([filePath pathExtension]);
+//    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%@UploadBugAttach.ashx",@""] parameters:@{@"FileName":fileName} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:@"file" fileName:fileName mimeType:contentType error:nil];
+//    } error:nil];
+//
+//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//
+//    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+//        if (error) {
+//            NSLog(@"上传日志Error: %@", error);
+//        } else {
+//            NSLog(@"上传日志Success");
+////            NSLog(@"上传日志Success: %@ %@", response, responseObject);
+//            completionHandler();
+//        }
+//    }];
+//    [uploadTask resume];
     
 }
 
@@ -143,6 +162,7 @@
 //写入打卡log
 + (void)writeClockLog:(NSString *)log{
 //    打卡日志，存放的点
+    NSLog(log);
     NSString *clockFilePath = [[LogHelper sharedInstance].fileStoragePath stringByAppendingPathComponent:@"YC_file_Colock"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -155,12 +175,12 @@
                                      error:nil];
      }
     NSDate *currentDate = [NSDate date];
-    NSString *month = [CommonTools reachFormateDateStringFromInDate:currentDate withFormat:@"yyyyMM"];
+    NSString *month = [CommonTools reachFormateDateStringFromInDate:currentDate withFormat:@"yyyyMMdd"];
 //    用员工编号，生成一个月份的日志
-    NSString *fileName =  [NSString stringWithFormat:@"%@-%@-%@-%@",ReachCurrentUserID,[APPObjOnce sharedAppOnce].currentUser.id,month,[KeychainDeviceID getOpenUDID]];
+    NSString *fileName =  [NSString stringWithFormat:@"%@-%@-%@-%@",month,ReachCurrentUserID,[APPObjOnce sharedAppOnce].currentUser.id,[KeychainDeviceID getOpenUDID]];
     NSString *writeFilePath = [clockFilePath stringByAppendingPathComponent:fileName];
     NSString *time = [CommonTools reachFormateDateStringFromInDate:[NSDate date] withFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *logStr = [NSString stringWithFormat:@"%@_%@",log,time];
+    NSString *logStr = [NSString stringWithFormat:@"%@_%@",time,log];
 //    这边写入日志
     [LogHelper writeFile:writeFilePath content:logStr];
 }
@@ -171,7 +191,6 @@
 //        友盟的连接报错，这边不处理
         return;
     }
-    NSLog(log);
     //    错误日志存放的位置
 //    错误日志，每天生成一个文件，进来判断一下日期，然后直接上传到服务器
 //    如果想上传日志，那把本地时间修改，就直接上传，这个方法写在从后台进前台那边，来回切换就上传，
@@ -192,7 +211,7 @@
     NSString *fileName =  [NSString stringWithFormat:@"Error%@-%@-%@-%@",ReachCurrentUserID,[APPObjOnce sharedAppOnce].currentUser.id,dayString,[KeychainDeviceID getOpenUDID]];
     NSString *writeFilePath = [errorFilePath stringByAppendingPathComponent:fileName];
 //    因为是每一天的记录，所以这边只要精确到秒就行了  日期可以去掉
-    NSString *time = [CommonTools reachFormateDateStringFromInDate:[NSDate date] withFormat:@"HH:mm:ss"];
+    NSString *time = [CommonTools reachFormateDateStringFromInDate:[NSDate date] withFormat:@"MMdd HH:mm:ss"];
     NSString *logerrorStr = [NSString stringWithFormat:@"%@\\n%@",time,log];
     //    这边写入日志
     [LogHelper writeFile:writeFilePath content:logerrorStr];
@@ -319,38 +338,51 @@
 
 //上传打卡的日志文件
 + (void)uploadClockLogFile{
-//    ClockLogTimeString 获取上次上传成功的日期，这个是以日为单位的，  每天只上传一次
-    NSString *timeString = [[NSUserDefaults standardUserDefaults] objectForKey:@"ClockLogTimeString"];
-    NSString *currentTime = [CommonTools reachFormateDateStringFromInDate:[NSDate date] withFormat:@"yyyyMMdd"];
-//    当前日期比上一次时间大，这个时候是需要上传的，每次上传都是上传2个月的打卡记录
-    if (currentTime.integerValue > timeString.integerValue) {
-        //        这边表示之前没上传过，需要重新上传
-        //        在上传之前，先把过期的数据扔掉
-        NSString *clockFilePath = [[LogHelper sharedInstance].fileStoragePath stringByAppendingPathComponent:@"YC_file_Colock"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSArray *fileArray = [fileManager contentsOfDirectoryAtPath:clockFilePath error:nil];
-        for (NSString *filename in fileArray) {
-            NSString *realFilePath = [clockFilePath stringByAppendingPathComponent:filename];
-            NSDictionary *dic = [fileManager attributesOfItemAtPath:realFilePath error:nil];
-            //这个直接能转成一个date 比较牛逼
-            if (dic) {
-                NSDate *creatDate = (NSDate*)[dic objectForKey:NSFileCreationDate];
-                long timediff = [creatDate timeIntervalSinceNow];
-//                这个是删除90天之前的文件，😁，保证本地只存在2-3个文件
-                if (labs(timediff) > 90*24*3600) {
-                    [fileManager removeItemAtPath:realFilePath error:nil];
-                }
-                else{
-//                    没有被删除,上传文件
-                    [LogHelper uploadLogFileName:filename filePath:realFilePath completionHandler:^(){
-                        NSString *successTime = [CommonTools reachFormateDateStringFromInDate:[NSDate date] withFormat:@"yyyyMMdd"];
-                        [[NSUserDefaults standardUserDefaults] setObject:successTime forKey:@"ClockLogTimeString"];
-                        [[NSUserDefaults standardUserDefaults] synchronize];
-                     }];
-                }
-            }
-        }
+    NSString *clockFilePath = [[LogHelper sharedInstance].fileStoragePath stringByAppendingPathComponent:@"YC_file_Colock"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *fileArray = [fileManager contentsOfDirectoryAtPath:clockFilePath error:nil];
+    for (NSString *filename in fileArray) {
+        NSString *realFilePath = [clockFilePath stringByAppendingPathComponent:filename];
+         [LogHelper uploadLogFileName:filename filePath:realFilePath completionHandler:^(){
+//             上传之后，删除文件
+             [fileManager removeItemAtPath:realFilePath error:nil];
+//             NSString *successTime = [CommonTools reachFormateDateStringFromInDate:[NSDate date] withFormat:@"yyyyMMdd"];
+//             [[NSUserDefaults standardUserDefaults] setObject:successTime forKey:@"ClockLogTimeString"];
+//             [[NSUserDefaults standardUserDefaults] synchronize];
+          }];
     }
+////    ClockLogTimeString 获取上次上传成功的日期，这个是以日为单位的，  每天只上传一次
+//    NSString *timeString = [[NSUserDefaults standardUserDefaults] objectForKey:@"ClockLogTimeString"];
+//    NSString *currentTime = [CommonTools reachFormateDateStringFromInDate:[NSDate date] withFormat:@"yyyyMMdd"];
+////    当前日期比上一次时间大，这个时候是需要上传的，每次上传都是上传2个月的打卡记录
+//    if (currentTime.integerValue > timeString.integerValue) {
+//        //        这边表示之前没上传过，需要重新上传
+//        //        在上传之前，先把过期的数据扔掉
+//        NSString *clockFilePath = [[LogHelper sharedInstance].fileStoragePath stringByAppendingPathComponent:@"YC_file_Colock"];
+//        NSFileManager *fileManager = [NSFileManager defaultManager];
+//        NSArray *fileArray = [fileManager contentsOfDirectoryAtPath:clockFilePath error:nil];
+//        for (NSString *filename in fileArray) {
+//            NSString *realFilePath = [clockFilePath stringByAppendingPathComponent:filename];
+//            NSDictionary *dic = [fileManager attributesOfItemAtPath:realFilePath error:nil];
+//            //这个直接能转成一个date 比较牛逼
+//            if (dic) {
+//                NSDate *creatDate = (NSDate*)[dic objectForKey:NSFileCreationDate];
+//                long timediff = [creatDate timeIntervalSinceNow];
+////                这个是删除90天之前的文件，😁，保证本地只存在2-3个文件
+//                if (labs(timediff) > 90*24*3600) {
+//                    [fileManager removeItemAtPath:realFilePath error:nil];
+//                }
+//                else{
+////                    没有被删除,上传文件
+//                    [LogHelper uploadLogFileName:filename filePath:realFilePath completionHandler:^(){
+//                        NSString *successTime = [CommonTools reachFormateDateStringFromInDate:[NSDate date] withFormat:@"yyyyMMdd"];
+//                        [[NSUserDefaults standardUserDefaults] setObject:successTime forKey:@"ClockLogTimeString"];
+//                        [[NSUserDefaults standardUserDefaults] synchronize];
+//                     }];
+//                }
+//            }
+//        }
+//    }
 }
 
 

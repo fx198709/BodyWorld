@@ -53,7 +53,7 @@
 
 - (void)bindMedia {
   [[VConductorClient sharedInstance] bindLocalVideoRender:mVideoRender];
- [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@------%@",@"教练视频绑定流",@"[mLocalView bindMedia]"]];
+ [LogHelper writeClockLog:[NSString stringWithFormat:@"%@------%@",@"教练视频绑定流",@"[mLocalView bindMedia]"]];
 }
 
 - (void)unbindMedia {

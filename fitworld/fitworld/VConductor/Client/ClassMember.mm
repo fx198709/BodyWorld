@@ -385,6 +385,7 @@
 }
 
 - (void)OnStreamStarting:(VSMedia*)handle {
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"OnStreamStarting:----type:%ld--mid:%llu",(long)handle.type,handle.mid]];
 }
 
 - (void)OnStreamStarted:(VSMedia*)handle withStream:(NSString*)streamId {
@@ -392,7 +393,7 @@
     if (handle.type == VS_MEDIA_REMOTE) {
         return;
     }
-    
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"OnStreamStarted:withStream:----type:%ld--mid:%llu--streamId:%@",(long)handle.type,handle.mid,streamId]];
     if (handle.stream_state == VS_MEDIA_STREAM_IDLE) {
         [[VSRTC sharedInstance] updateStream:@"0" andCourseStream:@"0"];
     } else if (handle.stream_state == VS_MEDIA_STREAM_STARTED) {

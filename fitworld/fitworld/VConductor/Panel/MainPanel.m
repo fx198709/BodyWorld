@@ -49,7 +49,7 @@
     mDoubleTapGesture.cancelsTouchesInView = YES;
     [self addGestureRecognizer:mDoubleTapGesture];
     mLayout = PLAYOUT_LAYOUT_GRID;
-    [LogHelper writeErrorLog:[NSString stringWithFormat:@"------%@",@"教练视频初始化"]];
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"------%@",@"教练视频初始化"]];
     return self;
 }
 
@@ -65,7 +65,7 @@
         [self addSubview:mLocalView];
     }
     [mLocalView bindMedia];
-    [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@------%@",@"教练视频绑定流",@"[mLocalView bindMedia]"]];
+//    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@------%@",@"教练视频绑定流",@"[mLocalView bindMedia]"]];
 
     [self syncRemoteView];
     [self relayoutVideoView];

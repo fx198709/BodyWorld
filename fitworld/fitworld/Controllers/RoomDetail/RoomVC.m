@@ -480,7 +480,7 @@
         }else{
             [self.navigationController popViewControllerAnimated:YES];
         }
-        [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@----%@",@"退出vc",@"excitvc"]];
+        [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----%@",@"退出vc",@"excitvc"]];
     }
 }
 
@@ -499,7 +499,7 @@
 - (void)onSessionUpdate:(ClassMember*)session withViewerModeChanged:(BOOL)modeChanged {
     //    [mHeaderPanel syncSession:session];
     //    有流过来了，表示开始直播了
-    [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@----%@",self.class,@"onSessionUpdate:withViewerModeChanged"]];
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----%@",self.class,@"onSessionUpdate:withViewerModeChanged"]];
 
     if (!hasStartLiving) {
 //        第一次获取到流信息
@@ -523,7 +523,7 @@
     
     if (modeChanged) {
         [self layoutPanel];
-        [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@----%@",@"页面上的视频进行layout 教练视频开始同步",@"onSessionUpdated中modeChanged为true"]];
+        [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----%@",@"页面上的视频进行layout 教练视频开始同步",@"onSessionUpdated中modeChanged为true"]];
 
         [mMainPanel syncRemoteView];
         
@@ -537,7 +537,7 @@
 }
 
 - (void)onTick {
-//    [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@----%@",@"ontick回调",@"onTick方法 [mMainPanel syncRemoteView]"]];
+//    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----%@",@"ontick回调",@"onTick方法 [mMainPanel syncRemoteView]"]];
 
     [mMainPanel syncRemoteView];
     [self syncGuestpanelView];
@@ -608,7 +608,7 @@
 //改变成员
 - (void)guestMemberChangetoView{
     [self layoutPanel];
-    [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@----%@",@"成员改变",@"guestMemberChangetoView"]];
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----%@",@"成员改变",@"guestMemberChangetoView"]];
 
 }
 
@@ -724,7 +724,7 @@
             createRoomLiving = YES;
             //            开启直播
             [[VConductorClient sharedInstance] joinwithEntry:VRC_URL andCode:self.mCode asViewer:NO withDelegate:self];
-            [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@----%@",@"开启直播",@"[VConductorClient sharedInstance] joinwithEntry"]];
+            [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----%@",@"开启直播",@"[VConductorClient sharedInstance] joinwithEntry"]];
         }
         
     }
@@ -977,7 +977,7 @@
     }
     [self removeAboveView];
     [self layoutPanel];
-    [LogHelper writeErrorLog:[NSString stringWithFormat:@"%@----%@",@"改变页面的方向，需要重新改",@"changeOrientation"]];
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----%@",@"改变页面的方向，需要重新改",@"changeOrientation"]];
 
     [self dealwithTimer];
 }
