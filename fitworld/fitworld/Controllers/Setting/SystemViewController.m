@@ -72,6 +72,21 @@ OurDatePickerViewDelegate>
     self.navigationItem.title = ChineseStringOrENFun(@"系统设置",@"Setting");
     
     [self initUI];
+//    添加一个上传日志按钮
+    [self addtestupload];
+}
+
+- (void)addtestupload{
+    UIButton *vbutton = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-200, 100, 100, 100)];
+    [self.view addSubview:vbutton];
+    vbutton.backgroundColor = UIColor.redColor;
+    [vbutton addTarget:self action:@selector(uploadFile) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)uploadFile{
+    [LogHelper uploadClockLogFile];
+//    上传其他的日志
+    [LogHelper uploadThirdFile];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

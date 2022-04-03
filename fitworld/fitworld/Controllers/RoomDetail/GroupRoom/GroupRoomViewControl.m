@@ -273,10 +273,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)actQuit {
-    [[VConductorClient sharedInstance] leave];
-}
-
 - (void)actSwitchMode {
     if (![VConductorClient sharedInstance].canSwitchViewerMode) {
         [self showHud:@"该课程未启用转播" withDuration:3];

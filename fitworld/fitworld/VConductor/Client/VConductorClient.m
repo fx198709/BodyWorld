@@ -259,7 +259,7 @@
         newExtendInfo[@"handsUp"] = [NSNumber numberWithBool:NO];
         newExtendInfo[@"ioDeviceEnable"] = [NSNumber numberWithInt:0];
     }
-    [[VSRTC sharedInstance] updateCustomExtendData:newExtendInfo];
+    [[VSRTC sharedInstance] updateCustomExtendData:newExtendInfo notifyTargets:nil];
 }
 
 - (NSString*)getViewerUrl {
@@ -505,14 +505,17 @@
 - (void) onSessionInit:(VSRoomUser*)session {
     ClassMember *mySession = [[ClassMember alloc] initWith:session];
     [self setMySession:mySession];
+    [LogHelper writeClockLog:@"onSessionInit----"];
 }
 
 - (void) onSessionUpdate:(VSRoomUser*)session {
     ClassMember *mySession = [[ClassMember alloc] initWith:session];
     [self setMySession:mySession];
+    [LogHelper writeClockLog:@"onSessionUpdate----"];
 }
 
 - (void)onSessionError:(int)status andDesc:(NSString *)msg {
+    [LogHelper writeClockLog:@"onSessionError----"];
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         [self.mDelegate onLostRoomWithCode:status andError:msg];
     });
@@ -524,9 +527,13 @@
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         [self.mDelegate onLeaveRom];
     });
+    [LogHelper writeClockLog:@"onSessionQuit----"];
+
 }
 
 - (void) onMemberJoin:(VSRoomUser*)user {
+    [LogHelper writeClockLog:@"onMemberJoin----"];
+
     //    获取一次全部的人员信息
     ClassMember *member = [[ClassMember alloc] initWith:user];
     if ([member isHost]) {
@@ -543,6 +550,7 @@
 
 //成员信息更新
 - (void) onMemberUpdate:(VSRoomUser*)user {
+    [LogHelper writeClockLog:@"onMemberUpdate----"];
     ClassMember *member = [[ClassMember alloc] initWith:user];
     if ([member isHost]) {
         [self setHostMember:member];
@@ -555,6 +563,7 @@
 
 //有成员离开，处理host 或者member数据  发出人员更新的通知
 - (void) onMemberLeave:(VSRoomUser*)user {
+    [LogHelper writeClockLog:@"onMemberLeave----"];
     ClassMember *member = [[ClassMember alloc] initWith:user];
     if ([member isHost]) {
         [self clearHostMember:member];

@@ -274,9 +274,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)actQuit {
-    [[VConductorClient sharedInstance] leave];
-}
+
 
 - (void)actSwitchMode {
     if (![VConductorClient sharedInstance].canSwitchViewerMode) {

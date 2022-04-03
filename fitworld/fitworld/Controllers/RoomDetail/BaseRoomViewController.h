@@ -14,7 +14,6 @@
 #import "ReportView.h"
 #import "LogHelper.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseRoomViewController : BaseNavViewController
 //进入直播间的前一个vc
@@ -62,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 //关闭举报view
 - (void)closeReportView;
 
+//退出
+- (void)actQuit;
+
 @end
 
-NS_ASSUME_NONNULL_END

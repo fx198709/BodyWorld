@@ -65,7 +65,7 @@
         [self addSubview:mLocalView];
     }
     [mLocalView bindMedia];
-//    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@------%@",@"教练视频绑定流",@"[mLocalView bindMedia]"]];
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@------%@",@"教练视频绑定流",@"[mLocalView bindMedia]"]];
 
     [self syncRemoteView];
     [self relayoutVideoView];
@@ -108,7 +108,6 @@
 
 - (void)setLectureLayout:(BOOL)isLecture {
     mLayout = isLecture ? PLAYOUT_LAYOUT_LECTURE : PLAYOUT_LAYOUT_GRID;
-    NSLog(@"setLectureLayout----- %ld", (long)mLayout);
     [self relayoutVideoView];
 }
 

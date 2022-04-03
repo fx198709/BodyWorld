@@ -97,12 +97,14 @@
     }
 }
 //上传到文件服务器的
+//http://m-aws.fitworld.live/upload/log/api.log
 + (void)uploadLogFileName:(NSString *)fileName filePath:(NSString *)filePath completionHandler:(void (^)(void))completionHandler {
     
-    NSString *url = @"upload";
+    NSString *url = @"upload2";
     [MTHUD showLoadingHUD];
     NSData *filedata  = [NSData dataWithContentsOfFile:filePath];
-    [[AFAppNetAPIClient manager] POST:url parameters:nil file:filedata success:^(NSURLSessionDataTask *task, id responseObject) {
+//    @{@"file":fileName}
+    [[AFAppNetAPIClient manager] POST:url parameters:@{@"fileName":fileName} file:filedata success:^(NSURLSessionDataTask *task, id responseObject) {
         [MTHUD hideHUD];
         NSString *avatarUrl = [responseObject objectForKey:@"recordset"];
         if (avatarUrl) {
@@ -112,7 +114,9 @@
 //            self->uploadImageurl = [NSString stringWithFormat:@"%@%@", FITAPI_HTTPS_ROOT, avatarUrl];
             [MTHUD showDurationNoticeHUD:UploadSuccessMsg];
 //            [self loadData];
+            completionHandler();
         }
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 //        [self showChangeFailedError:error];
         [MTHUD hideHUD];
@@ -180,7 +184,7 @@
     NSString *fileName =  [NSString stringWithFormat:@"%@-%@-%@-%@",month,ReachCurrentUserID,[APPObjOnce sharedAppOnce].currentUser.id,[KeychainDeviceID getOpenUDID]];
     NSString *writeFilePath = [clockFilePath stringByAppendingPathComponent:fileName];
     NSString *time = [CommonTools reachFormateDateStringFromInDate:[NSDate date] withFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *logStr = [NSString stringWithFormat:@"%@_%@",time,log];
+    NSString *logStr = [NSString stringWithFormat:@"%@__%@__%@",time,[APPObjOnce sharedAppOnce].currentUser.id,log];
 //    这边写入日志
     [LogHelper writeFile:writeFilePath content:logStr];
 }
@@ -410,6 +414,63 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     return @"application/octet-stream";
 #endif
 }
+
++ (NSString*)logpath{
+    NSString *fileName = [[NSProcessInfo processInfo] globallyUniqueString];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* logDir = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Log"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:logDir isDirectory:nil]){
+      [[NSFileManager defaultManager] createDirectoryAtPath:logDir withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    return logDir;
+}
+
++ (void)openLog {
+  [[VSRTC sharedInstance] startFileLog:[LogHelper logpath]];
+}
+
++ (void)stopLog{
+    [[VSRTC sharedInstance] stopFileLog];
+}
+
+
++ (void)uploadThirdFile{
+    NSMutableArray *logUrls = [NSMutableArray new];
+    NSArray *allLogs = [self allFilesAtPath:[LogHelper logpath]];
+    NSString *time = [CommonTools reachFormateDateStringFromInDate:[NSDate date] withFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSFileManager* fileMgr = [NSFileManager defaultManager];
+    for (NSString *logFile in allLogs) {
+      NSLog(@"log file path=%@", logFile);
+//      [logUrls addObject:[NSURL fileURLWithPath:logFile]];
+        NSString *fullPath =[[LogHelper logpath] stringByAppendingPathComponent:logFile];
+        NSString *filename = [NSString stringWithFormat:@"%@--%@",time,logFile];
+        [LogHelper uploadLogFileName:filename filePath:fullPath completionHandler:^(){
+//             上传之后，删除文件
+             [fileMgr removeItemAtPath:fullPath error:nil];
+         }];
+    }
+
+}
+
+
++ (NSArray*) allFilesAtPath:(NSString*) dirString {
+  NSMutableArray* array = [NSMutableArray arrayWithCapacity:10];
+  NSFileManager* fileMgr = [NSFileManager defaultManager];
+  NSArray* tempArray = [fileMgr contentsOfDirectoryAtPath:dirString error:nil];
+  
+  for (NSString* fileName in tempArray) {
+    BOOL flag = YES;
+      NSString* fullPath = fileName;//[dirString stringByAppendingPathComponent:fileName];
+//    if ([fileMgr fileExistsAtPath:fullPath isDirectory:&flag]) {
+//      if (!flag) {
+        [array addObject:fullPath];
+//      }
+//    }
+  }
+  
+  return array;
+}
+
 
 
 @end

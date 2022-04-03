@@ -187,7 +187,7 @@
  post带有附件的请求
  */
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
-                    parameters:(id)parameters
+                    parameters:(NSDictionary*)parameters
                           file:(NSData*)fileData
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
@@ -201,7 +201,11 @@
 
     return [self POST:strUrl parameters:parameters headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         //给定数据流的数据名，文件名，文件类型（以图片为例）
-        [formData appendPartWithFileData:fileData name:@"file" fileName:@"img1" mimeType:@"image/jpeg"];
+        NSString *fileName = @"img1";
+        if ([parameters objectForKey:@"fileName"]) {
+            fileName = [parameters objectForKey:@"fileName"];
+        }
+        [formData appendPartWithFileData:fileData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
     } progress:nil success:success failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self dealError:error task:task failure:failure];
     }];

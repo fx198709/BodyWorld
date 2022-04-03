@@ -143,7 +143,7 @@
         return;
     }
     BOOL isBlind = !enable;
-    [[VSRTC sharedInstance] updateCameraState:isBlind];
+    [[VSRTC sharedInstance] updateCameraState:isBlind notifyTargets:nil];
 }
 
 - (BOOL)isLocalVideoEnable {
@@ -158,7 +158,7 @@
         return;
     }
     BOOL isMute = !enable;
-    [[VSRTC sharedInstance] updateMicState:isMute];
+    [[VSRTC sharedInstance] updateMicState:isMute notifyTargets:nil];
 }
 
 - (BOOL)isLocalAudioEnable {
@@ -395,10 +395,10 @@
     }
     [LogHelper writeClockLog:[NSString stringWithFormat:@"OnStreamStarted:withStream:----type:%ld--mid:%llu--streamId:%@",(long)handle.type,handle.mid,streamId]];
     if (handle.stream_state == VS_MEDIA_STREAM_IDLE) {
-        [[VSRTC sharedInstance] updateStream:@"0" andCourseStream:@"0"];
+        [[VSRTC sharedInstance] updateStream:@"0" andCourseStream:@"0" notifyTargets:nil];
     } else if (handle.stream_state == VS_MEDIA_STREAM_STARTED) {
 //        流可用
-        [[VSRTC sharedInstance] updateStream:handle.stream_id andCourseStream:@"0"];
+        [[VSRTC sharedInstance] updateStream:handle.stream_id andCourseStream:@"0" notifyTargets:nil];
     } else {
         
     }

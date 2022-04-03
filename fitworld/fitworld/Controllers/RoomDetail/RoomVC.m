@@ -414,9 +414,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)actQuit {
-    [[VConductorClient sharedInstance] leave];
-}
+
 
 - (void)actSwitchMode {
     if (![VConductorClient sharedInstance].canSwitchViewerMode) {
@@ -449,11 +447,14 @@
 #pragma mark 第一次进入
 - (void)onJoinRoomLoading {
 //    [self showHud:@"正在加入..." withDuration:0];
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----",@"onJoinRoomLoading"]];
 }
 
 - (void)onJoinRoomSuccess {
     [self hideHud];
-    
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----",@"onJoinRoomSuccess"]];
+
+
 }
 
 - (void)onJoinRoomFailed:(NSString *)error {
@@ -465,6 +466,9 @@
 #pragma mark  离开房间的回调
 - (void)onLostRoomWithCode:(NSInteger)code andError:(NSString*)err {
 //    [self showHud:@"您已离开房间" withDuration:3];
+    
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----%ld",@"onLostRoomWithCode",code]];
+
 }
 
 - (void)excitvc{
@@ -486,6 +490,8 @@
 
 
 - (void)onLeaveRom {
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----",@"onLeaveRom"]];
+
     [mSidePanel detachLocalView];
     [mMainPanel detachLocalView];
     [self excitvc];
@@ -494,6 +500,8 @@
 - (void)onRoomUpdate:(ClassRoom*)room {
     //    [mHeaderPanel setRoomTitle:room.roomTitle];
     [mMainPanel setLectureLayout:(room.playoutLayout == PLAYOUT_LAYOUT_LECTURE)];
+    [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----%ld",@"onRoomUpdate",(long)room.playoutLayout]];
+
 }
 
 - (void)onSessionUpdate:(ClassMember*)session withViewerModeChanged:(BOOL)modeChanged {
@@ -959,8 +967,8 @@
             self.currentRoom.event_id = eventid;
             //                显示进度条
             //            self.title = self.currentRoom.name;
-            [self startTimer];
             NSLog(@"+++++startTimer");
+            [self startTimer];
 
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

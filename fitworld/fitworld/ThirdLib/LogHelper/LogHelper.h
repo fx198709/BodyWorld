@@ -62,4 +62,14 @@
  @param file 日志文件名
  */
 + (void)clearLogFile:(NSString *)file;
+
+/*
+ 上传其他的日志
+ */
++ (void)uploadThirdFile;
+
++ (void)openLog;
++ (void)stopLog;
+
+
 @end

@@ -87,15 +87,15 @@ VSV_EXPORT
 - (int)audioSendBitrate;
 - (void)setAudioSendBitrate:(int)bitrate;
 
-- (void)updateStream:(NSString*)streamId andCourseStream:(NSString*)courseStreamId;
-- (void)updateMicState:(BOOL)mute;
-- (void)updateCameraState:(BOOL)blind;
-- (void)updateNickName:(NSString*)name;
-- (void)updateCustomExtendData:(NSDictionary*)extData;
+- (void)updateStream:(NSString*)streamId andCourseStream:(NSString*)courseStreamId notifyTargets:(NSArray<NSString*>*)tagets;
+- (void)updateMicState:(BOOL)mute notifyTargets:(NSArray<NSString*>*)tagets;
+- (void)updateCameraState:(BOOL)blind notifyTargets:(NSArray<NSString*>*)tagets;
+- (void)updateNickName:(NSString*)name notifyTargets:(NSArray<NSString*>*)tagets;
+- (void)updateCustomExtendData:(NSDictionary*)extData notifyTargets:(NSArray<NSString*>*)tagets;
 
-- (void)updateMember:(NSString*)userId MicState:(BOOL)mute;
-- (void)updateMember:(NSString*)userId CameraState:(BOOL)blind;
-- (void)updateMember:(NSString*)userId CustomExtendData:(NSDictionary*)extData;
+- (void)updateMember:(NSString*)userId MicState:(BOOL)mute notifyTargets:(NSArray<NSString*>*)tagets;
+- (void)updateMember:(NSString*)userId CameraState:(BOOL)blind notifyTargets:(NSArray<NSString*>*)tagets;
+- (void)updateMember:(NSString*)userId CustomExtendData:(NSDictionary*)extData notifyTargets:(NSArray<NSString*>*)tagets;
 
 - (void)updateRoomInfo:(NSString*)data;
 

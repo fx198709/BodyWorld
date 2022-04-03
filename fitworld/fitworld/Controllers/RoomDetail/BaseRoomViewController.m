@@ -8,6 +8,10 @@
 #import "BaseRoomViewController.h"
 #import "AfterTrainingViewController.h"
 #import "GuestPanel.h"
+#import <VSRTC/VSRoomUser.h>
+#import "VSRTC/VSVideoRender.h"
+#import <VSRTC/VSMedia.h>
+
 @interface BaseRoomViewController ()
 
 @end
@@ -16,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [LogHelper openLog];
     [LogHelper writeClockLog:[NSString stringWithFormat:@"%@----%@",self.class,@"enterVC"]];
     // Do any additional setup after loading the view.
 }
@@ -205,6 +210,32 @@
 - (void)closeReportView{
     [self.reportView  removeFromSuperview];
     self.reportView = nil;
+}
+
+
+- (void)actQuit {
+//    退出是一个异步的操作，需要把vsmedia 调用一遍
+//    1 leave之后 转菊花 onSessionQuit再pop VC
+//    2 leave之前遍历调用一下vsmedia的close(如果你能遍历的话)
+//    关闭访客的视频流
+    VConductorClient *client = [VConductorClient sharedInstance];
+    NSDictionary *dic = [client getGustMemberData];
+    if (dic && dic.allKeys.count >0) {
+        for (NSString *key in dic.allKeys) {
+            ClassMember *guest = [dic objectForKey:key];
+            if (guest) {
+                [guest.mMainMedia Close];
+            }
+        }
+    }
+    
+//    主视频的流关闭
+    ClassMember *host = [client getHostMember];
+    if (host) {
+        [host.mMainMedia Close];
+    }
+    [LogHelper stopLog];
+    [[VConductorClient sharedInstance] leave];
 }
 
 

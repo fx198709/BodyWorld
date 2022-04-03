@@ -17,7 +17,7 @@
 #import "MBProgressHUD.h"
 #import "JTMaterialSwitch.h"
 #import "ConsoleTextView.h"
-#import "TWSReleaseNotesView.h"
+//#import "TWSReleaseNotesView.h"
 
 #import <SDWebImage/SDWebImage.h>
 
