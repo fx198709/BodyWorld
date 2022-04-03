@@ -73,7 +73,7 @@ OurDatePickerViewDelegate>
     
     [self initUI];
 //    添加一个上传日志按钮
-    [self addtestupload];
+//    [self addtestupload];
 }
 
 - (void)addtestupload{
@@ -84,9 +84,9 @@ OurDatePickerViewDelegate>
 }
 
 - (void)uploadFile{
-    [LogHelper uploadClockLogFile];
-//    上传其他的日志
-    [LogHelper uploadThirdFile];
+//    [LogHelper uploadClockLogFile];
+////    上传其他的日志
+//    [LogHelper uploadThirdFile];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
