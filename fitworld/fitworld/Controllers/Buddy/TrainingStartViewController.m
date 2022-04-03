@@ -97,7 +97,7 @@
     [grayBackview addSubview:titelLabel];
     titelLabel.frame = CGRectMake(50, startx, 200, 24);
     titelLabel.textColor = UIColor.whiteColor;
-    titelLabel.text = ChineseStringOrENFun(@"时间设置", @"Time Select");
+    titelLabel.text = ChineseStringOrENFun(@"时间设置", @"Time To Start");
         
     NSString * string1 = ChineseStringOrENFun(@"5分钟后", @"In 5 min");
     NSString * string2 = ChineseStringOrENFun(@"15分钟后", @"In 15 min");
@@ -197,10 +197,14 @@
         datePickerView.title = ChineseStringOrENFun(@"选择时间", @"Choose Date");
         // datePickerView.selectValue = @"2019-10-30";
     //    datePickerView.selectDate = [NSDate br_setYear:2019 month:10 day:30];
-        datePickerView.minDate = startData;
-        datePickerView.maxDate = endData;
+//        datePickerView.minDate = startData;
+//        datePickerView.maxDate = endData;
         datePickerView.isAutoSelect = NO;
         datePickerView.keyView = self.view;
+        datePickerView.customUnit = @{@"year": ChineseStringOrENFun(@"年", @"Y"), @"month": ChineseStringOrENFun(@"月", @"M"), @"day": ChineseStringOrENFun(@"日",@"D"), @"hour": ChineseStringOrENFun(@"时", @"H"), @"minute": ChineseStringOrENFun(@"分", @"M"), @"second": ChineseStringOrENFun(@"秒", @"S")};
+        datePickerView.monthNames = @[ChineseStringOrENFun(@"1月", @"Jan"),ChineseStringOrENFun(@"2月", @"Feb"),ChineseStringOrENFun(@"3月", @"Mar"),ChineseStringOrENFun(@"4月", @"Apr"),ChineseStringOrENFun(@"5月", @"May"),ChineseStringOrENFun(@"6月", @"Jun"),ChineseStringOrENFun(@"7月", @"Jul"),ChineseStringOrENFun(@"8月", @"Aug"),ChineseStringOrENFun(@"9月", @"Sep"),ChineseStringOrENFun(@"10月", @"Oct"),ChineseStringOrENFun(@"11月", @"Nov"),ChineseStringOrENFun(@"12月", @"Dec")];
+
+        
         datePickerView.resultBlock = ^(NSDate *selectDate, NSString *selectValue) {
             NSLog(@"选择的值：%@", selectValue);
             [self pushViewControllerwithDate:selectDate];

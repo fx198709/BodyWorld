@@ -39,7 +39,7 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 14, 200, 22)];
     [topView addSubview:titleLabel];
     titleLabel.font = SystemFontOfSize(17);
-    titleLabel.text = ChineseStringOrENFun(@"伙伴", @"Partner");
+    titleLabel.text = ChineseStringOrENFun(@"伙伴", @"Training Buddies");
     titleLabel.textColor = UIColor.whiteColor;
     UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(10, 49, outwith-20, 0.5)];
     lineview.backgroundColor = UIRGBColor(225, 225, 225, 0.5);

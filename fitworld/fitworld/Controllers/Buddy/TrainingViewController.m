@@ -158,7 +158,8 @@
     
     UILabel *label3 = [[UILabel alloc] init];
     NSString *title = ChineseStringOrENFun(@"视频语言：", @"Video Language：");
-    title = [NSString stringWithFormat:@"%@%@",title,course.language];
+//    title = [NSString stringWithFormat:@"%@%@",title,course.language];
+    title = [NSString stringWithFormat:@"%@%@",title,@"English"];
     label3.text = title;
     label3.font = [UIFont systemFontOfSize:12];
     label3.textColor = UIColorFromRGBA(227, 227, 227,1);
