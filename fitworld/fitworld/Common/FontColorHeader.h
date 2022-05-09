@@ -8,7 +8,7 @@
 #ifndef FontColorHeader_h
 #define FontColorHeader_h
 
-
+#define NeedLogAndUpload 0
 //字体
 #define SystemFontOfSize(size)  [UIFont systemFontOfSize:size]
 //等宽字体
